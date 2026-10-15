@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ပုံပြခန်း Page 1</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Myanmar Text', system-ui, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f0f4fa 0%, #dce5f0 100%);
+      min-height: 100vh;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 1.8rem 2rem;
+      background: rgba(255, 255, 255, 0.70);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 60px;
+      box-shadow: 0 12px 32px rgba(0, 30, 60, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #0b2d44;
+      letter-spacing: -0.5px;
+    }
+
+    .header h1 span {
+      background: linear-gradient(135deg, #1e4d70, #2a6a94);
+      color: #fff;
+      padding: 0.2rem 1.4rem;
+      border-radius: 60px;
+      font-size: 1.6rem;
+      margin-left: 10px;
+    }
+
+    .header p {
+      color: #2b577b;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    /* GALLERY GRID */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0, 20, 40, 0.06);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 24px 48px rgba(14, 50, 90, 0.15);
+      border-color: #b3d0eb;
+    }
+
+    .card .img-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #f0f5fe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .card:hover .img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .card .img-wrap .placeholder {
+      color: #6b91b3;
+      font-size: 1rem;
+      font-weight: 500;
+      background: #dde8f5;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .card .img-wrap .placeholder span {
+      font-size: 2.2rem;
+      opacity: 0.5;
+    }
+
+    .card .card-footer {
+      padding: 0.8rem 1rem 1rem 1rem;
+      background: #ffffff;
+      text-align: center;
+      font-weight: 500;
+      color: #1c405b;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #eef5fd;
+    }
+
+    /* ====== MODAL (LIGHTBOX) for images ====== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.80);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 2rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 32px;
+      max-width: 85vw;
+      max-height: 90vh;
+      padding: 1.8rem 1.8rem 2rem 1.8rem;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+      position: relative;
+      animation: zoomIn 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8) rotate(-2deg); opacity: 0.4; }
+      to { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: rgba(0, 0, 0, 0.06);
+      border: none;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: #1e3f5a;
+      cursor: pointer;
+      transition: 0.25s ease;
+      line-height: 1;
+      padding: 0;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-close:hover {
+      background: #c0392b;
+      color: white;
+      transform: rotate(90deg) scale(1.05);
+    }
+
+    .modal-image-wrap {
+      width: 100%;
+      max-height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #f0f5fe;
+    }
+
+    .modal-image-wrap img {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .modal-caption {
+      margin-top: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #0b2d44;
+      background: #f0f6ff;
+      padding: 0.4rem 2rem;
+      border-radius: 60px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ====== CREDIT DIALOG (ဝင်ဝင်ချင်းပေါ်မယ်) ====== */
+    .credit-dialog-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.60);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      padding: 1.5rem;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .credit-dialog-overlay.hidden {
+      display: none;
+    }
+
+    .credit-dialog {
+      background: linear-gradient(145deg, #ffffff, #f8faff);
+      border-radius: 32px;
+      max-width: 600px;
+      width: 100%;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+      position: relative;
+      animation: zoomIn 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .credit-dialog .dialog-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: rgba(0, 0, 0, 0.05);
+      border: none;
+      font-size: 2rem;
+      font-weight: 300;
+      color: #1e3f5a;
+      cursor: pointer;
+      transition: 0.25s ease;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .credit-dialog .dialog-close:hover {
+      background: #c0392b;
+      color: white;
+      transform: rotate(90deg);
+    }
+
+    .credit-dialog .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #c0392b, #e74c3c);
+      color: #fff;
+      padding: 0.2rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .credit-dialog p {
+      font-size: 1.05rem;
+      line-height: 2;
+      color: #1a2e3f;
+      margin-bottom: 0.5rem;
+    }
+
+    .credit-dialog .highlight {
+      color: #c0392b;
+      font-weight: 600;
+      background: rgba(192, 57, 43, 0.08);
+      padding: 0.1rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .credit-dialog .link-group {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .credit-dialog .link-group a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .credit-dialog .link-group a:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .credit-dialog .link-group a.telegram {
+      background: #0088cc;
+      color: #fff;
+    }
+
+    .credit-dialog .link-group a.telegram:hover {
+      background: #006699;
+    }
+
+    .credit-dialog .link-group a.tiktok {
+      background: #000000;
+      color: #fff;
+    }
+
+    .credit-dialog .link-group a.tiktok:hover {
+      background: #1a1a2e;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .header h1 { font-size: 1.8rem; }
+      .header h1 span { font-size: 1.1rem; padding: 0.1rem 0.9rem; }
+      .gallery { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
+      body { padding: 1.2rem 0.8rem; }
+      .modal-content { max-width: 95vw; padding: 1rem; }
+      .modal-close { font-size: 2rem; top: 8px; right: 10px; width: 40px; height: 40px; }
+      .modal-caption { font-size: 0.9rem; padding: 0.3rem 1.2rem; }
+      .credit-dialog { padding: 1.8rem 1.5rem; }
+      .credit-dialog p { font-size: 0.95rem; line-height: 1.8; }
+      .credit-dialog .link-group a { font-size: 0.85rem; padding: 0.4rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>
+      🖼️ ပုံပြခန်း
+      <span>Page 1</span>
+    </h1>
+    <p>ပုံကိုနှိပ်ပါ → ပုံကြီးကြီးဖွင့်မယ် ✨ ပိတ်ရန် X ကိုနှိပ်ပါ</p>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <div class="gallery" id="galleryContainer">
+    <!-- JavaScript will generate cards from rnm1 to rnm40 -->
+  </div>
+</div>
+
+<!-- ====== MODAL (LIGHTBOX) for images ====== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content" id="modalContent">
+    <button class="modal-close" id="modalCloseBtn">✕</button>
+    <div class="modal-image-wrap" id="modalImageWrap">
+      <img id="modalImage" src="" alt="ပုံကြီး" />
+    </div>
+    <div class="modal-caption" id="modalCaption">rnm1</div>
+  </div>
+</div>
+
+<!-- ====== CREDIT DIALOG (ဝင်ဝင်ချင်းပေါ်မယ်) ====== -->
+<div class="credit-dialog-overlay" id="creditDialog">
+  <div class="credit-dialog">
+    <button class="dialog-close" id="creditDialogClose">✕</button>
+    <div class="badge">🙏 ဝန်ခံကြောင်း</div>
+    <p>
+      <strong>အရင်ဆုံး</strong> ရုရှားမြန်မာဘာသာပြန်မီးနင်းများကို ကျွန်တော်၏ ရုရှားဘာသာသင်ပေးသောဆရာ
+      <span class="highlight">(Telegram link – @snow_diaryy)</span> နှင့်
+      <span class="highlight">(TikTok link – @1a40.t72b3)</span>
+      ထံမှ ကူးယူထားသည်ဖြစ်ကြောင်း ဝန်ခံအပ်ပါတယ်။
+    </p>
+    <p>
+      ရုရှားဘာသာကိုလည်း ထိုဆရာဆီမှာ သွားရောက်သင်ယူနိုင်ပါတယ်။
+      <strong>အရမ်းဈေးသက်သာ</strong>ပြီး နားမလည်သည့်အရာကို စနစ်တကျ သေချာလေးပြန်ရှင်းပေးသောကြောင့်
+      ရုရှားဘာသာလေ့လာသူတိုင်းအတွက် <span class="highlight">recommend</span> ပေးပါသည်။
+    </p>
+    <div class="link-group">
+      <a href="https://t.me/snow_diaryy" target="_blank" class="telegram">
+        <span>📱</span> Telegram – @snow_diaryy
+      </a>
+      <a href="https://www.tiktok.com/@1a40.t72b3" target="_blank" class="tiktok">
+        <span>🎵</span> TikTok – @1a40.t72b3
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ====== CREDIT DIALOG ======
+    const dialog = document.getElementById('creditDialog');
+    const dialogClose = document.getElementById('creditDialogClose');
+
+    // ဝင်တိုင်း ပေါ်အောင်လုပ်ဖို့ localStorage စစ်ဆေးမှုကိုဖယ်လိုက်ပါတယ်
+    // dialog ကို အမြဲပြသမယ်
+    dialog.classList.remove('hidden');
+
+    function closeDialog() {
+      dialog.classList.add('hidden');
+      // localStorage သိမ်းဆည်းခြင်းကိုလည်း ဖယ်လိုက်ပါတယ်
+      // localStorage.setItem('creditDialogSeen', 'true');
+    }
+
+    dialogClose.addEventListener('click', closeDialog);
+
+    // Click outside to close
+    dialog.addEventListener('click', function(e) {
+      if (e.target === dialog) {
+        closeDialog();
+      }
+    });
+
+    // ====== IMAGE GALLERY ======
+    const container = document.getElementById('galleryContainer');
+    const total = 40;
+
+    const overlay = document.getElementById('modalOverlay');
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeBtn = document.getElementById('modalCloseBtn');
+
+    function openModal(src, caption) {
+      modalImg.src = src;
+      modalImg.alt = caption;
+      modalCaption.textContent = caption;
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    function createCard(index) {
+      const num = index + 1;
+      const fileName = `rnm${num}.jpg`;  // <--- rnm1.jpg to rnm40.jpg
+      const displayName = `rnm${num}`;   // <--- rnm1, rnm2, ...
+
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const wrap = document.createElement('div');
+      wrap.className = 'img-wrap';
+
+      const img = document.createElement('img');
+      img.src = fileName;
+      img.alt = displayName;
+
+      img.onerror = function() {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'placeholder';
+        placeholder.innerHTML = `<span>🖼️</span> ${displayName}<br><small style="font-weight:300;">ပုံမရှိသေး</small>`;
+        wrap.innerHTML = '';
+        wrap.appendChild(placeholder);
+        wrap.dataset.filename = fileName;
+      };
+
+      wrap.appendChild(img);
+      wrap.dataset.filename = fileName;
+
+      const footer = document.createElement('div');
+      footer.className = 'card-footer';
+      footer.textContent = displayName;
+
+      card.appendChild(wrap);
+      card.appendChild(footer);
+
+      card.addEventListener('click', function() {
+        const imgElem = this.querySelector('.img-wrap img');
+        let src = '';
+        let name = displayName;
+
+        if (imgElem && imgElem.src && !imgElem.src.endsWith('undefined')) {
+          src = imgElem.src;
+        } else {
+          src = fileName;
+        }
+
+        openModal(src, name);
+      });
+
+      return card;
+    }
+
+    for (let i = 0; i < total; i++) {
+      const card = createCard(i);
+      container.appendChild(card);
+    }
+
+  })();
+</script>
+</body>
+</html>

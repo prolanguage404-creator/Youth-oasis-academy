@@ -1,0 +1,3007 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSK 3 Web Course (မြန်မာလို)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', 'Myanmar Text', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4fa;
+            padding: 20px;
+            color: #1a2b3c;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px 35px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        h1 {
+            font-size: 30px;
+            border-left: 8px solid #c0392b;
+            padding-left: 20px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .spinner-area {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            background: #eef3f9;
+            padding: 16px 24px;
+            border-radius: 18px;
+        }
+        .spinner-area label {
+            font-weight: 700;
+            font-size: 19px;
+        }
+        .spinner-area select {
+            padding: 12px 26px;
+            font-size: 19px;
+            border-radius: 40px;
+            border: 1px solid #aec3db;
+            background: white;
+            min-width: 180px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .lesson-card {
+            margin-top: 6px;
+        }
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 32px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 4px solid #c0392b;
+            display: inline-block;
+        }
+        .dialog-box {
+            background: #f6faff;
+            border-left: 6px solid #2980b9;
+            padding: 20px 26px;
+            border-radius: 16px;
+            line-height: 2;
+            font-size: 17px;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+        }
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 14px;
+            margin: 14px 0;
+        }
+        .word-item {
+            background: #fafcff;
+            padding: 12px 16px;
+            border-radius: 16px;
+            border: 1px solid #dde6f0;
+        }
+        .word-item .cn {
+            font-weight: 700;
+            font-size: 20px;
+            color: #1a2f47;
+        }
+        .word-item .pinyin {
+            color: #1f7a4a;
+            font-style: italic;
+            font-size: 15px;
+        }
+        .word-item .my {
+            color: #8e3d63;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .grammar-block {
+            background: #f1f7fe;
+            border-radius: 18px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            border: 1px solid #d0e2f5;
+        }
+        .grammar-block .pattern {
+            font-weight: 700;
+            font-size: 20px;
+            color: #0a3857;
+        }
+        .grammar-block .explain {
+            background: #e2edfb;
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 8px 0 14px 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .grammar-block .ex-list {
+            padding-left: 26px;
+            line-height: 2;
+            list-style-type: decimal;
+        }
+        .grammar-block .ex-list li {
+            margin-bottom: 6px;
+            font-size: 15.5px;
+        }
+        .grammar-block .ex-list .my-mean {
+            color: #7b3f5e;
+            font-weight: 500;
+            margin-left: 6px;
+        }
+        .exercise-item {
+            background: #fefcf5;
+            padding: 20px 24px;
+            border-radius: 18px;
+            margin: 18px 0;
+            border: 1px solid #e6dbca;
+        }
+        .exercise-item .question {
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .exercise-item input {
+            padding: 10px 18px;
+            border-radius: 40px;
+            border: 1px solid #b8cbdf;
+            width: 70%;
+            max-width: 420px;
+            margin: 10px 14px 10px 0;
+            font-size: 16px;
+            background: white;
+        }
+        .exercise-item button {
+            background: #2980b9;
+            border: none;
+            color: white;
+            padding: 10px 26px;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.15s;
+            font-size: 16px;
+        }
+        .exercise-item button:hover {
+            background: #1a5276;
+        }
+        .exercise-item .feedback {
+            margin-top: 12px;
+            padding: 10px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 500;
+        }
+        .feedback.correct {
+            background: #d5f0e0;
+            color: #0a5530;
+        }
+        .feedback.wrong {
+            background: #fce4e4;
+            color: #a13030;
+        }
+        .answer-reveal {
+            margin-left: 10px;
+            font-weight: 600;
+            color: #094a6b;
+        }
+        hr {
+            margin: 34px 0 14px 0;
+            border: 1px dashed #cbdae8;
+        }
+        .my-flag {
+            background: #f1e9d9;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🇨🇳 HSK 3 · အွန်လိုင်းသင်တန်း <span style="font-size:18px; background:#eef3f9; padding:2px 18px; border-radius:40px;">မြန်မာလို</span></h1>
+
+    <div class="spinner-area">
+        <label for="lessonSelect">📘 သင်ခန်းစာရွေးရန်</label>
+        <select id="lessonSelect"></select>
+    </div>
+
+    <div id="lessonContent" class="lesson-card"></div>
+</div>
+
+<script>
+// ----------------------------------------------------------------
+// DATA : Lesson 1 (အပြည့်အစုံ၊ မြန်မာအဓိပ္ပါယ်ပါ)
+// ----------------------------------------------------------------
+const lessonData = {
+    1: {
+        title: "သင်ခန်းစာ ၁ · 周末打算做什么？ (စနေ၊ တနင်္ဂနွေ ဘာလုပ်မလို့လဲ)",
+        dialog: `A: 周末你打算做什么？ (Zhōumò nǐ dǎsuàn zuò shénme?) → စနေ၊ တနင်္ဂနွေ မင်း ဘာလုပ်မလို့လဲ။\nB: 我打算去公园散步，然后和朋友吃饭。 (Wǒ dǎsuàn qù gōngyuán sànbù, ránhòu hé péngyou chīfàn.) → ကျွန်တော် ပန်းခြံသွား လမ်းလျှောက်ပြီး သူငယ်ချင်းနဲ့ ထမင်းစားမယ်။\nA: 听起来不错！我也想去，可是我要加班。 (Tīng qǐlái bùcuò! Wǒ yě xiǎng qù, kěshì wǒ yào jiābān.) → ကြားရတာ မဆိုးဘူး။ ကျွန်တော်လည်း သွားချင်တယ်၊ ဒါပေမယ့် ကျွန်တော် အချိန်ပိုလုပ်ရမယ်။\nB: 太可惜了！下次一起吧。 (Tài kěxī le! Xiàcì yīqǐ ba.) → သိပ်စိတ်မကောင်းဘူး။ နောက်တစ်ခါ အတူတူသွားကြ။\nA: 好啊，你最近工作忙吗？ (Hǎo a, nǐ zuìjìn gōngzuò máng ma?) → အိုကေ၊ မင်း မကြာသေးမီက အလုပ်ရှုပ်လား။\nB: 还好，比以前轻松一些。 (Hái hǎo, bǐ yǐqián qīngsōng yīxiē.) → သိပ်မဆိုးဘူး၊ အရင်ကထက် ပိုပေါ့ပါးတယ်။\nA: 那就好。记得注意身体。 (Nà jiù hǎo. Jìde zhùyì shēntǐ.) → ဒါဆိုကောင်းတယ်။ ကိုယ်ခန္ဓာကို ဂရုစိုက်ဖို့ မှတ်ထား။\nB: 谢谢，你也是。 (Xièxie, nǐ yě shì.) → ကျေးဇူးပါ၊ မင်းလည်း ဒီလိုပဲ။`,
+        words: [
+            { cn: "周末", pinyin: "zhōumò", my: "စနေ၊ တနင်္ဂနွေ" },
+            { cn: "打算", pinyin: "dǎsuàn", my: "စီစဉ်သည်၊ ရည်ရွယ်သည်" },
+            { cn: "散步", pinyin: "sànbù", my: "လမ်းလျှောက်သည်" },
+            { cn: "公园", pinyin: "gōngyuán", my: "ပန်းခြံ" },
+            { cn: "朋友", pinyin: "péngyou", my: "သူငယ်ချင်း" },
+            { cn: "吃饭", pinyin: "chīfàn", my: "ထမင်းစားသည်" },
+            { cn: "听起来", pinyin: "tīng qǐlái", my: "ကြားရသည် (ခံစားရ)" },
+            { cn: "不错", pinyin: "bùcuò", my: "မဆိုးပါ၊ ကောင်းတယ်" },
+            { cn: "可是", pinyin: "kěshì", my: "သို့သော်၊ ဒါပေမယ့်" },
+            { cn: "加班", pinyin: "jiābān", my: "အချိန်ပိုလုပ်သည်" },
+            { cn: "可惜", pinyin: "kěxī", my: "စိတ်မကောင်းဖြစ်ရသည်၊ နောင်တ" },
+            { cn: "下次", pinyin: "xiàcì", my: "နောက်တစ်ခါ" },
+            { cn: "最近", pinyin: "zuìjìn", my: "မကြာသေးမီက၊ လတ်တလော" },
+            { cn: "工作", pinyin: "gōngzuò", my: "အလုပ်" },
+            { cn: "忙", pinyin: "máng", my: "စေ့စပ်သည်၊ အလုပ်ရှုပ်သည်" },
+            { cn: "以前", pinyin: "yǐqián", my: "အရင်က" },
+            { cn: "轻松", pinyin: "qīngsōng", my: "ပေါ့ပါးသည်၊ သက်သာသည်" },
+            { cn: "记得", pinyin: "jìde", my: "မှတ်မိသည်၊ သတိရသည်" },
+            { cn: "注意", pinyin: "zhùyì", my: "ဂရုစိုက်သည်၊ သတိထားသည်" },
+            { cn: "身体", pinyin: "shēntǐ", my: "ကိုယ်ခန္ဓာ၊ ခန္ဓာကိုယ်" },
+            { cn: "谢谢", pinyin: "xièxie", my: "ကျေးဇူးတင်သည်" },
+            { cn: "也是", pinyin: "yěshì", my: "လည်းဖြစ်သည်" },
+            { cn: "打算", pinyin: "dǎsuàn", my: "ကြံစည်သည်" },
+            { cn: "散步", pinyin: "sànbù", my: "လမ်းလျှောက်" },
+            { cn: "公园", pinyin: "gōngyuán", my: "ပန်းခြံ" },
+            { cn: "吃饭", pinyin: "chīfàn", my: "စားသောက်သည်" },
+            { cn: "加班", pinyin: "jiābān", my: "အိုဗာတိုင်း" },
+            { cn: "可惜", pinyin: "kěxī", my: "နောင်တ" },
+            { cn: "最近", pinyin: "zuìjìn", my: "လတ်တလော" },
+            { cn: "注意", pinyin: "zhùyì", my: "သတိထား" },
+            { cn: "身体", pinyin: "shēntǐ", my: "ခန္ဓာကိုယ်" }
+        ],
+        grammar: [
+            {
+                pattern: "S + 打算 + V(O)",
+                explain: "တစ်ခုခုလုပ်ဖို့ စီစဉ်ထားကြောင်း ဖော်ပြရန် (计划做某事)",
+                examples: [
+                    { cn: "我打算去北京。", pinyin: "Wǒ dǎsuàn qù Běijīng.", my: "ငါ ဘေဂျင်းကို သွားဖို့ စီစဉ်တယ်။" },
+                    { cn: "她打算学汉语。", pinyin: "Tā dǎsuàn xué Hànyǔ.", my: "သူမ တရုတ်စာသင်ဖို့ စီစဉ်တယ်။" },
+                    { cn: "我们打算明天去。", pinyin: "Wǒmen dǎsuàn míngtiān qù.", my: "ငါတို့ မနက်ဖြန် သွားဖို့ စီစဉ်တယ်။" },
+                    { cn: "你打算做什么？", pinyin: "Nǐ dǎsuàn zuò shénme?", my: "မင်း ဘာလုပ်ဖို့ စီစဉ်ထားလဲ။" },
+                    { cn: "他打算买一本书。", pinyin: "Tā dǎsuàn mǎi yī běn shū.", my: "သူ စာအုပ်တစ်အုပ် ဝယ်ဖို့ စီစဉ်တယ်။" }
+                ]
+            },
+            {
+                pattern: "S + 可是 + 句子",
+                explain: "ဆန့်ကျင်ဖော်ပြချက် (သို့သော်၊ ဒါပေမယ့်)",
+                examples: [
+                    { cn: "我想去，可是我没时间。", pinyin: "Wǒ xiǎng qù, kěshì wǒ méi shíjiān.", my: "ငါသွားချင်တယ်၊ ဒါပေမယ့် ငါ့မှာ အချိန်မရှိဘူး။" },
+                    { cn: "他很好，可是不太说话。", pinyin: "Tā hěn hǎo, kěshì bù tài shuōhuà.", my: "သူကောင်းတယ်၊ ဒါပေမယ့် သိပ်မပြောတတ်ဘူး။" },
+                    { cn: "汉语很难，可是很有意思。", pinyin: "Hànyǔ hěn nán, kěshì hěn yǒuyìsi.", my: "တရုတ်စာခက်တယ်၊ ဒါပေမယ့် အရမ်းစိတ်ဝင်စားစရာကောင်းတယ်။" },
+                    { cn: "我饿了，可是不想吃。", pinyin: "Wǒ è le, kěshì bù xiǎng chī.", my: "ငါဗိုက်ဆာတယ်၊ ဒါပေမယ့် မစားချင်ဘူး။" },
+                    { cn: "她来了，可是又走了。", pinyin: "Tā lái le, kěshì yòu zǒu le.", my: "သူမလာတယ်၊ ဒါပေမယ့် ပြန်သွားပြီ။" }
+                ]
+            },
+            {
+                pattern: "V + 起来",
+                explain: "ကြားရ/မြင်ရ/ခံစားရ ပုံဖော်ရန် (表示感觉/印象)",
+                examples: [
+                    { cn: "听起来不错。", pinyin: "Tīng qǐlái bùcuò.", my: "ကြားရတာ မဆိုးဘူး။" },
+                    { cn: "看起来很好。", pinyin: "Kàn qǐlái hěn hǎo.", my: "ကြည့်ရတာ အရမ်းကောင်းတယ်။" },
+                    { cn: "闻起来很香。", pinyin: "Wén qǐlái hěn xiāng.", my: "နမ်းရတာ မွှေးတယ်။" },
+                    { cn: "吃起来有点酸。", pinyin: "Chī qǐlái yǒudiǎn suān.", my: "စားရတာ နည်းနည်းချဉ်တယ်။" },
+                    { cn: "感觉起来很舒服。", pinyin: "Gǎnjué qǐlái hěn shūfu.", my: "ခံစားရတာ အရမ်းအဆင်ပြေတယ်။" }
+                ]
+            },
+            {
+                pattern: "比以前 + Adj",
+                explain: "အရင်ကထက် ပို၍ ... (比以前更...)",
+                examples: [
+                    { cn: "比以前好。", pinyin: "Bǐ yǐqián hǎo.", my: "အရင်ကထက် ပိုကောင်းတယ်။" },
+                    { cn: "比以前忙。", pinyin: "Bǐ yǐqián máng.", my: "အရင်ကထက် ပိုရှုပ်တယ်။" },
+                    { cn: "比以前轻松。", pinyin: "Bǐ yǐqián qīngsōng.", my: "အရင်ကထက် ပိုပေါ့ပါးတယ်။" },
+                    { cn: "比以前漂亮。", pinyin: "Bǐ yǐqián piàoliang.", my: "အရင်ကထက် ပိုလှတယ်။" },
+                    { cn: "比以前努力。", pinyin: "Bǐ yǐqián nǔlì.", my: "အရင်ကထက် ပိုကြိုးစားတယ်။" }
+                ]
+            },
+            {
+                pattern: "S + 也 + V",
+                explain: "လည်း (also, too)",
+                examples: [
+                    { cn: "我也想去。", pinyin: "Wǒ yě xiǎng qù.", my: "ငါလည်း သွားချင်တယ်။" },
+                    { cn: "他也是学生。", pinyin: "Tā yě shì xuéshēng.", my: "သူလည်း ကျောင်းသားပဲ။" },
+                    { cn: "她也喜欢猫。", pinyin: "Tā yě xǐhuān māo.", my: "သူမလည်း ကြောင်ကို ကြိုက်တယ်။" },
+                    { cn: "我们也要去。", pinyin: "Wǒmen yě yào qù.", my: "ငါတို့လည်း သွားရမယ်။" },
+                    { cn: "你也要小心。", pinyin: "Nǐ yě yào xiǎoxīn.", my: "မင်းလည်း သတိထားရမယ်။" }
+                ]
+            },
+            {
+                pattern: "S + 记得 + V",
+                explain: "မှတ်မိ/သတိရ (记得做某事)",
+                examples: [
+                    { cn: "我记得你的名字。", pinyin: "Wǒ jìde nǐ de míngzì.", my: "ငါ မင်းနာမည်ကို မှတ်မိတယ်။" },
+                    { cn: "你记得关灯吗？", pinyin: "Nǐ jìde guān dēng ma?", my: "မင်း မီးပိတ်ဖို့ မှတ်မိလား။" },
+                    { cn: "记得带钥匙。", pinyin: "Jìde dài yàoshi.", my: "သော့ယူဖို့ မှတ်ထား။" },
+                    { cn: "她记得我的生日。", pinyin: "Tā jìde wǒ de shēngrì.", my: "သူမ ငါ့မွေးနေ့ကို မှတ်မိတယ်။" },
+                    { cn: "我记得你说过。", pinyin: "Wǒ jìde nǐ shuō guò.", my: "မင်းပြောဖူးတာ ငါမှတ်မိတယ်။" }
+                ]
+            },
+            {
+                pattern: "S + 要 + V",
+                explain: "လုပ်ချင်သည် / လုပ်ရမည် (想要/需要做)",
+                examples: [
+                    { cn: "我要去学校。", pinyin: "Wǒ yào qù xuéxiào.", my: "ငါ ကျောင်းသွားချင်တယ်/သွားရမယ်။" },
+                    { cn: "他要喝水。", pinyin: "Tā yào hē shuǐ.", my: "သူ ရေသောက်ချင်တယ်။" },
+                    { cn: "我们要看电影。", pinyin: "Wǒmen yào kàn diànyǐng.", my: "ငါတို့ ရုပ်ရှင်ကြည့်ချင်တယ်။" },
+                    { cn: "你要小心。", pinyin: "Nǐ yào xiǎoxīn.", my: "မင်း သတိထားရမယ်။" },
+                    { cn: "她要回家了。", pinyin: "Tā yào huí jiā le.", my: "သူမ အိမ်ပြန်တော့မယ်။" }
+                ]
+            },
+            {
+                pattern: "S + 可是 + S + 也 + V",
+                explain: "သို့သော် ... လည်း (但是...也)",
+                examples: [
+                    { cn: "我想去，可是她也要去。", pinyin: "Wǒ xiǎng qù, kěshì tā yě yào qù.", my: "ငါသွားချင်တယ်၊ ဒါပေမယ့် သူမလည်း သွားချင်တယ်။" },
+                    { cn: "他累了，可是也想继续。", pinyin: "Tā lèi le, kěshì yě xiǎng jìxù.", my: "သူပင်ပန်းတယ်၊ ဒါပေမယ့် ဆက်လုပ်ချင်သေးတယ်။" },
+                    { cn: "我饿了，可是也不想吃。", pinyin: "Wǒ è le, kěshì yě bù xiǎng chī.", my: "ငါဗိုက်ဆာတယ်၊ ဒါပေမယ့် မစားချင်ဘူး။" },
+                    { cn: "她很忙，可是也来帮忙。", pinyin: "Tā hěn máng, kěshì yě lái bāngmáng.", my: "သူမအရမ်းရှုပ်တယ်၊ ဒါပေမယ့် လာကူညီတယ်။" },
+                    { cn: "下雨了，可是他还是出去。", pinyin: "Xiàyǔ le, kěshì tā háishì chūqù.", my: "မိုးရွာတယ်၊ ဒါပေမယ့် သူ ထွက်သွားတုန်းပဲ။" }
+                ]
+            }
+        ],
+        exercises: [
+            {
+                question: "၁။ A က စနေ၊ တနင်္ဂနွေ ဘာလုပ်မလို့လဲ။",
+                answer: "ပန်းခြံသွား လမ်းလျှောက်ပြီး သူငယ်ချင်းနဲ့ ထမင်းစားမယ်"
+            },
+            {
+                question: "၂။ B က ဘာကြောင့် 'စိတ်မကောင်းဘူး' လို့ပြောတာလဲ။",
+                answer: "A က အချိန်ပိုလုပ်ရလို့ မသွားနိုင်လို့"
+            },
+            {
+                question: "၃။ A ရဲ့ အလုပ်အကိုင် မကြာသေးမီက ဘယ်လိုလဲ။",
+                answer: "အရင်ကထက် ပိုပေါ့ပါးတယ်"
+            },
+            {
+                question: "၄။ B က နောက်ဆုံး ဘာပြောလဲ။",
+                answer: "ကိုယ်ခန္ဓာကို ဂရုစိုက်ပါ"
+            },
+            {
+                question: "၅။ သူတို့ နောက်တစ်ခါ အတူတူသွားဖို့ သဘောတူကြလား။",
+                answer: "ဟုတ်တယ်"
+            },
+            {
+                question: "၆။ '听起来不错' မှာ '起来' က ဘာကိုပြသလဲ။",
+                answer: "ခံစားချက်/အထင်အမြင်"
+            },
+            {
+                question: "၇။ '打算' သုံးပြီး ဝါကျတစ်ခု ဆောက်ပါ။",
+                answer: "我打算去公园。"
+            },
+            {
+                question: "၈။ '可是' က ဒိုင်ယာလော့ဂ်ထဲမှာ ဘယ်နှစ်ခါပါလဲ။",
+                answer: "တစ်ခါ"
+            }
+        ]
+    },
+    2: {
+    title: "သင်ခန်းစာ ၂ · 去银行怎么走？ (ဘဏ်ကို ဘယ်လိုသွားရမလဲ)",
+    dialog: `A: 请问，去银行怎么走？ (Qǐngwèn, qù yínháng zěnme zǒu?) → ကျေးဇူးပြုပြီး ဘဏ်ကို ဘယ်လိုသွားရမလဲ။\nB: 从这儿往前走，到红绿灯左转。 (Cóng zhèr wǎng qián zǒu, dào hónglǜdēng zuǒ zhuǎn.) → ဒီကနေ ရှေ့ကို သွားပါ၊ မီးပွိုင့်ရောက်ရင် ဘယ်ဘက်ကွေ့ပါ။\nA: 要走多久？ (Yào zǒu duō jiǔ?) → ဘယ်လောက်ကြာကြာ သွားရမလဲ။\nB: 大概十分钟。 (Dàgài shí fēnzhōng.) → ခန့်မှန်းခြေ ဆယ်မိနစ်လောက်။\nA: 谢谢你！ (Xièxie nǐ!) → ကျေးဇူးပါ။\nB: 不客气。 (Bù kèqì.) → ရပါတယ်။`,
+    words: [
+    { cn: "请问", pinyin: "qǐngwèn", my: "ကျေးဇူးပြုပြီး မေးရင်" },
+    { cn: "银行", pinyin: "yínháng", my: "ဘဏ်" },
+    { cn: "怎么走", pinyin: "zěnme zǒu", my: "ဘယ်လိုသွားရမလဲ" },
+    { cn: "从", pinyin: "cóng", my: "မှ" },
+    { cn: "这儿", pinyin: "zhèr", my: "ဒီမှာ" },
+    { cn: "往前", pinyin: "wǎng qián", my: "ရှေ့ကို" },
+    { cn: "红绿灯", pinyin: "hónglǜdēng", my: "မီးပွိုင့်" },
+    { cn: "左转", pinyin: "zuǒ zhuǎn", my: "ဘယ်ဘက်ကွေ့" },
+    { cn: "多久", pinyin: "duō jiǔ", my: "ဘယ်လောက်ကြာကြာ" },
+    { cn: "大概", pinyin: "dàgài", my: "ခန့်မှန်းခြေ" },
+    { cn: "分钟", pinyin: "fēnzhōng", my: "မိနစ်" },
+    { cn: "谢谢", pinyin: "xièxie", my: "ကျေးဇူးတင်ပါတယ်" },
+    { cn: "不客气", pinyin: "bù kèqì", my: "ရပါတယ်" },
+    { cn: "请问", pinyin: "qǐngwèn", my: "မေးခွန်း" },
+    { cn: "银行", pinyin: "yínháng", my: "ဘဏ်" },
+    { cn: "怎么走", pinyin: "zěnme zǒu", my: "လမ်းမေး" },
+    { cn: "从", pinyin: "cóng", my: "မှ" },
+    { cn: "这儿", pinyin: "zhèr", my: "ဒီမှာ" },
+    { cn: "往前", pinyin: "wǎng qián", my: "ရှေ့သို့" },
+    { cn: "红绿灯", pinyin: "hónglǜdēng", my: "မီးပွိုင့်" },
+    { cn: "左转", pinyin: "zuǒ zhuǎn", my: "ဘယ်ဘက်ကွေ့" },
+    { cn: "多久", pinyin: "duō jiǔ", my: "ဘယ်လောက်ကြာ" },
+    { cn: "大概", pinyin: "dàgài", my: "ခန့်မှန်း" },
+    { cn: "分钟", pinyin: "fēnzhōng", my: "မိနစ်" },
+    { cn: "谢谢", pinyin: "xièxie", my: "ကျေးဇူး" },
+    { cn: "不客气", pinyin: "bù kèqì", my: "မဟုတ်ပါဘူး" },
+    { cn: "请问", pinyin: "qǐngwèn", my: "မေးပါရစေ" },
+    { cn: "银行", pinyin: "yínháng", my: "ဘဏ်" },
+    { cn: "怎么走", pinyin: "zěnme zǒu", my: "လမ်းဘယ်လို" },
+    { cn: "红绿灯", pinyin: "hónglǜdēng", my: "မီးပွိုင့်" }
+    ],
+    grammar: [
+    {
+    pattern: "从 + 地方 + 往 + 方向 + 走",
+    explain: "နေရာတစ်ခုမှ ဦးတည်ချက်တစ်ခုသို့ သွားကြောင်း ဖော်ပြရန်",
+    examples: [
+    { cn: "从这儿往前走。", pinyin: "Cóng zhèr wǎng qián zǒu.", my: "ဒီကနေ ရှေ့ကို သွားပါ။" },
+    { cn: "从学校往右走。", pinyin: "Cóng xuéxiào wǎng yòu zǒu.", my: "ကျောင်းကနေ ညာဘက်ကွေ့ပါ။" },
+    { cn: "从家往左走。", pinyin: "Cóng jiā wǎng zuǒ zǒu.", my: "အိမ်ကနေ ဘယ်ဘက်ကွေ့ပါ။" },
+    { cn: "从公园往北走。", pinyin: "Cóng gōngyuán wǎng běi zǒu.", my: "ပန်းခြံကနေ မြောက်ဘက်သွားပါ။" },
+    { cn: "从车站往前走。", pinyin: "Cóng chēzhàn wǎng qián zǒu.", my: "ဘူတာကနေ ရှေ့သွားပါ။" }
+    ]
+    },
+    {
+    pattern: "到 + 地方 + 左/右转",
+    explain: "နေရာတစ်ခုရောက်ရင် ဘယ်/ညာ ကွေ့ရန်",
+    examples: [
+    { cn: "到红绿灯左转。", pinyin: "Dào hónglǜdēng zuǒ zhuǎn.", my: "မီးပွိုင့်ရောက်ရင် ဘယ်ကွေ့ပါ။" },
+    { cn: "到学校右转。", pinyin: "Dào xuéxiào yòu zhuǎn.", my: "ကျောင်းရောက်ရင် ညာကွေ့ပါ။" },
+    { cn: "到公园左转。", pinyin: "Dào gōngyuán zuǒ zhuǎn.", my: "ပန်းခြံရောက်ရင် ဘယ်ကွေ့ပါ။" },
+    { cn: "到银行右转。", pinyin: "Dào yínháng yòu zhuǎn.", my: "ဘဏ်ရောက်ရင် ညာကွေ့ပါ။" },
+    { cn: "到超市左转。", pinyin: "Dào chāoshì zuǒ zhuǎn.", my: "စူပါမားကတ်ရောက်ရင် ဘယ်ကွေ့ပါ။" }
+    ]
+    },
+    {
+    pattern: "要 + V + 多久",
+    explain: "ဘယ်လောက်ကြာကြာ လုပ်ရမည်ကို မေးရန်",
+    examples: [
+    { cn: "要走多久？", pinyin: "Yào zǒu duō jiǔ?", my: "ဘယ်လောက်ကြာကြာ သွားရမလဲ။" },
+    { cn: "要坐多久？", pinyin: "Yào zuò duō jiǔ?", my: "ဘယ်လောက်ကြာကြာ ထိုင်ရမလဲ။" },
+    { cn: "要等多久？", pinyin: "Yào děng duō jiǔ?", my: "ဘယ်လောက်ကြာကြာ စောင့်ရမလဲ။" },
+    { cn: "要开多久？", pinyin: "Yào kāi duō jiǔ?", my: "ဘယ်လောက်ကြာကြာ မောင်းရမလဲ။" },
+    { cn: "要写多久？", pinyin: "Yào xiě duō jiǔ?", my: "ဘယ်လောက်ကြာကြာ ရေးရမလဲ။" }
+    ]
+    },
+    {
+    pattern: "大概 + 数量 + 时间单位",
+    explain: "ခန့်မှန်းခြေ အချိန်ကို ဖော်ပြရန်",
+    examples: [
+    { cn: "大概十分钟。", pinyin: "Dàgài shí fēnzhōng.", my: "ခန့်မှန်းခြေ ဆယ်မိနစ်။" },
+    { cn: "大概一个小时。", pinyin: "Dàgài yī gè xiǎoshí.", my: "ခန့်မှန်းခြေ တစ်နာရီ။" },
+    { cn: "大概两天。", pinyin: "Dàgài liǎng tiān.", my: "ခန့်မှန်းခြေ နှစ်ရက်။" },
+    { cn: "大概三周。", pinyin: "Dàgài sān zhōu.", my: "ခန့်မှန်းခြေ သုံးပတ်။" },
+    { cn: "大概五个月。", pinyin: "Dàgài wǔ gè yuè.", my: "ခန့်မှန်းခြေ ငါးလ။" }
+    ]
+    },
+    {
+    pattern: "请问 + 句子",
+    explain: "ယဉ်ကျေးစွာ မေးခွန်းမေးရန်",
+    examples: [
+    { cn: "请问，你叫什么？", pinyin: "Qǐngwèn, nǐ jiào shénme?", my: "ကျေးဇူးပြုပြီး ခင်ဗျားနာမည်ဘယ်လိုခေါ်လဲ။" },
+    { cn: "请问，现在几点？", pinyin: "Qǐngwèn, xiànzài jǐ diǎn?", my: "ကျေးဇူးပြုပြီး အခုဘယ်နှစ်နာရီလဲ။" },
+    { cn: "请问，洗手间在哪儿？", pinyin: "Qǐngwèn, xǐshǒujiān zài nǎr?", my: "ကျေးဇူးပြုပြီး အိမ်သာဘယ်မှာလဲ။" },
+    { cn: "请问，这个多少钱？", pinyin: "Qǐngwèn, zhège duōshǎo qián?", my: "ကျေးဇူးပြုပြီး ဒါဘယ်လောက်လဲ။" },
+    { cn: "请问，你会说中文吗？", pinyin: "Qǐngwèn, nǐ huì shuō Zhōngwén ma?", my: "ကျေးဇူးပြုပြီး ခင်ဗျား တရုတ်စကားပြောတတ်လား။" }
+    ]
+    },
+    {
+    pattern: "不客气",
+    explain: "ကျေးဇူးပြုတာ အတွက် တုံ့ပြန်ခြင်း (You're welcome)",
+    examples: [
+    { cn: "谢谢你！不客气。", pinyin: "Xièxie nǐ! Bù kèqì.", my: "ကျေးဇူး။ ရပါတယ်။" },
+    { cn: "谢谢你的帮助！不客气。", pinyin: "Xièxie nǐ de bāngzhù! Bù kèqì.", my: "အကူအညီအတွက် ကျေးဇူး။ ရပါတယ်။" },
+    { cn: "谢谢！不客气。", pinyin: "Xièxie! Bù kèqì.", my: "ကျေးဇူး။ ရပါတယ်။" }
+    ]
+    },
+    {
+    pattern: "从...到...",
+    explain: "...မှ ...အထိ (အကွာအဝေး သို့ အတိုင်းအတာ)",
+    examples: [
+    { cn: "从这儿到银行。", pinyin: "Cóng zhèr dào yínháng.", my: "ဒီကနေ ဘဏ်အထိ။" },
+    { cn: "从家到学校。", pinyin: "Cóng jiā dào xuéxiào.", my: "အိမ်ကနေ ကျောင်းအထိ။" },
+    { cn: "从星期一到星期五。", pinyin: "Cóng xīngqīyī dào xīngqīwǔ.", my: "တနင်္လာနေ့မှ သောကြာနေ့အထိ။" },
+    { cn: "从早上到晚上。", pinyin: "Cóng zǎoshang dào wǎnshang.", my: "မနက်ကနေ ညနေအထိ။" },
+    { cn: "从一月到十二月。", pinyin: "Cóng yī yuè dào shí'èr yuè.", my: "ဇန်နဝါရီမှ ဒီဇင်ဘာအထိ။" }
+    ]
+    },
+    {
+    pattern: "往 + 方向 + 走",
+    explain: "ဦးတည်ချက်တစ်ခုသို့ သွားရန်",
+    examples: [
+    { cn: "往前走。", pinyin: "Wǎng qián zǒu.", my: "ရှေ့သွားပါ။" },
+    { cn: "往后走。", pinyin: "Wǎng hòu zǒu.", my: "နောက်သွားပါ။" },
+    { cn: "往左走。", pinyin: "Wǎng zuǒ zǒu.", my: "ဘယ်သွားပါ။" },
+    { cn: "往右走。", pinyin: "Wǎng yòu zǒu.", my: "ညာသွားပါ။" },
+    { cn: "往上走。", pinyin: "Wǎng shàng zǒu.", my: "အပေါ်သွားပါ။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ A က ဘယ်ကိုသွားချင်တာလဲ။", answer: "ဘဏ်" },
+    { question: "၂။ B က ဘယ်လိုသွားရမလဲလို့ ပြောလဲ။", answer: "ရှေ့သွားပြီး မီးပွိုင့်မှာ ဘယ်ကွေ့" },
+    { question: "၃။ ဘယ်လောက်ကြာကြာ သွားရမလဲ။", answer: "ဆယ်မိနစ်လောက်" },
+    { question: "၄။ A က ဘာပြောလဲ။", answer: "ကျေးဇူးပါ" },
+    { question: "၅။ B က ဘာပြန်ဖြေလဲ။", answer: "ရပါတယ်" },
+    { question: "၆။ '怎么走' က ဘာကိုမေးတာလဲ။", answer: "လမ်းညွှန်မေးတာ" },
+    { question: "၇။ '往左转' ဆိုတာ ဘာလဲ။", answer: "ဘယ်ဘက်ကွေ့" },
+    { question: "၈။ '大概' က ဘာကိုပြသလဲ။", answer: "ခန့်မှန်းခြေ" }
+    ]
+    },
+    3: {
+    title: "သင်ခန်းစာ ၃ · 你吃饭了吗？ (မင်း ထမင်းစားပြီးပြီလား)",
+    dialog: `A: 你吃饭了吗？ (Nǐ chīfàn le ma?) → မင်း ထမင်းစားပြီးပြီလား။\nB: 吃了，你呢？ (Chī le, nǐ ne?) → စားပြီးပြီ၊ မင်းရော။\nA: 我也吃了。你吃了什么？ (Wǒ yě chī le. Nǐ chī le shénme?) → ငါလည်းစားပြီး၊ မင်းဘာစားလဲ။\nB: 我吃了面条。 (Wǒ chī le miàntiáo.) → ငါ ခေါက်ဆွဲစားတယ်။\nA: 好吃吗？ (Hǎochī ma?) → အရသာရှိလား။\nB: 很好吃！ (Hěn hǎochī!) → အရမ်းအရသာရှိတယ်။`,
+    words: [
+    { cn: "吃饭", pinyin: "chīfàn", my: "ထမင်းစား" },
+    { cn: "了", pinyin: "le", my: "ပြီးပြီ (ပြီးစီးမှု)" },
+    { cn: "吗", pinyin: "ma", my: "လား (မေးခွန်း)" },
+    { cn: "呢", pinyin: "ne", my: "ရော (ပြန်မေးရန်)" },
+    { cn: "什么", pinyin: "shénme", my: "ဘာ" },
+    { cn: "面条", pinyin: "miàntiáo", my: "ခေါက်ဆွဲ" },
+    { cn: "好吃", pinyin: "hǎochī", my: "အရသာရှိ" },
+    { cn: "很", pinyin: "hěn", my: "အရမ်း" },
+    { cn: "吃", pinyin: "chī", my: "စား" },
+    { cn: "饭", pinyin: "fàn", my: "ထမင်း" },
+    { cn: "你", pinyin: "nǐ", my: "မင်း" },
+    { cn: "我", pinyin: "wǒ", my: "ငါ" },
+    { cn: "也", pinyin: "yě", my: "လည်း" },
+    { cn: "了", pinyin: "le", my: "ပြီ" },
+    { cn: "什么", pinyin: "shénme", my: "ဘာလဲ" },
+    { cn: "面条", pinyin: "miàntiáo", my: "ခေါက်ဆွဲ" },
+    { cn: "好吃", pinyin: "hǎochī", my: "အရသာရှိ" },
+    { cn: "很", pinyin: "hěn", my: "အလွန်" },
+    { cn: "吃", pinyin: "chī", my: "စားသည်" },
+    { cn: "饭", pinyin: "fàn", my: "ထမင်း" },
+    { cn: "你", pinyin: "nǐ", my: "မင်း" },
+    { cn: "我", pinyin: "wǒ", my: "ငါ" },
+    { cn: "也", pinyin: "yě", my: "လည်း" },
+    { cn: "了", pinyin: "le", my: "ပြီးပြီ" },
+    { cn: "什么", pinyin: "shénme", my: "ဘာလဲ" },
+    { cn: "面条", pinyin: "miàntiáo", my: "ခေါက်ဆွဲ" },
+    { cn: "好吃", pinyin: "hǎochī", my: "အရသာရှိ" },
+    { cn: "很", pinyin: "hěn", my: "အလွန်" }
+    ],
+    grammar: [
+    {
+    pattern: "V + 了 + 吗？",
+    explain: "တစ်ခုခုပြီးပြီလား မေးရန်",
+    examples: [
+    { cn: "你吃饭了吗？", pinyin: "Nǐ chīfàn le ma?", my: "မင်းထမင်းစားပြီးပြီလား။" },
+    { cn: "他去学校了吗？", pinyin: "Tā qù xuéxiào le ma?", my: "သူကျောင်းသွားပြီးပြီလား။" },
+    { cn: "你看书了吗？", pinyin: "Nǐ kàn shū le ma?", my: "မင်းစာဖတ်ပြီးပြီလား။" },
+    { cn: "她回家了吗？", pinyin: "Tā huí jiā le ma?", my: "သူမအိမ်ပြန်ပြီးပြီလား။" },
+    { cn: "你们吃饭了吗？", pinyin: "Nǐmen chīfàn le ma?", my: "မင်းတို့ထမင်းစားပြီးပြီလား။" }
+    ]
+    },
+    {
+    pattern: "S + V + 了 + O",
+    explain: "တစ်ခုခုကို ပြီးသွားပြီကြောင်း ဖော်ပြရန်",
+    examples: [
+    { cn: "我吃了面条。", pinyin: "Wǒ chī le miàntiáo.", my: "ငါခေါက်ဆွဲစားပြီးပြီ။" },
+    { cn: "她喝了水。", pinyin: "Tā hē le shuǐ.", my: "သူမရေသောက်ပြီးပြီ။" },
+    { cn: "我们看了电影。", pinyin: "Wǒmen kàn le diànyǐng.", my: "ငါတို့ရုပ်ရှင်ကြည့်ပြီးပြီ။" },
+    { cn: "他写了信。", pinyin: "Tā xiě le xìn.", my: "သူစာရေးပြီးပြီ။" },
+    { cn: "我买了书。", pinyin: "Wǒ mǎi le shū.", my: "ငါစာအုပ်ဝယ်ပြီးပြီ။" }
+    ]
+    },
+    {
+    pattern: "S + 也 + V + 了 + O",
+    explain: "တစ်ယောက်ယောက်လည်း လုပ်ပြီးပြီ",
+    examples: [
+    { cn: "我也吃了面条。", pinyin: "Wǒ yě chī le miàntiáo.", my: "ငါလည်းခေါက်ဆွဲစားပြီးပြီ။" },
+    { cn: "她也去了。", pinyin: "Tā yě qù le.", my: "သူမလည်းသွားပြီးပြီ။" },
+    { cn: "我们也看了。", pinyin: "Wǒmen yě kàn le.", my: "ငါတို့လည်းကြည့်ပြီးပြီ။" },
+    { cn: "他也写了。", pinyin: "Tā yě xiě le.", my: "သူလည်းရေးပြီးပြီ။" },
+    { cn: "我也买了。", pinyin: "Wǒ yě mǎi le.", my: "ငါလည်းဝယ်ပြီးပြီ။" }
+    ]
+    },
+    {
+    pattern: "S + V + 了 + 什么？",
+    explain: "ဘာလုပ်ပြီးလဲ မေးရန်",
+    examples: [
+    { cn: "你吃了什么？", pinyin: "Nǐ chī le shénme?", my: "မင်းဘာစားပြီးလဲ။" },
+    { cn: "他买了什么？", pinyin: "Tā mǎi le shénme?", my: "သူဘာဝယ်ပြီးလဲ။" },
+    { cn: "她写了什么？", pinyin: "Tā xiě le shénme?", my: "သူမဘာရေးပြီးလဲ။" },
+    { cn: "你们看了什么？", pinyin: "Nǐmen kàn le shénme?", my: "မင်းတို့ဘာကြည့်ပြီးလဲ။" },
+    { cn: "他喝了什么？", pinyin: "Tā hē le shénme?", my: "သူဘာသောက်ပြီးလဲ။" }
+    ]
+    },
+    {
+    pattern: "Adj + 吗？",
+    explain: "နာမဝိသေသနကို မေးရန်",
+    examples: [
+    { cn: "好吃吗？", pinyin: "Hǎochī ma?", my: "အရသာရှိလား။" },
+    { cn: "好玩吗？", pinyin: "Hǎowán ma?", my: "ပျော်စရာကောင်းလား။" },
+    { cn: "好看吗？", pinyin: "Hǎokàn ma?", my: "ကြည့်လို့ကောင်းလား။" },
+    { cn: "好听吗？", pinyin: "Hǎotīng ma?", my: "နားထောင်လို့ကောင်းလား။" },
+    { cn: "好喝吗？", pinyin: "Hǎohē ma?", my: "သောက်လို့ကောင်းလား။" }
+    ]
+    },
+    {
+    pattern: "很 + Adj",
+    explain: "အရမ်းကောင်း/အရမ်းလှစသဖြင့်",
+    examples: [
+    { cn: "很好吃。", pinyin: "Hěn hǎochī.", my: "အရမ်းအရသာရှိတယ်။" },
+    { cn: "很好看。", pinyin: "Hěn hǎokàn.", my: "အရမ်းလှတယ်။" },
+    { cn: "很好听。", pinyin: "Hěn hǎotīng.", my: "အရမ်းနားထောင်ကောင်းတယ်။" },
+    { cn: "很好喝。", pinyin: "Hěn hǎohē.", my: "အရမ်းသောက်လို့ကောင်းတယ်။" },
+    { cn: "很好玩。", pinyin: "Hěn hǎowán.", my: "အရမ်းပျော်စရာကောင်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "N + 呢？",
+    explain: "ပြန်မေးရန် (သူရော၊ မင်းရော)",
+    examples: [
+    { cn: "你呢？", pinyin: "Nǐ ne?", my: "မင်းရော။" },
+    { cn: "他呢？", pinyin: "Tā ne?", my: "သူရော။" },
+    { cn: "她呢？", pinyin: "Tā ne?", my: "သူမရော။" },
+    { cn: "我们呢？", pinyin: "Wǒmen ne?", my: "ငါတို့ရော။" },
+    { cn: "他们呢？", pinyin: "Tāmen ne?", my: "သူတို့ရော။" }
+    ]
+    },
+    {
+    pattern: "S + V + 了 + O + 吗？",
+    explain: "တစ်ခုခုပြီးပြီလား (အပြည့်အစုံ)",
+    examples: [
+    { cn: "你吃饭了吗？", pinyin: "Nǐ chīfàn le ma?", my: "မင်းထမင်းစားပြီးပြီလား။" },
+    { cn: "他去学校了吗？", pinyin: "Tā qù xuéxiào le ma?", my: "သူကျောင်းသွားပြီးပြီလား။" },
+    { cn: "你看书了吗？", pinyin: "Nǐ kàn shū le ma?", my: "မင်းစာဖတ်ပြီးပြီလား။" },
+    { cn: "她回家了吗？", pinyin: "Tā huí jiā le ma?", my: "သူမအိမ်ပြန်ပြီးပြီလား။" },
+    { cn: "你们吃饭了吗？", pinyin: "Nǐmen chīfàn le ma?", my: "မင်းတို့ထမင်းစားပြီးပြီလား။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ A က ဘာမေးလဲ။", answer: "ထမင်းစားပြီးပြီလား" },
+    { question: "၂။ B က ဘယ်လိုဖြေလဲ။", answer: "စားပြီးပြီ" },
+    { question: "၃။ B က ဘာစားလဲ။", answer: "ခေါက်ဆွဲ" },
+    { question: "၄။ A က ဘာမေးသေးလဲ။", answer: "အရသာရှိလား" },
+    { question: "၅။ B က ဘယ်လိုဖြေလဲ။", answer: "အရမ်းအရသာရှိတယ်" },
+    { question: "၆။ '了' က ဘာကိုပြသလဲ။", answer: "ပြီးစီးမှု" },
+    { question: "၇။ '吗' က ဘာအတွက်လဲ။", answer: "မေးခွန်း" },
+    { question: "၈။ '呢' က ဘာကိုဆိုလိုလဲ။", answer: "ပြန်မေးရန်" }
+    ]
+    },
+    
+    // ===================== LESSON 4 =====================
+    4: {
+    title: "သင်ခန်းစာ ၄ · 这件衣服多少钱？ (ဒီအဝတ်က ဘယ်လောက်လဲ)",
+    dialog: `A: 这件衣服多少钱？ (Zhè jiàn yīfu duōshǎo qián?) → ဒီအဝတ်က ဘယ်လောက်လဲ။\nB: 这件衣服二百五十块。 (Zhè jiàn yīfu èrbǎi wǔshí kuài.) → ဒီအဝတ်က နှစ်ရာ့ငါးဆယ်ကျပ်။\nA: 太贵了！能便宜一点吗？ (Tài guì le! Néng piányi yīdiǎn ma?) → အရမ်းဈေးကြီးတယ်။ နည်းနည်းလျှော့ပေးလို့ရမလား။\nB: 好吧，二百块。 (Hǎo ba, èrbǎi kuài.) → အိုကေ၊ နှစ်ရာကျပ်။\nA: 好的，我买了。 (Hǎo de, wǒ mǎi le.) → ကောင်းပြီ၊ ငါဝယ်မယ်။`,
+    words: [
+    { cn: "件", pinyin: "jiàn", my: "ခု (အ၀တ်အထည်အတွက်)" },
+    { cn: "衣服", pinyin: "yīfu", my: "အဝတ်အထည်" },
+    { cn: "多少钱", pinyin: "duōshǎo qián", my: "ဘယ်လောက်လဲ" },
+    { cn: "二百五十", pinyin: "èrbǎi wǔshí", my: "နှစ်ရာ့ငါးဆယ်" },
+    { cn: "块", pinyin: "kuài", my: "ကျပ် (ငွေကြေး)" },
+    { cn: "太", pinyin: "tài", my: "အရမ်းကို" },
+    { cn: "贵", pinyin: "guì", my: "ဈေးကြီး" },
+    { cn: "能", pinyin: "néng", my: "နိုင်" },
+    { cn: "便宜", pinyin: "piányi", my: "ဈေးသက်သာ" },
+    { cn: "一点", pinyin: "yīdiǎn", my: "နည်းနည်း" },
+    { cn: "好吧", pinyin: "hǎo ba", my: "အိုကေ" },
+    { cn: "二百", pinyin: "èrbǎi", my: "နှစ်ရာ" },
+    { cn: "好的", pinyin: "hǎo de", my: "ကောင်းပြီ" },
+    { cn: "买", pinyin: "mǎi", my: "ဝယ်" },
+    { cn: "了", pinyin: "le", my: "ပြီ" },
+    { cn: "件", pinyin: "jiàn", my: "ခု" },
+    { cn: "衣服", pinyin: "yīfu", my: "အဝတ်" },
+    { cn: "多少钱", pinyin: "duōshǎo qián", my: "ဘယ်လောက်ကျပ်" },
+    { cn: "二百五十", pinyin: "èrbǎi wǔshí", my: "၂၅၀" },
+    { cn: "块", pinyin: "kuài", my: "ကျပ်" },
+    { cn: "太贵", pinyin: "tài guì", my: "ဈေးအရမ်းကြီး" },
+    { cn: "能", pinyin: "néng", my: "နိုင်" },
+    { cn: "便宜", pinyin: "piányi", my: "ဈေးသက်သာ" },
+    { cn: "一点", pinyin: "yīdiǎn", my: "နည်းနည်း" },
+    { cn: "好吧", pinyin: "hǎo ba", my: "အိုကေ" },
+    { cn: "二百", pinyin: "èrbǎi", my: "၂၀၀" },
+    { cn: "好的", pinyin: "hǎo de", my: "ကောင်းပြီ" },
+    { cn: "买", pinyin: "mǎi", my: "ဝယ်သည်" },
+    { cn: "了", pinyin: "le", my: "ပြီးပြီ" }
+    ],
+    grammar: [
+    {
+    pattern: "这/那 + 量词 + 名词",
+    explain: "ဤ/ထို + အတိုင်းအတာ + နာမ်",
+    examples: [
+    { cn: "这件衣服。", pinyin: "Zhè jiàn yīfu.", my: "ဒီအဝတ်အထည်" },
+    { cn: "那本书。", pinyin: "Nà běn shū.", my: "ထိုစာအုပ်" },
+    { cn: "这张桌子。", pinyin: "Zhè zhāng zhuōzi.", my: "ဒီစားပွဲ" },
+    { cn: "那把椅子。", pinyin: "Nà bǎ yǐzi.", my: "ထိုကုလားထိုင်" },
+    { cn: "这杯水。", pinyin: "Zhè bēi shuǐ.", my: "ဒီရေခွက်" }
+    ]
+    },
+    {
+    pattern: "Subject + 多少钱？",
+    explain: "ဈေးနှုန်းမေးရန်",
+    examples: [
+    { cn: "这件衣服多少钱？", pinyin: "Zhè jiàn yīfu duōshǎo qián?", my: "ဒီအဝတ်က ဘယ်လောက်လဲ။" },
+    { cn: "这本书多少钱？", pinyin: "Zhè běn shū duōshǎo qián?", my: "ဒီစာအုပ်က ဘယ်လောက်လဲ။" },
+    { cn: "这杯水多少钱？", pinyin: "Zhè bēi shuǐ duōshǎo qián?", my: "ဒီရေခွက်က ဘယ်လောက်လဲ။" },
+    { cn: "那个苹果多少钱？", pinyin: "Nà ge píngguǒ duōshǎo qián?", my: "ထိုပန်းသီးက ဘယ်လောက်လဲ။" },
+    { cn: "这张票多少钱？", pinyin: "Zhè zhāng piào duōshǎo qián?", my: "ဒီလက်မှတ်က ဘယ်လောက်လဲ။" }
+    ]
+    },
+    {
+    pattern: "太 + Adj + 了",
+    explain: "အရမ်းကို ... (စိတ်ခံစားချက်ပြ)",
+    examples: [
+    { cn: "太贵了！", pinyin: "Tài guì le!", my: "အရမ်းဈေးကြီးတယ်။" },
+    { cn: "太好了！", pinyin: "Tài hǎo le!", my: "အရမ်းကောင်းတယ်။" },
+    { cn: "太漂亮了！", pinyin: "Tài piàoliang le!", my: "အရမ်းလှတယ်။" },
+    { cn: "太忙了！", pinyin: "Tài máng le!", my: "အရမ်းရှုပ်တယ်။" },
+    { cn: "太累了！", pinyin: "Tài lèi le!", my: "အရမ်းပင်ပန်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "能 + V + 一点 + 吗？",
+    explain: "နည်းနည်း ... လုပ်ပေးလို့ရမလား (တောင်းဆိုခြင်း)",
+    examples: [
+    { cn: "能便宜一点吗？", pinyin: "Néng piányi yīdiǎn ma?", my: "နည်းနည်းလျှော့ပေးလို့ရမလား။" },
+    { cn: "能快一点吗？", pinyin: "Néng kuài yīdiǎn ma?", my: "နည်းနည်းမြန်မြန်လုပ်ပေးလို့ရမလား။" },
+    { cn: "能慢一点吗？", pinyin: "Néng màn yīdiǎn ma?", my: "နည်းနည်းဖြည်းဖြည်းလုပ်ပေးလို့ရမလား။" },
+    { cn: "能小一点吗？", pinyin: "Néng xiǎo yīdiǎn ma?", my: "နည်းနည်းသေးသေးလုပ်ပေးလို့ရမလား။" },
+    { cn: "能大一点吗？", pinyin: "Néng dà yīdiǎn ma?", my: "နည်းနည်းကြီးကြီးလုပ်ပေးလို့ရမလား။" }
+    ]
+    },
+    {
+    pattern: "好吧",
+    explain: "သဘောတူညီချက် (အိုကေ၊ ကောင်းပါပြီ)",
+    examples: [
+    { cn: "好吧，二百块。", pinyin: "Hǎo ba, èrbǎi kuài.", my: "အိုကေ၊ နှစ်ရာကျပ်။" },
+    { cn: "好吧，我们去。", pinyin: "Hǎo ba, wǒmen qù.", my: "အိုကေ၊ ငါတို့သွားမယ်။" },
+    { cn: "好吧，我等你。", pinyin: "Hǎo ba, wǒ děng nǐ.", my: "အိုကေ၊ ငါမင်းကိုစောင့်မယ်။" },
+    { cn: "好吧，就这样。", pinyin: "Hǎo ba, jiù zhèyàng.", my: "အိုကေ၊ ဒီအတိုင်းပဲ။" },
+    { cn: "好吧，我同意。", pinyin: "Hǎo ba, wǒ tóngyì.", my: "အိုကေ၊ ငါသဘောတူတယ်။" }
+    ]
+    },
+    {
+    pattern: "好的",
+    explain: "သဘောတူခြင်း (ကောင်းပြီ၊ အိုကေ)",
+    examples: [
+    { cn: "好的，我买了。", pinyin: "Hǎo de, wǒ mǎi le.", my: "ကောင်းပြီ၊ ငါဝယ်မယ်။" },
+    { cn: "好的，马上来。", pinyin: "Hǎo de, mǎshàng lái.", my: "ကောင်းပြီ၊ ချက်ချင်းလာမယ်။" },
+    { cn: "好的，谢谢。", pinyin: "Hǎo de, xièxie.", my: "ကောင်းပြီ၊ ကျေးဇူး။" },
+    { cn: "好的，我知道了。", pinyin: "Hǎo de, wǒ zhīdào le.", my: "ကောင်းပြီ၊ ငါသိပြီ။" },
+    { cn: "好的，没问题。", pinyin: "Hǎo de, méi wèntí.", my: "ကောင်းပြီ၊ ပြဿနာမရှိဘူး။" }
+    ]
+    },
+    {
+    pattern: "S + V + 了 + O",
+    explain: "တစ်ခုခုကို လုပ်ပြီးပြီ",
+    examples: [
+    { cn: "我买了衣服。", pinyin: "Wǒ mǎi le yīfu.", my: "ငါအဝတ်ဝယ်ပြီးပြီ။" },
+    { cn: "他买了书。", pinyin: "Tā mǎi le shū.", my: "သူစာအုပ်ဝယ်ပြီးပြီ။" },
+    { cn: "她喝了水。", pinyin: "Tā hē le shuǐ.", my: "သူမရေသောက်ပြီးပြီ။" },
+    { cn: "我们看了电影。", pinyin: "Wǒmen kàn le diànyǐng.", my: "ငါတို့ရုပ်ရှင်ကြည့်ပြီးပြီ။" },
+    { cn: "他们吃了饭。", pinyin: "Tāmen chī le fàn.", my: "သူတို့ထမင်းစားပြီးပြီ။" }
+    ]
+    },
+    {
+    pattern: "这/那 + 量词 + 名词 + 多少钱",
+    explain: "ဒီ/ထို အရာဝတ္ထုက ဘယ်လောက်လဲ",
+    examples: [
+    { cn: "这件衣服多少钱？", pinyin: "Zhè jiàn yīfu duōshǎo qián?", my: "ဒီအဝတ်က ဘယ်လောက်လဲ။" },
+    { cn: "那本书多少钱？", pinyin: "Nà běn shū duōshǎo qián?", my: "ထိုစာအုပ်က ဘယ်လောက်လဲ။" },
+    { cn: "这杯水多少钱？", pinyin: "Zhè bēi shuǐ duōshǎo qián?", my: "ဒီရေခွက်က ဘယ်လောက်လဲ။" },
+    { cn: "那个苹果多少钱？", pinyin: "Nà ge píngguǒ duōshǎo qián?", my: "ထိုပန်းသီးက ဘယ်လောက်လဲ။" },
+    { cn: "这张票多少钱？", pinyin: "Zhè zhāng piào duōshǎo qián?", my: "ဒီလက်မှတ်က ဘယ်လောက်လဲ။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ A က ဘာဝယ်ချင်တာလဲ။", answer: "အဝတ်အထည်" },
+    { question: "၂။ ဈေးက ဘယ်လောက်လဲ။", answer: "၂၅၀ ကျပ်" },
+    { question: "၃။ A က ဘာပြောလဲ။", answer: "ဈေးအရမ်းကြီးတယ်" },
+    { question: "၄။ A က ဘာတောင်းဆိုလဲ။", answer: "နည်းနည်းလျှော့ပေးပါ" },
+    { question: "၅။ နောက်ဆုံးဈေးက ဘယ်လောက်လဲ။", answer: "၂၀၀ ကျပ်" },
+    { question: "၆။ A က ဘယ်လိုဖြေလဲ။", answer: "ဝယ်မယ်" },
+    { question: "၇။ '太贵了' ဆိုတာ ဘာလဲ။", answer: "ဈေးအရမ်းကြီးတယ်" },
+    { question: "၈။ '能便宜一点吗' က ဘာကိုဆိုလိုလဲ။", answer: "နည်းနည်းလျှော့ပေးလို့ရမလား" }
+    ]
+    },
+    5: {
+    title: "သင်ခန်းစာ ၅ · 你几点起床？ (မင်း ဘယ်နှစ်နာရီ အိပ်ရာထလဲ)",
+    dialog: `A: 你几点起床？ (Nǐ jǐ diǎn qǐchuáng?) → မင်း ဘယ်နှစ်နာရီ အိပ်ရာထလဲ။\nB: 我六点半起床。 (Wǒ liù diǎn bàn qǐchuáng.) → ငါ ခြောက်နာရီခွဲ ထတယ်။\nA: 你几点上班？ (Nǐ jǐ diǎn shàngbān?) → မင်း ဘယ်နှစ်နာရီ အလုပ်စလဲ။\nB: 我八点上班。 (Wǒ bā diǎn shàngbān.) → ငါ ရှစ်နာရီ အလုပ်စတယ်။\nA: 你几点睡觉？ (Nǐ jǐ diǎn shuìjiào?) → မင်း ဘယ်နှစ်နာရီ အိပ်လဲ။\nB: 我十一点睡觉。 (Wǒ shíyī diǎn shuìjiào.) → ငါ ဆယ့်တစ်နာရီ အိပ်တယ်။`,
+    words: [
+    { cn: "几点", pinyin: "jǐ diǎn", my: "ဘယ်နှစ်နာရီ" },
+    { cn: "起床", pinyin: "qǐchuáng", my: "အိပ်ရာထ" },
+    { cn: "半", pinyin: "bàn", my: "ခွဲ" },
+    { cn: "上班", pinyin: "shàngbān", my: "အလုပ်သွား" },
+    { cn: "睡觉", pinyin: "shuìjiào", my: "အိပ်" },
+    { cn: "点", pinyin: "diǎn", my: "နာရီ" },
+    { cn: "六", pinyin: "liù", my: "ခြောက်" },
+    { cn: "八", pinyin: "bā", my: "ရှစ်" },
+    { cn: "十", pinyin: "shí", my: "ဆယ်" },
+    { cn: "一", pinyin: "yī", my: "တစ်" },
+    { cn: "你", pinyin: "nǐ", my: "မင်း" },
+    { cn: "我", pinyin: "wǒ", my: "ငါ" },
+    { cn: "起床", pinyin: "qǐchuáng", my: "အိပ်ရာထ" },
+    { cn: "上班", pinyin: "shàngbān", my: "အလုပ်စ" },
+    { cn: "睡觉", pinyin: "shuìjiào", my: "အိပ်" },
+    { cn: "几点", pinyin: "jǐ diǎn", my: "ဘယ်နှစ်နာရီ" },
+    { cn: "半", pinyin: "bàn", my: "ခွဲ" },
+    { cn: "六", pinyin: "liù", my: "၆" },
+    { cn: "八", pinyin: "bā", my: "၈" },
+    { cn: "十", pinyin: "shí", my: "၁၀" },
+    { cn: "一", pinyin: "yī", my: "၁" },
+    { cn: "你", pinyin: "nǐ", my: "မင်း" },
+    { cn: "我", pinyin: "wǒ", my: "ငါ" },
+    { cn: "起床", pinyin: "qǐchuáng", my: "ထသည်" },
+    { cn: "上班", pinyin: "shàngbān", my: "အလုပ်စသည်" },
+    { cn: "睡觉", pinyin: "shuìjiào", my: "အိပ်သည်" },
+    { cn: "几点", pinyin: "jǐ diǎn", my: "နာရီ" },
+    { cn: "半", pinyin: "bàn", my: "၃၀" },
+    { cn: "六", pinyin: "liù", my: "၆" }
+    ],
+    grammar: [
+    {
+    pattern: "几点 + V？",
+    explain: "ဘယ်နှစ်နာရီလုပ်လဲ မေးရန်",
+    examples: [
+    { cn: "你几点起床？", pinyin: "Nǐ jǐ diǎn qǐchuáng?", my: "မင်းဘယ်နှစ်နာရီထလဲ။" },
+    { cn: "你几点上班？", pinyin: "Nǐ jǐ diǎn shàngbān?", my: "မင်းဘယ်နှစ်နာရီအလုပ်စလဲ။" },
+    { cn: "你几点睡觉？", pinyin: "Nǐ jǐ diǎn shuìjiào?", my: "မင်းဘယ်နှစ်နာရီအိပ်လဲ။" },
+    { cn: "他几点来？", pinyin: "Tā jǐ diǎn lái?", my: "သူဘယ်နှစ်နာရီလာမလဲ။" },
+    { cn: "我们几点走？", pinyin: "Wǒmen jǐ diǎn zǒu?", my: "ငါတို့ဘယ်နှစ်နာရီသွားမလဲ။" }
+    ]
+    },
+    {
+    pattern: "时间 + V",
+    explain: "အချိန်မှာ လုပ်သည်",
+    examples: [
+    { cn: "我六点半起床。", pinyin: "Wǒ liù diǎn bàn qǐchuáng.", my: "ငါခြောက်နာရီခွဲထတယ်။" },
+    { cn: "我八点上班。", pinyin: "Wǒ bā diǎn shàngbān.", my: "ငါရှစ်နာရီအလုပ်စတယ်။" },
+    { cn: "我十一点睡觉。", pinyin: "Wǒ shíyī diǎn shuìjiào.", my: "ငါဆယ့်တစ်နာရီအိပ်တယ်။" },
+    { cn: "他九点来。", pinyin: "Tā jiǔ diǎn lái.", my: "သူကိုးနာရီလာတယ်။" },
+    { cn: "我们七点走。", pinyin: "Wǒmen qī diǎn zǒu.", my: "ငါတို့ခုနစ်နာရီသွားတယ်။" }
+    ]
+    },
+    {
+    pattern: "时间 + 半",
+    explain: "နာရီခွဲ (၃၀ မိနစ်)",
+    examples: [
+    { cn: "六点半。", pinyin: "Liù diǎn bàn.", my: "ခြောက်နာရီခွဲ။" },
+    { cn: "七点半。", pinyin: "Qī diǎn bàn.", my: "ခုနစ်နာရီခွဲ။" },
+    { cn: "八点半。", pinyin: "Bā diǎn bàn.", my: "ရှစ်နာရီခွဲ။" },
+    { cn: "九点半。", pinyin: "Jiǔ diǎn bàn.", my: "ကိုးနာရီခွဲ။" },
+    { cn: "十点半。", pinyin: "Shí diǎn bàn.", my: "ဆယ်နာရီခွဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 时间 + V",
+    explain: "တစ်စုံတစ်ယောက် အချိန်မှာ လုပ်သည်",
+    examples: [
+    { cn: "我六点起床。", pinyin: "Wǒ liù diǎn qǐchuáng.", my: "ငါခြောက်နာရီထတယ်။" },
+    { cn: "他八点上班。", pinyin: "Tā bā diǎn shàngbān.", my: "သူရှစ်နာရီအလုပ်စတယ်။" },
+    { cn: "她十一点睡觉。", pinyin: "Tā shíyī diǎn shuìjiào.", my: "သူမဆယ့်တစ်နာရီအိပ်တယ်။" },
+    { cn: "我们七点去。", pinyin: "Wǒmen qī diǎn qù.", my: "ငါတို့ခုနစ်နာရီသွားတယ်။" },
+    { cn: "他们九点来。", pinyin: "Tāmen jiǔ diǎn lái.", my: "သူတို့ကိုးနာရီလာတယ်။" }
+    ]
+    },
+    {
+    pattern: "几点 + 起床/上班/睡觉",
+    explain: "ဘယ်နှစ်နာရီ အိပ်ရာထ/အလုပ်စ/အိပ်",
+    examples: [
+    { cn: "你几点起床？", pinyin: "Nǐ jǐ diǎn qǐchuáng?", my: "မင်းဘယ်နှစ်နာရီထလဲ။" },
+    { cn: "你几点上班？", pinyin: "Nǐ jǐ diǎn shàngbān?", my: "မင်းဘယ်နှစ်နာရီအလုပ်စလဲ။" },
+    { cn: "你几点睡觉？", pinyin: "Nǐ jǐ diǎn shuìjiào?", my: "မင်းဘယ်နှစ်နာရီအိပ်လဲ။" },
+    { cn: "他几点起床？", pinyin: "Tā jǐ diǎn qǐchuáng?", my: "သူဘယ်နှစ်နာရီထလဲ။" },
+    { cn: "她几点睡觉？", pinyin: "Tā jǐ diǎn shuìjiào?", my: "သူမဘယ်နှစ်နာရီအိပ်လဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 时间 + 起床/上班/睡觉",
+    explain: "တစ်စုံတစ်ယောက် အချိန်မှာ အိပ်ရာထ/အလုပ်စ/အိပ်",
+    examples: [
+    { cn: "我六点半起床。", pinyin: "Wǒ liù diǎn bàn qǐchuáng.", my: "ငါခြောက်နာရီခွဲထတယ်။" },
+    { cn: "他八点上班。", pinyin: "Tā bā diǎn shàngbān.", my: "သူရှစ်နာရီအလုပ်စတယ်။" },
+    { cn: "她十一点睡觉。", pinyin: "Tā shíyī diǎn shuìjiào.", my: "သူမဆယ့်တစ်နာရီအိပ်တယ်။" },
+    { cn: "我七点起床。", pinyin: "Wǒ qī diǎn qǐchuáng.", my: "ငါခုနစ်နာရီထတယ်။" },
+    { cn: "他九点上班。", pinyin: "Tā jiǔ diǎn shàngbān.", my: "သူကိုးနာရီအလုပ်စတယ်။" }
+    ]
+    },
+    {
+    pattern: "时间 + 点 + 半",
+    explain: "နာရီခွဲ (ဥပမာ ၆း၃၀)",
+    examples: [
+    { cn: "六点半。", pinyin: "Liù diǎn bàn.", my: "၆း၃၀" },
+    { cn: "七点半。", pinyin: "Qī diǎn bàn.", my: "၇း၃၀" },
+    { cn: "八点半。", pinyin: "Bā diǎn bàn.", my: "၈း၃၀" },
+    { cn: "九点半。", pinyin: "Jiǔ diǎn bàn.", my: "၉း၃၀" },
+    { cn: "十点半。", pinyin: "Shí diǎn bàn.", my: "၁၀း၃၀" }
+    ]
+    },
+    {
+    pattern: "S + 时间 + 点 + 半 + V",
+    explain: "တစ်စုံတစ်ယောက် နာရီခွဲမှာ လုပ်သည်",
+    examples: [
+    { cn: "我六点半起床。", pinyin: "Wǒ liù diǎn bàn qǐchuáng.", my: "ငါ၆း၃၀ ထတယ်။" },
+    { cn: "他七点半上班。", pinyin: "Tā qī diǎn bàn shàngbān.", my: "သူ၇း၃၀ အလုပ်စတယ်။" },
+    { cn: "她八点半睡觉。", pinyin: "Tā bā diǎn bàn shuìjiào.", my: "သူမ၈း၃၀ အိပ်တယ်။" },
+    { cn: "我们九点半去。", pinyin: "Wǒmen jiǔ diǎn bàn qù.", my: "ငါတို့၉း၃၀ သွားတယ်။" },
+    { cn: "他们十点半来。", pinyin: "Tāmen shí diǎn bàn lái.", my: "သူတို့၁၀း၃၀ လာတယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ဘယ်နှစ်နာရီ အိပ်ရာထလဲ။", answer: "ခြောက်နာရီခွဲ" },
+    { question: "၂။ B က ဘယ်နှစ်နာရီ အလုပ်စလဲ။", answer: "ရှစ်နာရီ" },
+    { question: "၃။ B က ဘယ်နှစ်နာရီ အိပ်လဲ။", answer: "ဆယ့်တစ်နာရီ" },
+    { question: "၄။ A က ဘာမေးလဲ။", answer: "ဘယ်နှစ်နာရီ အိပ်ရာထလဲ" },
+    { question: "၅။ A က နောက်ထပ် ဘာမေးသေးလဲ။", answer: "ဘယ်နှစ်နာရီ အလုပ်စလဲ" },
+    { question: "၆။ '半' က ဘာကိုဆိုလိုလဲ။", answer: "ခွဲ (၃၀ မိနစ်)" },
+    { question: "၇။ '几点' က ဘာကိုမေးတာလဲ။", answer: "ဘယ်နှစ်နာရီ" },
+    { question: "၈။ နာရီခွဲကို ဘယ်လိုပြောလဲ။", answer: "点 + 半" }
+    ]
+    },
+    
+    // ===================== LESSON 6 =====================
+    6: {
+    title: "သင်ခန်းစာ ၆ · 你喜欢什么颜色？ (မင်း ဘာအရောင် ကြိုက်လဲ)",
+    dialog: `A: 你喜欢什么颜色？ (Nǐ xǐhuān shénme yánsè?) → မင်း ဘာအရောင် ကြိုက်လဲ။\nB: 我喜欢红色。 (Wǒ xǐhuān hóngsè.) → ငါ အနီရောင် ကြိုက်တယ်။\nA: 为什么？ (Wèishénme?) → ဘာကြောင့်လဲ။\nB: 因为红色很漂亮。 (Yīnwèi hóngsè hěn piàoliang.) → အနီရောင်က အရမ်းလှလို့။\nA: 我也喜欢红色。 (Wǒ yě xǐhuān hóngsè.) → ငါလည်း အနီရောင် ကြိုက်တယ်။`,
+    words: [
+    { cn: "喜欢", pinyin: "xǐhuān", my: "ကြိုက်" },
+    { cn: "颜色", pinyin: "yánsè", my: "အရောင်" },
+    { cn: "红色", pinyin: "hóngsè", my: "အနီရောင်" },
+    { cn: "为什么", pinyin: "wèishénme", my: "ဘာကြောင့်" },
+    { cn: "因为", pinyin: "yīnwèi", my: "ဘာကြောင့်လဲဆိုတော့" },
+    { cn: "漂亮", pinyin: "piàoliang", my: "လှ" },
+    { cn: "也", pinyin: "yě", my: "လည်း" },
+    { cn: "喜欢", pinyin: "xǐhuān", my: "ကြိုက်သည်" },
+    { cn: "颜色", pinyin: "yánsè", my: "အရောင်" },
+    { cn: "红色", pinyin: "hóngsè", my: "အနီ" },
+    { cn: "为什么", pinyin: "wèishénme", my: "အဘယ်ကြောင့်" },
+    { cn: "因为", pinyin: "yīnwèi", my: "ကြောင့်" },
+    { cn: "漂亮", pinyin: "piàoliang", my: "လှသည်" },
+    { cn: "也", pinyin: "yě", my: "လည်း" },
+    { cn: "喜欢", pinyin: "xǐhuān", my: "ကြိုက်" },
+    { cn: "颜色", pinyin: "yánsè", my: "အရောင်" },
+    { cn: "红色", pinyin: "hóngsè", my: "အနီရောင်" },
+    { cn: "为什么", pinyin: "wèishénme", my: "ဘာကြောင့်" },
+    { cn: "因为", pinyin: "yīnwèi", my: "ဘာကြောင့်လဲဆိုတော့" },
+    { cn: "漂亮", pinyin: "piàoliang", my: "လှ" },
+    { cn: "也", pinyin: "yě", my: "လည်း" },
+    { cn: "喜欢", pinyin: "xǐhuān", my: "ကြိုက်" },
+    { cn: "颜色", pinyin: "yánsè", my: "အရောင်" },
+    { cn: "红色", pinyin: "hóngsè", my: "အနီ" },
+    { cn: "为什么", pinyin: "wèishénme", my: "ဘာကြောင့်" },
+    { cn: "因为", pinyin: "yīnwèi", my: "ကြောင့်" },
+    { cn: "漂亮", pinyin: "piàoliang", my: "လှ" },
+    { cn: "也", pinyin: "yě", my: "လည်း" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 喜欢 + O",
+    explain: "တစ်စုံတစ်ယောက်က တစ်ခုခုကို ကြိုက်သည်",
+    examples: [
+    { cn: "我喜欢红色。", pinyin: "Wǒ xǐhuān hóngsè.", my: "ငါ အနီရောင် ကြိုက်တယ်။" },
+    { cn: "他喜欢蓝色。", pinyin: "Tā xǐhuān lánsè.", my: "သူ အပြာရောင် ကြိုက်တယ်။" },
+    { cn: "她喜欢黄色。", pinyin: "Tā xǐhuān huángsè.", my: "သူမ အဝါရောင် ကြိုက်တယ်။" },
+    { cn: "我们喜欢绿色。", pinyin: "Wǒmen xǐhuān lǜsè.", my: "ငါတို့ အစိမ်းရောင် ကြိုက်တယ်။" },
+    { cn: "他们喜欢黑色。", pinyin: "Tāmen xǐhuān hēisè.", my: "သူတို့ အနက်ရောင် ကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "什么 + N",
+    explain: "ဘာအရောင်/ဘာအရာဝတ္ထု",
+    examples: [
+    { cn: "什么颜色？", pinyin: "Shénme yánsè?", my: "ဘာအရောင်။" },
+    { cn: "什么书？", pinyin: "Shénme shū?", my: "ဘာစာအုပ်။" },
+    { cn: "什么电影？", pinyin: "Shénme diànyǐng?", my: "ဘာရုပ်ရှင်။" },
+    { cn: "什么水果？", pinyin: "Shénme shuǐguǒ?", my: "ဘာအသီး။" },
+    { cn: "什么颜色？", pinyin: "Shénme yánsè?", my: "ဘာအရောင်လဲ။" }
+    ]
+    },
+    {
+    pattern: "为什么 + 句子？",
+    explain: "ဘာကြောင့်လဲမေးရန်",
+    examples: [
+    { cn: "你为什么喜欢红色？", pinyin: "Nǐ wèishénme xǐhuān hóngsè?", my: "မင်း ဘာကြောင့် အနီရောင် ကြိုက်တာလဲ။" },
+    { cn: "你为什么来？", pinyin: "Nǐ wèishénme lái?", my: "မင်း ဘာကြောင့်လာတာလဲ။" },
+    { cn: "他为什么不去？", pinyin: "Tā wèishénme bù qù?", my: "သူ ဘာကြောင့် မသွားတာလဲ။" },
+    { cn: "她为什么哭？", pinyin: "Tā wèishénme kū?", my: "သူမ ဘာကြောင့် ငိုတာလဲ။" },
+    { cn: "你们为什么迟到？", pinyin: "Nǐmen wèishénme chídào?", my: "မင်းတို့ ဘာကြောင့် နောက်ကျတာလဲ။" }
+    ]
+    },
+    {
+    pattern: "因为 + 句子",
+    explain: "ဘာကြောင့်လဲဆိုတော့ (အကြောင်းပြ)",
+    examples: [
+    { cn: "因为红色很漂亮。", pinyin: "Yīnwèi hóngsè hěn piàoliang.", my: "အနီရောင်က အရမ်းလှလို့။" },
+    { cn: "因为我喜欢。", pinyin: "Yīnwèi wǒ xǐhuān.", my: "ငါကြိုက်လို့။" },
+    { cn: "因为下雨了。", pinyin: "Yīnwèi xiàyǔ le.", my: "မိုးရွာလို့။" },
+    { cn: "因为我很忙。", pinyin: "Yīnwèi wǒ hěn máng.", my: "ငါအရမ်းရှုပ်လို့။" },
+    { cn: "因为太贵了。", pinyin: "Yīnwèi tài guì le.", my: "ဈေးအရမ်းကြီးလို့။" }
+    ]
+    },
+    {
+    pattern: "S + 也 + V + O",
+    explain: "လည်း ကြိုက်/လုပ်သည်",
+    examples: [
+    { cn: "我也喜欢红色。", pinyin: "Wǒ yě xǐhuān hóngsè.", my: "ငါလည်း အနီရောင် ကြိုက်တယ်။" },
+    { cn: "他也喜欢。", pinyin: "Tā yě xǐhuān.", my: "သူလည်း ကြိုက်တယ်။" },
+    { cn: "她也去了。", pinyin: "Tā yě qù le.", my: "သူမလည်း သွားခဲ့တယ်။" },
+    { cn: "我们也要。", pinyin: "Wǒmen yě yào.", my: "ငါတို့လည်း လိုချင်တယ်။" },
+    { cn: "他们也知道。", pinyin: "Tāmen yě zhīdào.", my: "သူတို့လည်း သိတယ်။" }
+    ]
+    },
+    {
+    pattern: "很 + Adj",
+    explain: "အရမ်း + နာမဝိသေသန",
+    examples: [
+    { cn: "很漂亮。", pinyin: "Hěn piàoliang.", my: "အရမ်းလှတယ်။" },
+    { cn: "很好看。", pinyin: "Hěn hǎokàn.", my: "အရမ်းကြည့်ကောင်းတယ်။" },
+    { cn: "很好吃。", pinyin: "Hěn hǎochī.", my: "အရမ်းအရသာရှိတယ်။" },
+    { cn: "很好听。", pinyin: "Hěn hǎotīng.", my: "အရမ်းနားထောင်ကောင်းတယ်။" },
+    { cn: "很好玩。", pinyin: "Hěn hǎowán.", my: "အရမ်းပျော်စရာကောင်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 喜欢 + 什么 + N？",
+    explain: "ဘာအရောင်ကြိုက်လဲ မေးရန်",
+    examples: [
+    { cn: "你喜欢什么颜色？", pinyin: "Nǐ xǐhuān shénme yánsè?", my: "မင်း ဘာအရောင် ကြိုက်လဲ။" },
+    { cn: "你喜欢什么书？", pinyin: "Nǐ xǐhuān shénme shū?", my: "မင်း ဘာစာအုပ် ကြိုက်လဲ။" },
+    { cn: "你喜欢什么电影？", pinyin: "Nǐ xǐhuān shénme diànyǐng?", my: "မင်း ဘာရုပ်ရှင် ကြိုက်လဲ။" },
+    { cn: "你喜欢什么水果？", pinyin: "Nǐ xǐhuān shénme shuǐguǒ?", my: "မင်း ဘာအသီး ကြိုက်လဲ။" },
+    { cn: "你喜欢什么颜色？", pinyin: "Nǐ xǐhuān shénme yánsè?", my: "မင်း ဘာအရောင် ကြိုက်လဲ။" }
+    ]
+    },
+    {
+    pattern: "因为 + S + V",
+    explain: "ဘာကြောင့်လဲဆိုတော့ ...",
+    examples: [
+    { cn: "因为红色很漂亮。", pinyin: "Yīnwèi hóngsè hěn piàoliang.", my: "အနီရောင်က အရမ်းလှလို့။" },
+    { cn: "因为我很喜欢。", pinyin: "Yīnwèi wǒ hěn xǐhuān.", my: "ငါအရမ်းကြိုက်လို့။" },
+    { cn: "因为天气好。", pinyin: "Yīnwèi tiānqì hǎo.", my: "ရာသီဥတုကောင်းလို့။" },
+    { cn: "因为便宜。", pinyin: "Yīnwèi piányi.", my: "ဈေးသက်သာလို့။" },
+    { cn: "因为很近。", pinyin: "Yīnwèi hěn jìn.", my: "အရမ်းနီးလို့။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ A က ဘာမေးလဲ။", answer: "ဘာအရောင်ကြိုက်လဲ" },
+    { question: "၂။ B က ဘာအရောင်ကြိုက်လဲ။", answer: "အနီရောင်" },
+    { question: "၃။ A က ဘာမေးသေးလဲ။", answer: "ဘာကြောင့်လဲ" },
+    { question: "၄။ B က ဘယ်လိုဖြေလဲ။", answer: "အနီရောင်က အရမ်းလှလို့" },
+    { question: "၅။ A က ဘာပြောလဲ။", answer: "ငါလည်းအနီရောင်ကြိုက်တယ်" },
+    { question: "၆။ '为什么' က ဘာကိုမေးတာလဲ။", answer: "အကြောင်းပြချက်" },
+    { question: "၇။ '因为' က ဘာအတွက်လဲ။", answer: "အကြောင်းပြရန်" },
+    { question: "၈။ '也' က ဘာကိုဆိုလိုလဲ။", answer: "လည်း" }
+    ]
+    },
+    7: {
+    title: "သင်ခန်းစာ ၇ · 你周末做什么？ (မင်း စနေ၊ တနင်္ဂနွေ ဘာလုပ်လဲ)",
+    dialog: `A: 你周末做什么？ (Nǐ zhōumò zuò shénme?) → မင်း စနေ၊ တနင်္ဂနွေ ဘာလုပ်လဲ။\nB: 我周末去图书馆看书。 (Wǒ zhōumò qù túshūguǎn kàn shū.) → ငါ စနေ၊ တနင်္ဂနွေ စာကြည့်တိုက်သွား စာဖတ်တယ်။\nA: 你经常去吗？ (Nǐ jīngcháng qù ma?) → မင်း မကြာခဏ သွားလား။\nB: 是的，我经常去。 (Shì de, wǒ jīngcháng qù.) → ဟုတ်တယ်၊ ငါ မကြာခဏ သွားတယ်။\nA: 图书馆远吗？ (Túshūguǎn yuǎn ma?) → စာကြည့်တိုက် ဝေးလား။\nB: 不远，很近。 (Bù yuǎn, hěn jìn.) → မဝေးဘူး၊ အရမ်းနီးတယ်။`,
+    words: [
+    { cn: "周末", pinyin: "zhōumò", my: "စနေ၊ တနင်္ဂနွေ" },
+    { cn: "做什么", pinyin: "zuò shénme", my: "ဘာလုပ်" },
+    { cn: "图书馆", pinyin: "túshūguǎn", my: "စာကြည့်တိုက်" },
+    { cn: "看书", pinyin: "kàn shū", my: "စာဖတ်" },
+    { cn: "经常", pinyin: "jīngcháng", my: "မကြာခဏ" },
+    { cn: "是的", pinyin: "shì de", my: "ဟုတ်တယ်" },
+    { cn: "远", pinyin: "yuǎn", my: "ဝေး" },
+    { cn: "近", pinyin: "jìn", my: "နီး" },
+    { cn: "去", pinyin: "qù", my: "သွား" },
+    { cn: "图书馆", pinyin: "túshūguǎn", my: "စာကြည့်တိုက်" },
+    { cn: "看书", pinyin: "kàn shū", my: "စာဖတ်" },
+    { cn: "经常", pinyin: "jīngcháng", my: "မကြာခဏ" },
+    { cn: "是的", pinyin: "shì de", my: "ဟုတ်တယ်" },
+    { cn: "远", pinyin: "yuǎn", my: "ဝေး" },
+    { cn: "近", pinyin: "jìn", my: "နီး" },
+    { cn: "周末", pinyin: "zhōumò", my: "စနေ၊ တနင်္ဂနွေ" },
+    { cn: "做什么", pinyin: "zuò shénme", my: "ဘာလုပ်မလဲ" },
+    { cn: "图书馆", pinyin: "túshūguǎn", my: "စာကြည့်တိုက်" },
+    { cn: "看书", pinyin: "kàn shū", my: "စာဖတ်" },
+    { cn: "经常", pinyin: "jīngcháng", my: "မကြာခဏ" },
+    { cn: "是的", pinyin: "shì de", my: "ဟုတ်ကဲ့" },
+    { cn: "远", pinyin: "yuǎn", my: "ဝေး" },
+    { cn: "近", pinyin: "jìn", my: "နီး" },
+    { cn: "去", pinyin: "qù", my: "သွားသည်" },
+    { cn: "图书馆", pinyin: "túshūguǎn", my: "စာကြည့်တိုက်" },
+    { cn: "看书", pinyin: "kàn shū", my: "စာဖတ်သည်" },
+    { cn: "经常", pinyin: "jīngcháng", my: "မကြာခဏ" },
+    { cn: "是的", pinyin: "shì de", my: "ဟုတ်သည်" }
+    ],
+    grammar: [
+    {
+    pattern: "周末 + S + V + O",
+    explain: "စနေ၊ တနင်္ဂနွေမှာ ဘာလုပ်လဲ",
+    examples: [
+    { cn: "我周末去图书馆。", pinyin: "Wǒ zhōumò qù túshūguǎn.", my: "ငါ စနေ၊ တနင်္ဂနွေ စာကြည့်တိုက်သွားတယ်။" },
+    { cn: "他周末在家休息。", pinyin: "Tā zhōumò zài jiā xiūxi.", my: "သူ စနေ၊ တနင်္ဂနွေ အိမ်မှာ အနားယူတယ်။" },
+    { cn: "她周末去公园。", pinyin: "Tā zhōumò qù gōngyuán.", my: "သူမ စနေ၊ တနင်္ဂနွေ ပန်းခြံသွားတယ်။" },
+    { cn: "我们周末看电影。", pinyin: "Wǒmen zhōumò kàn diànyǐng.", my: "ငါတို့ စနေ၊ တနင်္ဂနွေ ရုပ်ရှင်ကြည့်တယ်။" },
+    { cn: "他们周末去爬山。", pinyin: "Tāmen zhōumò qù páshān.", my: "သူတို့ စနေ၊ တနင်္ဂနွေ တောင်တက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 经常 + V",
+    explain: "မကြာခဏ လုပ်သည်",
+    examples: [
+    { cn: "我经常去图书馆。", pinyin: "Wǒ jīngcháng qù túshūguǎn.", my: "ငါ မကြာခဏ စာကြည့်တိုက်သွားတယ်။" },
+    { cn: "他经常看电影。", pinyin: "Tā jīngcháng kàn diànyǐng.", my: "သူ မကြာခဏ ရုပ်ရှင်ကြည့်တယ်။" },
+    { cn: "她经常看书。", pinyin: "Tā jīngcháng kàn shū.", my: "သူမ မကြာခဏ စာဖတ်တယ်။" },
+    { cn: "我们经常去公园。", pinyin: "Wǒmen jīngcháng qù gōngyuán.", my: "ငါတို့ မကြာခဏ ပန်းခြံသွားတယ်။" },
+    { cn: "他们经常运动。", pinyin: "Tāmen jīngcháng yùndòng.", my: "သူတို့ မကြာခဏ အားကစားလုပ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + 的",
+    explain: "ဟုတ်တယ် (အတည်ပြုခြင်း)",
+    examples: [
+    { cn: "是的。", pinyin: "Shì de.", my: "ဟုတ်တယ်။" },
+    { cn: "是的，我经常去。", pinyin: "Shì de, wǒ jīngcháng qù.", my: "ဟုတ်တယ်၊ ငါမကြာခဏသွားတယ်။" },
+    { cn: "是的，我喜欢。", pinyin: "Shì de, wǒ xǐhuān.", my: "ဟုတ်တယ်၊ ငါကြိုက်တယ်။" },
+    { cn: "是的，我来了。", pinyin: "Shì de, wǒ lái le.", my: "ဟုတ်တယ်၊ ငါလာပြီ။" },
+    { cn: "是的，我吃了。", pinyin: "Shì de, wǒ chī le.", my: "ဟုတ်တယ်၊ ငါစားပြီးပြီ။" }
+    ]
+    },
+    {
+    pattern: "S + V + O + 吗？",
+    explain: "လားမေးခွန်း (Yes/No)",
+    examples: [
+    { cn: "你经常去吗？", pinyin: "Nǐ jīngcháng qù ma?", my: "မင်း မကြာခဏ သွားလား။" },
+    { cn: "你吃了吗？", pinyin: "Nǐ chī le ma?", my: "မင်းစားပြီးပြီလား။" },
+    { cn: "他去吗？", pinyin: "Tā qù ma?", my: "သူသွားလား။" },
+    { cn: "你喜欢吗？", pinyin: "Nǐ xǐhuān ma?", my: "မင်းကြိုက်လား။" },
+    { cn: "你忙吗？", pinyin: "Nǐ máng ma?", my: "မင်းရှုပ်လား။" }
+    ]
+    },
+    {
+    pattern: "N + 远吗？",
+    explain: "ဝေးလား မေးရန်",
+    examples: [
+    { cn: "图书馆远吗？", pinyin: "Túshūguǎn yuǎn ma?", my: "စာကြည့်တိုက်ဝေးလား။" },
+    { cn: "学校远吗？", pinyin: "Xuéxiào yuǎn ma?", my: "ကျောင်းဝေးလား။" },
+    { cn: "公园远吗？", pinyin: "Gōngyuán yuǎn ma?", my: "ပန်းခြံဝေးလား။" },
+    { cn: "银行远吗？", pinyin: "Yínháng yuǎn ma?", my: "ဘဏ်ဝေးလား။" },
+    { cn: "车站远吗？", pinyin: "Chēzhàn yuǎn ma?", my: "ဘူတာဝေးလား။" }
+    ]
+    },
+    {
+    pattern: "不 + Adj",
+    explain: "မဟုတ်သော (နာမဝိသေသန ငြင်းပယ်)",
+    examples: [
+    { cn: "不远。", pinyin: "Bù yuǎn.", my: "မဝေးဘူး။" },
+    { cn: "不好。", pinyin: "Bù hǎo.", my: "မကောင်းဘူး။" },
+    { cn: "不贵。", pinyin: "Bù guì.", my: "မဈေးမကြီးဘူး။" },
+    { cn: "不难。", pinyin: "Bù nán.", my: "မခက်ဘူး။" },
+    { cn: "不忙。", pinyin: "Bù máng.", my: "မရှုပ်ဘူး။" }
+    ]
+    },
+    {
+    pattern: "很 + Adj",
+    explain: "အရမ်း (နာမဝိသေသန ပြင်းထန်မှု)",
+    examples: [
+    { cn: "很近。", pinyin: "Hěn jìn.", my: "အရမ်းနီးတယ်။" },
+    { cn: "很好。", pinyin: "Hěn hǎo.", my: "အရမ်းကောင်းတယ်။" },
+    { cn: "很漂亮。", pinyin: "Hěn piàoliang.", my: "အရမ်းလှတယ်။" },
+    { cn: "很好吃。", pinyin: "Hěn hǎochī.", my: "အရမ်းအရသာရှိတယ်။" },
+    { cn: "很忙。", pinyin: "Hěn máng.", my: "အရမ်းရှုပ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 周末 + V + O",
+    explain: "စနေ၊ တနင်္ဂနွေမှာ ဘာလုပ်တယ်",
+    examples: [
+    { cn: "我周末去图书馆。", pinyin: "Wǒ zhōumò qù túshūguǎn.", my: "ငါ စနေ၊ တနင်္ဂနွေ စာကြည့်တိုက်သွားတယ်။" },
+    { cn: "他周末看电影。", pinyin: "Tā zhōumò kàn diànyǐng.", my: "သူ စနေ၊ တနင်္ဂနွေ ရုပ်ရှင်ကြည့်တယ်။" },
+    { cn: "她周末去公园。", pinyin: "Tā zhōumò qù gōngyuán.", my: "သူမ စနေ၊ တနင်္ဂနွေ ပန်းခြံသွားတယ်။" },
+    { cn: "我们周末在家。", pinyin: "Wǒmen zhōumò zài jiā.", my: "ငါတို့ စနေ၊ တနင်္ဂနွေ အိမ်မှာနေတယ်။" },
+    { cn: "他们周末去爬山。", pinyin: "Tāmen zhōumò qù páshān.", my: "သူတို့ စနေ၊ တနင်္ဂနွေ တောင်တက်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က စနေ၊ တနင်္ဂနွေ ဘာလုပ်လဲ။", answer: "စာကြည့်တိုက်သွား စာဖတ်တယ်" },
+    { question: "၂။ B က မကြာခဏ သွားလား။", answer: "ဟုတ်တယ်" },
+    { question: "၃။ စာကြည့်တိုက်က ဝေးလား။", answer: "မဝေးဘူး" },
+    { question: "၄။ ဘယ်လောက်နီးလဲ။", answer: "အရမ်းနီးတယ်" },
+    { question: "၅။ A က ဘာမေးလဲ။", answer: "စနေ၊ တနင်္ဂနွေ ဘာလုပ်လဲ" },
+    { question: "၆။ '经常' က ဘာကိုဆိုလိုလဲ။", answer: "မကြာခဏ" },
+    { question: "၇။ '是的' က ဘာအတွက်လဲ။", answer: "အတည်ပြုရန်" },
+    { question: "၈။ '远' နဲ့ '近' က ဘာကိုပြတာလဲ။", answer: "အကွာအဝေး" }
+    ]
+    },
+    
+    // ===================== LESSON 8 =====================
+    8: {
+    title: "သင်ခန်းစာ ၈ · 你多大？ (မင်း အသက်ဘယ်လောက်လဲ)",
+    dialog: `A: 你多大？ (Nǐ duō dà?) → မင်း အသက်ဘယ်လောက်လဲ။\nB: 我二十五岁。 (Wǒ èrshíwǔ suì.) → ငါ အသက် ၂၅ နှစ်။\nA: 你工作了吗？ (Nǐ gōngzuò le ma?) → မင်း အလုပ်လုပ်ပြီးပြီလား။\nB: 是的，我工作了。 (Shì de, wǒ gōngzuò le.) → ဟုတ်တယ်၊ ငါ အလုပ်လုပ်ပြီးပြီ။\nA: 你在哪儿工作？ (Nǐ zài nǎr gōngzuò?) → မင်း ဘယ်မှာ အလုပ်လုပ်လဲ။\nB: 我在公司工作。 (Wǒ zài gōngsī gōngzuò.) → ငါ ကုမ္ပဏီမှာ အလုပ်လုပ်တယ်။`,
+    words: [
+    { cn: "多大", pinyin: "duō dà", my: "အသက်ဘယ်လောက်" },
+    { cn: "岁", pinyin: "suì", my: "နှစ် (အသက်)" },
+    { cn: "工作", pinyin: "gōngzuò", my: "အလုပ်" },
+    { cn: "了", pinyin: "le", my: "ပြီ" },
+    { cn: "是的", pinyin: "shì de", my: "ဟုတ်တယ်" },
+    { cn: "在", pinyin: "zài", my: "မှာ" },
+    { cn: "哪儿", pinyin: "nǎr", my: "ဘယ်မှာ" },
+    { cn: "公司", pinyin: "gōngsī", my: "ကုမ္ပဏီ" },
+    { cn: "多大", pinyin: "duō dà", my: "အသက်" },
+    { cn: "岁", pinyin: "suì", my: "နှစ်" },
+    { cn: "工作", pinyin: "gōngzuò", my: "အလုပ်" },
+    { cn: "了", pinyin: "le", my: "ပြီး" },
+    { cn: "是的", pinyin: "shì de", my: "ဟုတ်" },
+    { cn: "在", pinyin: "zài", my: "မှာ" },
+    { cn: "哪儿", pinyin: "nǎr", my: "ဘယ်နေရာ" },
+    { cn: "公司", pinyin: "gōngsī", my: "ကုမ္ပဏီ" },
+    { cn: "多大", pinyin: "duō dà", my: "အသက်" },
+    { cn: "岁", pinyin: "suì", my: "နှစ်" },
+    { cn: "工作", pinyin: "gōngzuò", my: "အလုပ်" },
+    { cn: "了", pinyin: "le", my: "ပြီးပြီ" },
+    { cn: "是的", pinyin: "shì de", my: "ဟုတ်သည်" },
+    { cn: "在", pinyin: "zài", my: "၌" },
+    { cn: "哪儿", pinyin: "nǎr", my: "အဘယ်မှာ" },
+    { cn: "公司", pinyin: "gōngsī", my: "ကုမ္ပဏီ" },
+    { cn: "多大", pinyin: "duō dà", my: "အသက်" },
+    { cn: "岁", pinyin: "suì", my: "နှစ်" },
+    { cn: "工作", pinyin: "gōngzuò", my: "အလုပ်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 多大？",
+    explain: "အသက်မေးရန်",
+    examples: [
+    { cn: "你多大？", pinyin: "Nǐ duō dà?", my: "မင်းအသက်ဘယ်လောက်လဲ။" },
+    { cn: "他多大？", pinyin: "Tā duō dà?", my: "သူအသက်ဘယ်လောက်လဲ။" },
+    { cn: "她多大？", pinyin: "Tā duō dà?", my: "သူမအသက်ဘယ်လောက်လဲ။" },
+    { cn: "你弟弟多大？", pinyin: "Nǐ dìdi duō dà?", my: "မင်းညီအသက်ဘယ်လောက်လဲ။" },
+    { cn: "你妹妹多大？", pinyin: "Nǐ mèimei duō dà?", my: "မင်းညီမအသက်ဘယ်လောက်လဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 数字 + 岁",
+    explain: "အသက် နှစ်ပေါင်းကို ဖော်ပြရန်",
+    examples: [
+    { cn: "我二十五岁。", pinyin: "Wǒ èrshíwǔ suì.", my: "ငါအသက်၂၅နှစ်။" },
+    { cn: "他三十岁。", pinyin: "Tā sānshí suì.", my: "သူအသက်၃၀နှစ်။" },
+    { cn: "她二十岁。", pinyin: "Tā èrshí suì.", my: "သူမအသက်၂၀နှစ်။" },
+    { cn: "我十八岁。", pinyin: "Wǒ shíbā suì.", my: "ငါအသက်၁၈နှစ်။" },
+    { cn: "他四十岁。", pinyin: "Tā sìshí suì.", my: "သူအသက်၄၀နှစ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + 了 + 吗？",
+    explain: "လုပ်ပြီးပြီလား မေးရန်",
+    examples: [
+    { cn: "你工作了吗？", pinyin: "Nǐ gōngzuò le ma?", my: "မင်းအလုပ်လုပ်ပြီးပြီလား။" },
+    { cn: "你吃饭了吗？", pinyin: "Nǐ chīfàn le ma?", my: "မင်းထမင်းစားပြီးပြီလား။" },
+    { cn: "他去学校了吗？", pinyin: "Tā qù xuéxiào le ma?", my: "သူကျောင်းသွားပြီးပြီလား။" },
+    { cn: "你看了吗？", pinyin: "Nǐ kàn le ma?", my: "မင်းကြည့်ပြီးပြီလား။" },
+    { cn: "他来了吗？", pinyin: "Tā lái le ma?", my: "သူလာပြီးပြီလား။" }
+    ]
+    },
+    {
+    pattern: "是的",
+    explain: "အတည်ပြုဖြေကြားခြင်း",
+    examples: [
+    { cn: "是的，我工作了。", pinyin: "Shì de, wǒ gōngzuò le.", my: "ဟုတ်တယ်၊ ငါအလုပ်လုပ်ပြီးပြီ။" },
+    { cn: "是的，我来了。", pinyin: "Shì de, wǒ lái le.", my: "ဟုတ်တယ်၊ ငါလာပြီ။" },
+    { cn: "是的，我吃了。", pinyin: "Shì de, wǒ chī le.", my: "ဟုတ်တယ်၊ ငါစားပြီးပြီ။" },
+    { cn: "是的，我去了。", pinyin: "Shì de, wǒ qù le.", my: "ဟုတ်တယ်၊ ငါသွားပြီးပြီ။" },
+    { cn: "是的，我知道了。", pinyin: "Shì de, wǒ zhīdào le.", my: "ဟုတ်တယ်၊ ငါသိပြီ။" }
+    ]
+    },
+    {
+    pattern: "S + 在 + 地方 + V",
+    explain: "တစ်နေရာမှာ လုပ်သည်",
+    examples: [
+    { cn: "我在公司工作。", pinyin: "Wǒ zài gōngsī gōngzuò.", my: "ငါကုမ္ပဏီမှာအလုပ်လုပ်တယ်။" },
+    { cn: "他在学校学习。", pinyin: "Tā zài xuéxiào xuéxí.", my: "သူကျောင်းမှာသင်တယ်။" },
+    { cn: "她在医院工作。", pinyin: "Tā zài yīyuàn gōngzuò.", my: "သူမဆေးရုံမှာအလုပ်လုပ်တယ်။" },
+    { cn: "我们在家吃饭。", pinyin: "Wǒmen zài jiā chīfàn.", my: "ငါတို့အိမ်မှာထမင်းစားတယ်။" },
+    { cn: "他们在公园散步。", pinyin: "Tāmen zài gōngyuán sànbù.", my: "သူတို့ပန်းခြံမှာလမ်းလျှောက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "在 + 哪儿 + V？",
+    explain: "ဘယ်မှာ လုပ်လဲ မေးရန်",
+    examples: [
+    { cn: "你在哪儿工作？", pinyin: "Nǐ zài nǎr gōngzuò?", my: "မင်းဘယ်မှာအလုပ်လုပ်လဲ။" },
+    { cn: "你在哪儿学习？", pinyin: "Nǐ zài nǎr xuéxí?", my: "မင်းဘယ်မှာသင်လဲ။" },
+    { cn: "他在哪儿住？", pinyin: "Tā zài nǎr zhù?", my: "သူဘယ်မှာနေလဲ။" },
+    { cn: "她在哪儿工作？", pinyin: "Tā zài nǎr gōngzuò?", my: "သူမဘယ်မှာအလုပ်လုပ်လဲ။" },
+    { cn: "你们在哪儿吃饭？", pinyin: "Nǐmen zài nǎr chīfàn?", my: "မင်းတို့ဘယ်မှာထမင်းစားလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + V + 了",
+    explain: "လုပ်ပြီးပြီ (ပြီးစီးမှု)",
+    examples: [
+    { cn: "我工作了。", pinyin: "Wǒ gōngzuò le.", my: "ငါအလုပ်လုပ်ပြီးပြီ။" },
+    { cn: "他来了。", pinyin: "Tā lái le.", my: "သူလာပြီ။" },
+    { cn: "她走了。", pinyin: "Tā zǒu le.", my: "သူမသွားပြီ။" },
+    { cn: "我们吃了。", pinyin: "Wǒmen chī le.", my: "ငါတို့စားပြီးပြီ။" },
+    { cn: "他们去了。", pinyin: "Tāmen qù le.", my: "သူတို့သွားပြီးပြီ။" }
+    ]
+    },
+    {
+    pattern: "S + 在 + N + V",
+    explain: "နေရာတစ်ခုမှာ လုပ်သည်",
+    examples: [
+    { cn: "我在公司工作。", pinyin: "Wǒ zài gōngsī gōngzuò.", my: "ငါကုမ္ပဏီမှာအလုပ်လုပ်တယ်။" },
+    { cn: "他在学校学习。", pinyin: "Tā zài xuéxiào xuéxí.", my: "သူကျောင်းမှာသင်တယ်။" },
+    { cn: "她在医院工作。", pinyin: "Tā zài yīyuàn gōngzuò.", my: "သူမဆေးရုံမှာအလုပ်လုပ်တယ်။" },
+    { cn: "我们在家吃饭。", pinyin: "Wǒmen zài jiā chīfàn.", my: "ငါတို့အိမ်မှာထမင်းစားတယ်။" },
+    { cn: "他们在公园散步。", pinyin: "Tāmen zài gōngyuán sànbù.", my: "သူတို့ပန်းခြံမှာလမ်းလျှောက်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က အသက်ဘယ်လောက်လဲ။", answer: "၂၅ နှစ်" },
+    { question: "၂။ B က အလုပ်လုပ်ပြီးပြီလား။", answer: "ဟုတ်တယ်" },
+    { question: "၃။ B က ဘယ်မှာ အလုပ်လုပ်လဲ။", answer: "ကုမ္ပဏီမှာ" },
+    { question: "၄။ A က ဘာမေးလဲ။", answer: "အသက်ဘယ်လောက်လဲ" },
+    { question: "၅။ A က နောက်ထပ် ဘာမေးသေးလဲ။", answer: "အလုပ်လုပ်ပြီးပြီလား" },
+    { question: "၆။ '多大' က ဘာကိုမေးတာလဲ။", answer: "အသက်" },
+    { question: "၇။ '在' က ဘာကိုဆိုလိုလဲ။", answer: "မှာ" },
+    { question: "၈။ '公司' ဆိုတာ ဘာလဲ။", answer: "ကုမ္ပဏီ" }
+    ]
+    },
+    9: {
+    title: "သင်ခန်းစာ ၉ · 你认识他吗？ (မင်း သူ့ကို သိလား)",
+    dialog: `A: 你认识他吗？ (Nǐ rènshi tā ma?) → မင်း သူ့ကို သိလား။\nB: 认识，他是我的同学。 (Rènshi, tā shì wǒ de tóngxué.) → သိတယ်၊ သူက ငါ့အတန်းဖော်။\nA: 他叫什么名字？ (Tā jiào shénme míngzi?) → သူ ဘယ်လိုခေါ်လဲ။\nB: 他叫张明。 (Tā jiào Zhāng Míng.) → သူက ကျန်းမင်။\nA: 他是哪儿的人？ (Tā shì nǎr de rén?) → သူ ဘယ်သူလဲ။\nB: 他是中国人。 (Tā shì Zhōngguó rén.) → သူက တရုတ်လူမျိုး။`,
+    words: [
+    { cn: "认识", pinyin: "rènshi", my: "သိသည်" },
+    { cn: "同学", pinyin: "tóngxué", my: "အတန်းဖော်" },
+    { cn: "叫", pinyin: "jiào", my: "ခေါ်သည်" },
+    { cn: "名字", pinyin: "míngzi", my: "နာမည်" },
+    { cn: "人", pinyin: "rén", my: "လူ" },
+    { cn: "中国", pinyin: "Zhōngguó", my: "တရုတ်" },
+    { cn: "认识", pinyin: "rènshi", my: "သိသည်" },
+    { cn: "同学", pinyin: "tóngxué", my: "အတန်းဖော်" },
+    { cn: "叫", pinyin: "jiào", my: "ခေါ်" },
+    { cn: "名字", pinyin: "míngzi", my: "နာမည်" },
+    { cn: "人", pinyin: "rén", my: "လူ" },
+    { cn: "中国", pinyin: "Zhōngguó", my: "တရုတ်" },
+    { cn: "认识", pinyin: "rènshi", my: "သိသည်" },
+    { cn: "同学", pinyin: "tóngxué", my: "အတန်းဖော်" },
+    { cn: "叫", pinyin: "jiào", my: "ခေါ်" },
+    { cn: "名字", pinyin: "míngzi", my: "နာမည်" },
+    { cn: "人", pinyin: "rén", my: "လူ" },
+    { cn: "中国", pinyin: "Zhōngguó", my: "တရုတ်" },
+    { cn: "认识", pinyin: "rènshi", my: "သိ" },
+    { cn: "同学", pinyin: "tóngxué", my: "အတန်းဖော်" },
+    { cn: "叫", pinyin: "jiào", my: "ခေါ်" },
+    { cn: "名字", pinyin: "míngzi", my: "နာမည်" },
+    { cn: "人", pinyin: "rén", my: "လူ" },
+    { cn: "中国", pinyin: "Zhōngguó", my: "တရုတ်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 认识 + O + 吗？",
+    explain: "တစ်စုံတစ်ယောက်ကို သိလား မေးရန်",
+    examples: [
+    { cn: "你认识他吗？", pinyin: "Nǐ rènshi tā ma?", my: "မင်း သူ့ကို သိလား။" },
+    { cn: "你认识她吗？", pinyin: "Nǐ rènshi tā ma?", my: "မင်း သူမကို သိလား။" },
+    { cn: "你认识张明吗？", pinyin: "Nǐ rènshi Zhāng Míng ma?", my: "မင်း ကျန်းမင်ကို သိလား။" },
+    { cn: "他认识你吗？", pinyin: "Tā rènshi nǐ ma?", my: "သူ မင်းကို သိလား။" },
+    { cn: "她认识他吗？", pinyin: "Tā rènshi tā ma?", my: "သူမ သူ့ကို သိလား။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + 的 + N",
+    explain: "တစ်စုံတစ်ယောက်၏ အရာဝတ္ထု",
+    examples: [
+    { cn: "他是我的同学。", pinyin: "Tā shì wǒ de tóngxué.", my: "သူက ငါ့အတန်းဖော်။" },
+    { cn: "她是他的朋友。", pinyin: "Tā shì tā de péngyou.", my: "သူမ သူ့သူငယ်ချင်း။" },
+    { cn: "这是我的书。", pinyin: "Zhè shì wǒ de shū.", my: "ဒါ ငါ့စာအုပ်။" },
+    { cn: "那是她的笔。", pinyin: "Nà shì tā de bǐ.", my: "ထို သူမရဲ့ဘောပင်။" },
+    { cn: "他是我的老师。", pinyin: "Tā shì wǒ de lǎoshī.", my: "သူက ငါ့ဆရာ။" }
+    ]
+    },
+    {
+    pattern: "S + 叫 + 名字",
+    explain: "နာမည်ခေါ်သည်",
+    examples: [
+    { cn: "他叫张明。", pinyin: "Tā jiào Zhāng Míng.", my: "သူက ကျန်းမင်။" },
+    { cn: "她叫李芳。", pinyin: "Tā jiào Lǐ Fāng.", my: "သူမက လီဖန်။" },
+    { cn: "我叫王华。", pinyin: "Wǒ jiào Wáng Huá.", my: "ငါက ဝမ်ဟွာ။" },
+    { cn: "你叫什么名字？", pinyin: "Nǐ jiào shénme míngzi?", my: "မင်းနာမည်ဘယ်လိုခေါ်လဲ။" },
+    { cn: "他叫什么？", pinyin: "Tā jiào shénme?", my: "သူနာမည်ဘယ်လိုခေါ်လဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + 哪儿 + 的 + 人？",
+    explain: "ဘယ်သူလဲ မေးရန်",
+    examples: [
+    { cn: "他是哪儿的人？", pinyin: "Tā shì nǎr de rén?", my: "သူ ဘယ်သူလဲ။" },
+    { cn: "你是哪儿的人？", pinyin: "Nǐ shì nǎr de rén?", my: "မင်း ဘယ်သူလဲ။" },
+    { cn: "她是哪儿的人？", pinyin: "Tā shì nǎr de rén?", my: "သူမ ဘယ်သူလဲ။" },
+    { cn: "他是中国人。", pinyin: "Tā shì Zhōngguó rén.", my: "သူက တရုတ်လူမျိုး။" },
+    { cn: "她是日本人。", pinyin: "Tā shì Rìběn rén.", my: "သူမ ဂျပန်လူမျိုး။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + 国家 + 人",
+    explain: "နိုင်ငံသားဖြစ်သည်",
+    examples: [
+    { cn: "他是中国人。", pinyin: "Tā shì Zhōngguó rén.", my: "သူက တရုတ်လူမျိုး။" },
+    { cn: "她是日本人。", pinyin: "Tā shì Rìběn rén.", my: "သူမ ဂျပန်လူမျိုး။" },
+    { cn: "我是缅甸人。", pinyin: "Wǒ shì Miǎndiàn rén.", my: "ငါ မြန်မာလူမျိုး။" },
+    { cn: "他是韩国人。", pinyin: "Tā shì Hánguó rén.", my: "သူ ကိုရီးယားလူမျိုး။" },
+    { cn: "她是美国人。", pinyin: "Tā shì Měiguó rén.", my: "သူမ အမေရိကန်လူမျိုး။" }
+    ]
+    },
+    {
+    pattern: "S + V + O",
+    explain: "တစ်စုံတစ်ယောက် တစ်ခုခုလုပ်သည်",
+    examples: [
+    { cn: "我认识他。", pinyin: "Wǒ rènshi tā.", my: "ငါ သူ့ကို သိတယ်။" },
+    { cn: "他叫张明。", pinyin: "Tā jiào Zhāng Míng.", my: "သူက ကျန်းမင်။" },
+    { cn: "她学习中文。", pinyin: "Tā xuéxí Zhōngwén.", my: "သူမ တရုတ်စာသင်တယ်။" },
+    { cn: "我们吃饭。", pinyin: "Wǒmen chīfàn.", my: "ငါတို့ ထမင်းစားတယ်။" },
+    { cn: "他们去学校。", pinyin: "Tāmen qù xuéxiào.", my: "သူတို့ ကျောင်းသွားတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 的 + N",
+    explain: "တစ်စုံတစ်ယောက်၏ အရာဝတ္ထု",
+    examples: [
+    { cn: "我的书。", pinyin: "Wǒ de shū.", my: "ငါ့စာအုပ်။" },
+    { cn: "他的朋友。", pinyin: "Tā de péngyou.", my: "သူ့သူငယ်ချင်း။" },
+    { cn: "她的老师。", pinyin: "Tā de lǎoshī.", my: "သူမရဲ့ဆရာ။" },
+    { cn: "我们的学校。", pinyin: "Wǒmen de xuéxiào.", my: "ငါတို့ကျောင်း။" },
+    { cn: "他们的家。", pinyin: "Tāmen de jiā.", my: "သူတို့အိမ်။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + N",
+    explain: "တစ်စုံတစ်ယောက်သည် အရာဝတ္ထုတစ်ခုဖြစ်သည်",
+    examples: [
+    { cn: "他是我的同学。", pinyin: "Tā shì wǒ de tóngxué.", my: "သူက ငါ့အတန်းဖော်။" },
+    { cn: "她是老师。", pinyin: "Tā shì lǎoshī.", my: "သူမ ဆရာမ။" },
+    { cn: "我是学生。", pinyin: "Wǒ shì xuéshēng.", my: "ငါ ကျောင်းသား။" },
+    { cn: "他是医生。", pinyin: "Tā shì yīshēng.", my: "သူ ဆရာဝန်။" },
+    { cn: "她是护士。", pinyin: "Tā shì hùshi.", my: "သူမ သူနာပြု။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ A က ဘာမေးလဲ။", answer: "သူ့ကိုသိလား" },
+    { question: "၂။ B က သူ့ကိုသိလား။", answer: "သိတယ်" },
+    { question: "၃။ သူက ဘယ်သူလဲ။", answer: "အတန်းဖော်" },
+    { question: "၄။ သူနာမည်ဘယ်လိုခေါ်လဲ။", answer: "ကျန်းမင်" },
+    { question: "၅။ သူ ဘယ်သူလဲ။", answer: "တရုတ်လူမျိုး" },
+    { question: "၆။ '认识' က ဘာကိုဆိုလိုလဲ။", answer: "သိသည်" },
+    { question: "၇။ '叫' က ဘာအတွက်လဲ။", answer: "နာမည်ခေါ်ရန်" },
+    { question: "၈။ '是...的' က ဘာကိုပြသလဲ။", answer: "ပိုင်ဆိုင်မှု" }
+    ]
+    },
+    
+    // ===================== LESSON 10 =====================
+    10: {
+    title: "သင်ခန်းစာ ၁၀ · 你喝什么？ (မင်း ဘာသောက်လဲ)",
+    dialog: `A: 你喝什么？ (Nǐ hē shénme?) → မင်း ဘာသောက်လဲ။\nB: 我喝茶。 (Wǒ hē chá.) → ငါ လက်ဖက်ရည်သောက်တယ်။\nA: 你喜欢喝咖啡吗？ (Nǐ xǐhuān hē kāfēi ma?) → မင်း ကော်ဖီသောက်ကြိုက်လား။\nB: 喜欢，但是我喜欢喝茶。 (Xǐhuān, dànshì wǒ xǐhuān hē chá.) → ကြိုက်တယ်၊ ဒါပေမယ့် ငါ လက်ဖက်ရည်သောက်ကြိုက်တယ်။\nA: 茶和咖啡，你喜欢哪一个？ (Chá hé kāfēi, nǐ xǐhuān nǎ yī gè?) → လက်ဖက်ရည်နဲ့ ကော်ဖီ၊ မင်း ဘယ်ဟာ ကြိုက်လဲ။\nB: 我喜欢茶。 (Wǒ xǐhuān chá.) → ငါ လက်ဖက်ရည် ကြိုက်တယ်။`,
+    words: [
+    { cn: "喝", pinyin: "hē", my: "သောက်" },
+    { cn: "茶", pinyin: "chá", my: "လက်ဖက်ရည်" },
+    { cn: "咖啡", pinyin: "kāfēi", my: "ကော်ဖီ" },
+    { cn: "喜欢", pinyin: "xǐhuān", my: "ကြိုက်" },
+    { cn: "但是", pinyin: "dànshì", my: "ဒါပေမယ့်" },
+    { cn: "和", pinyin: "hé", my: "နှင့်" },
+    { cn: "哪一个", pinyin: "nǎ yī gè", my: "ဘယ်ဟာ" },
+    { cn: "喝", pinyin: "hē", my: "သောက်" },
+    { cn: "茶", pinyin: "chá", my: "လက်ဖက်ရည်" },
+    { cn: "咖啡", pinyin: "kāfēi", my: "ကော်ဖီ" },
+    { cn: "喜欢", pinyin: "xǐhuān", my: "ကြိုက်" },
+    { cn: "但是", pinyin: "dànshì", my: "ဒါပေမယ့်" },
+    { cn: "和", pinyin: "hé", my: "နှင့်" },
+    { cn: "哪一个", pinyin: "nǎ yī gè", my: "ဘယ်ဟာ" },
+    { cn: "喝", pinyin: "hē", my: "သောက်" },
+    { cn: "茶", pinyin: "chá", my: "လက်ဖက်ရည်" },
+    { cn: "咖啡", pinyin: "kāfēi", my: "ကော်ဖီ" },
+    { cn: "喜欢", pinyin: "xǐhuān", my: "ကြိုက်" },
+    { cn: "但是", pinyin: "dànshì", my: "ဒါပေမယ့်" },
+    { cn: "和", pinyin: "hé", my: "နှင့်" },
+    { cn: "哪一个", pinyin: "nǎ yī gè", my: "ဘယ်ဟာ" },
+    { cn: "喝", pinyin: "hē", my: "သောက်သည်" },
+    { cn: "茶", pinyin: "chá", my: "လက်ဖက်ရည်" },
+    { cn: "咖啡", pinyin: "kāfēi", my: "ကော်ဖီ" },
+    { cn: "喜欢", pinyin: "xǐhuān", my: "ကြိုက်သည်" },
+    { cn: "但是", pinyin: "dànshì", my: "သို့သော်" },
+    { cn: "和", pinyin: "hé", my: "နှင့်" },
+    { cn: "哪一个", pinyin: "nǎ yī gè", my: "ဘယ်ဟာ" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 喝 + 什么？",
+    explain: "ဘာသောက်လဲ မေးရန်",
+    examples: [
+    { cn: "你喝什么？", pinyin: "Nǐ hē shénme?", my: "မင်း ဘာသောက်လဲ။" },
+    { cn: "他喝什么？", pinyin: "Tā hē shénme?", my: "သူ ဘာသောက်လဲ။" },
+    { cn: "她喝什么？", pinyin: "Tā hē shénme?", my: "သူမ ဘာသောက်လဲ။" },
+    { cn: "你们喝什么？", pinyin: "Nǐmen hē shénme?", my: "မင်းတို့ ဘာသောက်လဲ။" },
+    { cn: "他们喝什么？", pinyin: "Tāmen hē shénme?", my: "သူတို့ ဘာသောက်လဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 喜欢 + V + O + 吗？",
+    explain: "လုပ်ကြိုက်လား မေးရန်",
+    examples: [
+    { cn: "你喜欢喝咖啡吗？", pinyin: "Nǐ xǐhuān hē kāfēi ma?", my: "မင်း ကော်ဖီသောက်ကြိုက်လား။" },
+    { cn: "你喜欢喝茶吗？", pinyin: "Nǐ xǐhuān hē chá ma?", my: "မင်း လက်ဖက်ရည်သောက်ကြိုက်လား။" },
+    { cn: "他喜欢看书吗？", pinyin: "Tā xǐhuān kàn shū ma?", my: "သူ စာဖတ်ကြိုက်လား။" },
+    { cn: "她喜欢听音乐吗？", pinyin: "Tā xǐhuān tīng yīnyuè ma?", my: "သူမ ဂီတနားထောင်ကြိုက်လား။" },
+    { cn: "你们喜欢运动吗？", pinyin: "Nǐmen xǐhuān yùndòng ma?", my: "မင်းတို့ အားကစားကြိုက်လား။" }
+    ]
+    },
+    {
+    pattern: "S + V + O",
+    explain: "တစ်စုံတစ်ယောက် တစ်ခုခုကို သောက်သည်",
+    examples: [
+    { cn: "我喝茶。", pinyin: "Wǒ hē chá.", my: "ငါ လက်ဖက်ရည်သောက်တယ်။" },
+    { cn: "他喝咖啡。", pinyin: "Tā hē kāfēi.", my: "သူ ကော်ဖီသောက်တယ်။" },
+    { cn: "她喝水。", pinyin: "Tā hē shuǐ.", my: "သူမ ရေသောက်တယ်။" },
+    { cn: "我们喝果汁。", pinyin: "Wǒmen hē guǒzhī.", my: "ငါတို့ ဖျော်ရည်သောက်တယ်။" },
+    { cn: "他们喝牛奶。", pinyin: "Tāmen hē niúnǎi.", my: "သူတို့ နို့သောက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 喜欢 + V + O",
+    explain: "လုပ်ကြိုက်သည်",
+    examples: [
+    { cn: "我喜欢喝茶。", pinyin: "Wǒ xǐhuān hē chá.", my: "ငါ လက်ဖက်ရည်သောက်ကြိုက်တယ်။" },
+    { cn: "他喜欢喝咖啡。", pinyin: "Tā xǐhuān hē kāfēi.", my: "သူ ကော်ဖီသောက်ကြိုက်တယ်။" },
+    { cn: "她喜欢看书。", pinyin: "Tā xǐhuān kàn shū.", my: "သူမ စာဖတ်ကြိုက်တယ်။" },
+    { cn: "我们喜欢运动。", pinyin: "Wǒmen xǐhuān yùndòng.", my: "ငါတို့ အားကစားကြိုက်တယ်။" },
+    { cn: "他们喜欢唱歌。", pinyin: "Tāmen xǐhuān chànggē.", my: "သူတို့ သီချင်းဆိုကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "A 和 B",
+    explain: "A နှင့် B (နှစ်ခုကိုဆက်ရန်)",
+    examples: [
+    { cn: "茶和咖啡。", pinyin: "Chá hé kāfēi.", my: "လက်ဖက်ရည်နှင့် ကော်ဖီ။" },
+    { cn: "我和你。", pinyin: "Wǒ hé nǐ.", my: "ငါနှင့် မင်း။" },
+    { cn: "书和笔。", pinyin: "Shū hé bǐ.", my: "စာအုပ်နှင့် ဘောပင်။" },
+    { cn: "红色和蓝色。", pinyin: "Hóngsè hé lánsè.", my: "အနီရောင်နှင့် အပြာရောင်။" },
+    { cn: "中国和日本。", pinyin: "Zhōngguó hé Rìběn.", my: "တရုတ်နှင့် ဂျပန်။" }
+    ]
+    },
+    {
+    pattern: "S + 喜欢 + 哪一个？",
+    explain: "ဘယ်ဟာကြိုက်လဲ မေးရန်",
+    examples: [
+    { cn: "你喜欢哪一个？", pinyin: "Nǐ xǐhuān nǎ yī gè?", my: "မင်း ဘယ်ဟာ ကြိုက်လဲ။" },
+    { cn: "你喜欢茶和咖啡哪一个？", pinyin: "Nǐ xǐhuān chá hé kāfēi nǎ yī gè?", my: "လက်ဖက်ရည်နဲ့ ကော်ဖီ ဘယ်ဟာကြိုက်လဲ။" },
+    { cn: "你喜欢红色和蓝色哪一个？", pinyin: "Nǐ xǐhuān hóngsè hé lánsè nǎ yī gè?", my: "အနီရောင်နဲ့ အပြာရောင် ဘယ်ဟာကြိုက်လဲ။" },
+    { cn: "你喜欢苹果和香蕉哪一个？", pinyin: "Nǐ xǐhuān píngguǒ hé xiāngjiāo nǎ yī gè?", my: "ပန်းသီးနဲ့ ငှက်ပျောသီး ဘယ်ဟာကြိုက်လဲ။" },
+    { cn: "你喜欢茶和咖啡哪一个？", pinyin: "Nǐ xǐhuān chá hé kāfēi nǎ yī gè?", my: "လက်ဖက်ရည်နဲ့ ကော်ဖီ ဘယ်ဟာကြိုက်လဲ။" }
+    ]
+    },
+    {
+    pattern: "但是",
+    explain: "ဒါပေမယ့် (ဆန့်ကျင်ဖော်ပြရန်)",
+    examples: [
+    { cn: "喜欢，但是我喜欢喝茶。", pinyin: "Xǐhuān, dànshì wǒ xǐhuān hē chá.", my: "ကြိုက်တယ်၊ ဒါပေမယ့် ငါလက်ဖက်ရည်သောက်ကြိုက်တယ်။" },
+    { cn: "我想去，但是没时间。", pinyin: "Wǒ xiǎng qù, dànshì méi shíjiān.", my: "ငါသွားချင်တယ်၊ ဒါပေမယ့် အချိန်မရှိဘူး။" },
+    { cn: "他很好，但是很忙。", pinyin: "Tā hěn hǎo, dànshì hěn máng.", my: "သူကောင်းတယ်၊ ဒါပေမယ့် အရမ်းရှုပ်တယ်။" },
+    { cn: "我喜欢，但是不买。", pinyin: "Wǒ xǐhuān, dànshì bù mǎi.", my: "ငါကြိုက်တယ်၊ ဒါပေမယ့် မဝယ်ဘူး။" },
+    { cn: "她漂亮，但是不太聪明。", pinyin: "Tā piàoliang, dànshì bù tài cōngming.", my: "သူမလှတယ်၊ ဒါပေမယ့် သိပ်မတော်ဘူး။" }
+    ]
+    },
+    {
+    pattern: "S + V + O + 和 + O",
+    explain: "တစ်စုံတစ်ယောက် တစ်ခုခုနှင့် တစ်ခုခုကို သောက်သည်",
+    examples: [
+    { cn: "我喝茶和咖啡。", pinyin: "Wǒ hē chá hé kāfēi.", my: "ငါ လက်ဖက်ရည်နဲ့ ကော်ဖီသောက်တယ်။" },
+    { cn: "他喝水和果汁。", pinyin: "Tā hē shuǐ hé guǒzhī.", my: "သူ ရေနဲ့ ဖျော်ရည်သောက်တယ်။" },
+    { cn: "她喝牛奶和茶。", pinyin: "Tā hē niúnǎi hé chá.", my: "သူမ နို့နဲ့ လက်ဖက်ရည်သောက်တယ်။" },
+    { cn: "我们喝咖啡和果汁。", pinyin: "Wǒmen hē kāfēi hé guǒzhī.", my: "ငါတို့ ကော်ဖီနဲ့ ဖျော်ရည်သောက်တယ်။" },
+    { cn: "他们喝茶和水。", pinyin: "Tāmen hē chá hé shuǐ.", my: "သူတို့ လက်ဖက်ရည်နဲ့ ရေသောက်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ဘာသောက်လဲ။", answer: "လက်ဖက်ရည်" },
+    { question: "၂။ B က ကော်ဖီသောက်ကြိုက်လား။", answer: "ကြိုက်တယ်" },
+    { question: "၃။ B က ဘာသောက်ပိုကြိုက်လဲ။", answer: "လက်ဖက်ရည်" },
+    { question: "၄။ A က ဘာမေးလဲ။", answer: "ဘာသောက်လဲ" },
+    { question: "၅။ A က နောက်ထပ် ဘာမေးသေးလဲ။", answer: "ကော်ဖီသောက်ကြိုက်လား" },
+    { question: "၆။ '但是' က ဘာကိုဆိုလိုလဲ။", answer: "ဒါပေမယ့်" },
+    { question: "၇။ '和' က ဘာအတွက်လဲ။", answer: "ဆက်ရန်" },
+    { question: "၈။ '哪一个' က ဘာကိုမေးတာလဲ။", answer: "ဘယ်ဟာ" }
+    ]
+    },
+    11: {
+    title: "သင်ခန်းစာ ၁၁ · 你什么时候来？ (မင်း ဘယ်အချိန်လာမလဲ)",
+    dialog: `A: 你什么时候来？ (Nǐ shénme shíhou lái?) → မင်း ဘယ်အချိန်လာမလဲ။\nB: 我明天上午来。 (Wǒ míngtiān shàngwǔ lái.) → ငါ မနက်ဖြန် မနက်လာမယ်။\nA: 你下午有事吗？ (Nǐ xiàwǔ yǒu shì ma?) → မင်း မွန်းလွဲမှာ အလုပ်ရှိလား။\nB: 下午我有会议。 (Xiàwǔ wǒ yǒu huìyì.) → မွန်းလွဲမှာ ငါ့မှာ အစည်းအဝေးရှိတယ်။\nA: 那晚上我们见面吧。 (Nà wǎnshang wǒmen jiànmiàn ba.) → ဒါဆိုညနေ ငါတို့တွေ့ကြမယ်။\nB: 好的，晚上见。 (Hǎo de, wǎnshang jiàn.) → ကောင်းပြီ၊ ညနေတွေ့မယ်။`,
+    words: [
+    { cn: "什么时候", pinyin: "shénme shíhou", my: "ဘယ်အချိန်" },
+    { cn: "明天", pinyin: "míngtiān", my: "မနက်ဖြန်" },
+    { cn: "上午", pinyin: "shàngwǔ", my: "မနက်" },
+    { cn: "下午", pinyin: "xiàwǔ", my: "မွန်းလွဲ" },
+    { cn: "有事", pinyin: "yǒu shì", my: "အလုပ်ရှိ" },
+    { cn: "会议", pinyin: "huìyì", my: "အစည်းအဝေး" },
+    { cn: "晚上", pinyin: "wǎnshang", my: "ညနေ" },
+    { cn: "见面", pinyin: "jiànmiàn", my: "တွေ့" },
+    { cn: "什么时候", pinyin: "shénme shíhou", my: "ဘယ်အချိန်" },
+    { cn: "明天", pinyin: "míngtiān", my: "မနက်ဖြန်" },
+    { cn: "上午", pinyin: "shàngwǔ", my: "မနက်" },
+    { cn: "下午", pinyin: "xiàwǔ", my: "မွန်းလွဲ" },
+    { cn: "有事", pinyin: "yǒu shì", my: "အလုပ်ရှိ" },
+    { cn: "会议", pinyin: "huìyì", my: "အစည်းအဝေး" },
+    { cn: "晚上", pinyin: "wǎnshang", my: "ညနေ" },
+    { cn: "见面", pinyin: "jiànmiàn", my: "တွေ့" },
+    { cn: "什么时候", pinyin: "shénme shíhou", my: "ဘယ်အချိန်" },
+    { cn: "明天", pinyin: "míngtiān", my: "မနက်ဖြန်" },
+    { cn: "上午", pinyin: "shàngwǔ", my: "မနက်" },
+    { cn: "下午", pinyin: "xiàwǔ", my: "မွန်းလွဲ" },
+    { cn: "有事", pinyin: "yǒu shì", my: "အလုပ်ရှိ" },
+    { cn: "会议", pinyin: "huìyì", my: "အစည်းအဝေး" },
+    { cn: "晚上", pinyin: "wǎnshang", my: "ညနေ" },
+    { cn: "见面", pinyin: "jiànmiàn", my: "တွေ့သည်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 什么时候 + V？",
+    explain: "ဘယ်အချိန်လုပ်လဲ မေးရန်",
+    examples: [
+    { cn: "你什么时候来？", pinyin: "Nǐ shénme shíhou lái?", my: "မင်း ဘယ်အချိန်လာမလဲ။" },
+    { cn: "他什么时候走？", pinyin: "Tā shénme shíhou zǒu?", my: "သူ ဘယ်အချိန်သွားမလဲ။" },
+    { cn: "她什么时候去？", pinyin: "Tā shénme shíhou qù?", my: "သူမ ဘယ်အချိန်သွားမလဲ။" },
+    { cn: "我们什么时候开始？", pinyin: "Wǒmen shénme shíhou kāishǐ?", my: "ငါတို့ ဘယ်အချိန်စမလဲ။" },
+    { cn: "他们什么时候到？", pinyin: "Tāmen shénme shíhou dào?", my: "သူတို့ ဘယ်အချိန်ရောက်မလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 时间 + V",
+    explain: "အချိန်မှာ လုပ်သည်",
+    examples: [
+    { cn: "我明天上午来。", pinyin: "Wǒ míngtiān shàngwǔ lái.", my: "ငါ မနက်ဖြန် မနက်လာမယ်။" },
+    { cn: "他下午走。", pinyin: "Tā xiàwǔ zǒu.", my: "သူ မွန်းလွဲသွားမယ်။" },
+    { cn: "她晚上去。", pinyin: "Tā wǎnshang qù.", my: "သူမ ညနေသွားမယ်။" },
+    { cn: "我们明天开始。", pinyin: "Wǒmen míngtiān kāishǐ.", my: "ငါတို့ မနက်ဖြန် စမယ်။" },
+    { cn: "他们今天到。", pinyin: "Tāmen jīntiān dào.", my: "သူတို့ ဒီနေ့ရောက်မယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 有 + N",
+    explain: "ရှိသည် (ပိုင်ဆိုင်မှု)",
+    examples: [
+    { cn: "我有会议。", pinyin: "Wǒ yǒu huìyì.", my: "ငါ့မှာ အစည်းအဝေးရှိတယ်။" },
+    { cn: "他有事。", pinyin: "Tā yǒu shì.", my: "သူ့မှာ အလုပ်ရှိတယ်။" },
+    { cn: "她没有时间。", pinyin: "Tā méiyǒu shíjiān.", my: "သူမမှာ အချိန်မရှိဘူး။" },
+    { cn: "我们有钱。", pinyin: "Wǒmen yǒu qián.", my: "ငါတို့မှာ ပိုက်ဆံရှိတယ်။" },
+    { cn: "他们有问题。", pinyin: "Tāmen yǒu wèntí.", my: "သူတို့မှာ ပြဿနာရှိတယ်။" }
+    ]
+    },
+    {
+    pattern: "那 + 句子",
+    explain: "ဒါဆိုရင် (ဆက်စပ်ဖော်ပြရန်)",
+    examples: [
+    { cn: "那晚上我们见面吧。", pinyin: "Nà wǎnshang wǒmen jiànmiàn ba.", my: "ဒါဆိုညနေ ငါတို့တွေ့ကြမယ်။" },
+    { cn: "那我们去吃饭吧。", pinyin: "Nà wǒmen qù chīfàn ba.", my: "ဒါဆိုငါတို့ထမင်းစားကြမယ်။" },
+    { cn: "那我们一起走吧。", pinyin: "Nà wǒmen yīqǐ zǒu ba.", my: "ဒါဆိုငါတို့အတူတူသွားကြမယ်။" },
+    { cn: "那我等你。", pinyin: "Nà wǒ děng nǐ.", my: "ဒါဆိုငါမင်းကိုစောင့်မယ်။" },
+    { cn: "那好吧。", pinyin: "Nà hǎo ba.", my: "ဒါဆိုကောင်းပြီ။" }
+    ]
+    },
+    {
+    pattern: "S + V + O + 吧",
+    explain: "အကြံပြုခြင်း (let's)",
+    examples: [
+    { cn: "我们见面吧。", pinyin: "Wǒmen jiànmiàn ba.", my: "ငါတို့ တွေ့ကြမယ်။" },
+    { cn: "我们去吃饭吧。", pinyin: "Wǒmen qù chīfàn ba.", my: "ငါတို့ ထမင်းစားကြမယ်။" },
+    { cn: "我们一起走吧。", pinyin: "Wǒmen yīqǐ zǒu ba.", my: "ငါတို့ အတူတူသွားကြမယ်။" },
+    { cn: "你休息吧。", pinyin: "Nǐ xiūxi ba.", my: "မင်း အနားယူပါ။" },
+    { cn: "我们开始吧。", pinyin: "Wǒmen kāishǐ ba.", my: "ငါတို့ စကြမယ်။" }
+    ]
+    },
+    {
+    pattern: "时间 + 见面",
+    explain: "အချိန်မှာ တွေ့သည်",
+    examples: [
+    { cn: "晚上见。", pinyin: "Wǎnshang jiàn.", my: "ညနေ တွေ့မယ်။" },
+    { cn: "明天见。", pinyin: "Míngtiān jiàn.", my: "မနက်ဖြန် တွေ့မယ်။" },
+    { cn: "下午见。", pinyin: "Xiàwǔ jiàn.", my: "မွန်းလွဲ တွေ့မယ်။" },
+    { cn: "上午见。", pinyin: "Shàngwǔ jiàn.", my: "မနက် တွေ့မယ်။" },
+    { cn: "周末见。", pinyin: "Zhōumò jiàn.", my: "စနေ၊ တနင်္ဂနွေ တွေ့မယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 有 + 事",
+    explain: "အလုပ်ရှိသည်",
+    examples: [
+    { cn: "我有事。", pinyin: "Wǒ yǒu shì.", my: "ငါ့မှာ အလုပ်ရှိတယ်။" },
+    { cn: "他今天有事。", pinyin: "Tā jīntiān yǒu shì.", my: "သူ ဒီနေ့ အလုပ်ရှိတယ်။" },
+    { cn: "她下午有事。", pinyin: "Tā xiàwǔ yǒu shì.", my: "သူမ မွန်းလွဲ အလုပ်ရှိတယ်။" },
+    { cn: "我们明天有事。", pinyin: "Wǒmen míngtiān yǒu shì.", my: "ငါတို့ မနက်ဖြန် အလုပ်ရှိတယ်။" },
+    { cn: "他们晚上有事。", pinyin: "Tāmen wǎnshang yǒu shì.", my: "သူတို့ ညနေ အလုပ်ရှိတယ်။" }
+    ]
+    },
+    {
+    pattern: "那 + 我们 + V + 吧",
+    explain: "ဒါဆိုရင် ငါတို့ လုပ်ကြမယ်",
+    examples: [
+    { cn: "那我们去吃饭吧。", pinyin: "Nà wǒmen qù chīfàn ba.", my: "ဒါဆိုငါတို့ထမင်းစားကြမယ်။" },
+    { cn: "那我们一起走吧。", pinyin: "Nà wǒmen yīqǐ zǒu ba.", my: "ဒါဆိုငါတို့အတူတူသွားကြမယ်။" },
+    { cn: "那我们见面吧。", pinyin: "Nà wǒmen jiànmiàn ba.", my: "ဒါဆိုငါတို့တွေ့ကြမယ်။" },
+    { cn: "那我们开始吧。", pinyin: "Nà wǒmen kāishǐ ba.", my: "ဒါဆိုငါတို့စကြမယ်။" },
+    { cn: "那我们一起学习吧。", pinyin: "Nà wǒmen yīqǐ xuéxí ba.", my: "ဒါဆိုငါတို့အတူတူသင်ကြမယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ဘယ်အချိန်လာမလဲ။", answer: "မနက်ဖြန် မနက်" },
+    { question: "၂။ B က မွန်းလွဲ ဘာရှိလဲ။", answer: "အစည်းအဝေး" },
+    { question: "၃။ သူတို့ ဘယ်အချိန်တွေ့ကြမလဲ။", answer: "ညနေ" },
+    { question: "၄။ A က ဘာမေးလဲ။", answer: "ဘယ်အချိန်လာမလဲ" },
+    { question: "၅။ A က နောက်ထပ် ဘာမေးသေးလဲ။", answer: "မွန်းလွဲ အလုပ်ရှိလား" },
+    { question: "၆။ '什么时候' က ဘာကိုမေးတာလဲ။", answer: "အချိန်" },
+    { question: "၇။ '有' က ဘာကိုဆိုလိုလဲ။", answer: "ရှိသည်" },
+    { question: "၈။ '吧' က ဘာအတွက်လဲ။", answer: "အကြံပြုရန်" }
+    ]
+    },
+    
+    // ===================== LESSON 12 =====================
+    12: {
+    title: "သင်ခန်းစာ ၁၂ · 你坐什么车？ (မင်း ဘယ်ကားစီးလဲ)",
+    dialog: `A: 你坐什么车？ (Nǐ zuò shénme chē?) → မင်း ဘယ်ကားစီးလဲ။\nB: 我坐公共汽车。 (Wǒ zuò gōnggòng qìchē.) → ငါ ဘတ်စ်ကားစီးတယ်။\nA: 你坐地铁吗？ (Nǐ zuò dìtiě ma?) → မင်း မြေအောက်ရထားစီးလား။\nB: 不，我不坐地铁。 (Bù, wǒ bù zuò dìtiě.) → မဟုတ်ဘူး၊ ငါ မြေအောက်ရထားမစီးဘူး။\nA: 你开车吗？ (Nǐ kāichē ma?) → မင်း ကားမောင်းလား။\nB: 不，我不会开车。 (Bù, wǒ bù huì kāichē.) → မဟုတ်ဘူး၊ ငါ ကားမောင်းတတ်ဘူး။`,
+    words: [
+    { cn: "坐", pinyin: "zuò", my: "စီး" },
+    { cn: "车", pinyin: "chē", my: "ကား" },
+    { cn: "公共汽车", pinyin: "gōnggòng qìchē", my: "ဘတ်စ်ကား" },
+    { cn: "地铁", pinyin: "dìtiě", my: "မြေအောက်ရထား" },
+    { cn: "开车", pinyin: "kāichē", my: "ကားမောင်း" },
+    { cn: "会", pinyin: "huì", my: "တတ်" },
+    { cn: "坐", pinyin: "zuò", my: "စီး" },
+    { cn: "车", pinyin: "chē", my: "ကား" },
+    { cn: "公共汽车", pinyin: "gōnggòng qìchē", my: "ဘတ်စ်ကား" },
+    { cn: "地铁", pinyin: "dìtiě", my: "မြေအောက်ရထား" },
+    { cn: "开车", pinyin: "kāichē", my: "ကားမောင်း" },
+    { cn: "会", pinyin: "huì", my: "တတ်" },
+    { cn: "坐", pinyin: "zuò", my: "စီး" },
+    { cn: "车", pinyin: "chē", my: "ကား" },
+    { cn: "公共汽车", pinyin: "gōnggòng qìchē", my: "ဘတ်စ်ကား" },
+    { cn: "地铁", pinyin: "dìtiě", my: "မြေအောက်ရထား" },
+    { cn: "开车", pinyin: "kāichē", my: "ကားမောင်း" },
+    { cn: "会", pinyin: "huì", my: "တတ်" },
+    { cn: "坐", pinyin: "zuò", my: "စီး" },
+    { cn: "车", pinyin: "chē", my: "ကား" },
+    { cn: "公共汽车", pinyin: "gōnggòng qìchē", my: "ဘတ်စ်ကား" },
+    { cn: "地铁", pinyin: "dìtiě", my: "မြေအောက်ရထား" },
+    { cn: "开车", pinyin: "kāichē", my: "ကားမောင်း" },
+    { cn: "会", pinyin: "huì", my: "တတ်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 坐 + 什么 + 车？",
+    explain: "ဘယ်ကားစီးလဲ မေးရန်",
+    examples: [
+    { cn: "你坐什么车？", pinyin: "Nǐ zuò shénme chē?", my: "မင်း ဘယ်ကားစီးလဲ။" },
+    { cn: "他坐什么车？", pinyin: "Tā zuò shénme chē?", my: "သူ ဘယ်ကားစီးလဲ။" },
+    { cn: "她坐什么车？", pinyin: "Tā zuò shénme chē?", my: "သူမ ဘယ်ကားစီးလဲ။" },
+    { cn: "你们坐什么车？", pinyin: "Nǐmen zuò shénme chē?", my: "မင်းတို့ ဘယ်ကားစီးလဲ။" },
+    { cn: "他们坐什么车？", pinyin: "Tāmen zuò shénme chē?", my: "သူတို့ ဘယ်ကားစီးလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 坐 + 交通工具",
+    explain: "ယာဉ်စီးသည်",
+    examples: [
+    { cn: "我坐公共汽车。", pinyin: "Wǒ zuò gōnggòng qìchē.", my: "ငါ ဘတ်စ်ကားစီးတယ်။" },
+    { cn: "他坐地铁。", pinyin: "Tā zuò dìtiě.", my: "သူ မြေအောက်ရထားစီးတယ်။" },
+    { cn: "她坐出租车。", pinyin: "Tā zuò chūzūchē.", my: "သူမ တက္ကစီစီးတယ်။" },
+    { cn: "我们坐火车。", pinyin: "Wǒmen zuò huǒchē.", my: "ငါတို့ ရထားစီးတယ်။" },
+    { cn: "他们坐飞机。", pinyin: "Tāmen zuò fēijī.", my: "သူတို့ လေယာဉ်စီးတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 不 + V + O",
+    explain: "မလုပ်ဘူး (ငြင်းပယ်)",
+    examples: [
+    { cn: "我不坐地铁。", pinyin: "Wǒ bù zuò dìtiě.", my: "ငါ မြေအောက်ရထားမစီးဘူး။" },
+    { cn: "他不去学校。", pinyin: "Tā bù qù xuéxiào.", my: "သူ ကျောင်းမသွားဘူး။" },
+    { cn: "她不吃肉。", pinyin: "Tā bù chī ròu.", my: "သူမ အသားမစားဘူး။" },
+    { cn: "我们不喝咖啡。", pinyin: "Wǒmen bù hē kāfēi.", my: "ငါတို့ ကော်ဖီမသောက်ဘူး။" },
+    { cn: "他们不看电视。", pinyin: "Tāmen bù kàn diànshì.", my: "သူတို့ တီဗွီမကြည့်ဘူး။" }
+    ]
+    },
+    {
+    pattern: "S + 会 + V",
+    explain: "တတ်သည် (ကျွမ်းကျင်မှု)",
+    examples: [
+    { cn: "我会开车。", pinyin: "Wǒ huì kāichē.", my: "ငါ ကားမောင်းတတ်တယ်။" },
+    { cn: "他会说中文。", pinyin: "Tā huì shuō Zhōngwén.", my: "သူ တရုတ်စကားပြောတတ်တယ်။" },
+    { cn: "她会唱歌。", pinyin: "Tā huì chànggē.", my: "သူမ သီချင်းဆိုတတ်တယ်။" },
+    { cn: "我们会游泳。", pinyin: "Wǒmen huì yóuyǒng.", my: "ငါတို့ ရေကူးတတ်တယ်။" },
+    { cn: "他们会跳舞。", pinyin: "Tāmen huì tiàowǔ.", my: "သူတို့ အက ကတတ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 不会 + V",
+    explain: "မတတ်ဘူး",
+    examples: [
+    { cn: "我不会开车。", pinyin: "Wǒ bù huì kāichē.", my: "ငါ ကားမောင်းမတတ်ဘူး။" },
+    { cn: "他不会说中文。", pinyin: "Tā bù huì shuō Zhōngwén.", my: "သူ တရုတ်စကားမပြောတတ်ဘူး။" },
+    { cn: "她不会游泳。", pinyin: "Tā bù huì yóuyǒng.", my: "သူမ ရေမကူးတတ်ဘူး။" },
+    { cn: "我们不会跳舞。", pinyin: "Wǒmen bù huì tiàowǔ.", my: "ငါတို့ အက မကတတ်ဘူး။" },
+    { cn: "他们不会唱歌。", pinyin: "Tāmen bù huì chànggē.", my: "သူတို့ သီချင်းမဆိုတတ်ဘူး။" }
+    ]
+    },
+    {
+    pattern: "S + V + O + 吗？",
+    explain: "လုပ်လား မေးရန်",
+    examples: [
+    { cn: "你坐地铁吗？", pinyin: "Nǐ zuò dìtiě ma?", my: "မင်း မြေအောက်ရထားစီးလား။" },
+    { cn: "你开车吗？", pinyin: "Nǐ kāichē ma?", my: "မင်း ကားမောင်းလား။" },
+    { cn: "他吃饭吗？", pinyin: "Tā chīfàn ma?", my: "သူ ထမင်းစားလား။" },
+    { cn: "她喝茶吗？", pinyin: "Tā hē chá ma?", my: "သူမ လက်ဖက်ရည်သောက်လား။" },
+    { cn: "你们去吗？", pinyin: "Nǐmen qù ma?", my: "မင်းတို့ သွားလား။" }
+    ]
+    },
+    {
+    pattern: "不 + V",
+    explain: "မလုပ်ဘူး (ငြင်းပယ်)",
+    examples: [
+    { cn: "不，我不坐地铁。", pinyin: "Bù, wǒ bù zuò dìtiě.", my: "မဟုတ်ဘူး၊ ငါ မြေအောက်ရထားမစီးဘူး။" },
+    { cn: "不，我不去。", pinyin: "Bù, wǒ bù qù.", my: "မဟုတ်ဘူး၊ ငါ မသွားဘူး။" },
+    { cn: "不，我不吃。", pinyin: "Bù, wǒ bù chī.", my: "မဟုတ်ဘူး၊ ငါ မစားဘူး။" },
+    { cn: "不，我不喝。", pinyin: "Bù, wǒ bù hē.", my: "မဟုတ်ဘူး၊ ငါ မသောက်ဘူး။" },
+    { cn: "不，我不看。", pinyin: "Bù, wǒ bù kàn.", my: "မဟုတ်ဘူး၊ ငါ မကြည့်ဘူး။" }
+    ]
+    },
+    {
+    pattern: "S + 会 + V + O + 吗？",
+    explain: "လုပ်တတ်လား မေးရန်",
+    examples: [
+    { cn: "你会开车吗？", pinyin: "Nǐ huì kāichē ma?", my: "မင်း ကားမောင်းတတ်လား။" },
+    { cn: "他会说中文吗？", pinyin: "Tā huì shuō Zhōngwén ma?", my: "သူ တရုတ်စကားပြောတတ်လား။" },
+    { cn: "她会游泳吗？", pinyin: "Tā huì yóuyǒng ma?", my: "သူမ ရေကူးတတ်လား။" },
+    { cn: "你们会跳舞吗？", pinyin: "Nǐmen huì tiàowǔ ma?", my: "မင်းတို့ အက ကတတ်လား။" },
+    { cn: "他们会唱歌吗？", pinyin: "Tāmen huì chànggē ma?", my: "သူတို့ သီချင်းဆိုတတ်လား။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ဘာစီးလဲ။", answer: "ဘတ်စ်ကား" },
+    { question: "၂။ B က မြေအောက်ရထားစီးလား။", answer: "မစီးဘူး" },
+    { question: "၃။ B က ကားမောင်းတတ်လား။", answer: "မတတ်ဘူး" },
+    { question: "၄။ A က ဘာမေးလဲ။", answer: "ဘယ်ကားစီးလဲ" },
+    { question: "၅။ A က နောက်ထပ် ဘာမေးသေးလဲ။", answer: "မြေအောက်ရထားစီးလား" },
+    { question: "၆။ '坐' က ဘာကိုဆိုလိုလဲ။", answer: "စီး" },
+    { question: "၇။ '会' က ဘာကိုပြသလဲ။", answer: "တတ်" },
+    { question: "၈။ '不会' က ဘာကိုဆိုလိုလဲ။", answer: "မတတ်" }
+    ]
+    },
+    13: {
+    title: "သင်ခန်းစာ ၁၃ · 你住哪儿？ (မင်း ဘယ်မှာနေလဲ)",
+    dialog: `A: 你住哪儿？ (Nǐ zhù nǎr?) → မင်း ဘယ်မှာနေလဲ။\nB: 我住在学校附近。 (Wǒ zhù zài xuéxiào fùjìn.) → ငါ ကျောင်းအနီးမှာ နေတယ်။\nA: 你一个人住吗？ (Nǐ yīgèrén zhù ma?) → မင်း တစ်ယောက်တည်းနေလား။\nB: 不，我和家人一起住。 (Bù, wǒ hé jiārén yīqǐ zhù.) → မဟုတ်ဘူး၊ ငါ မိသားစုနဲ့အတူ နေတယ်။\nA: 你家远吗？ (Nǐ jiā yuǎn ma?) → မင်းအိမ် ဝေးလား။\nB: 不太远，走路十五分钟。 (Bù tài yuǎn, zǒulù shíwǔ fēnzhōng.) → သိပ်မဝေးဘူး၊ လမ်းလျှောက် ဆယ့်ငါးမိနစ်။`,
+    words: [
+    { cn: "住", pinyin: "zhù", my: "နေ" },
+    { cn: "哪儿", pinyin: "nǎr", my: "ဘယ်မှာ" },
+    { cn: "附近", pinyin: "fùjìn", my: "အနီး" },
+    { cn: "一个人", pinyin: "yīgèrén", my: "တစ်ယောက်တည်း" },
+    { cn: "家人", pinyin: "jiārén", my: "မိသားစု" },
+    { cn: "一起", pinyin: "yīqǐ", my: "အတူတူ" },
+    { cn: "远", pinyin: "yuǎn", my: "ဝေး" },
+    { cn: "走路", pinyin: "zǒulù", my: "လမ်းလျှောက်" },
+    { cn: "住", pinyin: "zhù", my: "နေ" },
+    { cn: "哪儿", pinyin: "nǎr", my: "ဘယ်မှာ" },
+    { cn: "附近", pinyin: "fùjìn", my: "အနီး" },
+    { cn: "一个人", pinyin: "yīgèrén", my: "တစ်ယောက်တည်း" },
+    { cn: "家人", pinyin: "jiārén", my: "မိသားစု" },
+    { cn: "一起", pinyin: "yīqǐ", my: "အတူတူ" },
+    { cn: "远", pinyin: "yuǎn", my: "ဝေး" },
+    { cn: "走路", pinyin: "zǒulù", my: "လမ်းလျှောက်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 住 + 哪儿？",
+    explain: "ဘယ်မှာနေလဲ မေးရန်",
+    examples: [
+    { cn: "你住哪儿？", pinyin: "Nǐ zhù nǎr?", my: "မင်း ဘယ်မှာနေလဲ။" },
+    { cn: "他住哪儿？", pinyin: "Tā zhù nǎr?", my: "သူ ဘယ်မှာနေလဲ။" },
+    { cn: "她住哪儿？", pinyin: "Tā zhù nǎr?", my: "သူမ ဘယ်မှာနေလဲ။" },
+    { cn: "你们住哪儿？", pinyin: "Nǐmen zhù nǎr?", my: "မင်းတို့ ဘယ်မှာနေလဲ။" },
+    { cn: "他们住哪儿？", pinyin: "Tāmen zhù nǎr?", my: "သူတို့ ဘယ်မှာနေလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 住在 + 地方",
+    explain: "နေရာတစ်ခုမှာ နေသည်",
+    examples: [
+    { cn: "我住在学校附近。", pinyin: "Wǒ zhù zài xuéxiào fùjìn.", my: "ငါ ကျောင်းအနီးမှာ နေတယ်။" },
+    { cn: "他住在北京。", pinyin: "Tā zhù zài Běijīng.", my: "သူ ဘေဂျင်းမှာ နေတယ်။" },
+    { cn: "她住在上海。", pinyin: "Tā zhù zài Shànghǎi.", my: "သူမ ရှန်ဟိုင်းမှာ နေတယ်။" },
+    { cn: "我们住在市中心。", pinyin: "Wǒmen zhù zài shì zhōngxīn.", my: "ငါတို့ မြို့လယ်မှာ နေတယ်။" },
+    { cn: "他们住在郊区。", pinyin: "Tāmen zhù zài jiāoqū.", my: "သူတို့ ဆင်ခြေဖုံးမှာ နေတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 一个人 + V",
+    explain: "တစ်ယောက်တည်း လုပ်သည်",
+    examples: [
+    { cn: "你一个人住吗？", pinyin: "Nǐ yīgèrén zhù ma?", my: "မင်း တစ်ယောက်တည်းနေလား။" },
+    { cn: "他一个人来。", pinyin: "Tā yīgèrén lái.", my: "သူ တစ်ယောက်တည်းလာတယ်။" },
+    { cn: "她一个人去。", pinyin: "Tā yīgèrén qù.", my: "သူမ တစ်ယောက်တည်းသွားတယ်။" },
+    { cn: "我们一个人吃饭。", pinyin: "Wǒmen yīgèrén chīfàn.", my: "ငါတို့ တစ်ယောက်တည်းထမင်းစားတယ်။" },
+    { cn: "他们一个人工作。", pinyin: "Tāmen yīgèrén gōngzuò.", my: "သူတို့ တစ်ယောက်တည်းအလုပ်လုပ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 和 + N + 一起 + V",
+    explain: "တစ်စုံတစ်ယောက်နဲ့ အတူတူ လုပ်သည်",
+    examples: [
+    { cn: "我和家人一起住。", pinyin: "Wǒ hé jiārén yīqǐ zhù.", my: "ငါ မိသားစုနဲ့အတူ နေတယ်။" },
+    { cn: "他和朋友一起去。", pinyin: "Tā hé péngyou yīqǐ qù.", my: "သူ သူငယ်ချင်းနဲ့အတူ သွားတယ်။" },
+    { cn: "她和同学一起学习。", pinyin: "Tā hé tóngxué yīqǐ xuéxí.", my: "သူမ အတန်းဖော်နဲ့အတူ သင်တယ်။" },
+    { cn: "我们和家人一起吃饭。", pinyin: "Wǒmen hé jiārén yīqǐ chīfàn.", my: "ငါတို့ မိသားစုနဲ့အတူ ထမင်းစားတယ်။" },
+    { cn: "他们和同事一起工作。", pinyin: "Tāmen hé tóngshì yīqǐ gōngzuò.", my: "သူတို့ လုပ်ဖော်ကိုင်ဖက်နဲ့အတူ အလုပ်လုပ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 家 + 远吗？",
+    explain: "အိမ်ဝေးလား မေးရန်",
+    examples: [
+    { cn: "你家远吗？", pinyin: "Nǐ jiā yuǎn ma?", my: "မင်းအိမ် ဝေးလား။" },
+    { cn: "他家远吗？", pinyin: "Tā jiā yuǎn ma?", my: "သူ့အိမ် ဝေးလား။" },
+    { cn: "她家远吗？", pinyin: "Tā jiā yuǎn ma?", my: "သူမအိမ် ဝေးလား။" },
+    { cn: "你们家远吗？", pinyin: "Nǐmen jiā yuǎn ma?", my: "မင်းတို့အိမ် ဝေးလား။" },
+    { cn: "他们家远吗？", pinyin: "Tāmen jiā yuǎn ma?", my: "သူတို့အိမ် ဝေးလား။" }
+    ]
+    },
+    {
+    pattern: "不太 + Adj",
+    explain: "သိပ်မဟုတ် (အတန်အသင့်)",
+    examples: [
+    { cn: "不太远。", pinyin: "Bù tài yuǎn.", my: "သိပ်မဝေးဘူး။" },
+    { cn: "不太好。", pinyin: "Bù tài hǎo.", my: "သိပ်မကောင်းဘူး။" },
+    { cn: "不太贵。", pinyin: "Bù tài guì.", my: "သိပ်မဈေးကြီးဘူး။" },
+    { cn: "不太难。", pinyin: "Bù tài nán.", my: "သိပ်မခက်ဘူး။" },
+    { cn: "不太忙。", pinyin: "Bù tài máng.", my: "သိပ်မရှုပ်ဘူး။" }
+    ]
+    },
+    {
+    pattern: "走路 + 时间",
+    explain: "လမ်းလျှောက်ချိန်",
+    examples: [
+    { cn: "走路十五分钟。", pinyin: "Zǒulù shíwǔ fēnzhōng.", my: "လမ်းလျှောက် ဆယ့်ငါးမိနစ်။" },
+    { cn: "走路十分钟。", pinyin: "Zǒulù shí fēnzhōng.", my: "လမ်းလျှောက် ဆယ်မိနစ်။" },
+    { cn: "走路二十分钟。", pinyin: "Zǒulù èrshí fēnzhōng.", my: "လမ်းလျှောက် နှစ်ဆယ်မိနစ်။" },
+    { cn: "走路五分钟。", pinyin: "Zǒulù wǔ fēnzhōng.", my: "လမ်းလျှောက် ငါးမိနစ်။" },
+    { cn: "走路三十分钟。", pinyin: "Zǒulù sānshí fēnzhōng.", my: "လမ်းလျှောက် သုံးဆယ်မိနစ်။" }
+    ]
+    },
+    {
+    pattern: "S + 住 + 在 + N + 附近",
+    explain: "နေရာတစ်ခုအနီးမှာ နေသည်",
+    examples: [
+    { cn: "我住在学校附近。", pinyin: "Wǒ zhù zài xuéxiào fùjìn.", my: "ငါ ကျောင်းအနီးမှာ နေတယ်။" },
+    { cn: "他住在公园附近。", pinyin: "Tā zhù zài gōngyuán fùjìn.", my: "သူ ပန်းခြံအနီးမှာ နေတယ်။" },
+    { cn: "她住在银行附近。", pinyin: "Tā zhù zài yínháng fùjìn.", my: "သူမ ဘဏ်အနီးမှာ နေတယ်။" },
+    { cn: "我们住在超市附近。", pinyin: "Wǒmen zhù zài chāoshì fùjìn.", my: "ငါတို့ စူပါမားကတ်အနီးမှာ နေတယ်။" },
+    { cn: "他们住在医院附近。", pinyin: "Tāmen zhù zài yīyuàn fùjìn.", my: "သူတို့ ဆေးရုံအနီးမှာ နေတယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ဘယ်မှာနေလဲ။", answer: "ကျောင်းအနီး" },
+    { question: "၂။ B က တစ်ယောက်တည်းနေလား။", answer: "မဟုတ်ဘူး" },
+    { question: "၃။ B က ဘယ်သူနဲ့အတူနေလဲ။", answer: "မိသားစု" },
+    { question: "၄။ B အိမ် ဝေးလား။", answer: "သိပ်မဝေးဘူး" },
+    { question: "၅။ လမ်းလျှောက် ဘယ်လောက်ကြာလဲ။", answer: "ဆယ့်ငါးမိနစ်" },
+    { question: "၆။ '住' က ဘာကိုဆိုလိုလဲ။", answer: "နေ" },
+    { question: "၇။ '附近' က ဘာကိုပြသလဲ။", answer: "အနီး" },
+    { question: "၈။ '一起' က ဘာကိုဆိုလိုလဲ။", answer: "အတူတူ" }
+    ]
+    },
+    
+    // ===================== LESSON 14 =====================
+    14: {
+    title: "သင်ခန်းစာ ၁၄ · 你学中文多久了？ (မင်း တရုတ်စာသင်တာ ဘယ်လောက်ကြာပြီလဲ)",
+    dialog: `A: 你学中文多久了？ (Nǐ xué Zhōngwén duō jiǔ le?) → မင်း တရုတ်စာသင်တာ ဘယ်လောက်ကြာပြီလဲ။\nB: 我学了一年了。 (Wǒ xué le yī nián le.) → ငါ စာသင်တာ တစ်နှစ်ကြာပြီ။\nA: 你学得怎么样？ (Nǐ xué de zěnmeyàng?) → မင်း သင်တာ ဘယ်လိုလဲ။\nB: 我觉得还不错。 (Wǒ juéde hái bùcuò.) → ငါ သိပ်မဆိုးဘူးလို့ ထင်တယ်။\nA: 你每天学多久？ (Nǐ měitiān xué duō jiǔ?) → မင်း နေ့တိုင်း ဘယ်လောက်ကြာကြာ သင်လဲ။\nB: 我每天学两个小时。 (Wǒ měitiān xué liǎng gè xiǎoshí.) → ငါ နေ့တိုင်း နှစ်နာရီကြာ သင်တယ်။`,
+    words: [
+    { cn: "学", pinyin: "xué", my: "သင်ယူ" },
+    { cn: "中文", pinyin: "Zhōngwén", my: "တရုတ်စာ" },
+    { cn: "多久", pinyin: "duō jiǔ", my: "ဘယ်လောက်ကြာ" },
+    { cn: "了", pinyin: "le", my: "ပြီ" },
+    { cn: "年", pinyin: "nián", my: "နှစ်" },
+    { cn: "怎么样", pinyin: "zěnmeyàng", my: "ဘယ်လိုလဲ" },
+    { cn: "觉得", pinyin: "juéde", my: "ထင်" },
+    { cn: "不错", pinyin: "bùcuò", my: "မဆိုး" },
+    { cn: "每天", pinyin: "měitiān", my: "နေ့တိုင်း" },
+    { cn: "小时", pinyin: "xiǎoshí", my: "နာရီ" },
+    { cn: "学", pinyin: "xué", my: "သင်ယူ" },
+    { cn: "中文", pinyin: "Zhōngwén", my: "တရုတ်စာ" },
+    { cn: "多久", pinyin: "duō jiǔ", my: "ဘယ်လောက်ကြာ" },
+    { cn: "了", pinyin: "le", my: "ပြီ" },
+    { cn: "年", pinyin: "nián", my: "နှစ်" },
+    { cn: "怎么样", pinyin: "zěnmeyàng", my: "ဘယ်လိုလဲ" },
+    { cn: "觉得", pinyin: "juéde", my: "ထင်" },
+    { cn: "不错", pinyin: "bùcuò", my: "မဆိုး" },
+    { cn: "每天", pinyin: "měitiān", my: "နေ့တိုင်း" },
+    { cn: "小时", pinyin: "xiǎoshí", my: "နာရီ" }
+    ],
+    grammar: [
+    {
+    pattern: "S + V + O + 多久 + 了？",
+    explain: "ဘယ်လောက်ကြာပြီလဲ မေးရန်",
+    examples: [
+    { cn: "你学中文多久了？", pinyin: "Nǐ xué Zhōngwén duō jiǔ le?", my: "မင်း တရုတ်စာသင်တာ ဘယ်လောက်ကြာပြီလဲ။" },
+    { cn: "他工作多久了？", pinyin: "Tā gōngzuò duō jiǔ le?", my: "သူ အလုပ်လုပ်တာ ဘယ်လောက်ကြာပြီလဲ။" },
+    { cn: "她住这里多久了？", pinyin: "Tā zhù zhèlǐ duō jiǔ le?", my: "သူမ ဒီမှာနေတာ ဘယ်လောက်ကြာပြီလဲ။" },
+    { cn: "你们认识多久了？", pinyin: "Nǐmen rènshi duō jiǔ le?", my: "မင်းတို့ သိတာ ဘယ်လောက်ကြာပြီလဲ။" },
+    { cn: "他们来多久了？", pinyin: "Tāmen lái duō jiǔ le?", my: "သူတို့ လာတာ ဘယ်လောက်ကြာပြီလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + V + 了 + 时间 + 了",
+    explain: "အချိန်ကြာပြီ (ပြီးစီးမှု)",
+    examples: [
+    { cn: "我学了一年了。", pinyin: "Wǒ xué le yī nián le.", my: "ငါ စာသင်တာ တစ်နှစ်ကြာပြီ။" },
+    { cn: "他工作了三年了。", pinyin: "Tā gōngzuò le sān nián le.", my: "သူ အလုပ်လုပ်တာ သုံးနှစ်ကြာပြီ။" },
+    { cn: "她住了两年了。", pinyin: "Tā zhù le liǎng nián le.", my: "သူမ နေတာ နှစ်နှစ်ကြာပြီ။" },
+    { cn: "我们认识五年了。", pinyin: "Wǒmen rènshi le wǔ nián le.", my: "ငါတို့ သိတာ ငါးနှစ်ကြာပြီ။" },
+    { cn: "他们来了一个月了。", pinyin: "Tāmen lái le yī gè yuè le.", my: "သူတို့ လာတာ တစ်လကြာပြီ။" }
+    ]
+    },
+    {
+    pattern: "S + V + 得 + 怎么样？",
+    explain: "လုပ်တာ ဘယ်လိုလဲ မေးရန်",
+    examples: [
+    { cn: "你学得怎么样？", pinyin: "Nǐ xué de zěnmeyàng?", my: "မင်း သင်တာ ဘယ်လိုလဲ။" },
+    { cn: "他工作得怎么样？", pinyin: "Tā gōngzuò de zěnmeyàng?", my: "သူ အလုပ်လုပ်တာ ဘယ်လိုလဲ။" },
+    { cn: "她住得怎么样？", pinyin: "Tā zhù de zěnmeyàng?", my: "သူမ နေတာ ဘယ်လိုလဲ။" },
+    { cn: "你们学得怎么样？", pinyin: "Nǐmen xué de zěnmeyàng?", my: "မင်းတို့ သင်တာ ဘယ်လိုလဲ။" },
+    { cn: "他们过得怎么样？", pinyin: "Tāmen guò de zěnmeyàng?", my: "သူတို့ နေတာ ဘယ်လိုလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 觉得 + 句子",
+    explain: "ထင်သည် (ထင်မြင်ချက်)",
+    examples: [
+    { cn: "我觉得还不错。", pinyin: "Wǒ juéde hái bùcuò.", my: "ငါ သိပ်မဆိုးဘူးလို့ ထင်တယ်။" },
+    { cn: "他觉得很好。", pinyin: "Tā juéde hěn hǎo.", my: "သူ အရမ်းကောင်းတယ်လို့ ထင်တယ်။" },
+    { cn: "她觉得很难。", pinyin: "Tā juéde hěn nán.", my: "သူမ အရမ်းခက်တယ်လို့ ထင်တယ်။" },
+    { cn: "我们觉得有意思。", pinyin: "Wǒmen juéde yǒuyìsi.", my: "ငါတို့ စိတ်ဝင်စားစရာကောင်းတယ်လို့ ထင်တယ်။" },
+    { cn: "他们觉得不错。", pinyin: "Tāmen juéde bùcuò.", my: "သူတို့ မဆိုးဘူးလို့ ထင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 每天 + V + 时间",
+    explain: "နေ့တိုင်း အချိန်ကြာကြာ လုပ်သည်",
+    examples: [
+    { cn: "我每天学两个小时。", pinyin: "Wǒ měitiān xué liǎng gè xiǎoshí.", my: "ငါ နေ့တိုင်း နှစ်နာရီကြာ သင်တယ်။" },
+    { cn: "他每天工作八小时。", pinyin: "Tā měitiān gōngzuò bā xiǎoshí.", my: "သူ နေ့တိုင်း ရှစ်နာရီကြာ အလုပ်လုပ်တယ်။" },
+    { cn: "她每天看书一小时。", pinyin: "Tā měitiān kàn shū yī xiǎoshí.", my: "သူမ နေ့တိုင်း တစ်နာရီကြာ စာဖတ်တယ်။" },
+    { cn: "我们每天运动半小时。", pinyin: "Wǒmen měitiān yùndòng bàn xiǎoshí.", my: "ငါတို့ နေ့တိုင်း နာရီဝက်ကြာ အားကစားလုပ်တယ်။" },
+    { cn: "他们每天看电视两小时。", pinyin: "Tāmen měitiān kàn diànshì liǎng xiǎoshí.", my: "သူတို့ နေ့တိုင်း နှစ်နာရီကြာ တီဗွီကြည့်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + 得 + Adv + Adj",
+    explain: "လုပ်တာ ဘယ်လိုလဲ (အကြိမ်ကြိမ်)",
+    examples: [
+    { cn: "我学得不错。", pinyin: "Wǒ xué de bùcuò.", my: "ငါ သင်တာ မဆိုးဘူး။" },
+    { cn: "他工作得很好。", pinyin: "Tā gōngzuò de hěn hǎo.", my: "သူ အလုပ်လုပ်တာ အရမ်းကောင်းတယ်။" },
+    { cn: "她学得很快。", pinyin: "Tā xué de hěn kuài.", my: "သူမ သင်တာ အရမ်းမြန်တယ်။" },
+    { cn: "我们住得很舒服。", pinyin: "Wǒmen zhù de hěn shūfu.", my: "ငါတို့ နေတာ အရမ်းအဆင်ပြေတယ်။" },
+    { cn: "他们说得很好。", pinyin: "Tāmen shuō de hěn hǎo.", my: "သူတို့ ပြောတာ အရမ်းကောင်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + O + 时间 + 了",
+    explain: "အချိန်ကြာပြီ (ပြီးစီးမှု)",
+    examples: [
+    { cn: "我学中文一年了。", pinyin: "Wǒ xué Zhōngwén yī nián le.", my: "ငါ တရုတ်စာသင်တာ တစ်နှစ်ကြာပြီ။" },
+    { cn: "他工作三年了。", pinyin: "Tā gōngzuò sān nián le.", my: "သူ အလုပ်လုပ်တာ သုံးနှစ်ကြာပြီ။" },
+    { cn: "她住这里两年了。", pinyin: "Tā zhù zhèlǐ liǎng nián le.", my: "သူမ ဒီမှာနေတာ နှစ်နှစ်ကြာပြီ။" },
+    { cn: "我们认识五年了。", pinyin: "Wǒmen rènshi wǔ nián le.", my: "ငါတို့ သိတာ ငါးနှစ်ကြာပြီ။" },
+    { cn: "他们来一个月了。", pinyin: "Tāmen lái yī gè yuè le.", my: "သူတို့ လာတာ တစ်လကြာပြီ။" }
+    ]
+    },
+    {
+    pattern: "S + 每天 + V + 时间 + 的 + O",
+    explain: "နေ့တိုင်း အချိန်ကြာကြာ ... လုပ်သည်",
+    examples: [
+    { cn: "我每天学两个小时的中文。", pinyin: "Wǒ měitiān xué liǎng gè xiǎoshí de Zhōngwén.", my: "ငါ နေ့တိုင်း နှစ်နာရီကြာ တရုတ်စာသင်တယ်။" },
+    { cn: "他每天工作八小时。", pinyin: "Tā měitiān gōngzuò bā xiǎoshí.", my: "သူ နေ့တိုင်း ရှစ်နာရီကြာ အလုပ်လုပ်တယ်။" },
+    { cn: "她每天看一小时的书。", pinyin: "Tā měitiān kàn yī xiǎoshí de shū.", my: "သူမ နေ့တိုင်း တစ်နာရီကြာ စာဖတ်တယ်။" },
+    { cn: "我们每天运动半小时。", pinyin: "Wǒmen měitiān yùndòng bàn xiǎoshí.", my: "ငါတို့ နေ့တိုင်း နာရီဝက်ကြာ အားကစားလုပ်တယ်။" },
+    { cn: "他们每天看两小时的电视。", pinyin: "Tāmen měitiān kàn liǎng xiǎoshí de diànshì.", my: "သူတို့ နေ့တိုင်း နှစ်နာရီကြာ တီဗွီကြည့်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က တရုတ်စာသင်တာ ဘယ်လောက်ကြာပြီလဲ။", answer: "တစ်နှစ်" },
+    { question: "၂။ B က သင်တာ ဘယ်လိုလဲ။", answer: "သိပ်မဆိုးဘူး" },
+    { question: "၃။ B က နေ့တိုင်း ဘယ်လောက်ကြာကြာ သင်လဲ။", answer: "နှစ်နာရီ" },
+    { question: "၄။ A က ဘာမေးလဲ။", answer: "ဘယ်လောက်ကြာပြီလဲ" },
+    { question: "၅။ A က နောက်ထပ် ဘာမေးသေးလဲ။", answer: "သင်တာ ဘယ်လိုလဲ" },
+    { question: "၆။ '多久' က ဘာကိုမေးတာလဲ။", answer: "အချိန်ကြာမှု" },
+    { question: "၇။ '觉得' က ဘာကိုဆိုလိုလဲ။", answer: "ထင်သည်" },
+    { question: "၈။ '每天' က ဘာကိုပြသလဲ။", answer: "နေ့တိုင်း" }
+    ]
+    },
+    
+    15: {
+    title: "သင်ခန်းစာ ၁၅ · 你喜欢旅游吗？ (မင်း ခရီးသွားကြိုက်လား)",
+    dialog: `A: 你喜欢旅游吗？ (Nǐ xǐhuān lǚyóu ma?) → မင်း ခရီးသွားကြိုက်လား။\nB: 喜欢，我喜欢去海边。 (Xǐhuān, wǒ xǐhuān qù hǎibiān.) → ကြိုက်တယ်၊ ငါ ကမ်းခြေသွားကြိုက်တယ်။\nA: 你去过哪些地方？ (Nǐ qù guo nǎxiē dìfang?) → မင်း ဘယ်နေရာတွေ သွားဖူးလဲ။\nB: 我去过北京、上海和广州。 (Wǒ qù guo Běijīng, Shànghǎi hé Guǎngzhōu.) → ငါ ဘေဂျင်း၊ ရှန်ဟိုင်းနဲ့ ကွမ်ကျိုး သွားဖူးတယ်။\nA: 你觉得哪个城市最好？ (Nǐ juéde nǎge chéngshì zuì hǎo?) → မင်း ဘယ်မြို့က အကောင်းဆုံးလို့ ထင်လဲ။\nB: 我觉得北京最好。 (Wǒ juéde Běijīng zuì hǎo.) → ငါ ဘေဂျင်းက အကောင်းဆုံးလို့ ထင်တယ်။`,
+    words: [
+    { cn: "旅游", pinyin: "lǚyóu", my: "ခရီးသွား" },
+    { cn: "海边", pinyin: "hǎibiān", my: "ကမ်းခြေ" },
+    { cn: "哪些", pinyin: "nǎxiē", my: "ဘယ်ဟာတွေ" },
+    { cn: "地方", pinyin: "dìfang", my: "နေရာ" },
+    { cn: "过", pinyin: "guo", my: "ဖူး" },
+    { cn: "城市", pinyin: "chéngshì", my: "မြို့" },
+    { cn: "最", pinyin: "zuì", my: "အများဆုံး" },
+    { cn: "旅游", pinyin: "lǚyóu", my: "ခရီးသွား" },
+    { cn: "海边", pinyin: "hǎibiān", my: "ကမ်းခြေ" },
+    { cn: "哪些", pinyin: "nǎxiē", my: "ဘယ်ဟာတွေ" },
+    { cn: "地方", pinyin: "dìfang", my: "နေရာ" },
+    { cn: "过", pinyin: "guo", my: "ဖူး" },
+    { cn: "城市", pinyin: "chéngshì", my: "မြို့" },
+    { cn: "最", pinyin: "zuì", my: "အများဆုံး" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 喜欢 + V + O + 吗？",
+    explain: "လုပ်ကြိုက်လား မေးရန်",
+    examples: [
+    { cn: "你喜欢旅游吗？", pinyin: "Nǐ xǐhuān lǚyóu ma?", my: "မင်း ခရီးသွားကြိုက်လား။" },
+    { cn: "你喜欢看书吗？", pinyin: "Nǐ xǐhuān kàn shū ma?", my: "မင်း စာဖတ်ကြိုက်လား။" },
+    { cn: "他喜欢运动吗？", pinyin: "Tā xǐhuān yùndòng ma?", my: "သူ အားကစားကြိုက်လား။" },
+    { cn: "她喜欢唱歌吗？", pinyin: "Tā xǐhuān chànggē ma?", my: "သူမ သီချင်းဆိုကြိုက်လား။" },
+    { cn: "你们喜欢跳舞吗？", pinyin: "Nǐmen xǐhuān tiàowǔ ma?", my: "မင်းတို့ အက ကကြိုက်လား။" }
+    ]
+    },
+    {
+    pattern: "S + 去过 + 地方",
+    explain: "တစ်နေရာသွားဖူးသည်",
+    examples: [
+    { cn: "我去过北京。", pinyin: "Wǒ qù guo Běijīng.", my: "ငါ ဘေဂျင်းသွားဖူးတယ်။" },
+    { cn: "他去过上海。", pinyin: "Tā qù guo Shànghǎi.", my: "သူ ရှန်ဟိုင်းသွားဖူးတယ်။" },
+    { cn: "她去过年广州。", pinyin: "Tā qù guo Guǎngzhōu.", my: "သူမ ကွမ်ကျိုးသွားဖူးတယ်။" },
+    { cn: "我们去过很多地方。", pinyin: "Wǒmen qù guo hěn duō dìfang.", my: "ငါတို့ နေရာအများကြီးသွားဖူးတယ်။" },
+    { cn: "他们去过中国。", pinyin: "Tāmen qù guo Zhōngguó.", my: "သူတို့ တရုတ်သွားဖူးတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 去过 + 哪些 + 地方？",
+    explain: "ဘယ်နေရာတွေသွားဖူးလဲ မေးရန်",
+    examples: [
+    { cn: "你去过哪些地方？", pinyin: "Nǐ qù guo nǎxiē dìfang?", my: "မင်း ဘယ်နေရာတွေ သွားဖူးလဲ။" },
+    { cn: "他去过哪些城市？", pinyin: "Tā qù guo nǎxiē chéngshì?", my: "သူ ဘယ်မြို့တွေ သွားဖူးလဲ။" },
+    { cn: "她去过哪些国家？", pinyin: "Tā qù guo nǎxiē guójiā?", my: "သူမ ဘယ်နိုင်ငံတွေ သွားဖူးလဲ။" },
+    { cn: "你们去过哪些景点？", pinyin: "Nǐmen qù guo nǎxiē jǐngdiǎn?", my: "မင်းတို့ ဘယ်နေရာတွေ သွားဖူးလဲ။" },
+    { cn: "他们去过哪些餐厅？", pinyin: "Tāmen qù guo nǎxiē cāntīng?", my: "သူတို့ ဘယ်စားသောက်ဆိုင်တွေ သွားဖူးလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 觉得 + N + 最 + Adj",
+    explain: "ဘာက အကောင်းဆုံးလို့ ထင်လဲ",
+    examples: [
+    { cn: "我觉得北京最好。", pinyin: "Wǒ juéde Běijīng zuì hǎo.", my: "ငါ ဘေဂျင်းက အကောင်းဆုံးလို့ ထင်တယ်။" },
+    { cn: "他觉得上海最漂亮。", pinyin: "Tā juéde Shànghǎi zuì piàoliang.", my: "သူ ရှန်ဟိုင်းက အလှဆုံးလို့ ထင်တယ်။" },
+    { cn: "她觉得广州最热闹。", pinyin: "Tā juéde Guǎngzhōu zuì rènao.", my: "သူမ ကွမ်ကျိုးက အစည်ဆုံးလို့ ထင်တယ်။" },
+    { cn: "我们觉得北京最好玩。", pinyin: "Wǒmen juéde Běijīng zuì hǎowán.", my: "ငါတို့ ဘေဂျင်းက ပျော်စရာအကောင်းဆုံးလို့ ထင်တယ်။" },
+    { cn: "他们觉得上海最方便。", pinyin: "Tāmen juéde Shànghǎi zuì fāngbiàn.", my: "သူတို့ ရှန်ဟိုင်းက အဆင်ပြေဆုံးလို့ ထင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 喜欢 + V + N",
+    explain: "ကြိုက်သည် (လုပ်ရင်)",
+    examples: [
+    { cn: "我喜欢去海边。", pinyin: "Wǒ xǐhuān qù hǎibiān.", my: "ငါ ကမ်းခြေသွားကြိုက်တယ်။" },
+    { cn: "他喜欢看电影。", pinyin: "Tā xǐhuān kàn diànyǐng.", my: "သူ ရုပ်ရှင်ကြည့်ကြိုက်တယ်။" },
+    { cn: "她喜欢听音乐。", pinyin: "Tā xǐhuān tīng yīnyuè.", my: "သူမ ဂီတနားထောင်ကြိုက်တယ်။" },
+    { cn: "我们喜欢旅游。", pinyin: "Wǒmen xǐhuān lǚyóu.", my: "ငါတို့ ခရီးသွားကြိုက်တယ်。" },
+    { cn: "他们喜欢运动。", pinyin: "Tāmen xǐhuān yùndòng.", my: "သူတို့ အားကစားကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 去过 + N + 吗？",
+    explain: "သွားဖူးလား မေးရန်",
+    examples: [
+    { cn: "你去过北京吗？", pinyin: "Nǐ qù guo Běijīng ma?", my: "မင်း ဘေဂျင်းသွားဖူးလား။" },
+    { cn: "他去过上海吗？", pinyin: "Tā qù guo Shànghǎi ma?", my: "သူ ရှန်ဟိုင်းသွားဖူးလား။" },
+    { cn: "她去过年广州吗？", pinyin: "Tā qù guo Guǎngzhōu ma?", my: "သူမ ကွမ်ကျိုးသွားဖူးလား။" },
+    { cn: "你们去过中国吗？", pinyin: "Nǐmen qù guo Zhōngguó ma?", my: "မင်းတို့ တရုတ်သွားဖူးလား။" },
+    { cn: "他们去过日本吗？", pinyin: "Tāmen qù guo Rìběn ma?", my: "သူတို့ ဂျပန်သွားဖူးလား။" }
+    ]
+    },
+    {
+    pattern: "S + 觉得 + N + 最 + Adj",
+    explain: "အကောင်းဆုံးလို့ ထင်သည်",
+    examples: [
+    { cn: "我觉得北京最好。", pinyin: "Wǒ juéde Běijīng zuì hǎo.", my: "ငါ ဘေဂျင်းက အကောင်းဆုံးလို့ ထင်တယ်။" },
+    { cn: "他觉得上海最漂亮。", pinyin: "Tā juéde Shànghǎi zuì piàoliang.", my: "သူ ရှန်ဟိုင်းက အလှဆုံးလို့ ထင်တယ်။" },
+    { cn: "她觉得广州最热闹。", pinyin: "Tā juéde Guǎngzhōu zuì rènao.", my: "သူမ ကွမ်ကျိုးက အစည်ဆုံးလို့ ထင်တယ်။" },
+    { cn: "我们觉得北京最好玩。", pinyin: "Wǒmen juéde Běijīng zuì hǎowán.", my: "ငါတို့ ဘေဂျင်းက ပျော်စရာအကောင်းဆုံးလို့ ထင်တယ်။" },
+    { cn: "他们觉得上海最方便。", pinyin: "Tāmen juéde Shànghǎi zuì fāngbiàn.", my: "သူတို့ ရှန်ဟိုင်းက အဆင်ပြေဆုံးလို့ ထင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + 过 + O",
+    explain: "လုပ်ဖူးသည် (အတွေ့အကြုံ)",
+    examples: [
+    { cn: "我去过北京。", pinyin: "Wǒ qù guo Běijīng.", my: "ငါ ဘေဂျင်းသွားဖူးတယ်။" },
+    { cn: "他吃过中国菜。", pinyin: "Tā chī guo Zhōngguó cài.", my: "သူ တရုတ်အစားအစာစားဖူးတယ်။" },
+    { cn: "她看过这个电影。", pinyin: "Tā kàn guo zhège diànyǐng.", my: "သူမ ဒီရုပ်ရှင်ကြည့်ဖူးတယ်။" },
+    { cn: "我们学过中文。", pinyin: "Wǒmen xué guo Zhōngwén.", my: "ငါတို့ တရုတ်စာသင်ဖူးတယ်။" },
+    { cn: "他们去过很多国家。", pinyin: "Tāmen qù guo hěn duō guójiā.", my: "သူတို့ နိုင်ငံအများကြီးသွားဖူးတယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ခရီးသွားကြိုက်လား။", answer: "ကြိုက်တယ်" },
+    { question: "၂။ B က ဘယ်ကိုသွားကြိုက်လဲ။", answer: "ကမ်းခြေ" },
+    { question: "၃။ B က ဘယ်နေရာတွေ သွားဖူးလဲ။", answer: "ဘေဂျင်း၊ ရှန်ဟိုင်း၊ ကွမ်ကျိုး" },
+    { question: "၄။ B က ဘယ်မြို့က အကောင်းဆုံးလို့ ထင်လဲ။", answer: "ဘေဂျင်း" },
+    { question: "၅။ A က ဘာမေးလဲ။", answer: "ခရီးသွားကြိုက်လား" },
+    { question: "၆။ '过' က ဘာကိုဆိုလိုလဲ။", answer: "ဖူး (အတွေ့အကြုံ)" },
+    { question: "၇။ '哪些' က ဘာကိုမေးတာလဲ။", answer: "ဘယ်ဟာတွေ" },
+    { question: "၈။ '最' က ဘာကိုပြသလဲ။", answer: "အများဆုံး" }
+    ]
+    },
+    
+    // ===================== LESSON 16 =====================
+    16: {
+    title: "သင်ခန်းစာ ၁၆ · 你吃过这个吗？ (မင်း ဒါစားဖူးလား)",
+    dialog: `A: 你吃过这个吗？ (Nǐ chī guo zhège ma?) → မင်း ဒါစားဖူးလား။\nB: 吃过，很好吃。 (Chī guo, hěn hǎochī.) → စားဖူးတယ်၊ အရမ်းအရသာရှိတယ်။\nA: 这是什么？ (Zhè shì shénme?) → ဒါ ဘာလဲ။\nB: 这是北京烤鸭。 (Zhè shì Běijīng kǎoyā.) → ဒါ ဘေဂျင်းကြက်ငှက်ကင်။\nA: 你是在哪儿吃的？ (Nǐ shì zài nǎr chī de?) → မင်း ဘယ်မှာ စားခဲ့တာလဲ။\nB: 我是在北京吃的。 (Wǒ shì zài Běijīng chī de.) → ငါ ဘေဂျင်းမှာ စားခဲ့တာ။`,
+    words: [
+    { cn: "吃", pinyin: "chī", my: "စား" },
+    { cn: "过", pinyin: "guo", my: "ဖူး" },
+    { cn: "这个", pinyin: "zhège", my: "ဒါ" },
+    { cn: "好吃", pinyin: "hǎochī", my: "အရသာရှိ" },
+    { cn: "是什么", pinyin: "shì shénme", my: "ဘာလဲ" },
+    { cn: "北京烤鸭", pinyin: "Běijīng kǎoyā", my: "ဘေဂျင်းကြက်ငှက်ကင်" },
+    { cn: "在", pinyin: "zài", my: "မှာ" },
+    { cn: "哪儿", pinyin: "nǎr", my: "ဘယ်မှာ" },
+    { cn: "吃", pinyin: "chī", my: "စား" },
+    { cn: "过", pinyin: "guo", my: "ဖူး" },
+    { cn: "这个", pinyin: "zhège", my: "ဒါ" },
+    { cn: "好吃", pinyin: "hǎochī", my: "အရသာရှိ" },
+    { cn: "是什么", pinyin: "shì shénme", my: "ဘာလဲ" },
+    { cn: "北京烤鸭", pinyin: "Běijīng kǎoyā", my: "ဘေဂျင်းကြက်ငှက်ကင်" },
+    { cn: "在", pinyin: "zài", my: "မှာ" },
+    { cn: "哪儿", pinyin: "nǎr", my: "ဘယ်မှာ" }
+    ],
+    grammar: [
+    {
+    pattern: "S + V + 过 + O + 吗？",
+    explain: "စားဖူးလား/လုပ်ဖူးလား မေးရန်",
+    examples: [
+    { cn: "你吃过这个吗？", pinyin: "Nǐ chī guo zhège ma?", my: "မင်း ဒါစားဖူးလား။" },
+    { cn: "你去过北京吗？", pinyin: "Nǐ qù guo Běijīng ma?", my: "မင်း ဘေဂျင်းသွားဖူးလား။" },
+    { cn: "他看过这个电影吗？", pinyin: "Tā kàn guo zhège diànyǐng ma?", my: "သူ ဒီရုပ်ရှင်ကြည့်ဖူးလား။" },
+    { cn: "她学过中文吗？", pinyin: "Tā xué guo Zhōngwén ma?", my: "သူမ တရုတ်စာသင်ဖူးလား။" },
+    { cn: "你们吃过中国菜吗？", pinyin: "Nǐmen chī guo Zhōngguó cài ma?", my: "မင်းတို့ တရုတ်အစားအစာစားဖူးလား။" }
+    ]
+    },
+    {
+    pattern: "S + V + 过 + O",
+    explain: "စားဖူးသည်/လုပ်ဖူးသည်",
+    examples: [
+    { cn: "我吃过这个。", pinyin: "Wǒ chī guo zhège.", my: "ငါ ဒါစားဖူးတယ်။" },
+    { cn: "他去过北京。", pinyin: "Tā qù guo Běijīng.", my: "သူ ဘေဂျင်းသွားဖူးတယ်။" },
+    { cn: "她看过这个电影。", pinyin: "Tā kàn guo zhège diànyǐng.", my: "သူမ ဒီရုပ်ရှင်ကြည့်ဖူးတယ်။" },
+    { cn: "我们学过中文。", pinyin: "Wǒmen xué guo Zhōngwén.", my: "ငါတို့ တရုတ်စာသင်ဖူးတယ်။" },
+    { cn: "他们吃过中国菜。", pinyin: "Tāmen chī guo Zhōngguó cài.", my: "သူတို့ တရုတ်အစားအစာစားဖူးတယ်။" }
+    ]
+    },
+    {
+    pattern: "这 + 是 + 什么？",
+    explain: "ဒါ ဘာလဲ မေးရန်",
+    examples: [
+    { cn: "这是什么？", pinyin: "Zhè shì shénme?", my: "ဒါ ဘာလဲ။" },
+    { cn: "那是什么？", pinyin: "Nà shì shénme?", my: "ထို ဘာလဲ။" },
+    { cn: "这是谁？", pinyin: "Zhè shì shéi?", my: "ဒါ ဘယ်သူလဲ။" },
+    { cn: "这是什么书？", pinyin: "Zhè shì shénme shū?", my: "ဒါ ဘာစာအုပ် လဲ။" },
+    { cn: "那是什么东西？", pinyin: "Nà shì shénme dōngxi?", my: "ထို ဘာအရာလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + 在 + 地方 + V + 的",
+    explain: "နေရာတစ်ခုမှာ လုပ်ခဲ့တာပါ",
+    examples: [
+    { cn: "我是在北京吃的。", pinyin: "Wǒ shì zài Běijīng chī de.", my: "ငါ ဘေဂျင်းမှာ စားခဲ့တာ။" },
+    { cn: "他是在上海买的。", pinyin: "Tā shì zài Shànghǎi mǎi de.", my: "သူ ရှန်ဟိုင်းမှာ ဝယ်ခဲ့တာ။" },
+    { cn: "她是在广州学的。", pinyin: "Tā shì zài Guǎngzhōu xué de.", my: "သူမ ကွမ်ကျိုးမှာ သင်ခဲ့တာ။" },
+    { cn: "我们是在北京见的。", pinyin: "Wǒmen shì zài Běijīng jiàn de.", my: "ငါတို့ ဘေဂျင်းမှာ တွေ့ခဲ့တာ။" },
+    { cn: "他们是在上海住的。", pinyin: "Tāmen shì zài Shànghǎi zhù de.", my: "သူတို့ ရှန်ဟိုင်းမှာ နေခဲ့တာ။" }
+    ]
+    },
+    {
+    pattern: "S + V + 过 + O + 吗？",
+    explain: "လုပ်ဖူးလား မေးရန်",
+    examples: [
+    { cn: "你吃过这个吗？", pinyin: "Nǐ chī guo zhège ma?", my: "မင်း ဒါစားဖူးလား။" },
+    { cn: "你去过北京吗？", pinyin: "Nǐ qù guo Běijīng ma?", my: "မင်း ဘေဂျင်းသွားဖူးလား။" },
+    { cn: "他看过这个电影吗？", pinyin: "Tā kàn guo zhège diànyǐng ma?", my: "သူ ဒီရုပ်ရှင်ကြည့်ဖူးလား။" },
+    { cn: "她学过中文吗？", pinyin: "Tā xué guo Zhōngwén ma?", my: "သူမ တရုတ်စာသင်ဖူးလား။" },
+    { cn: "你们吃过中国菜吗？", pinyin: "Nǐmen chī guo Zhōngguó cài ma?", my: "မင်းတို့ တရုတ်အစားအစာစားဖူးလား။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + 在 + 地方 + V + 的",
+    explain: "နေရာတစ်ခုမှာ လုပ်ခဲ့တာပါ",
+    examples: [
+    { cn: "我是在北京吃的。", pinyin: "Wǒ shì zài Běijīng chī de.", my: "ငါ ဘေဂျင်းမှာ စားခဲ့တာ။" },
+    { cn: "他是在上海买的。", pinyin: "Tā shì zài Shànghǎi mǎi de.", my: "သူ ရှန်ဟိုင်းမှာ ဝယ်ခဲ့တာ။" },
+    { cn: "她是在广州学的。", pinyin: "Tā shì zài Guǎngzhōu xué de.", my: "သူမ ကွမ်ကျိုးမှာ သင်ခဲ့တာ။" },
+    { cn: "我们是在北京见的。", pinyin: "Wǒmen shì zài Běijīng jiàn de.", my: "ငါတို့ ဘေဂျင်းမှာ တွေ့ခဲ့တာ။" },
+    { cn: "他们是在上海住的。", pinyin: "Tāmen shì zài Shànghǎi zhù de.", my: "သူတို့ ရှန်ဟိုင်းမှာ နေခဲ့တာ။" }
+    ]
+    },
+    {
+    pattern: "S + V + 过 + O",
+    explain: "လုပ်ဖူးသည်",
+    examples: [
+    { cn: "我吃过北京烤鸭。", pinyin: "Wǒ chī guo Běijīng kǎoyā.", my: "ငါ ဘေဂျင်းကြက်ငှက်ကင်စားဖူးတယ်။" },
+    { cn: "他去过上海。", pinyin: "Tā qù guo Shànghǎi.", my: "သူ ရှန်ဟိုင်းသွားဖူးတယ်။" },
+    { cn: "她看过这个电影。", pinyin: "Tā kàn guo zhège diànyǐng.", my: "သူမ ဒီရုပ်ရှင်ကြည့်ဖူးတယ်။" },
+    { cn: "我们学过中文。", pinyin: "Wǒmen xué guo Zhōngwén.", my: "ငါတို့ တရုတ်စာသင်ဖူးတယ်။" },
+    { cn: "他们吃过中国菜。", pinyin: "Tāmen chī guo Zhōngguó cài.", my: "သူတို့ တရုတ်အစားအစာစားဖူးတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + 在 + 地方 + V + 的",
+    explain: "နေရာတစ်ခုမှာ လုပ်ခဲ့တာပါ",
+    examples: [
+    { cn: "我是在北京吃的。", pinyin: "Wǒ shì zài Běijīng chī de.", my: "ငါ ဘေဂျင်းမှာ စားခဲ့တာ။" },
+    { cn: "他是在上海买的。", pinyin: "Tā shì zài Shànghǎi mǎi de.", my: "သူ ရှန်ဟိုင်းမှာ ဝယ်ခဲ့တာ။" },
+    { cn: "她是在广州学的。", pinyin: "Tā shì zài Guǎngzhōu xué de.", my: "သူမ ကွမ်ကျိုးမှာ သင်ခဲ့တာ။" },
+    { cn: "我们是在北京见的。", pinyin: "Wǒmen shì zài Běijīng jiàn de.", my: "ငါတို့ ဘေဂျင်းမှာ တွေ့ခဲ့တာ။" },
+    { cn: "他们是在上海住的。", pinyin: "Tāmen shì zài Shànghǎi zhù de.", my: "သူတို့ ရှန်ဟိုင်းမှာ နေခဲ့တာ။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ဒါစားဖူးလား။", answer: "စားဖူးတယ်" },
+    { question: "၂။ ဒါ ဘာလဲ။", answer: "ဘေဂျင်းကြက်ငှက်ကင်" },
+    { question: "၃။ B က ဘယ်မှာ စားခဲ့တာလဲ။", answer: "ဘေဂျင်းမှာ" },
+    { question: "၄။ B က ဘယ်လိုထင်လဲ။", answer: "အရမ်းအရသာရှိတယ်" },
+    { question: "၅။ A က ဘာမေးလဲ။", answer: "ဒါစားဖူးလား" },
+    { question: "၆။ '过' က ဘာကိုဆိုလိုလဲ။", answer: "ဖူး" },
+    { question: "၇။ '是什么' က ဘာကိုမေးတာလဲ။", answer: "ဘာလဲ" },
+    { question: "၈။ '是...的' က ဘာကိုပြသလဲ။", answer: "နေရာ" }
+    ]
+    },
+    17: {
+    title: "သင်ခန်းစာ ၁၇ · 你有多高？ (မင်း အရပ်ဘယ်လောက်လဲ)",
+    dialog: `A: 你有多高？ (Nǐ yǒu duō gāo?) → မင်း အရပ်ဘယ်လောက်လဲ။\nB: 我有一米八。 (Wǒ yǒu yī mǐ bā.) → ငါ အရပ် ၁.၈ မီတာ။\nA: 你有多重？ (Nǐ yǒu duō zhòng?) → မင်း ကိုယ်အလေးချိန်ဘယ်လောက်လဲ။\nB: 我有七十公斤。 (Wǒ yǒu qīshí gōngjīn.) → ငါ ကိုယ်အလေးချိန် ၇၀ ကီလို။\nA: 你经常运动吗？ (Nǐ jīngcháng yùndòng ma?) → မင်း မကြာခဏ အားကစားလုပ်လား။\nB: 是的，我每天跑步。 (Shì de, wǒ měitiān pǎobù.) → ဟုတ်တယ်၊ ငါ နေ့တိုင်း ပြေးတယ်။`,
+    words: [
+    { cn: "高", pinyin: "gāo", my: "အရပ်မြင့်" },
+    { cn: "米", pinyin: "mǐ", my: "မီတာ" },
+    { cn: "重", pinyin: "zhòng", my: "လေး" },
+    { cn: "公斤", pinyin: "gōngjīn", my: "ကီလိုဂရမ်" },
+    { cn: "运动", pinyin: "yùndòng", my: "အားကစား" },
+    { cn: "跑步", pinyin: "pǎobù", my: "ပြေး" },
+    { cn: "高", pinyin: "gāo", my: "အရပ်မြင့်" },
+    { cn: "米", pinyin: "mǐ", my: "မီတာ" },
+    { cn: "重", pinyin: "zhòng", my: "လေး" },
+    { cn: "公斤", pinyin: "gōngjīn", my: "ကီလိုဂရမ်" },
+    { cn: "运动", pinyin: "yùndòng", my: "အားကစား" },
+    { cn: "跑步", pinyin: "pǎobù", my: "ပြေး" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 有 + 多 + Adj？",
+    explain: "ဘယ်လောက် + နာမဝိသေသန မေးရန်",
+    examples: [
+    { cn: "你有多高？", pinyin: "Nǐ yǒu duō gāo?", my: "မင်း အရပ်ဘယ်လောက်လဲ။" },
+    { cn: "你有多重？", pinyin: "Nǐ yǒu duō zhòng?", my: "မင်း ကိုယ်အလေးချိန်ဘယ်လောက်လဲ။" },
+    { cn: "他有多高？", pinyin: "Tā yǒu duō gāo?", my: "သူ အရပ်ဘယ်လောက်လဲ။" },
+    { cn: "她有多重？", pinyin: "Tā yǒu duō zhòng?", my: "သူမ ကိုယ်အလေးချိန်ဘယ်လောက်လဲ။" },
+    { cn: "这个桌子有多高？", pinyin: "Zhège zhuōzi yǒu duō gāo?", my: "ဒီစားပွဲ အရပ်ဘယ်လောက်လဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 有 + 数字 + 单位",
+    explain: "အရပ်/အလေးချိန် ရှိသည်",
+    examples: [
+    { cn: "我有一米八。", pinyin: "Wǒ yǒu yī mǐ bā.", my: "ငါ အရပ် ၁.၈ မီတာ။" },
+    { cn: "他有一米七。", pinyin: "Tā yǒu yī mǐ qī.", my: "သူ အရပ် ၁.၇ မီတာ။" },
+    { cn: "她有一米六。", pinyin: "Tā yǒu yī mǐ liù.", my: "သူမ အရပ် ၁.၆ မီတာ။" },
+    { cn: "我有七十公斤。", pinyin: "Wǒ yǒu qīshí gōngjīn.", my: "ငါ ကိုယ်အလေးချိန် ၇၀ ကီလို။" },
+    { cn: "他有八十公斤。", pinyin: "Tā yǒu bāshí gōngjīn.", my: "သူ ကိုယ်အလေးချိန် ၈၀ ကီလို။" }
+    ]
+    },
+    {
+    pattern: "S + 经常 + V + O + 吗？",
+    explain: "မကြာခဏ လုပ်လား မေးရန်",
+    examples: [
+    { cn: "你经常运动吗？", pinyin: "Nǐ jīngcháng yùndòng ma?", my: "မင်း မကြာခဏ အားကစားလုပ်လား။" },
+    { cn: "他经常跑步吗？", pinyin: "Tā jīngcháng pǎobù ma?", my: "သူ မကြာခဏ ပြေးလား။" },
+    { cn: "她经常看书吗？", pinyin: "Tā jīngcháng kàn shū ma?", my: "သူမ မကြာခဏ စာဖတ်လား။" },
+    { cn: "你们经常运动吗？", pinyin: "Nǐmen jīngcháng yùndòng ma?", my: "မင်းတို့ မကြာခဏ အားကစားလုပ်လား။" },
+    { cn: "他们经常旅行吗？", pinyin: "Tāmen jīngcháng lǚxíng ma?", my: "သူတို့ မကြာခဏ ခရီးသွားလား။" }
+    ]
+    },
+    {
+    pattern: "S + 每天 + V",
+    explain: "နေ့တိုင်း လုပ်သည်",
+    examples: [
+    { cn: "我每天跑步。", pinyin: "Wǒ měitiān pǎobù.", my: "ငါ နေ့တိုင်း ပြေးတယ်။" },
+    { cn: "他每天运动。", pinyin: "Tā měitiān yùndòng.", my: "သူ နေ့တိုင်း အားကစားလုပ်တယ်။" },
+    { cn: "她每天看书。", pinyin: "Tā měitiān kàn shū.", my: "သူမ နေ့တိုင်း စာဖတ်တယ်။" },
+    { cn: "我们每天学习。", pinyin: "Wǒmen měitiān xuéxí.", my: "ငါတို့ နေ့တိုင်း သင်တယ်။" },
+    { cn: "他们每天工作。", pinyin: "Tāmen měitiān gōngzuò.", my: "သူတို့ နေ့တိုင်း အလုပ်လုပ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 有 + 数字 + 米",
+    explain: "အရပ်ရှိသည်",
+    examples: [
+    { cn: "我有一米八。", pinyin: "Wǒ yǒu yī mǐ bā.", my: "ငါ အရပ် ၁.၈ မီတာ။" },
+    { cn: "他有一米七。", pinyin: "Tā yǒu yī mǐ qī.", my: "သူ အရပ် ၁.၇ မီတာ။" },
+    { cn: "她有一米六。", pinyin: "Tā yǒu yī mǐ liù.", my: "သူမ အရပ် ၁.၆ မီတာ။" },
+    { cn: "我有一米七五。", pinyin: "Wǒ yǒu yī mǐ qīwǔ.", my: "ငါ အရပ် ၁.၇၅ မီတာ။" },
+    { cn: "他有一米八五。", pinyin: "Tā yǒu yī mǐ bāwǔ.", my: "သူ အရပ် ၁.၈၅ မီတာ။" }
+    ]
+    },
+    {
+    pattern: "S + 有 + 数字 + 公斤",
+    explain: "ကိုယ်အလေးချိန်ရှိသည်",
+    examples: [
+    { cn: "我有七十公斤。", pinyin: "Wǒ yǒu qīshí gōngjīn.", my: "ငါ ကိုယ်အလေးချိန် ၇၀ ကီလို။" },
+    { cn: "他有八十公斤。", pinyin: "Tā yǒu bāshí gōngjīn.", my: "သူ ကိုယ်အလေးချိန် ၈၀ ကီလို။" },
+    { cn: "她有六十公斤。", pinyin: "Tā yǒu liùshí gōngjīn.", my: "သူမ ကိုယ်အလေးချိန် ၆၀ ကီလို။" },
+    { cn: "我有七十五公斤。", pinyin: "Wǒ yǒu qīshíwǔ gōngjīn.", my: "ငါ ကိုယ်အလေးချိန် ၇၅ ကီလို။" },
+    { cn: "他有八十五公斤。", pinyin: "Tā yǒu bāshíwǔ gōngjīn.", my: "သူ ကိုယ်အလေးချိန် ၈၅ ကီလို။" }
+    ]
+    },
+    {
+    pattern: "S + 有 + 多 + Adj？",
+    explain: "ဘယ်လောက် ... လဲ မေးရန်",
+    examples: [
+    { cn: "你有多高？", pinyin: "Nǐ yǒu duō gāo?", my: "မင်း အရပ်ဘယ်လောက်လဲ။" },
+    { cn: "你有多重？", pinyin: "Nǐ yǒu duō zhòng?", my: "မင်း ကိုယ်အလေးချိန်ဘယ်လောက်လဲ။" },
+    { cn: "他有多高？", pinyin: "Tā yǒu duō gāo?", my: "သူ အရပ်ဘယ်လောက်လဲ။" },
+    { cn: "她有多重？", pinyin: "Tā yǒu duō zhòng?", my: "သူမ ကိုယ်အလေးချိန်ဘယ်လောက်လဲ။" },
+    { cn: "这个桌子有多高？", pinyin: "Zhège zhuōzi yǒu duō gāo?", my: "ဒီစားပွဲ အရပ်ဘယ်လောက်လဲ။" }
+    ]
+    },
+    {
+    pattern: "是的，S + 每天 + V",
+    explain: "ဟုတ်တယ်၊ နေ့တိုင်း လုပ်တယ်",
+    examples: [
+    { cn: "是的，我每天跑步。", pinyin: "Shì de, wǒ měitiān pǎobù.", my: "ဟုတ်တယ်၊ ငါ နေ့တိုင်း ပြေးတယ်။" },
+    { cn: "是的，他每天运动。", pinyin: "Shì de, tā měitiān yùndòng.", my: "ဟုတ်တယ်၊ သူ နေ့တိုင်း အားကစားလုပ်တယ်။" },
+    { cn: "是的，她每天看书。", pinyin: "Shì de, tā měitiān kàn shū.", my: "ဟုတ်တယ်၊ သူမ နေ့တိုင်း စာဖတ်တယ်။" },
+    { cn: "是的，我们每天学习。", pinyin: "Shì de, wǒmen měitiān xuéxí.", my: "ဟုတ်တယ်၊ ငါတို့ နေ့တိုင်း သင်တယ်။" },
+    { cn: "是的，他们每天工作。", pinyin: "Shì de, tāmen měitiān gōngzuò.", my: "ဟုတ်တယ်၊ သူတို့ နေ့တိုင်း အလုပ်လုပ်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က အရပ်ဘယ်လောက်လဲ။", answer: "၁.၈ မီတာ" },
+    { question: "၂။ B က ကိုယ်အလေးချိန်ဘယ်လောက်လဲ။", answer: "၇၀ ကီလို" },
+    { question: "၃။ B က မကြာခဏ အားကစားလုပ်လား။", answer: "ဟုတ်တယ်" },
+    { question: "၄။ B က ဘာလုပ်လဲ။", answer: "နေ့တိုင်း ပြေးတယ်" },
+    { question: "၅။ A က ဘာမေးလဲ။", answer: "အရပ်ဘယ်လောက်လဲ" },
+    { question: "၆။ '多高' က ဘာကိုမေးတာလဲ။", answer: "အရပ်အမြင့်" },
+    { question: "၇။ '多重' က ဘာကိုမေးတာလဲ။", answer: "ကိုယ်အလေးချိန်" },
+    { question: "၈။ '每天' က ဘာကိုဆိုလိုလဲ။", answer: "နေ့တိုင်း" }
+    ]
+    },
+    
+    // ===================== LESSON 18 =====================
+    18: {
+    title: "သင်ခန်းစာ ၁၈ · 你几点下班？ (မင်း ဘယ်နှစ်နာရီ အလုပ်ဆင်းလဲ)",
+    dialog: `A: 你几点下班？ (Nǐ jǐ diǎn xiàbān?) → မင်း ဘယ်နှစ်နာရီ အလုပ်ဆင်းလဲ။\nB: 我五点半下班。 (Wǒ wǔ diǎn bàn xiàbān.) → ငါ ငါးနာရီခွဲ အလုပ်ဆင်းတယ်။\nA: 你下班以后做什么？ (Nǐ xiàbān yǐhòu zuò shénme?) → မင်း အလုပ်ဆင်းပြီးရင် ဘာလုပ်လဲ။\nB: 我回家做饭。 (Wǒ huí jiā zuòfàn.) → ငါ အိမ်ပြန်ပြီး ထမင်းချက်တယ်။\nA: 你几点吃饭？ (Nǐ jǐ diǎn chīfàn?) → မင်း ဘယ်နှစ်နာရီ ထမင်းစားလဲ။\nB: 我六点半吃饭。 (Wǒ liù diǎn bàn chīfàn.) → ငါ ခြောက်နာရီခွဲ ထမင်းစားတယ်။`,
+    words: [
+    { cn: "下班", pinyin: "xiàbān", my: "အလုပ်ဆင်း" },
+    { cn: "以后", pinyin: "yǐhòu", my: "ပြီးရင်" },
+    { cn: "回家", pinyin: "huí jiā", my: "အိမ်ပြန်" },
+    { cn: "做饭", pinyin: "zuòfàn", my: "ထမင်းချက်" },
+    { cn: "下班", pinyin: "xiàbān", my: "အလုပ်ဆင်း" },
+    { cn: "以后", pinyin: "yǐhòu", my: "ပြီးရင်" },
+    { cn: "回家", pinyin: "huí jiā", my: "အိမ်ပြန်" },
+    { cn: "做饭", pinyin: "zuòfàn", my: "ထမင်းချက်" },
+    { cn: "下班", pinyin: "xiàbān", my: "အလုပ်ဆင်း" },
+    { cn: "以后", pinyin: "yǐhòu", my: "ပြီးရင်" },
+    { cn: "回家", pinyin: "huí jiā", my: "အိမ်ပြန်" },
+    { cn: "做饭", pinyin: "zuòfàn", my: "ထမင်းချက်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 几点 + V？",
+    explain: "ဘယ်နှစ်နာရီ လုပ်လဲ မေးရန်",
+    examples: [
+    { cn: "你几点下班？", pinyin: "Nǐ jǐ diǎn xiàbān?", my: "မင်း ဘယ်နှစ်နာရီ အလုပ်ဆင်းလဲ။" },
+    { cn: "你几点吃饭？", pinyin: "Nǐ jǐ diǎn chīfàn?", my: "မင်း ဘယ်နှစ်နာရီ ထမင်းစားလဲ။" },
+    { cn: "他几点回家？", pinyin: "Tā jǐ diǎn huí jiā?", my: "သူ ဘယ်နှစ်နာရီ အိမ်ပြန်လဲ။" },
+    { cn: "她几点做饭？", pinyin: "Tā jǐ diǎn zuòfàn?", my: "သူမ ဘယ်နှစ်နာရီ ထမင်းချက်လဲ။" },
+    { cn: "你们几点开始？", pinyin: "Nǐmen jǐ diǎn kāishǐ?", my: "မင်းတို့ ဘယ်နှစ်နာရီ စလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 时间 + V",
+    explain: "အချိန်မှာ လုပ်သည်",
+    examples: [
+    { cn: "我五点半下班。", pinyin: "Wǒ wǔ diǎn bàn xiàbān.", my: "ငါ ငါးနာရီခွဲ အလုပ်ဆင်းတယ်။" },
+    { cn: "他六点回家。", pinyin: "Tā liù diǎn huí jiā.", my: "သူ ခြောက်နာရီ အိမ်ပြန်တယ်။" },
+    { cn: "她七点做饭。", pinyin: "Tā qī diǎn zuòfàn.", my: "သူမ ခုနစ်နာရီ ထမင်းချက်တယ်။" },
+    { cn: "我们八点吃饭。", pinyin: "Wǒmen bā diǎn chīfàn.", my: "ငါတို့ ရှစ်နာရီ ထမင်းစားတယ်။" },
+    { cn: "他们九点下班。", pinyin: "Tāmen jiǔ diǎn xiàbān.", my: "သူတို့ ကိုးနာရီ အလုပ်ဆင်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + 以后 + V",
+    explain: "လုပ်ပြီးရင် လုပ်သည်",
+    examples: [
+    { cn: "我下班以后回家。", pinyin: "Wǒ xiàbān yǐhòu huí jiā.", my: "ငါ အလုပ်ဆင်းပြီးရင် အိမ်ပြန်တယ်။" },
+    { cn: "我回家以后做饭。", pinyin: "Wǒ huí jiā yǐhòu zuòfàn.", my: "ငါ အိမ်ပြန်ပြီးရင် ထမင်းချက်တယ်။" },
+    { cn: "他吃饭以后看书。", pinyin: "Tā chīfàn yǐhòu kàn shū.", my: "သူ ထမင်းစားပြီးရင် စာဖတ်တယ်။" },
+    { cn: "她下班以后运动。", pinyin: "Tā xiàbān yǐhòu yùndòng.", my: "သူမ အလုပ်ဆင်းပြီးရင် အားကစားလုပ်တယ်။" },
+    { cn: "我们放学以后回家。", pinyin: "Wǒmen fàngxué yǐhòu huí jiā.", my: "ငါတို့ ကျောင်းဆင်းပြီးရင် အိမ်ပြန်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + O",
+    explain: "တစ်စုံတစ်ယောက် တစ်ခုခုလုပ်သည်",
+    examples: [
+    { cn: "我回家。", pinyin: "Wǒ huí jiā.", my: "ငါ အိမ်ပြန်တယ်။" },
+    { cn: "他做饭。", pinyin: "Tā zuòfàn.", my: "သူ ထမင်းချက်တယ်။" },
+    { cn: "她吃饭。", pinyin: "Tā chīfàn.", my: "သူမ ထမင်းစားတယ်။" },
+    { cn: "我们下班。", pinyin: "Wǒmen xiàbān.", my: "ငါတို့ အလုပ်ဆင်းတယ်။" },
+    { cn: "他们学习。", pinyin: "Tāmen xuéxí.", my: "သူတို့ သင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 以后 + V + O",
+    explain: "ပြီးရင် လုပ်သည်",
+    examples: [
+    { cn: "下班以后回家。", pinyin: "Xiàbān yǐhòu huí jiā.", my: "အလုပ်ဆင်းပြီးရင် အိမ်ပြန်တယ်။" },
+    { cn: "回家以后做饭。", pinyin: "Huí jiā yǐhòu zuòfàn.", my: "အိမ်ပြန်ပြီးရင် ထမင်းချက်တယ်။" },
+    { cn: "吃饭以后看书。", pinyin: "Chīfàn yǐhòu kàn shū.", my: "ထမင်းစားပြီးရင် စာဖတ်တယ်။" },
+    { cn: "下班以后运动。", pinyin: "Xiàbān yǐhòu yùndòng.", my: "အလုပ်ဆင်းပြီးရင် အားကစားလုပ်တယ်။" },
+    { cn: "放学以后回家。", pinyin: "Fàngxué yǐhòu huí jiā.", my: "ကျောင်းဆင်းပြီးရင် အိမ်ပြန်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 时间 + V + O",
+    explain: "အချိန်မှာ လုပ်သည်",
+    examples: [
+    { cn: "我五点半下班。", pinyin: "Wǒ wǔ diǎn bàn xiàbān.", my: "ငါ ငါးနာရီခွဲ အလုပ်ဆင်းတယ်။" },
+    { cn: "他六点回家。", pinyin: "Tā liù diǎn huí jiā.", my: "သူ ခြောက်နာရီ အိမ်ပြန်တယ်။" },
+    { cn: "她七点做饭。", pinyin: "Tā qī diǎn zuòfàn.", my: "သူမ ခုနစ်နာရီ ထမင်းချက်တယ်။" },
+    { cn: "我们八点吃饭。", pinyin: "Wǒmen bā diǎn chīfàn.", my: "ငါတို့ ရှစ်နာရီ ထမင်းစားတယ်။" },
+    { cn: "他们九点下班。", pinyin: "Tāmen jiǔ diǎn xiàbān.", my: "သူတို့ ကိုးနာရီ အလုပ်ဆင်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 几点 + V + O？",
+    explain: "ဘယ်နှစ်နာရီ လုပ်လဲ မေးရန်",
+    examples: [
+    { cn: "你几点下班？", pinyin: "Nǐ jǐ diǎn xiàbān?", my: "မင်း ဘယ်နှစ်နာရီ အလုပ်ဆင်းလဲ။" },
+    { cn: "你几点吃饭？", pinyin: "Nǐ jǐ diǎn chīfàn?", my: "မင်း ဘယ်နှစ်နာရီ ထမင်းစားလဲ။" },
+    { cn: "他几点回家？", pinyin: "Tā jǐ diǎn huí jiā?", my: "သူ ဘယ်နှစ်နာရီ အိမ်ပြန်လဲ။" },
+    { cn: "她几点做饭？", pinyin: "Tā jǐ diǎn zuòfàn?", my: "သူမ ဘယ်နှစ်နာရီ ထမင်းချက်လဲ။" },
+    { cn: "你们几点开始？", pinyin: "Nǐmen jǐ diǎn kāishǐ?", my: "မင်းတို့ ဘယ်နှစ်နာရီ စလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 以后 + V + O",
+    explain: "ပြီးရင် လုပ်သည်",
+    examples: [
+    { cn: "下班以后回家。", pinyin: "Xiàbān yǐhòu huí jiā.", my: "အလုပ်ဆင်းပြီးရင် အိမ်ပြန်တယ်။" },
+    { cn: "回家以后做饭。", pinyin: "Huí jiā yǐhòu zuòfàn.", my: "အိမ်ပြန်ပြီးရင် ထမင်းချက်တယ်။" },
+    { cn: "吃饭以后看书。", pinyin: "Chīfàn yǐhòu kàn shū.", my: "ထမင်းစားပြီးရင် စာဖတ်တယ်။" },
+    { cn: "下班以后运动。", pinyin: "Xiàbān yǐhòu yùndòng.", my: "အလုပ်ဆင်းပြီးရင် အားကစားလုပ်တယ်။" },
+    { cn: "放学以后回家。", pinyin: "Fàngxué yǐhòu huí jiā.", my: "ကျောင်းဆင်းပြီးရင် အိမ်ပြန်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ဘယ်နှစ်နာရီ အလုပ်ဆင်းလဲ။", answer: "ငါးနာရီခွဲ" },
+    { question: "၂။ B က အလုပ်ဆင်းပြီးရင် ဘာလုပ်လဲ။", answer: "အိမ်ပြန်ပြီး ထမင်းချက်တယ်" },
+    { question: "၃။ B က ဘယ်နှစ်နာရီ ထမင်းစားလဲ။", answer: "ခြောက်နာရီခွဲ" },
+    { question: "၄။ A က ဘာမေးလဲ။", answer: "ဘယ်နှစ်နာရီ အလုပ်ဆင်းလဲ" },
+    { question: "၅။ A က နောက်ထပ် ဘာမေးသေးလဲ။", answer: "အလုပ်ဆင်းပြီးရင် ဘာလုပ်လဲ" },
+    { question: "၆။ '下班' က ဘာကိုဆိုလိုလဲ။", answer: "အလုပ်ဆင်း" },
+    { question: "၇။ '以后' က ဘာကိုပြသလဲ။", answer: "ပြီးရင်" },
+    { question: "၈။ '做饭' ဆိုတာ ဘာလဲ။", answer: "ထမင်းချက်" }
+    ]
+    },
+    
+    
+    
+    
+    
+    // Lesson 2, 3,... ထပ်ထည့်နိုင်ပါတယ်
+};
+
+// ----------------------------------------------------------------
+// RENDER
+// ----------------------------------------------------------------
+const selectEl = document.getElementById('lessonSelect');
+const contentEl = document.getElementById('lessonContent');
+
+function renderLesson(lessonNum) {
+    const data = lessonData[lessonNum];
+    if (!data) {
+        contentEl.innerHTML = `<p style="color:#b33;">⚠️ Lesson ${lessonNum} data မရှိသေးပါ။</p>`;
+        return;
+    }
+
+    let html = `<h2 style="color:#1a3d5e; font-size:26px;">${data.title}</h2>`;
+
+    // Dialog
+    html += `<div class="section-title">💬 Dialog (စကားပြော)</div>`;
+    html += `<div class="dialog-box">${data.dialog}</div>`;
+
+    // Vocabulary
+    html += `<div class="section-title">📖 ဝေါဟာရ (၃၀ လုံး)</div>`;
+    html += `<div class="word-grid">`;
+    data.words.forEach(w => {
+        html += `<div class="word-item">
+                    <span class="cn">${w.cn}</span><br>
+                    <span class="pinyin">${w.pinyin}</span><br>
+                    <span class="my">🇲🇲 ${w.my}</span>
+                </div>`;
+    });
+    html += `</div>`;
+
+    // Grammar
+    html += `<div class="section-title">🧩 Grammar (၈ ခု) - သဒ္ဒါ</div>`;
+    data.grammar.forEach((g, idx) => {
+        html += `<div class="grammar-block">
+                    <div class="pattern">${idx+1}. ${g.pattern}</div>
+                    <div class="explain">📌 ${g.explain}</div>
+                    <ol class="ex-list">`;
+        g.examples.forEach(ex => {
+            html += `<li>${ex.cn}  <span style="color:#1f7a4a;">${ex.pinyin}</span>  <span class="my-mean">→ ${ex.my}</span></li>`;
+        });
+        html += `</ol></div>`;
+    });
+
+    // Exercises
+    html += `<div class="section-title">✍️ Exercise (၈ ခု) - လေ့ကျင့်ခန်း</div>`;
+    data.exercises.forEach((ex, idx) => {
+        html += `<div class="exercise-item" id="ex-${idx}">
+                    <div class="question">${ex.question}</div>
+                    <input type="text" placeholder="သင့်အဖြေကို ရေးပါ..." id="input-${idx}">
+                    <button onclick="checkAnswer(${idx}, '${ex.answer}')">စစ်ဆေးမယ်</button>
+                    <div id="fb-${idx}" class="feedback"></div>
+                </div>`;
+    });
+
+    contentEl.innerHTML = html;
+}
+
+// Answer checker
+window.checkAnswer = function(idx, correctAns) {
+    const input = document.getElementById(`input-${idx}`);
+    const fb = document.getElementById(`fb-${idx}`);
+    const userAns = input.value.trim();
+
+    const isCorrect = userAns.toLowerCase() === correctAns.toLowerCase();
+
+    if (isCorrect) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = `✅ မှန်ပါတယ်။`;
+    } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = `❌ မှားပါတယ်။ အဖြေမှန်က → <span class="answer-reveal">${correctAns}</span>`;
+    }
+};
+
+// Init
+function init() {
+    const keys = Object.keys(lessonData).map(Number).sort((a,b) => a-b);
+    keys.forEach(k => {
+        const opt = document.createElement('option');
+        opt.value = k;
+        opt.textContent = `Lesson ${k}`;
+        selectEl.appendChild(opt);
+    });
+
+    if (keys.length) {
+        selectEl.value = keys[0];
+        renderLesson(keys[0]);
+    }
+
+    selectEl.addEventListener('change', function() {
+        const val = parseInt(this.value);
+        if (lessonData[val]) renderLesson(val);
+        else contentEl.innerHTML = `<p>Lesson ${val} data မရှိသေးပါ။</p>`;
+    });
+}
+
+init();
+</script>
+</body>
+</html>xué de hěn kuài.", my: "သူ သင်တာ အရမ်းမြန်တယ်။" },
+    { cn: "她唱得很好。", pinyin: "Tā chàng de hěn hǎo.", my: "သူမ ဆိုတာ အရမ်းကောင်းတယ်။" },
+    { cn: "我们工作得很努力。", pinyin: "Wǒmen gōngzuò de hěn nǔlì.", my: "ငါတို့ အလုပ်လုပ်တာ အရမ်းကြိုးစားတယ်။" },
+    { cn: "他们学得很认真。", pinyin: "Tāmen xué de hěn rènzhēn.", my: "သူတို့ သင်တာ အရမ်းအလေးအနက်ထားတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 每周 + V + 几次？",
+    explain: "တစ်ပတ်ကို ဘယ်နှစ်ခါလုပ်လဲ မေးရန်",
+    examples: [
+    { cn: "你每周游几次？", pinyin: "Nǐ měi zhōu yóu jǐ cì?", my: "မင်း တစ်ပတ်ကို ဘယ်နှစ်ခါ ရေကူးလဲ။" },
+    { cn: "他每周运动几次？", pinyin: "Tā měi zhōu yùndòng jǐ cì?", my: "သူ တစ်ပတ်ကို ဘယ်နှစ်ခါ အားကစားလုပ်လဲ။" },
+    { cn: "她每周看书几次？", pinyin: "Tā měi zhōu kàn shū jǐ cì?", my: "သူမ တစ်ပတ်ကို ဘယ်နှစ်ခါ စာဖတ်လဲ။" },
+    { cn: "你们每周上课几次？", pinyin: "Nǐmen měi zhōu shàngkè jǐ cì?", my: "မင်းတို့ တစ်ပတ်ကို ဘယ်နှစ်ခါ အတန်းတက်လဲ။" },
+    { cn: "他们每周跑步几次？", pinyin: "Tāmen měi zhōu pǎobù jǐ cì?", my: "သူတို့ တစ်ပတ်ကို ဘယ်နှစ်ခါ ပြေးလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 每周 + V + 数字 + 次",
+    explain: "တစ်ပတ်ကို ဘယ်နှစ်ခါလုပ်သည်",
+    examples: [
+    { cn: "我每周游三次。", pinyin: "Wǒ měi zhōu yóu sān cì.", my: "ငါ တစ်ပတ်ကို သုံးခါ ရေကူးတယ်။" },
+    { cn: "他每周运动两次。", pinyin: "Tā měi zhōu yùndòng liǎng cì.", my: "သူ တစ်ပတ်ကို နှစ်ခါ အားကစားလုပ်တယ်။" },
+    { cn: "她每周看书五次。", pinyin: "Tā měi zhōu kàn shū wǔ cì.", my: "သူမ တစ်ပတ်ကို ငါးခါ စာဖတ်တယ်။" },
+    { cn: "我们每周上课四次。", pinyin: "Wǒmen měi zhōu shàngkè sì cì.", my: "ငါတို့ တစ်ပတ်ကို လေးခါ အတန်းတက်တယ်။" },
+    { cn: "他们每周跑步六次。", pinyin: "Tāmen měi zhōu pǎobù liù cì.", my: "သူတို့ တစ်ပတ်ကို ခြောက်ခါ ပြေးတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + 得 + Adv + Adj",
+    explain: "လုပ်တာ ဘယ်လိုလဲ",
+    examples: [
+    { cn: "我游得很好。", pinyin: "Wǒ yóu de hěn hǎo.", my: "ငါ ရေကူးတာ အရမ်းကောင်းတယ်။" },
+    { cn: "他学得很快。", pinyin: "Tā xué de hěn kuài.", my: "သူ သင်တာ အရမ်းမြန်တယ်။" },
+    { cn: "她唱得很好。", pinyin: "Tā chàng de hěn hǎo.", my: "သူမ ဆိုတာ အရမ်းကောင်းတယ်။" },
+    { cn: "我们工作得很努力。", pinyin: "Wǒmen gōngzuò de hěn nǔlì.", my: "ငါတို့ အလုပ်လုပ်တာ အရမ်းကြိုးစားတယ်။" },
+    { cn: "他们学得很认真。", pinyin: "Tāmen xué de hěn rènzhēn.", my: "သူတို့ သင်တာ အရမ်းအလေးအနက်ထားတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 每周 + V + 数字 + 次",
+    explain: "တစ်ပတ်ကို ဘယ်နှစ်ခါလုပ်သည်",
+    examples: [
+    { cn: "我每周游三次。", pinyin: "Wǒ měi zhōu yóu sān cì.", my: "ငါ တစ်ပတ်ကို သုံးခါ ရေကူးတယ်။" },
+    { cn: "他每周运动两次。", pinyin: "Tā měi zhōu yùndòng liǎng cì.", my: "သူ တစ်ပတ်ကို နှစ်ခါ အားကစားလုပ်တယ်။" },
+    { cn: "她每周看书五次。", pinyin: "Tā měi zhōu kàn shū wǔ cì.", my: "သူမ တစ်ပတ်ကို ငါးခါ စာဖတ်တယ်။" },
+    { cn: "我们每周上课四次。", pinyin: "Wǒmen měi zhōu shàngkè sì cì.", my: "ငါတို့ တစ်ပတ်ကို လေးခါ အတန်းတက်တယ်။" },
+    { cn: "他们每周跑步六次。", pinyin: "Tāmen měi zhōu pǎobù liù cì.", my: "သူတို့ တစ်ပတ်ကို ခြောက်ခါ ပြေးတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + 得 + 怎么样？",
+    explain: "လုပ်တာ ဘယ်လိုလဲ မေးရန်",
+    examples: [
+    { cn: "你游得怎么样？", pinyin: "Nǐ yóu de zěnmeyàng?", my: "မင်း ရေကူးတာ ဘယ်လိုလဲ။" },
+    { cn: "你学得怎么样？", pinyin: "Nǐ xué de zěnmeyàng?", my: "မင်း သင်တာ ဘယ်လိုလဲ။" },
+    { cn: "他工作得怎么样？", pinyin: "Tā gōngzuò de zěnmeyàng?", my: "သူ အလုပ်လုပ်တာ ဘယ်လိုလဲ။" },
+    { cn: "她唱得怎么样？", pinyin: "Tā chàng de zěnmeyàng?", my: "သူမ ဆိုတာ ဘယ်လိုလဲ။" },
+    { cn: "你们学得怎么样？", pinyin: "Nǐmen xué de zěnmeyàng?", my: "မင်းတို့ သင်တာ ဘယ်လိုလဲ။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ဘာအားကစားကြိုက်လဲ။", answer: "ရေကူး" },
+    { question: "၂။ B က ရေကူးတာ ဘယ်လိုလဲ။", answer: "အရမ်းကောင်းတယ်" },
+    { question: "၃။ B က တစ်ပတ်ကို ဘယ်နှစ်ခါ ရေကူးလဲ။", answer: "သုံးခါ" },
+    { question: "၄။ A က ဘာမေးလဲ။", answer: "ဘာအားကစားကြိုက်လဲ" },
+    { question: "၅။ A က နောက်ထပ် ဘာမေးသေးလဲ။", answer: "ရေကူးတာ ဘယ်လိုလဲ" },
+    { question: "၆။ '得' က ဘာအတွက်လဲ။", answer: "အကြိမ်ကြိမ်" },
+    { question: "၇။ '每周' က ဘာကိုဆိုလိုလဲ။", answer: "တစ်ပတ်" },
+    { question: "၈။ '次' က ဘာကိုပြသလဲ။", answer: "အကြိမ်" }
+    ]
+    },
+    
+    // ===================== LESSON 20 =====================
+    20: {
+    title: "သင်ခန်းစာ ၂၀ · 你想去哪儿？ (မင်း ဘယ်ကိုသွားချင်လဲ)",
+    dialog: `A: 你想去哪儿？ (Nǐ xiǎng qù nǎr?) → မင်း ဘယ်ကိုသွားချင်လဲ။\nB: 我想去海边。 (Wǒ xiǎng qù hǎibiān.) → ငါ ကမ်းခြေသွားချင်တယ်။\nA: 你打算什么时候去？ (Nǐ dǎsuàn shénme shíhou qù?) → မင်း ဘယ်အချိန်သွားဖို့ စီစဉ်ထားလဲ။\nB: 我打算下个星期去。 (Wǒ dǎsuàn xià gè xīngqī qù.) → ငါ နောက်တစ်ပတ် သွားဖို့ စီစဉ်ထားတယ်။\nA: 你想和谁一起去？ (Nǐ xiǎng hé shéi yīqǐ qù?) → မင်း ဘယ်သူနဲ့အတူ သွားချင်လဲ။\nB: 我想和家人一起去。 (Wǒ xiǎng hé jiārén yīqǐ qù.) → ငါ မိသားစုနဲ့အတူ သွားချင်တယ်။`,
+    words: [
+    { cn: "想", pinyin: "xiǎng", my: "ချင်" },
+    { cn: "去哪儿", pinyin: "qù nǎr", my: "ဘယ်ကိုသွား" },
+    { cn: "海边", pinyin: "hǎibiān", my: "ကမ်းခြေ" },
+    { cn: "打算", pinyin: "dǎsuàn", my: "စီစဉ်" },
+    { cn: "什么时候", pinyin: "shénme shíhou", my: "ဘယ်အချိန်" },
+    { cn: "下个星期", pinyin: "xià gè xīngqī", my: "နောက်တစ်ပတ်" },
+    { cn: "谁", pinyin: "shéi", my: "ဘယ်သူ" },
+    { cn: "一起", pinyin: "yīqǐ", my: "အတူတူ" },
+    { cn: "想", pinyin: "xiǎng", my: "ချင်" },
+    { cn: "去哪儿", pinyin: "qù nǎr", my: "ဘယ်ကိုသွား" },
+    { cn: "海边", pinyin: "hǎibiān", my: "ကမ်းခြေ" },
+    { cn: "打算", pinyin: "dǎsuàn", my: "စီစဉ်" },
+    { cn: "什么时候", pinyin: "shénme shíhou", my: "ဘယ်အချိန်" },
+    { cn: "下个星期", pinyin: "xià gè xīngqī", my: "နောက်တစ်ပတ်" },
+    { cn: "谁", pinyin: "shéi", my: "ဘယ်သူ" },
+    { cn: "一起", pinyin: "yīqǐ", my: "အတူတူ" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 想 + V + O",
+    explain: "လုပ်ချင်သည်",
+    examples: [
+    { cn: "我想去海边。", pinyin: "Wǒ xiǎng qù hǎibiān.", my: "ငါ ကမ်းခြေသွားချင်တယ်။" },
+    { cn: "他想去北京。", pinyin: "Tā xiǎng qù Běijīng.", my: "သူ ဘေဂျင်းသွားချင်တယ်။" },
+    { cn: "她想学中文。", pinyin: "Tā xiǎng xué Zhōngwén.", my: "သူမ တရုတ်စာသင်ချင်တယ်။" },
+    { cn: "我们想吃饭。", pinyin: "Wǒmen xiǎng chīfàn.", my: "ငါတို့ ထမင်းစားချင်တယ်။" },
+    { cn: "他们想看电影。", pinyin: "Tāmen xiǎng kàn diànyǐng.", my: "သူတို့ ရုပ်ရှင်ကြည့်ချင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 打算 + 什么时候 + V？",
+    explain: "ဘယ်အချိန်လုပ်ဖို့ စီစဉ်ထားလဲ မေးရန်",
+    examples: [
+    { cn: "你打算什么时候去？", pinyin: "Nǐ dǎsuàn shénme shíhou qù?", my: "မင်း ဘယ်အချိန်သွားဖို့ စီစဉ်ထားလဲ။" },
+    { cn: "他打算什么时候来？", pinyin: "Tā dǎsuàn shénme shíhou lái?", my: "သူ ဘယ်အချိန်လာဖို့ စီစဉ်ထားလဲ။" },
+    { cn: "她打算什么时候走？", pinyin: "Tā dǎsuàn shénme shíhou zǒu?", my: "သူမ ဘယ်အချိန်သွားဖို့ စီစဉ်ထားလဲ။" },
+    { cn: "我们打算什么时候开始？", pinyin: "Wǒmen dǎsuàn shénme shíhou kāishǐ?", my: "ငါတို့ ဘယ်အချိန်စဖို့ စီစဉ်ထားလဲ။" },
+    { cn: "他们打算什么时候见面？", pinyin: "Tāmen dǎsuàn shénme shíhou jiànmiàn?", my: "သူတို့ ဘယ်အချိန်တွေ့ဖို့ စီစဉ်ထားလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 打算 + 时间 + V",
+    explain: "အချိန်မှာ လုပ်ဖို့ စီစဉ်ထားသည်",
+    examples: [
+    { cn: "我打算下个星期去。", pinyin: "Wǒ dǎsuàn xià gè xīngqī qù.", my: "ငါ နောက်တစ်ပတ် သွားဖို့ စီစဉ်ထားတယ်။" },
+    { cn: "他打算明天来。", pinyin: "Tā dǎsuàn míngtiān lái.", my: "သူ မနက်ဖြန် လာဖို့ စီစဉ်ထားတယ်။" },
+    { cn: "她打算下午走。", pinyin: "Tā dǎsuàn xiàwǔ zǒu.", my: "သူမ မွန်းလွဲ သွားဖို့ စီစဉ်ထားတယ်။" },
+    { cn: "我们打算马上开始。", pinyin: "Wǒmen dǎsuàn mǎshàng kāishǐ.", my: "ငါတို့ ချက်ချင်း စဖို့ စီစဉ်ထားတယ်။" },
+    { cn: "他们打算晚上见面。", pinyin: "Tāmen dǎsuàn wǎnshang jiànmiàn.", my: "သူတို့ ညနေ တွေ့ဖို့ စီစဉ်ထားတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 想 + 和 + N + 一起 + V",
+    explain: "တစ်စုံတစ်ယောက်နဲ့ အတူတူ လုပ်ချင်သည်",
+    examples: [
+    { cn: "我想和家人一起去。", pinyin: "Wǒ xiǎng hé jiārén yīqǐ qù.", my: "ငါ မိသားစုနဲ့အတူ သွားချင်တယ်။" },
+    { cn: "他想和朋友一起去看电影。", pinyin: "Tā xiǎng hé péngyou yīqǐ qù kàn diànyǐng.", my: "သူ သူငယ်ချင်းနဲ့အတူ ရုပ်ရှင်သွားကြည့်ချင်တယ်။" },
+    { cn: "她想和同学一起去旅游。", pinyin: "Tā xiǎng hé tóngxué yīqǐ qù lǚyóu.", my: "သူမ အတန်းဖော်နဲ့အတူ ခရီးသွားချင်တယ်။" },
+    { cn: "我们想和家人一起吃饭。", pinyin: "Wǒmen xiǎng hé jiārén yīqǐ chīfàn.", my: "ငါတို့ မိသားစုနဲ့အတူ ထမင်းစားချင်တယ်။" },
+    { cn: "他们想和同事一起工作。", pinyin: "Tāmen xiǎng hé tóngshì yīqǐ gōngzuò.", my: "သူတို့ လုပ်ဖော်ကိုင်ဖက်နဲ့အတူ အလုပ်လုပ်ချင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 想 + V + 哪儿？",
+    explain: "ဘယ်ကိုသွားချင်လဲ မေးရန်",
+    examples: [
+    { cn: "你想去哪儿？", pinyin: "Nǐ xiǎng qù nǎr?", my: "မင်း ဘယ်ကိုသွားချင်လဲ။" },
+    { cn: "他想去哪儿？", pinyin: "Tā xiǎng qù nǎr?", my: "သူ ဘယ်ကိုသွားချင်လဲ။" },
+    { cn: "她想去哪儿？", pinyin: "Tā xiǎng qù nǎr?", my: "သူမ ဘယ်ကိုသွားချင်လဲ။" },
+    { cn: "你们想去哪儿？", pinyin: "Nǐmen xiǎng qù nǎr?", my: "မင်းတို့ ဘယ်ကိုသွားချင်လဲ။" },
+    { cn: "他们想去哪儿？", pinyin: "Tāmen xiǎng qù nǎr?", my: "သူတို့ ဘယ်ကိုသွားချင်လဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 打算 + 时间 + V",
+    explain: "အချိန်မှာ လုပ်ဖို့ စီစဉ်ထားသည်",
+    examples: [
+    { cn: "我打算下个星期去。", pinyin: "Wǒ dǎsuàn xià gè xīngqī qù.", my: "ငါ နောက်တစ်ပတ် သွားဖို့ စီစဉ်ထားတယ်။" },
+    { cn: "他打算明天来。", pinyin: "Tā dǎsuàn míngtiān lái.", my: "သူ မနက်ဖြန် လာဖို့ စီစဉ်ထားတယ်။" },
+    { cn: "她打算下午走。", pinyin: "Tā dǎsuàn xiàwǔ zǒu.", my: "သူမ မွန်းလွဲ သွားဖို့ စီစဉ်ထားတယ်။" },
+    { cn: "我们打算马上开始。", pinyin: "Wǒmen dǎsuàn mǎshàng kāishǐ.", my: "ငါတို့ ချက်ချင်း စဖို့ စီစဉ်ထားတယ်။" },
+    { cn: "他们打算晚上见面。", pinyin: "Tāmen dǎsuàn wǎnshang jiànmiàn.", my: "သူတို့ ညနေ တွေ့ဖို့ စီစဉ်ထားတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 想 + 和 + N + 一起 + V",
+    explain: "တစ်စုံတစ်ယောက်နဲ့ အတူတူ လုပ်ချင်သည်",
+    examples: [
+    { cn: "我想和家人一起去。", pinyin: "Wǒ xiǎng hé jiārén yīqǐ qù.", my: "ငါ မိသားစုနဲ့အတူ သွားချင်တယ်။" },
+    { cn: "他想和朋友一起去看电影。", pinyin: "Tā xiǎng hé péngyou yīqǐ qù kàn diànyǐng.", my: "သူ သူငယ်ချင်းနဲ့အတူ ရုပ်ရှင်သွားကြည့်ချင်တယ်။" },
+    { cn: "她想和同学一起去旅游。", pinyin: "Tā xiǎng hé tóngxué yīqǐ qù lǚyóu.", my: "သူမ အတန်းဖော်နဲ့အတူ ခရီးသွားချင်တယ်။" },
+    { cn: "我们想和家人一起吃饭。", pinyin: "Wǒmen xiǎng hé jiārén yīqǐ chīfàn.", my: "ငါတို့ မိသားစုနဲ့အတူ ထမင်းစားချင်တယ်။" },
+    { cn: "他们想和同事一起工作。", pinyin: "Tāmen xiǎng hé tóngshì yīqǐ gōngzuò.", my: "သူတို့ လုပ်ဖော်ကိုင်ဖက်နဲ့အတူ အလုပ်လုပ်ချင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 想 + V + O",
+    explain: "လုပ်ချင်သည်",
+    examples: [
+    { cn: "我想去海边。", pinyin: "Wǒ xiǎng qù hǎibiān.", my: "ငါ ကမ်းခြေသွားချင်တယ်။" },
+    { cn: "他想去北京。", pinyin: "Tā xiǎng qù Běijīng.", my: "သူ ဘေဂျင်းသွားချင်တယ်။" },
+    { cn: "她想学中文。", pinyin: "Tā xiǎng xué Zhōngwén.", my: "သူမ တရုတ်စာသင်ချင်တယ်။" },
+    { cn: "我们想吃饭。", pinyin: "Wǒmen xiǎng chīfàn.", my: "ငါတို့ ထမင်းစားချင်တယ်။" },
+    { cn: "他们想看电影。", pinyin: "Tāmen xiǎng kàn diànyǐng.", my: "သူတို့ ရုပ်ရှင်ကြည့်ချင်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "၁။ B က ဘယ်ကိုသွားချင်လဲ။", answer: "ကမ်းခြေ" },
+    { question: "၂။ B က ဘယ်အချိန်သွားဖို့ စီစဉ်ထားလဲ။", answer: "နောက်တစ်ပတ်" },
+    { question: "၃။ B က ဘယ်သူနဲ့အတူ သွားချင်လဲ။", answer: "မိသားစု" },
+    { question: "၄။ A က ဘာမေးလဲ။", answer: "ဘယ်ကိုသွားချင်လဲ" },
+    { question: "၅။ A က နောက်ထပ် ဘာမေးသေးလဲ။", answer: "ဘယ်အချိန်သွားဖို့ စီစဉ်ထားလဲ" },
+    { question: "၆။ '想' က ဘာကိုဆိုလိုလဲ။", answer: "ချင်" },
+    { question: "၇။ '打算' က ဘာကိုပြသလဲ။", answer: "စီစဉ်" },
+    { question: "၈။ '谁' က ဘာကိုမေးတာလဲ။", answer: "ဘယ်သူ" }
+    ]
+    }
+    };
+    
+    
+    
+    
+    // Lesson 2, 3,... ထပ်ထည့်နိုင်ပါတယ်
+};
+
+// ----------------------------------------------------------------
+// RENDER
+// ----------------------------------------------------------------
+const selectEl = document.getElementById('lessonSelect');
+const contentEl = document.getElementById('lessonContent');
+
+function renderLesson(lessonNum) {
+    const data = lessonData[lessonNum];
+    if (!data) {
+        contentEl.innerHTML = `<p style="color:#b33;">⚠️ Lesson ${lessonNum} data မရှိသေးပါ။</p>`;
+        return;
+    }
+
+    let html = `<h2 style="color:#1a3d5e; font-size:26px;">${data.title}</h2>`;
+
+    // Dialog
+    html += `<div class="section-title">💬 Dialog (စကားပြော)</div>`;
+    html += `<div class="dialog-box">${data.dialog}</div>`;
+
+    // Vocabulary
+    html += `<div class="section-title">📖 ဝေါဟာရ (၃၀ လုံး)</div>`;
+    html += `<div class="word-grid">`;
+    data.words.forEach(w => {
+        html += `<div class="word-item">
+                    <span class="cn">${w.cn}</span><br>
+                    <span class="pinyin">${w.pinyin}</span><br>
+                    <span class="my">🇲🇲 ${w.my}</span>
+                </div>`;
+    });
+    html += `</div>`;
+
+    // Grammar
+    html += `<div class="section-title">🧩 Grammar (၈ ခု) - သဒ္ဒါ</div>`;
+    data.grammar.forEach((g, idx) => {
+        html += `<div class="grammar-block">
+                    <div class="pattern">${idx+1}. ${g.pattern}</div>
+                    <div class="explain">📌 ${g.explain}</div>
+                    <ol class="ex-list">`;
+        g.examples.forEach(ex => {
+            html += `<li>${ex.cn}  <span style="color:#1f7a4a;">${ex.pinyin}</span>  <span class="my-mean">→ ${ex.my}</span></li>`;
+        });
+        html += `</ol></div>`;
+    });
+
+    // Exercises
+    html += `<div class="section-title">✍️ Exercise (၈ ခု) - လေ့ကျင့်ခန်း</div>`;
+    data.exercises.forEach((ex, idx) => {
+        html += `<div class="exercise-item" id="ex-${idx}">
+                    <div class="question">${ex.question}</div>
+                    <input type="text" placeholder="သင့်အဖြေကို ရေးပါ..." id="input-${idx}">
+                    <button onclick="checkAnswer(${idx}, '${ex.answer}')">စစ်ဆေးမယ်</button>
+                    <div id="fb-${idx}" class="feedback"></div>
+                </div>`;
+    });
+
+    contentEl.innerHTML = html;
+}
+
+// Answer checker
+window.checkAnswer = function(idx, correctAns) {
+    const input = document.getElementById(`input-${idx}`);
+    const fb = document.getElementById(`fb-${idx}`);
+    const userAns = input.value.trim();
+
+    const isCorrect = userAns.toLowerCase() === correctAns.toLowerCase();
+
+    if (isCorrect) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = `✅ မှန်ပါတယ်။`;
+    } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = `❌ မှားပါတယ်။ အဖြေမှန်က → <span class="answer-reveal">${correctAns}</span>`;
+    }
+};
+
+// Init
+function init() {
+    const keys = Object.keys(lessonData).map(Number).sort((a,b) => a-b);
+    keys.forEach(k => {
+        const opt = document.createElement('option');
+        opt.value = k;
+        opt.textContent = `Lesson ${k}`;
+        selectEl.appendChild(opt);
+    });
+
+    if (keys.length) {
+        selectEl.value = keys[0];
+        renderLesson(keys[0]);
+    }
+
+    selectEl.addEventListener('change', function() {
+        const val = parseInt(this.value);
+        if (lessonData[val]) renderLesson(val);
+        else contentEl.innerHTML = `<p>Lesson ${val} data မရှိသေးပါ။</p>`;
+    });
+}
+
+init();
+</script>
+</body>
+</html>

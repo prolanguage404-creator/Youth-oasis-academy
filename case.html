@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Russian Cases 1-6 (မြန်မာလို)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: #f0f4fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            padding: 28px 32px;
+        }
+        h1 {
+            text-align: center;
+            color: #1a2f4e;
+            border-bottom: 4px solid #1a2f4e;
+            padding-bottom: 12px;
+            margin-top: 0;
+            font-size: 2rem;
+        }
+        .subhead {
+            text-align: center;
+            color: #2a6d4e;
+            margin-top: -8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .spinner-area {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin: 25px 0 20px;
+            flex-wrap: wrap;
+            background: #e6edf6;
+            padding: 10px 20px;
+            border-radius: 60px;
+        }
+        .spinner-area label {
+            font-weight: 700;
+            color: #1a2f4e;
+        }
+        select {
+            padding: 12px 22px;
+            border-radius: 40px;
+            border: 2px solid #1a2f4e;
+            background: white;
+            font-size: 16px;
+            flex: 1;
+            min-width: 220px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .lesson-card {
+            background: #f7faff;
+            border-radius: 24px;
+            padding: 18px 22px 28px;
+            margin-top: 12px;
+        }
+        .section-box {
+            background: white;
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border-left: 6px solid #1a2f4e;
+        }
+        .section-box h3 {
+            margin-top: 0;
+            color: #1a2f4e;
+            font-size: 1.3rem;
+        }
+        .section-box h4 {
+            color: #2a4a6e;
+            margin: 16px 0 8px;
+            font-size: 1.1rem;
+        }
+        .ru { color: #a33b3b; font-weight: 500; }
+        .my { color: #1f6e4a; }
+        .en { color: #2a5a7a; font-weight: 400; font-style: italic; }
+        .example-line {
+            padding: 6px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .example-line:last-child {
+            border-bottom: none;
+        }
+        .case-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #f8f9fc;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin: 16px 0;
+            font-size: 0.95rem;
+        }
+        .case-table th {
+            background: #1a2f4e;
+            color: white;
+            font-weight: 600;
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        .case-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        .case-table tr:last-child td {
+            border-bottom: none;
+        }
+        .note {
+            background: #eef3fa;
+            padding: 12px 18px;
+            border-radius: 12px;
+            margin: 12px 0;
+            font-size: 0.95rem;
+        }
+        .meaning-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 20px;
+            background: #f5f8ff;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+        .meaning-item {
+            padding: 4px 0;
+            border-bottom: 1px dashed #d0d8e8;
+            display: flex;
+            justify-content: space-between;
+        }
+        .meaning-item:last-child {
+            border-bottom: none;
+        }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 25px;
+        }
+        .vocab-item {
+            padding: 5px 0;
+            border-bottom: 1px dashed #b9d7e0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .vocab-ru { color: #a33b3b; font-weight: 500; }
+        .vocab-my { color: #1f6e4a; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6f7a88;
+            font-size: 14px;
+            border-top: 1px solid #dce3ed;
+            padding-top: 18px;
+        }
+        @media (max-width: 640px) {
+            .vocab-grid, .meaning-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🇷🇺 Russian <span style="font-size:0.6rem;color:#1f6e4a;">(မြန်မာလို)</span></h1>
+    <div class="subhead">📘 ရုရှားသဒ္ဒါ – ကိစ္စ ၆ မျိုး (6 Cases) · မြန်မာလို အကျယ်တဝင့် ရှင်းပြချက်</div>
+
+    <div class="spinner-area">
+        <label for="lessonSelect">📖 Case ရွေးပါ :</label>
+        <select id="lessonSelect"></select>
+    </div>
+
+    <div id="lessonDisplay" class="lesson-card">
+        <!-- dynamic -->
+    </div>
+
+    <footer>✨ လေ့လာမှုအောင်မြင်ပါစေ · Russian Grammar</footer>
+</div>
+
+<script>
+    // ============================================================
+    //  DATA: All 6 Cases – အကျယ်တဝင့် ရှင်းပြချက် (Exercise မပါ)
+    // ============================================================
+    const lessons = {
+        // ---------- CASE 1 : NOMINATIVE ----------
+        case1_nominative: {
+            title: "Case 1 – ပြုသူကိစ္စ (Nominative – Именительный)",
+            description: "ဒီကိစ္စက ဝါစဉ်ရဲ့ 'ပြုသူ' (Subject) ကိုပြတယ်။ 'ဒါ ဘာလဲ' 'ဒါ ဘယ်သူလဲ' လို့မေးရင် အဖြေက ဒီကိစ္စပဲ။ စကားလုံးရဲ့ မူရင်းပုံစံ (dictionary form) ဖြစ်တယ်။",
+            meaning: [
+                { ru: "Кто? / Что?", my: "ဘယ်သူ? / ဘာ?" },
+                { ru: "Subject of the sentence", my: "ဝါစဉ်ရဲ့ ပြုသူ (Subject)" },
+                { ru: "Identification", my: "အမည်၊ အရာဝတ္ထုကို ခေါ်ဝေါ်ခြင်း" },
+                { ru: "Это + noun", my: "'ဒါ' နဲ့ မိတ်ဆက်ခြင်း" },
+                { ru: "Dictionary form", my: "မူရင်းပုံစံ (အဘိဓာန်ထဲက ပုံစံ)" }
+            ],
+            sections: {
+                intro: {
+                    title: "၁။ ပြုသူကိစ္စ – အခြေခံသဘောတရား",
+                    points: [
+                        "✅ 'ဘယ်သူ?' (Кто?) နဲ့ 'ဘာ?' (Что?) မေးရင် အဖြေက ဒီကိစ္စပဲ။",
+                        "✅ ဝါစဉ်ရဲ့ ပြုသူ (Subject) ကိုပြတယ်။",
+                        "✅ 'ဒါ' (Это) နဲ့ မိတ်ဆက်တဲ့အခါ သုံးတယ်။",
+                        "✅ စကားလုံး (noun)၊ နာမဝိသေသန (adjective)၊ နာမ်စား (pronoun) တို့ရဲ့ မူရင်းပုံစံဖြစ်တယ်။"
+                    ],
+                    examples: [
+                        { ru: "Кто это? – Это Анна.", my: "ဒါ ဘယ်သူလဲ? – ဒါ အန်နာပါ။" },
+                        { ru: "Что это? – Это книга.", my: "ဒါ ဘာလဲ? – ဒါ စာအုပ်ပါ။" },
+                        { ru: "Я студент.", my: "ငါ ကျောင်းသားပါ။" },
+                        { ru: "Она врач.", my: "သူမ ဆရာဝန်ပါ။" },
+                        { ru: "Мы друзья.", my: "ငါတို့ သူငယ်ချင်းတွေပါ။" },
+                        { ru: "Это мой дом.", my: "ဒါ ငါ့အိမ်ပါ။" }
+                    ]
+                },
+                nounEndings: {
+                    title: "၂။ စကားလုံး (Noun) တွေရဲ့ ပြုသူကိစ္စ နိဂုံး",
+                    description: "ရုရှားစကားလုံးတွေကို အမျိုးသား (Masculine)၊ ဣတ္ထိလိင် (Feminine)၊ နပုလ္လိင် (Neuter) ဆိုပြီး ၃ မျိုးခွဲထားတယ်။",
+                    table: {
+                        headers: ["အမျိုးအစား (Gender)", "မူရင်းနိဂုံး", "ဥပမာ", "အဓိပ္ပါယ်"],
+                        rows: [
+                            { col1: "အမျိုးသား (Masculine)", col2: "ဗျည်းဆုံး / -й / -ь", col3: "стол, музей, учитель", col4: "စားပွဲ, ပြတိုက်, ဆရာ" },
+                            { col1: "ဣတ္ထိလိင် (Feminine)", col2: "-а / -я / -ь", col3: "книга, семья, ночь", col4: "စာအုပ်, မိသားစု, ည" },
+                            { col1: "နပုလ္လိင် (Neuter)", col2: "-о / -е", col3: "окно, море", col4: "ပြတင်းပေါက်, ပင်လယ်" }
+                        ]
+                    },
+                    note: "⚠️ ခြွင်းချက် – папа (အဖေ)၊ дядя (ဦးလေး)၊ дедушка (အဘိုး) တို့ -а ဆုံးပေမယ့် အမျိုးသားပဲ။"
+                },
+                adjEndings: {
+                    title: "၃။ နာမဝိသေသန (Adjective) ရဲ့ နိဂုံး",
+                    description: "နာမဝိသေသနက စကားလုံးရဲ့ လိင်၊ အရေအတွက်နဲ့ လိုက်အောင်ပြောင်းရတယ်။",
+                    table: {
+                        headers: ["လိင် (Gender)", "နိဂုံး (Ending)", "ဥပမာ", "အဓိပ္ပါယ်"],
+                        rows: [
+                            { col1: "အမျိုးသား (Masc.)", col2: "-ый / -ий", col3: "большой дом", col4: "အိမ်ကြီး" },
+                            { col1: "ဣတ္ထိလိင် (Fem.)", col2: "-ая / -яя", col3: "большая книга", col4: "စာအုပ်ကြီး" },
+                            { col1: "နပုလ္လိင် (Neut.)", col2: "-ое / -ее", col3: "большое окно", col4: "ပြတင်းပေါက်ကြီး" }
+                        ]
+                    },
+                    note: "✅ တစ်ခုထက်ပို (Plural) မှာ နိဂုံး -ые / -ие ဖြစ်တယ်။ (большие дома – အိမ်ကြီးတွေ)"
+                },
+                possessive: {
+                    title: "၄။ ပိုင်ဆိုင်ပြောစကားလုံး (Possessive Pronouns)",
+                    description: "ပိုင်ဆိုင်ပြောစကားလုံးတွေက စကားလုံးရဲ့ လိင်၊ အရေအတွက်နဲ့ လိုက်အောင်ပြောင်းရတယ်။",
+                    table: {
+                        headers: ["စကားလုံး", "အမျိုးသား", "ဣတ္ထိလိင်", "နပုလ္လိင်", "Plural", "အဓိပ္ပါယ်"],
+                        rows: [
+                            { col1: "мой", col2: "мой", col3: "моя", col4: "моё", col5: "мои", col6: "ငါ့" },
+                            { col1: "твой", col2: "твой", col3: "твоя", col4: "твоё", col5: "твои", col6: "မင်း" },
+                            { col1: "наш", col2: "наш", col3: "наша", col4: "наше", col5: "наши", col6: "ငါတို့" },
+                            { col1: "ваш", col2: "ваш", col3: "ваша", col4: "ваше", col5: "ваши", col6: "ခင်ဗျားတို့" },
+                            { col1: "его", col2: "его", col3: "его", col4: "его", col5: "его", col6: "သူ့" },
+                            { col1: "её", col2: "её", col3: "её", col4: "её", col5: "её", col6: "သူမ့" },
+                            { col1: "их", col2: "их", col3: "их", col4: "их", col5: "их", col6: "သူတို့" }
+                        ]
+                    },
+                    examples: [
+                        { ru: "Это мой брат.", my: "ဒါ ငါ့အစ်ကိုပါ။" },
+                        { ru: "Это моя сестра.", my: "ဒါ ငါ့အစ်မပါ။" },
+                        { ru: "Это наша школа.", my: "ဒါ ငါတို့ကျောင်းပါ။" }
+                    ]
+                },
+                personal: {
+                    title: "၅။ နာမ်စား (Personal Pronouns) ပြုသူကိစ္စ",
+                    description: "ပြုသူကိစ္စမှာ နာမ်စားတွေရဲ့ ပုံစံ",
+                    table: {
+                        headers: ["ပုဂ္ဂိုလ်", "ရုရှား", "မြန်မာ"],
+                        rows: [
+                            { col1: "ငါ (I)", col2: "я", col3: "ငါ" },
+                            { col1: "မင်း (you - informal)", col2: "ты", col3: "မင်း" },
+                            { col1: "သူ (he)", col2: "он", col3: "သူ" },
+                            { col1: "သူမ (she)", col2: "она", col3: "သူမ" },
+                            { col1: "၎င်း (it)", col2: "оно", col3: "၎င်း" },
+                            { col1: "ငါတို့ (we)", col2: "мы", col3: "ငါတို့" },
+                            { col1: "ခင်ဗျားတို့ (you - plural/formal)", col2: "вы", col3: "ခင်ဗျားတို့" },
+                            { col1: "သူတို့ (they)", col2: "они", col3: "သူတို့" }
+                        ]
+                    }
+                },
+                examples10: {
+                    title: "၆။ ဥပမာ ၁၀ ခု (ပြုသူကိစ္စ)",
+                    description: "Case 1 ရဲ့ ဥပမာတွေ",
+                    list: [
+                        { ru: "Я студент.", my: "ငါ ကျောင်းသားပါ။" },
+                        { ru: "Ты врач.", my: "မင်း ဆရာဝန်ပါ။" },
+                        { ru: "Он инженер.", my: "သူ အင်ဂျင်နီယာပါ။" },
+                        { ru: "Она учительница.", my: "သူမ ဆရာမပါ။" },
+                        { ru: "Мы друзья.", my: "ငါတို့ သူငယ်ချင်းတွေပါ။" },
+                        { ru: "Вы студенты.", my: "ခင်ဗျားတို့ ကျောင်းသားတွေပါ။" },
+                        { ru: "Они врачи.", my: "သူတို့ ဆရာဝန်တွေပါ။" },
+                        { ru: "Это мой дом.", my: "ဒါ ငါ့အိမ်ပါ။" },
+                        { ru: "Это наша школа.", my: "ဒါ ငါတို့ကျောင်းပါ။" },
+                        { ru: "Москва – столица России.", my: "မော်စကို – ရုရှားရဲ့မြို့တော်ပါ။" }
+                    ]
+                }
+            },
+            vocabulary: [
+                { ru: "Кто", my: "ဘယ်သူ" }, { ru: "Что", my: "ဘာ" }, { ru: "Это", my: "ဒါ" },
+                { ru: "Дом", my: "အိမ်" }, { ru: "Книга", my: "စာအုပ်" }, { ru: "Стол", my: "စားပွဲ" },
+                { ru: "Город", my: "မြို့" }, { ru: "Школа", my: "ကျောင်း" }, { ru: "Учитель", my: "ဆရာ" },
+                { ru: "Студент", my: "ကျောင်းသား" }, { ru: "Врач", my: "ဆရာဝန်" }, { ru: "Инженер", my: "အင်ဂျင်နီယာ" },
+                { ru: "Друг", my: "သူငယ်ချင်း (ယောက်ျား)" }, { ru: "Подруга", my: "သူငယ်ချင်း (မိန်းမ)" },
+                { ru: "Семья", my: "မိသားစု" }, { ru: "Мама", my: "အမေ" }, { ru: "Папа", my: "အဖေ" },
+                { ru: "Брат", my: "အစ်ကို/ညီ" }, { ru: "Сестра", my: "အစ်မ/ညီမ" },
+                { ru: "Мой", my: "ငါ့ (အမျိုးသား)" }, { ru: "Моя", my: "ငါ့ (ဣတ္ထိလိင်)" },
+                { ru: "Твой", my: "မင်း (အမျိုးသား)" }, { ru: "Твоя", my: "မင်း (ဣတ္ထိလိင်)" },
+                { ru: "Наш", my: "ငါတို့ (အမျိုးသား)" }, { ru: "Наша", my: "ငါတို့ (ဣတ္ထိလိင်)" },
+                { ru: "Ваш", my: "ခင်ဗျားတို့ (အမျိုးသား)" }, { ru: "Ваша", my: "ခင်ဗျားတို့ (ဣတ္ထိလိင်)" },
+                { ru: "Их", my: "သူတို့" }, { ru: "Красивый", my: "လှပသော" }, { ru: "Большой", my: "ကြီးသော" }
+            ]
+        },
+
+        // ---------- CASE 2 : GENITIVE ----------
+        case2_genitive: {
+            title: "Case 2 – ပိုင်ဆိုင်ကိစ္စ (Genitive – Родительный)",
+            description: "ဒီကိစ္စက '၏' (of)၊ 'မရှိ' (not have)၊ အရေအတွက် (quantity) နဲ့ ရက်စွဲ (dates) တွေမှာ သုံးတယ်။ မေးခွန်း – ဘာ၏? (чего?) / ဘယ်သူ၏? (кого?)",
+            meaning: [
+                { ru: "Possession (of)", my: "ပိုင်ဆိုင်ခြင်း ('၏')" },
+                { ru: "Absence (нет)", my: "မရှိခြင်း (don't have)" },
+                { ru: "Quantity (2,3,4,5+)", my: "အရေအတွက် (၂၊၃၊၄၊ ၅ အထက်)" },
+                { ru: "Dates (day/month)", my: "ရက်စွဲ (ရက်/လ)" },
+                { ru: "Partitive (some/amount)", my: "ပမာဏ၊ အပိုင်းအစ" },
+                { ru: "After prepositions", my: "ဝိဘတ်အချို့နောက် (из, от, до, без, для, у, около)" }
+            ],
+            sections: {
+                intro: {
+                    title: "၁။ ပိုင်ဆိုင်ကိစ္စ – အခြေခံသဘောတရား",
+                    points: [
+                        "📌 ပိုင်ဆိုင်ခြင်း ('၏') – дом друга (သူငယ်ချင်း၏အိမ်)",
+                        "📌 မရှိခြင်း – у меня нет книги (ငါ့မှာ စာအုပ်မရှိဘူး)",
+                        "📌 အရေအတွက် – два студента (ကျောင်းသား ၂ ယောက်)",
+                        "📌 ရက်စွဲ – первое января (ဇန်နဝါရီ ၁ ရက်)",
+                        "📌 ပမာဏ – стакан воды (ရေတစ်ခွက်)"
+                    ]
+                },
+                nounEndings: {
+                    title: "၂။ စကားလုံး (Noun) ပိုင်ဆိုင်ကိစ္စ နိဂုံး",
+                    table: {
+                        headers: ["လိင်", "မူရင်းနိဂုံး", "ပြောင်းလဲပုံ", "ဥပမာ", "အဓိပ္ပါယ်"],
+                        rows: [
+                            { col1: "အမျိုးသား", col2: "ဗျည်းဆုံး", col3: "+а", col4: "стол → стола", col5: "စားပွဲ၏" },
+                            { col1: "အမျိုးသား -й", col2: "-й", col3: "-я", col4: "музей → музея", col5: "ပြတိုက်၏" },
+                            { col1: "အမျိုးသား -ь", col2: "-ь", col3: "-я", col4: "учитель → учителя", col5: "ဆရာ၏" },
+                            { col1: "ဣတ္ထိလိင် -а", col2: "-а", col3: "-ы/-и", col4: "книга → книги", col5: "စာအုပ်၏" },
+                            { col1: "ဣတ္ထိလိင် -я", col2: "-я", col3: "-и", col4: "семья → семьи", col5: "မိသားစု၏" },
+                            { col1: "ဣတ္ထိလိင် -ь", col2: "-ь", col3: "-и", col4: "ночь → ночи", col5: "ည၏" },
+                            { col1: "နပုလ္လိင် -о", col2: "-о", col3: "-а", col4: "окно → окна", col5: "ပြတင်းပေါက်၏" },
+                            { col1: "နပုလ္လိင် -е", col2: "-е", col3: "-я", col4: "море → моря", col5: "ပင်လယ်၏" }
+                        ]
+                    }
+                },
+                usage: {
+                    title: "၃။ ပိုင်ဆိုင်ကိစ္စ သုံးတဲ့နေရာတွေ",
+                    points: [
+                        "📌 ပိုင်ဆိုင်ခြင်း – дом моего брата (ငါ့အစ်ကို၏အိမ်)",
+                        "📌 у + genitive – у меня нет времени (ငါ့မှာ အချိန်မရှိဘူး)",
+                        "📌 အရေအတွက် – два друга (၂ ယောက်), пять домов (၅ လုံး)",
+                        "📌 ရက်စွဲ – восьмое марта (မတ်လ ၈ ရက်)",
+                        "📌 ပမာဏ – стакан чая (လက်ဖက်ရည်တစ်ခွက်)"
+                    ],
+                    examples: [
+                        { ru: "У меня нет книги.", my: "ငါ့မှာ စာအုပ်မရှိဘူး။" },
+                        { ru: "Это дом друга.", my: "ဒါ သူငယ်ချင်း၏အိမ်ပါ။" },
+                        { ru: "два студента", my: "ကျောင်းသား ၂ ယောက်" },
+                        { ru: "первое января", my: "ဇန်နဝါရီ ၁ ရက်" },
+                        { ru: "стакан воды", my: "ရေတစ်ခွက်" }
+                    ]
+                },
+                examples10: {
+                    title: "၄။ ဥပမာ ၁၀ ခု (ပိုင်ဆိုင်ကိစ္စ)",
+                    list: [
+                        { ru: "У меня нет денег.", my: "ငါ့မှာ ပိုက်ဆံမရှိဘူး။" },
+                        { ru: "Это книга моего брата.", my: "ဒါ ငါ့အစ်ကို၏စာအုပ်ပါ။" },
+                        { ru: "У тебя есть время?", my: "မင်းမှာ အချိန်ရှိလား?" },
+                        { ru: "Я купил килограмм яблок.", my: "ငါ ပန်းသီးတစ်ကီလိုဝယ်တယ်။" },
+                        { ru: "Он пришёл без друга.", my: "သူ သူငယ်ချင်းမပါဘဲ လာတယ်။" },
+                        { ru: "Мы живём около парка.", my: "ငါတို့ ပန်းခြံအနီးမှာ နေတယ်။" },
+                        { ru: "Это дом моей сестры.", my: "ဒါ ငါ့အစ်မ၏အိမ်ပါ။" },
+                        { ru: "У него нет машины.", my: "သူ့မှာ ကားမရှိဘူး။" },
+                        { ru: "Она ждёт звонка.", my: "သူမ ဖုန်းခေါ်ဆိုမှုကို စောင့်နေတယ်။" },
+                        { ru: "Мы хотим чашку чая.", my: "ငါတို့ လက်ဖက်ရည်တစ်ခွက် လိုချင်တယ်။" }
+                    ]
+                }
+            },
+            vocabulary: [
+                { ru: "Дом", my: "အိမ်" }, { ru: "Книга", my: "စာအုပ်" }, { ru: "Друг", my: "သူငယ်ချင်း" },
+                { ru: "Время", my: "အချိန်" }, { ru: "Деньги", my: "ပိုက်ဆံ" }, { ru: "Машина", my: "ကား" },
+                { ru: "Яблоко", my: "ပန်းသီး" }, { ru: "Вода", my: "ရေ" }, { ru: "Чай", my: "လက်ဖက်ရည်" },
+                { ru: "Парк", my: "ပန်းခြံ" }, { ru: "Брат", my: "အစ်ကို" }, { ru: "Сестра", my: "အစ်မ" }
+            ]
+        },
+
+        // ---------- CASE 3 : DATIVE ----------
+        case3_dative: {
+            title: "Case 3 – ပေးအပ်ကိစ္စ (Dative – Дательный)",
+            description: "ဒီကိစ္စက 'ကို' (to / for) – လက်ခံသူ၊ အသက်အရွယ် (Мне 25 лет)၊ နာမဝိသေသနတွေနဲ့သုံး (Мне холодно)၊ ကြိုက်ခြင်း (Мне нравится) တွေမှာ သုံးတယ်။",
+            meaning: [
+                { ru: "To / For", my: "လက်ခံသူ (to / for)" },
+                { ru: "Age (Мне ... лет)", my: "အသက်အရွယ်" },
+                { ru: "Impersonal expressions", my: "နာမဝိသေသနတွေနဲ့သုံး" },
+                { ru: "Like (Мне нравится)", my: "ကြိုက်ခြင်း" },
+                { ru: "After prepositions (к, по)", my: "ဝိဘတ်များနောက် (к, по)" }
+            ],
+            sections: {
+                intro: {
+                    title: "၁။ ပေးအပ်ကိစ္စ – အခြေခံသဘောတရား",
+                    points: [
+                        "📌 လက်ခံသူ – Я даю книгу другу. (ငါ သူငယ်ချင်းကို စာအုပ်ပေးတယ်။)",
+                        "📌 အသက် – Мне 25 лет. (ငါ့အသက် ၂၅ နှစ်)",
+                        "📌 ခံစားချက် – Мне холодно. (ငါ့ကို အေးတယ်)",
+                        "📌 ကြိုက်ခြင်း – Мне нравится. (ငါ့ကို ကြိုက်တယ်)",
+                        "📌 ဝိဘတ်များ – к, по"
+                    ]
+                },
+                nounEndings: {
+                    title: "၂။ စကားလုံး (Noun) ပေးအပ်ကိစ္စ နိဂုံး",
+                    table: {
+                        headers: ["လိင်", "မူရင်းနိဂုံး", "ပြောင်းလဲပုံ", "ဥပမာ", "အဓိပ္ပါယ်"],
+                        rows: [
+                            { col1: "အမျိုးသား", col2: "ဗျည်းဆုံး", col3: "+у", col4: "стол → столу", col5: "စားပွဲကို" },
+                            { col1: "အမျိုးသား -й", col2: "-й", col3: "-ю", col4: "музей → музею", col5: "ပြတိုက်ကို" },
+                            { col1: "အမျိုးသား -ь", col2: "-ь", col3: "-ю", col4: "учитель → учителю", col5: "ဆရာကို" },
+                            { col1: "ဣတ္ထိလိင် -а", col2: "-а", col3: "-е", col4: "книга → книге", col5: "စာအုပ်ကို" },
+                            { col1: "ဣတ္ထိလိင် -я", col2: "-я", col3: "-е", col4: "семья → семье", col5: "မိသားစုကို" },
+                            { col1: "ဣတ္ထိလိင် -ь", col2: "-ь", col3: "-и", col4: "ночь → ночи", col5: "ညကို" },
+                            { col1: "နပုလ္လိင် -о", col2: "-о", col3: "-у", col4: "окно → окну", col5: "ပြတင်းပေါက်ကို" },
+                            { col1: "နပုလ္လိင် -е", col2: "-е", col3: "-ю", col4: "море → морю", col5: "ပင်လယ်ကို" }
+                        ]
+                    }
+                },
+                examples10: {
+                    title: "၃။ ဥပမာ ၁၀ ခု (ပေးအပ်ကိစ္စ)",
+                    list: [
+                        { ru: "Я даю книгу другу.", my: "ငါ သူငယ်ချင်းကို စာအုပ်ပေးတယ်။" },
+                        { ru: "Мне холодно.", my: "ငါ့ကို အေးတယ်။" },
+                        { ru: "Мне нравится эта книга.", my: "ဒီစာအုပ်က ငါ့ကို ကြိုက်တယ်။" },
+                        { ru: "Мне 25 лет.", my: "ငါ အသက် ၂၅ နှစ်ပါ။" },
+                        { ru: "Я помогаю маме.", my: "ငါ အမေကို ကူညီတယ်။" },
+                        { ru: "Я звоню другу.", my: "ငါ သူငယ်ချင်းကို ဖုန်းဆက်တယ်။" },
+                        { ru: "Ему нравится музыка.", my: "သူ့ကို ဂီတကြိုက်တယ်။" },
+                        { ru: "Нам нужна помощь.", my: "ငါတို့ကို အကူအညီလိုတယ်။" },
+                        { ru: "Она пишет письмо сестре.", my: "သူမ အစ်မကို စာရေးတယ်။" },
+                        { ru: "Мне жарко.", my: "ငါ့ကို ပူတယ်။" }
+                    ]
+                }
+            },
+            vocabulary: [
+                { ru: "Друг", my: "သူငယ်ချင်း" }, { ru: "Мама", my: "အမေ" }, { ru: "Сестра", my: "အစ်မ" },
+                { ru: "Музыка", my: "ဂီတ" }, { ru: "Помощь", my: "အကူအညီ" }, { ru: "Письмо", my: "စာ" },
+                { ru: "Книга", my: "စာအုပ်" }, { ru: "Время", my: "အချိန်" }, { ru: "Работа", my: "အလုပ်" }
+            ]
+        },
+
+        // ---------- CASE 4 : ACCUSATIVE ----------
+        case4_accusative: {
+            title: "Case 4 – ခံရာကိစ္စ (Accusative – Винительный)",
+            description: "ဒီကိစ္စက တိုက်ရိုက်ခံရသူ (Direct Object)၊ လှုပ်ရှားမှုရဲ့ဦးတည်ရာ၊ အချိန်တွေမှာ သုံးတယ်။",
+            meaning: [
+                { ru: "Direct Object", my: "တိုက်ရိုက်ခံရသူ" },
+                { ru: "Direction (в, на)", my: "ဦးတည်ရာ (в, на)" },
+                { ru: "Time (в + day)", my: "အချိန် (в + နေ့)" },
+                { ru: "After prepositions", my: "ဝိဘတ်များနောက်" }
+            ],
+            sections: {
+                intro: {
+                    title: "၁။ ခံရာကိစ္စ – အခြေခံသဘောတရား",
+                    points: [
+                        "📌 တိုက်ရိုက်ခံရသူ – Я читаю книгу. (ငါ စာအုပ်ဖတ်တယ်။)",
+                        "📌 ဦးတည်ရာ – Я иду в школу. (ငါ ကျောင်းကိုသွားတယ်။)",
+                        "📌 အချိန် – Я приду в пятницу. (ငါ သောကြာနေ့မှာလာမယ်။)"
+                    ]
+                },
+                nounEndings: {
+                    title: "၂။ စကားလုံး (Noun) ခံရာကိစ္စ နိဂုံး",
+                    table: {
+                        headers: ["လိင်", "မူရင်းနိဂုံး", "ပြောင်းလဲပုံ", "ဥပမာ", "အဓိပ္ပါယ်"],
+                        rows: [
+                            { col1: "အမျိုးသား (သက်ရှိ)", col2: "ဗျည်းဆုံး", col3: "-а", col4: "брат → брата", col5: "အစ်ကိုကို" },
+                            { col1: "အမျိုးသား (သက်မဲ့)", col2: "ဗျည်းဆုံး", col3: "မပြောင်း", col4: "стол → стол", col5: "စားပွဲကို" },
+                            { col1: "ဣတ္ထိလိင် -а", col2: "-а", col3: "-у", col4: "книга → книгу", col5: "စာအုပ်ကို" },
+                            { col1: "ဣတ္ထိလိင် -я", col2: "-я", col3: "-ю", col4: "семья → семью", col5: "မိသားစုကို" },
+                            { col1: "နပုလ္လိင်", col2: "-о/-е", col3: "မပြောင်း", col4: "окно → окно", col5: "ပြတင်းပေါက်ကို" }
+                        ]
+                    }
+                },
+                examples10: {
+                    title: "၃။ ဥပမာ ၁၀ ခု (ခံရာကိစ္စ)",
+                    list: [
+                        { ru: "Я читаю книгу.", my: "ငါ စာအုပ်ဖတ်တယ်။" },
+                        { ru: "Я вижу брата.", my: "ငါ အစ်ကိုကိုမြင်တယ်။" },
+                        { ru: "Я иду в школу.", my: "ငါ ကျောင်းကိုသွားတယ်။" },
+                        { ru: "Я люблю маму.", my: "ငါ အမေကိုချစ်တယ်။" },
+                        { ru: "Я купил стол.", my: "ငါ စားပွဲဝယ်တယ်။" },
+                        { ru: "Она видит сестру.", my: "သူမ အစ်မကိုမြင်တယ်။" },
+                        { ru: "Мы смотрим фильм.", my: "ငါတို့ ရုပ်ရှင်ကြည့်တယ်။" },
+                        { ru: "Он ждёт автобус.", my: "သူ ဘတ်စ်ကားစောင့်နေတယ်။" },
+                        { ru: "Я приду в пятницу.", my: "ငါ သောကြာနေ့မှာလာမယ်။" },
+                        { ru: "Она положила книгу на стол.", my: "သူမ စာအုပ်ကို စားပွဲပေါ်တင်တယ်။" }
+                    ]
+                }
+            },
+            vocabulary: [
+                { ru: "Книга", my: "စာအုပ်" }, { ru: "Брат", my: "အစ်ကို" }, { ru: "Школа", my: "ကျောင်း" },
+                { ru: "Мама", my: "အမေ" }, { ru: "Стол", my: "စားပွဲ" }, { ru: "Сестра", my: "အစ်မ" },
+                { ru: "Фильм", my: "ရုပ်ရှင်" }, { ru: "Автобус", my: "ဘတ်စ်ကား" }
+            ]
+        },
+
+        // ---------- CASE 5 : INSTRUMENTAL ----------
+        case5_instrumental: {
+            title: "Case 5 – ကြိယာကိစ္စ (Instrumental – Творительный)",
+            description: "ဒီကိစ္စက ကိရိယာ/နည်းလမ်း (ဘာနဲ့လုပ်တယ်)၊ အတူ (ဘယ်သူနဲ့အတူ)၊ အလုပ်အကိုင်၊ စိတ်ဝင်စားခြင်းတွေမှာ သုံးတယ်။",
+            meaning: [
+                { ru: "Instrument (with)", my: "ကိရိယာ / နည်းလမ်း" },
+                { ru: "Together (с)", my: "အတူ (с)" },
+                { ru: "Profession", my: "အလုပ်အကိုင်" },
+                { ru: "Interest (интересоваться)", my: "စိတ်ဝင်စားခြင်း" },
+                { ru: "After prepositions", my: "ဝိဘတ်များနောက်" }
+            ],
+            sections: {
+                intro: {
+                    title: "၁။ ကြိယာကိစ္စ – အခြေခံသဘောတရား",
+                    points: [
+                        "📌 ကိရိယာ – Я пишу ручкой. (ငါ ဘောပင်နဲ့ရေးတယ်။)",
+                        "📌 အတူ – Я говорю с другом. (ငါ သူငယ်ချင်းနဲ့ပြောတယ်။)",
+                        "📌 အလုပ် – Я работаю учителем. (ငါ ဆရာအလုပ်လုပ်တယ်။)",
+                        "📌 စိတ်ဝင်စား – Я интересуюсь искусством. (ငါ အနုပညာကိုစိတ်ဝင်စားတယ်။)"
+                    ]
+                },
+                nounEndings: {
+                    title: "၂။ စကားလုံး (Noun) ကြိယာကိစ္စ နိဂုံး",
+                    table: {
+                        headers: ["လိင်", "မူရင်းနိဂုံး", "ပြောင်းလဲပုံ", "ဥပမာ", "အဓိပ္ပါယ်"],
+                        rows: [
+                            { col1: "အမျိုးသား", col2: "ဗျည်းဆုံး", col3: "+ом", col4: "стол → столом", col5: "စားပွဲနဲ့" },
+                            { col1: "အမျိုးသား -й", col2: "-й", col3: "-ем", col4: "музей → музеем", col5: "ပြတိုက်နဲ့" },
+                            { col1: "အမျိုးသား -ь", col2: "-ь", col3: "-ем", col4: "учитель → учителем", col5: "ဆရာနဲ့" },
+                            { col1: "ဣတ္ထိလိင် -а", col2: "-а", col3: "-ой", col4: "книга → книгой", col5: "စာအုပ်နဲ့" },
+                            { col1: "ဣတ္ထိလိင် -я", col2: "-я", col3: "-ей", col4: "семья → семьей", col5: "မိသားစုနဲ့" },
+                            { col1: "ဣတ္ထိလိင် -ь", col2: "-ь", col3: "-ью", col4: "ночь → ночью", col5: "ညနဲ့" },
+                            { col1: "နပုလ္လိင် -о", col2: "-о", col3: "-ом", col4: "окно → окном", col5: "ပြတင်းပေါက်နဲ့" }
+                        ]
+                    }
+                },
+                examples10: {
+                    title: "၃။ ဥပမာ ၁၀ ခု (ကြိယာကိစ္စ)",
+                    list: [
+                        { ru: "Я пишу ручкой.", my: "ငါ ဘောပင်နဲ့ရေးတယ်။" },
+                        { ru: "Я говорю с другом.", my: "ငါ သူငယ်ချင်းနဲ့ပြောတယ်။" },
+                        { ru: "Я работаю учителем.", my: "ငါ ဆရာအလုပ်လုပ်တယ်။" },
+                        { ru: "Я интересуюсь искусством.", my: "ငါ အနုပညာကိုစိတ်ဝင်စားတယ်။" },
+                        { ru: "Мы едем поездом.", my: "ငါတို့ ရထားနဲ့သွားတယ်။" },
+                        { ru: "Она довольна своей работой.", my: "သူမ သူမရဲ့အလုပ်ကို ကျေနပ်တယ်။" },
+                        { ru: "Я горжусь своим сыном.", my: "ငါ ငါ့သားကို ဂုဏ်ယူတယ်။" },
+                        { ru: "Мы встретились с друзьями.", my: "ငါတို့ သူငယ်ချင်းတွေနဲ့တွေ့ဆုံခဲ့တယ်။" },
+                        { ru: "Она стала врачом.", my: "သူမ ဆရာဝန်ဖြစ်လာတယ်။" },
+                        { ru: "Я хочу быть инженером.", my: "ငါ အင်ဂျင်နီယာဖြစ်ချင်တယ်။" }
+                    ]
+                }
+            },
+            vocabulary: [
+                { ru: "Ручка", my: "ဘောပင်" }, { ru: "Друг", my: "သူငယ်ချင်း" }, { ru: "Учитель", my: "ဆရာ" },
+                { ru: "Искусство", my: "အနုပညာ" }, { ru: "Поезд", my: "ရထား" }, { ru: "Работа", my: "အလုပ်" },
+                { ru: "Сын", my: "သား" }, { ru: "Врач", my: "ဆရာဝန်" }, { ru: "Инженер", my: "အင်ဂျင်နီယာ" }
+            ]
+        },
+
+        // ---------- CASE 6 : PREPOSITIONAL ----------
+        case6_prepositional: {
+            title: "Case 6 – ဝိဘတ်ကိစ္စ (Prepositional – Предложный)",
+            description: "ဒီကိစ္စက နေရာ (ဘယ်မှာ)၊ အကြောင်း (ဘာအကြောင်း)၊ အချိန် (ဘယ်အချိန်မှာ) တွေမှာ သုံးတယ်။ ဝိဘတ်များ – о (об), в, на, при",
+            meaning: [
+                { ru: "Location (in/on)", my: "နေရာ (ဘယ်မှာ)" },
+                { ru: "About (о)", my: "အကြောင်း (о)" },
+                { ru: "Time (in)", my: "အချိန် (ဘယ်အချိန်မှာ)" },
+                { ru: "After prepositions", my: "ဝိဘတ်များနောက်" }
+            ],
+            sections: {
+                intro: {
+                    title: "၁။ ဝိဘတ်ကိစ္စ – အခြေခံသဘောတရား",
+                    points: [
+                        "📌 နေရာ – Я живу в Москве. (ငါ မော်စကိုမှာနေတယ်။)",
+                        "📌 အကြောင်း – Я думаю о друге. (ငါ သူငယ်ချင်းအကြောင်းစဉ်းစားတယ်။)",
+                        "📌 အချိန် – Я приду в пятницу. (ငါ သောကြာနေ့မှာလာမယ်။)",
+                        "📌 ဝိဘတ်များ – о (об), в, на, при"
+                    ]
+                },
+                nounEndings: {
+                    title: "၂။ စကားလုံး (Noun) ဝိဘတ်ကိစ္စ နိဂုံး",
+                    table: {
+                        headers: ["လိင်", "မူရင်းနိဂုံး", "ပြောင်းလဲပုံ", "ဥပမာ", "အဓိပ္ပါယ်"],
+                        rows: [
+                            { col1: "အမျိုးသား", col2: "ဗျည်းဆုံး", col3: "+е", col4: "стол → столе", col5: "စားပွဲမှာ" },
+                            { col1: "အမျိုးသား -й", col2: "-й", col3: "-и", col4: "музей → музее", col5: "ပြတိုက်မှာ" },
+                            { col1: "အမျိုးသား -ь", col2: "-ь", col3: "-е", col4: "учитель → учителе", col5: "ဆရာမှာ" },
+                            { col1: "ဣတ္ထိလိင် -а", col2: "-а", col3: "-е", col4: "книга → книге", col5: "စာအုပ်မှာ" },
+                            { col1: "ဣတ္ထိလိင် -я", col2: "-я", col3: "-е", col4: "семья → семье", col5: "မိသားစုမှာ" },
+                            { col1: "ဣတ္ထိလိင် -ь", col2: "-ь", col3: "-и", col4: "ночь → ночи", col5: "ညမှာ" },
+                            { col1: "နပုလ္လိင် -о", col2: "-о", col3: "-е", col4: "окно → окне", col5: "ပြတင်းပေါက်မှာ" },
+                            { col1: "နပုလ္လိင် -е", col2: "-е", col3: "-и", col4: "море → море", col5: "ပင်လယ်မှာ" }
+                        ]
+                    }
+                },
+                examples10: {
+                    title: "၃။ ဥပမာ ၁၀ ခု (ဝိဘတ်ကိစ္စ)",
+                    list: [
+                        { ru: "Я живу в Москве.", my: "ငါ မော်စကိုမှာနေတယ်။" },
+                        { ru: "Книга на столе.", my: "စာအုပ် စားပွဲပေါ်မှာရှိတယ်။" },
+                        { ru: "Я думаю о друге.", my: "ငါ သူငယ်ချင်းအကြောင်းစဉ်းစားတယ်။" },
+                        { ru: "Мы говорим о работе.", my: "ငါတို့ အလုပ်အကြောင်းပြောတယ်။" },
+                        { ru: "Я был в школе.", my: "ငါ ကျောင်းမှာရှိခဲ့တယ်။" },
+                        { ru: "Она живёт в центре.", my: "သူမ မြို့လယ်မှာနေတယ်။" },
+                        { ru: "Я отдыхаю в парке.", my: "ငါ ပန်းခြံမှာအနားယူတယ်။" },
+                        { ru: "Он работает в офисе.", my: "သူ ရုံးမှာအလုပ်လုပ်တယ်။" },
+                        { ru: "Мы говорим о планах.", my: "ငါတို့ အစီအစဉ်တွေအကြောင်းပြောတယ်။" },
+                        { ru: "Я приду в пятницу.", my: "ငါ သောကြာနေ့မှာလာမယ်။" }
+                    ]
+                }
+            },
+            vocabulary: [
+                { ru: "Москва", my: "မော်စကို" }, { ru: "Стол", my: "စားပွဲ" }, { ru: "Друг", my: "သူငယ်ချင်း" },
+                { ru: "Работа", my: "အလုပ်" }, { ru: "Школа", my: "ကျောင်း" }, { ru: "Центр", my: "မြို့လယ်" },
+                { ru: "Парк", my: "ပန်းခြံ" }, { ru: "Офис", my: "ရုံး" }, { ru: "План", my: "အစီအစဉ်" }
+            ]
+        }
+    };
+
+    // ---------- POPULATE SPINNER ----------
+    const select = document.getElementById('lessonSelect');
+    Object.keys(lessons).forEach(key => {
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.textContent = lessons[key].title;
+        select.appendChild(opt);
+    });
+
+    // ---------- RENDER FUNCTION ----------
+    function renderLesson(lessonKey) {
+        const data = lessons[lessonKey];
+        if (!data) return;
+
+        const display = document.getElementById('lessonDisplay');
+
+        let html = `<h2 style="color:#1a2f4e;">${data.title}</h2>`;
+        html += `<p style="font-size:1.05rem; color:#2a4a6e;">${data.description}</p>`;
+
+        // Meaning Grid
+        if (data.meaning) {
+            html += `<div class="meaning-grid">`;
+            data.meaning.forEach(m => {
+                html += `<div class="meaning-item"><span class="ru">${m.ru}</span><span class="my">${m.my}</span></div>`;
+            });
+            html += `</div>`;
+        }
+
+        // Sections
+        if (data.sections) {
+            Object.keys(data.sections).forEach(sectionKey => {
+                const section = data.sections[sectionKey];
+                html += `<div class="section-box">`;
+                html += `<h3>${section.title}</h3>`;
+
+                if (section.points) {
+                    html += `<ul style="list-style:none;padding-left:0;">`;
+                    section.points.forEach(p => {
+                        html += `<li style="padding:4px 0; border-bottom:1px dashed #e8ecf2;">${p}</li>`;
+                    });
+                    html += `</ul>`;
+                }
+
+                if (section.description) {
+                    html += `<p>${section.description}</p>`;
+                }
+
+                if (section.examples) {
+                    section.examples.forEach(ex => {
+                        html += `<div class="example-line"><span class="ru">${ex.ru}</span><span class="my">${ex.my}</span></div>`;
+                    });
+                }
+
+                if (section.list) {
+                    section.list.forEach(ex => {
+                        html += `<div class="example-line"><span class="ru">${ex.ru}</span><span class="my">${ex.my}</span></div>`;
+                    });
+                }
+
+                if (section.table) {
+                    html += `<table class="case-table"><thead><tr>`;
+                    section.table.headers.forEach(h => {
+                        html += `<th>${h}</th>`;
+                    });
+                    html += `</tr></thead><tbody>`;
+                    section.table.rows.forEach(row => {
+                        html += `<tr>`;
+                        const cols = [row.col1, row.col2, row.col3, row.col4, row.col5, row.col6];
+                        cols.forEach(c => {
+                            if (c) html += `<td>${c}</td>`;
+                        });
+                        html += `</tr>`;
+                    });
+                    html += `</tbody></table>`;
+                }
+
+                if (section.note) {
+                    html += `<div class="note">${section.note}</div>`;
+                }
+
+                html += `</div>`;
+            });
+        }
+
+        // Vocabulary
+        if (data.vocabulary && data.vocabulary.length > 0) {
+            html += `<div class="section-box" style="border-left-color:#2a7a8a;"><h3>📚 အဘိဓာန် (Vocabulary)</h3><div class="vocab-grid">`;
+            data.vocabulary.forEach(v => {
+                html += `<div class="vocab-item"><span class="vocab-ru">${v.ru}</span><span class="vocab-my">${v.my}</span></div>`;
+            });
+            html += `</div></div>`;
+        }
+
+        display.innerHTML = html;
+    }
+
+    // ---------- INITIAL ----------
+    renderLesson('case1_nominative');
+    select.addEventListener('change', (e) => {
+        renderLesson(e.target.value);
+    });
+</script>
+</body>
+</html>

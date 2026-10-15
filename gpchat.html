@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawaii Chat World 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffeef2;
+            --card-bg: #ffffff;
+            --primary-pink: #ff85a2;
+            --secondary-pink: #ffb3c6;
+            --accent-purple: #b5e2fa;
+            --text-color: #5c4b51;
+            --soft-white: #fff5f7;
+            --border-radius: 24px;
+            --font-family: 'Fredoka', cursive, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            overflow: hidden;
+            background-image: radial-gradient(#ffcad4 15%, transparent 15%);
+            background-size: 20px 20px;
+        }
+
+        /* Cute Login / Register Screen */
+        #login-screen {
+            position: fixed; z-index: 100;
+            width: 100%; height: 100%;
+            background: rgba(255, 238, 242, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+        }
+
+        .cute-box {
+            background: var(--card-bg);
+            border: 4px solid var(--secondary-pink);
+            border-radius: var(--border-radius);
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(255, 133, 162, 0.2);
+            width: 90%; max-width: 380px;
+            text-align: center;
+            animation: bounceIn 0.5s ease;
+        }
+
+        .cute-title {
+            color: var(--primary-pink);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            color: #886f78;
+            margin-left: 5px;
+            font-weight: 600;
+        }
+
+        .cute-input {
+            width: 100%;
+            padding: 12px 18px;
+            border: 2px solid var(--secondary-pink);
+            border-radius: 50px;
+            outline: none;
+            font-family: var(--font-family);
+            font-size: 1rem;
+            color: var(--text-color);
+            background: var(--soft-white);
+            margin-top: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .cute-input:focus {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 8px rgba(255, 133, 162, 0.4);
+        }
+
+        .btn-cute {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 50px;
+            font-family: var(--font-family);
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(255, 133, 162, 0.4);
+            transition: transform 0.1s ease, background 0.2s ease;
+        }
+
+        .btn-cute:hover {
+            background: #ff6b8b;
+            transform: scale(1.02);
+        }
+
+        .btn-logout {
+            background: #ffb3c6;
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: var(--font-family);
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            background: #ff85a2;
+        }
+
+        /* Main Chat Container */
+        #chat-container {
+            display: flex; flex-direction: column;
+            height: 100vh; padding: 20px;
+            max-width: 800px; margin: 0 auto;
+        }
+
+        .chat-header {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--card-bg);
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 133, 162, 0.15);
+            margin-bottom: 15px;
+            border: 2px solid var(--secondary-pink);
+        }
+
+        #messages-area {
+            flex: 1; overflow-y: auto;
+            border: 2px solid var(--secondary-pink);
+            border-radius: var(--border-radius);
+            padding: 18px; margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .msg-entry {
+            margin-bottom: 12px; line-height: 1.4;
+            animation: fadeIn 0.2s ease;
+            background: var(--soft-white);
+            padding: 10px 15px;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            display: inline-block;
+            max-width: 85%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            clear: both;
+            float: left;
+        }
+
+        .msg-entry.self {
+            float: right;
+            background: var(--primary-pink);
+            color: white;
+            border-radius: 18px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg-entry.self .msg-user, .msg-entry.self .msg-time {
+            color: #ffeef2;
+        }
+
+        .msg-user { color: var(--primary-pink); font-weight: bold; margin-right: 5px; }
+        .msg-time { font-size: 0.75rem; color: #a08a93; float: right; margin-left: 10px; margin-top: 2px; }
+
+        .input-bar {
+            display: flex; align-items: center;
+            background: var(--card-bg); 
+            border: 2px solid var(--secondary-pink);
+            border-radius: 50px;
+            padding: 6px 15px 6px 20px;
+            box-shadow: 0 4px 15px rgba(255, 133, 162, 0.15);
+        }
+
+        .input-bar input {
+            background: transparent; border: none;
+            color: var(--text-color); outline: none;
+            font-family: var(--font-family); font-size: 1rem;
+            width: 100%;
+        }
+
+        .btn-send {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px; height: 40px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex; justify-content: center; align-items: center;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .btn-send:hover { transform: scale(1.1); }
+
+        .error-msg { color: #ff4757; font-size: 0.85rem; margin-top: 10px; }
+        .hidden { display: none !important; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounceIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: var(--secondary-pink); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+<!-- Cute Login / Register Screen -->
+<div id="login-screen">
+    <div class="cute-box">
+        <h2 class="cute-title">✨ Welcome! 🎀</h2>
+        
+        <div class="input-group">
+            <label>Username (4-20 chars)</label>
+            <input type="text" class="cute-input" id="u-name" placeholder="eg. KittyPink" maxlength="20" autofocus>
+        </div>
+        
+        <div class="input-group">
+            <label>Passcode (4-20 chars)</label>
+            <input type="password" class="cute-input" id="u-pass" placeholder="••••••••" maxlength="20">
+        </div>
+        
+        <button class="btn-cute" id="btn-login-register">Start Chatting 💕</button>
+
+        <div id="login-error" class="error-msg"></div>
+    </div>
+</div>
+
+<!-- Main Chat Container -->
+<div id="chat-container" class="hidden">
+    <div class="chat-header">
+        <div style="font-weight: 600; color: var(--primary-pink);">🌸 Cute Chat Room</div>
+        <button class="btn-logout" id="btn-logout">Logout ➔</button>
+    </div>
+    
+    <div id="messages-area">
+        <div style="text-align: center; color: #b59da4; font-size: 0.9rem; margin: 10px 0;">✨ Welcome to the chat! ✨</div>
+    </div>
+    
+    <div class="input-bar">
+        <input type="text" id="m-text" placeholder="Type a cute message..." autocomplete="off">
+        <button class="btn-send" id="btn-send">🌸</button>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCTqjOlJ4z-HO7c8M_1i2RlUUTvkcAeV-I",
+        authDomain: "chat-8bd8f.firebaseapp.com",
+        projectId: "chat-8bd8f",
+        storageBucket: "chat-8bd8f.firebasestorage.app",
+        messagingSenderId: "440978333450",
+        appId: "1:440978333450:web:8bf0c7a65be86183dde4f3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const msgCol = collection(db, 'messages');
+
+    let currentSessionUser = "";
+    let currentSessionPass = "";
+
+    // --- Check Local Storage on Startup (Auto Login) ---
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedUser = localStorage.getItem('chat_username');
+        const savedPass = localStorage.getItem('chat_password');
+
+        if (savedUser && savedPass) {
+            currentSessionUser = savedUser;
+            currentSessionPass = savedPass;
+            enterChatRoom();
+        }
+    });
+
+    // --- Authentication ---
+    function handleAuth() {
+        const user = document.getElementById('u-name').value.trim();
+        const pass = document.getElementById('u-pass').value.trim();
+        const errorDiv = document.getElementById('login-error');
+
+        if (user.length < 4 || pass.length < 4) {
+            errorDiv.innerText = "🌸 Please use at least 4 characters!";
+            return;
+        }
+
+        localStorage.setItem('chat_username', user);
+        localStorage.setItem('chat_password', pass);
+
+        currentSessionUser = user;
+        currentSessionPass = pass;
+
+        enterChatRoom();
+    }
+
+    document.getElementById('btn-login-register').addEventListener('click', handleAuth);
+
+    function enterChatRoom() {
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('chat-container').classList.remove('hidden');
+        document.getElementById('m-text').focus();
+        startChat();
+    }
+
+    // --- Logout ---
+    document.getElementById('btn-logout').addEventListener('click', () => {
+        localStorage.removeItem('chat_username');
+        localStorage.removeItem('chat_password');
+        location.reload();
+    });
+
+    // --- Chat Logic ---
+    async function sendMessage() {
+        const msgInput = document.getElementById('m-text');
+        const msgText = msgInput.value.trim();
+
+        if (!msgText) return;
+
+        try {
+            await addDoc(msgCol, {
+                Username: currentSessionUser,
+                Password: currentSessionPass,
+                text: msgText,
+                CreatedAt: serverTimestamp()
+            });
+            msgInput.value = "";
+        } catch (err) {
+            console.error("Failure: ", err);
+        }
+    }
+
+    document.getElementById('btn-send').addEventListener('click', sendMessage);
+
+    document.getElementById('m-text').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    function startChat() {
+        const q = query(msgCol, orderBy("CreatedAt", "asc"));
+        onSnapshot(q, (snapshot) => {
+            const area = document.getElementById('messages-area');
+            area.innerHTML = '<div style="text-align: center; color: #b59da4; font-size: 0.9rem; margin: 10px 0;">✨ Welcome to the chat! ✨</div>';
+            
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const time = data.CreatedAt ? new Date(data.CreatedAt.seconds * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : "..";
+                const isSelf = data.Username === currentSessionUser;
+                
+                const div = document.createElement('div');
+                div.className = `msg-entry ${isSelf ? 'self' : ''}`;
+                div.style.clear = 'both';
+                div.innerHTML = `
+                    <div>
+                        ${!isSelf ? `<span class="msg-user">${data.Username}</span>` : ''}
+                        <span>${data.text}</span>
+                        <span class="msg-time">${time}</span>
+                    </div>
+                `;
+                area.appendChild(div);
+            });
+            area.scrollTop = area.scrollHeight;
+        });
+    }
+</script>
+
+</body>
+</html>

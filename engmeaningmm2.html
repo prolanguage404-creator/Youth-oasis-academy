@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Vocabulary A1–C2 (300 Days)</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#0d1117;
+    font-family:"Pyidaungsu","Noto Sans Myanmar","Segoe UI",sans-serif;
+    color:#e6edf3; padding:40px 20px;
+    display:flex; justify-content:center; min-height:100vh;
+  }
+  .table-wrapper {
+    width:100%; max-width:900px;
+    background:#161b22; border:1px solid #30363d;
+    border-radius:16px; padding:28px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.6);
+  }
+  .top-bar {
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
+    margin-bottom:20px; padding-bottom:14px;
+    border-bottom:2px solid #21262d;
+  }
+  .table-title { font-size:22px; font-weight:700; color:#58a6ff; }
+  .level-badge {
+    display:inline-block; margin-left:10px;
+    font-size:12px; font-weight:700;
+    padding:3px 10px; border-radius:20px;
+    background:#1f6feb; color:#fff; vertical-align:middle;
+  }
+  .progress-text { font-size:13px; color:#8b949e; margin-top:6px; }
+  .day-spinner {
+    appearance:none; -webkit-appearance:none;
+    background-color:#1c2128;
+    background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2358a6ff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 14px center;
+    color:#e6edf3; font-family:inherit; font-size:15px; font-weight:600;
+    padding:10px 40px 10px 16px;
+    border:1px solid #30363d; border-radius:10px;
+    cursor:pointer; outline:none; min-width:160px;
+    transition:border-color .2s, box-shadow .2s, background-color .2s;
+  }
+  .day-spinner:hover { border-color:#1f6feb; background-color:#21262d; }
+  .day-spinner:focus {
+    border-color:#388bfd;
+    box-shadow:0 0 0 3px rgba(56,139,253,0.35);
+  }
+  .day-spinner option { background:#161b22; color:#e6edf3; }
+  .vocab-table {
+    width:100%; border-collapse:collapse;
+    border-radius:12px; overflow:hidden;
+  }
+  .vocab-table thead th {
+    background:linear-gradient(135deg,#1f6feb,#388bfd);
+    color:#fff; font-size:15px; font-weight:600;
+    text-align:left; padding:14px 16px; letter-spacing:.3px;
+  }
+  .vocab-table tbody td {
+    padding:12px 16px; font-size:15px;
+    border-bottom:1px solid #21262d;
+    color:#c9d1d9; transition:background .2s;
+  }
+  .vocab-table tbody tr:nth-child(even) { background:#1c2128; }
+  .vocab-table tbody tr:hover { background:#21262d; }
+  .vocab-table tbody tr:hover td { color:#fff; }
+  .vocab-table tbody tr:last-child td { border-bottom:none; }
+  .english { font-size:16px; font-weight:600; color:#79c0ff; }
+  .pronun { color:#d2a8ff; font-style:italic; font-weight:500; }
+  .vocab-table tbody td:first-child { color:#8b949e; font-weight:600; width:60px; }
+  .fade-in { animation:fadeIn .35s ease; }
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(6px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @media (max-width:600px) {
+    .table-wrapper { padding:16px; border-radius:12px; }
+    .table-title { font-size:15px; }
+    .progress-text { font-size:11px; }
+    .day-spinner { font-size:13px; padding:9px 36px 9px 14px; min-width:110px; }
+    .vocab-table thead th, .vocab-table tbody td { padding:10px 8px; font-size:13px; }
+    .english { font-size:14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="table-wrapper">
+  <div class="top-bar">
+    <div>
+      <h2 class="table-title" id="tableTitle">Day 60 – A1 Vocabulary</h2>
+      <p class="progress-text" id="progressText">ရက် ၃၀၀ အစီအစဉ် • A1 အပိုင်း (Day 1–50)</p>
+    </div>
+    <select class="day-spinner" id="daySpinner"></select>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr>
+        <th>စဉ်</th>
+        <th>English</th>
+        <th>အသံထွက်</th>
+        <th>အဓိပ္ပာယ်</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<script>
+/* ============ DATA ============ */
+const data = {
+
+  /* ===== DAY 60 (A1) ===== */
+  60: {
+    level: "A1",
+    rows: [
+      ["take off","တိးခ် အော့ဖ်","ချွတ်"],
+      ["try on","ထရိုင် အွန်","ဝတ်ကြည့်"],
+      ["fit","ဖစ်တ်","ကိုက်"],
+      ["match","မက်ချ်","လိုက်ဖက်"],
+      ["fashion","ဖက်ရှင်း","ဖက်ရှင်"],
+      ["style","စတိုင်းလ်","စတိုင်"],
+      ["beauty","ဗျူတီ","အလှအပ"],
+      ["make-up","မိးခ်အန်","မိတ်ကပ်"],
+      ["perfume","ပါဖျူမ်း","ရေမွှေး"],
+      ["ring","ရင်း","လက်စွပ်"],
+      ["necklace","နက်ခ်လက်","လည်ဆွဲ"],
+      ["earring","အီးရင်း","နားကပ်"],
+      ["bracelet","ဘရေ့စ်လက်","လက်ကောက်"],
+      ["watch","ဝေါ့ချ်","လက်ပတ်နာရီ"],
+      ["glasses","ဂလာ့စ်စ်","မျက်မှန်"],
+      ["umbrella","အမ်ဘရဲလာ","ထီး"],
+      ["wallet","ဝေါ်လက်","ပိုက်ဆံအိတ်"],
+      ["bag","ဘက်ဂ်","အိတ်"],
+      ["box","ဘော့ခ်စ်","သေတ္တာ"],
+      ["bottle","ဘော့တယ်လ်","ပုလင်း"],
+      ["cup","ကပ်","ခွက်"],
+      ["glass","ဂလာ့စ်","ဖန်ခွက်"],
+      ["plate","ပလေ့တ်","ပန်းကန်"],
+      ["bowl","ဘိုးလ်","ဇလုံ"],
+      ["spoon","စပူန်း","ဇွန်း"],
+      ["fork","ဖော့ခ်","ခက်ရင်း"],
+      ["knife","နိုက်ဖ်","ဓား"],
+      ["chair","ချဲ","ကုလားထိုင်"],
+      ["table","တေဘယ်လ်","စားပွဲ"],
+      ["bed","ဘက်ဒ်","အိပ်ရာ"],
+      ["pillow","ပီလို","ခေါင်းအုံး"],
+      ["blanket","ဘလန်ကေ့တ်","စောင်"],
+      ["sheet","ရှီးတ်","အိပ်ရာခင်း"],
+      ["towel","တာဝယ်လ်","တဘက်"],
+      ["soap","ဆိုးပ်","ဆပ်ပြာ"],
+      ["toothbrush","တူးသ်ဘရတ်ရှ်","သွားတိုက်တံ"],
+      ["toothpaste","တူးသ်ပေးစ်တ်","သွားတိုက်ဆေး"],
+      ["comb","ကိုမ်း","ဘီး"],
+      ["mirror","မီရာ","မှန်"],
+      ["brush","ဘရတ်ရှ်","စုတ်တံ"],
+      ["key","ကီး","သော့"],
+      ["lock","လော့ခ်","သော့ခတ်"],
+      ["door","ဒေါ","တံခါး"],
+      ["window","ဝင်းဒို","ပြတင်းပေါက်"],
+      ["wall","ဝေါလ်","နံရံ"],
+      ["floor","ဖလော","ကြမ်းပြင်"],
+      ["roof","ရုဖ်","အမိုး"],
+      ["garden","ဂါဒန်","ဥယျာဉ်"],
+      ["garage","ဂရေ့ဂျ်","ကားဂိုဒေါင်"],
+      ["stairs","စတဲစ်","လှေကား"]
+    ]
+  },
+
+  /* ===== DAY 65 (A2) ===== */
+  65: {
+    level: "A2",
+    rows: [
+      ["accept","အက်ဆက်ပ်","လက်ခံ"],
+      ["allow","အလောင်","ခွင့်ပြု"],
+      ["apologise","အပိုလိုဂျိုက်ဇ်","တောင်းပန်"],
+      ["appear","အပီးယာ","ပေါ်လာ"],
+      ["apply","အပလိုင်","လျှောက်ထား"],
+      ["argue","အာဂျူး","ငြင်းခုံ"],
+      ["arrange","အရိန်းဂျ်","စီစဉ်"],
+      ["attend","အက်တန်ဒ်","တက်ရောက်"],
+      ["avoid","အဗွိုက်ဒ်","ရှောင်"],
+      ["believe","ဘီလီးဗ်","ယုံကြည်"],
+      ["belong","ဘီလောင်","ပိုင်ဆိုင်"],
+      ["celebrate","ဆယ်လီဘရိတ်","ဆင်နွှဲ"],
+      ["compare","ကမ်ပဲ","နှိုင်းယှဉ်"],
+      ["complain","ကမ်ပလိန်","တိုင်တန်း"],
+      ["complete","ကမ်ပလီးတ်","ပြီးစီး"],
+      ["connect","ကနက်တ်","ဆက်သွယ်"],
+      ["consider","ခန်ဆီဒါ","စဉ်းစား"],
+      ["contain","ခန်တိန်း","ပါဝင်"],
+      ["continue","ခန်တျူး","ဆက်လုပ်"],
+      ["control","ခန်ထရိုးလ်","ထိန်းချုပ်"],
+      ["copy","ကောပီ","ကူး"],
+      ["count","ကောင့်","ရေ"],
+      ["create","ကရီးအိတ်","ဖန်တီး"],
+      ["cross","ကရော့စ်","ဖြတ်"],
+      ["damage","ဒမ်မက်ဂျ်","ပျက်စီး"],
+      ["deal","ဒီးလ်","ကိုင်တွယ်"],
+      ["deliver","ဒီလီဗာ","ပို့ဆောင်"],
+      ["depend","ဒီပန်ဒ်","မှီခို"],
+      ["describe","ဒီစကရိုက်ဗ်","ဖော်ပြ"],
+      ["develop","ဒီဗလပ်","ဖွံ့ဖြိုး"],
+      ["disappear","ဒစ်စပီးယာ","ပျောက်ကွယ်"],
+      ["discover","ဒစ်စကဗာ","ရှာဖွေတွေ့"],
+      ["discuss","ဒစ်စကတ်စ်","ဆွေးနွေး"],
+      ["divide","ဒီဗိုက်ဒ်","ခွဲ"],
+      ["doubt","ဒေါက်တ်","သံသယ"],
+      ["earn","အာန်","ဝင်ငွေရ"],
+      ["encourage","အင်ကရေ့ဂျ်","အားပေး"],
+      ["enjoy","အင်ဂျွိုင်","နှစ်သက်"],
+      ["enter","အင်တာ","ဝင်"],
+      ["escape","အစ္စကေ့ပ်","လွတ်မြောက်"],
+      ["exist","အဂ်ဇစ်စ်တ်","တည်ရှိ"],
+      ["expect","အက်စပက်တ်","မျှော်လင့်"],
+      ["experience","အက်စပီးရီးယန့်","အတွေ့အကြုံ"],
+      ["explain","အက်စပလိန်","ရှင်းပြ"],
+      ["express","အက်စ်ပရက်","ဖော်ပြ"],
+      ["fail","ဖေးလ်","ရှုံး"],
+      ["fill","ဖီးလ်","ဖြည့်"],
+      ["fix","ဖစ်ခ်","ပြင်"],
+      ["float","ဖလိုးတ်","မျော"],
+      ["flow","ဖလိုး","စီး"]
+    ]
+  },
+
+  /* ===== DAY 66 (A2) ===== */
+  66: {
+    level: "A2",
+    rows: [
+      ["focus","ဖိုးကတ်စ်","အာရုံစိုက်"],
+      ["follow","ဖောလို","လိုက်"],
+      ["forgive","ဖော်ဂစ်ဗ်","ခွင့်လွှတ်"],
+      ["gather","ဂက်သာ","စုရုံး"],
+      ["guess","ဂက်","ခန့်မှန်း"],
+      ["happen","ဟက်ပန်","ဖြစ်ပွား"],
+      ["hate","ဟေးတ်","မုန်း"],
+      ["hide","ဟိုက်ဒ်","ဖုံးကွယ်"],
+      ["hope","ဟိုးပ်","မျှော်လင့်"],
+      ["hurry","ဟာရီ","အလျင်လို"],
+      ["hurt","ဟာ့တ်","နာ"],
+      ["imagine","အီမာဂျင်","စိတ်ကူးကြည့်"],
+      ["include","အင်ကလူးဒ်","ပါဝင်"],
+      ["increase","အင်ကရီးစ်","တိုးမြှင့်"],
+      ["introduce","အင်ထရိုဒျူးစ်","မိတ်ဆက်"],
+      ["invent","အင်ဗန့်","တီထွင်"],
+      ["invite","အင်ဗိုက်တ်","ဖိတ်"],
+      ["join","ဂျွိုင်","ပါဝင်"],
+      ["jump","ဂျမ်ပ်","ခုန်"],
+      ["keep","ကီးပ်","ထိန်း"],
+      ["kick","ကစ်ခ်","ကန်"],
+      ["kill","ကီးလ်","သတ်"],
+      ["knock","နော့ခ်","ခေါက်"],
+      ["laugh","လာ့ဖ်","ရယ်"],
+      ["lay","လေး","ချ"],
+      ["lend","လင်ဒ်","ချေးပေး"],
+      ["lie","လိုင်","လဲလျောင်"],
+      ["lift","လစ်ဖ်တ်","မြှောက်"],
+      ["listen","လစ်ဆန်","နားထောင်"],
+      ["lose","လူးဇ်","ရှုံး"],
+      ["marry","မဲရီ","လက်ထပ်"],
+      ["mean","မီးန်း","ဆိုလို"],
+      ["meet","မီးတ်","တွေ့"],
+      ["mention","မန်းရှင်း","ဖော်ပြ"],
+      ["mind","မိုင်းဒ်","စိတ်ထဲထား"],
+      ["miss","မစ်စ်","လွတ်သွား"],
+      ["move","မူးဗ်","ရွှေ့"],
+      ["need","နီးဒ်","လိုအပ်"],
+      ["notice","နိုးတစ်","သတိထား"],
+      ["offer","အော့ဖာ","ကမ်းလှမ်း"],
+      ["order","အော်ဒါ","အမိန့်/မှာယူ"],
+      ["pack","ပက်","ထုပ်"],
+      ["pay","ပေး","ပေးချေ"],
+      ["perform","ပါဖောမ်","ဖျော်ဖြေ"],
+      ["pick","ပစ်ခ်","ကောက်"],
+      ["plan","ပလန်","စီစဉ်"],
+      ["prefer","ပရီဖာ","ပိုနှစ်သက်"],
+      ["prepare","ပရီပဲ","ပြင်ဆင်"],
+      ["present","ပရီဇန့်","တင်ပြ"],
+      ["protect","ပရိုတက်တ်","ကာကွယ်"]
+    ]
+  },
+
+  /* ===== DAY 67 (A2) ===== */
+  67: {
+    level: "A2",
+    rows: [
+      ["provide","ပရိုဗိုက်","ထောက်ပံ့"],
+      ["pull","ပုလ်","ဆွဲ"],
+      ["push","ပွတ်ရှ်","တွန်း"],
+      ["raise","ရေ့စ်","မြှင့်"],
+      ["reach","ရီးချ်","ရောက်"],
+      ["realise","ရီးယလိုက်ဇ်","သဘောပေါက်"],
+      ["receive","ရီဆီးဗ်","လက်ခံ"],
+      ["recognise","ရက်ကိုဂနိုက်ဇ်","အသိအမှတ်ပြု"],
+      ["recommend","ရက်ကိုမန်ဒ်","အကြံပြု"],
+      ["reduce","ရီဒျူးစ်","လျှော့ချ"],
+      ["refuse","ရီဖျူးဇ်","ငြင်း"],
+      ["regret","ရီဂရက်","နောင်တရ"],
+      ["remain","ရီမိန်း","ကျန်ရှိ"],
+      ["remind","ရီမိုင်းဒ်","သတိပေး"],
+      ["remove","ရီမူးဗ်","ဖယ်ရှား"],
+      ["repair","ရီပဲ","ပြုပြင်"],
+      ["repeat","ရီပီးတ်","ထပ်လုပ်"],
+      ["replace","ရီပလေ့စ်","အစားထိုး"],
+      ["reply","ရီပလိုင်","ပြန်ကြား"],
+      ["report","ရီပို့တ်","သတင်းပို့"],
+      ["reserve","ရီဇာ့ဗ်","ကြိုတင်မှာထား"],
+      ["respect","ရီစပက်တ်","လေးစား"],
+      ["return","ရီတာန်","ပြန်လာ"],
+      ["search","ဆာ့ချ်","ရှာဖွေ"],
+      ["seem","ဆီးမ်း","ထင်ရ"],
+      ["separate","ဆပ်ပရိတ်","ခွဲခြား"],
+      ["serve","ဆာ့ဗ်","ဝန်ဆောင်"],
+      ["share","ရှဲ","မျှဝေ"],
+      ["shout","ရှောက်တ်","အော်"],
+      ["shut","ရှတ်","ပိတ်"],
+      ["sign","ဆိုင်း","လက်မှတ်ထိုး"],
+      ["sing","ဆင်း","သီချင်းဆို"],
+      ["smile","စမိုင်းလ်","ပြုံး"],
+      ["solve","ဆော့ဗ်","ဖြေရှင်း"],
+      ["steal","စတီးလ်","ခိုး"],
+      ["succeed","ဆက်ဆီးဒ်","အောင်မြင်"],
+      ["suggest","ဆဂ်ဂျက်","အကြံပြု"],
+      ["suppose","ဆပ်ပိုးဇ်","ထင်မှတ်"],
+      ["surprise","ဆာပရိုက်ဇ်","အံ့သြ"],
+      ["swim","စဝင်မ်း","ရေကူး"],
+      ["taste","တေးစ်တ်","အရသာခံ"],
+      ["thank","သင့်ခ်","ကျေးဇူးတင်"],
+      ["touch","တတ်ချ်","ထိ"],
+      ["translate","ထရန်စလိတ်","ဘာသာပြန်"],
+      ["turn","တာန်","လှည့်"],
+      ["understand","အန်ဒါစတန်း","နားလည်"],
+      ["warn","ဝေါန်","သတိပေး"],
+      ["wash","ဝေါရှ်","ဆေး"],
+      ["watch","ဝေါ့ချ်","ကြည့်"],
+      ["wear","ဝဲယာ","ဝတ်"]
+    ]
+  },
+
+  /* ===== DAY 68 (A2) ===== */
+  68: {
+    level: "A2",
+    rows: [
+      ["wish","ဝစ်ရှ်","ဆန္ဒ"],
+      ["wonder","ဝမ်ဒါ","အံ့သြ"],
+      ["worry","ဝါရီ","စိုးရိမ်"],
+      ["achieve","အတ်ချိဗ်","အောင်မြင်"],
+      ["admire","အက်ဒ်မိုင်းယာ","အားကျ"],
+      ["admit","အက်ဒ်မစ်တ်","ဝန်ခံ"],
+      ["advise","အက်ဒ်ဗိုက်ဇ်","အကြံပေး"],
+      ["afford","အက်ဖော့ဒ်","တတ်နိုင်"],
+      ["aim","အိန်မ်း","ရည်မှန်း"],
+      ["announce","အနောင့်စ်","ကြေညာ"],
+      ["approach","အပရိုချ်","ချဉ်းကပ်"],
+      ["approve","အပရုဗ်","အတည်ပြု"],
+      ["attack","အက်တက်","တိုက်ခိုက်"],
+      ["attempt","အက်တမ်ပ်","ကြိုးစား"],
+      ["attract","အက်ထရက်","ဆွဲဆောင်"],
+      ["balance","ဘဲလန့်စ်","ချိန်ခွင်လျှာ"],
+      ["ban","ဘန်","တားမြစ်"],
+      ["beat","ဘီးတ်","ရိုက်/အောင်"],
+      ["bend","ဘန်ဒ်","ကွေး"],
+      ["bite","ဘိုက်တ်","ကိုက်"],
+      ["blame","ဘလေမ်း","အပြစ်တင်"],
+      ["bless","ဘလက်","ကောင်းချီး"],
+      ["block","ဘလော့ခ်","ပိတ်ဆို့"],
+      ["blow","ဘလိုး","မှုတ်"],
+      ["boil","ဘွိုင်းလ်","ဆူ"],
+      ["bother","ဘောသာ","အနှောင့်အယှက်"],
+      ["breathe","ဘရီးသ်","အသက်ရှူ"],
+      ["burn","ဘာန်","လောင်"],
+      ["bury","ဘဲရီ","မြှုပ်"],
+      ["calculate","ကယ်လ်ကျူလိတ်","တွက်ချက်"],
+      ["cancel","ကဲန်ဆယ်လ်","ဖျက်သိမ်း"],
+      ["cause","ကော့ဇ်","ဖြစ်စေ"],
+      ["challenge","ချယ်လင့်","စိန်ခေါ်"],
+      ["charge","ချာ့ဂျ်","ငွေတောင်း"],
+      ["chase","ချေ့စ်","လိုက်"],
+      ["cheat","ချီးတ်","လိမ်"],
+      ["cheer","ချီးယာ","အားပေး"],
+      ["climb","ကလိုင်မ်း","တက်"],
+      ["collect","ကလက်တ်","စုဆောင်း"],
+      ["combine","ခန်ဘိုင်း","ပေါင်းစပ်"],
+      ["communicate","ခန်မျူနီကိတ်","ဆက်သွယ်"],
+      ["compete","ကမ်ပီးတ်","ပြိုင်ဆိုင်"],
+      ["concern","ခန်ဆာန်","စိုးရိမ်"],
+      ["confirm","ခန်ဖာမ်","အတည်ပြု"],
+      ["confuse","ခန်ဖျူးဇ်","ရှုပ်"],
+      ["congratulate","ခန်ဂရက်ကျူလိတ်","ချီးမွမ်း"],
+      ["contact","ခန်တက်","ဆက်သွယ်"],
+      ["contribute","ခန်ထရီဗျူး","ပံ့ပိုး"],
+      ["cover","ကဗာ","ဖုံး"]
+    ]
+  },
+
+  /* ===== DAY 69 (A2) ===== */
+  69: {
+    level: "A2",
+    rows: [
+      ["crash","ကရာ့ရှ်","တိုက်"],
+      ["cry","ကရိုင်","ငို"],
+      ["decorate","ဒက်ကိုရိတ်","အလှဆင်"],
+      ["delay","ဒီလေး","နောက်ကျ"],
+      ["demand","ဒီမာန်ဒ်","တောင်းဆို"],
+      ["deny","ဒီနိုင်","ငြင်း"],
+      ["deserve","ဒီဇာ့ဗ်","ထိုက်တန်"],
+      ["design","ဒီဇိုင်း","ဒီဇိုင်း"],
+      ["destroy","ဒစ်စတရွိုင်","ဖျက်ဆီး"],
+      ["die","ဒိုင်","သေ"],
+      ["disagree","ဒစ်အာဂရီး","သဘောမတူ"],
+      ["draw","ဒရော","ဆွဲ"],
+      ["dream","ဒရီးမ်း","အိပ်မက်"],
+      ["drive","ဒရိုက်ဗ်","မောင်း"],
+      ["elect","အီလက်","ရွေးကောက်"],
+      ["employ","အင်ပလွိုင်","အလုပ်ခန့်"],
+      ["examine","အဂ်ဇမ်မင်","စစ်ဆေး"],
+      ["explore","အက်စပလော","ရှာဖွေ"],
+      ["fall","ဖောလ်","ကျ"],
+      ["feed","ဖီးဒ်","ကျွေး"],
+      ["feel","ဖီးလ်","ခံစား"],
+      ["fight","ဖိုက်တ်","တိုက်"],
+      ["find","ဖိုင်းဒ်","ရှာတွေ့"],
+      ["finish","ဖီနစ်ရှ်","ပြီးဆုံး"],
+      ["fly","ဖလိုင်","ပျံ"],
+      ["fold","ဖိုးလ်ဒ်","ခေါက်"],
+      ["freeze","ဖရီးဇ်","အေးခဲ"],
+      ["grow","ဂရိုး","ကြီးထွား"],
+      ["hang","ဟန်","ချိတ်"],
+      ["heat","ဟီးတ်","အပူပေး"],
+      ["hit","ဟစ်တ်","ရိုက်"],
+      ["hold","ဟိုးလ်ဒ်","ကိုင်"],
+      ["hunt","ဟန်တ်","အမဲလိုက်"],
+      ["identify","အိုင်ဒင်တီဖိုင်","ဖော်ထုတ်"],
+      ["ignore","အီဂနော","လျစ်လျူရှု"],
+      ["improve","အင်ပရုဗ်","တိုးတက်"],
+      ["inform","အင်ဖောမ်","အသိပေး"],
+      ["injure","အင်ဂျာ","ထိခိုက်"],
+      ["intend","အင်တန်ဒ်","ရည်ရွယ်"],
+      ["interview","အင်တာဗျူး","အင်တာဗျူး"],
+      ["judge","ဂျပ်ဂျ်","ဆုံးဖြတ်"],
+      ["land","လန်ဒ်","ဆင်းသက်"],
+      ["last","လာ့စ်တ်","ကြာရှည်"],
+      ["lead","လိဒ်","ဦးဆောင်"],
+      ["learn","လာန်","သင်ယူ"],
+      ["leave","လီးဗ်","ထွက်ခွာ"],
+      ["let","လက်","ခွင့်ပြု"],
+      ["light","လိုက်တ်","မီးထွန်း"],
+      ["limit","လီမိတ်","ကန့်သတ်"],
+      ["live","လစ်ဗ်","နေထိုင်"]
+    ]
+  },
+
+  /* ===== DAY 70 (A2) ===== */
+  70: {
+    level: "A2",
+    rows: [
+      ["look","လုတ်","ကြည့်"],
+      ["make","မိးခ်","လုပ်"],
+      ["manage","မန်နေ့ဂျ်","စီမံ"],
+      ["mark","မာ့ခ်","အမှတ်အသား"],
+      ["matter","မက်တာ","အရေးပါ"],
+      ["measure","မဲရှာ","တိုင်းတာ"],
+      ["melt","မဲလ်တ်","အရည်ပျော်"],
+      ["mix","မိစ်ခ်","ရော"],
+      ["move","မူးဗ်","ရွှေ့"],
+      ["name","နိမ်း","အမည်ပေး"],
+      ["need","နီးဒ်","လိုအပ်"],
+      ["notice","နိုးတစ်","သတိထား"],
+      ["obey","အိုဘေး","နာခံ"],
+      ["occur","အောကာ","ဖြစ်ပွား"],
+      ["open","အိုပန်","ဖွင့်"],
+      ["order","အော်ဒါ","မှာယူ"],
+      ["organise","အော်ဂနိုက်ဇ်","စီစဉ်"],
+      ["own","အုန်း","ပိုင်ဆိုင်"],
+      ["pass","ပါစ်","ဖြတ်/အောင်"],
+      ["perform","ပါဖောမ်","ဖျော်ဖြေ"],
+      ["persuade","ပါဆွေးဒ်","ဆွဲဆောင်"],
+      ["place","ပလေ့စ်","နေရာချ"],
+      ["plant","ပလန့်","စိုက်"],
+      ["please","ပလီးဇ်","ကျေနပ်စေ"],
+      ["point","ပွိုင့်","ညွှန်ပြ"],
+      ["practise","ပရက်တစ်","လေ့ကျင့်"],
+      ["praise","ပရေ့စ်","ချီးမွမ်း"],
+      ["predict","ပရီဒစ်တ်","ကြိုတင်ခန့်မှန်း"],
+      ["prefer","ပရီဖာ","ပိုနှစ်သက်"],
+      ["prepare","ပရီပဲ","ပြင်ဆင်"],
+      ["press","ပရက်","နှိပ်"],
+      ["prevent","ပရီဗန့်","ကာကွယ်"],
+      ["print","ပရင့်တ်","ပုံနှိပ်"],
+      ["produce","ပရိုဒျူးစ်","ထုတ်လုပ်"],
+      ["promise","ပရောမိစ်","ကတိပေး"],
+      ["pronounce","ပရိုနောင့်စ်","အသံထွက်"],
+      ["protect","ပရိုတက်တ်","ကာကွယ်"],
+      ["prove","ပရူးဗ်","သက်သေပြ"],
+      ["provide","ပရိုဗိုက်","ထောက်ပံ့"],
+      ["publish","ပပ်ဗလစ်ရှ်","ထုတ်ဝေ"],
+      ["punish","ပန်နစ်ရှ်","အပြစ်ပေး"],
+      ["purchase","ပါချက်စ်","ဝယ်ယူ"],
+      ["realise","ရီးယလိုက်ဇ်","သဘောပေါက်"],
+      ["receive","ရီဆီးဗ်","လက်ခံ"],
+      ["recognise","ရက်ကိုဂနိုက်ဇ်","အသိအမှတ်ပြု"],
+      ["recommend","ရက်ကိုမန်ဒ်","အကြံပြု"],
+      ["record","ရီကော့ဒ်","မှတ်တမ်းတင်"],
+      ["recover","ရီကဗာ","ပြန်လည်ကောင်းမွန်"],
+      ["reduce","ရီဒျူးစ်","လျှော့ချ"],
+      ["refuse","ရီဖျူးဇ်","ငြင်း"]
+    ]
+  }
+
+};
+
+/* ============ LEVEL CONFIG ============ */
+const levelColors = {
+  A1: "#27ae60",
+  A2: "#2980b9",
+  B1: "#e67e22",
+  B2: "#c0392b",
+  C1: "#8e44ad",
+  C2: "#c0392b"
+};
+
+/* ============ BUILD DROPDOWN ============ */
+const spinner = document.getElementById("daySpinner");
+const days = Object.keys(data).map(Number).sort((a,b)=>a-b);
+days.forEach(d => {
+  const opt = document.createElement("option");
+  opt.value = d;
+  opt.textContent = "Day " + d;
+  spinner.appendChild(opt);
+});
+
+/* ============ RENDER ============ */
+const titleEl    = document.getElementById("tableTitle");
+const progressEl = document.getElementById("progressText");
+const bodyEl     = document.getElementById("tableBody");
+
+function render(day) {
+  const item = data[day];
+  if (!item) return;
+
+  titleEl.innerHTML =
+    `Day ${day} – ${item.level} Vocabulary ` +
+    `<span class="level-badge" style="background:${levelColors[item.level]}">${item.level}</span>`;
+
+  progressEl.textContent =
+    `ရက် ၃၀၀ အစီအစဉ် • ${item.level} အပိုင်း • စကားလုံး ${item.rows.length} လုံး`;
+
+  bodyEl.innerHTML = "";
+  item.rows.forEach((row, i) => {
+    const tr = document.createElement("tr");
+    tr.className = "fade-in";
+    tr.style.animationDelay = (i * 0.015) + "s";
+    tr.innerHTML =
+      `<td>${i+1}</td>` +
+      `<td class="english">${row[0]}</td>` +
+      `<td class="pronun">${row[1]}</td>` +
+      `<td>${row[2]}</td>`;
+    bodyEl.appendChild(tr);
+  });
+}
+
+/* ============ EVENTS ============ */
+spinner.addEventListener("change", e => render(e.target.value));
+
+/* ===== စတင် render — Day 60 ===== */
+render(60);
+</script>
+</body>
+</html>

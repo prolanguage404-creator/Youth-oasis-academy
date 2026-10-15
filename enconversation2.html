@@ -1,0 +1,3796 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Conversation Part 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            padding: 30px 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 40px;
+            padding: 40px 35px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .sub {
+            color: #aab;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #74b9ff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            color: #a29bfe;
+        }
+
+        .spinner-wrap {
+            margin: 20px 0 30px;
+        }
+
+        .spinner-wrap label {
+            color: #ddd;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-right: 12px;
+        }
+
+        select {
+            padding: 14px 28px;
+            border-radius: 50px;
+            border: none;
+            background: #1e1e3a;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: 2px solid rgba(255, 255, 255, 0.15);
+            transition: 0.25s;
+            min-width: 250px;
+            max-width: 100%;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 20px;
+        }
+
+        select:hover {
+            outline-color: #8b7bf7;
+            background-color: #2a2a50;
+        }
+
+        select option {
+            background: #1a1a32;
+            color: #fff;
+        }
+
+        .count-badge {
+            display: inline-block;
+            background: rgba(85, 239, 196, 0.15);
+            color: #55efc4;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            border: 1px solid rgba(85, 239, 196, 0.1);
+        }
+
+        .convo-display {
+            margin-top: 25px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            padding: 30px 28px;
+            border-left: 5px solid #55efc4;
+            min-height: 200px;
+            transition: 0.3s;
+        }
+
+        .convo-display .title {
+            color: #f0e68c;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .convo-display .convo-text {
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            line-height: 2.2;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .convo-display .convo-text .speaker {
+            color: #74b9ff;
+            font-weight: 600;
+        }
+
+        .convo-display .convo-text .speaker-b {
+            color: #fd79a8;
+            font-weight: 600;
+        }
+
+        .vocab-section {
+            margin-top: 20px;
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .vocab-section .vocab-title {
+            color: #fdcb6e;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .vocab-section .vocab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .vocab-section .vocab-tag {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 18px;
+            border-radius: 30px;
+            color: #ddd;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: 0.2s;
+        }
+
+        .vocab-section .vocab-tag:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #8b7bf7;
+        }
+
+        .vocab-section .vocab-tag .meaning {
+            color: #888;
+            font-size: 0.8rem;
+            margin-left: 6px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+        }
+
+        .developer {
+            margin-top: 28px;
+            padding: 20px 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .developer .dev-name {
+            color: #f0e68c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .developer .dev-detail {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+
+        .developer .dev-detail span {
+            color: #8b7bf7;
+            font-weight: 500;
+        }
+
+        .developer .dev-detail a {
+            color: #74b9ff;
+            text-decoration: none;
+            transition: 0.2s;
+            border-bottom: 1px dashed rgba(116, 185, 255, 0.3);
+        }
+
+        .developer .dev-detail a:hover {
+            color: #a29bfe;
+            border-bottom-color: #a29bfe;
+        }
+
+        .dev-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 500px) {
+            .container { padding: 28px 16px; }
+            h1 { font-size: 1.9rem; }
+            select { width: 100%; font-size: 0.9rem; padding: 12px 20px; }
+            .convo-display { padding: 20px 16px; }
+            .convo-display .title { font-size: 1.2rem; }
+            .convo-display .convo-text { font-size: 0.95rem; }
+            .vocab-section { padding: 16px; }
+            .developer { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <a href="conversation.html" class="back-link">⬅ Back to Part 1 (1-100)</a>
+
+        <h1>💬 English Conversation</h1>
+        <div class="sub">Part 2 · Conversations 101-200</div>
+
+        <div class="count-badge">📚 101 - 110</div>
+
+        <div class="spinner-wrap">
+            <label for="convoSelect">📖</label>
+            <select id="convoSelect">
+                <!-- JS က ထည့်ပေးမယ် -->
+            </select>
+        </div>
+
+        <div class="convo-display" id="convoDisplay">
+            <div class="title">👋 Welcome to Part 2!</div>
+            <div class="convo-text">Select a conversation from the list above.</div>
+            <div class="vocab-section">
+                <div class="vocab-title">📝 Key Vocabulary</div>
+                <div class="vocab-list" id="vocabList">
+                    <span class="vocab-tag">Select a topic to see vocabulary</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="developer">
+            <span class="dev-icon">👨‍💻</span>
+            <div class="dev-name">Yan Naing</div>
+            <div class="dev-detail">
+                📞 <span>09782992290</span><br />
+                📱 Telegram : <a href="https://t.me/To_my_new_world" target="_blank">@To_my_new_world</a>
+            </div>
+        </div>
+
+        <div class="footer">⚡ select a conversation · learn English</div>
+    </div>
+
+    <script>
+        // =============================================================
+        //  DATA: Conversations 101-110
+        // =============================================================
+        const conversations = [
+            // ========== 101-110: ခရီးသွားနှင့် စွန့်စားမှု ==========
+            {
+                id: 101,
+                title: "101. နိုင်ငံခြားခရီးသွားခြင်း (Traveling Abroad)",
+                convo: `A: I'm planning my first trip abroad next month.
+        B: That's so exciting! Where are you going?
+        A: I'm going to Paris, France. It's always been my dream.
+        B: Paris is such a romantic and beautiful city.
+        A: Yes, I can't wait to see the Eiffel Tower.
+        B: Have you booked your flights and hotel yet?
+        A: Yes, I booked everything last week.
+        B: How long will you be staying there?
+        A: I'll be staying for 10 days.
+        B: That's a good amount of time to explore.
+        A: I want to visit the Louvre Museum too.
+        B: The Louvre is amazing. You'll love it.
+        A: I'm also planning to try French cuisine.
+        B: French food is delicious. Try the croissants!
+        A: I will. I'm also learning some French phrases.
+        B: That's smart. Locals appreciate when you try.
+        A: I'm a bit nervous about the language barrier.
+        B: Don't worry. Many people speak English there.
+        A: I hope so. I want to enjoy every moment.
+        B: You'll have a wonderful time. I'm so happy for you.
+        A: Thank you! I'll take lots of photos.
+        B: Please share them with me when you return.
+        A: I definitely will! I can't wait.`,
+                vocab: [
+                    { word: "Abroad", meaning: "ပြည်ပ" },
+                    { word: "Eiffel Tower", meaning: "အီဖယ်လ်မျှော်စင်" },
+                    { word: "Louvre Museum", meaning: "လူဗာပြတိုက်" },
+                    { word: "Cuisine", meaning: "အစားအစာအမျိုးအစား" },
+                    { word: "Croissants", meaning: "ပြင်သစ်ပေါင်မုန့်" },
+                    { word: "Phrases", meaning: "စကားစုများ" },
+                    { word: "Language barrier", meaning: "ဘာသာစကားအတားအဆီး" }
+                ]
+            },
+            {
+                id: 102,
+                title: "102. ဟိုတယ်မှာနေခြင်း (Hotel Stay)",
+                convo: `A: Welcome to our hotel! Do you have a reservation?
+        B: Yes, I have a reservation under the name David Lee.
+        A: Let me check... Yes, I found it. You'll be staying for 5 nights.
+        B: That's correct. I'm here for a business trip.
+        A: Great. May I see your passport and credit card?
+        B: Sure. Here you go.
+        A: Thank you. You're in room 502 on the fifth floor.
+        B: Is it a quiet room? I need to sleep well.
+        A: Yes, it's at the end of the hall. Very quiet.
+        B: Perfect. Thank you.
+        A: Here are your room keys. The elevator is on the left.
+        B: What time is breakfast served?
+        A: Breakfast is from 6:30 to 10 AM.
+        B: That's convenient. I have meetings at 9 AM.
+        A: Do you need any help with your luggage?
+        B: No, I can manage. Thank you.
+        A: Enjoy your stay. Let us know if you need anything.
+        B: I will. Thank you for your help.
+        (In the room)
+        B: The room is beautiful and spacious.
+        A: I'm glad you like it. The view is also nice.
+        B: Yes, I can see the city from here.
+        A: If you need anything, just call the front desk.
+        B: I will. Thank you again.
+        A: Have a great stay!`,
+                vocab: [
+                    { word: "Reservation", meaning: "ကြိုမှာထားခြင်း" },
+                    { word: "Business trip", meaning: "စီးပွားရေးခရီးစဉ်" },
+                    { word: "Passport", meaning: "နိုင်ငံကူးလက်မှတ်" },
+                    { word: "Credit card", meaning: "ခရက်ဒစ်ကတ်" },
+                    { word: "Elevator", meaning: "ဓာတ်လှေကား" },
+                    { word: "Spacious", meaning: "ကျယ်ဝန်းသော" },
+                    { word: "Front desk", meaning: "ဧည့်ကြိုစားပွဲ" }
+                ]
+            },
+            {
+                id: 103,
+                title: "103. လေဆိပ်မှာစောင့်ခြင်း (Waiting at the Airport)",
+                convo: `A: We're early. Our flight doesn't leave for another 3 hours.
+        B: That's okay. It's better than being late.
+        A: Let's find a place to sit and relax.
+        B: There's a cafe over there. We can have coffee.
+        A: Good idea. I need some caffeine.
+        B: I'll have a latte and a blueberry muffin.
+        A: I'll have a cappuccino and a croissant.
+        B: This is a nice airport. It's very modern.
+        A: Yes, I love the design and the natural light.
+        B: I like watching the planes take off and land.
+        A: Me too. It's very fascinating.
+        B: I wonder where all those people are going.
+        A: Everyone has their own adventure.
+        B: That's what makes travel so exciting.
+        A: I'm so excited about our trip.
+        B: Me too. I've been looking forward to this.
+        A: Let's check the flight board for any updates.
+        B: Our flight is on time. That's good.
+        A: I also want to visit the duty-free shops.
+        B: We have time. Let's go browse.
+        A: I want to buy some perfume and chocolates.
+        B: I'll get some souvenirs for my family.
+        A: This is such a wonderful experience.
+        B: I agree. Traveling is the best.`,
+                vocab: [
+                    { word: "Caffeine", meaning: "ကဖိန်းဓာတ်" },
+                    { word: "Latte", meaning: "လတ်တီ" },
+                    { word: "Cappuccino", meaning: "ကော်ဖီအမျိုးအစား" },
+                    { word: "Modern", meaning: "ခေတ်မီသော" },
+                    { word: "Natural light", meaning: "သဘာဝအလင်းရောင်" },
+                    { word: "Fascinating", meaning: "စိတ်ဝင်စားဖွယ်" },
+                    { word: "Duty-free shops", meaning: "အခွန်လွတ်ဆိုင်များ" },
+                    { word: "Perfume", meaning: "ရေမွှေး" },
+                    { word: "Souvenirs", meaning: "အမှတ်တရပစ္စည်းများ" }
+                ]
+            },
+            {
+                id: 104,
+                title: "104. လေယာဉ်ပေါ်မှာ (On the Airplane)",
+                convo: `A: I love flying. The view from up here is amazing.
+        B: Me too. Look at the clouds! They're so beautiful.
+        A: I have a window seat. I always request one.
+        B: Good choice. You can see so much.
+        A: I like watching the world from above.
+        B: It makes me feel small but peaceful.
+        A: How long is this flight?
+        B: About 6 hours. We'll be there by evening.
+        A: That's not too bad. I'll read a book.
+        B: I'll watch a movie on the entertainment system.
+        A: The flight attendant is coming with snacks.
+        B: Great. I'm getting a bit hungry.
+        A: I'll have some juice and peanuts.
+        B: I'll have coffee and a sandwich.
+        A: The service on this airline is really good.
+        B: Yes, they're very attentive.
+        A: I also like the pilot's announcements.
+        B: They're very professional and clear.
+        A: I hope we have a smooth landing.
+        B: The weather forecast says it'll be clear.
+        A: Perfect. I want to explore as soon as we land.
+        B: Me too. I can't wait to see the city.
+        A: This is going to be an unforgettable trip.
+        B: I agree. I'm so glad we're doing this together.`,
+                vocab: [
+                    { word: "Flying", meaning: "လေယာဉ်စီးခြင်း" },
+                    { word: "Window seat", meaning: "ပြတင်းပေါက်နားထိုင်ခုံ" },
+                    { word: "Clouds", meaning: "တိမ်များ" },
+                    { word: "Entertainment system", meaning: "ဖျော်ဖြေရေးစနစ်" },
+                    { word: "Flight attendant", meaning: "လေယာဉ်အပျော်တမ်းအစေခံ" },
+                    { word: "Peanuts", meaning: "မြေပဲ" },
+                    { word: "Attentive", meaning: "ဂရုစိုက်သော" },
+                    { word: "Announcements", meaning: "ကြေငြာချက်များ" },
+                    { word: "Smooth landing", meaning: "ချောမွေ့စွာဆင်းသက်ခြင်း" },
+                    { word: "Unforgettable", meaning: "မမေ့နိုင်သော" }
+                ]
+            },
+            {
+                id: 105,
+                title: "105. ခရီးသွားဓာတ်ပုံရိုက်ခြင်း (Travel Photography)",
+                convo: `A: I love taking photos when I travel.
+        B: Me too. It's the best way to capture memories.
+        A: I brought my professional camera with me.
+        B: That's great! You'll take amazing photos.
+        A: I want to capture the beauty of this place.
+        B: The architecture here is stunning.
+        A: Yes, I want to photograph all the buildings.
+        B: Don't forget to take photos of the people too.
+        A: I will. I love candid shots of locals.
+        B: They tell a story about the culture.
+        A: I also want to take landscape photos.
+        B: The mountains and lakes here are beautiful.
+        A: I'll wake up early for the sunrise shots.
+        B: That's dedicated! The light will be perfect.
+        A: I also want to capture the night sky.
+        B: The stars here are so clear and bright.
+        A: I'll bring my tripod for that.
+        B: You're really prepared! I'm impressed.
+        A: Photography is my passion. I love it.
+        B: I can tell. Your photos are always beautiful.
+        A: Thank you. I'll share the best ones with you.
+        B: I'd love that! You're so talented.
+        A: Let's go take some photos together now.
+        B: Yes! I'll be your model.
+        A: Perfect! Let's make some great memories.`,
+                vocab: [
+                    { word: "Capture", meaning: "ဖမ်းယူသည်" },
+                    { word: "Memories", meaning: "အမှတ်တရများ" },
+                    { word: "Architecture", meaning: "ဗိသုကာလက်ရာ" },
+                    { word: "Candid shots", meaning: "အလိုလိုရိုက်ထားသောဓာတ်ပုံများ" },
+                    { word: "Landscape", meaning: "ရှုခင်း" },
+                    { word: "Sunrise", meaning: "နေထွက်ချိန်" },
+                    { word: "Tripod", meaning: "ကင်မရာတိုင်စင်" },
+                    { word: "Passion", meaning: "စိတ်အားထက်သန်မှု" }
+                ]
+            },
+            {
+                id: 106,
+                title: "106. ဒေသခံများနှင့်တွေ့ဆုံခြင်း (Meeting Locals)",
+                convo: `A: I love meeting local people when I travel.
+        B: Me too. They make the experience so authentic.
+        A: I've made so many friends through traveling.
+        B: That's wonderful. People are the best part of travel.
+        A: I was invited to a local's home for dinner.
+        B: That's amazing! You'll experience real culture.
+        A: I'm a bit nervous. I don't want to offend anyone.
+        B: Just be yourself and show respect.
+        A: I'll bring a small gift as a thank you.
+        B: That's a thoughtful gesture. They'll appreciate it.
+        A: I want to learn about their way of life.
+        B: That's the whole point of traveling.
+        A: I love hearing their stories and experiences.
+        B: Yes, everyone has a unique story to tell.
+        A: I'm going to take notes so I don't forget.
+        B: That's a great idea. You can write a travel blog.
+        A: I've been thinking about starting one.
+        B: You should! You have so many interesting stories.
+        A: Meeting locals has changed my perspective on life.
+        B: It's the most meaningful part of travel.
+        A: I agree. It makes the world feel smaller.
+        B: We're all connected in some way.
+        A: I'm so grateful for these experiences.
+        B: Travel truly opens your mind and heart.`,
+                vocab: [
+                    { word: "Authentic", meaning: "စစ်မှန်သော" },
+                    { word: "Offend", meaning: "စိတ်ထိခိုက်စေသည်" },
+                    { word: "Respect", meaning: "လေးစားမှု" },
+                    { word: "Gesture", meaning: "အမူအရာ" },
+                    { word: "Unique", meaning: "ထူးခြားသော" },
+                    { word: "Perspective", meaning: "ရှုထောင့်" },
+                    { word: "Meaningful", meaning: "အဓိပ္ပာယ်ရှိသော" },
+                    { word: "Grateful", meaning: "ကျေးဇူးတင်သော" }
+                ]
+            },
+            {
+                id: 107,
+                title: "107. ဒေသခံအစားအစာစားခြင်း (Trying Local Food)",
+                convo: `A: I love trying local food when I travel.
+        B: Me too! It's one of the best parts of traveling.
+        A: I want to try everything this city has to offer.
+        B: Street food is always my favorite.
+        A: Yes, it's so authentic and delicious.
+        B: I heard the night market here is amazing.
+        A: Let's go there for dinner tonight.
+        B: That sounds perfect. I'm so excited.
+        A: I want to try the local specialty dishes.
+        B: I'll ask the locals for their recommendations.
+        A: That's the best way to find good food.
+        B: I also want to try some exotic fruits.
+        A: Yes! I love trying new things.
+        (At the night market)
+        A: This place is incredible! So many choices.
+        B: I want to try everything! It all looks delicious.
+        A: Let's start with the grilled seafood.
+        B: Good idea. I love seafood.
+        A: Then we'll try the noodles and dumplings.
+        B: That sounds amazing. I'm getting hungry.
+        A: I also want to try the local desserts.
+        B: Yes! I love trying sweets from different countries.
+        A: This is the best part of traveling.
+        B: I agree. Food brings people together.
+        A: I'm so glad we came here.
+        B: Me too! This is an unforgettable experience.`,
+                vocab: [
+                    { word: "Street food", meaning: "လမ်းဘေးအစားအစာ" },
+                    { word: "Authentic", meaning: "စစ်မှန်သော" },
+                    { word: "Night market", meaning: "ညဈေး" },
+                    { word: "Specialty", meaning: "အထူးဟင်း" },
+                    { word: "Recommendations", meaning: "အကြံပြုချက်များ" },
+                    { word: "Exotic", meaning: "ထူးဆန်းသော" },
+                    { word: "Grilled", meaning: "ကင်ထားသော" },
+                    { word: "Seafood", meaning: "ပင်လယ်စာ" },
+                    { word: "Noodles", meaning: "ခေါက်ဆွဲ" },
+                    { word: "Dumplings", meaning: "ထမင်းကြွပ်စွပ်ပြား" }
+                ]
+            },
+            {
+                id: 108,
+                title: "108. ခရီးသွားစဉ်ဈေးဝယ်ခြင်း (Shopping While Traveling)",
+                convo: `A: I love shopping for souvenirs when I travel.
+        B: Me too! It's a great way to remember your trip.
+        A: I want to buy some local handicrafts.
+        B: The handmade items are always the best.
+        A: I also want to buy some clothes and accessories.
+        B: Yes, local fashion is unique and beautiful.
+        A: There's a local market near the city center.
+        B: Let's go there tomorrow morning.
+        A: That sounds perfect. I love local markets.
+        B: I want to buy gifts for my family and friends.
+        A: That's so thoughtful. They'll love them.
+        A: I'll buy some traditional jewelry.
+        B: That would be a great gift.
+        A: I also want to buy some local spices.
+        B: Yes! Spices are great souvenirs.
+        (At the market)
+        A: This market is amazing! So many colors.
+        B: I love the vibrant atmosphere here.
+        A: Look at these handmade bags! They're beautiful.
+        B: I'll buy one for my sister.
+        A: I'll buy some silk scarves for my mother.
+        B: That's a wonderful gift.
+        A: I'm so glad we came here.
+        B: Me too. This is the best shopping experience.
+        A: I've bought so many things already!
+        B: Me too. I need to pack them carefully.
+        A: Shopping in local markets is the best.
+        B: Yes, you find unique items you can't get anywhere else.`,
+                vocab: [
+                    { word: "Souvenirs", meaning: "အမှတ်တရပစ္စည်းများ" },
+                    { word: "Handicrafts", meaning: "လက်မှုပစ္စည်းများ" },
+                    { word: "Accessories", meaning: "အဆင်တန်ဆာများ" },
+                    { word: "Traditional", meaning: "ရိုးရာ" },
+                    { word: "Jewelry", meaning: "လက်ဝတ်ရတနာ" },
+                    { word: "Spices", meaning: "ဟင်းခတ်အမွှေးအကြိုင်များ" },
+                    { word: "Vibrant", meaning: "တက်ကြွသော" },
+                    { word: "Silk scarves", meaning: "ပိုးထည်ပဝါများ" },
+                    { word: "Unique", meaning: "ထူးခြားသော" }
+                ]
+            },
+            {
+                id: 109,
+                title: "109. ခရီးသွားစဉ်အတွေ့အကြုံ (Travel Stories)",
+                convo: `A: I have so many amazing stories from my travels.
+        B: I'd love to hear some of them.
+        A: One time in Thailand, I got lost and found a hidden temple.
+        B: That sounds incredible! What happened?
+        A: I was walking through the city and took the wrong turn.
+        B: And then what?
+        A: I discovered a beautiful, ancient temple with no tourists.
+        B: That sounds like a magical experience.
+        A: It was! The monks were very friendly and welcoming.
+        B: Did you take any photos there?
+        A: Yes, I took some amazing photos.
+        B: I'd love to see them!
+        A: I'll show you when we get home.
+        B: That sounds wonderful. I love travel stories.
+        A: Another time, I made friends with a local family in Vietnam.
+        B: That's beautiful. Did you stay with them?
+        A: Yes, they invited me to stay at their home.
+        B: That's so generous! You're so lucky.
+        A: I learned so much about their culture and food.
+        B: That's what makes travel so special.
+        A: I also went hiking in the mountains of Nepal.
+        B: Nepal is my dream destination.
+        A: It's incredible. The views are breathtaking.
+        B: I hope to go there one day.
+        A: You should! Traveling is the best thing you can do.
+        B: I agree. It changes your perspective on life.
+        A: I'm so grateful for all my travel experiences.
+        B: You should write a book about them!`,
+                vocab: [
+                    { word: "Hidden temple", meaning: "ဝှက်ထားသောဘုရားကျောင်း" },
+                    { word: "Ancient", meaning: "ရှေးဟောင်း" },
+                    { word: "Monks", meaning: "ရဟန်းများ" },
+                    { word: "Welcoming", meaning: "ကြိုဆိုသော" },
+                    { word: "Generous", meaning: "ရက်ရောသော" },
+                    { word: "Breathtaking", meaning: "အသက်ရှုမဝအောင်လှပသော" },
+                    { word: "Perspective", meaning: "ရှုထောင့်" }
+                ]
+            },
+            {
+                id: 110,
+                title: "110. ခရီးသွားစဉ်သင်ခန်းစာ (Lessons from Travel)",
+                convo: `A: Traveling has taught me so much about life.
+        B: I agree. It's the best education you can get.
+        A: I've learned to be more open-minded and flexible.
+        B: Yes, you have to adapt to different situations.
+        A: I've also learned to appreciate the little things.
+        B: Like a beautiful sunset or a kind gesture.
+        A: Travel has also taught me to be patient.
+        B: Yes, things don't always go as planned.
+        A: But that's what makes it an adventure.
+        B: Exactly. Every challenge is a learning opportunity.
+        A: I've also learned to be more grateful.
+        B: Travel makes you appreciate what you have.
+        A: I've seen how happy people are with so little.
+        B: That's such an important lesson.
+        A: I've also made lifelong friends from around the world.
+        B: That's the most beautiful gift of travel.
+        A: I'm a different person now than before I traveled.
+        B: Travel changes you for the better.
+        A: I'm so grateful for all the lessons I've learned.
+        B: Travel truly is the best teacher.
+        A: I'll continue to travel and learn for the rest of my life.
+        B: That's the spirit! The world is full of wonder.
+        A: Thank you for listening to my stories.
+        B: Thank you for sharing them. They inspire me.
+        A: I hope you travel and find your own lessons too.
+        B: I will. I can't wait to create my own stories.`,
+                vocab: [
+                    { word: "Open-minded", meaning: "စိတ်ထားကျယ်သော" },
+                    { word: "Flexible", meaning: "ပျော့ပြောင်းသော" },
+                    { word: "Adapt", meaning: "လိုက်လျောညီထွေဖြစ်သည်" },
+                    { word: "Appreciate", meaning: "တန်ဖိုးထားသည်" },
+                    { word: "Patient", meaning: "စိတ်ရှည်သော" },
+                    { word: "Adventure", meaning: "စွန့်စားခန်း" },
+                    { word: "Lifelong", meaning: "တစ်သက်တာ" },
+                    { word: "Wonder", meaning: "အံ့ဖွယ်" },
+                    { word: "Inspire", meaning: "စေ့ဆော်သည်" }
+                ]
+            },
+{
+    id: 111,
+    title: "111. အလုပ်အတွေ့အကြုံ (Work Experience)",
+    convo: `A: I've been working in this company for 5 years now.
+B: That's a long time. How do you like it?
+A: I really enjoy it. I've learned so much.
+B: What's the best thing about your job?
+A: The best thing is the people I work with.
+B: A good team makes work so much better.
+A: Yes, we support each other and work well together.
+B: What about your boss? Are they good?
+A: My boss is wonderful. Very supportive and fair.
+B: That's rare. Many people complain about their bosses.
+A: I know. I'm very lucky to have a good boss.
+B: What has been your biggest achievement at work?
+A: I successfully led a project last year.
+B: That's impressive! What was the project about?
+A: It was about launching a new product.
+B: That must have been challenging.
+A: It was, but we worked hard and succeeded.
+B: That's a great accomplishment.
+A: I also received a promotion this year.
+B: Congratulations! You deserve it.
+A: Thank you. I'm proud of what I've achieved.
+B: You should be. Hard work pays off.
+A: I plan to continue growing and learning.
+B: That's the right attitude for success.
+A: I'm excited about my future here.`,
+    vocab: [
+        { word: "Supportive", meaning: "အားပေးကူညီသော" },
+        { word: "Achievement", meaning: "အောင်မြင်မှု" },
+        { word: "Launched", meaning: "စတင်မိတ်ဆက်ခဲ့သော" },
+        { word: "Challenging", meaning: "စိန်ခေါ်မှုရှိသော" },
+        { word: "Accomplishment", meaning: "ပြီးမြောက်အောင်မြင်မှု" },
+        { word: "Promotion", meaning: "ရာထူးတိုးခြင်း" },
+        { word: "Attitude", meaning: "စိတ်နေစိတ်ထား" }
+    ]
+},
+{
+    id: 112,
+    title: "112. အိမ်သန့်ရှင်းရေး (House Cleaning)",
+    convo: `A: I struggle with keeping my house clean.
+B: I can give you some cleaning tips.
+A: That would be great! I need all the help I can get.
+B: First, try to clean a little bit every day.
+A: That's a good idea. I can do small tasks daily.
+B: Yes, it prevents things from piling up.
+A: What's the most important room to clean?
+B: The kitchen and bathroom are the most important.
+A: I agree. They require more attention.
+B: Use natural cleaners like vinegar and baking soda.
+A: I've heard those are very effective.
+B: Also, don't forget to clean windows regularly.
+A: I always forget about the windows.
+B: They make a big difference in how clean the house feels.
+A: I also need to declutter my home.
+B: Decluttering is essential for a clean home.
+A: I have so many things I don't need.
+B: Donate or throw away things you don't use.
+A: That's great advice. I'll start doing that.
+B: Also, make your bed every morning.
+A: That's simple but effective. It starts the day right.
+B: Yes, it gives you a sense of accomplishment.
+A: I'll try to follow these tips.
+B: You'll see a big difference.`,
+    vocab: [
+        { word: "Struggle", meaning: "ရုန်းကန်သည်" },
+        { word: "Cleaning tips", meaning: "သန့်ရှင်းရေးအကြံပြုချက်များ" },
+        { word: "Piling up", meaning: "စုပုံနေသော" },
+        { word: "Natural cleaners", meaning: "သဘာဝသန့်စင်ပစ္စည်းများ" },
+        { word: "Vinegar", meaning: "ရှာလကာရည်" },
+        { word: "Baking soda", meaning: "မုန့်ဖုတ်ဆိုဒါ" },
+        { word: "Decluttering", meaning: "သန့်ရှင်းရေးပြုလုပ်ခြင်း" },
+        { word: "Accomplishment", meaning: "ပြီးမြောက်အောင်မြင်မှု" }
+    ]
+},
+{
+    id: 113,
+    title: "113. အိမ်အစားအစာပြင်ဆင်ခြင်း (Cooking Dinner)",
+    convo: `A: What's for dinner tonight?
+B: I'm going to cook a big feast tonight.
+A: That sounds delicious. What are you making?
+B: I'm making roast chicken with vegetables.
+A: That's my favorite! I love roast chicken.
+B: I also plan to make some mashed potatoes.
+A: Perfect! I can help you prepare it.
+B: That's great. Can you peel the potatoes?
+A: Sure! I'll wash and peel them right now.
+B: I'll marinate the chicken with herbs and spices.
+A: The kitchen smells amazing already.
+B: This is going to be a wonderful meal.
+A: I'm so hungry now. I can't wait.
+B: It'll be ready in about an hour.
+A: I'll set the table while waiting.
+B: Good idea. Please use the good plates.
+A: I'll also pour some wine for us.
+B: That sounds lovely. This is a special meal.
+A: It's always special when we eat together.
+B: I agree. Food tastes better with family.
+A: I love spending time with you like this.
+B: Me too. This is what life is about.
+A: Thank you for cooking this wonderful dinner.
+B: You're welcome. I enjoy cooking for you.`,
+    vocab: [
+        { word: "Feast", meaning: "ပွဲတော်စာစား" },
+        { word: "Roast chicken", meaning: "ကင်းထားသောကြက်သား" },
+        { word: "Mashed potatoes", meaning: "အာလူးပြုတ်နယ်" },
+        { word: "Peel", meaning: "အခွံခွာသည်" },
+        { word: "Marinate", meaning: "ဟင်းခတ်အမွှေးအကြိုင်နယ်သည်" },
+        { word: "Herbs", meaning: "ဟင်းခတ်အမွှေးအကြိုင်များ" },
+        { word: "Plates", meaning: "ပန်းကန်များ" }
+    ]
+},
+{
+    id: 114,
+    title: "114. အိမ်တွင်းအပင်စိုက်ပျိုးခြင်း (Indoor Plants)",
+    convo: `A: I love having indoor plants at home.
+B: Me too! They make the house feel alive.
+A: I have a few succulents in my living room.
+B: Succulents are so easy to care for.
+A: Yes, they're perfect for beginners.
+B: I also have a peace lily in my bedroom.
+A: Peace lilies are beautiful and purify the air.
+B: I also have some ferns in the bathroom.
+A: Ferns love the humidity from the shower.
+B: I want to get more plants for my home.
+A: You should! They bring so much joy.
+B: What plants do you recommend?
+A: Spider plants are great for beginners.
+B: I'll get one of those next time.
+A: Make sure to water them regularly.
+B: I water my plants once a week.
+A: That's perfect. Don't overwater them.
+B: I learned that the hard way.
+A: Plants also need sunlight and fresh air.
+B: I rotate my plants to ensure they get enough light.
+A: That's a great idea.
+B: I'm so happy I started this indoor garden.
+A: Plants make me feel calmer and happier.
+B: They truly do. They're good for mental health.`,
+    vocab: [
+        { word: "Succulents", meaning: "အသားထူအပင်များ" },
+        { word: "Peace lily", meaning: "ငြိမ်းချမ်းရေးပန်း" },
+        { word: "Purify", meaning: "သန့်စင်သည်" },
+        { word: "Ferns", meaning: "ဖန်းပင်" },
+        { word: "Humidity", meaning: "စိုထိုင်းဆ" },
+        { word: "Spider plants", meaning: "ပင့်ကူအပင်" },
+        { word: "Overwater", meaning: "ရေအလွန်အကျွံသွန်းခြင်း" },
+        { word: "Rotate", meaning: "လှည့်သည်" },
+        { word: "Mental health", meaning: "စိတ်ကျန်းမာရေး" }
+    ]
+},
+{
+    id: 115,
+    title: "115. အိမ်မွေးတိရစ္ဆာန်အကြောင်း (Pet Care)",
+    convo: `A: I just adopted a rescue dog!
+B: That's wonderful! What kind of dog is it?
+A: It's a mix breed. About a year old.
+B: What did you name them?
+A: I named them Charlie. It's a boy.
+B: That's a cute name. Is he friendly?
+A: He's very friendly and playful.
+B: How is he adjusting to his new home?
+A: He's settling in really well.
+B: That's great to hear. Rescuing dogs is such a good deed.
+A: I agree. All animals deserve a loving home.
+B: Do you have any other pets?
+A: No, Charlie is my first pet.
+B: It's a big responsibility, but very rewarding.
+A: Yes, I'm learning a lot about taking care of him.
+B: What does he like to eat and do?
+A: He loves playing fetch and going for walks.
+B: That's great exercise for both of you.
+A: I've been walking him twice a day.
+B: That's wonderful. It's good for you too.
+A: I've also been taking him to training classes.
+B: Training is so important for dogs.
+A: He's already learning basic commands.
+B: That's impressive! He's a smart dog.`,
+    vocab: [
+        { word: "Adopted", meaning: "မွေးစားခဲ့သည်" },
+        { word: "Rescue dog", meaning: "ကယ်ဆယ်ရေးခွေး" },
+        { word: "Mix breed", meaning: "ခွေးမျိုးစပ်" },
+        { word: "Settling in", meaning: "နေသားကျသည်" },
+        { word: "Good deed", meaning: "ကောင်းမှုကုသိုလ်" },
+        { word: "Responsibility", meaning: "တာဝန်" },
+        { word: "Fetch", meaning: "ပစ်ပစ်ယူယူကစားခြင်း" },
+        { word: "Commands", meaning: "အမိန့်များ" }
+    ]
+},
+{
+    id: 116,
+    title: "116. အိမ်သန့်ရှင်းရေးအလေ့အကျင့် (Cleaning Habits)",
+    convo: `A: I want to create a weekly cleaning routine.
+B: That's a great idea. It keeps your house tidy.
+A: I always procrastinate when it comes to cleaning.
+B: A schedule will help you stay on track.
+A: What should my routine include?
+B: You should dust, vacuum, and mop every week.
+A: That sounds manageable. What about deep cleaning?
+B: Do deep cleaning once a month.
+A: I'll do that. What about the bathroom?
+B: Clean the bathroom at least twice a week.
+A: That's important. Bathrooms get dirty quickly.
+B: Also clean the kitchen counters and sink daily.
+A: I'll try to do that every day.
+B: Make a checklist so you don't forget anything.
+A: That's a smart idea. I'll create one.
+B: Also, clean as you go to avoid messes.
+A: I need to get better at that.
+B: It takes practice, but it becomes a habit.
+A: I'll start this week and see how it goes.
+B: Good luck! A clean home is a happy home.
+A: I really want to improve my cleaning habits.
+B: You'll get there. One step at a time.`,
+    vocab: [
+        { word: "Routine", meaning: "လုပ်ရိုးလုပ်စဉ်" },
+        { word: "Tidy", meaning: "သပ်ရပ်သော" },
+        { word: "Procrastinate", meaning: "ဆိုင်းငံ့သည်" },
+        { word: "Schedule", meaning: "အချိန်ဇယား" },
+        { word: "Dust", meaning: "ဖုန်မှုန့်သုတ်သည်" },
+        { word: "Vacuum", meaning: "ဖုန်စုပ်စက်သုံးသည်" },
+        { word: "Mop", meaning: "ရေဆေးသည်" },
+        { word: "Checklist", meaning: "စစ်ဆေးရန်စာရင်း" },
+        { word: "Habit", meaning: "အကျင့်" }
+    ]
+},
+{
+    id: 117,
+    title: "117. အိမ်အစားအစာချက်ပြုတ်ခြင်း (Weekend Cooking)",
+    convo: `A: What are we cooking this weekend?
+B: I want to try making a new recipe.
+A: What recipe are you thinking of?
+B: I found a great recipe for Thai green curry.
+A: That sounds delicious! Let's make it.
+B: We need to buy the ingredients first.
+A: Let's make a shopping list.
+B: We need coconut milk, curry paste, and vegetables.
+A: I'll also buy some rice to go with it.
+B: Perfect. Let's go shopping tomorrow morning.
+A: Great. I'm excited to try this recipe.
+B: Cooking new recipes is always fun.
+A: I love exploring different cuisines.
+B: Me too. Thai food is one of my favorites.
+A: The curry should be spicy but flavorful.
+B: I'll adjust the spice level to our taste.
+A: We can also make some spring rolls on the side.
+B: That's a great idea. I love spring rolls.
+A: This is going to be an amazing meal.
+B: I can't wait to cook and eat together.
+A: Cooking with you is always a joy.
+B: Same here. Let's have a wonderful cooking day.`,
+    vocab: [
+        { word: "Recipe", meaning: "စာရွက်" },
+        { word: "Thai green curry", meaning: "ထိုင်းအစိမ်းဟင်း" },
+        { word: "Coconut milk", meaning: "အုန်းနို့" },
+        { word: "Curry paste", meaning: "ဟင်းခတ်အမွှေးအကြိုင်အနှစ်" },
+        { word: "Cuisines", meaning: "အစားအစာအမျိုးအစားများ" },
+        { word: "Flavorful", meaning: "အရသာရှိသော" },
+        { word: "Spring rolls", meaning: "ကြော်စွပ်ပြား" }
+    ]
+},
+{
+    id: 118,
+    title: "118. အိမ်အတွက်အပန်းဖြေခြင်း (Relaxing at Home)",
+    convo: `A: I just want to relax at home this weekend.
+B: That sounds perfect. Everyone needs a break.
+A: I've had a very long and stressful week.
+B: You deserve some time to yourself.
+A: I'm going to watch movies and read books.
+B: That's a great way to unwind.
+A: I also plan to take long naps.
+B: Rest is so important for your health.
+A: I'll also order some takeout food.
+B: That's a good idea. No cooking needed.
+A: I want to create a cozy atmosphere at home.
+B: Light some candles and play soft music.
+A: That sounds wonderful. I'll do that.
+B: You should also put your phone away.
+A: Yes, I need a digital detox.
+B: That will help you truly relax.
+A: I'm going to practice some meditation too.
+B: Meditation is great for calming the mind.
+A: I need to recharge for the coming week.
+B: Self-care is so important.
+A: I'm going to enjoy every moment of this weekend.
+B: You should! You've earned it.`,
+    vocab: [
+        { word: "Stressful", meaning: "ဖိစီးမှုများသော" },
+        { word: "Unwind", meaning: "စိတ်ဖြေလျှော့သည်" },
+        { word: "Takeout", meaning: "အဆင်သင့်အစားအစာ" },
+        { word: "Cozy", meaning: "နွေးထွေးသော" },
+        { word: "Digital detox", meaning: "ဒီဂျစ်တယ်အဆိပ်ဖြေခြင်း" },
+        { word: "Meditation", meaning: "တရားထိုင်ခြင်း" },
+        { word: "Self-care", meaning: "ကိုယ့်ကိုယ်ကိုဂရုစိုက်ခြင်း" }
+    ]
+},
+{
+    id: 119,
+    title: "119. အိမ်အလုပ်အကြောင်း (Household Chores)",
+    convo: `A: I need to finish all my household chores this weekend.
+B: What chores do you have to do?
+A: I need to do laundry, dishes, and clean the house.
+B: That's a lot of work. You should pace yourself.
+A: I'll start with the laundry first.
+B: That's a good idea. Laundry takes a long time.
+A: Then I'll wash the dishes and clean the kitchen.
+B: The kitchen is always the messiest room.
+A: I also need to vacuum and mop the floors.
+B: That'll take a while, but it'll feel great after.
+A: I'll take breaks in between to avoid exhaustion.
+B: That's smart. You don't want to burn out.
+A: I'll reward myself with a movie after I'm done.
+B: That's a great motivation.
+A: Doing chores is not fun, but it's necessary.
+B: I agree. A clean home is a happy home.
+A: I wish I had a robot to do everything for me.
+B: That would be amazing, right?
+A: For now, I'll just do it myself.
+B: Good luck with your chores! You got this.`,
+    vocab: [
+        { word: "Chores", meaning: "အိမ်အလုပ်များ" },
+        { word: "Laundry", meaning: "အဝတ်လျှော်ခြင်း" },
+        { word: "Pace yourself", meaning: "သင့်အရှိန်ကိုထိန်းပါ" },
+        { word: "Exhaustion", meaning: "ပင်ပန်းနွမ်းနယ်မှု" },
+        { word: "Burn out", meaning: "အားအင်ကုန်ခန်းသည်" },
+        { word: "Motivation", meaning: "လှုံ့ဆော်မှု" }
+    ]
+},
+{
+    id: 120,
+    title: "120. အိမ်အတွက်စီစဉ်ခြင်း (Home Organization)",
+    convo: `A: I want to organize my home better.
+B: That's a great goal. A organized home is a happy home.
+A: I have so many things everywhere.
+B: Start by decluttering one room at a time.
+A: That's a good strategy. I'll start with the living room.
+B: Separate items into keep, donate, and throw away.
+A: I'll get some storage boxes to organize things.
+B: Labels are also very helpful for organization.
+A: I'll label all my storage boxes.
+B: That way you can find things easily.
+A: I also want to organize my closet.
+B: Sort your clothes by season and color.
+A: That's a great idea. I'll do that.
+B: Use drawer organizers for small items.
+A: I'll buy some drawer organizers this weekend.
+B: A organized home makes life so much easier.
+A: I agree. I'm excited to get started.
+B: Take it one step at a time.
+A: I will. I'll start this weekend.
+B: Good luck! You'll feel so much better.`,
+    vocab: [
+        { word: "Organize", meaning: "စီစဉ်သည်" },
+        { word: "Decluttering", meaning: "သန့်ရှင်းရေးပြုလုပ်ခြင်း" },
+        { word: "Strategy", meaning: "နည်းဗျူဟာ" },
+        { word: "Storage boxes", meaning: "သိမ်းဆည်းသည့်သေတ္တာများ" },
+        { word: "Labels", meaning: "တံဆိပ်များ" },
+        { word: "Closet", meaning: "ဗီရို" },
+        { word: "Drawer organizers", meaning: "အံဆွဲစီစဉ်ကိရိယာများ" }
+    ]
+},
+// ========== 121-130: ခရီးသွားနှင့် စွန့်စားမှု ==========
+{
+    id: 121,
+    title: "121. ခရီးသွားအတွေ့အကြုံ (Travel Experiences)",
+    convo: `A: I just came back from an amazing trip to Japan.
+B: Oh wow! That's a dream destination for many.
+A: It was absolutely incredible. I loved every moment.
+B: What was your favorite part of the trip?
+A: I loved visiting the temples in Kyoto.
+B: I've heard Kyoto is very beautiful.
+A: Yes, the temples and gardens are breathtaking.
+B: Did you try Japanese food?
+A: Of course! The sushi and ramen were delicious.
+B: I'm so jealous! I want to go there too.
+A: You should! It's a wonderful experience.
+B: How was the culture and people?
+A: The people were very polite and helpful.
+B: That's what I've heard about Japan.
+A: I also visited Tokyo and Osaka.
+B: What did you think of the cities?
+A: They're so modern and clean. I loved them.
+B: Did you have any language barriers?
+A: A little, but many people spoke English.
+B: That's good. It must have been easier.
+A: I also learned a few Japanese phrases.
+B: That's so cool. Can you say something?
+A: Konnichiwa! (Hello) and Arigatou! (Thank you)
+B: That's great! You're practically fluent!`,
+    vocab: [
+        { word: "Dream destination", meaning: "အိပ်မက်ခရီးစဉ်" },
+        { word: "Temples", meaning: "ဘုရားကျောင်းများ" },
+        { word: "Breathtaking", meaning: "အသက်ရှုမဝအောင်လှပသော" },
+        { word: "Sushi", meaning: "ဆူရှီ" },
+        { word: "Ramen", meaning: "ရာမင်" },
+        { word: "Polite", meaning: "ယဉ်ကျေးသော" },
+        { word: "Language barriers", meaning: "ဘာသာစကားအတားအဆီး" },
+        { word: "Phrases", meaning: "စကားစုများ" }
+    ]
+},
+{
+    id: 122,
+    title: "122. ခရီးသွားစဉ်ဈေးဝယ်ခြင်း (Shopping While Traveling)",
+    convo: `A: I love shopping for souvenirs when I travel.
+B: Me too! It's a great way to remember your trip.
+A: I want to buy some local handicrafts.
+B: The handmade items are always the best.
+A: I also want to buy some clothes and accessories.
+B: Yes, local fashion is unique and beautiful.
+A: There's a local market near the city center.
+B: Let's go there tomorrow morning.
+A: That sounds perfect. I love local markets.
+B: I want to buy gifts for my family and friends.
+A: That's so thoughtful. They'll love them.
+A: I'll buy some traditional jewelry.
+B: That would be a great gift.
+A: I also want to buy some local spices.
+B: Yes! Spices are great souvenirs.
+(At the market)
+A: This market is amazing! So many colors.
+B: I love the vibrant atmosphere here.
+A: Look at these handmade bags! They're beautiful.
+B: I'll buy one for my sister.
+A: I'll buy some silk scarves for my mother.
+B: That's a wonderful gift.
+A: I'm so glad we came here.
+B: Me too. This is the best shopping experience.
+A: I've bought so many things already!`,
+    vocab: [
+        { word: "Souvenirs", meaning: "အမှတ်တရပစ္စည်းများ" },
+        { word: "Handicrafts", meaning: "လက်မှုပစ္စည်းများ" },
+        { word: "Accessories", meaning: "အဆင်တန်ဆာများ" },
+        { word: "Traditional", meaning: "ရိုးရာ" },
+        { word: "Jewelry", meaning: "လက်ဝတ်ရတနာ" },
+        { word: "Spices", meaning: "ဟင်းခတ်အမွှေးအကြိုင်များ" },
+        { word: "Vibrant", meaning: "တက်ကြွသော" },
+        { word: "Silk scarves", meaning: "ပိုးထည်ပဝါများ" }
+    ]
+},
+{
+    id: 123,
+    title: "123. ခရီးသွားစဉ်အတွေ့အကြုံ (Travel Stories)",
+    convo: `A: I have so many amazing stories from my travels.
+B: I'd love to hear some of them.
+A: One time in Thailand, I got lost and found a hidden temple.
+B: That sounds incredible! What happened?
+A: I was walking through the city and took the wrong turn.
+B: And then what?
+A: I discovered a beautiful, ancient temple with no tourists.
+B: That sounds like a magical experience.
+A: It was! The monks were very friendly and welcoming.
+B: Did you take any photos there?
+A: Yes, I took some amazing photos.
+B: I'd love to see them!
+A: I'll show you when we get home.
+B: That sounds wonderful. I love travel stories.
+A: Another time, I made friends with a local family in Vietnam.
+B: That's beautiful. Did you stay with them?
+A: Yes, they invited me to stay at their home.
+B: That's so generous! You're so lucky.
+A: I learned so much about their culture and food.
+B: That's what makes travel so special.
+A: I also went hiking in the mountains of Nepal.
+B: Nepal is my dream destination.
+A: It's incredible. The views are breathtaking.
+B: I hope to go there one day.
+A: You should! Traveling is the best thing you can do.`,
+    vocab: [
+        { word: "Hidden temple", meaning: "ဝှက်ထားသောဘုရားကျောင်း" },
+        { word: "Ancient", meaning: "ရှေးဟောင်း" },
+        { word: "Monks", meaning: "ရဟန်းများ" },
+        { word: "Welcoming", meaning: "ကြိုဆိုသော" },
+        { word: "Generous", meaning: "ရက်ရောသော" },
+        { word: "Breathtaking", meaning: "အသက်ရှုမဝအောင်လှပသော" }
+    ]
+},
+{
+    id: 124,
+    title: "124. ခရီးသွားစဉ်သင်ခန်းစာ (Lessons from Travel)",
+    convo: `A: Traveling has taught me so much about life.
+B: I agree. It's the best education you can get.
+A: I've learned to be more open-minded and flexible.
+B: Yes, you have to adapt to different situations.
+A: I've also learned to appreciate the little things.
+B: Like a beautiful sunset or a kind gesture.
+A: Travel has also taught me to be patient.
+B: Yes, things don't always go as planned.
+A: But that's what makes it an adventure.
+B: Exactly. Every challenge is a learning opportunity.
+A: I've also learned to be more grateful.
+B: Travel makes you appreciate what you have.
+A: I've seen how happy people are with so little.
+B: That's such an important lesson.
+A: I've also made lifelong friends from around the world.
+B: That's the most beautiful gift of travel.
+A: I'm a different person now than before I traveled.
+B: Travel changes you for the better.
+A: I'm so grateful for all the lessons I've learned.
+B: Travel truly is the best teacher.
+A: I'll continue to travel and learn for the rest of my life.
+B: That's the spirit! The world is full of wonder.`,
+    vocab: [
+        { word: "Open-minded", meaning: "စိတ်ထားကျယ်သော" },
+        { word: "Flexible", meaning: "ပျော့ပြောင်းသော" },
+        { word: "Adapt", meaning: "လိုက်လျောညီထွေဖြစ်သည်" },
+        { word: "Appreciate", meaning: "တန်ဖိုးထားသည်" },
+        { word: "Patient", meaning: "စိတ်ရှည်သော" },
+        { word: "Adventure", meaning: "စွန့်စားခန်း" },
+        { word: "Lifelong", meaning: "တစ်သက်တာ" },
+        { word: "Wonder", meaning: "အံ့ဖွယ်" }
+    ]
+},
+{
+    id: 125,
+    title: "125. ခရီးသွားစဉ်ဓာတ်ပုံရိုက်ခြင်း (Travel Photography)",
+    convo: `A: I love taking photos when I travel.
+B: Me too. It's the best way to capture memories.
+A: I brought my professional camera with me.
+B: That's great! You'll take amazing photos.
+A: I want to capture the beauty of this place.
+B: The architecture here is stunning.
+A: Yes, I want to photograph all the buildings.
+B: Don't forget to take photos of the people too.
+A: I will. I love candid shots of locals.
+B: They tell a story about the culture.
+A: I also want to take landscape photos.
+B: The mountains and lakes here are beautiful.
+A: I'll wake up early for the sunrise shots.
+B: That's dedicated! The light will be perfect.
+A: I also want to capture the night sky.
+B: The stars here are so clear and bright.
+A: I'll bring my tripod for that.
+B: You're really prepared! I'm impressed.
+A: Photography is my passion. I love it.
+B: I can tell. Your photos are always beautiful.
+A: Thank you. I'll share the best ones with you.
+B: I'd love that! You're so talented.`,
+    vocab: [
+        { word: "Capture", meaning: "ဖမ်းယူသည်" },
+        { word: "Memories", meaning: "အမှတ်တရများ" },
+        { word: "Architecture", meaning: "ဗိသုကာလက်ရာ" },
+        { word: "Candid shots", meaning: "အလိုလိုရိုက်ထားသောဓာတ်ပုံများ" },
+        { word: "Landscape", meaning: "ရှုခင်း" },
+        { word: "Sunrise", meaning: "နေထွက်ချိန်" },
+        { word: "Tripod", meaning: "ကင်မရာတိုင်စင်" },
+        { word: "Passion", meaning: "စိတ်အားထက်သန်မှု" }
+    ]
+},
+{
+    id: 126,
+    title: "126. ခရီးသွားစဉ်အစားအစာ (Food While Traveling)",
+    convo: `A: I love trying local food when I travel.
+B: Me too! It's one of the best parts of traveling.
+A: I want to try everything this city has to offer.
+B: Street food is always my favorite.
+A: Yes, it's so authentic and delicious.
+B: I heard the night market here is amazing.
+A: Let's go there for dinner tonight.
+B: That sounds perfect. I'm so excited.
+A: I want to try the local specialty dishes.
+B: I'll ask the locals for their recommendations.
+A: That's the best way to find good food.
+B: I also want to try some exotic fruits.
+A: Yes! I love trying new things.
+(At the night market)
+A: This place is incredible! So many choices.
+B: I want to try everything! It all looks delicious.
+A: Let's start with the grilled seafood.
+B: Good idea. I love seafood.
+A: Then we'll try the noodles and dumplings.
+B: That sounds amazing. I'm getting hungry.
+A: I also want to try the local desserts.
+B: Yes! I love trying sweets from different countries.
+A: This is the best part of traveling.
+B: I agree. Food brings people together.`,
+    vocab: [
+        { word: "Street food", meaning: "လမ်းဘေးအစားအစာ" },
+        { word: "Authentic", meaning: "စစ်မှန်သော" },
+        { word: "Night market", meaning: "ညဈေး" },
+        { word: "Specialty", meaning: "အထူးဟင်း" },
+        { word: "Recommendations", meaning: "အကြံပြုချက်များ" },
+        { word: "Exotic", meaning: "ထူးဆန်းသော" },
+        { word: "Grilled", meaning: "ကင်ထားသော" },
+        { word: "Seafood", meaning: "ပင်လယ်စာ" }
+    ]
+},
+{
+    id: 127,
+    title: "127. ခရီးသွားစဉ်မိတ်ဆွေများ (Meeting People While Traveling)",
+    convo: `A: I love meeting local people when I travel.
+B: Me too. They make the experience so authentic.
+A: I've made so many friends through traveling.
+B: That's wonderful. People are the best part of travel.
+A: I was invited to a local's home for dinner.
+B: That's amazing! You'll experience real culture.
+A: I'm a bit nervous. I don't want to offend anyone.
+B: Just be yourself and show respect.
+A: I'll bring a small gift as a thank you.
+B: That's a thoughtful gesture. They'll appreciate it.
+A: I want to learn about their way of life.
+B: That's the whole point of traveling.
+A: I love hearing their stories and experiences.
+B: Yes, everyone has a unique story to tell.
+A: I'm going to take notes so I don't forget.
+B: That's a great idea. You can write a travel blog.
+A: I've been thinking about starting one.
+B: You should! You have so many interesting stories.
+A: Meeting locals has changed my perspective on life.
+B: It's the most meaningful part of travel.
+A: I agree. It makes the world feel smaller.
+B: We're all connected in some way.`,
+    vocab: [
+        { word: "Authentic", meaning: "စစ်မှန်သော" },
+        { word: "Offend", meaning: "စိတ်ထိခိုက်စေသည်" },
+        { word: "Respect", meaning: "လေးစားမှု" },
+        { word: "Gesture", meaning: "အမူအရာ" },
+        { word: "Unique", meaning: "ထူးခြားသော" },
+        { word: "Perspective", meaning: "ရှုထောင့်" },
+        { word: "Meaningful", meaning: "အဓိပ္ပာယ်ရှိသော" }
+    ]
+},
+{
+    id: 128,
+    title: "128. ခရီးသွားစဉ်အခက်အခဲ (Travel Challenges)",
+    convo: `A: Traveling isn't always easy. I've faced many challenges.
+B: I agree. But that's what makes it an adventure.
+A: Once, my flight was cancelled and I was stuck at the airport.
+B: That must have been so frustrating.
+A: It was, but I stayed calm and found a solution.
+B: What did you do?
+A: I rebooked my flight and stayed at a nearby hotel.
+B: That's a good lesson in patience.
+A: Another time, I lost my wallet in a foreign country.
+B: Oh no! That's a nightmare.
+A: It was scary, but I had my passport and credit card separate.
+B: That's a smart travel tip.
+A: I've also gotten lost in many cities.
+B: Getting lost is part of the adventure.
+A: Yes, I discovered hidden gems that way.
+B: That's the beauty of travel.
+A: I've also dealt with language barriers.
+B: That's always a challenge.
+A: But I learned to use translation apps.
+B: Technology really helps in those situations.
+A: Despite the challenges, I love traveling.
+B: The rewards far outweigh the difficulties.`,
+    vocab: [
+        { word: "Cancelled", meaning: "ဖျက်သိမ်းခဲ့သော" },
+        { word: "Frustrating", meaning: "စိတ်အနှောင့်အယှက်ဖြစ်စေသော" },
+        { word: "Solution", meaning: "ဖြေရှင်းချက်" },
+        { word: "Patience", meaning: "စိတ်ရှည်မှု" },
+        { word: "Nightmare", meaning: "အိပ်မက်ဆိုး" },
+        { word: "Hidden gems", meaning: "ဝှက်ထားသောရတနာများ" },
+        { word: "Translation apps", meaning: "ဘာသာပြန်အက်ပ်များ" }
+    ]
+},
+{
+    id: 129,
+    title: "129. ခရီးသွားစဉ်အကြံပြုချက် (Travel Tips)",
+    convo: `A: Do you have any travel tips for me?
+B: I have many! First, always carry a photocopy of your passport.
+A: That's a smart idea. In case I lose it.
+B: Also, learn a few phrases in the local language.
+A: I'll do that. It shows respect.
+B: Pack light. You don't want to carry heavy luggage.
+A: Yes, I always overpack.
+B: Make a packing list to stay organized.
+A: That's a good tip. I'll do that.
+B: Also, keep your valuables in a safe place.
+A: I use a money belt for that.
+B: That's perfect. Very secure.
+A: What about transportation?
+B: Use public transport to save money and experience local life.
+A: That's a great idea. I'll try that.
+B: Always have a backup plan for your itinerary.
+A: Things don't always go as planned.
+B: Exactly. Flexibility is key.
+A: Any other tips?
+B: Take lots of photos and enjoy every moment.
+A: I will! Thank you for the tips.`,
+    vocab: [
+        { word: "Photocopy", meaning: "ကူးယူမှု" },
+        { word: "Local language", meaning: "ဒေသခံဘာသာစကား" },
+        { word: "Overpack", meaning: "ပစ္စည်းအလွန်အကျွံထုပ်ပိုးခြင်း" },
+        { word: "Packing list", meaning: "ထုပ်ပိုးစာရင်း" },
+        { word: "Valuables", meaning: "တန်ဖိုးရှိပစ္စည်းများ" },
+        { word: "Money belt", meaning: "ငွေကြေးသိမ်းသည့်ခါးပတ်" },
+        { word: "Public transport", meaning: "အများပြည်သူသယ်ယူပို့ဆောင်ရေး" },
+        { word: "Backup plan", meaning: "အရန်အစီအစဉ်" },
+        { word: "Flexibility", meaning: "ပျော့ပြောင်းမှု" }
+    ]
+},
+{
+    id: 130,
+    title: "130. ခရီးသွားစဉ်ပျော်ရွှင်မှု (Joy of Travel)",
+    convo: `A: What do you love most about traveling?
+B: Everything! The new experiences, people, and food.
+A: I agree. It's so enriching.
+B: Travel makes me feel alive and free.
+A: Yes, it's a break from routine.
+B: I love exploring new places and cultures.
+A: It opens your mind and heart.
+B: I've made so many beautiful memories.
+A: Travel has changed my life.
+B: Me too. I'm a different person now.
+A: I'm more open-minded and understanding.
+B: Travel teaches you to appreciate diversity.
+A: The world is such a beautiful place.
+B: Yes, there's so much to explore.
+A: I want to travel to every continent.
+B: That's an amazing goal! I hope you achieve it.
+A: I will. Travel is my biggest passion.
+B: Mine too. I can't imagine life without it.
+A: Let's plan a trip together someday.
+B: That would be incredible! I'd love that.
+A: Let's make it happen.
+B: Yes! The world is waiting for us.`,
+    vocab: [
+        { word: "Enriching", meaning: "ကြွယ်ဝစေသော" },
+        { word: "Alive", meaning: "အသက်ရှင်သော" },
+        { word: "Routine", meaning: "လုပ်ရိုးလုပ်စဉ်" },
+        { word: "Open-minded", meaning: "စိတ်ထားကျယ်သော" },
+        { word: "Understanding", meaning: "နားလည်သော" },
+        { word: "Diversity", meaning: "ကွဲပြားမှု" },
+        { word: "Continent", meaning: "တိုက်ကြီး" },
+        { word: "Passion", meaning: "စိတ်အားထက်သန်မှု" }
+    ]
+},
+// ========== 131-140: လူမှုရေးနှင့် ဆက်ဆံရေး ==========
+{
+    id: 131,
+    title: "131. သူငယ်ချင်းများအကြောင်း (Talking About Friends)",
+    convo: `A: I'm so grateful for my friends.
+B: Me too. Good friends are hard to find.
+A: I've known my best friend since childhood.
+B: That's beautiful. Long friendships are precious.
+A: We've been through so much together.
+B: True friends are there for you in good and bad times.
+A: I can always count on my friends.
+B: That's what friendship is all about.
+A: I love spending time with them.
+B: What do you like to do together?
+A: We like to watch movies, eat out, and travel.
+B: That sounds wonderful. Making memories together.
+A: I have friends from different countries too.
+B: That's amazing. You're so lucky.
+A: Yes, I love learning about their cultures.
+B: Friends from different backgrounds enrich your life.
+A: I always feel happy when I'm with my friends.
+B: Friends bring joy and laughter to life.
+A: I'm so thankful to have them in my life.
+B: Let's cherish our friends and never take them for granted.`,
+    vocab: [
+        { word: "Grateful", meaning: "ကျေးဇူးတင်သော" },
+        { word: "Precious", meaning: "အဖိုးတန်သော" },
+        { word: "Childhood", meaning: "ငယ်စဉ်ဘဝ" },
+        { word: "Count on", meaning: "ကိုးစားသည်" },
+        { word: "Enrich", meaning: "ကြွယ်ဝစေသည်" },
+        { word: "Cherish", meaning: "တန်ဖိုးထားသည်" },
+        { word: "Take for granted", meaning: "ပုံမှန်ဟုယူဆသည်" }
+    ]
+},
+{
+    id: 132,
+    title: "132. မိသားစုအကြောင်း (Talking About Family)",
+    convo: `A: My family is my everything.
+B: I feel the same way. Family is so important.
+A: I have a big family with many siblings.
+B: That's wonderful. You must have grown up in a busy house.
+A: Yes, it was always noisy and fun.
+B: I love big families. There's always someone to talk to.
+A: My parents are my biggest supporters.
+B: Supportive parents are a blessing.
+A: I'm also very close to my grandparents.
+B: Grandparents are so wise and loving.
+A: I visit my family as often as I can.
+B: That's wonderful. Family time is precious.
+A: We have dinner together every Sunday.
+B: That's a beautiful tradition.
+A: I'm so grateful for my family.
+B: Family is the foundation of life.
+A: I want to start my own family someday.
+B: That's a beautiful dream. You'll make a great parent.
+A: Thank you. I want to be as good as my parents.
+B: You will. You have a great example to follow.`,
+    vocab: [
+        { word: "Siblings", meaning: "မောင်နှမများ" },
+        { word: "Supportive", meaning: "အားပေးကူညီသော" },
+        { word: "Blessing", meaning: "ကောင်းချီး" },
+        { word: "Grandparents", meaning: "အဘိုးအဘွားများ" },
+        { word: "Tradition", meaning: "ထုံးတမ်းစဉ်လာ" },
+        { word: "Foundation", meaning: "အုတ်မြစ်" }
+    ]
+},
+{ id: 133,
+    title: "133. အိမ်ထောင်ရေးအကြောင်း (Marriage Life)",
+    convo: `A: I've been married for 5 years now.
+B: That's wonderful! How has it been?
+A: It's been amazing. I'm so happy.
+B: What's the key to a happy marriage?
+A: Communication and trust are the most important.
+B: I agree. You have to be open with each other.
+A: We also respect each other's space and goals.
+B: That's important. You need to grow together.
+A: We always support each other in everything.
+B: That's what marriage is all about.
+A: We also love spending time together.
+B: Date nights are very important.
+A: Yes, we have date night every week.
+B: That keeps the romance alive.
+A: We also travel together whenever we can.
+B: That's beautiful. Making memories together.
+A: I'm so grateful for my partner.
+B: You're lucky to have found each other.
+A: I thank God every day for them.
+B: Marriage is a beautiful gift.`,
+    vocab: [
+        { word: "Communication", meaning: "ဆက်သွယ်ရေး" },
+        { word: "Trust", meaning: "ယုံကြည်မှု" },
+        { word: "Respect", meaning: "လေးစားမှု" },
+        { word: "Support", meaning: "အားပေးကူညီမှု" },
+        { word: "Date nights", meaning: "ချစ်သူည" },
+        { word: "Romance", meaning: "အချစ်ရေး" },
+        { word: "Grateful", meaning: "ကျေးဇူးတင်သော" }
+    ]
+},
+{
+    id: 134,
+    title: "134. အလုပ်အင်တာဗျူး (Job Interview)",
+    convo: `A: I have a job interview tomorrow. I'm so nervous.
+B: Don't worry! You'll do great.
+A: I hope so. This is my dream job.
+B: What position are you applying for?
+A: I'm applying for the marketing manager position.
+B: That's a great role. Do you have experience in marketing?
+A: Yes, I have five years of experience.
+B: Then you're definitely qualified. Be confident.
+A: I've been preparing all week. I read about the company.
+B: That's excellent. Interviewers appreciate prepared candidates.
+A: What questions do you think they'll ask me?
+B: They'll probably ask about your strengths and weaknesses.
+A: I've prepared answers for those.
+B: Remember to be yourself and stay positive.
+A: I'll try. I'm just worried about saying the wrong thing.
+B: Take a deep breath and speak clearly.
+A: I also need to prepare some questions to ask them.
+B: That's a very good idea. It shows you're interested.
+A: What questions do you suggest?
+B: Ask about company culture and career growth.
+A: That's helpful. I'll prepare those questions.`,
+    vocab: [
+        { word: "Nervous", meaning: "ပူပန်သော" },
+        { word: "Applying", meaning: "လျှောက်ထားခြင်း" },
+        { word: "Marketing manager", meaning: "စျေးကွက်ရှာဖွေရေးမန်နေဂျာ" },
+        { word: "Experience", meaning: "အတွေ့အကြုံ" },
+        { word: "Qualified", meaning: "အရည်အချင်းပြည့်မီသော" },
+        { word: "Confident", meaning: "ယုံကြည်မှုရှိသော" },
+        { word: "Prepared", meaning: "အဆင်သင့်ဖြစ်သော" },
+        { word: "Candidates", meaning: "လျှောက်ထားသူများ" },
+        { word: "Strengths", meaning: "အားသာချက်များ" },
+        { word: "Weaknesses", meaning: "အားနည်းချက်များ" },
+        { word: "Company culture", meaning: "ကုမ္ပဏီယဉ်ကျေးမှု" },
+        { word: "Career growth", meaning: "အသက်မွေးဝမ်းကြောင်းတိုးတက်မှု" }
+    ]
+},
+{
+    id: 135,
+    title: "135. အလုပ်ခွင်ဆက်ဆံရေး (Workplace Relationships)",
+    convo: `A: I'm having some issues with a colleague at work.
+B: I'm sorry to hear that. What's the problem?
+A: We don't see eye to eye on many projects.
+B: That can be challenging. How are you handling it?
+A: I try to be professional and communicate clearly.
+B: That's the right approach. Have you talked to them directly?
+A: Yes, I've tried, but it didn't go well.
+B: Maybe you should ask your manager to mediate.
+A: That might be a good idea. It's affecting our productivity.
+B: You should also document everything just in case.
+A: I've been keeping records of our communications.
+B: That's very smart. It will protect you if needed.
+A: I just want to work peacefully and do my best.
+B: I understand. Work relationships can be complex.
+A: Do you have any other advice for me?
+B: Try to find common ground and focus on shared goals.
+A: That's a good point. We both want the project to succeed.
+B: Exactly. Focus on the positive outcomes.
+A: I'll try to be more understanding of their perspective.
+B: Compromise is key in any working relationship.`,
+    vocab: [
+        { word: "Colleague", meaning: "လုပ်ဖော်ကိုင်ဖက်" },
+        { word: "Issues", meaning: "ပြဿနာများ" },
+        { word: "See eye to eye", meaning: "သဘောတူညီသည်" },
+        { word: "Professional", meaning: "ကျွမ်းကျင်သော" },
+        { word: "Mediate", meaning: "ဖျန်ဖြေသည်" },
+        { word: "Productivity", meaning: "အလုပ်ဖြစ်မြောက်မှု" },
+        { word: "Document", meaning: "မှတ်တမ်းတင်သည်" },
+        { word: "Common ground", meaning: "ဘုံသေချာချက်" },
+        { word: "Compromise", meaning: "အပေးအယူလုပ်သည်" },
+        { word: "Perspective", meaning: "ရှုထောင့်" }
+    ]
+},
+{
+    id: 136,
+    title: "136. အလုပ်သစ်စတင်ခြင်း (Starting a New Job)",
+    convo: `A: I'm starting a new job next week. I'm so excited!
+B: Congratulations! That's wonderful news.
+A: Thank you! It's been a long journey to get here.
+B: What's the position you'll be working in?
+A: I'll be a project manager at a tech company.
+B: That's a huge achievement. You should be proud.
+A: I am proud, but also a little nervous.
+B: That's completely normal. Everyone feels that way.
+A: What's the best advice you can give me for my first day?
+B: Be friendly, ask questions, and be open to learning.
+A: That's great advice. I want to make a good impression.
+B: Also, don't try to know everything on day one.
+A: True. I'll take it step by step.
+B: And remember, everyone was once a new employee.
+A: I'll keep that in mind. It makes me feel better.
+B: Are you meeting your team on the first day?
+A: Yes, my manager is going to introduce me to everyone.
+B: That's great. First impressions are very important.
+A: I'm also planning to take notes to remember everyone's name.
+B: That's a smart tactic. People appreciate when you remember their names.`,
+    vocab: [
+        { word: "Congratulations", meaning: "ဂုဏ်ပြုပါတယ်" },
+        { word: "Project manager", meaning: "စီမံကိန်းမန်နေဂျာ" },
+        { word: "Achievement", meaning: "အောင်မြင်မှု" },
+        { word: "Proud", meaning: "ဂုဏ်ယူသော" },
+        { word: "Impression", meaning: "အထင်ကြီးမှု" },
+        { word: "Employee", meaning: "ဝန်ထမ်း" },
+        { word: "Introduce", meaning: "မိတ်ဆက်သည်" },
+        { word: "Tactic", meaning: "နည်းဗျူဟာ" }
+    ]
+},
+{
+    id: 137,
+    title: "137. အလုပ်ခွင်ပန်းတိုင် (Career Goals)",
+    convo: `A: What are your career goals for the future?
+B: I want to become a manager in the next 5 years.
+A: That's a great goal. How will you achieve it?
+B: I plan to take leadership courses and gain experience.
+A: That's a good strategy. You need to work hard.
+B: I also want to improve my communication skills.
+A: Communication is essential for leadership.
+B: I'm also considering getting an MBA degree.
+A: An MBA would definitely help your career.
+B: I've been researching different programs.
+A: Make sure you choose a good school.
+B: I'll also network with professionals in my field.
+A: Networking is very important for career growth.
+B: I want to work for a multinational company.
+A: That would be a great experience.
+B: I'm also learning new skills online.
+A: Continuous learning is key to success.
+B: I want to be a mentor to junior colleagues.
+A: Mentoring is a wonderful leadership quality.
+B: I also want to achieve a good work-life balance.
+A: Balance is essential for long-term happiness.`,
+    vocab: [
+        { word: "Career goals", meaning: "အသက်မွေးဝမ်းကြောင်းရည်မှန်းချက်များ" },
+        { word: "Manager", meaning: "မန်နေဂျာ" },
+        { word: "Leadership", meaning: "ခေါင်းဆောင်မှု" },
+        { word: "Communication skills", meaning: "ဆက်သွယ်ရေးစွမ်းရည်" },
+        { word: "MBA degree", meaning: "စီးပွားရေးစီမံခန့်ခွဲမှုဘွဲ့" },
+        { word: "Network", meaning: "ဆက်သွယ်ရေးကွန်ရက်" },
+        { word: "Multinational", meaning: "နိုင်ငံပေါင်းစုံ" },
+        { word: "Mentor", meaning: "လမ်းညွှန်ဆရာ" },
+        { word: "Work-life balance", meaning: "အလုပ်နှင့်ဘဝဟန်ချက်" }
+    ]
+},
+{
+    id: 138,
+    title: "138. အလုပ်ခွင်အောင်မြင်မှု (Work Success)",
+    convo: `A: I just got promoted at work!
+B: That's amazing! Congratulations!
+A: Thank you! I've been working so hard for this.
+B: You deserve it. You've been so dedicated.
+A: I'm really happy and proud of myself.
+B: You should be. It's a great achievement.
+A: I'm also getting a salary increase.
+B: That's wonderful! More money to enjoy.
+A: I'm going to celebrate with my family.
+B: You should! Enjoy this moment.
+A: What's the secret to your success?
+B: Hard work, determination, and a positive attitude.
+A: I agree. Those are very important.
+B: Also, never stop learning and growing.
+A: I'm always looking for ways to improve.
+B: That's the right mindset for success.
+A: I want to continue climbing the ladder.
+B: I'm sure you will. You have the drive.
+A: Thank you for all your support.
+B: You're welcome. I'm so happy for you!
+A: Let's celebrate together sometime.
+B: That sounds great! I'd love that.`,
+    vocab: [
+        { word: "Promoted", meaning: "ရာထူးတိုးခဲ့သော" },
+        { word: "Dedicated", meaning: "မြှုပ်နှံထားသော" },
+        { word: "Salary increase", meaning: "လစာတိုးမြှင့်ခြင်း" },
+        { word: "Determination", meaning: "စိတ်ပိုင်းဖြတ်မှု" },
+        { word: "Positive attitude", meaning: "အပြုသဘောဆန်သောစိတ်ထား" },
+        { word: "Mindset", meaning: "စိတ်နေစိတ်ထား" }
+    ]
+},
+{
+    id: 139,
+    title: "139. အလုပ်ခွင်အခက်အခဲ (Work Challenges)",
+    convo: `A: I'm facing some challenges at work right now.
+B: I'm sorry to hear that. What's going on?
+A: I have too many projects and not enough time.
+B: That sounds stressful. Can you delegate some tasks?
+A: I've tried, but my team is already overloaded.
+B: Maybe you need to prioritize your tasks.
+A: That's a good idea. I'll make a list of priorities.
+B: Also, talk to your manager about your workload.
+A: I'm worried they might think I can't handle it.
+B: It's better to be honest than to burn out.
+A: You're right. I'll ask for a meeting.
+B: Good. Communication is key in these situations.
+A: I also need to take breaks to avoid exhaustion.
+B: Yes, self-care is very important.
+A: I've been working late every night.
+B: That's not sustainable. You need rest.
+A: I'll try to manage my time better.
+B: Also, don't be afraid to ask for help.
+A: I'll reach out to my colleagues for support.
+B: You can do this. One step at a time.`,
+    vocab: [
+        { word: "Challenges", meaning: "စိန်ခေါ်မှုများ" },
+        { word: "Stressful", meaning: "ဖိစီးမှုများသော" },
+        { word: "Delegate", meaning: "တာဝန်လွှဲအပ်သည်" },
+        { word: "Prioritize", meaning: "ဦးစားပေးသည်" },
+        { word: "Workload", meaning: "အလုပ်ဝန်" },
+        { word: "Burn out", meaning: "အားအင်ကုန်ခန်းသည်" },
+        { word: "Sustainable", meaning: "ရေရှည်တည်တံ့နိုင်သော" }
+    ]
+},
+{
+    id: 140,
+    title: "140. အလုပ်ခွင်ပျော်ရွှင်မှု (Work Happiness)",
+    convo: `A: I love my job. I'm so happy at work.
+B: That's wonderful. Many people can't say that.
+A: I feel lucky to have a job I enjoy.
+B: What makes your job so enjoyable?
+A: I love the people and the work I do.
+B: A good team makes all the difference.
+A: Yes, my colleagues are like family to me.
+B: That's beautiful. Work relationships are important.
+A: I also find my work very meaningful.
+B: That's key. Meaningful work brings happiness.
+A: I feel like I'm making a difference.
+B: That's the best feeling in the world.
+A: I also have a good work-life balance.
+B: That's so important for long-term happiness.
+A: My company treats employees well.
+B: That's great. Good companies value their people.
+A: I hope everyone can find happiness at work.
+B: Me too. It makes life so much better.
+A: I'm grateful for my job every day.
+B: You should be! Not everyone is so lucky.
+A: I want to stay here for a long time.
+B: I'm sure you'll have a great career here.`,
+    vocab: [
+        { word: "Enjoyable", meaning: "ပျော်စရာကောင်းသော" },
+        { word: "Meaningful", meaning: "အဓိပ္ပာယ်ရှိသော" },
+        { word: "Work-life balance", meaning: "အလုပ်နှင့်ဘဝဟန်ချက်" },
+        { word: "Employees", meaning: "ဝန်ထမ်းများ" },
+        { word: "Grateful", meaning: "ကျေးဇူးတင်သော" }
+    ]
+},
+// ========== 141-150: ဘဝအတွေ့အကြုံ ==========
+{
+    id: 141,
+    title: "141. ဘဝအတွေ့အကြုံ (Life Experience)",
+    convo: `A: I've learned so much from life's experiences.
+B: Life is the best teacher, isn't it?
+A: Yes, every experience teaches us something.
+B: What's the most important lesson you've learned?
+A: To never give up, no matter how hard things get.
+B: That's a powerful lesson. Persistence is key.
+A: I've also learned to appreciate the little things.
+B: The small moments are often the most beautiful.
+A: Life is too short to hold grudges.
+B: Yes, forgiveness brings peace and freedom.
+A: I've also learned to be kind to myself.
+B: Self-compassion is so important.
+A: Mistakes are opportunities to grow.
+B: Exactly. Don't be afraid to make mistakes.
+A: I've also learned to trust my instincts.
+B: Intuition is a powerful guide.
+A: Life is a journey, not a destination.
+B: I love that perspective. It's about the process.
+A: I'm grateful for every experience, good or bad.
+B: They all shape who we are today.
+A: I want to keep learning and growing.
+B: That's the best way to live life.`,
+    vocab: [
+        { word: "Persistence", meaning: "ဇွဲ" },
+        { word: "Grudges", meaning: "ငြီးငွေ့မှုများ" },
+        { word: "Forgiveness", meaning: "ခွင့်လွှတ်ခြင်း" },
+        { word: "Self-compassion", meaning: "ကိုယ့်ကိုယ်ကိုသနားခြင်း" },
+        { word: "Instincts", meaning: "ဗီဇ" },
+        { word: "Intuition", meaning: "အတွင်းစိတ်" },
+        { word: "Journey", meaning: "ခရီး" },
+        { word: "Destination", meaning: "ဦးတည်ရာ" }
+    ]
+},
+{
+    id: 142,
+    title: "142. ဘဝအတွက်ကျေးဇူးတင်ခြင်း (Gratitude in Life)",
+    convo: `A: I try to practice gratitude every day.
+B: That's wonderful. Gratitude changes your perspective.
+A: I keep a gratitude journal and write three things daily.
+B: That's a great habit. It makes you appreciate life.
+A: I'm grateful for my health, family, and friends.
+B: Those are the most important things in life.
+A: I also appreciate the small things, like sunshine and good food.
+B: The little joys make life beautiful.
+A: Gratitude has made me a happier person.
+B: It's hard to be unhappy when you're grateful.
+A: I also express my gratitude to others.
+B: Showing appreciation strengthens relationships.
+A: I thank my friends and family often.
+B: That's lovely. They must feel very loved.
+A: Gratitude is a powerful practice.
+B: It transforms your outlook on life.
+A: I recommend it to everyone I know.
+B: I practice it too. It changed my life.
+A: We should always be thankful for what we have.
+B: Yes, because many people have less.
+A: Gratitude makes you content and at peace.
+B: It's the secret to a happy life.`,
+    vocab: [
+        { word: "Gratitude", meaning: "ကျေးဇူးတင်ခြင်း" },
+        { word: "Perspective", meaning: "ရှုထောင့်" },
+        { word: "Gratitude journal", meaning: "ကျေးဇူးတင်စာမျက်နှာ" },
+        { word: "Appreciation", meaning: "တန်ဖိုးထားခြင်း" },
+        { word: "Strengthens", meaning: "ခိုင်မာစေသည်" },
+        { word: "Outlook", meaning: "အမြင်" },
+        { word: "Content", meaning: "ရောင့်ရဲသော" }
+    ]
+},
+{
+    id: 143,
+    title: "143. ဘဝအတွက်ပန်းတိုင် (Life Goals)",
+    convo: `A: I'm setting new goals for myself this year.
+B: That's great! What are your goals?
+A: I want to focus on my health and career.
+B: Those are important areas of life.
+A: I want to exercise more and eat healthier.
+B: That's a wonderful goal. Health is everything.
+A: I also want to get a promotion at work.
+B: That's a great career goal. How will you achieve it?
+A: I'll work harder and take on more responsibilities.
+B: Dedication and effort will pay off.
+A: I also want to travel to a new country.
+B: That's an exciting goal! Where do you want to go?
+A: I want to visit Japan. It's my dream.
+B: Japan is beautiful. You'll love it.
+A: I'm also saving money for my future.
+B: Financial security is very important.
+A: I want to buy my own house in 5 years.
+B: That's a big goal, but achievable with planning.
+A: I'll work hard to achieve all my goals.
+B: I believe in you. You can do it!
+A: Thank you. I'll give it my best effort.
+B: Good luck! I'm rooting for you.`,
+    vocab: [
+        { word: "Goals", meaning: "ရည်မှန်းချက်များ" },
+        { word: "Promotion", meaning: "ရာထူးတိုးခြင်း" },
+        { word: "Dedication", meaning: "မြှုပ်နှံမှု" },
+        { word: "Financial security", meaning: "ဘဏ္ဍာရေးလုံခြုံမှု" },
+        { word: "Achievable", meaning: "ပြီးမြောက်နိုင်သော" }
+    ]
+},
+{
+    id: 144,
+    title: "144. ဘဝအတွက်ပျော်ရွှင်မှု (Happiness in Life)",
+    convo: `A: What does happiness mean to you?
+B: To me, happiness is being content with life.
+A: I agree. It's about appreciating what you have.
+B: Yes, it's not about having everything.
+A: I find happiness in simple things.
+B: Like a beautiful sunset or a good book.
+A: I'm also happy when I spend time with loved ones.
+B: Relationships are a key source of happiness.
+A: Helping others also makes me happy.
+B: Yes, giving brings so much joy.
+A: I also find happiness in achieving my goals.
+B: Accomplishments feel very rewarding.
+A: But happiness isn't always about achievement.
+B: True. Sometimes it's just about being.
+A: I'm learning to be happy in the present moment.
+B: That's the best way to live.
+A: Happiness is a choice, I think.
+B: Yes, you can choose to be happy.
+A: I choose happiness every day.
+B: That's the best decision you can make.`,
+    vocab: [
+        { word: "Content", meaning: "ရောင့်ရဲသော" },
+        { word: "Appreciating", meaning: "တန်ဖိုးထားခြင်း" },
+        { word: "Accomplishments", meaning: "ပြီးမြောက်အောင်မြင်မှုများ" },
+        { word: "Rewarding", meaning: "အကျိုးဖြစ်ထွန်းသော" },
+        { word: "Present moment", meaning: "လက်ရှိအချိန်" }
+    ]
+},
+{
+    id: 145,
+    title: "145. ဘဝအတွက်သင်ခန်းစာ (Life Lessons)",
+    convo: `A: Life has taught me some valuable lessons.
+B: What's the most important lesson you've learned?
+A: To never give up, even when things are hard.
+B: Perseverance is such an important quality.
+A: I've also learned to be kind to everyone.
+B: Kindness goes a long way in life.
+A: I've learned that failure is just a stepping stone.
+B: Yes, failure teaches us more than success.
+A: I've also learned to appreciate my health.
+B: Health is the most precious thing.
+A: Money isn't everything. Experiences matter more.
+B: I agree. Memories are priceless.
+A: I've learned to live in the moment.
+B: The present is all we really have.
+A: I've also learned to forgive and let go.
+B: Holding onto anger only hurts yourself.
+A: Life is short, so make the most of it.
+B: Yes, don't waste time on negativity.
+A: I want to live a life without regrets.
+B: That's a wonderful way to live.`,
+    vocab: [
+        { word: "Perseverance", meaning: "ဇွဲ" },
+        { word: "Stepping stone", meaning: "တိုးတက်ရေးလှေကားထစ်" },
+        { word: "Priceless", meaning: "အဖိုးမဖြတ်နိုင်သော" },
+        { word: "Negativity", meaning: "အဆိုးမြင်မှု" },
+        { word: "Regrets", meaning: "နောင်တများ" }
+    ]
+},
+{
+    id: 146,
+    title: "146. ဘဝအတွက်အကြံပြုချက် (Life Advice)",
+    convo: `A: Do you have any advice for living a good life?
+B: Yes, always follow your heart and passion.
+A: That's beautiful advice. What else?
+B: Don't be afraid to take risks and try new things.
+A: I agree. Growth comes from stepping out of your comfort zone.
+B: Also, surround yourself with positive people.
+A: The people you spend time with really matter.
+B: Be kind and generous to others.
+A: That makes the world a better place.
+B: Take care of your health, it's your greatest wealth.
+A: Yes, you can't enjoy life without good health.
+B: Never stop learning and growing.
+A: Lifelong learning keeps the mind young.
+B: Also, forgive quickly and don't hold grudges.
+A: That's so important for peace of mind.
+B: Enjoy the little things in life.
+A: The small moments bring the most joy.
+B: And always believe in yourself.
+A: Self-belief is the foundation of success.`,
+    vocab: [
+        { word: "Follow your heart", meaning: "စိတ်ကြိုက်လုပ်ပါ" },
+        { word: "Passion", meaning: "စိတ်အားထက်သန်မှု" },
+        { word: "Risks", meaning: "စွန့်စားမှုများ" },
+        { word: "Comfort zone", meaning: "သက်တောင့်သက်သာဇုန်" },
+        { word: "Generous", meaning: "ရက်ရောသော" },
+        { word: "Wealth", meaning: "ချမ်းသာမှု" },
+        { word: "Lifelong", meaning: "တစ်သက်တာ" },
+        { word: "Self-belief", meaning: "ကိုယ့်ကိုယ်ကိုယုံကြည်မှု" }
+    ]
+},
+{
+    id: 147,
+    title: "147. ဘဝအတွက်အိပ်မက် (Dreams in Life)",
+    convo: `A: I have so many dreams I want to achieve.
+B: That's wonderful. Dreams give life purpose.
+A: My biggest dream is to travel the world.
+B: That's an amazing goal! You'll see so many beautiful places.
+A: I also dream of starting my own business.
+B: That's a great dream. What kind of business?
+A: I want to open a small cafe.
+B: That sounds lovely. I'd love to visit it.
+A: I also dream of learning to play the guitar.
+B: Music is such a beautiful form of expression.
+A: Dreams make life exciting and meaningful.
+B: Yes, they give you something to work towards.
+A: I know it won't be easy to achieve my dreams.
+B: But it's worth the effort, right?
+A: Yes, I'm ready to work hard for them.
+B: That's the spirit! Never stop dreaming.
+A: I believe we can achieve anything we set our minds to.
+B: With dedication and persistence, anything is possible.
+A: I'll never give up on my dreams.
+B: That's the right attitude. I believe in you.
+A: Thank you. Your support means so much to me.`,
+    vocab: [
+        { word: "Purpose", meaning: "ရည်ရွယ်ချက်" },
+        { word: "Expression", meaning: "ဖော်ပြခြင်း" },
+        { word: "Meaningful", meaning: "အဓိပ္ပာယ်ရှိသော" },
+        { word: "Dedication", meaning: "မြှုပ်နှံမှု" },
+        { word: "Persistence", meaning: "ဇွဲ" }
+    ]
+},
+{
+    id: 148,
+    title: "148. ဘဝအတွက်ပြောင်းလဲမှု (Change in Life)",
+    convo: `A: I'm thinking of making some big changes in my life.
+B: Change is good. What are you planning?
+A: I want to change my career path.
+B: That's a big step. What career are you considering?
+A: I want to move into the tech industry.
+B: That's an exciting field with many opportunities.
+A: I'm a bit scared, but also excited.
+B: Change can be scary, but it leads to growth.
+A: I've been researching courses and certifications.
+B: That's a great start. Education is important.
+A: I'm also thinking of moving to a new city.
+B: A new city brings new experiences and people.
+A: I want to start fresh and build a new life.
+B: That sounds so exciting. I'm happy for you.
+A: Change can be uncomfortable, but it's necessary.
+B: Yes, growth doesn't happen in your comfort zone.
+A: I'm ready to embrace change.
+B: That's the best attitude to have.
+A: I hope everything works out.
+B: I'm sure it will. You're making the right decision.`,
+    vocab: [
+        { word: "Career path", meaning: "အသက်မွေးဝမ်းကြောင်းလမ်းကြောင်း" },
+        { word: "Tech industry", meaning: "နည်းပညာစက်မှုလုပ်ငန်း" },
+        { word: "Opportunities", meaning: "အခွင့်အလမ်းများ" },
+        { word: "Certifications", meaning: "အသိအမှတ်ပြုလက်မှတ်များ" },
+        { word: "Comfort zone", meaning: "သက်တောင့်သက်သာဇုန်" },
+        { word: "Embrace", meaning: "ကြိုဆိုသည်" }
+    ]
+},
+{
+    id: 149,
+    title: "149. ဘဝအတွက်အောင်မြင်မှု (Success in Life)",
+    convo: `A: What does success mean to you?
+B: To me, success is being happy and fulfilled.
+A: I agree. It's not about money or fame.
+B: Success is about achieving your goals and dreams.
+A: I want to find a career that I love.
+B: That's a great definition of success.
+A: Success also means having good relationships.
+B: Yes, love and connection are important.
+A: I've learned that success takes time and effort.
+B: Nothing worthwhile comes easily.
+A: I'm willing to work hard for my success.
+B: That's the right mindset.
+A: I want to look back and feel proud.
+B: That's the ultimate success.
+A: Success is a journey, not a destination.
+B: I love that perspective. It's about the process.
+A: I'm grateful for every step of my journey.
+B: Enjoy the journey, and success will follow.`,
+    vocab: [
+        { word: "Fulfilled", meaning: "ပြည့်ဝသော" },
+        { word: "Definition", meaning: "အဓိပ္ပာယ်ဖွင့်ဆိုချက်" },
+        { word: "Worthwhile", meaning: "တန်ဖိုးရှိသော" },
+        { word: "Ultimate", meaning: "အဆုံးစွန်သော" },
+        { word: "Perspective", meaning: "ရှုထောင့်" }
+    ]
+},
+{
+    id: 150,
+    title: "150. ဘဝအတွက်ပျော်ရွှင်မှု (Joy in Life)",
+    convo: `A: I want to live a joyful life.
+B: That's a beautiful goal. How do you plan to do that?
+A: I want to surround myself with positive people.
+B: Positivity is contagious. It'll make you happy.
+A: I also want to do things that make me happy.
+B: Like what?
+A: I love traveling, reading, and spending time with loved ones.
+B: Those are wonderful sources of joy.
+A: I also want to give back to others.
+B: Helping others brings so much happiness.
+A: I want to volunteer and help those in need.
+B: That's a great way to find joy.
+A: I also want to practice mindfulness.
+B: Being present in the moment is so important.
+A: I'm learning to appreciate the little things.
+B: The small joys make life beautiful.
+A: I'm going to focus on being happy every day.
+B: That's the best decision you can make.
+A: Life is too short to be unhappy.
+B: I agree. We all deserve happiness.`,
+    vocab: [
+        { word: "Joyful", meaning: "ပျော်ရွှင်သော" },
+        { word: "Contagious", meaning: "ကူးစက်တတ်သော" },
+        { word: "Volunteer", meaning: "စေတနာ့ဝန်ထမ်း" },
+        { word: "Mindfulness", meaning: "သတိတရား" },
+        { word: "Deserve", meaning: "ထိုက်တန်သည်" }
+    ]
+},
+// ========== 151-160: အားကစားနှင့် ကျန်းမာရေး ==========
+{
+    id: 151,
+    title: "151. အားကစားအကြောင်း (Talking About Sports)",
+    convo: `A: Do you enjoy playing any sports?
+B: Yes, I love playing basketball and tennis.
+A: That's great! Which one do you prefer?
+B: I prefer basketball because it's more team-oriented.
+A: I agree. Team sports are so much fun.
+B: I also play badminton sometimes.
+A: Badminton is a great sport for fitness.
+B: Yes, it's very fast-paced and exciting.
+A: I play football with my friends every weekend.
+B: That's wonderful. Regular exercise is so important.
+A: It helps me stay fit and active.
+B: Do you play in a league or just for fun?
+A: Just for fun with friends. It's more relaxing.
+B: I agree. Sports should be enjoyable.
+A: Do you watch sports on TV too?
+B: Yes, I love watching tennis tournaments.
+A: Who's your favorite tennis player?
+B: I really admire Roger Federer. He's a legend.
+A: He truly is. His skills are incredible.
+B: I also enjoy watching the Olympics.
+A: The Olympics are amazing. I never miss them.
+B: Which sport do you enjoy watching most?
+A: I love watching swimming and athletics.
+B: Those are exciting events. So much energy!`,
+    vocab: [
+        { word: "Basketball", meaning: "ဘတ်စကတ်ဘော" },
+        { word: "Tennis", meaning: "တင်းနစ်" },
+        { word: "Team-oriented", meaning: "အဖွဲ့လိုက်ဆန်သော" },
+        { word: "Badminton", meaning: "ကြက်တောင်ရိုက်" },
+        { word: "Fast-paced", meaning: "အရှိန်မြင့်သော" },
+        { word: "Fitness", meaning: "ကြံ့ခိုင်မှု" },
+        { word: "League", meaning: "ပြိုင်ပွဲစဉ်" },
+        { word: "Tournaments", meaning: "ပြိုင်ပွဲများ" },
+        { word: "Legend", meaning: "ဒဏ္ဍာရီလာ" },
+        { word: "Olympics", meaning: "အိုလံပစ်ပွဲ" },
+        { word: "Athletics", meaning: "ပြေးခုန်ပစ်" }
+    ]
+},
+{
+    id: 152,
+    title: "152. ဘောလုံးကြည့်ခြင်း (Watching Football)",
+    convo: `A: Are you watching the football match tonight?
+B: Of course! I never miss a match.
+A: Who's playing tonight?
+B: Manchester United versus Liverpool.
+A: That's going to be an intense game.
+B: Both teams are in great form this season.
+A: I'll come over to watch it with you.
+B: Great! I'll prepare some snacks.
+A: I'll bring some drinks and chips.
+B: Perfect! We can have a mini party.
+A: What time does the match start?
+B: It starts at 8 PM. Don't be late!
+A: I'll be there by 7:30 PM.
+B: Excellent! Let's make it a fun night.
+A: I'm so excited for this match.
+B: Me too! It's the biggest game of the season.
+A: Who do you think will win?
+B: I think United will win, but it'll be close.
+A: I predict a draw. Both teams are strong.
+B: We'll see. Either way, it'll be exciting.
+(During the match)
+A: What a goal! That was amazing!
+B: Yes! That was a brilliant strike.
+A: The goalkeeper couldn't save that one.
+B: This is the most exciting match I've seen.`,
+    vocab: [
+        { word: "Match", meaning: "ပြိုင်ပွဲ" },
+        { word: "Intense", meaning: "ပြင်းထန်သော" },
+        { word: "In great form", meaning: "ကစားပုံကောင်းနေသော" },
+        { word: "Snacks", meaning: "မုန့်ချိုချဉ်များ" },
+        { word: "Season", meaning: "ရာသီ" },
+        { word: "Draw", meaning: "သရေကျခြင်း" },
+        { word: "Goal", meaning: "ဂိုး" },
+        { word: "Brilliant", meaning: "အလွန်ကောင်းသော" },
+        { word: "Strike", meaning: "ရိုက်ချက်" },
+        { word: "Goalkeeper", meaning: "ဂိုးသမား" }
+    ]
+},
+{
+    id: 153,
+    title: "153. အားကစားလေ့ကျင့်ခြင်း (Working Out)",
+    convo: `A: I've been going to the gym regularly.
+B: That's great! How often do you go?
+A: I go three times a week.
+B: That's consistent. What exercises do you do?
+A: I do a mix of cardio and strength training.
+B: Cardio is great for your heart health.
+A: Yes, I do running and cycling.
+B: I also do weight lifting to build muscle.
+A: That's important for overall fitness.
+B: I've been feeling much stronger and healthier.
+A: Exercise also improves your mood.
+B: Yes, it releases endorphins that make you happy.
+A: I also feel more energetic during the day.
+B: That's one of the best benefits.
+A: Do you go to the gym alone or with friends?
+B: I go with a friend. It's more motivating.
+A: I agree. Having a workout buddy helps.
+B: We push each other to do better.
+A: I want to try yoga for flexibility.
+B: Yoga is wonderful for both body and mind.
+A: I'll join a yoga class next month.
+B: That's a great idea. It's very relaxing.`,
+    vocab: [
+        { word: "Gym", meaning: "အားကစားခန်းမ" },
+        { word: "Cardio", meaning: "နှလုံးသွေးကြောလေ့ကျင့်ခန်း" },
+        { word: "Strength training", meaning: "ကြံ့ခိုင်ရေးလေ့ကျင့်ခန်း" },
+        { word: "Running", meaning: "အပြေး" },
+        { word: "Cycling", meaning: "စက်ဘီးစီးခြင်း" },
+        { word: "Weight lifting", meaning: "အလေးမခြင်း" },
+        { word: "Endorphins", meaning: "ပျော်ရွှင်စေသောဟော်မုန်း" },
+        { word: "Energetic", meaning: "စွမ်းအင်ပြည့်သော" },
+        { word: "Motivating", meaning: "လှုံ့ဆော်ပေးသော" },
+        { word: "Flexibility", meaning: "ပျော့ပြောင်းမှု" }
+    ]
+},
+{
+    id: 154,
+    title: "154. ကျန်းမာရေးအကြောင်း (Health Talk)",
+    convo: `A: I've been feeling very tired lately.
+B: That's not good. Have you been sleeping well?
+A: Not really. I've been having trouble sleeping.
+B: That could be why you're tired.
+A: I think I've been too stressed with work.
+B: Stress can really affect your health.
+A: I need to find ways to relax and de-stress.
+B: Have you tried meditation or yoga?
+A: I've tried meditation, and it helps a bit.
+B: You should also exercise regularly.
+A: I'll try to go for walks in the evening.
+B: That's a great start. Fresh air is good for you.
+A: I also need to eat healthier and drink more water.
+B: Diet is very important for energy levels.
+A: I'll cut down on coffee and sugary drinks.
+B: That will definitely help you sleep better.
+A: I want to take better care of myself.
+B: That's the best thing you can do.
+A: Health is the most important thing in life.
+B: Yes, without health, we have nothing.`,
+    vocab: [
+        { word: "Trouble sleeping", meaning: "အိပ်မပျော်ခြင်း" },
+        { word: "Stressed", meaning: "ဖိစီးနေသော" },
+        { word: "De-stress", meaning: "ဖိစီးမှုလျှော့ချသည်" },
+        { word: "Meditation", meaning: "တရားထိုင်ခြင်း" },
+        { word: "Diet", meaning: "အစားအသောက်" },
+        { word: "Energy levels", meaning: "စွမ်းအင်အဆင့်" },
+        { word: "Cut down", meaning: "လျှော့ချသည်" }
+    ]
+},
+{
+    id: 155,
+    title: "155. ကျန်းမာရေးစစ်ဆေးခြင်း (Health Check-up)",
+    convo: `A: I need to go for a medical check-up.
+B: That's a good idea. Prevention is better than cure.
+A: I haven't been to the doctor in over a year.
+B: You should go at least once a year.
+A: I'll book an appointment this week.
+B: What tests do they usually do?
+A: They check blood pressure, cholesterol, and blood sugar.
+B: Those are all very important tests.
+A: I'm a bit nervous about the results.
+B: Don't worry. It's better to know and take action.
+A: You're right. Ignorance is not bliss.
+B: Exactly. Early detection can save lives.
+A: I'll also ask about my diet and exercise.
+B: That's a good idea. Get professional advice.
+A: I want to live a long and healthy life.
+B: That's a great goal. Health is everything.
+A: I'll make health a priority from now on.
+B: That's the best decision you'll ever make.
+A: Thank you for encouraging me.
+B: You're welcome. Good luck with your check-up!`,
+    vocab: [
+        { word: "Medical check-up", meaning: "ကျန်းမာရေးစစ်ဆေးခြင်း" },
+        { word: "Prevention", meaning: "ကာကွယ်ခြင်း" },
+        { word: "Blood pressure", meaning: "သွေးဖိအား" },
+        { word: "Cholesterol", meaning: "ကိုလက်စထရော" },
+        { word: "Blood sugar", meaning: "သွေးတွင်းသကြားဓာတ်" },
+        { word: "Detection", meaning: "ရှာဖွေတွေ့ရှိခြင်း" },
+        { word: "Priority", meaning: "ဦးစားပေး" }
+    ]
+},
+{ id: 156,
+    title: "156. ကျန်းမာရေးအတွက်အစားအစာ (Healthy Eating)",
+    convo: `A: I want to start eating healthier.
+B: That's a great goal. What's your plan?
+A: I'm going to eat more fruits and vegetables.
+B: That's the best thing you can do for your health.
+A: I'll also reduce my sugar and processed food intake.
+B: Processed foods are not good for you.
+A: I'll start cooking more meals at home.
+B: Home-cooked meals are healthier and cheaper.
+A: I'll also drink more water every day.
+B: Hydration is very important for your body.
+A: I want to feel more energetic and healthy.
+B: A healthy diet will make you feel amazing.
+A: I've also started reading food labels.
+B: That's smart. You should know what you're eating.
+A: I'm going to avoid foods with high sodium.
+B: High sodium is bad for your blood pressure.
+A: I want to live a long and healthy life.
+B: A healthy diet is the foundation of that.
+A: I'm excited about this new lifestyle.
+B: You'll see great results. Keep it up!`,
+    vocab: [
+        { word: "Processed food", meaning: "ပြုပြင်ထားသောအစားအစာ" },
+        { word: "Intake", meaning: "စားသုံးမှု" },
+        { word: "Hydration", meaning: "ရေဓာတ်" },
+        { word: "Energetic", meaning: "စွမ်းအင်ပြည့်သော" },
+        { word: "Sodium", meaning: "ဆိုဒီယမ်" },
+        { word: "Lifestyle", meaning: "နေထိုင်မှုပုံစံ" }
+    ]
+},
+{
+    id: 157,
+    title: "157. ကျန်းမာရေးအတွက်အိပ်စက်ခြင်း (Sleep Health)",
+    convo: `A: I'm not getting enough sleep lately.
+B: That's not good. Sleep is so important.
+A: I've been staying up late watching TV.
+B: You should try to establish a sleep routine.
+A: What time should I go to bed?
+B: Try to sleep by 10 PM every night.
+A: That's early! I usually sleep at midnight.
+B: You need at least 7-8 hours of sleep.
+A: I'll try to go to bed earlier.
+B: Avoid screens before bedtime.
+A: That's hard. I always check my phone.
+B: The blue light disrupts your sleep cycle.
+A: I'll read a book instead of watching TV.
+B: That's a great alternative. It's relaxing.
+A: I also need to reduce caffeine in the evening.
+B: Caffeine keeps you awake. Avoid it after 4 PM.
+A: I want to wake up feeling refreshed.
+B: Good sleep makes a huge difference.
+A: I'll make sleep a priority.
+B: Your body and mind will thank you.`,
+    vocab: [
+        { word: "Sleep routine", meaning: "အိပ်စက်သည့်လုပ်ရိုးလုပ်စဉ်" },
+        { word: "Screens", meaning: "မျက်နှာပြင်များ" },
+        { word: "Blue light", meaning: "အပြာရောင်အလင်း" },
+        { word: "Sleep cycle", meaning: "အိပ်စက်မှုသံသရာ" },
+        { word: "Alternative", meaning: "အခြားရွေးချယ်စရာ" },
+        { word: "Refreshed", meaning: "အားအင်ဖြစ်စေသော" }
+    ]
+},
+{
+    id: 158,
+    title: "158. ကျန်းမာရေးအတွက်လမ်းလျှောက်ခြင်း (Walking for Health)",
+    convo: `A: I've started walking every morning.
+B: That's great! Walking is so good for you.
+A: I walk for about 30 minutes each day.
+B: That's the perfect amount of time.
+A: I feel more energetic after my walk.
+B: Walking boosts your mood and energy.
+A: I also enjoy the fresh air and nature.
+B: Being outdoors is very relaxing.
+A: I've been listening to podcasts while walking.
+B: That's a great way to learn while exercising.
+A: I've also been walking with my neighbor.
+B: Having a walking buddy is motivating.
+A: We talk and walk together. It's fun.
+B: That sounds lovely. Socializing and exercising.
+A: I want to increase my walking time.
+B: You can gradually increase to 45 minutes.
+A: I'll also try walking on different routes.
+B: Exploring new paths makes it more interesting.
+A: Walking is such a simple and effective exercise.
+B: It's low-impact and good for all ages.
+A: I recommend it to everyone.
+B: It's one of the best things you can do for your health.`,
+    vocab: [
+        { word: "Boosts", meaning: "တိုးမြှင့်ပေးသည်" },
+        { word: "Podcasts", meaning: "အသံလွှင့်အစီအစဉ်များ" },
+        { word: "Socializing", meaning: "လူမှုဆက်ဆံရေး" },
+        { word: "Low-impact", meaning: "ဒဏ်သက်ရောက်မှုနည်းသော" }
+    ]
+},
+{
+    id: 159,
+    title: "159. ကျန်းမာရေးအတွက်ရေသောက်ခြင်း (Drinking Water)",
+    convo: `A: I'm trying to drink more water every day.
+B: That's great! Water is essential for health.
+A: I usually drink only 2 glasses a day.
+B: That's not enough. You need at least 8 glasses.
+A: I know, I need to make it a habit.
+B: Carry a water bottle with you everywhere.
+A: That's a good idea. I'll do that.
+B: It'll remind you to drink water.
+A: I also flavor my water with lemon or mint.
+B: That's a healthy way to make it taste better.
+A: I've noticed I feel more awake when I'm hydrated.
+B: Hydration is key to energy and focus.
+A: I also have fewer headaches now.
+B: Water helps prevent headaches.
+A: I want to inspire my family to drink more water too.
+B: That's a great goal. Lead by example.
+A: We've started a challenge to drink 8 glasses daily.
+B: That's fun! Competition is motivating.
+A: We track our intake on a chart.
+B: That's very visual and rewarding.
+A: I feel so much healthier already.
+B: Keep it up! Your body will thank you.`,
+    vocab: [
+        { word: "Essential", meaning: "မရှိမဖြစ်လိုအပ်သော" },
+        { word: "Habit", meaning: "အကျင့်" },
+        { word: "Hydrated", meaning: "ရေဓာတ်ပြည့်ဝသော" },
+        { word: "Headaches", meaning: "ခေါင်းကိုက်ခြင်း" },
+        { word: "Inspire", meaning: "စေ့ဆော်သည်" },
+        { word: "Track", meaning: "ခြေရာခံသည်" }
+    ]
+},
+{
+    id: 160,
+    title: "160. ကျန်းမာရေးအတွက်စိတ်ကျန်းမာရေး (Mental Health)",
+    convo: `A: Mental health is just as important as physical health.
+B: I agree completely. We need to take care of our minds.
+A: I've been practicing mindfulness and meditation.
+B: That's wonderful. It helps calm the mind.
+A: I also talk to a therapist occasionally.
+B: That's very brave. Seeking help is a sign of strength.
+A: I want to reduce the stigma around mental health.
+B: Yes, we should talk openly about it.
+A: I also exercise to improve my mood.
+B: Exercise releases endorphins that make you happy.
+A: I make sure to take breaks when I'm overwhelmed.
+B: Rest is important for mental health.
+A: I also spend time with loved ones.
+B: Social connections are vital for mental well-being.
+A: I practice gratitude every day.
+B: Gratitude shifts your mindset to positivity.
+A: I want to encourage others to prioritize mental health.
+B: That's a beautiful goal. We need more awareness.
+A: Let's be kind to ourselves and others.
+B: Yes, kindness is healing.`,
+    vocab: [
+        { word: "Mental health", meaning: "စိတ်ကျန်းမာရေး" },
+        { word: "Mindfulness", meaning: "သတိတရား" },
+        { word: "Therapist", meaning: "ကုထုံးပညာရှင်" },
+        { word: "Stigma", meaning: "အမည်ပျက်" },
+        { word: "Overwhelmed", meaning: "လွှမ်းမိုးခံရသော" },
+        { word: "Vital", meaning: "အရေးပါသော" },
+        { word: "Awareness", meaning: "အသိအမြင်" }
+    ]
+},
+// ========== 161-170: နေ့စဉ်ဘဝ ==========
+{
+    id: 161,
+    title: "161. နေ့စဉ်လုပ်ရိုးလုပ်စဉ် (Daily Routine)",
+    convo: `A: What does your typical daily routine look like?
+B: I usually wake up at 6 AM and start my day with a jog.
+A: That's very disciplined. How long do you jog for?
+B: I jog for about 30 minutes to stay healthy and fit.
+A: After your jog, what do you do?
+B: I take a shower, have breakfast, and get ready for work.
+A: What time do you usually leave for work?
+B: I leave around 7:30 AM to avoid the traffic.
+A: That's smart. Rush hour traffic can be terrible.
+B: Yes, I've learned to plan ahead to avoid delays.
+A: What do you do for lunch at work?
+B: I usually bring a packed lunch from home.
+A: That saves money and is usually healthier.
+B: Exactly. I also try to eat balanced meals.
+A: What time do you finish work?
+B: I usually finish at 5 PM and head straight home.
+A: Do you do anything special in the evenings?
+B: I like to read, watch TV, or spend time with family.
+A: That sounds like a balanced and healthy routine.
+B: I try to maintain consistency. It helps with productivity.
+A: What time do you go to bed at night?
+B: I try to go to bed by 10 PM to get enough sleep.
+A: That's a good habit. Sleep is so important.`,
+    vocab: [
+        { word: "Routine", meaning: "လုပ်ရိုးလုပ်စဉ်" },
+        { word: "Wake up", meaning: "နိုးသည်" },
+        { word: "Jog", meaning: "ဖြည်းညင်းပြေးသည်" },
+        { word: "Disciplined", meaning: "စည်းကမ်းရှိသော" },
+        { word: "Traffic", meaning: "ယာဉ်ကြော" },
+        { word: "Rush hour", meaning: "အလုပ်အလျင်အချိန်" },
+        { word: "Packed lunch", meaning: "ထုပ်ပိုးထားသောနေ့လယ်စာ" },
+        { word: "Balanced", meaning: "မျှတသော" },
+        { word: "Consistency", meaning: "တစ်သမတ်တည်းရှိခြင်း" },
+        { word: "Productivity", meaning: "အလုပ်ဖြစ်မြောက်မှု" }
+    ]
+},
+{
+    id: 162,
+    title: "162. ညနေခင်းအစီအစဉ် (Evening Plans)",
+    convo: `A: Do you have any plans for this evening?
+B: I'm going to meet a few friends for dinner.
+A: That sounds lovely. Where are you going to eat?
+B: We're going to a new Italian restaurant downtown.
+A: I've heard great things about that place.
+B: Yes, their pasta is supposed to be amazing.
+A: What time are you meeting?
+B: We're meeting at 7 PM. I'm really looking forward to it.
+A: Who's going to be there?
+B: Just a few close friends. It's a small gathering.
+A: Are you going to try any of their desserts?
+B: Maybe. They have tiramisu which I absolutely love.
+A: That's my favorite dessert too.
+B: Maybe I'll take a photo and share it with you.
+A: That would be great. I love food pictures.
+B: What about you? What are you doing tonight?
+A: I'm just going to stay home and relax.
+B: Sometimes that's the best plan. Rest is important.
+A: I agree. I've had a long week and need to recharge.
+B: Well, enjoy your peaceful evening.`,
+    vocab: [
+        { word: "Plans", meaning: "အစီအစဉ်များ" },
+        { word: "Dinner", meaning: "ညစာ" },
+        { word: "Italian restaurant", meaning: "အီတလီစားသောက်ဆိုင်" },
+        { word: "Downtown", meaning: "မြို့လယ်" },
+        { word: "Pasta", meaning: "ခေါက်ဆွဲ" },
+        { word: "Looking forward", meaning: "စောင့်မျှော်နေသည်" },
+        { word: "Gathering", meaning: "စုဝေးခြင်း" },
+        { word: "Desserts", meaning: "အချိုပွဲများ" },
+        { word: "Tiramisu", meaning: "အီတလီအချိုပွဲတစ်မျိုး" },
+        { word: "Relax", meaning: "အနားယူသည်" },
+        { word: "Recharge", meaning: "စွမ်းအင်ပြန်ဖြည့်သည်" }
+    ]
+},
+{
+    id: 163,
+    title: "163. အားလပ်ရက်အကြောင်း (Weekend Plans)",
+    convo: `A: What are your plans for the weekend?
+B: I'm planning to go to the beach with my family.
+A: That sounds wonderful! Which beach are you going to?
+B: We're going to the nearby beach. It's about an hour away.
+A: That's convenient. What do you like to do at the beach?
+B: I love swimming, sunbathing, and building sandcastles.
+A: Building sandcastles? That's so much fun!
+B: Yes, my kids absolutely love it. We do it every time.
+A: Do you also enjoy water sports?
+B: Sometimes. I like snorkeling and kayaking when I get the chance.
+A: That's exciting. I've never tried snorkeling before.
+B: You should try it sometime. It's an amazing experience.
+A: What about the weather? Is it going to be sunny?
+B: Yes, the forecast says it will be sunny and warm.
+A: Perfect weather for a beach day.
+B: I'm really excited. I need a break from work.
+A: I understand. Everyone needs a break sometimes.
+B: What are your plans for the weekend?
+A: I'm going to visit my parents. They live in the countryside.
+B: That's lovely. It's important to spend time with family.`,
+    vocab: [
+        { word: "Weekend", meaning: "စနေ တနင်္ဂနွေ" },
+        { word: "Beach", meaning: "ကမ်းခြေ" },
+        { word: "Swimming", meaning: "ရေကူးခြင်း" },
+        { word: "Sunbathing", meaning: "နေပူခံခြင်း" },
+        { word: "Sandcastles", meaning: "သဲအုတ်တိုက်" },
+        { word: "Water sports", meaning: "ရေအားကစား" },
+        { word: "Snorkeling", meaning: "ရေငုပ်ခြင်း" },
+        { word: "Kayaking", meaning: "ကယက်လှေစီးခြင်း" },
+        { word: "Forecast", meaning: "ရာသီဥတုခန့်မှန်းချက်" },
+        { word: "Sunny", meaning: "နေသာသော" },
+        { word: "Countryside", meaning: "�ျေးလက်" }
+    ]
+},
+{
+    id: 164,
+    title: "164. နေ့လယ်စာစားခြင်း (Having Lunch)",
+    convo: `A: I'm getting hungry. What do you want for lunch?
+B: I'm craving something light and healthy.
+A: How about a salad with grilled chicken?
+B: That sounds perfect. I love grilled chicken.
+A: I'll also add some avocado and tomatoes.
+B: Great! I'll make a simple dressing.
+A: Let's also have some fresh fruit for dessert.
+B: That's a great idea. I'll cut some mangoes.
+A: This is going to be a delicious and healthy lunch.
+B: I agree. Eating well is important.
+A: I'm trying to eat more greens these days.
+B: That's wonderful. It makes you feel so much better.
+A: Let's also drink some fresh juice.
+B: Yes, I'll make some orange juice.
+A: This is the perfect meal for a hot day.
+B: Absolutely. Light and refreshing.
+A: I'm so glad we decided to eat together.
+B: Me too. It's nice to have company.
+A: Let's enjoy our lunch and have a great afternoon.
+B: Yes! Let's make the most of it.`,
+    vocab: [
+        { word: "Craving", meaning: "တပ်မက်နေသော" },
+        { word: "Light", meaning: "ပေါ့ပါးသော" },
+        { word: "Healthy", meaning: "ကျန်းမာသော" },
+        { word: "Salad", meaning: "အသုပ်" },
+        { word: "Grilled chicken", meaning: "ကင်ကြက်သား" },
+        { word: "Avocado", meaning: "ထောပတ်သီး" },
+        { word: "Dressing", meaning: "အသုပ်ဆီ" },
+        { word: "Refreshing", meaning: "အားအင်ဖြစ်စေသော" },
+        { word: "Company", meaning: "အပေါင်းအဖော်" }
+    ]
+},
+{
+    id: 165,
+    title: "165. ညစာစားခြင်း (Having Dinner)",
+    convo: `A: I'm really hungry. What's for dinner tonight?
+B: I'm making spaghetti with meatballs.
+A: That sounds delicious! I love spaghetti.
+B: I'll also make a side salad and some garlic bread.
+A: Perfect! I'll help you set the table.
+B: Great. The food will be ready in 15 minutes.
+A: I can't wait. It smells so good.
+B: I used my grandmother's secret recipe.
+A: That's special. I'm sure it'll be amazing.
+B: Let's also open a bottle of red wine.
+A: That's a wonderful idea. It'll be a perfect meal.
+B: I love cooking for you. You always appreciate it.
+A: I really do. You're such a great cook.
+B: Thank you. It's my pleasure.
+A: This is my favorite part of the day.
+B: Me too. Eating together is so special.
+A: Let's enjoy this meal and each other's company.
+B: Yes! Cheers to good food and good company.
+A: Cheers! This is perfect.`,
+    vocab: [
+        { word: "Spaghetti", meaning: "ခေါက်ဆွဲတစ်မျိုး" },
+        { word: "Meatballs", meaning: "အသားလုံးများ" },
+        { word: "Side salad", meaning: "ဘေးထွက်အသုပ်" },
+        { word: "Garlic bread", meaning: "ကြက်သွန်ဖြူပေါင်မုန့်" },
+        { word: "Secret recipe", meaning: "လျှို့ဝှက်စာရွက်" },
+        { word: "Red wine", meaning: "ဝိုင်နီ" },
+        { word: "Appreciate", meaning: "တန်ဖိုးထားသည်" },
+        { word: "Pleasure", meaning: "ဝမ်းသာမှု" },
+        { word: "Cheers", meaning: "သောက်ကြမယ်" }
+    ]
+},
+{
+id: 166,
+    title: "166. မွေးနေ့ပါတီ (Birthday Party)",
+    convo: `A: I'm planning a surprise birthday party for my friend.
+B: That's so thoughtful! What a great idea.
+A: I want to make it really special for them.
+B: What's your plan for the party?
+A: I'm decorating the house with balloons and streamers.
+B: That sounds festive. What about food?
+A: I'm ordering a cake and preparing some snacks.
+B: What kind of cake are you getting?
+A: Chocolate cake with strawberries. Their favorite!
+B: That's perfect. They'll love it.
+A: I also bought them a nice gift.
+B: What did you get them?
+A: I got them a book and some accessories.
+B: That's very thoughtful. They'll appreciate it.
+A: I also invited all their close friends.
+B: Great! A surprise with all friends is the best.
+A: I hope they don't find out beforehand.
+B: I'll help you keep it a secret.
+A: Thank you! That means a lot to me.
+B: What time is the party?
+A: It starts at 7 PM this Saturday.
+B: I'll be there. I can help set up.`,
+    vocab: [
+        { word: "Surprise party", meaning: "အံ့အားသင့်စရာပါတီ" },
+        { word: "Balloons", meaning: "မီးပုံးပျံများ" },
+        { word: "Streamers", meaning: "အလှဆင်စက္ကူများ" },
+        { word: "Festive", meaning: "ပွဲတော်ဆန်သော" },
+        { word: "Accessories", meaning: "အဆင်တန်ဆာများ" },
+        { word: "Beforehand", meaning: "ကြိုတင်" },
+        { word: "Set up", meaning: "ပြင်ဆင်သည်" }
+    ]
+},
+{
+    id: 167,
+    title: "167. အားလပ်ရက်ခရီး (Vacation Trip)",
+    convo: `A: I'm planning a vacation for next month.
+B: That sounds amazing! Where are you planning to go?
+A: I'm planning to visit Japan for the first time.
+B: That's a dream destination! I've always wanted to go there.
+A: Yes, I've been wanting to visit Japan for years.
+B: What places in Japan do you want to see?
+A: I want to visit Tokyo, Kyoto, and Osaka.
+B: Those are all beautiful cities with rich culture.
+A: I'm also looking forward to trying Japanese food.
+B: Sushi, ramen, and tempura. They're all so delicious!
+A: Yes, I'm a huge food lover. It's a big part of why I'm going.
+B: How long are you staying?
+A: I'll be staying for two weeks.
+B: That's enough time to experience a lot.
+A: I'm also planning to visit some temples and shrines.
+B: They're very beautiful and peaceful.
+A: Have you ever been to Japan before?
+B: No, but I've always wanted to go.
+A: Maybe one day we can go together.
+B: That would be a dream come true!`,
+    vocab: [
+        { word: "Dream destination", meaning: "အိပ်မက်ခရီးစဉ်" },
+        { word: "Culture", meaning: "ယဉ်ကျေးမှု" },
+        { word: "Sushi", meaning: "ဆူရှီ" },
+        { word: "Ramen", meaning: "ရာမင်" },
+        { word: "Tempura", meaning: "တမ်ပူရာ" },
+        { word: "Temples", meaning: "ဘုရားကျောင်းများ" },
+        { word: "Shrines", meaning: "ဂျပန်နတ်ကွန်း" },
+        { word: "Peaceful", meaning: "ငြိမ်းချမ်းသော" }
+    ]
+},
+{
+    id: 168,
+    title: "168. ဈေးဝယ်ခြင်း (Shopping)",
+    convo: `A: I need to buy some new clothes this weekend.
+B: Let's go to the mall together.
+A: I'm looking for a good store with reasonable prices.
+B: There's a new store on the second floor.
+A: Let's check it out. I hope they have nice shirts.
+B: I'm sure they will. The selection is great.
+A: I also need to buy some shoes and accessories.
+B: There's a shoe store nearby too.
+A: Perfect! This is going to be a productive shopping trip.
+B: I also want to get some new jeans.
+A: I'm so glad we're doing this together.
+B: Me too. Shopping is more fun with friends.
+A: Let's also stop for coffee and snacks.
+B: That sounds wonderful. I'm getting hungry.
+A: We can take a break and relax.
+B: Great idea. Let's make it a fun day.`,
+    vocab: [
+        { word: "Mall", meaning: "ကုန်တိုက်" },
+        { word: "Reasonable", meaning: "သင့်တင့်သော" },
+        { word: "Selection", meaning: "ရွေးချယ်စရာများ" },
+        { word: "Accessories", meaning: "အဆင်တန်ဆာများ" },
+        { word: "Productive", meaning: "အကျိုးဖြစ်ထွန်းသော" },
+        { word: "Jeans", meaning: "ဂျင်းဘောင်းဘီ" }
+    ]
+},
+{
+    id: 169,
+    title: "169. အိမ်အလှဆင်ခြင်း (Home Decoration)",
+    convo: `A: I want to redecorate my living room.
+B: That sounds fun! What style are you thinking?
+A: I want a modern and minimalist look.
+B: That's very popular these days.
+A: I want to change the wall color to light gray.
+B: Gray goes well with many colors.
+A: I also want to get new furniture.
+B: You should look for clean, simple designs.
+A: I've seen some nice sofas online.
+B: Make sure you measure your space first.
+A: Good point. I don't want to buy something too big.
+B: Also consider adding some plants for freshness.
+A: Yes! Plants make a home feel alive.
+B: What about lighting? It can change the mood.
+A: I want warm and cozy lighting.
+B: Floor lamps and fairy lights work well.
+A: I love fairy lights! They create a magical feel.
+B: You can also add some art on the walls.
+A: I want to hang some nature-themed paintings.
+B: That sounds beautiful and calming.`,
+    vocab: [
+        { word: "Redecorate", meaning: "ပြန်လည်အလှဆင်သည်" },
+        { word: "Modern", meaning: "ခေတ်မီသော" },
+        { word: "Minimalist", meaning: "အနိမ့်ဆုံးသော" },
+        { word: "Furniture", meaning: "ပရိဘောဂ" },
+        { word: "Measure", meaning: "တိုင်းတာသည်" },
+        { word: "Lighting", meaning: "အလင်းရောင်" },
+        { word: "Cozy", meaning: "နွေးထွေးသော" },
+        { word: "Fairy lights", meaning: "အလှဆင်မီးရောင်များ" },
+        { word: "Magical", meaning: "မှော်ဆန်သော" },
+        { word: "Nature-themed", meaning: "သဘာဝအခင်းအကျင်းပါသော" }
+    ]
+},
+{
+    id: 170,
+    title: "170. အိမ်အစားအစာချက်ပြုတ်ခြင်း (Home Cooking)",
+    convo: `A: I'm tired of eating out. I want to cook at home.
+B: That's a great decision. It's healthier and cheaper.
+A: I want to learn to cook some simple meals.
+B: Start with basic recipes like pasta or stir-fry.
+A: I tried cooking pasta last week, and it was good!
+B: That's awesome! Cooking is all about practice.
+A: What's your favorite dish to cook?
+B: I love making curry and rice. It's my comfort food.
+A: That sounds delicious. Can you teach me?
+B: Sure! I can show you this weekend.
+A: That would be amazing! What ingredients do I need?
+B: I'll make a shopping list for you.
+A: I also want to learn to make healthy meals.
+B: Eating healthy is important for your body.
+A: I'll start with simple salads and soups.
+B: Those are easy and good for beginners.
+A: I also want to try baking bread.
+B: Baking is a bit tricky but very rewarding.
+A: I'll start with simple cookies first.
+B: Good idea. Cookies are easy and fun to make.`,
+    vocab: [
+        { word: "Healthy", meaning: "ကျန်းမာသော" },
+        { word: "Recipes", meaning: "စာရွက်များ" },
+        { word: "Pasta", meaning: "ခေါက်ဆွဲ" },
+        { word: "Stir-fry", meaning: "ကြော်ချက်" },
+        { word: "Comfort food", meaning: "စိတ်သက်သာစေသောအစားအစာ" },
+        { word: "Curry", meaning: "ဟင်း" },
+        { word: "Ingredients", meaning: "ပါဝင်ပစ္စည်းများ" },
+        { word: "Shopping list", meaning: "စျေးဝယ်စာရင်း" },
+        { word: "Salads", meaning: "အသုပ်များ" },
+        { word: "Soups", meaning: "ဟင်းချိုများ" },
+        { word: "Baking", meaning: "ဖုတ်ခြင်း" },
+        { word: "Rewarding", meaning: "အကျိုးဖြစ်ထွန်းသော" }
+    ]
+},
+// ========== 171-180: ဘဝအတွေ့အကြုံ ==========
+{
+    id: 171,
+    title: "171. ဘဝအတွက်ကျေးဇူးတင်ခြင်း (Gratitude)",
+    convo: `A: I try to practice gratitude every day.
+B: That's wonderful. Gratitude changes your perspective.
+A: I keep a gratitude journal and write three things daily.
+B: That's a great habit. It makes you appreciate life.
+A: I'm grateful for my health, family, and friends.
+B: Those are the most important things in life.
+A: I also appreciate the small things, like sunshine and good food.
+B: The little joys make life beautiful.
+A: Gratitude has made me a happier person.
+B: It's hard to be unhappy when you're grateful.
+A: I also express my gratitude to others.
+B: Showing appreciation strengthens relationships.
+A: I thank my friends and family often.
+B: That's lovely. They must feel very loved.
+A: Gratitude is a powerful practice.
+B: It transforms your outlook on life.
+A: I recommend it to everyone I know.
+B: I practice it too. It changed my life.`,
+    vocab: [
+        { word: "Gratitude", meaning: "ကျေးဇူးတင်ခြင်း" },
+        { word: "Perspective", meaning: "ရှုထောင့်" },
+        { word: "Gratitude journal", meaning: "ကျေးဇူးတင်စာမျက်နှာ" },
+        { word: "Appreciation", meaning: "တန်ဖိုးထားခြင်း" },
+        { word: "Strengthens", meaning: "ခိုင်မာစေသည်" },
+        { word: "Outlook", meaning: "အမြင်" }
+    ]
+},
+{
+    id: 172,
+    title: "172. ဘဝအတွက်ပျော်ရွှင်မှု (Happiness)",
+    convo: `A: What does happiness mean to you?
+B: To me, happiness is being content with life.
+A: I agree. It's about appreciating what you have.
+B: Yes, it's not about having everything.
+A: I find happiness in simple things.
+B: Like a beautiful sunset or a good book.
+A: I'm also happy when I spend time with loved ones.
+B: Relationships are a key source of happiness.
+A: Helping others also makes me happy.
+B: Yes, giving brings so much joy.
+A: I also find happiness in achieving my goals.
+B: Accomplishments feel very rewarding.
+A: But happiness isn't always about achievement.
+B: True. Sometimes it's just about being.
+A: I'm learning to be happy in the present moment.
+B: That's the best way to live.
+A: Happiness is a choice, I think.
+B: Yes, you can choose to be happy.`,
+    vocab: [
+        { word: "Content", meaning: "ရောင့်ရဲသော" },
+        { word: "Appreciating", meaning: "တန်ဖိုးထားခြင်း" },
+        { word: "Accomplishments", meaning: "ပြီးမြောက်အောင်မြင်မှုများ" },
+        { word: "Rewarding", meaning: "အကျိုးဖြစ်ထွန်းသော" },
+        { word: "Present moment", meaning: "လက်ရှိအချိန်" }
+    ]
+},
+{
+    id: 173,
+    title: "173. ဘဝအတွက်သင်ခန်းစာ (Life Lessons)",
+    convo: `A: Life has taught me some valuable lessons.
+B: What's the most important lesson you've learned?
+A: To never give up, even when things are hard.
+B: Perseverance is such an important quality.
+A: I've also learned to be kind to everyone.
+B: Kindness goes a long way in life.
+A: I've learned that failure is just a stepping stone.
+B: Yes, failure teaches us more than success.
+A: I've also learned to appreciate my health.
+B: Health is the most precious thing.
+A: Money isn't everything. Experiences matter more.
+B: I agree. Memories are priceless.
+A: I've learned to live in the moment.
+B: The present is all we really have.
+A: I've also learned to forgive and let go.
+B: Holding onto anger only hurts yourself.
+A: Life is short, so make the most of it.
+B: Yes, don't waste time on negativity.`,
+    vocab: [
+        { word: "Perseverance", meaning: "ဇွဲ" },
+        { word: "Stepping stone", meaning: "တိုးတက်ရေးလှေကားထစ်" },
+        { word: "Priceless", meaning: "အဖိုးမဖြတ်နိုင်သော" },
+        { word: "Negativity", meaning: "အဆိုးမြင်မှု" }
+    ]
+},
+{
+    id: 174,
+    title: "174. ဘဝအတွက်အကြံပြုချက် (Life Advice)",
+    convo: `A: Do you have any advice for living a good life?
+B: Yes, always follow your heart and passion.
+A: That's beautiful advice. What else?
+B: Don't be afraid to take risks and try new things.
+A: I agree. Growth comes from stepping out of your comfort zone.
+B: Also, surround yourself with positive people.
+A: The people you spend time with really matter.
+B: Be kind and generous to others.
+A: That makes the world a better place.
+B: Take care of your health, it's your greatest wealth.
+A: Yes, you can't enjoy life without good health.
+B: Never stop learning and growing.
+A: Lifelong learning keeps the mind young.
+B: Also, forgive quickly and don't hold grudges.
+A: That's so important for peace of mind.
+B: Enjoy the little things in life.
+A: The small moments bring the most joy.
+B: And always believe in yourself.`,
+    vocab: [
+        { word: "Follow your heart", meaning: "စိတ်ကြိုက်လုပ်ပါ" },
+        { word: "Passion", meaning: "စိတ်အားထက်သန်မှု" },
+        { word: "Risks", meaning: "စွန့်စားမှုများ" },
+        { word: "Comfort zone", meaning: "သက်တောင့်သက်သာဇုန်" },
+        { word: "Generous", meaning: "ရက်ရောသော" },
+        { word: "Wealth", meaning: "ချမ်းသာမှု" },
+        { word: "Lifelong", meaning: "တစ်သက်တာ" },
+        { word: "Self-belief", meaning: "ကိုယ့်ကိုယ်ကိုယုံကြည်မှု" }
+    ]
+},
+{
+    id: 175,
+    title: "175. ဘဝအတွက်အိပ်မက် (Dreams)",
+    convo: `A: I have so many dreams I want to achieve.
+B: That's wonderful. Dreams give life purpose.
+A: My biggest dream is to travel the world.
+B: That's an amazing goal! You'll see so many beautiful places.
+A: I also dream of starting my own business.
+B: That's a great dream. What kind of business?
+A: I want to open a small cafe.
+B: That sounds lovely. I'd love to visit it.
+A: I also dream of learning to play the guitar.
+B: Music is such a beautiful form of expression.
+A: Dreams make life exciting and meaningful.
+B: Yes, they give you something to work towards.
+A: I know it won't be easy to achieve my dreams.
+B: But it's worth the effort, right?
+A: Yes, I'm ready to work hard for them.
+B: That's the spirit! Never stop dreaming.
+A: I believe we can achieve anything we set our minds to.
+B: With dedication and persistence, anything is possible.`,
+    vocab: [
+        { word: "Purpose", meaning: "ရည်ရွယ်ချက်" },
+        { word: "Expression", meaning: "ဖော်ပြခြင်း" },
+        { word: "Meaningful", meaning: "အဓိပ္ပာယ်ရှိသော" },
+        { word: "Dedication", meaning: "မြှုပ်နှံမှု" },
+        { word: "Persistence", meaning: "ဇွဲ" }
+    ]
+},
+{
+    id: 176,
+    title: "176. ဘဝအတွက်ပြောင်းလဲမှု (Change)",
+    convo: `A: I'm thinking of making some big changes in my life.
+B: Change is good. What are you planning?
+A: I want to change my career path.
+B: That's a big step. What career are you considering?
+A: I want to move into the tech industry.
+B: That's an exciting field with many opportunities.
+A: I'm a bit scared, but also excited.
+B: Change can be scary, but it leads to growth.
+A: I've been researching courses and certifications.
+B: That's a great start. Education is important.
+A: I'm also thinking of moving to a new city.
+B: A new city brings new experiences and people.
+A: I want to start fresh and build a new life.
+B: That sounds so exciting. I'm happy for you.
+A: Change can be uncomfortable, but it's necessary.
+B: Yes, growth doesn't happen in your comfort zone.
+A: I'm ready to embrace change.
+B: That's the best attitude to have.`,
+    vocab: [
+        { word: "Career path", meaning: "အသက်မွေးဝမ်းကြောင်းလမ်းကြောင်း" },
+        { word: "Tech industry", meaning: "နည်းပညာစက်မှုလုပ်ငန်း" },
+        { word: "Opportunities", meaning: "အခွင့်အလမ်းများ" },
+        { word: "Certifications", meaning: "အသိအမှတ်ပြုလက်မှတ်များ" },
+        { word: "Comfort zone", meaning: "သက်တောင့်သက်သာဇုန်" },
+        { word: "Embrace", meaning: "ကြိုဆိုသည်" }
+    ]
+},
+{
+    id: 177,
+    title: "177. ဘဝအတွက်အောင်မြင်မှု (Success)",
+    convo: `A: What does success mean to you?
+B: To me, success is being happy and fulfilled.
+A: I agree. It's not about money or fame.
+B: Success is about achieving your goals and dreams.
+A: I want to find a career that I love.
+B: That's a great definition of success.
+A: Success also means having good relationships.
+B: Yes, love and connection are important.
+A: I've learned that success takes time and effort.
+B: Nothing worthwhile comes easily.
+A: I'm willing to work hard for my success.
+B: That's the right mindset.
+A: I want to look back and feel proud.
+B: That's the ultimate success.
+A: Success is a journey, not a destination.
+B: I love that perspective. It's about the process.
+A: I'm grateful for every step of my journey.
+B: Enjoy the journey, and success will follow.`,
+    vocab: [
+        { word: "Fulfilled", meaning: "ပြည့်ဝသော" },
+        { word: "Definition", meaning: "အဓိပ္ပာယ်ဖွင့်ဆိုချက်" },
+        { word: "Worthwhile", meaning: "တန်ဖိုးရှိသော" },
+        { word: "Ultimate", meaning: "အဆုံးစွန်သော" },
+        { word: "Perspective", meaning: "ရှုထောင့်" }
+    ]
+},
+
+{
+    id: 178,
+    title: "178. ဘဝအတွက်ပျော်ရွှင်မှု (Joy)",
+    convo: `A: I want to live a joyful life.
+B: That's a beautiful goal. How do you plan to do that?
+A: I want to surround myself with positive people.
+B: Positivity is contagious. It'll make you happy.
+A: I also want to do things that make me happy.
+B: Like what?
+A: I love traveling, reading, and spending time with loved ones.
+B: Those are wonderful sources of joy.
+A: I also want to give back to others.
+B: Helping others brings so much happiness.
+A: I want to volunteer and help those in need.
+B: That's a great way to find joy.
+A: I also want to practice mindfulness.
+B: Being present in the moment is so important.
+A: I'm learning to appreciate the little things.
+B: The small joys make life beautiful.
+A: I'm going to focus on being happy every day.
+B: That's the best decision you can make.
+A: Life is too short to be unhappy.
+B: I agree. We all deserve happiness.`,
+    vocab: [
+        { word: "Joyful", meaning: "ပျော်ရွှင်သော" },
+        { word: "Contagious", meaning: "ကူးစက်တတ်သော" },
+        { word: "Volunteer", meaning: "စေတနာ့ဝန်ထမ်း" },
+        { word: "Mindfulness", meaning: "သတိတရား" },
+        { word: "Deserve", meaning: "ထိုက်တန်သည်" }
+    ]
+},
+{
+    id: 179,
+    title: "179. ဘဝအတွက်ကျေးဇူးတင်ခြင်း (Gratitude)",
+    convo: `A: I try to practice gratitude every day.
+B: That's wonderful. Gratitude changes your perspective.
+A: I keep a gratitude journal and write three things daily.
+B: That's a great habit. It makes you appreciate life.
+A: I'm grateful for my health, family, and friends.
+B: Those are the most important things in life.
+A: I also appreciate the small things, like sunshine and good food.
+B: The little joys make life beautiful.
+A: Gratitude has made me a happier person.
+B: It's hard to be unhappy when you're grateful.
+A: I also express my gratitude to others.
+B: Showing appreciation strengthens relationships.
+A: I thank my friends and family often.
+B: That's lovely. They must feel very loved.
+A: Gratitude is a powerful practice.
+B: It transforms your outlook on life.
+A: I recommend it to everyone I know.
+B: I practice it too. It changed my life.`,
+    vocab: [
+        { word: "Gratitude", meaning: "ကျေးဇူးတင်ခြင်း" },
+        { word: "Perspective", meaning: "ရှုထောင့်" },
+        { word: "Gratitude journal", meaning: "ကျေးဇူးတင်စာမျက်နှာ" },
+        { word: "Appreciation", meaning: "တန်ဖိုးထားခြင်း" },
+        { word: "Strengthens", meaning: "ခိုင်မာစေသည်" },
+        { word: "Outlook", meaning: "အမြင်" }
+    ]
+},
+{
+    id: 180,
+    title: "180. ဘဝအတွက်အိပ်မက် (Dreams)",
+    convo: `A: I have so many dreams I want to achieve.
+B: That's wonderful. Dreams give life purpose.
+A: My biggest dream is to travel the world.
+B: That's an amazing goal! You'll see so many beautiful places.
+A: I also dream of starting my own business.
+B: That's a great dream. What kind of business?
+A: I want to open a small cafe.
+B: That sounds lovely. I'd love to visit it.
+A: I also dream of learning to play the guitar.
+B: Music is such a beautiful form of expression.
+A: Dreams make life exciting and meaningful.
+B: Yes, they give you something to work towards.
+A: I know it won't be easy to achieve my dreams.
+B: But it's worth the effort, right?
+A: Yes, I'm ready to work hard for them.
+B: That's the spirit! Never stop dreaming.
+A: I believe we can achieve anything we set our minds to.
+B: With dedication and persistence, anything is possible.`,
+    vocab: [
+        { word: "Purpose", meaning: "ရည်ရွယ်ချက်" },
+        { word: "Expression", meaning: "ဖော်ပြခြင်း" },
+        { word: "Meaningful", meaning: "အဓိပ္ပာယ်ရှိသော" },
+        { word: "Dedication", meaning: "မြှုပ်နှံမှု" },
+        { word: "Persistence", meaning: "ဇွဲ" }
+    ]
+},
+// ========== 181-190: နေ့စဉ်ဘဝ ==========
+{
+    id: 181,
+    title: "181. နံနက်ခင်းလုပ်ရိုးလုပ်စဉ် (Morning Routine)",
+    convo: `A: What does your morning routine look like?
+B: I wake up at 6 AM and start with a glass of warm water.
+A: That's a healthy habit. What do you do next?
+B: I do some light stretching and then take a shower.
+A: Do you eat breakfast every morning?
+B: Yes, I always have a healthy breakfast.
+A: What do you usually eat for breakfast?
+B: I have oatmeal with fruits and nuts.
+A: That sounds delicious and nutritious.
+B: I also have a cup of green tea or coffee.
+A: I love coffee in the morning too.
+B: After breakfast, I get ready for work.
+A: What time do you leave for work?
+B: I leave around 7:30 AM.
+A: That's a good routine to start the day.
+B: It helps me feel energized and focused.`,
+    vocab: [
+        { word: "Morning routine", meaning: "နံနက်ခင်းလုပ်ရိုးလုပ်စဉ်" },
+        { word: "Stretching", meaning: "ဆန့်ထုတ်ခြင်း" },
+        { word: "Oatmeal", meaning: "ဂျုံယာဂု" },
+        { word: "Nutritious", meaning: "အာဟာရပြည့်ဝသော" },
+        { word: "Energized", meaning: "စွမ်းအင်ပြည့်သော" },
+        { word: "Focused", meaning: "အာရုံစိုက်သော" }
+    ]
+},
+{
+    id: 182,
+    title: "182. ညနေခင်းလုပ်ရိုးလုပ်စဉ် (Evening Routine)",
+    convo: `A: What does your evening routine look like?
+B: After work, I like to go for a walk or exercise.
+A: That's a great way to unwind after work.
+B: Then I have dinner with my family.
+A: Eating together is so important.
+B: After dinner, I read a book or watch a movie.
+A: I love reading before bed. It helps me sleep.
+B: I also spend some time with my family.
+A: What time do you usually go to bed?
+B: I go to bed around 10 PM.
+A: That's a good bedtime. Sleep is important.
+B: I try to avoid screens an hour before bed.
+A: That's a great habit for better sleep.
+B: I also practice some relaxation techniques.
+A: Like meditation or deep breathing?
+B: Yes, exactly. It helps me sleep peacefully.`,
+    vocab: [
+        { word: "Evening routine", meaning: "ညနေခင်းလုပ်ရိုးလုပ်စဉ်" },
+        { word: "Unwind", meaning: "စိတ်ဖြေလျှော့သည်" },
+        { word: "Bedtime", meaning: "အိပ်ချိန်" },
+        { word: "Screens", meaning: "မျက်နှာပြင်များ" },
+        { word: "Relaxation techniques", meaning: "စိတ်ဖြေလျှော့နည်းများ" },
+        { word: "Meditation", meaning: "တရားထိုင်ခြင်း" },
+        { word: "Deep breathing", meaning: "အသက်ပြင်းပြင်းရှူခြင်း" },
+        { word: "Peacefully", meaning: "ငြိမ်းချမ်းစွာ" }
+    ]
+},
+{
+    id: 183,
+    title: "183. အားလပ်ချိန်ဝါသနာ (Hobbies)",
+    convo: `A: What are your hobbies in your free time?
+B: I love painting and drawing.
+A: That's wonderful. I admire creative people.
+B: It's my way of expressing myself.
+A: What kind of things do you paint?
+B: I love painting landscapes and nature scenes.
+A: That sounds beautiful. Do you sell your art?
+B: Sometimes, but mostly I paint for fun.
+A: That's the best reason to do it.
+B: I also enjoy gardening in my free time.
+A: Gardening is so relaxing and rewarding.
+B: Yes, I love seeing my plants grow.
+A: I also like to read in my free time.
+B: Reading is such a great way to relax.
+A: What kind of books do you read?
+B: I love mystery and thriller novels.
+A: I'm also a big fan of thrillers.
+B: We should exchange book recommendations.`,
+    vocab: [
+        { word: "Hobbies", meaning: "ဝါသနာ" },
+        { word: "Painting", meaning: "ပန်းချီ" },
+        { word: "Drawing", meaning: "ပုံဆွဲခြင်း" },
+        { word: "Landscapes", meaning: "ရှုခင်းများ" },
+        { word: "Gardening", meaning: "ဥယျာဉ်စိုက်ပျိုးခြင်း" },
+        { word: "Rewarding", meaning: "အကျိုးဖြစ်ထွန်းသော" },
+        { word: "Mystery", meaning: "လျှို့ဝှက်ဆန်းကြယ်" },
+        { word: "Thriller", meaning: "သည်းထိတ်ရင်ဖို" },
+        { word: "Recommendations", meaning: "အကြံပြုချက်များ" }
+    ]
+},
+{
+    id: 184,
+    title: "184. အားလပ်ချိန်လေ့ကျင့်ခန်း (Exercise)",
+    convo: `A: I try to exercise at least 3 times a week.
+B: That's great! What kind of exercise do you do?
+A: I do a mix of cardio and strength training.
+B: Cardio is great for your heart.
+A: Yes, I like running and cycling.
+B: I prefer swimming and yoga.
+A: Swimming is a great full-body workout.
+B: Yoga is so relaxing and good for flexibility.
+A: I should try yoga sometime.
+B: You should! It's great for your mind and body.
+A: Do you exercise alone or with a friend?
+B: I usually exercise with a friend. It's more fun.
+A: I agree. Having a workout buddy is motivating.
+B: It also helps you stay consistent.
+A: That's true. I never want to let my friend down.
+B: Exercising with someone makes it more enjoyable.
+A: I'm going to try swimming this weekend.
+B: That sounds great! Let me know how it goes.`,
+    vocab: [
+        { word: "Cardio", meaning: "နှလုံးသွေးကြောလေ့ကျင့်ခန်း" },
+        { word: "Strength training", meaning: "ကြံ့ခိုင်ရေးလေ့ကျင့်ခန်း" },
+        { word: "Running", meaning: "အပြေး" },
+        { word: "Cycling", meaning: "စက်ဘီးစီးခြင်း" },
+        { word: "Swimming", meaning: "ရေကူးခြင်း" },
+        { word: "Yoga", meaning: "ယောဂ" },
+        { word: "Full-body workout", meaning: "ကိုယ်လုံးလေ့ကျင့်ခန်း" },
+        { word: "Flexibility", meaning: "ပျော့ပြောင်းမှု" },
+        { word: "Motivating", meaning: "လှုံ့ဆော်ပေးသော" }
+    ]
+},
+{
+    id: 185,
+    title: "185. အားလပ်ချိန်ခရီးသွား (Travel)",
+    convo: `A: I love traveling during my free time.
+B: That's wonderful! Where have you been?
+A: I've been to many countries in Asia and Europe.
+B: What's your favorite destination so far?
+A: I loved Japan. The culture and food were amazing.
+B: Japan is definitely on my bucket list.
+A: You should go! You'll love it.
+B: I also want to visit Italy and France.
+A: Those are beautiful countries too.
+B: I love exploring new cultures and cuisines.
+A: Traveling is the best way to learn and grow.
+B: I agree. It opens your mind and heart.
+A: I also love meeting new people when I travel.
+B: Yes, the people make the experience special.
+A: I always come back with so many stories.
+B: That's the best part of traveling.
+A: Where do you want to go next?
+B: I want to visit South America next year.
+A: That sounds exciting! Let's plan a trip together.`,
+    vocab: [
+        { word: "Destination", meaning: "ဦးတည်ရာ" },
+        { word: "Bucket list", meaning: "လုပ်စရာစာရင်း" },
+        { word: "Cuisines", meaning: "အစားအစာအမျိုးအစားများ" },
+        { word: "Traveling", meaning: "ခရီးသွားခြင်း" },
+        { word: "Stories", meaning: "ပုံပြင်များ" }
+    ]
+},
+
+{
+    id: 186,
+    title: "186. အားလပ်ချိန်စာအုပ်ဖတ် (Reading)",
+    convo: `A: I spend a lot of my free time reading books.
+B: That's wonderful. Reading is so enriching.
+A: I read fiction, non-fiction, and self-help books.
+B: That's a great variety. Which genre do you prefer?
+A: I love fiction, especially mystery and fantasy.
+B: I'm also a big fan of fantasy novels.
+A: What's the best book you've read recently?
+B: I just finished a great book called "The Midnight Library."
+A: I've heard of that book. Is it good?
+B: It's amazing! It really makes you think about life.
+A: I'll have to read it soon.
+B: I can lend you my copy if you want.
+A: That would be great! Thank you.
+B: Reading is such a wonderful escape from reality.
+A: Yes, it takes you to different worlds.
+B: I also learn so much from non-fiction books.
+A: Self-help books have really helped me grow.
+B: They're so practical and helpful.
+A: I love discussing books with other readers.
+B: Me too. We should start a book club.`,
+    vocab: [
+        { word: "Enriching", meaning: "ကြွယ်ဝစေသော" },
+        { word: "Fiction", meaning: "ဝတ္ထု" },
+        { word: "Non-fiction", meaning: "မဟုတ်သော" },
+        { word: "Self-help", meaning: "ကိုယ့်ကိုယ်ကိုကူညီခြင်း" },
+        { word: "Mystery", meaning: "လျှို့ဝှက်ဆန်းကြယ်" },
+        { word: "Fantasy", meaning: "စိတ်ကူးယဉ်" },
+        { word: "Escape", meaning: "လွတ်မြောက်ခြင်း" },
+        { word: "Book club", meaning: "စာအုပ်ဖတ်အသင်း" }
+    ]
+},
+{
+    id: 187,
+    title: "187. အားလပ်ချိန်ဂီတ (Music)",
+    convo: `A: I love listening to music in my free time.
+B: Music is the best. What kind of music do you like?
+A: I like pop, rock, and classical music.
+B: That's a great variety. Who's your favorite artist?
+A: I really like Coldplay. Their music is so emotional.
+B: I love Coldplay too! They're amazing live.
+A: Have you ever seen them in concert?
+B: Yes, I saw them last year. It was incredible!
+A: I'm so jealous! I want to see them too.
+B: You should! They're coming to our city next month.
+A: Really? I'll definitely get tickets.
+B: We can go together if you want.
+A: That would be amazing! Let's do it.
+B: I also love playing the guitar in my free time.
+A: That's great! How long have you been playing?
+B: I've been playing for about 5 years.
+A: I wish I could play an instrument.
+B: It's never too late to learn. You should try!
+A: Maybe I'll start with piano lessons.
+B: That's a great instrument to start with.`,
+    vocab: [
+        { word: "Pop", meaning: "ပေါ့ပ်" },
+        { word: "Rock", meaning: "ရော့ခ်" },
+        { word: "Classical", meaning: "ဂန္ထဝင်" },
+        { word: "Emotional", meaning: "စိတ်ခံစားမှုရှိသော" },
+        { word: "Concert", meaning: "ဖျော်ဖြေပွဲ" },
+        { word: "Incredible", meaning: "မယုံနိုင်လောက်အောင်" },
+        { word: "Instrument", meaning: "တူရိယာ" }
+    ]
+},
+{
+    id: 188,
+    title: "188. အားလပ်ချိန်ရုပ်ရှင် (Movies)",
+    convo: `A: I love watching movies in my free time.
+B: Me too! What genre do you prefer?
+A: I like action, comedy, and drama movies.
+B: That's a great variety. What's your favorite movie?
+A: I love "The Shawshank Redemption." It's a masterpiece.
+B: That's such a powerful and emotional movie.
+A: Yes, it makes you think about life and hope.
+B: I also love "Inception." It's so mind-blowing.
+A: That movie is incredible! The plot is so complex.
+B: I had to watch it multiple times to understand.
+A: Me too! It's one of those movies that gets better.
+B: I also enjoy watching comedy to lighten my mood.
+A: Comedy movies are great for stress relief.
+B: I also love watching documentaries.
+A: Documentaries are so educational and interesting.
+B: They teach you so much about the world.
+A: I usually watch movies on weekends.
+B: That's the perfect time to relax and enjoy.
+A: We should watch a movie together sometime.
+B: That sounds great! Let's plan a movie night.`,
+    vocab: [
+        { word: "Action", meaning: "အက်ရှင်" },
+        { word: "Comedy", meaning: "ဟာသ" },
+        { word: "Drama", meaning: "ဒရာမာ" },
+        { word: "Masterpiece", meaning: "လက်ရာမြောက်သော" },
+        { word: "Powerful", meaning: "အားကောင်းသော" },
+        { word: "Mind-blowing", meaning: "အံ့သြဖွယ်" },
+        { word: "Documentaries", meaning: "မှတ်တမ်းရုပ်ရှင်များ" },
+        { word: "Educational", meaning: "ပညာရေးဆိုင်ရာ" }
+    ]
+},
+{
+    id: 189,
+    title: "189. အားလပ်ချိန်ချက်ပြုတ် (Cooking)",
+    convo: `A: I love cooking in my free time.
+B: That's wonderful. What do you enjoy cooking?
+A: I enjoy cooking Italian and Asian dishes.
+B: Italian food is my favorite! I love pasta and pizza.
+A: I also love making homemade pizza.
+B: That sounds delicious! Do you make the dough yourself?
+A: Yes, I make everything from scratch.
+B: That's impressive! I can never make good dough.
+A: It takes practice, but it's worth it.
+B: I also enjoy baking cakes and cookies.
+A: Baking is so therapeutic and rewarding.
+B: I love the smell of fresh bread in the oven.
+A: Me too! It makes the whole house smell amazing.
+B: Cooking is such a great way to relax.
+A: Yes, it's very calming and creative.
+B: I always feel happy after cooking a good meal.
+A: Sharing food with others is also wonderful.
+B: I agree. Food brings people together.
+A: We should cook together sometime.
+B: That would be so much fun! Let's do it.`,
+    vocab: [
+        { word: "Italian", meaning: "အီတလီ" },
+        { word: "Asian", meaning: "အာရှ" },
+        { word: "Homemade", meaning: "အိမ်တွင်းလုပ်" },
+        { word: "From scratch", meaning: "အစမှစ၍" },
+        { word: "Therapeutic", meaning: "ကုသမှုဆိုင်ရာ" },
+        { word: "Rewarding", meaning: "အကျိုးဖြစ်ထွန်းသော" }
+    ]
+},
+{
+    id: 190,
+    title: "190. အားလပ်ချိန်ဥယျာဉ် (Gardening)",
+    convo: `A: I love gardening in my free time.
+B: That's wonderful. What do you grow in your garden?
+A: I grow vegetables, herbs, and flowers.
+B: That's amazing! You have a green thumb.
+A: I love seeing my plants grow and thrive.
+B: What vegetables do you grow?
+A: I grow tomatoes, cucumbers, and lettuce.
+B: That's so healthy and sustainable!
+A: I also grow herbs like basil and mint.
+B: Fresh herbs make such a difference in cooking.
+A: I agree. They add so much flavor.
+B: I love the smell of fresh flowers in the garden.
+A: Me too. I grow roses and sunflowers.
+B: Gardening is so relaxing and peaceful.
+A: Yes, it's my escape from the busy world.
+B: It also gives you a sense of accomplishment.
+A: I love harvesting my own vegetables.
+B: There's nothing like eating food you grew yourself.
+A: Gardening has taught me patience and care.
+B: It's truly a beautiful hobby.`,
+    vocab: [
+        { word: "Green thumb", meaning: "ဥယျာဉ်စိုက်ပျိုးရာတွင်ကျွမ်းကျင်သူ" },
+        { word: "Thrive", meaning: "ရှင်သန်သည်" },
+        { word: "Sustainable", meaning: "ရေရှည်တည်တံ့နိုင်သော" },
+        { word: "Harvesting", meaning: "ရိတ်သိမ်းခြင်း" },
+        { word: "Patience", meaning: "စိတ်ရှည်မှု" }
+    ]
+},
+// ========== 191-200: ဘဝအတွေ့အကြုံ ==========
+{
+    id: 191,
+    title: "191. ဘဝအတွက်ပန်းတိုင် (Life Goals)",
+    convo: `A: I'm setting new goals for myself this year.
+B: That's great! What are your goals?
+A: I want to focus on my health and career.
+B: Those are important areas of life.
+A: I want to exercise more and eat healthier.
+B: That's a wonderful goal. Health is everything.
+A: I also want to get a promotion at work.
+B: That's a great career goal. How will you achieve it?
+A: I'll work harder and take on more responsibilities.
+B: Dedication and effort will pay off.
+A: I also want to travel to a new country.
+B: That's an exciting goal! Where do you want to go?
+A: I want to visit Japan. It's my dream.
+B: Japan is beautiful. You'll love it.
+A: I'm also saving money for my future.
+B: Financial security is very important.
+A: I want to buy my own house in 5 years.
+B: That's a big goal, but achievable with planning.`,
+    vocab: [
+        { word: "Goals", meaning: "ရည်မှန်းချက်များ" },
+        { word: "Promotion", meaning: "ရာထူးတိုးခြင်း" },
+        { word: "Dedication", meaning: "မြှုပ်နှံမှု" },
+        { word: "Financial security", meaning: "ဘဏ္ဍာရေးလုံခြုံမှု" },
+        { word: "Achievable", meaning: "ပြီးမြောက်နိုင်သော" }
+    ]
+},
+{
+    id: 192,
+    title: "192. ဘဝအတွက်ပျော်ရွှင်မှု (Happiness)",
+    convo: `A: What does happiness mean to you?
+B: To me, happiness is being content with life.
+A: I agree. It's about appreciating what you have.
+B: Yes, it's not about having everything.
+A: I find happiness in simple things.
+B: Like a beautiful sunset or a good book.
+A: I'm also happy when I spend time with loved ones.
+B: Relationships are a key source of happiness.
+A: Helping others also makes me happy.
+B: Yes, giving brings so much joy.
+A: I also find happiness in achieving my goals.
+B: Accomplishments feel very rewarding.
+A: But happiness isn't always about achievement.
+B: True. Sometimes it's just about being.
+A: I'm learning to be happy in the present moment.
+B: That's the best way to live.`,
+    vocab: [
+        { word: "Content", meaning: "ရောင့်ရဲသော" },
+        { word: "Appreciating", meaning: "တန်ဖိုးထားခြင်း" },
+        { word: "Accomplishments", meaning: "ပြီးမြောက်အောင်မြင်မှုများ" },
+        { word: "Rewarding", meaning: "အကျိုးဖြစ်ထွန်းသော" },
+        { word: "Present moment", meaning: "လက်ရှိအချိန်" }
+    ]
+},
+{
+    id: 193,
+    title: "193. ဘဝအတွက်သင်ခန်းစာ (Life Lessons)",
+    convo: `A: Life has taught me some valuable lessons.
+B: What's the most important lesson you've learned?
+A: To never give up, even when things are hard.
+B: Perseverance is such an important quality.
+A: I've also learned to be kind to everyone.
+B: Kindness goes a long way in life.
+A: I've learned that failure is just a stepping stone.
+B: Yes, failure teaches us more than success.
+A: I've also learned to appreciate my health.
+B: Health is the most precious thing.
+A: Money isn't everything. Experiences matter more.
+B: I agree. Memories are priceless.
+A: I've learned to live in the moment.
+B: The present is all we really have.
+A: I've also learned to forgive and let go.
+B: Holding onto anger only hurts yourself.
+A: Life is short, so make the most of it.
+B: Yes, don't waste time on negativity.`,
+    vocab: [
+        { word: "Perseverance", meaning: "ဇွဲ" },
+        { word: "Stepping stone", meaning: "တိုးတက်ရေးလှေကားထစ်" },
+        { word: "Priceless", meaning: "အဖိုးမဖြတ်နိုင်သော" },
+        { word: "Negativity", meaning: "အဆိုးမြင်မှု" }
+    ]
+},
+{
+    id: 194,
+    title: "194. ဘဝအတွက်အကြံပြုချက် (Life Advice)",
+    convo: `A: Do you have any advice for living a good life?
+B: Yes, always follow your heart and passion.
+A: That's beautiful advice. What else?
+B: Don't be afraid to take risks and try new things.
+A: I agree. Growth comes from stepping out of your comfort zone.
+B: Also, surround yourself with positive people.
+A: The people you spend time with really matter.
+B: Be kind and generous to others.
+A: That makes the world a better place.
+B: Take care of your health, it's your greatest wealth.
+A: Yes, you can't enjoy life without good health.
+B: Never stop learning and growing.
+A: Lifelong learning keeps the mind young.
+B: Also, forgive quickly and don't hold grudges.
+A: That's so important for peace of mind.
+B: Enjoy the little things in life.
+A: The small moments bring the most joy.
+B: And always believe in yourself.`,
+    vocab: [
+        { word: "Follow your heart", meaning: "စိတ်ကြိုက်လုပ်ပါ" },
+        { word: "Passion", meaning: "စိတ်အားထက်သန်မှု" },
+        { word: "Risks", meaning: "စွန့်စားမှုများ" },
+        { word: "Comfort zone", meaning: "သက်တောင့်သက်သာဇုန်" },
+        { word: "Generous", meaning: "ရက်ရောသော" },
+        { word: "Wealth", meaning: "ချမ်းသာမှု" },
+        { word: "Lifelong", meaning: "တစ်သက်တာ" },
+        { word: "Self-belief", meaning: "ကိုယ့်ကိုယ်ကိုယုံကြည်မှု" }
+    ]
+},
+{
+    id: 195,
+    title: "195. ဘဝအတွက်အိပ်မက် (Dreams)",
+    convo: `A: I have so many dreams I want to achieve.
+B: That's wonderful. Dreams give life purpose.
+A: My biggest dream is to travel the world.
+B: That's an amazing goal! You'll see so many beautiful places.
+A: I also dream of starting my own business.
+B: That's a great dream. What kind of business?
+A: I want to open a small cafe.
+B: That sounds lovely. I'd love to visit it.
+A: I also dream of learning to play the guitar.
+B: Music is such a beautiful form of expression.
+A: Dreams make life exciting and meaningful.
+B: Yes, they give you something to work towards.
+A: I know it won't be easy to achieve my dreams.
+B: But it's worth the effort, right?
+A: Yes, I'm ready to work hard for them.
+B: That's the spirit! Never stop dreaming.
+A: I believe we can achieve anything we set our minds to.
+B: With dedication and persistence, anything is possible.`,
+    vocab: [
+        { word: "Purpose", meaning: "ရည်ရွယ်ချက်" },
+        { word: "Expression", meaning: "ဖော်ပြခြင်း" },
+        { word: "Meaningful", meaning: "အဓိပ္ပာယ်ရှိသော" },
+        { word: "Dedication", meaning: "မြှုပ်နှံမှု" },
+        { word: "Persistence", meaning: "ဇွဲ" }
+    ]
+},
+{
+    id: 196,
+    title: "196. ဘဝအတွက်ပြောင်းလဲမှု (Change)",
+    convo: `A: I'm thinking of making some big changes in my life.
+B: Change is good. What are you planning?
+A: I want to change my career path.
+B: That's a big step. What career are you considering?
+A: I want to move into the tech industry.
+B: That's an exciting field with many opportunities.
+A: I'm a bit scared, but also excited.
+B: Change can be scary, but it leads to growth.
+A: I've been researching courses and certifications.
+B: That's a great start. Education is important.
+A: I'm also thinking of moving to a new city.
+B: A new city brings new experiences and people.
+A: I want to start fresh and build a new life.
+B: That sounds so exciting. I'm happy for you.
+A: Change can be uncomfortable, but it's necessary.
+B: Yes, growth doesn't happen in your comfort zone.
+A: I'm ready to embrace change.
+B: That's the best attitude to have.`,
+    vocab: [
+        { word: "Career path", meaning: "အသက်မွေးဝမ်းကြောင်းလမ်းကြောင်း" },
+        { word: "Tech industry", meaning: "နည်းပညာစက်မှုလုပ်ငန်း" },
+        { word: "Opportunities", meaning: "အခွင့်အလမ်းများ" },
+        { word: "Certifications", meaning: "အသိအမှတ်ပြုလက်မှတ်များ" },
+        { word: "Comfort zone", meaning: "သက်တောင့်သက်သာဇုန်" },
+        { word: "Embrace", meaning: "ကြိုဆိုသည်" }
+    ]
+},
+{
+    id: 197,
+    title: "197. ဘဝအတွက်အောင်မြင်မှု (Success)",
+    convo: `A: What does success mean to you?
+B: To me, success is being happy and fulfilled.
+A: I agree. It's not about money or fame.
+B: Success is about achieving your goals and dreams.
+A: I want to find a career that I love.
+B: That's a great definition of success.
+A: Success also means having good relationships.
+B: Yes, love and connection are important.
+A: I've learned that success takes time and effort.
+B: Nothing worthwhile comes easily.
+A: I'm willing to work hard for my success.
+B: That's the right mindset.
+A: I want to look back and feel proud.
+B: That's the ultimate success.
+A: Success is a journey, not a destination.
+B: I love that perspective. It's about the process.
+A: I'm grateful for every step of my journey.
+B: Enjoy the journey, and success will follow.`,
+    vocab: [
+        { word: "Fulfilled", meaning: "ပြည့်ဝသော" },
+        { word: "Definition", meaning: "အဓိပ္ပာယ်ဖွင့်ဆိုချက်" },
+        { word: "Worthwhile", meaning: "တန်ဖိုးရှိသော" },
+        { word: "Ultimate", meaning: "အဆုံးစွန်သော" },
+        { word: "Perspective", meaning: "ရှုထောင့်" }
+    ]
+},
+{
+    id: 198,
+    title: "198. ဘဝအတွက်ပျော်ရွှင်မှု (Joy)",
+    convo: `A: I want to live a joyful life.
+B: That's a beautiful goal. How do you plan to do that?
+A: I want to surround myself with positive people.
+B: Positivity is contagious. It'll make you happy.
+A: I also want to do things that make me happy.
+B: Like what?
+A: I love traveling, reading, and spending time with loved ones.
+B: Those are wonderful sources of joy.
+A: I also want to give back to others.
+B: Helping others brings so much happiness.
+A: I want to volunteer and help those in need.
+B: That's a great way to find joy.
+A: I also want to practice mindfulness.
+B: Being present in the moment is so important.
+A: I'm learning to appreciate the little things.
+B: The small joys make life beautiful.
+A: I'm going to focus on being happy every day.
+B: That's the best decision you can make.
+A: Life is too short to be unhappy.
+B: I agree. We all deserve happiness.`,
+    vocab: [
+        { word: "Joyful", meaning: "ပျော်ရွှင်သော" },
+        { word: "Contagious", meaning: "ကူးစက်တတ်သော" },
+        { word: "Volunteer", meaning: "စေတနာ့ဝန်ထမ်း" },
+        { word: "Mindfulness", meaning: "သတိတရား" },
+        { word: "Deserve", meaning: "ထိုက်တန်သည်" }
+    ]
+},
+{
+    id: 199,
+    title: "199. ဘဝအတွက်ကျေးဇူးတင်ခြင်း (Gratitude)",
+    convo: `A: I try to practice gratitude every day.
+B: That's wonderful. Gratitude changes your perspective.
+A: I keep a gratitude journal and write three things daily.
+B: That's a great habit. It makes you appreciate life.
+A: I'm grateful for my health, family, and friends.
+B: Those are the most important things in life.
+A: I also appreciate the small things, like sunshine and good food.
+B: The little joys make life beautiful.
+A: Gratitude has made me a happier person.
+B: It's hard to be unhappy when you're grateful.
+A: I also express my gratitude to others.
+B: Showing appreciation strengthens relationships.
+A: I thank my friends and family often.
+B: That's lovely. They must feel very loved.
+A: Gratitude is a powerful practice.
+B: It transforms your outlook on life.
+A: I recommend it to everyone I know.
+B: I practice it too. It changed my life.`,
+    vocab: [
+        { word: "Gratitude", meaning: "ကျေးဇူးတင်ခြင်း" },
+        { word: "Perspective", meaning: "ရှုထောင့်" },
+        { word: "Gratitude journal", meaning: "ကျေးဇူးတင်စာမျက်နှာ" },
+        { word: "Appreciation", meaning: "တန်ဖိုးထားခြင်း" },
+        { word: "Strengthens", meaning: "ခိုင်မာစေသည်" },
+        { word: "Outlook", meaning: "အမြင်" }
+    ]
+},
+{
+    id: 200,
+    title: "200. ဘဝအတွက်အိပ်မက် (Dreams)",
+    convo: `A: I have so many dreams I want to achieve.
+B: That's wonderful. Dreams give life purpose.
+A: My biggest dream is to travel the world.
+B: That's an amazing goal! You'll see so many beautiful places.
+A: I also dream of starting my own business.
+B: That's a great dream. What kind of business?
+A: I want to open a small cafe.
+B: That sounds lovely. I'd love to visit it.
+A: I also dream of learning to play the guitar.
+B: Music is such a beautiful form of expression.
+A: Dreams make life exciting and meaningful.
+B: Yes, they give you something to work towards.
+A: I know it won't be easy to achieve my dreams.
+B: But it's worth the effort, right?
+A: Yes, I'm ready to work hard for them.
+B: That's the spirit! Never stop dreaming.
+A: I believe we can achieve anything we set our minds to.
+B: With dedication and persistence, anything is possible.
+
+🎉 Congratulations! You've completed all 200 conversations!
+Keep learning and practicing every day!`,
+    vocab: [
+        { word: "Purpose", meaning: "ရည်ရွယ်ချက်" },
+        { word: "Expression", meaning: "ဖော်ပြခြင်း" },
+        { word: "Meaningful", meaning: "အဓိပ္ပာယ်ရှိသော" },
+        { word: "Dedication", meaning: "မြှုပ်နှံမှု" },
+        { word: "Persistence", meaning: "ဇွဲ" }
+    ]
+}
+
+
+
+        ];
+
+        // =============================================================
+        //  Spinner ထဲကို Option တွေထည့်မယ်
+        // =============================================================
+        const selectEl = document.getElementById('convoSelect');
+        const displayEl = document.getElementById('convoDisplay');
+
+        conversations.forEach((conv, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = conv.title;
+            selectEl.appendChild(option);
+        });
+
+        // --------------------------------------------------------------
+        //  Function: Conversation ပြောင်းပြမယ်
+        // --------------------------------------------------------------
+        function showConversation(index) {
+            const conv = conversations[index];
+            if (!conv) return;
+
+            let convoHtml = conv.convo
+                .split('\n')
+                .map(line => {
+                    if (line.trim().startsWith('A:')) {
+                        return `<span class="speaker">${line.trim()}</span>`;
+                    } else if (line.trim().startsWith('B:')) {
+                        return `<span class="speaker-b">${line.trim()}</span>`;
+                    } else if (line.trim().startsWith('Waiter:')) {
+                        return `<span class="speaker" style="color:#55efc4;">${line.trim()}</span>`;
+                    } else if (line.trim().startsWith('(')) {
+                        return `<span style="color:#888; font-style:italic;">${line.trim()}</span>`;
+                    }
+                    return line;
+                })
+                .join('<br>');
+
+            displayEl.innerHTML = `
+                <div class="title">${conv.title}</div>
+                <div class="convo-text">${convoHtml}</div>
+                <div class="vocab-section">
+                    <div class="vocab-title">📝 Key Vocabulary (မီးနင်းများ)</div>
+                    <div class="vocab-list">
+                        ${conv.vocab.map(v => 
+                            `<span class="vocab-tag">${v.word} <span class="meaning">- ${v.meaning}</span></span>`
+                        ).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // --------------------------------------------------------------
+        //  Spinner ပြောင်းတိုင်း conversation ပြောင်းမယ်
+        // --------------------------------------------------------------
+        selectEl.addEventListener('change', function() {
+            const index = parseInt(this.value);
+            showConversation(index);
+        });
+
+        // --------------------------------------------------------------
+        //  Page load မှာ ပထမဆုံး conversation ပြမယ်
+        // --------------------------------------------------------------
+        showConversation(0);
+
+        console.log('✅ Conversations 101-110 loaded:', conversations.length);
+    </script>
+
+</body>
+</html>

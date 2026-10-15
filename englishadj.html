@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adverbs & Adjectives</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            padding: 30px 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 40px;
+            padding: 40px 35px;
+            max-width: 1300px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .sub {
+            color: #aab;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #74b9ff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            color: #a29bfe;
+        }
+
+        .count-badge {
+            display: inline-block;
+            background: rgba(85, 239, 196, 0.15);
+            color: #55efc4;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            border: 1px solid rgba(85, 239, 196, 0.1);
+        }
+
+        .section-title {
+            color: #f0e68c;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px;
+            text-align: center;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 10px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            min-width: 500px;
+        }
+
+        thead th {
+            background: rgba(108, 92, 231, 0.3);
+            color: #f0e68c;
+            padding: 12px 14px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.5px;
+        }
+
+        thead th:nth-child(1) { 
+            background: rgba(253, 121, 168, 0.2); 
+            min-width: 50px;
+        }
+        thead th:nth-child(2) { 
+            background: rgba(116, 185, 255, 0.2); 
+            min-width: 130px;
+        }
+        thead th:nth-child(3) { 
+            background: rgba(85, 239, 196, 0.2); 
+            min-width: 130px;
+        }
+        thead th:nth-child(4) { 
+            background: rgba(253, 203, 110, 0.2); 
+            min-width: 120px;
+        }
+
+        tbody td {
+            padding: 10px 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ddd;
+            transition: 0.2s;
+            vertical-align: middle;
+        }
+
+        tbody tr {
+            transition: 0.2s;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        tbody tr:hover td {
+            color: #fff;
+        }
+
+        tbody td:nth-child(2) {
+            color: #74b9ff;
+            font-weight: 500;
+        }
+
+        tbody td:nth-child(3) {
+            color: #55efc4;
+            font-weight: 500;
+        }
+
+        tbody td:nth-child(4) {
+            color: #fdcb6e;
+        }
+
+        .row-number {
+            color: #555;
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .type-badge.adj {
+            background: rgba(116, 185, 255, 0.2);
+            color: #74b9ff;
+            border: 1px solid rgba(116, 185, 255, 0.2);
+        }
+
+        .type-badge.adv {
+            background: rgba(85, 239, 196, 0.2);
+            color: #55efc4;
+            border: 1px solid rgba(85, 239, 196, 0.2);
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+        }
+
+        .developer {
+            margin-top: 28px;
+            padding: 20px 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .developer .dev-name {
+            color: #f0e68c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .developer .dev-detail {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+
+        .developer .dev-detail span {
+            color: #8b7bf7;
+            font-weight: 500;
+        }
+
+        .developer .dev-detail a {
+            color: #74b9ff;
+            text-decoration: none;
+            transition: 0.2s;
+            border-bottom: 1px dashed rgba(116, 185, 255, 0.3);
+        }
+
+        .developer .dev-detail a:hover {
+            color: #a29bfe;
+            border-bottom-color: #a29bfe;
+        }
+
+        .dev-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 850px) {
+            .container { padding: 28px 16px; }
+            h1 { font-size: 1.9rem; }
+            table { font-size: 0.85rem; min-width: 400px; }
+            thead th { padding: 10px 8px; font-size: 0.85rem; }
+            tbody td { padding: 8px 8px; }
+            .developer { padding: 16px; }
+            .section-title { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 600px) {
+            table { font-size: 0.75rem; min-width: 350px; }
+            thead th { padding: 6px 6px; font-size: 0.7rem; }
+            tbody td { padding: 6px 6px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <a href="index.html" class="back-link">⬅ Back to Hub</a>
+
+        <h1>📚 Adverbs & Adjectives</h1>
+        <div class="sub">Essential Words for Describing</div>
+
+        <div class="count-badge">📖 100 Words (50 Adjectives + 50 Adverbs)</div>
+
+        <!-- ===== ADJECTIVES SECTION ===== -->
+        <div>
+            <div class="section-title">🔵 Adjectives (နာမဝိသေသနများ)</div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Adjective</th>
+                            <th>🇲🇲 အဓိပ္ပာယ်</th>
+                            <th>🔊 အသံထွက်</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adjectiveTableBody">
+                        <!-- JS က ထည့်ပေးမယ် -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== ADVERBS SECTION ===== -->
+        <div style="margin-top: 40px;">
+            <div class="section-title">🟢 Adverbs (ကြိယာဝိသေသနများ)</div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Adverb</th>
+                            <th>🇲🇲 အဓိပ္ပာယ်</th>
+                            <th>🔊 အသံထွက်</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adverbTableBody">
+                        <!-- JS က ထည့်ပေးမယ် -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="developer">
+            <span class="dev-icon">👨‍💻</span>
+            <div class="dev-name">Yan Naing</div>
+            <div class="dev-detail">
+                📞 <span>09782992290</span><br />
+                📱 Telegram : <a href="https://t.me/To_my_new_world" target="_blank">@To_my_new_world</a>
+            </div>
+        </div>
+
+        <div class="footer">⚡ learn descriptive words · improve your English</div>
+    </div>
+
+    <script>
+        // =============================================================
+        //  DATA: Adjectives (၅၀)
+        // =============================================================
+        const adjectives = [
+            { word: "beautiful", meaning: "လှပသော", pron: "ဗျူတီဖူလ်" },
+            { word: "handsome", meaning: "ရုပ်ချောသော", pron: "ဟန်ဆမ်" },
+            { word: "tall", meaning: "အရပ်ရှည်သော", pron: "တော်" },
+            { word: "short", meaning: "အရပ်တိုသော / တိုသော", pron: "ရှော့" },
+            { word: "big", meaning: "ကြီးသော", pron: "ဘစ်" },
+            { word: "small", meaning: "သေးငယ်သော", pron: "စမော်" },
+            { word: "fast", meaning: "မြန်သော", pron: "ဖတ်စ်" },
+            { word: "slow", meaning: "နှေးသော", pron: "စလိုး" },
+            { word: "strong", meaning: "သန်မာသော", pron: "စထရောင်း" },
+            { word: "weak", meaning: "အားနည်းသော", pron: "ဝိတ်" },
+            { word: "happy", meaning: "ပျော်ရွှင်သော", pron: "ဟက်ပီ" },
+            { word: "sad", meaning: "ဝမ်းနည်းသော", pron: "စက်ဒ်" },
+            { word: "angry", meaning: "ဒေါသထွက်သော", pron: "အန်ဂရီ" },
+            { word: "kind", meaning: "ကြင်နာသော", pron: "ကိုင်း" },
+            { word: "clever", meaning: "လိမ္မာသော", pron: "ကလက်ဗာ" },
+            { word: "stupid", meaning: "မိုက်သော", pron: "စတူပစ်" },
+            { word: "rich", meaning: "ချမ်းသာသော", pron: "ရစ်" },
+            { word: "poor", meaning: "ဆင်းရဲသော", pron: "ပူ" },
+            { word: "young", meaning: "ငယ်သော", pron: "ယန်း" },
+            { word: "old", meaning: "အိုသော", pron: "အိုးလ်" },
+            { word: "hot", meaning: "ပူသော", pron: "ဟော့" },
+            { word: "cold", meaning: "အေးသော", pron: "ကိုးလ်" },
+            { word: "warm", meaning: "နွေးသော", pron: "ဝေါမ်" },
+            { word: "cool", meaning: "အေးမြသော", pron: "ကူးလ်" },
+            { word: "bright", meaning: "တောက်ပသော", pron: "ဘရိုက်" },
+            { word: "dark", meaning: "မှောင်သော", pron: "ဒါ" },
+            { word: "clean", meaning: "သန့်ရှင်းသော", pron: "ကလီးန်" },
+            { word: "dirty", meaning: "ညစ်ပတ်သော", pron: "ဒတ်တီ" },
+            { word: "easy", meaning: "လွယ်ကူသော", pron: "အီဇီ" },
+            { word: "difficult", meaning: "ခက်ခဲသော", pron: "ဒစ်ဖီကယ်" },
+            { word: "good", meaning: "ကောင်းသော", pron: "ဂုဒ်" },
+            { word: "bad", meaning: "မကောင်းသော", pron: "ဘက်" },
+            { word: "new", meaning: "အသစ်သော", pron: "နျူး" },
+            { word: "old", meaning: "ဟောင်းသော", pron: "အိုးလ်" },
+            { word: "safe", meaning: "လုံခြုံသော", pron: "စိတ်ဖ်" },
+            { word: "dangerous", meaning: "အန္တရာယ်ရှိသော", pron: "ဒိန်းဂျာရပ်စ်" },
+            { word: "important", meaning: "အရေးကြီးသော", pron: "အင်ပေါ့တင့်" },
+            { word: "interesting", meaning: "စိတ်ဝင်စားစရာကောင်းသော", pron: "အင်တရတ်စတင်" },
+            { word: "boring", meaning: "ပျင်းစရာကောင်းသော", pron: "ဘောရင်" },
+            { word: "exciting", meaning: "စိတ်လှုပ်ရှားစရာကောင်းသော", pron: "အစ်ဆိုက်တင်" },
+            { word: "famous", meaning: "ကျော်ကြားသော", pron: "ဖေမက်စ်" },
+            { word: "lazy", meaning: "ပျင်းရိသော", pron: "လေဇီ" },
+            { word: "hard-working", meaning: "ကြိုးစားအားထုတ်သော", pron: "ဟာ့ဝတ်ကင်" },
+            { word: "honest", meaning: "ရိုးသားသော", pron: "အွန်နစ်" },
+            { word: "brave", meaning: "သတ္တိရှိသော", pron: "ဘရေးဗ်" },
+            { word: "friendly", meaning: "ဖော်ရွေသော", pron: "ဖရင့်လီ" },
+            { word: "generous", meaning: "ရက်ရောသော", pron: "ဂျင်နရပ်စ်" },
+            { word: "polite", meaning: "ယဉ်ကျေးသော", pron: "ပိုလိုက်" },
+            { word: "rude", meaning: "ရိုင်းစိုင်းသော", pron: "ရူးဒ်" },
+            { word: "wise", meaning: "ပညာရှိသော", pron: "ဝိုင်ဇ်" }
+    ,
+// =============================================================
+//  ADJECTIVES 51 to 100 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - adjectives array ရဲ့ အောက်ဆုံးမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+{ word: "beautiful", meaning: "လှပသော", pron: "ဗျူတီဖူလ်" },
+{ word: "ugly", meaning: "ရုပ်ဆိုးသော", pron: "အဂ်လီ" },
+{ word: "adorable", meaning: "ချစ်စရာကောင်းသော", pron: "အဒေါရဘယ်" },
+{ word: "charming", meaning: "ဆွဲဆောင်မှုရှိသော", pron: "ချာမင့်" },
+{ word: "elegant", meaning: "ကြော့ရှင်းသော", pron: "အဲလီဂန့်" },
+{ word: "graceful", meaning: "ကျက်သရေရှိသော", pron: "ဂရေးစဖူလ်" },
+{ word: "attractive", meaning: "ဆွဲဆောင်မှုရှိသော", pron: "အတြတ်တစ်" },
+{ word: "cute", meaning: "ချစ်စရာကောင်းသော", pron: "ကျုတ်" },
+{ word: "lovely", meaning: "ချစ်စရာကောင်းသော", pron: "လဗ်လီ" },
+{ word: "pretty", meaning: "လှပသော", pron: "ပရစ်တီ" },
+{ word: "bright", meaning: "တောက်ပသော", pron: "ဘရိုက်" },
+{ word: "dull", meaning: "မှိုင်းသော", pron: "ဒဲလ်" },
+{ word: "shiny", meaning: "တောက်ပနေသော", pron: "ရှိုင်းနီ" },
+{ word: "glossy", meaning: "ပြောင်လက်သော", pron: "ဂလော့စီ" },
+{ word: "sparkling", meaning: "တလက်လက်တောက်ပသော", pron: "စပါကလင်း" },
+{ word: "fancy", meaning: "ခေတ်ဆန်သော", pron: "ဖန်စီ" },
+{ word: "plain", meaning: "ရိုးရိုးသားသား", pron: "ပလိန်း" },
+{ word: "simple", meaning: "ရိုးရှင်းသော", pron: "စင်ပယ်" },
+{ word: "complex", meaning: "ရှုပ်ထွေးသော", pron: "ကွန်ပလက်စ်" },
+{ word: "complicated", meaning: "ခက်ခဲရှုပ်ထွေးသော", pron: "ကွန်ပလီကိတ်တင်" },
+{ word: "accurate", meaning: "တိကျမှန်ကန်သော", pron: "အက်ကျူးရစ်" },
+{ word: "precise", meaning: "တိကျသော", pron: "ပရစ်ဆိုက်" },
+{ word: "vague", meaning: "မရေရာသော", pron: "ဗေးဂ်" },
+{ word: "ambiguous", meaning: "မထင်ရှားသော", pron: "အမ်ဘစ်ဂျူအက်စ်" },
+{ word: "clear", meaning: "ရှင်းလင်းသော", pron: "ကလီးယား" },
+{ word: "obvious", meaning: "ထင်ရှားသော", pron: "အော့ဗီရပ်စ်" },
+{ word: "fragile", meaning: "ကြွပ်ဆတ်သော", pron: "ဖရာဂျယ်" },
+{ word: "delicate", meaning: "နူးညံ့သော", pron: "ဒယ်လီကိတ်" },
+{ word: "sturdy", meaning: "ခိုင်ခံ့သော", pron: "စတတ်ဒီ" },
+{ word: "durable", meaning: "တာရှည်ခံသော", pron: "ဒူးရဘယ်" },
+{ word: "ancient", meaning: "ရှေးဟောင်းသော", pron: "အိန်ရှင့်" },
+{ word: "modern", meaning: "ခေတ်မီသော", pron: "မိုဒန်" },
+{ word: "traditional", meaning: "ရိုးရာဓလေ့ထုံးတမ်းဆန်သော", pron: "ထရာဒစ်ရှနယ်" },
+{ word: "innovative", meaning: "ဆန်းသစ်သော", pron: "အင်နိုဗေးတစ်" },
+{ word: "creative", meaning: "ဖန်တီးမှုရှိသော", pron: "ခရီအေတစ်" },
+{ word: "patient", meaning: "စိတ်ရှည်သော", pron: "ပဲရှင့်" },
+{ word: "impatient", meaning: "စိတ်မရှည်သော", pron: "အမ်ပဲရှင့်" },
+{ word: "responsible", meaning: "တာဝန်ရှိသော", pron: "ရီစပွန်စီဘယ်" },
+{ word: "irresponsible", meaning: "တာဝန်မဲ့သော", pron: "အီရီစပွန်စီဘယ်" },
+{ word: "reliable", meaning: "စိတ်ချရသော", pron: "ရီလိုင်ယာဘယ်" },
+{ word: "unreliable", meaning: "မစိတ်ချရသော", pron: "အန်ရီလိုင်ယာဘယ်" },
+{ word: "flexible", meaning: "ပျော့ပြောင်းသော", pron: "ဖလက်ဆီဘယ်" },
+{ word: "stubborn", meaning: "ခေါင်းမာသော", pron: "စတပ်ဘန်" },
+{ word: "curious", meaning: "စပ်စုသော", pron: "ကျူရီရပ်စ်" },
+{ word: "nervous", meaning: "ပူပန်သော", pron: "နာဗက်စ်" },
+{ word: "calm", meaning: "ငြိမ်သက်သော", pron: "ကမ်" },
+{ word: "peaceful", meaning: "ငြိမ်းချမ်းသော", pron: "ပီးစဖူလ်" },
+{ word: "noisy", meaning: "ဆူညံသော", pron: "နွိုက်ဇီ" },
+{ word: "silent", meaning: "တိတ်ဆိတ်သော", pron: "ဆိုင်လင့်" },
+{ word: "cheerful", meaning: "ရွှင်လန်းသော", pron: "ချီးယာဖူလ်" }
+,
+// =============================================================
+//  ADJECTIVES 101 to 300 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - adjectives array ရဲ့ အောက်ဆုံးမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 101-110
+{ word: "active", meaning: "တက်ကြွသော", pron: "အက်တစ်" },
+{ word: "adventurous", meaning: "စွန့်စားခန်းဝါသနာပါသော", pron: "အဒ်ဗင်းချာရပ်စ်" },
+{ word: "affectionate", meaning: "ချစ်ခင်တွယ်တာသော", pron: "အဖက်ရှင်းနိတ်" },
+{ word: "aggressive", meaning: "ရန်လိုသော", pron: "အဂရက်စစ်" },
+{ word: "ambitious", meaning: "ရည်မှန်းချက်ကြီးသော", pron: "အမ်ဘစ်ရှပ်စ်" },
+{ word: "amusing", meaning: "ပျော်စရာကောင်းသော", pron: "အမျူးဇင်း" },
+{ word: "anxious", meaning: "စိုးရိမ်သော", pron: "အန်ရှပ်စ်" },
+{ word: "arrogant", meaning: "မာနကြီးသော", pron: "အရိုဂန့်" },
+{ word: "bashful", meaning: "ရှက်တတ်သော", pron: "ဘက်ရှ်ဖူလ်" },
+{ word: "benevolent", meaning: "ကရုဏာရှိသော", pron: "ဗီနက်ဗယ်လန့်" },
+// 111-120
+{ word: "bitter", meaning: "ခါးသော", pron: "ဘစ်တာ" },
+{ word: "blissful", meaning: "ပျော်ရွှင်ဖွယ်ရာဖြစ်သော", pron: "ဘလစ်စဖူလ်" },
+{ word: "boastful", meaning: "ကြွားတတ်သော", pron: "ဘိုးစဖူလ်" },
+{ word: "bold", meaning: "ရဲရင့်သော", pron: "ဘိုးလ်" },
+{ word: "bored", meaning: "ငြီးငွေ့သော", pron: "ဘော်" },
+{ word: "brilliant", meaning: "ထက်မြက်သော / တောက်ပသော", pron: "ဘရီလီယန့်" },
+{ word: "brisk", meaning: "လတ်ဆတ်သော", pron: "ဘရစ်စ်" },
+{ word: "brotherly", meaning: "ညီအစ်ကိုဆန်သော", pron: "ဘရားသာလီ" },
+{ word: "bumpy", meaning: "ခုံးနေသော", pron: "ဘမ်ပီ" },
+{ word: "busy", meaning: "အလုပ်များသော", pron: "ဘစ်ဇီ" },
+// 121-130
+{ word: "cautious", meaning: "သတိကြီးသော", pron: "ကောရှပ်စ်" },
+{ word: "cheap", meaning: "စျေးသက်သာသော", pron: "ချိပ်" },
+{ word: "cheeky", meaning: "မျက်နှာရဲသော", pron: "ချီးကီ" },
+{ word: "childish", meaning: "ကလေးဆန်သော", pron: "ချိုင်ဒစ်ရှ်" },
+{ word: "chilly", meaning: "အေးသော", pron: "ချီလီ" },
+{ word: "clumsy", meaning: "ဖရိုဖရဲဖြစ်တတ်သော", pron: "ကလမ်ဇီ" },
+{ word: "coarse", meaning: "ကြမ်းတမ်းသော", pron: "ကော့စ်" },
+{ word: "colorful", meaning: "အရောင်စုံသော", pron: "ကလာဖူလ်" },
+{ word: "comfortable", meaning: "သက်တောင့်သက်သာရှိသော", pron: "ကမ်ဖတ်ဘယ်" },
+{ word: "confident", meaning: "ယုံကြည်မှုရှိသော", pron: "ကွန်ဖီဒန့်" },
+// 131-140
+{ word: "confused", meaning: "ရှုပ်ထွေးနေသော", pron: "ကွန်ဖူးဇ်ဒ်" },
+{ word: "conscientious", meaning: "တာဝန်ကျေသော", pron: "ကွန်ရှင်းရှပ်စ်" },
+{ word: "considerate", meaning: "စဉ်းစားတတ်သော", pron: "ကွန်ဆစ်ဒရိတ်" },
+{ word: "courageous", meaning: "သတ္တိရှိသော", pron: "ကရေးဂျပ်စ်" },
+{ word: "courteous", meaning: "ဖော်ရွေသော", pron: "ကာတီရပ်စ်" },
+{ word: "cowardly", meaning: "သူရဲဘောကြောင်သော", pron: "ကောင်းအာလီ" },
+{ word: "crazy", meaning: "အရူးလိုဖြစ်သော", pron: "ခရေဇီ" },
+{ word: "cruel", meaning: "ရက်စက်သော", pron: "ခရူးအယ်" },
+{ word: "curious", meaning: "စပ်စုသော", pron: "ကျူရီရပ်စ်" },
+{ word: "daring", meaning: "ရဲရင့်သော", pron: "ဒဲရင်း" },
+// 141-150
+{ word: "determined", meaning: "စိတ်ပိုင်းဖြတ်ထားသော", pron: "ဒီတာမင်" },
+{ word: "devoted", meaning: "သစ္စာရှိသော", pron: "ဒီဗိုးတင်" },
+{ word: "diligent", meaning: "လုံ့လဝီရိယရှိသော", pron: "ဒီလီဂျင့်" },
+{ word: "disappointed", meaning: "စိတ်ပျက်သော", pron: "ဒစ်စပွိုင့်တင်" },
+{ word: "discreet", meaning: "သတိရှိသော", pron: "ဒစ်စကရိသ်" },
+{ word: "dismal", meaning: "စိတ်ဓာတ်ကျသော", pron: "ဒစ်ဇ်မယ်" },
+{ word: "distant", meaning: "ဝေးကွာသော", pron: "ဒစ်စတန့်" },
+{ word: "distinguished", meaning: "ထူးချွန်သော", pron: "ဒစ်စတင်ဂွစ်" },
+{ word: "diverse", meaning: "အမျိုးမျိုးကွဲပြားသော", pron: "ဒိုင်ဗာ့စ်" },
+{ word: "dreamy", meaning: "အိပ်မက်ဆန်သော", pron: "ဒရီမီ" },
+// 151-160
+{ word: "drowsy", meaning: "မူးယစ်အိပ်ပျော်နေသော", pron: "ဒရောင်ဇီ" },
+{ word: "dull", meaning: "ပျင်းစရာကောင်းသော", pron: "ဒဲလ်" },
+{ word: "dutiful", meaning: "တာဝန်ကျေသော", pron: "ဒူတီဖူလ်" },
+{ word: "eager", meaning: "စိတ်အားထက်သန်သော", pron: "အီဂါ" },
+{ word: "earnest", meaning: "အလေးအနက်ထားသော", pron: "အာနစ်" },
+{ word: "easygoing", meaning: "ပေါ့ပါးသော", pron: "အီဇီဂိုးအင်း" },
+{ word: "educated", meaning: "ပညာတတ်သော", pron: "အက်ဒ်ယူကိတ်တင်" },
+{ word: "efficient", meaning: "အကျိုးရှိသော", pron: "အီဖစ်ရှင့်" },
+{ word: "emotional", meaning: "စိတ်ခံစားမှုရှိသော", pron: "အီမိုးရှနယ်" },
+{ word: "energetic", meaning: "စွမ်းအင်ပြည့်သော", pron: "အဲနာဂျက်တစ်" },
+// 161-170
+{ word: "enthusiastic", meaning: "စိတ်အားထက်သန်သော", pron: "အင်သူဇီအက်စတစ်" },
+{ word: "envious", meaning: "မနာလိုသော", pron: "အင်ဗီရပ်စ်" },
+{ word: "even", meaning: "ပြေပြစ်သော", pron: "အီဗန်" },
+{ word: "excellent", meaning: "အလွန်ကောင်းသော", pron: "အက်ဆဲလန့်" },
+{ word: "excited", meaning: "စိတ်လှုပ်ရှားသော", pron: "အစ်ဆိုက်တင်" },
+{ word: "exclusive", meaning: "သီးသန့်သော", pron: "အစ်စကလူးဆစ်" },
+{ word: "exhausted", meaning: "ပင်ပန်းနွမ်းနယ်သော", pron: "အစ်ဇောစ်တင်" },
+{ word: "experienced", meaning: "အတွေ့အကြုံရှိသော", pron: "အစ်စပီးရီယန်စ်" },
+{ word: "expert", meaning: "ကျွမ်းကျင်သော", pron: "အက်စပါ" },
+{ word: "extraordinary", meaning: "ထူးခြားသော", pron: "အစ်ထရာအော်ဒီနရီ" },
+// 171-180
+{ word: "fabulous", meaning: "အလွန်ကောင်းသော", pron: "ဖက်ဗျူလက်စ်" },
+{ word: "fair", meaning: "တရားမျှတသော", pron: "ဖဲ" },
+{ word: "faithful", meaning: "သစ္စာရှိသော", pron: "ဖိတ်ဖူလ်" },
+{ word: "familiar", meaning: "ရင်းနှီးသော", pron: "ဖမီလီယာ" },
+{ word: "fearful", meaning: "ကြောက်တတ်သော", pron: "ဖီယာဖူလ်" },
+{ word: "feasible", meaning: "ဖြစ်နိုင်သော", pron: "ဖီဇီဘယ်" },
+{ word: "feminine", meaning: "မိန်းမဆန်သော", pron: "ဖမ်မနင်း" },
+{ word: "fierce", meaning: "ပြင်းထန်သော", pron: "ဖီးယားစ်" },
+{ word: "filthy", meaning: "အလွန်ညစ်ပတ်သော", pron: "ဖစ်သီ" },
+{ word: "fine", meaning: "ကောင်းသော", pron: "ဖိုင်း" },
+// 181-190
+{ word: "foolish", meaning: "မိုက်မဲသော", pron: "ဖူးလစ်ရှ်" },
+{ word: "forgiving", meaning: "ခွင့်လွှတ်တတ်သော", pron: "ဖာဂစ်ဗင်း" },
+{ word: "fortunate", meaning: "ကံကောင်းသော", pron: "ဖော်ချူးနိတ်" },
+{ word: "fragrant", meaning: "မွှေးသော", pron: "ဖရဂရန့်" },
+{ word: "fresh", meaning: "လတ်ဆတ်သော", pron: "ဖရက်ရှ်" },
+{ word: "friendly", meaning: "ဖော်ရွေသော", pron: "ဖရင့်လီ" },
+{ word: "frightened", meaning: "ကြောက်သော", pron: "ဖရိုက်တန်" },
+{ word: "frosty", meaning: "နှင်းခဲကျသော", pron: "ဖရော့စတီ" },
+{ word: "frugal", meaning: "စုတတ်သော", pron: "ဖရူဂယ်" },
+{ word: "furious", meaning: "အလွန်ဒေါသထွက်သော", pron: "ဖျူရီရပ်စ်" },
+// 191-200
+{ word: "generous", meaning: "ရက်ရောသော", pron: "ဂျင်နရပ်စ်" },
+{ word: "gentle", meaning: "နူးညံ့သော", pron: "ဂျင်တယ်" },
+{ word: "genuine", meaning: "စစ်မှန်သော", pron: "ဂျင်နူးအင်း" },
+{ word: "gifted", meaning: "ပါရမီရှိသော", pron: "ဂစ်ဖတ်" },
+{ word: "glad", meaning: "ဝမ်းသာသော", pron: "ဂလက်" },
+{ word: "gloomy", meaning: "မှောင်မည်းသော", pron: "ဂလူမီ" },
+{ word: "glorious", meaning: "ချီးကျူးဖွယ်ရာဖြစ်သော", pron: "ဂလောရီရပ်စ်" },
+{ word: "grateful", meaning: "ကျေးဇူးတင်သော", pron: "ဂရိတ်ဖူလ်" },
+{ word: "greedy", meaning: "လောဘကြီးသော", pron: "ဂရီဒီ" },
+{ word: "grieving", meaning: "ဝမ်းနည်းနေသော", pron: "ဂရီဗင်း" },
+// 201-210
+{ word: "groggy", meaning: "မူးမော်နေသော", pron: "ဂရောဂီ" },
+{ word: "guilty", meaning: "အပြစ်ရှိသော", pron: "ဂီလ်တီ" },
+{ word: "handsome", meaning: "ရုပ်ချောသော", pron: "ဟန်ဆမ်" },
+{ word: "happy", meaning: "ပျော်ရွှင်သော", pron: "ဟက်ပီ" },
+{ word: "harmful", meaning: "အန္တရာယ်ရှိသော", pron: "ဟာမ်ဖူလ်" },
+{ word: "harmless", meaning: "အန္တရာယ်မရှိသော", pron: "ဟာမ်လက်စ်" },
+{ word: "harsh", meaning: "ကြမ်းတမ်းသော", pron: "ဟာရှ်" },
+{ word: "hasty", meaning: "အလျင်စလိုသော", pron: "ဟေစတီ" },
+{ word: "hateful", meaning: "မုန်းဖွယ်ရာဖြစ်သော", pron: "ဟိတ်ဖူလ်" },
+{ word: "hazel", meaning: "အညိုရောင်သော", pron: "ဟေဇယ်" },
+// 211-220
+{ word: "healthy", meaning: "ကျန်းမာသော", pron: "ဟယ်သီ" },
+{ word: "heartbroken", meaning: "စိတ်ကွဲနေသော", pron: "ဟာ့ဘရိုကင်" },
+{ word: "heavenly", meaning: "ကောင်းကင်ဘုံဆန်သော", pron: "ဟက်ဗင်လီ" },
+{ word: "helpful", meaning: "အကူအညီပေးသော", pron: "ဟယ်ဖူလ်" },
+{ word: "helpless", meaning: "အကူအညီမဲ့သော", pron: "ဟယ်ပလက်စ်" },
+{ word: "heroic", meaning: "သူရဲကောင်းဆန်သော", pron: "ဟီရိုးအိုက်" },
+{ word: "hesitant", meaning: "ဝန်လေးသော", pron: "ဟက်ဇီတန့်" },
+{ word: "hilarious", meaning: "အလွန်ရယ်စရာကောင်းသော", pron: "ဟီလဲရီရပ်စ်" },
+{ word: "holy", meaning: "မြင့်မြတ်သော", pron: "ဟိုလီ" },
+{ word: "homesick", meaning: "အိမ်မှတ်သော", pron: "ဟုမ်းစစ်" },
+// 221-230
+{ word: "honest", meaning: "ရိုးသားသော", pron: "အွန်နစ်" },
+{ word: "hopeful", meaning: "မျှော်လင့်ချက်ရှိသော", pron: "ဟိုးဖူလ်" },
+{ word: "hopeless", meaning: "မျှော်လင့်ချက်မဲ့သော", pron: "ဟိုးပလက်စ်" },
+{ word: "humble", meaning: "နှိမ့်ချသော", pron: "ဟမ်ဘယ်" },
+{ word: "humorous", meaning: "ဟာသဆန်သော", pron: "ဟူမရပ်စ်" },
+{ word: "hungry", meaning: "ဆာလောင်သော", pron: "ဟန်ဂရီ" },
+{ word: "hurt", meaning: "ထိခိုက်နာကျင်သော", pron: "ဟာ့" },
+{ word: "ideal", meaning: "စံပြဖြစ်သော", pron: "အိုင်ဒီယယ်" },
+{ word: "ignorant", meaning: "အသိမရှိသော", pron: "အစ်နောရန့်" },
+{ word: "ill", meaning: "ဖျားနေသော", pron: "အီးလ်" },
+// 231-240
+{ word: "imaginative", meaning: "စိတ်ကူးရှိသော", pron: "အီမက်ဂျင်နေတစ်" },
+{ word: "immaculate", meaning: "အလွန်သန့်ရှင်းသော", pron: "အီမက်ကျူလိတ်" },
+{ word: "immense", meaning: "အလွန်ကြီးမားသော", pron: "အီမင်းစ်" },
+{ word: "impartial", meaning: "မျှတသော", pron: "အမ်ပါရှယ်" },
+{ word: "impolite", meaning: "မယဉ်ကျေးသော", pron: "အမ်ပိုလိုက်" },
+{ word: "impossible", meaning: "မဖြစ်နိုင်သော", pron: "အမ်ပါစီဘယ်" },
+{ word: "impressive", meaning: "အထင်ကြီးစရာကောင်းသော", pron: "အမ်ပရက်စစ်" },
+{ word: "independent", meaning: "လွတ်လပ်သော", pron: "အင်ဒီပန်ဒန့်" },
+{ word: "indifferent", meaning: "ဂရုမစိုက်သော", pron: "အင်ဒစ်ဖရန့်" },
+{ word: "indignant", meaning: "ဒေါသထွက်သော", pron: "အင်ဒစ်နန့်" },
+// 241-250
+{ word: "inexpensive", meaning: "စျေးမကြီးသော", pron: "အင်အစ်စပင်စစ်" },
+{ word: "infamous", meaning: "နာမည်ဆိုးသော", pron: "အင်fမာရပ်စ်" },
+{ word: "inferior", meaning: "အောက်တန်းကျသော", pron: "အင်fဖီရီယာ" },
+{ word: "infinite", meaning: "အဆုံးမရှိသော", pron: "အင်ဖီနစ်" },
+{ word: "innocent", meaning: "အပြစ်မရှိသော", pron: "အင်နိုဆန့်" },
+{ word: "inquisitive", meaning: "စူးစမ်းလေ့လာတတ်သော", pron: "အင်ကွစ်ဇစ်တစ်" },
+{ word: "insane", meaning: "ရူးသွပ်သော", pron: "အင်fဆိန်း" },
+{ word: "insecure", meaning: "မလုံခြုံသော", pron: "အင်စီကျူးယား" },
+{ word: "insignificant", meaning: "အရေးမပါသော", pron: "အင်စစ်နစ်ဖီကန့်" },
+{ word: "insincere", meaning: "ရိုးသားမှုမရှိသော", pron: "အင်စင်စီးယား" },
+// 251-260
+{ word: "insistent", meaning: "အခိုင်အမာပြောသော", pron: "အင်စစ်စတန့်" },
+{ word: "inspired", meaning: "စေ့ဆော်ခံရသော", pron: "အင်စပိုင်ယာ" },
+{ word: "intelligent", meaning: "ထက်မြက်သော", pron: "အင်တယ်လီဂျင့်" },
+{ word: "intense", meaning: "ပြင်းထန်သော", pron: "အင်တင့်စ်" },
+{ word: "interested", meaning: "စိတ်ဝင်စားသော", pron: "အင်တရက်စတင်" },
+{ word: "intimate", meaning: "ရင်းနှီးသော", pron: "အင်တီမက်" },
+{ word: "intolerant", meaning: "သည်းမခံသော", pron: "အင်တောလရန့်" },
+{ word: "intriguing", meaning: "စိတ်ဝင်စားဖို့ကောင်းသော", pron: "အင်ထရီဂင်း" },
+{ word: "introverted", meaning: "အတွင်းစိတ်ဆန်သော", pron: "အင်ထရိုဗတ်တင်" },
+{ word: "invaluable", meaning: "အဖိုးမဖြတ်နိုင်သော", pron: "အင်ဗယ်လျူအာဘယ်" },
+// 261-270
+{ word: "inventive", meaning: "တီထွင်နိုင်သော", pron: "အင်ဗင်းတစ်" },
+{ word: "invincible", meaning: "မရှုံးနိုင်သော", pron: "အင်ဗင်စီဘယ်" },
+{ word: "irritated", meaning: "စိတ်တိုသော", pron: "အီရီတိတ်တင်" },
+{ word: "isolated", meaning: "သီးခြားဖြစ်သော", pron: "အိုင်ဆိုလေတင်" },
+{ word: "jolly", meaning: "ပျော်ရွှင်သော", pron: "ဂျောလီ" },
+{ word: "joyful", meaning: "ပျော်ရွှင်သော", pron: "ဂျွိုင်fူလ်" },
+{ word: "judgmental", meaning: "အကဲဖြတ်တတ်သော", pron: "ဂျက်မင့်တယ်" },
+{ word: "just", meaning: "တရားမျှတသော", pron: "ဂျတ်စ်" },
+{ word: "keen", meaning: "ထက်သန်သော", pron: "ကီးန်" },
+{ word: "knowledgeable", meaning: "ဗဟုသုတရှိသော", pron: "နော်လစ်ဂျဘယ်" },
+// 271-280
+{ word: "laborious", meaning: "ကြိုးစားအားထုတ်သော", pron: "လဘော်ရီရပ်စ်" },
+{ word: "lame", meaning: "အလုပ်မဖြစ်သော", pron: "လိတ်မ်" },
+{ word: "laughable", meaning: "ရယ်စရာကောင်းသော", pron: "လဖာဘယ်" },
+{ word: "lavish", meaning: "ဇိမ်ခံသော", pron: "လဗစ်ရှ်" },
+{ word: "lazy", meaning: "ပျင်းရိသော", pron: "လေဇီ" },
+{ word: "legal", meaning: "တရားဝင်သော", pron: "လီဂယ်" },
+{ word: "lethal", meaning: "သေစေနိုင်သော", pron: "လီသယ်" },
+{ word: "light", meaning: "ပေါ့ပါးသော", pron: "လိုက်" },
+{ word: "likeable", meaning: "ကြိုက်စရာကောင်းသော", pron: "လိုက်ကဘယ်" },
+{ word: "lively", meaning: "သက်ဝင်လှုပ်ရှားသော", pron: "လိုက်ဗလီ" },
+// 281-290
+{ word: "lonely", meaning: "အထီးကျန်သော", pron: "လိုးလီ" },
+{ word: "loving", meaning: "ချစ်ခင်သော", pron: "လပ်ဗင်း" },
+{ word: "loyal", meaning: "သစ္စာရှိသော", pron: "လွိုင်ရယ်" },
+{ word: "lucky", meaning: "ကံကောင်းသော", pron: "လပ်ကီ" },
+{ word: "ludicrous", meaning: "ရယ်ဖွယ်ရာဖြစ်သော", pron: "လူဒီကရပ်စ်" },
+{ word: "macho", meaning: "ယောက်ျားဆန်သော", pron: "မက်ချိုး" },
+{ word: "magical", meaning: "မှော်ဆန်သော", pron: "မက်ဂျီကယ်" },
+{ word: "magnificent", meaning: "ခမ်းနားသော", pron: "မက်နစ်ဖစ်ဆန့်" },
+{ word: "main", meaning: "အဓိကသော", pron: "မင်း" },
+{ word: "majestic", meaning: "ခမ်းနားထည်ဝါသော", pron: "မဂျက်စတစ်" },
+// 291-300
+{ word: "manly", meaning: "ယောက်ျားဆန်သော", pron: "မန်လီ" },
+{ word: "marvelous", meaning: "အံ့သြဖွယ်ရာဖြစ်သော", pron: "မာဗယ်လပ်စ်" },
+{ word: "mature", meaning: "ရင့်ကျက်သော", pron: "မချူးယား" },
+{ word: "mean", meaning: "ဆိုးသော", pron: "မီးန်း" },
+{ word: "mediocre", meaning: "အလယ်အလတ်သော", pron: "မီဒီယိုကာ" },
+{ word: "melancholy", meaning: "ဝမ်းနည်းသော", pron: "မယ်လန်ကောလီ" },
+{ word: "mellow", meaning: "ပျော့ပျောင်းသော", pron: "မယ်လိုး" },
+{ word: "merciful", meaning: "ကရုဏာရှိသော", pron: "မာစီဖူလ်" },
+{ word: "merry", meaning: "ပျော်ရွှင်သော", pron: "မဲရီ" },
+{ word: "messy", meaning: "ရှုပ်ပွနေသော", pron: "မက်စီ" }
+,
+// =============================================================
+//  ADJECTIVES 301 to 500 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - adjectives array ရဲ့ အောက်ဆုံးမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 301-310
+{ word: "mindful", meaning: "သတိရှိသော", pron: "မိုင်းဖူလ်" },
+{ word: "minute", meaning: "အလွန်သေးငယ်သော", pron: "မီနုတ်" },
+{ word: "miraculous", meaning: "အံ့ဖွယ်ရာဖြစ်သော", pron: "မီရက်ကျူလပ်စ်" },
+{ word: "miserable", meaning: "ဆင်းရဲငြိုငြင်သော", pron: "မစ်ဇရဘယ်" },
+{ word: "misleading", meaning: "လမ်းလွဲစေသော", pron: "မစ်လီးဒင်း" },
+{ word: "modest", meaning: "နှိမ့်ချသော", pron: "မိုဒစ်" },
+{ word: "moody", meaning: "စိတ်အပြောင်းအလဲရှိသော", pron: "မူဒီ" },
+{ word: "moral", meaning: "ကျင့်ဝတ်ဆိုင်ရာသော", pron: "မောရယ်" },
+{ word: "mortal", meaning: "သေတတ်သော", pron: "မောတယ်" },
+{ word: "motionless", meaning: "လှုပ်ရှားမှုမရှိသော", pron: "မိုးရှင်းလက်စ်" },
+// 311-320
+{ word: "mournful", meaning: "ဝမ်းနည်းသော", pron: "မော်န်ဖူလ်" },
+{ word: "muddy", meaning: "ရွှံ့ထဲနစ်နေသော", pron: "မဒ်ဒီ" },
+{ word: "mysterious", meaning: "ဆန်းကြယ်သော", pron: "မစ်စတီးရီရပ်စ်" },
+{ word: "mythical", meaning: "ဒဏ္ဍာရီလာဖြစ်သော", pron: "မစ်သီကယ်" },
+{ word: "naive", meaning: "ရိုးစင်းသော", pron: "နိုင်ဗ်" },
+{ word: "narrow", meaning: "ကျဉ်းမြောင်းသော", pron: "နာရိုး" },
+{ word: "nasty", meaning: "ဆိုးဝါးသော", pron: "နက်စတီ" },
+{ word: "natural", meaning: "သဘာဝဖြစ်သော", pron: "နက်ချရယ်" },
+{ word: "naughty", meaning: "ဖောက်ပြန်သော", pron: "နော်တီ" },
+{ word: "necessary", meaning: "လိုအပ်သော", pron: "နက်ဆက်စဲရီ" },
+// 321-330
+{ word: "negative", meaning: "အပျက်သဘောဆောင်သော", pron: "နက်ဂါတစ်" },
+{ word: "neglected", meaning: "လျစ်လျူရှုခံရသော", pron: "နစ်ဂလက်တင်" },
+{ word: "nervous", meaning: "ပူပန်သော", pron: "နာဗက်စ်" },
+{ word: "neutral", meaning: "ဘက်မလိုက်သော", pron: "နူထရယ်" },
+{ word: "nice", meaning: "ကောင်းသော", pron: "နိုက်စ်" },
+{ word: "noble", meaning: "မြင့်မြတ်သော", pron: "နိုဘယ်" },
+{ word: "nocturnal", meaning: "ညဘက်တက်ကြွသော", pron: "နော့တာနယ်" },
+{ word: "noisy", meaning: "ဆူညံသော", pron: "နွိုက်ဇီ" },
+{ word: "normal", meaning: "ပုံမှန်ဖြစ်သော", pron: "နော်မယ်" },
+{ word: "notable", meaning: "ထင်ရှားသော", pron: "နိုးတဘယ်" },
+// 331-340
+{ word: "notorious", meaning: "နာမည်ဆိုးသော", pron: "နိုးတော်ရီရပ်စ်" },
+{ word: "novel", meaning: "ဆန်းသစ်သော", pron: "နိုဗယ်" },
+{ word: "numerous", meaning: "များပြားသော", pron: "နူမရပ်စ်" },
+{ word: "nutritious", meaning: "အာဟာရပြည့်ဝသော", pron: "နူထရစ်ရှပ်စ်" },
+{ word: "obedient", meaning: "နာခံသော", pron: "အိုဘီဒီယင့်" },
+{ word: "obese", meaning: "အလွန်ဝသော", pron: "အိုဘီးစ်" },
+{ word: "objective", meaning: "ဘက်မလိုက်သော", pron: "အော့ဂျက်တစ်" },
+{ word: "obliging", meaning: "ကူညီတတ်သော", pron: "အိုဘလိုင်ဂျင်း" },
+{ word: "obnoxious", meaning: "စက်ဆုပ်ဖွယ်ဖြစ်သော", pron: "အော့ဘနော့ရှပ်စ်" },
+{ word: "obscene", meaning: "ညစ်ညမ်းသော", pron: "အော့စီးန်း" },
+// 341-350
+{ word: "obscure", meaning: "မထင်ရှားသော", pron: "အော့စကျူးယား" },
+{ word: "observant", meaning: "သတိရှိသော", pron: "အော့ဇာဗန့်" },
+{ word: "obsolete", meaning: "ခေတ်နောက်ကျသော", pron: "အော့စိုလီသ်" },
+{ word: "obstinate", meaning: "ခေါင်းမာသော", pron: "အော့စတီနိတ်" },
+{ word: "odd", meaning: "ထူးဆန်းသော", pron: "အော့" },
+{ word: "offensive", meaning: "စော်ကားသော", pron: "အဖင်းစစ်" },
+{ word: "official", meaning: "တရားဝင်သော", pron: "အဖစ်ရှယ်" },
+{ word: "ominous", meaning: "အန္တရာယ်ရှိသော", pron: "အော်မီနပ်စ်" },
+{ word: "opaque", meaning: "မှုန်ဝါးသော", pron: "အိုးပက်" },
+{ word: "open", meaning: "ပွင့်လင်းသော", pron: "အိုးပန်" },
+// 351-360
+{ word: "optimistic", meaning: "အကောင်းမြင်သော", pron: "အော့တီမစ်စတစ်" },
+{ word: "opulent", meaning: "ကြွယ်ဝသော", pron: "အော့ပျူလန့်" },
+{ word: "orderly", meaning: "စနစ်ကျသော", pron: "အော်ဒါလီ" },
+{ word: "ordinary", meaning: "သာမန်ဖြစ်သော", pron: "အော်ဒီနေရီ" },
+{ word: "original", meaning: "မူရင်းဖြစ်သော", pron: "အရစ်ဂျီနယ်" },
+{ word: "outgoing", meaning: "ပေါင်းသင်းဆက်ဆံရေးကောင်းသော", pron: "အောင်ဂိုးအင်း" },
+{ word: "outlandish", meaning: "ထူးဆန်းသော", pron: "အောင်လန်ဒစ်ရှ်" },
+{ word: "outstanding", meaning: "ထူးချွန်သော", pron: "အောင်စတန်ဒင်း" },
+{ word: "overbearing", meaning: "ကြီးစိုးသော", pron: "အိုဗာဘဲရင်း" },
+{ word: "overjoyed", meaning: "အလွန်ပျော်သော", pron: "အိုဗာဂျွိုင်" },
+// 361-370
+{ word: "painful", meaning: "နာကျင်သော", pron: "ပက်န်ဖူလ်" },
+{ word: "pale", meaning: "ဖြူဖပ်ဖြူရော်ဖြစ်သော", pron: "ပဲလ်" },
+{ word: "panicky", meaning: "ထိတ်လန့်သော", pron: "ပန့်နစ်ကီ" },
+{ word: "parallel", meaning: "အပြိုင်ဖြစ်သော", pron: "ပရဲလယ်" },
+{ word: "partial", meaning: "တစ်စိတ်တစ်ပိုင်းဖြစ်သော", pron: "ပါရှယ်" },
+{ word: "passionate", meaning: "စိတ်အားထက်သန်သော", pron: "ပက်ရှန်နိတ်" },
+{ word: "passive", meaning: "တုံ့ပြန်မှုမရှိသော", pron: "ပက်စစ်" },
+{ word: "patient", meaning: "စိတ်ရှည်သော", pron: "ပဲရှင့်" },
+{ word: "patriotic", meaning: "မျိုးချစ်သော", pron: "ပက်ထရီအိုတစ်" },
+{ word: "peaceful", meaning: "ငြိမ်းချမ်းသော", pron: "ပီးစဖူလ်" },
+// 371-380
+{ word: "peevish", meaning: "စိတ်တိုသော", pron: "ပီးဗစ်ရှ်" },
+{ word: "perceptive", meaning: "ထိုးထွင်းသိမြင်သော", pron: "ပါစက်တစ်" },
+{ word: "perfect", meaning: "ပြီးပြည့်စုံသော", pron: "ပါဖက်" },
+{ word: "perilous", meaning: "အန္တရာယ်ရှိသော", pron: "ပဲရီလပ်စ်" },
+{ word: "permanent", meaning: "အမြဲတမ်းဖြစ်သော", pron: "ပါမနန့်" },
+{ word: "permissive", meaning: "ခွင့်ပြုသော", pron: "ပါမစ်စစ်" },
+{ word: "persistent", meaning: "ဇွဲရှိသော", pron: "ပါစစ်စတန့်" },
+{ word: "persuasive", meaning: "ဆွဲဆောင်နိုင်သော", pron: "ပါစွီးဆစ်" },
+{ word: "pessimistic", meaning: "အဆိုးမြင်သော", pron: "ပက်ဆီမစ်စတစ်" },
+{ word: "petite", meaning: "သေးသွယ်သော", pron: "ပီတီ" },
+// 381-390
+{ word: "philanthropic", meaning: "လူသားချင်းစာနာသော", pron: "ဖီလန်ထရိုပေါ့" },
+{ word: "philosophical", meaning: "ဒဿနိကဗေဒဆိုင်ရာသော", pron: "ဖီလာစော်ဖီကယ်" },
+{ word: "physical", meaning: "ရုပ်ပိုင်းဆိုင်ရာသော", pron: "ဖစ်စီကယ်" },
+{ word: "picturesque", meaning: "ရှုခင်းသာသော", pron: "ပစ်ချာရက်စ်" },
+{ word: "pious", meaning: "ဘာသာရေးကိုင်းရှိုင်းသော", pron: "ပါယ်ရပ်စ်" },
+{ word: "pitiful", meaning: "သနားစရာကောင်းသော", pron: "ပစ်တီဖူလ်" },
+{ word: "plain", meaning: "ရိုးရိုးသားသားဖြစ်သော", pron: "ပလိန်း" },
+{ word: "pleasant", meaning: "သာယာသော", pron: "ပလက်ဇန့်" },
+{ word: "pleased", meaning: "ကျေနပ်သော", pron: "ပလီးဇ်" },
+{ word: "plentiful", meaning: "ပေါများသော", pron: "ပလင့်တီဖူလ်" },
+// 391-400
+{ word: "poetic", meaning: "ကဗျာဆန်သော", pron: "ပိုအက်တစ်" },
+{ word: "poignant", meaning: "စိတ်ထိခိုက်စရာကောင်းသော", pron: "ပွိုင်ညန့်" },
+{ word: "pointless", meaning: "အဓိပ္ပါယ်မရှိသော", pron: "ပွိုင်လက်စ်" },
+{ word: "polished", meaning: "တောက်ပြောင်သော", pron: "ပိုလစ်ရှ်" },
+{ word: "polite", meaning: "ယဉ်ကျေးသော", pron: "ပိုလိုက်" },
+{ word: "popular", meaning: "လူကြိုက်များသော", pron: "ပေါ့ပျူလာ" },
+{ word: "portly", meaning: "ဝဖြိုးသော", pron: "ပေါ့လီ" },
+{ word: "positive", meaning: "အပြုသဘောဆောင်သော", pron: "ပေါ့ဇစ်တစ်" },
+{ word: "possible", meaning: "ဖြစ်နိုင်သော", pron: "ပေါ့စီဘယ်" },
+{ word: "powerful", meaning: "အင်အားကြီးသော", pron: "ပါဝါဖူလ်" },
+// 401-410
+{ word: "practical", meaning: "လက်တွေ့ကျသော", pron: "ပရက်တီကယ်" },
+{ word: "precious", meaning: "အဖိုးတန်သော", pron: "ပရက်ရှပ်စ်" },
+{ word: "precise", meaning: "တိကျသော", pron: "ပရစ်ဆိုက်" },
+{ word: "predictable", meaning: "ကြိုတင်ခန့်မှန်းနိုင်သော", pron: "ပရက်ဒစ်ကဘယ်" },
+{ word: "prestigious", meaning: "ဂုဏ်သတင်းကြီးသော", pron: "ပရက်စတစ်ဂျပ်စ်" },
+{ word: "pretty", meaning: "လှပသော", pron: "ပရစ်တီ" },
+{ word: "previous", meaning: "ယခင်ဖြစ်သော", pron: "ပရီဗီရပ်စ်" },
+{ word: "priceless", meaning: "အဖိုးမဖြတ်နိုင်သော", pron: "ပရိုက်လက်စ်" },
+{ word: "prideful", meaning: "ဂုဏ်ယူသော", pron: "ပရိုက်ဖူလ်" },
+{ word: "primitive", meaning: "ရှေးကျသော", pron: "ပရီမစ်တစ်" },
+// 411-420
+{ word: "private", meaning: "သီးသန့်ဖြစ်သော", pron: "ပရိုက်ဗတ်" },
+{ word: "privileged", meaning: "အခွင့်အရေးရှိသော", pron: "ပရစ်ဗလစ်ဂျ်" },
+{ word: "professional", meaning: "ကျွမ်းကျင်သော", pron: "ပရိုဖက်ရှနယ်" },
+{ word: "profound", meaning: "နက်ရှိုင်းသော", pron: "ပရိုဖောင်း" },
+{ word: "progressive", meaning: "တိုးတက်သော", pron: "ပရိုဂရက်စစ်" },
+{ word: "prolific", meaning: "အထွက်တန်းကောင်းသော", pron: "ပရိုလစ်ဖစ်" },
+{ word: "prominent", meaning: "ထင်ရှားသော", pron: "ပရိုမီနန့်" },
+{ word: "promising", meaning: "အာမခံချက်ရှိသော", pron: "ပရိုမစ်စင်း" },
+{ word: "proper", meaning: "သင့်လျော်သော", pron: "ပရောပါ" },
+{ word: "prosperous", meaning: "ချမ်းသာသော", pron: "ပရောစပါရပ်စ်" },
+// 421-430
+{ word: "protective", meaning: "ကာကွယ်သော", pron: "ပရိုတက်တစ်" },
+{ word: "proud", meaning: "ဂုဏ်ယူသော", pron: "ပရောင်း" },
+{ word: "public", meaning: "အများပိုင်ဖြစ်သော", pron: "ပပ်ဘလစ်" },
+{ word: "pure", meaning: "စင်ကြယ်သော", pron: "ပျူးယား" },
+{ word: "purposeful", meaning: "ရည်ရွယ်ချက်ရှိသော", pron: "ပါပါစ်ဖူလ်" },
+{ word: "puzzled", meaning: "နားမလည်နိုင်သော", pron: "ပဇ်ဇယ်" },
+{ word: "qualified", meaning: "အရည်အချင်းပြည့်မီသော", pron: "ကွာလီဖိုင်" },
+{ word: "quick", meaning: "မြန်သော", pron: "ကွတ်" },
+{ word: "quiet", meaning: "တိတ်ဆိတ်သော", pron: "ကွိုင်အစ်" },
+{ word: "radiant", meaning: "တောက်ပသော", pron: "ရေဒီယန့်" },
+// 431-440
+{ word: "rapid", meaning: "အလွန်မြန်သော", pron: "ရက်ပစ်" },
+{ word: "rare", meaning: "ရှားပါးသော", pron: "ရဲ" },
+{ word: "rational", meaning: "ဆင်ခြင်တုံတရားရှိသော", pron: "ရက်ရှနယ်" },
+{ word: "raw", meaning: "မကျက်သေးသော", pron: "ရော" },
+{ word: "reactive", meaning: "တုံ့ပြန်တတ်သော", pron: "ရီအက်တစ်" },
+{ word: "ready", meaning: "အဆင်သင့်ဖြစ်သော", pron: "ရက်ဒီ" },
+{ word: "real", meaning: "စစ်မှန်သော", pron: "ရီယယ်" },
+{ word: "reasonable", meaning: "သင့်တင့်သော", pron: "ရီဇနဘယ်" },
+{ word: "reassuring", meaning: "စိတ်အေးချမ်းစေသော", pron: "ရီအရှူးရင်း" },
+{ word: "rebellious", meaning: "ပုန်ကန်သော", pron: "ရီဘယ်လရပ်စ်" },
+// 441-450
+{ word: "reckless", meaning: "ပေါ့ဆသော", pron: "ရက်ကလက်စ်" },
+{ word: "reclusive", meaning: "အထီးကျန်သော", pron: "ရီကလူးဆစ်" },
+{ word: "refined", meaning: "ယဉ်ကျေးသော", pron: "ရီဖိုင်း" },
+{ word: "reflective", meaning: "ဆင်ခြင်တုံတရားရှိသော", pron: "ရီဖလက်တစ်" },
+{ word: "regretful", meaning: "နောင်တရသော", pron: "ရီဂရက်ဖူလ်" },
+{ word: "regular", meaning: "ပုံမှန်ဖြစ်သော", pron: "ရက်ဂျူလာ" },
+{ word: "relaxed", meaning: "အနားယူသော", pron: "ရီလက်စ်" },
+{ word: "reliable", meaning: "စိတ်ချရသော", pron: "ရီလိုင်ယာဘယ်" },
+{ word: "relieved", meaning: "သက်သာရာရသော", pron: "ရီလိဗ်" },
+{ word: "religious", meaning: "ဘာသာရေးဆိုင်ရာသော", pron: "ရီလစ်ဂျပ်စ်" },
+// 451-460
+{ word: "reluctant", meaning: "တွန့်ဆုတ်သော", pron: "ရီလတ်တန့်" },
+{ word: "remarkable", meaning: "မှတ်သားဖွယ်ရာဖြစ်သော", pron: "ရီမားကဘယ်" },
+{ word: "remedial", meaning: "ပြုပြင်သော", pron: "ရီမီဒီယယ်" },
+{ word: "remote", meaning: "ဝေးလံသော", pron: "ရီမိုး" },
+{ word: "renewed", meaning: "အသစ်ပြန်ဖြစ်သော", pron: "ရီနူး" },
+{ word: "repentant", meaning: "နောင်တရသော", pron: "ရီပန်တန့်" },
+{ word: "repetitive", meaning: "ထပ်တလဲလဲဖြစ်သော", pron: "ရီပက်တစ်တစ်" },
+{ word: "repulsive", meaning: "စက်ဆုပ်ဖွယ်ဖြစ်သော", pron: "ရီပါလ်ဆစ်" },
+{ word: "resilient", meaning: "ပြန်လည်အားကောင်းနိုင်သော", pron: "ရီဇီလီယန့်" },
+{ word: "resolute", meaning: "စိတ်ပိုင်းဖြတ်သော", pron: "ရက်ဇိုလူး" },
+// 461-470
+{ word: "respectable", meaning: "လေးစားထိုက်သော", pron: "ရီစပက်တဘယ်" },
+{ word: "respectful", meaning: "လေးစားသော", pron: "ရီစပက်ဖူလ်" },
+{ word: "responsible", meaning: "တာဝန်ရှိသော", pron: "ရီစပွန်စီဘယ်" },
+{ word: "restless", meaning: "မငြိမ်မသက်ဖြစ်သော", pron: "ရက်စ်တလက်စ်" },
+{ word: "restorative", meaning: "ပြန်လည်ကောင်းမွန်စေသော", pron: "ရီစတော်ရက်တစ်" },
+{ word: "restrained", meaning: "ချုပ်တည်းသော", pron: "ရီစထရိန်း" },
+{ word: "resurgent", meaning: "ပြန်လည်ထွန်းကားသော", pron: "ရီစာဂျင့်" },
+{ word: "retroactive", meaning: "နောက်ပြန်သက်ရောက်သော", pron: "ရက်ထရိုအက်တစ်" },
+{ word: "revealing", meaning: "ဖော်ပြသော", pron: "ရီဗီးလင်း" },
+{ word: "reverent", meaning: "ရိုသေလေးစားသော", pron: "ရက်ဗရန့်" },
+// 471-480
+{ word: "revolutionary", meaning: "တော်လှန်သော", pron: "ရက်ဗိုလူရှင်နရီ" },
+{ word: "rewarding", meaning: "ဆုချီးမြှင့်သော", pron: "ရီဝေါ်ဒင်း" },
+{ word: "rich", meaning: "ချမ်းသာသော", pron: "ရစ်" },
+{ word: "ridiculous", meaning: "ရယ်စရာကောင်းသော", pron: "ရီဒစ်ကျူလပ်စ်" },
+{ word: "rigid", meaning: "တောင့်တင်းသော", pron: "ရစ်ဂျစ်" },
+{ word: "ripe", meaning: "မှည့်သော", pron: "ရိုက်" },
+{ word: "risky", meaning: "စွန့်စားရသော", pron: "ရစ်စ်ကီ" },
+{ word: "robust", meaning: "သန်မာသော", pron: "ရိုဘတ်စ်" },
+{ word: "romantic", meaning: "အချစ်ရေးဆန်သော", pron: "ရိုမန်းတစ်" },
+{ word: "rosy", meaning: "ပန်းရောင်သော", pron: "ရိုဇီ" },
+// 481-490
+{ word: "rough", meaning: "ကြမ်းတမ်းသော", pron: "ရဖ်" },
+{ word: "routine", meaning: "လုပ်ရိုးလုပ်စဉ်ဖြစ်သော", pron: "ရူတီးန်း" },
+{ word: "royal", meaning: "တော်ဝင်ဖြစ်သော", pron: "ရွိုင်ရယ်" },
+{ word: "rude", meaning: "ရိုင်းစိုင်းသော", pron: "ရူးဒ်" },
+{ word: "rugged", meaning: "ကြမ်းတမ်းသော", pron: "ရက်ဂဒ်" },
+{ word: "sacred", meaning: "မြင့်မြတ်သော", pron: "စိတ်ကရက်" },
+{ word: "sad", meaning: "ဝမ်းနည်းသော", pron: "စက်ဒ်" },
+{ word: "safe", meaning: "လုံခြုံသော", pron: "စိတ်ဖ်" },
+{ word: "saintly", meaning: "သူတော်ကောင်းဆန်သော", pron: "စိန့်လီ" },
+{ word: "salty", meaning: "ငန်သော", pron: "ဆော်တီ" },
+// 491-500
+{ word: "same", meaning: "တူညီသော", pron: "ဆိတ်မ်" },
+{ word: "sanguine", meaning: "အကောင်းမြင်သော", pron: "ဆန်ဂွင်" },
+{ word: "sarcastic", meaning: "သရော်သော", pron: "ဆာကက်စတစ်" },
+{ word: "satisfied", meaning: "ကျေနပ်သော", pron: "ဆက်စ်ဖိုင်" },
+{ word: "savage", meaning: "ရက်စက်သော", pron: "ဆက်ဗစ်" },
+{ word: "scared", meaning: "ကြောက်သော", pron: "စကဲ" },
+{ word: "scattered", meaning: "ဖြန့်ကျဲနေသော", pron: "စကက်တာ" },
+{ word: "scenic", meaning: "ရှုခင်းသာသော", pron: "စီးနစ်" },
+{ word: "scientific", meaning: "သိပ္ပံဆိုင်ရာသော", pron: "ဆိုင်ယင်တစ်ဖစ်" },
+{ word: "scornful", meaning: "မထီမဲ့မြင်ပြုသော", pron: "စကော်န်ဖူလ်" }
+    ];
+
+        // =============================================================
+        //  DATA: Adverbs (၅၀)
+        // =============================================================
+        const adverbs = [
+            { word: "quickly", meaning: "မြန်မြန်", pron: "ကွတ်ကလီ" },
+            { word: "slowly", meaning: "ဖြည်းဖြည်းချင်း", pron: "စလိုလီ" },
+            { word: "carefully", meaning: "သေသေချာချာ", pron: "ကဲဖူလီ" },
+            { word: "carelessly", meaning: "ပေါ့ဆစွာ", pron: "ကဲလက်စလီ" },
+            { word: "happily", meaning: "ပျော်ပျော်ရွှင်ရွှင်", pron: "ဟက်ပီလီ" },
+            { word: "sadly", meaning: "ဝမ်းနည်းစွာ", pron: "စက်ဒ်လီ" },
+            { word: "angrily", meaning: "ဒေါသထွက်လျက်", pron: "အန်ဂရီလီ" },
+            { word: "kindly", meaning: "ကြင်နာစွာ", pron: "ကိုင်းဒ်လီ" },
+            { word: "well", meaning: "ကောင်းကောင်း", pron: "ဝဲလ်" },
+            { word: "badly", meaning: "ဆိုးဆိုးရွားရွား", pron: "ဘက်ဒ်လီ" },
+            { word: "hard", meaning: "ကြိုးစားစွာ", pron: "ဟာ့" },
+            { word: "easily", meaning: "လွယ်လွယ်ကူကူ", pron: "အီဇီလီ" },
+            { word: "loudly", meaning: "ကျယ်ကျယ်လောင်လောင်", pron: "လောင်ဒ်လီ" },
+            { word: "quietly", meaning: "တိတ်တိတ်ဆိတ်ဆိတ်", pron: "ကွိုင်အစ်လီ" },
+            { word: "politely", meaning: "ယဉ်ကျေးစွာ", pron: "ပိုလိုက်လီ" },
+            { word: "rudely", meaning: "ရိုင်းစိုင်းစွာ", pron: "ရူးဒ်လီ" },
+            { word: "brightly", meaning: "တောက်ပစွာ", pron: "ဘရိုက်လီ" },
+            { word: "darkly", meaning: "မှောင်မည်းစွာ", pron: "ဒါကလီ" },
+            { word: "clearly", meaning: "ရှင်းရှင်းလင်းလင်း", pron: "ကလီယာလီ" },
+            { word: "suddenly", meaning: "ရုတ်တရက်", pron: "ဆဒန်လီ" },
+            { word: "usually", meaning: "များသောအားဖြင့်", pron: "ယူဇွာလီ" },
+            { word: "always", meaning: "အမြဲတမ်း", pron: "အော်ဝေးဇ်" },
+            { word: "never", meaning: "တစ်ခါမှမဟုတ်", pron: "နက်ဗာ" },
+            { word: "often", meaning: "မကြာခဏ", pron: "အော်ဖန်" },
+            { word: "sometimes", meaning: "တစ်ခါတစ်ရံ", pron: "ဆမ်တိုင်းမ်" },
+            { word: "rarely", meaning: "ခဲခဲယဉ်းယဉ်း", pron: "ရဲလီ" },
+            { word: "already", meaning: "ပြီးသား", pron: "အောရက်ဒီ" },
+            { word: "yet", meaning: "သေး (ငြင်းပယ်ဝါကျ)", pron: "ရက်" },
+            { word: "just", meaning: "အခုလေးတင်", pron: "ဂျတ်စ်" },
+            { word: "too", meaning: "အလွန်အကျွံ", pron: "တူး" },
+            { word: "very", meaning: "အလွန်", pron: "ဗယ်ရီ" },
+            { word: "quite", meaning: "အတော်လေး", pron: "ကွိုက်" },
+            { word: "almost", meaning: "နီးပါး", pron: "အော်မို့စ်" },
+            { word: "certainly", meaning: "သေချာပေါက်", pron: "ဆာတင်လီ" },
+            { word: "probably", meaning: "ဖြစ်နိုင်ချေရှိသည်", pron: "ပရာဘေဘလီ" },
+            { word: "really", meaning: "တကယ်ကို", pron: "ရီယာလီ" },
+            { word: "actually", meaning: "တကယ်တော့", pron: "အက်ချူအာလီ" },
+            { word: "finally", meaning: "နောက်ဆုံးမှာ", pron: "ဖိုင်နယ်လီ" },
+            { word: "immediately", meaning: "ချက်ချင်း", pron: "အီမီဒီယဲ့လီ" },
+            { word: "enough", meaning: "လုံလောက်စွာ", pron: "အင်နပ်" },
+            { word: "today", meaning: "ဒီနေ့", pron: "တူဒေး" },
+            { word: "tomorrow", meaning: "မနက်ဖြန်", pron: "တူမောရိုး" },
+            { word: "yesterday", meaning: "မနေ့က", pron: "ရက်စတာဒေး" },
+            { word: "now", meaning: "အခု", pron: "နောင်း" },
+            { word: "then", meaning: "ထိုအခါ", pron: "ဒမ်" },
+            { word: "there", meaning: "အဲဒီမှာ", pron: "ဒဲ" },
+            { word: "here", meaning: "ဒီမှာ", pron: "ဟီးယား" },
+            { word: "everywhere", meaning: "နေရာတိုင်းမှာ", pron: "အဲဗရီဝဲ" },
+            { word: "nowhere", meaning: "ဘယ်နေရာမှာမှ", pron: "နိုဝဲ" },
+            { word: "somewhere", meaning: "တစ်နေရာရာမှာ", pron: "ဆမ်ဝဲ" }
+
+
+
+        ];
+
+        // =============================================================
+        //  Render Adjectives
+        // =============================================================
+        const adjBody = document.getElementById('adjectiveTableBody');
+        adjectives.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><span class="row-number">${index + 1}</span></td>
+                <td><span class="type-badge adj">Adj</span> ${item.word}</td>
+                <td>${item.meaning}</td>
+                <td>${item.pron}</td>
+            `;
+            adjBody.appendChild(row);
+        });
+
+        // =============================================================
+        //  Render Adverbs
+        // =============================================================
+        const advBody = document.getElementById('adverbTableBody');
+        adverbs.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><span class="row-number">${index + 1}</span></td>
+                <td><span class="type-badge adv">Adv</span> ${item.word}</td>
+                <td>${item.meaning}</td>
+                <td>${item.pron}</td>
+            `;
+            advBody.appendChild(row);
+        });
+
+        console.log('✅ Adjectives loaded:', adjectives.length);
+        console.log('✅ Adverbs loaded:', adverbs.length);
+    </script>
+
+</body>
+</html>

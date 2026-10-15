@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>တရုတ် Adjective အဘိဓာန်</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ==== အလှဆင်မှု အနည်းဆုံး၊ ရှင်းလင်းမှုကို အဓိက ==== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f5f2ed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .container {
+      max-width: 820px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      padding: 28px 30px 34px;
+      border: 1px solid #e4dfd8;
+    }
+
+    .header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #dcd6cd;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 550;
+      color: #1e1a16;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header h1 i {
+      color: #3d3d3d;
+      font-size: 1.6rem;
+    }
+
+    .header .badge-count {
+      background: #eae5de;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #2f2a24;
+      font-weight: 450;
+    }
+
+    .search-area {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .search-area .input-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: #f3f0eb;
+      border-radius: 60px;
+      padding: 0 18px;
+      border: 1px solid #d6cfc5;
+      transition: 0.1s;
+    }
+
+    .search-area .input-wrap:focus-within {
+      border-color: #8f8a82;
+      background: #faf8f5;
+    }
+
+    .search-area .input-wrap i {
+      color: #5f5950;
+      font-size: 1rem;
+      margin-right: 8px;
+    }
+
+    #searchInput {
+      border: none;
+      background: transparent;
+      padding: 14px 4px;
+      font-size: 1rem;
+      width: 100%;
+      outline: none;
+      color: #1c1814;
+    }
+
+    #searchInput::placeholder {
+      color: #9a9288;
+      font-weight: 350;
+    }
+
+    #searchBtn {
+      background: #2e2a24;
+      border: none;
+      color: white;
+      padding: 0 28px;
+      border-radius: 60px;
+      font-size: 1rem;
+      font-weight: 450;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.3px;
+      height: 54px;
+      transition: 0.1s;
+      border: 1px solid #2e2a24;
+    }
+
+    #searchBtn:hover {
+      background: #1f1c17;
+      border-color: #1f1c17;
+    }
+
+    #searchBtn:active {
+      transform: scale(0.97);
+    }
+
+    .result-meta {
+      font-size: 0.95rem;
+      color: #3b362f;
+      padding: 6px 4px 12px 4px;
+      border-bottom: 1px solid #e8e2da;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    #resultMessage {
+      font-weight: 420;
+    }
+
+    #resultCount {
+      color: #5f5950;
+      background: #ede8e1;
+      padding: 0 14px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    #resultList {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    #resultList li {
+      display: grid;
+      grid-template-columns: 70px 110px 1fr 50px;
+      align-items: center;
+      background: #faf8f5;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border-left: 4px solid #d6cfc5;
+      font-size: 1rem;
+      gap: 8px;
+      border-bottom: 1px solid #ede8e1;
+    }
+
+    @media (max-width: 580px) {
+      #resultList li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        padding: 12px 16px;
+        border-left-width: 4px;
+      }
+      #resultList li .badge {
+        display: none;
+      }
+    }
+
+    #resultList li .char {
+      font-size: 1.7rem;
+      font-weight: 500;
+      color: #1c1814;
+      letter-spacing: 1px;
+    }
+
+    #resultList li .pinyin {
+      color: #3d3d3d;
+      background: #eae5de;
+      padding: 2px 12px;
+      border-radius: 40px;
+      font-weight: 450;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    #resultList li .meaning {
+      color: #1c1814;
+      font-weight: 400;
+      padding: 2px 4px;
+      word-break: break-word;
+    }
+
+    #resultList li .badge {
+      color: #6f685e;
+      font-size: 0.75rem;
+      background: transparent;
+      text-align: right;
+      font-weight: 350;
+    }
+
+    .empty-state {
+      grid-template-columns: 1fr !important;
+      text-align: center;
+      color: #6f685e;
+      background: #f3f0eb !important;
+      padding: 28px 12px !important;
+      border-left-color: #b9b1a6 !important;
+    }
+
+    .empty-state i {
+      margin-right: 10px;
+      color: #9a9288;
+    }
+
+    .footer {
+      margin-top: 24px;
+      font-size: 0.8rem;
+      color: #8a837a;
+      border-top: 1px solid #e4dfd8;
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    #resultList::-webkit-scrollbar {
+      width: 5px;
+    }
+    #resultList::-webkit-scrollbar-track {
+      background: #e8e2da;
+      border-radius: 10px;
+    }
+    #resultList::-webkit-scrollbar-thumb {
+      background: #c5bdb2;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1><i class="fas fa-book-open"></i> Adj. 中–缅</h1>
+    <span class="badge-count"><i class="far fa-file-alt"></i> Adjective ၂၀+</span>
+  </div>
+
+  <div class="search-area">
+    <div class="input-wrap">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="စာလုံး / pinyin / မြန်မာ" />
+    </div>
+    <button id="searchBtn"><i class="fas fa-arrow-right"></i> ရှာ</button>
+  </div>
+
+  <div class="result-meta">
+    <span id="resultMessage"><i class="far fa-circle" style="margin-right: 6px;"></i> ရလဒ်အားလုံး</span>
+    <span id="resultCount">၂၃ ခု</span>
+  </div>
+
+  <ul id="resultList">
+    <!-- js ဖြည့်မည် -->
+  </ul>
+
+  <div class="footer">
+    <span><i class="fas fa-tag"></i> adjective only</span>
+    <span><i class="fas fa-chevron-right"></i> ရှာဖွေရန် စာရိုက်ပါ</span>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ===== ADJECTIVE ONLY dictionary =====
+    const dictionary = [
+    { char: "大", pinyin: "dà", meaning: "ကြီး" },
+{ char: "小", pinyin: "xiǎo", meaning: "သေး" },
+{ char: "高", pinyin: "gāo", meaning: "မြင့်" },
+{ char: "矮", pinyin: "ǎi", meaning: "ပု" },
+{ char: "长", pinyin: "cháng", meaning: "ရှည်" },
+{ char: "短", pinyin: "duǎn", meaning: "တို" },
+{ char: "宽", pinyin: "kuān", meaning: "ကျယ်" },
+{ char: "窄", pinyin: "zhǎi", meaning: "ကျဉ်း" },
+{ char: "厚", pinyin: "hòu", meaning: "ထူ" },
+{ char: "薄", pinyin: "báo", meaning: "ပါး" },
+{ char: "重", pinyin: "zhòng", meaning: "လေး" },
+{ char: "轻", pinyin: "qīng", meaning: "ပေါ့" },
+{ char: "快", pinyin: "kuài", meaning: "မြန်" },
+{ char: "慢", pinyin: "màn", meaning: "နှေး" },
+{ char: "多", pinyin: "duō", meaning: "များ" },
+{ char: "少", pinyin: "shǎo", meaning: "နည်း" },
+{ char: "好", pinyin: "hǎo", meaning: "ကောင်း" },
+{ char: "坏", pinyin: "huài", meaning: "ဆိုး" },
+{ char: "美", pinyin: "měi", meaning: "လှ" },
+{ char: "丑", pinyin: "chǒu", meaning: "ရုပ်ဆိုး" },
+{ char: "漂亮", pinyin: "piàoliang", meaning: "ချော" },
+{ char: "英俊", pinyin: "yīngjùn", meaning: "ရုပ်ရည်ကောင်း" },
+{ char: "可爱", pinyin: "kě'ài", meaning: "ချစ်စရာကောင်း" },
+{ char: "善良", pinyin: "shànliáng", meaning: "စေတနာကောင်း" },
+{ char: "聪明", pinyin: "cōngming", meaning: "လိမ္မာ" },
+{ char: "愚蠢", pinyin: "yúchǔn", meaning: "မိုက်မဲ" },
+{ char: "勇敢", pinyin: "yǒnggǎn", meaning: "ရဲရင့်" },
+{ char: "胆小", pinyin: "dǎnxiǎo", meaning: "ရဲစွမ်းသတ္တိနည်း" },
+{ char: "坚强", pinyin: "jiānqiáng", meaning: "ခိုင်မာ" },
+{ char: "软弱", pinyin: "ruǎnruò", meaning: "အားနည်း" },
+{ char: "勤奋", pinyin: "qínfèn", meaning: "ဝီရိယရှိ" },
+{ char: "懒惰", pinyin: "lǎnduò", meaning: "ပျင်းရိ" },
+{ char: "认真", pinyin: "rènzhēn", meaning: "အလေးအနက်ထား" },
+{ char: "马虎", pinyin: "mǎhu", meaning: "ပေါ့ဆ" },
+{ char: "细心", pinyin: "xìxīn", meaning: "သေချာ" },
+{ char: "粗心", pinyin: "cūxīn", meaning: "မသေချာ" },
+{ char: "热情", pinyin: "rèqíng", meaning: "စိတ်အားထက်သန်" },
+{ char: "冷漠", pinyin: "lěngmò", meaning: "အေးစက်" },
+{ char: "友好", pinyin: "yǒuhǎo", meaning: "ဖော်ရွေ" },
+{ char: "和蔼", pinyin: "hé'ǎi", meaning: "ကြင်နာ" },
+{ char: "严肃", pinyin: "yánsù", meaning: "တင်းကျပ်" },
+{ char: "活泼", pinyin: "huópo", meaning: "သွက်လက်" },
+{ char: "安静", pinyin: "ānjìng", meaning: "တိတ်ဆိတ်" },
+{ char: "吵闹", pinyin: "chǎonào", meaning: "ဆူညံ" },
+{ char: "干净", pinyin: "gānjìng", meaning: "သန့်ရှင်း" },
+{ char: "脏", pinyin: "zāng", meaning: "ညစ်ပတ်" },
+{ char: "新", pinyin: "xīn", meaning: "အသစ်" },
+{ char: "旧", pinyin: "jiù", meaning: "အဟောင်း" },
+{ char: "年轻", pinyin: "niánqīng", meaning: "ငယ်ရွယ်" },
+{ char: "老", pinyin: "lǎo", meaning: "အို" },
+{ char: "富有", pinyin: "fùyǒu", meaning: "ချမ်းသာ" },
+{ char: "贫穷", pinyin: "pínqióng", meaning: "ဆင်းရဲ" },
+{ char: "健康", pinyin: "jiànkāng", meaning: "ကျန်းမာ" },
+{ char: "虚弱", pinyin: "xūruò", meaning: "အားနည်း" },
+{ char: "快乐", pinyin: "kuàilè", meaning: "ပျော်ရွှင်" },
+{ char: "悲伤", pinyin: "bēishāng", meaning: "ဝမ်းနည်း" },
+{ char: "开心", pinyin: "kāixīn", meaning: "ပျော်" },
+{ char: "难过", pinyin: "nánguò", meaning: "စိတ်ဆင်းရဲ" },
+{ char: "紧张", pinyin: "jǐnzhāng", meaning: "တင်းမာ" },
+{ char: "放松", pinyin: "fàngsōng", meaning: "ဖြေလျှော့" },
+{ char: "安全", pinyin: "ānquán", meaning: "လုံခြုံ" },
+{ char: "危险", pinyin: "wēixiǎn", meaning: "အန္တရာယ်ရှိ" },
+{ char: "重要", pinyin: "zhòngyào", meaning: "အရေးကြီး" },
+{ char: "次要", pinyin: "cìyào", meaning: "အရေးမကြီး" },
+{ char: "简单", pinyin: "jiǎndān", meaning: "ရိုးရှင်း" },
+{ char: "复杂", pinyin: "fùzá", meaning: "ရှုပ်ထွေး" },
+{ char: "容易", pinyin: "róngyì", meaning: "လွယ်ကူ" },
+{ char: "困难", pinyin: "kùnnán", meaning: "ခက်ခဲ" },
+{ char: "清楚", pinyin: "qīngchu", meaning: "ရှင်းလင်း" },
+{ char: "模糊", pinyin: "móhu", meaning: "ဝေဝါး" },
+{ char: "熟悉", pinyin: "shúxī", meaning: "ရင်းနှီး" },
+{ char: "陌生", pinyin: "mòshēng", meaning: "စိမ်းကား" },
+{ char: "特别", pinyin: "tèbié", meaning: "အထူး" },
+{ char: "普通", pinyin: "pǔtōng", meaning: "သာမန်" },
+{ char: "唯一", pinyin: "wéiyī", meaning: "တစ်ခုတည်း" },
+{ char: "相同", pinyin: "xiāngtóng", meaning: "တူညီ" },
+{ char: "不同", pinyin: "bùtóng", meaning: "ကွဲပြား" },
+{ char: "相似", pinyin: "xiāngsì", meaning: "ဆင်တူ" },
+{ char: "完美", pinyin: "wánměi", meaning: "ပြည့်စုံ" },
+{ char: "缺陷", pinyin: "quēxiàn", meaning: "ချို့ယွင်း" },
+{ char: "有效", pinyin: "yǒuxiào", meaning: "ထိရောက်" },
+{ char: "无效", pinyin: "wúxiào", meaning: "ထိရောက်မှုမရှိ" },
+{ char: "方便", pinyin: "fāngbiàn", meaning: "အဆင်ပြေ" },
+{ char: "麻烦", pinyin: "máfan", meaning: "ခက်ခဲ" },
+{ char: "顺利", pinyin: "shùnlì", meaning: "ချောမွေ့" },
+{ char: "坎坷", pinyin: "kǎnkě", meaning: "ကြမ်းတမ်း" },
+{ char: "成功", pinyin: "chénggōng", meaning: "အောင်မြင်" },
+{ char: "失败", pinyin: "shībài", meaning: "ရှုံးနိမ့်" },
+{ char: "有名", pinyin: "yǒumíng", meaning: "ကျော်ကြား" },
+{ char: "无名", pinyin: "wúmíng", meaning: "မထင်ရှား" },
+{ char: "伟大", pinyin: "wěidà", meaning: "မြင့်မြတ်" },
+{ char: "平凡", pinyin: "píngfán", meaning: "သာမန်" },
+{ char: "笨", pinyin: "bèn", meaning: "တုံး" },
+{ char: "骄傲", pinyin: "jiāo'ào", meaning: "မာနကြီး" },
+{ char: "谦虚", pinyin: "qiānxū", meaning: "နှိမ့်ချ" },
+{ char: "诚实", pinyin: "chéngshí", meaning: "ရိုးသား" },
+{ char: "狡猾", pinyin: "jiǎohuá", meaning: "လိမ္မာပါးနပ်" },
+{ char: "慷慨", pinyin: "kāngkǎi", meaning: "ရက်ရော" },
+{ char: "小气", pinyin: "xiǎoqì", meaning: "ငြူစူ" },
+{ char: "温柔", pinyin: "wēnróu", meaning: "နူးညံ့" },
+{ char: "粗暴", pinyin: "cūbào", meaning: "ကြမ်းတမ်း" },
+{ char: "耐心", pinyin: "nàixīn", meaning: "သည်းခံ" },
+{ char: "急躁", pinyin: "jízào", meaning: "စိတ်တို" },
+{ char: "糊涂", pinyin: "hútu", meaning: "ဝေဝါး" },
+{ char: "乐观", pinyin: "lèguān", meaning: "အကောင်းမြင်" },
+{ char: "悲观", pinyin: "bēiguān", meaning: "အဆိုးမြင်" },
+{ char: "积极", pinyin: "jījí", meaning: "တက်ကြွ" },
+{ char: "消极", pinyin: "xiāojí", meaning: "အားငယ်" },
+{ char: "自信", pinyin: "zìxìn", meaning: "ယုံကြည်မှုရှိ" },
+{ char: "自卑", pinyin: "zìbēi", meaning: "ယုံကြည်မှုနည်း" },
+{ char: "幸福", pinyin: "xìngfú", meaning: "ပျော်ရွှင်" },
+{ char: "痛苦", pinyin: "tòngkǔ", meaning: "ဆင်းရဲဒုက္ခရောက်" },
+{ char: "忙碌", pinyin: "mánglù", meaning: "အလုပ်များ" },
+{ char: "空闲", pinyin: "kòngxián", meaning: "အားလပ်" },
+{ char: "丰富", pinyin: "fēngfù", meaning: "ကြွယ်ဝ" },
+{ char: "单调", pinyin: "dāndiào", meaning: "ငြီးငွေ့ဖွယ်" },
+{ char: "热闹", pinyin: "rènao", meaning: "စည်ကား" },
+{ char: "冷清", pinyin: "lěngqīng", meaning: "ဆိတ်ငြိမ်" },
+{ char: "明亮", pinyin: "míngliàng", meaning: "တောက်ပ" },
+{ char: "黑暗", pinyin: "hēi'àn", meaning: "မှောင်မိုက်" },
+{ char: "新鲜", pinyin: "xīnxiān", meaning: "လန်းဆန်း" },
+{ char: "陈旧", pinyin: "chénjiù", meaning: "ဟောင်းနွမ်း" },
+{ char: "美味", pinyin: "měiwèi", meaning: "အရသာရှိ" },
+{ char: "难吃", pinyin: "nánchī", meaning: "စားရခက်" },
+{ char: "香", pinyin: "xiāng", meaning: "မွှေး" },
+{ char: "臭", pinyin: "chòu", meaning: "နံ" },
+{ char: "甜", pinyin: "tián", meaning: "ချို" },
+{ char: "苦", pinyin: "kǔ", meaning: "ခါး" },
+{ char: "辣", pinyin: "là", meaning: "စပ်" },
+{ char: "酸", pinyin: "suān", meaning: "ချဉ်" },
+{ char: "咸", pinyin: "xián", meaning: "ငန်" },
+{ char: "淡", pinyin: "dàn", meaning: "ပျော့" },
+{ char: "温暖", pinyin: "wēnnuǎn", meaning: "နွေးထွေး" },
+{ char: "凉爽", pinyin: "liángshuǎng", meaning: "အေးမြ" },
+{ char: "炎热", pinyin: "yánrè", meaning: "ပူပြင်း" },
+{ char: "寒冷", pinyin: "hánlěng", meaning: "အေး" },
+{ char: "潮湿", pinyin: "cháoshī", meaning: "စိုစွတ်" },
+{ char: "干燥", pinyin: "gānzào", meaning: "ခြောက်သွေ့" },
+{ char: "美丽", pinyin: "měilì", meaning: "လှပ" },
+{ char: "丑陋", pinyin: "chǒulòu", meaning: "ရုပ်ဆိုး" },
+{ char: "优雅", pinyin: "yōuyǎ", meaning: "ကျက်သရေရှိ" },
+{ char: "粗俗", pinyin: "cūsú", meaning: "ရိုင်းစိုင်း" },
+{ char: "高贵", pinyin: "gāoguì", meaning: "မြင့်မြတ်" },
+{ char: "低贱", pinyin: "dījiàn", meaning: "ယုတ်မာ" },
+{ char: "纯洁", pinyin: "chúnjié", meaning: "ဖြူစင်" },
+{ char: "污秽", pinyin: "wūhuì", meaning: "ညစ်ညမ်း" },
+{ char: "神圣", pinyin: "shénshèng", meaning: "မြင့်မြတ်" },
+{ char: "世俗", pinyin: "shìsú", meaning: "လောကီဆန်" },
+{ char: "愚昧", pinyin: "yúmèi", meaning: "မိုက်မဲ" },
+{ char: "天真", pinyin: "tiānzhēn", meaning: "ရိုးသားဖြူစင်" },
+{ char: "世故", pinyin: "shìgù", meaning: "လောကီရင့်ကျက်" },
+{ char: "开朗", pinyin: "kāilǎng", meaning: "ပွင့်လင်း" },
+{ char: "忧郁", pinyin: "yōuyù", meaning: "စိတ်ညစ်" },
+{ char: "坦率", pinyin: "tǎnshuài", meaning: "ပွင့်လင်းရိုးသား" },
+{ char: "含蓄", pinyin: "hánxù", meaning: "သိုသိပ်" },
+{ char: "果断", pinyin: "guǒduàn", meaning: "ပြတ်သား" },
+{ char: "犹豫", pinyin: "yóuyù", meaning: "ဝေခွဲမရ" },
+{ char: "坚定", pinyin: "jiāndìng", meaning: "ခိုင်မာ" },
+{ char: "动摇", pinyin: "dòngyáo", meaning: "ယိမ်းယိုင်" },
+{ char: "团结", pinyin: "tuánjié", meaning: "စည်းလုံး" },
+{ char: "分裂", pinyin: "fēnliè", meaning: "ကွဲပြား" },
+{ char: "和平", pinyin: "hépíng", meaning: "ငြိမ်းချမ်း" },
+{ char: "战争", pinyin: "zhànzhēng", meaning: "စစ်ပွဲဖြစ်" },
+{ char: "繁荣", pinyin: "fánróng", meaning: "ဖွံ့ဖြိုး" },
+{ char: "衰落", pinyin: "shuāiluò", meaning: "ဆုတ်ယုတ်" },
+{ char: "强大", pinyin: "qiángdà", meaning: "အားကြီး" },
+{ char: "弱小", pinyin: "ruòxiǎo", meaning: "အားနည်း" },
+{ char: "广阔", pinyin: "guǎngkuò", meaning: "ကျယ်ပြန့်" },
+{ char: "狭窄", pinyin: "xiázhǎi", meaning: "ကျဉ်းမြောင်း" },
+{ char: "深远", pinyin: "shēnyuǎn", meaning: "နက်ရှိုင်း" },
+{ char: "浅薄", pinyin: "qiǎnbó", meaning: "တိမ်ကော" },
+{ char: "宝贵", pinyin: "bǎoguì", meaning: "အဖိုးတန်" },
+{ char: "廉价", pinyin: "liánjià", meaning: "စျေးပေါ" },
+{ char: "优秀", pinyin: "yōuxiù", meaning: "ထူးချွန်" },
+{ char: "劣质", pinyin: "lièzhì", meaning: "အရည်အသွေးနိမ့်" },
+{ char: "精致", pinyin: "jīngzhì", meaning: "သေချာ" },
+{ char: "粗糙", pinyin: "cūcāo", meaning: "ကြမ်းတမ်း" },
+{ char: "光滑", pinyin: "guānghuá", meaning: "ချောမွေ့" },
+{ char: "柔软", pinyin: "róuruǎn", meaning: "နူးညံ့" },
+{ char: "坚硬", pinyin: "jiānyìng", meaning: "မာကျော" },
+{ char: "灵活", pinyin: "línghuó", meaning: "သွက်လက်" },
+{ char: "呆板", pinyin: "dāibǎn", meaning: "တုံးတုံးတိမ်းတိမ်း" },
+{ char: "敏捷", pinyin: "mǐnjié", meaning: "လျင်မြန်" },
+{ char: "迟钝", pinyin: "chídùn", meaning: "နှေးကွေး" },
+{ char: "善良", pinyin: "shànliáng", meaning: "ကောင်း" },
+{ char: "邪恶", pinyin: "xié'è", meaning: "ဆိုးဝါး" },
+{ char: "正直", pinyin: "zhèngzhí", meaning: "ဖြောင့်မတ်" },
+{ char: "虚伪", pinyin: "xūwěi", meaning: "အယောင်ဆောင်" },
+{ char: "忠诚", pinyin: "zhōngchéng", meaning: "သစ္စာရှိ" },
+{ char: "背叛", pinyin: "bèipàn", meaning: "သစ္စာဖောက်" },
+{ char: "愚钝", pinyin: "yúdùn", meaning: "ဉာဏ်ရည်နုံ့" },
+{ char: "文静", pinyin: "wénjìng", meaning: "ယဉ်ကျေး" },
+{ char: "野蛮", pinyin: "yěmán", meaning: "ရိုင်းစိုင်း" },
+{ char: "呆滞", pinyin: "dāizhì", meaning: "တုံ့ဆိုင်း" },
+{ char: "忧愁", pinyin: "yōuchóu", meaning: "စိုးရိမ်" },
+{ char: "冰冷", pinyin: "bīnglěng", meaning: "ရေခဲကဲ့သို့အေး" },
+{ char: "阳光", pinyin: "yángguāng", meaning: "ထွန်းလင်းတောက်ပ" },
+{ char: "阴沉", pinyin: "yīnchén", meaning: "တိမ်မှောင်" },
+{ char: "残忍", pinyin: "cánrěn", meaning: "ကရုဏာမရှိ" },
+{ char: "平庸", pinyin: "píngyōng", meaning: "သာမန်" },
+{ char: "怯懦", pinyin: "qiènuò", meaning: "ကြောက်တတ်" },
+{ char: "努力", pinyin: "nǔlì", meaning: "ကြိုးစား" },
+{ char: "守信", pinyin: "shǒuxìn", meaning: "ကတိတည်" },
+{ char: "奸诈", pinyin: "jiānzhà", meaning: "ငြူစူ" },
+{ char: "孤僻", pinyin: "gūpì", meaning: "သီးခြားနေ" },
+{ char: "敌对", pinyin: "díduì", meaning: "ရန်လို" },
+{ char: "憨厚", pinyin: "hānhòu", meaning: "ရိုးသားဖြောင့်မတ်" },
+{ char: "精明", pinyin: "jīngmíng", meaning: "တော်" },
+{ char: "愚昧无知", pinyin: "yúmèi wúzhī", meaning: "မသိ" },
+{ char: "自大", pinyin: "zìdà", meaning: "မာနကြီး" },
+{ char: "狠毒", pinyin: "hěndú", meaning: "ဆိုး" },
+{ char: "高兴", pinyin: "gāoxìng", meaning: "ဝမ်းသာ" },
+{ char: "伤心", pinyin: "shāngxīn", meaning: "စိတ်ထိခိုက်" },
+{ char: "激动", pinyin: "jīdòng", meaning: "စိတ်လှုပ်ရှား" },
+{ char: "平静", pinyin: "píngjìng", meaning: "ငြိမ်သက်" },
+{ char: "愤怒", pinyin: "fènnù", meaning: "ဒေါသထွက်" },
+{ char: "害怕", pinyin: "hàipà", meaning: "ကြောက်" },
+{ char: "惊讶", pinyin: "jīngyà", meaning: "အံ့အားသင့်" },
+{ char: "满意", pinyin: "mǎnyì", meaning: "ကျေနပ်" },
+{ char: "失望", pinyin: "shīwàng", meaning: "စိတ်ပျက်" },
+{ char: "希望", pinyin: "xīwàng", meaning: "မျှော်လင့်" },
+{ char: "绝望", pinyin: "juéwàng", meaning: "မျှော်လင့်ချက်ကင်းမဲ့" },
+{ char: "安心", pinyin: "ānxīn", meaning: "စိတ်အေးချမ်း" },
+{ char: "担心", pinyin: "dānxīn", meaning: "စိုးရိမ်" },
+{ char: "放心", pinyin: "fàngxīn", meaning: "စိတ်ချရ" },
+{ char: "骄傲自满", pinyin: "jiāo'ào zìmǎn", meaning: "မာနကြီးကျေနပ်" },
+{ char: "谦虚谨慎", pinyin: "qiānxū jǐnshèn", meaning: "နှိမ့်ချသတိထား" },
+{ char: "正直无私", pinyin: "zhèngzhí wúsī", meaning: "ဖြောင့်မတ်ကိုယ်ကျိုးမဖက်" },
+{ char: "自私自利", pinyin: "zìsī zìlì", meaning: "ကိုယ်ကျိုးရှာ" },
+{ char: "宽容大度", pinyin: "kuānróng dàdù", meaning: "သည်းခံရက်ရော" },
+{ char: "心胸狭窄", pinyin: "xīnxiōng xiázhǎi", meaning: "စိတ်ထားကျဉ်းမြောင်း" },
+{ char: "乐观向上", pinyin: "lèguān xiàngshàng", meaning: "အကောင်းမြင်ရှေ့သို့သွား" },
+{ char: "悲观失望", pinyin: "bēiguān shīwàng", meaning: "အဆိုးမြင်စိတ်ပျက်" },
+{ char: "积极进取", pinyin: "jījí jìnqǔ", meaning: "တက်ကြွကြိုးစား" },
+{ char: "消极怠惰", pinyin: "xiāojí dàiduò", meaning: "အားငယ်ပျင်းရိ" },
+{ char: "自信满满", pinyin: "zìxìn mǎnmǎn", meaning: "ယုံကြည်မှုပြည့်ဝ" },
+{ char: "自卑懦弱", pinyin: "zìbēi nuòruò", meaning: "ယုံကြည်မှုနည်းအားနည်း" },
+{ char: "幸福美满", pinyin: "xìngfú měimǎn", meaning: "ပျော်ရွှင်ချမ်းမြေ့" },
+{ char: "痛苦不堪", pinyin: "tòngkǔ bùkān", meaning: "အလွန်ဆင်းရဲဒုက္ခရောက်" },
+{ char: "忙碌不堪", pinyin: "mánglù bùkān", meaning: "အလွန်အလုပ်များ" },
+{ char: "悠闲自在", pinyin: "yōuxián zìzài", meaning: "အားလပ်သက်တောင့်သက်သာရှိ" },
+{ char: "丰富多彩", pinyin: "fēngfù duōcǎi", meaning: "ကြွယ်ဝစုံလင်" },
+{ char: "单调乏味", pinyin: "dāndiào fáwèi", meaning: "ပျင်းစရာကောင်း" },
+{ char: "热闹非凡", pinyin: "rènao fēifán", meaning: "အလွန်စည်ကား" },
+{ char: "冷冷清清", pinyin: "lěnglěng qīngqīng", meaning: "ဆိတ်ငြိမ်လွန်း" },
+{ char: "光明磊落", pinyin: "guāngmíng lěiluò", meaning: "ပွင့်လင်းရိုးသား" },
+{ char: "阴险狡诈", pinyin: "yīnxiǎn jiǎozhà", meaning: "လျှို့ဝှက်ဆိုးယုတ်" },
+{ char: "豪爽大方", pinyin: "háoshuǎng dàfāng", meaning: "ရက်ရောပွင့်လင်း" },
+{ char: "小气吝啬", pinyin: "xiǎoqì lìnsè", meaning: "ငြူစူဝန်တို" },
+{ char: "温柔体贴", pinyin: "wēnróu tǐtiē", meaning: "နူးညံ့ဂရုစိုက်" },
+{ char: "粗暴无礼", pinyin: "cūbào wúlǐ", meaning: "ကြမ်းတမ်းမယဉ်ကျေး" },
+{ char: "耐心细致", pinyin: "nàixīn xìzhì", meaning: "သည်းခံသေချာ" },
+{ char: "急躁易怒", pinyin: "jízào yìnù", meaning: "စိတ်တိုဒေါသထွက်လွယ်" },
+{ char: "聪明能干", pinyin: "cōngmíng nénggàn", meaning: "လိမ္မာစွမ်းဆောင်ရည်ရှိ" },
+{ char: "笨手笨脚", pinyin: "bènshǒu bènjiǎo", meaning: "လက်မဆောင်ထိုင်းမှိုင်း" },
+{ char: "诚实可靠", pinyin: "chéngshí kěkào", meaning: "ရိုးသားအားကိုးရ" },
+{ char: "虚伪不可靠", pinyin: "xūwěi bù kěkào", meaning: "အယောင်ဆောင်အားမကိုးရ" },
+{ char: "慷慨大方", pinyin: "kāngkǎi dàfāng", meaning: "ရက်ရောပေါင်းသင်းဆက်ဆံကောင်း" },
+{ char: "吝啬小气", pinyin: "lìnsè xiǎoqì", meaning: "ဝန်တိုငြူစူ" },
+{ char: "高贵典雅", pinyin: "gāoguì diǎnyǎ", meaning: "မြင့်မြတ်ကျက်သရေရှိ" },
+{ char: "低俗下流", pinyin: "dīsú xiàliú", meaning: "ယုတ်မာညံ့ဖျင်း" },
+{ char: "纯洁无瑕", pinyin: "chúnjié wúxiá", meaning: "ဖြူစင်အညစ်အကြေးကင်း" },
+{ char: "污秽不堪", pinyin: "wūhuì bùkān", meaning: "အလွန်ညစ်ညမ်း" },
+{ char: "神圣不可侵犯", pinyin: "shénshèng bùkě qīnfàn", meaning: "မြင့်မြတ်မထိပါးအပ်" },
+{ char: "世俗平庸", pinyin: "shìsú píngyōng", meaning: "လောကီဆန်သာမန်" },
+{ char: "聪明睿智", pinyin: "cōngmíng ruìzhì", meaning: "ဉာဏ်ကောင်းထိုးထွင်းသိမြင်" },
+{ char: "愚昧落后", pinyin: "yúmèi luòhòu", meaning: "မိုက်မဲနောက်ကျ" },
+{ char: "天真烂漫", pinyin: "tiānzhēn lànmàn", meaning: "ရိုးသားဖြူစင်ပျော်ရွှင်" },
+{ char: "世故圆滑", pinyin: "shìgù yuánhuá", meaning: "လောကီရင့်ကျက်ချောမွေ့" },
+{ char: "开朗活泼", pinyin: "kāilǎng huópo", meaning: "ပွင့်လင်းသွက်လက်" },
+{ char: "忧郁沉闷", pinyin: "yōuyù chénmèn", meaning: "စိတ်ညစ်အားငယ်" },
+{ char: "坦率真诚", pinyin: "tǎnshuài zhēnchéng", meaning: "ပွင့်လင်းရိုးသားစိတ်ရင်းမှန်" },
+{ char: "含蓄内敛", pinyin: "hánxù nèiliǎn", meaning: "သိုသိပ်ချုပ်တည်း" },
+{ char: "果断坚决", pinyin: "guǒduàn jiānjué", meaning: "ပြတ်သားခိုင်မာ" },
+{ char: "犹豫不决", pinyin: "yóuyù bùjué", meaning: "ဝေခွဲမရဆုံးဖြတ်မရ" },
+{ char: "坚定不移", pinyin: "jiāndìng bùyí", meaning: "ခိုင်မာမယိမ်းယိုင်" },
+{ char: "动摇不定", pinyin: "dòngyáo bùdìng", meaning: "ယိမ်းယိုင်မတည်ငြိမ်" },
+{ char: "团结一心", pinyin: "tuánjié yīxīn", meaning: "စည်းလုံးစိတ်တစ်ထပ်တည်းရှိ" },
+{ char: "分裂离析", pinyin: "fēnliè líxī", meaning: "ကွဲပြားပြိုကွဲ" },
+{ char: "和平安宁", pinyin: "hépíng ānníng", meaning: "ငြိမ်းချမ်းအေးချမ်း" },
+{ char: "动荡不安", pinyin: "dòngdàng bù'ān", meaning: "မငြိမ်မသက်" },
+{ char: "繁荣昌盛", pinyin: "fánróng chāngshèng", meaning: "ဖွံ့ဖြိုးစည်ပင်သာဝ" },
+{ char: "衰落萧条", pinyin: "shuāiluò xiāotiáo", meaning: "ဆုတ်ယုတ်ကျဆင်း" },
+{ char: "强大无比", pinyin: "qiángdà wúbǐ", meaning: "အားကြီးနှိုင်းယှဉ်မရ" },
+{ char: "弱小可怜", pinyin: "ruòxiǎo kělián", meaning: "အားနည်းသနားစရာကောင်း" },
+{ char: "广阔无垠", pinyin: "guǎngkuò wúyín", meaning: "ကျယ်ပြန့်အဆုံးအစမရှိ" },
+{ char: "狭窄拥挤", pinyin: "xiázhǎi yōngjǐ", meaning: "ကျဉ်းမြောင်းလူစည်ကား" },
+{ char: "深远长久", pinyin: "shēnyuǎn chángjiǔ", meaning: "နက်ရှိုင်းကြာရှည်" },
+{ char: "浅薄短暂", pinyin: "qiǎnbó duǎnzàn", meaning: "တိမ်ကောခဏတာ" },
+{ char: "宝贵珍稀", pinyin: "bǎoguì zhēnxī", meaning: "အဖိုးတန်ရှားပါး" },
+{ char: "廉价普通", pinyin: "liánjià pǔtōng", meaning: "စျေးပေါသာမန်" },
+{ char: "优秀卓越", pinyin: "yōuxiù zhuóyuè", meaning: "ထူးချွန်လွန်ကဲ" },
+{ char: "劣质低等", pinyin: "lièzhì dīděng", meaning: "အရည်အသွေးနိမ့်အဆင့်နိမ့်" },
+{ char: "精致完美", pinyin: "jīngzhì wánměi", meaning: "သေချာပြည့်စုံ" },
+{ char: "粗糙简陋", pinyin: "cūcāo jiǎnlòu", meaning: "ကြမ်းတမ်းရိုးစင်း" },
+{ char: "光滑细腻", pinyin: "guānghuá xìni", meaning: "ချောမွေ့နူးညံ့" },
+{ char: "粗糙不平", pinyin: "cūcāo bùpíng", meaning: "ကြမ်းတမ်းမညီညာ" },
+{ char: "柔软舒适", pinyin: "róuruǎn shūshì", meaning: "နူးညံ့သက်တောင့်သက်သာရှိ" },
+{ char: "坚硬冰冷", pinyin: "jiānyìng bīnglěng", meaning: "မာကျောအေးစက်" },
+{ char: "灵活变通", pinyin: "línghuó biàntōng", meaning: "သွက်လက်လိုက်လျောညီထွေရှိ" },
+{ char: "呆板固执", pinyin: "dāibǎn gùzhí", meaning: "တုံးတုံးတိမ်းတိမ်းခေါင်းမာ" },
+{ char: "敏捷迅速", pinyin: "mǐnjié xùnsù", meaning: "လျင်မြန်အမြန်ဆန်ဆန်" },
+{ char: "迟钝缓慢", pinyin: "chídùn huǎnmàn", meaning: "နှေးကွေးအေးဆေး" },
+{ char: "聪明绝顶", pinyin: "cōngmíng juédǐng", meaning: "အလွန်လိမ္မာ" },
+{ char: "愚蠢至极", pinyin: "yúchǔn jízhì", meaning: "အလွန်မိုက်မဲ" },
+{ char: "善良仁爱", pinyin: "shànliáng rén'ài", meaning: "ကောင်းသောစေတနာရှိမေတ္တာရှိ" },
+{ char: "邪恶残忍", pinyin: "xié'è cánrěn", meaning: "ဆိုးဝါးကရုဏာမဲ့" },
+{ char: "正直坦荡", pinyin: "zhèngzhí tǎndàng", meaning: "ဖြောင့်မတ်ပွင့်လင်း" },
+{ char: "虚伪阴险", pinyin: "xūwěi yīnxiǎn", meaning: "အယောင်ဆောင်လျှို့ဝှက်ဆိုးယုတ်" },
+{ char: "忠诚坚定", pinyin: "zhōngchéng jiāndìng", meaning: "သစ္စာရှိခိုင်မာ" },
+{ char: "背叛不忠", pinyin: "bèipàn bùzhōng", meaning: "သစ္စာဖောက်မသစ္စာရှိ" },
+{ char: "聪明才智", pinyin: "cōngmíng cáizhì", meaning: "ဉာဏ်ရည်ထက်မြက်" },
+{ char: "愚钝无知", pinyin: "yúdùn wúzhī", meaning: "ဉာဏ်ရည်နုံ့မသိ" },
+{ char: "优雅高贵", pinyin: "yōuyǎ gāoguì", meaning: "ကြည်ညိုဖွယ်ကောင်းမြင့်မြတ်" },
+{ char: "粗鲁野蛮", pinyin: "cūlǔ yěmán", meaning: "ရိုင်းမယဉ်ကျေး" },
+{ char: "文静端庄", pinyin: "wénjìng duānzhuāng", meaning: "ယဉ်ကျေးကျက်သရေရှိ" },
+{ char: "野蛮粗暴", pinyin: "yěmán cūbào", meaning: "ရိုင်းကြမ်းတမ်း" },
+{ char: "聪明机灵", pinyin: "cōngmíng jīling", meaning: "လိမ္မာသွက်လက်" },
+{ char: "呆滞木讷", pinyin: "dāizhì mùnè", meaning: "တုံ့ဆိုင်းစကားနည်း" },
+{ char: "快乐无忧", pinyin: "kuàilè wúyōu", meaning: "ပျော်ရွှင်အစိုးရိမ်မရှိ" },
+{ char: "忧愁烦恼", pinyin: "yōuchóu fánnǎo", meaning: "စိုးရိမ်ပူပန်" },
+{ char: "温暖如春", pinyin: "wēnnuǎn rú chūn", meaning: "နွေးထွေး" },
+{ char: "冰冷刺骨", pinyin: "bīnglěng cìgǔ", meaning: "အလွန်အေးရိုးထိုး" },
+{ char: "阳光灿烂", pinyin: "yángguāng cànlàn", meaning: "နေရောင်ထွန်းလင်းတောက်" },
+{ char: "阴沉昏暗", pinyin: "yīnchén hūn'àn", meaning: "တိမ်မှောင်မှိန်မှိုင်း" },
+{ char: "善良温和", pinyin: "shànliáng wēnhé", meaning: "ကရုဏာရှိနူးညံ့" },
+{ char: "残忍冷酷", pinyin: "cánrěn lěngkù", meaning: "ကရုဏာမဲ့အေးစက်" },
+{ char: "聪明睿智", pinyin: "cōngmíng ruìzhì", meaning: "ဉာဏ်ကောင်းထက်မြက်" },
+{ char: "平庸无能", pinyin: "píngyōng wúnéng", meaning: "သာမန်စွမ်းရည်မရှိ" },
+{ char: "奸诈狡猾", pinyin: "jiānzhà jiǎohuá", meaning: "ငြူစူလိမ္မာပါးနပ်" },
+{ char: "诚实善良", pinyin: "chéngshí shànliáng", meaning: "ရိုးသားကောင်း" },
+{ char: "勇敢自信", pinyin: "yǒnggǎn zìxìn", meaning: "ရဲရင့်ယုံကြည်မှုရှိ" },
+{ char: "胆小自卑", pinyin: "dǎnxiǎo zìbēi", meaning: "ကြောက်ယုံကြည်မှုနည်း" },
+{ char: "勤奋刻苦", pinyin: "qínfèn kèkǔ", meaning: "လုံ့လရှိဇွဲရှိ" },
+{ char: "懒惰散漫", pinyin: "lǎnduò sǎnmàn", meaning: "ပျင်းရိစည်းကမ်းမဲ့" },
+{ char: "美丽高贵", pinyin: "měilì gāoguì", meaning: "လှပမြင့်မြတ်" },
+{ char: "丑陋低贱", pinyin: "chǒulòu dījiàn", meaning: "ရုပ်ဆိုးယုတ်မာ" },
+{ char: "聪明优雅", pinyin: "cōngmíng yōuyǎ", meaning: "လိမ္မာကျက်သရေရှိ" },
+{ char: "愚蠢粗俗", pinyin: "yúchǔn cūsú", meaning: "မိုက်မဲရိုင်းစိုင်း" },
+{ char: "善良温柔", pinyin: "shànliáng wēnróu", meaning: "ကောင်းနူးညံ့" },
+{ char: "邪恶粗暴", pinyin: "xié'è cūbào", meaning: "ဆိုးကြမ်းတမ်း" },
+{ char: "耐心宽容", pinyin: "nàixīn kuānróng", meaning: "သည်းခံခွင့်လွှတ်" },
+{ char: "急躁狭隘", pinyin: "jízào xiá'ài", meaning: "စိတ်တိုကျဉ်းမြောင်း" },
+{ char: "正直忠诚", pinyin: "zhèngzhí zhōngchéng", meaning: "ဖြောင့်မတ်သစ္စာရှိ" },
+{ char: "虚伪背叛", pinyin: "xūwěi bèipàn", meaning: "အယောင်ဆောင်သစ္စာဖောက်" },
+{ char: "谦虚礼貌", pinyin: "qiānxū lǐmào", meaning: "နှိမ့်ချယဉ်ကျေး�" },
+{ char: "骄傲无礼", pinyin: "jiāo'ào wúlǐ", meaning: "မာနကြီးမယဉ်ကျေး" },
+{ char: "乐观开朗", pinyin: "lèguān kāilǎng", meaning: "အကောင်းမြင်ပွင့်လင်း" },
+{ char: "悲观孤僻", pinyin: "bēiguān gūpì", meaning: "အဆိုးမြင်သီးခြားနေ" },
+{ char: "积极向上", pinyin: "jījí xiàngshàng", meaning: "တက်ကြွရှေ့သို့" },
+{ char: "消极落后", pinyin: "xiāojí luòhòu", meaning: "အားငယ်နောက်ကျ" },
+{ char: "自信坚定", pinyin: "zìxìn jiāndìng", meaning: "ယုံကြည်မှုရှိခိုင်မာ" },
+{ char: "自卑动摇", pinyin: "zìbēi dòngyáo", meaning: "ယုံကြည်မှုနည်းယိမ်းယိုင်" },
+{ char: "幸福安康", pinyin: "xìngfú ānkāng", meaning: "ပျော်ရွှင်အေးချမ်း" },
+{ char: "痛苦悲伤", pinyin: "tòngkǔ bēishāng", meaning: "ဆင်းရဲဝမ်းနည်း" },
+{ char: "忙碌充实", pinyin: "mánglù chōngshí", meaning: "အလုပ်များပြည့်ဝ" },
+{ char: "空闲无聊", pinyin: "kòngxián wúliáo", meaning: "အားလပ်ငြီးငွေ့" },
+{ char: "丰富多彩", pinyin: "fēngfù duōcǎi", meaning: "ကြွယ်ဝစုံလင်" },
+{ char: "单调乏味", pinyin: "dāndiào fáwèi", meaning: "ပျင်းစရာကောင်း" },
+{ char: "热闹繁华", pinyin: "rènao fánhuá", meaning: "စည်ကားဖွံ့ဖြိုး" },
+{ char: "冷清萧条", pinyin: "lěngqīng xiāotiáo", meaning: "ဆိတ်ငြိမ်ကျဆင်း" },
+{ char: "明亮清澈", pinyin: "míngliàng qīngchè", meaning: "တောက်ပကြည်လင်" },
+{ char: "黑暗浑浊", pinyin: "hēi'àn húnzhuó", meaning: "မှောင်မိုက်ဝေဝါး" },
+{ char: "新鲜美味", pinyin: "xīnxiān měiwèi", meaning: "လန်းဆန်းအရသာရှိ" },
+{ char: "陈旧难吃", pinyin: "chénjiù nánchī", meaning: "ဟောင်းနွမ်းစားရခက်" },
+{ char: "香甜可口", pinyin: "xiāngtián kěkǒu", meaning: "မွှေးချိုအရသာရှိ" },
+{ char: "苦涩难咽", pinyin: "kǔsè nányàn", meaning: "ခါးသက်မျိုချရခက်" },
+{ char: "温暖舒适", pinyin: "wēnnuǎn shūshì", meaning: "နွေးထွေးသက်တောင့်သက်သာရှိ" },
+{ char: "寒冷刺骨", pinyin: "hánlěng cìgǔ", meaning: "အေးစက်ရိုးထိုး" },
+{ char: "潮湿闷热", pinyin: "cháoshī mènrè", meaning: "စိုစွတ်ပူပြင်း" },
+{ char: "干燥清爽", pinyin: "gānzào qīngshuǎng", meaning: "ခြောက်သွေ့သွက်လက်" },
+{ char: "美丽端庄", pinyin: "měilì duānzhuāng", meaning: "လှပကျက်သရေရှိ" },
+{ char: "丑陋粗野", pinyin: "chǒulòu cūyě", meaning: "ရုပ်ဆိုးရိုင်းစိုင်း" },
+{ char: "优雅大方", pinyin: "yōuyǎ dàfāng", meaning: "ကျက်သရေရှိရက်ရော" },
+{ char: "粗俗无礼", pinyin: "cūsú wúlǐ", meaning: "ရိုင်းစိုင်းမယဉ်ကျေး" },
+{ char: "高贵圣洁", pinyin: "gāoguì shèngjié", meaning: "မြင့်မြတ်ဖြူစင်" },
+{ char: "低贱污秽", pinyin: "dījiàn wūhuì", meaning: "ယုတ်မာညစ်ညမ်း" },
+{ char: "纯洁善良", pinyin: "chúnjié shànliáng", meaning: "ဖြူစင်ကောင်း" },
+{ char: "污秽邪恶", pinyin: "wūhuì xié'è", meaning: "ညစ်ညမ်းဆိုးဝါး" },
+{ char: "神圣伟大", pinyin: "shénshèng wěidà", meaning: "မြင့်မြတ်ကြီးကျယ်" },
+{ char: "世俗平凡", pinyin: "shìsú píngfán", meaning: "လောကီဆန်သာမန်" },
+{ char: "聪明智慧", pinyin: "cōngmíng zhìhuì", meaning: "လိမ္မာပညာရှိ" },
+{ char: "愚昧无知", pinyin: "yúmèi wúzhī", meaning: "မိုက်မဲမသိ" },
+{ char: "天真可爱", pinyin: "tiānzhēn kě'ài", meaning: "ရိုးသားဖြူစင်ချစ်စရာကောင်း" },
+{ char: "世故老练", pinyin: "shìgù lǎoliàn", meaning: "လောကီရင့်ကျက်အတွေ့အကြုံရှိ" },
+{ char: "开朗活泼", pinyin: "kāilǎng huópo", meaning: "ပွင့်လင်းသွက်လက်" },
+{ char: "忧郁沉闷", pinyin: "yōuyù chénmèn", meaning: "စိတ်ညစ်အားငယ်" },
+{ char: "坦率真诚", pinyin: "tǎnshuài zhēnchéng", meaning: "ပွင့်လင်းရိုးသားစိတ်ရင်းမှန်" },
+{ char: "含蓄内敛", pinyin: "hánxù nèiliǎn", meaning: "သိုသိပ်ချုပ်တည်း" },
+{ char: "果断坚决", pinyin: "guǒduàn jiānjué", meaning: "ပြတ်သားခိုင်မာ" },
+{ char: "犹豫不决", pinyin: "yóuyù bùjué", meaning: "ဝေခွဲမရဆုံးဖြတ်မရ" },
+{ char: "坚定不移", pinyin: "jiāndìng bùyí", meaning: "ခိုင်မာမယိမ်းယိုင်" },
+{ char: "动摇不定", pinyin: "dòngyáo bùdìng", meaning: "ယိမ်းယိုင်မတည်ငြိမ်" },
+{ char: "团结一致", pinyin: "tuánjié yīzhì", meaning: "စည်းလုံးညီညွတ်" },
+{ char: "分裂对立", pinyin: "fēnliè duìlì", meaning: "ကွဲပြားဆန့်ကျင်" },
+{ char: "和平友好", pinyin: "hépíng yǒuhǎo", meaning: "ငြိမ်းချမ်းဖော်ရွေ" },
+{ char: "战争敌对", pinyin: "zhànzhēng díduì", meaning: "စစ်ပွဲဖြစ်ရန်လို" },
+{ char: "繁荣兴旺", pinyin: "fánróng xīngwàng", meaning: "ဖွံ့ဖြိုးစည်ပင်" },
+{ char: "衰落萧条", pinyin: "shuāiluò xiāotiáo", meaning: "ဆုတ်ယုတ်ကျဆင်း" },
+{ char: "强大无敌", pinyin: "qiángdà wúdí", meaning: "အားကြီးအောင်နိုင်မရှိ" },
+{ char: "弱小无助", pinyin: "ruòxiǎo wúzhù", meaning: "အားနည်းအကူမရှိ" },
+{ char: "广阔无边", pinyin: "guǎngkuò wúbiān", meaning: "ကျယ်ပြန့်အဆုံးအစမရှိ" },
+{ char: "狭窄有限", pinyin: "xiázhǎi yǒuxiàn", meaning: "ကျဉ်းမြောင်းအကန့်အသတ်ရှိ" },
+{ char: "深远持久", pinyin: "shēnyuǎn chíjiǔ", meaning: "နက်ရှိုင်းကြာရှည်" },
+{ char: "浅薄短暂", pinyin: "qiǎnbó duǎnzàn", meaning: "တိမ်ကောခဏတာ" },
+{ char: "宝贵无价", pinyin: "bǎoguì wújià", meaning: "အဖိုးတန်အတိုင်းမသိ" },
+{ char: "廉价不值", pinyin: "liánjià bùzhí", meaning: "စျေးပေါမတန်ဖိုး" },
+{ char: "优秀卓越", pinyin: "yōuxiù zhuóyuè", meaning: "ထူးချွန်လွန်ကဲ" },
+{ char: "劣质低等", pinyin: "lièzhì dīděng", meaning: "အရည်အသွေးနိမ့်အဆင့်နိမ့်" },
+{ char: "精致完美", pinyin: "jīngzhì wánměi", meaning: "သေချာပြည့်စုံ" },
+{ char: "粗糙简陋", pinyin: "cūcāo jiǎnlòu", meaning: "ကြမ်းတမ်းရိုးစင်း" },
+{ char: "光滑细腻", pinyin: "guānghuá xìni", meaning: "ချောမွေ့နူးညံ့" },
+{ char: "粗糙不平", pinyin: "cūcāo bùpíng", meaning: "ကြမ်းတမ်းမညီညာ" },
+{ char: "柔软舒适", pinyin: "róuruǎn shūshì", meaning: "နူးညံ့သက်တောင့်သက်သာရှိ" },
+{ char: "坚硬冰冷", pinyin: "jiānyìng bīnglěng", meaning: "မာကျောအေးစက်" },
+{ char: "灵活变通", pinyin: "línghuó biàntōng", meaning: "သွက်လက်လိုက်လျောညီထွေရှိ" },
+{ char: "呆板固执", pinyin: "dāibǎn gùzhí", meaning: "တုံးတုံးတိမ်းတိမ်းခေါင်းမာ" },
+{ char: "敏捷迅速", pinyin: "mǐnjié xùnsù", meaning: "လျင်မြန်အမြန်ဆန်ဆန်" },
+{ char: "迟钝缓慢", pinyin: "chídùn huǎnmàn", meaning: "နှေးကွေးအေးဆေး" },
+{ char: "聪明绝顶", pinyin: "cōngmíng juédǐng", meaning: "အလွန်လိမ္မာ" },
+{ char: "愚蠢至极", pinyin: "yúchǔn jízhì", meaning: "အလွန်မိုက်မဲ" },
+{ char: "善良仁爱", pinyin: "shànliáng rén'ài", meaning: "ကောင်းသောစေတနာရှိမေတ္တာရှိ" },
+{ char: "邪恶残忍", pinyin: "xié'è cánrěn", meaning: "ဆိုးဝါးကရုဏာမဲ့" },
+{ char: "正直坦荡", pinyin: "zhèngzhí tǎndàng", meaning: "ဖြောင့်မတ်ပွင့်လင်း" },
+{ char: "虚伪阴险", pinyin: "xūwěi yīnxiǎn", meaning: "အယောင်ဆောင်လျှို့ဝှက်ဆိုးယုတ်" },
+{ char: "忠诚坚定", pinyin: "zhōngchéng jiāndìng", meaning: "သစ္စာရှိခိုင်မာ" },
+{ char: "背叛不忠", pinyin: "bèipàn bùzhōng", meaning: "သစ္စာဖောက်မသစ္စာရှိ" },
+{ char: "聪明才智", pinyin: "cōngmíng cáizhì", meaning: "ဉာဏ်ရည်ထက်မြက်" },
+{ char: "愚钝无知", pinyin: "yúdùn wúzhī", meaning: "ဉာဏ်ရည်နုံ့မသိ" },
+{ char: "优雅高贵", pinyin: "yōuyǎ gāoguì", meaning: "ကြည်ညိုဖွယ်ကောင်းမြင့်မြတ်" },
+{ char: "粗鲁野蛮", pinyin: "cūlǔ yěmán", meaning: "ရိုင်းမယဉ်ကျေး" },
+{ char: "文静端庄", pinyin: "wénjìng duānzhuāng", meaning: "ယဉ်ကျေးကျက်သရေရှိ" },
+{ char: "野蛮粗暴", pinyin: "yěmán cūbào", meaning: "ရိုင်းကြမ်းတမ်း" },
+{ char: "聪明机灵", pinyin: "cōngmíng jīling", meaning: "လိမ္မာသွက်လက်" },
+{ char: "呆滞木讷", pinyin: "dāizhì mùnè", meaning: "တုံ့ဆိုင်းစကားနည်း" },
+{ char: "快乐无忧", pinyin: "kuàilè wúyōu", meaning: "ပျော်ရွှင်အစိုးရိမ်မရှိ" },
+{ char: "忧愁烦恼", pinyin: "yōuchóu fánnǎo", meaning: "စိုးရိမ်ပူပန်" },
+{ char: "温暖如春", pinyin: "wēnnuǎn rú chūn", meaning: "နွေးထွေးနွေဦးကဲ့သို့" },
+{ char: "冰冷刺骨", pinyin: "bīnglěng cìgǔ", meaning: "အလွန်အေးရိုးထိုး" },
+{ char: "阳光灿烂", pinyin: "yángguāng cànlàn", meaning: "နေရောင်ထွန်းလင်းတောက်ပ" },
+{ char: "阴沉昏暗", pinyin: "yīnchén hūn'àn", meaning: "တိမ်မှောင်မှိန်မှိုင်း" },
+{ char: "善良温和", pinyin: "shànliáng wēnhé", meaning: "ကရုဏာရှိနူးညံ့" },
+{ char: "残忍冷酷", pinyin: "cánrěn lěngkù", meaning: "ကရုဏာမဲ့အေးစက်" },
+{ char: "聪明睿智", pinyin: "cōngmíng ruìzhì", meaning: "ဉာဏ်ကောင်းထက်မြက်" },
+{ char: "平庸无能", pinyin: "píngyōng wúnéng", meaning: "သာမန်စွမ်းရည်မရှိ" },
+{ char: "勇敢无畏", pinyin: "yǒnggǎn wúwèi", meaning: "ရဲရင့်မကြောက်" },
+{ char: "怯懦畏缩", pinyin: "qiènuò wèisuō", meaning: "ကြောက်ဆုတ်ယုတ်" },
+{ char: "勤奋努力", pinyin: "qínfèn nǔlì", meaning: "ကြိုးစားအားထုတ်" },
+{ char: "懒惰成性", pinyin: "lǎnduò chéngxìng", meaning: "ပျင်းရိအကျင့်ဖြစ်" },
+{ char: "诚实守信", pinyin: "chéngshí shǒuxìn", meaning: "ရိုးသားကတိတည်" },
+{ char: "虚伪欺诈", pinyin: "xūwěi qīzhà", meaning: "အယောင်ဆောင်လိမ်ညာ" },
+{ char: "开朗乐观", pinyin: "kāilǎng lèguān", meaning: "ပွင့်လင်းအကောင်းမြင်" },
+{ char: "孤僻悲观", pinyin: "gūpì bēiguān", meaning: "သီးခြားနေအဆိုးမြင်" },
+{ char: "友善亲切", pinyin: "yǒushàn qīnqiè", meaning: "ဖော်ရွေရင်းနှီး" },
+{ char: "敌对仇恨", pinyin: "díduì chóuhèn", meaning: "ရန်လိုမုန်းတီး" },
+{ char: "聪明伶俐", pinyin: "cōngmíng línglì", meaning: "လိမ္မာသွက်လက်" },
+{ char: "憨厚老实", pinyin: "hānhòu lǎoshi", meaning: "ရိုးသားဖြောင့်မတ်" },
+{ char: "精明能干", pinyin: "jīngmíng nénggàn", meaning: "တော်စွမ်းဆောင်ရည်ရှိ" },
+{ char: "糊涂无能", pinyin: "hútu wúnéng", meaning: "ဝေဝါးစွမ်းရည်မရှိ" },
+{ char: "优秀杰出", pinyin: "yōuxiù jiéchū", meaning: "ထူးချွန်ထင်ရှား" },
+{ char: "普通平凡", pinyin: "pǔtōng píngfán", meaning: "သာမန်ထူးခြားမှုမရှိ" },
+{ char: "聪明智慧", pinyin: "cōngmíng zhìhuì", meaning: "ဉာဏ်ပညာရှိ" },
+{ char: "愚昧无知", pinyin: "yúmèi wúzhī", meaning: "မိုက်မဲမသိ" },
+{ char: "谦虚礼让", pinyin: "qiānxū lǐràng", meaning: "နှိမ့်ချယဉ်ကျေး" },
+{ char: "自大傲慢", pinyin: "zìdà àomàn", meaning: "မာနကြီးထောင်လွှား" },
+{ char: "善良宽厚", pinyin: "shànliáng kuānhòu", meaning: "ကရုဏာရှိသည်းခံ" },
+{ char: "狠毒刻薄", pinyin: "hěndú kèbó", meaning: "ဆိုးကြမ်းတမ်း" },
+{ char: "忠诚可靠", pinyin: "zhōngchéng kěkào", meaning: "သစ္စာရှိအားကိုးရ" },
+{ char: "背叛离弃", pinyin: "bèipàn líqì", meaning: "သစ္စာဖောက်စွန့်ခွာ" },
+{ char: "聪明好学", pinyin: "cōngmíng hàoxué", meaning: "လိမ္မာစာသင်လို" },
+{ char: "愚蠢厌学", pinyin: "yúchǔn yànxué", meaning: "မိုက်မဲစာသင်မုန်း" },
+{ char: "勇敢坚强", pinyin: "yǒnggǎn jiānqiáng", meaning: "ရဲရင့်ခိုင်မာ" },
+{ char: "胆小软弱", pinyin: "dǎnxiǎo ruǎnruò", meaning: "ကြောက်အားနည်း" },
+{ char: "勤奋刻苦", pinyin: "qínfèn kèkǔ", meaning: "လုံ့လရှိဇွဲရှိ" },
+{ char: "懒惰散漫", pinyin: "lǎnduò sǎnmàn", meaning: "ပျင်းရိစည်းကမ်းမဲ့" },
+{ char: "美丽动人", pinyin: "měilì dòngrén", meaning: "လှပဆွဲဆောင်မှုရှိ" },
+{ char: "丑陋恶心", pinyin: "chǒulòu ěxīn", meaning: "ရုပ်ဆိုးရွံစရာကောင်း" },
+{ char: "聪明过人", pinyin: "cōngmíng guòrén", meaning: "လူထက်လိမ္မာ" },
+{ char: "愚笨迟钝", pinyin: "yúbèn chídùn", meaning: "မိုက်မဲနှေးကွေး" },
+{ char: "开朗大方", pinyin: "kāilǎng dàfāng", meaning: "ပွင့်လင်းရက်ရော" },
+{ char: "小气拘谨", pinyin: "xiǎoqì jūjǐn", meaning: "ငြူစူကျဉ်းကျပ်" },
+{ char: "温柔善良", pinyin: "wēnróu shànliáng", meaning: "နူးညံ့ကောင်း" },
+{ char: "粗暴邪恶", pinyin: "cūbào xié'è", meaning: "ကြမ်းတမ်းဆိုးဝါး" },
+{ char: "耐心宽容", pinyin: "nàixīn kuānróng", meaning: "သည်းခံခွင့်လွှတ်" },
+{ char: "急躁狭隘", pinyin: "jízào xiá'ài", meaning: "စိတ်တိုကျဉ်းမြောင်း" },
+{ char: "聪明绝顶", pinyin: "cōngmíng juédǐng", meaning: "အလွန်လိမ္မာ" },
+{ char: "愚不可及", pinyin: "yú bùkě jí", meaning: "အလွန်မိုက်မဲ" },
+{ char: "勇敢善战", pinyin: "yǒnggǎn shànzhàn", meaning: "ရဲရင့်တိုက်ခိုက်ရာတွင်ကျွမ်းကျင်" },
+{ char: "胆小怕事", pinyin: "dǎnxiǎo pàshì", meaning: "ကြောက်အလုပ်မလုပ်ရဲ" },
+{ char: "勤奋好学", pinyin: "qínfèn hàoxué", meaning: "လုံ့လရှိစာသင်လို" },
+{ char: "懒惰无知", pinyin: "lǎnduò wúzhī", meaning: "ပျင်းရိမသိ" },
+{ char: "美丽优雅", pinyin: "měilì yōuyǎ", meaning: "လှပကျက်သရေရှိ" },
+{ char: "丑陋粗俗", pinyin: "chǒulòu cūsú", meaning: "ရုပ်ဆိုးရိုင်းစိုင်း" },
+{ char: "聪明善良", pinyin: "cōngmíng shànliáng", meaning: "လိမ္မာကောင်း" },
+{ char: "愚蠢邪恶", pinyin: "yúchǔn xié'è", meaning: "မိုက်မဲဆိုးဝါး" },
+{ char: "勇敢果断", pinyin: "yǒnggǎn guǒduàn", meaning: "ရဲရင့်ပြတ်သား" },
+{ char: "胆小犹豫", pinyin: "dǎnxiǎo yóuyù", meaning: "ကြောက်ဝေခွဲမရ" },
+{ char: "勤奋进取", pinyin: "qínfèn jìnqǔ", meaning: "လုံ့လရှိရှေ့သို့တက်လို" },
+{ char: "懒惰退缩", pinyin: "lǎnduò tuìsuō", meaning: "ပျင်းရိဆုတ်ယုတ်" },
+{ char: "美丽善良", pinyin: "měilì shànliáng", meaning: "လှပကောင်း" },
+{ char: "丑陋邪恶", pinyin: "chǒulòu xié'è", meaning: "ရုပ်ဆိုးဆိုးဝါး" },
+{ char: "聪明勇敢", pinyin: "cōngmíng yǒnggǎn", meaning: "လိမ္မာရဲရင့်" },
+{ char: "愚蠢胆小", pinyin: "yúchǔn dǎnxiǎo", meaning: "မိုက်မဲကြောက်တတ်" },
+{ char: "勤奋聪明", pinyin: "qínfèn cōngmíng", meaning: "လုံ့လရှိလိမ္မာ" },
+{ char: "懒惰愚蠢", pinyin: "lǎnduò yúchǔn", meaning: "ပျင်းရိမိုက်မဲ" },
+{ char: "美丽聪明", pinyin: "měilì cōngmíng", meaning: "လှပလိမ္မာ" },
+{ char: "丑陋愚蠢", pinyin: "chǒulòu yúchǔn", meaning: "ရုပ်ဆိုးမိုက်မဲ" },
+{ char: "善良勇敢", pinyin: "shànliáng yǒnggǎn", meaning: "ကောင်းရဲရင့်" },
+{ char: "邪恶胆小", pinyin: "xié'è dǎnxiǎo", meaning: "ဆိုးကြောက်တတ်" },
+{ char: "诚实聪明", pinyin: "chéngshí cōngmíng", meaning: "ရိုးသားလိမ္မာ" },
+{ char: "老实本分", pinyin: "lǎoshi běnfèn", meaning: "ရိုးသားကျေနပ်တတ်" },
+{ char: "狡猾多变", pinyin: "jiǎohuá duōbiàn", meaning: "လိမ္မာပါးနပ်ပြောင်းလဲတတ်" },
+{ char: "勤劳朴实", pinyin: "qínláo pǔshí", meaning: "လုံ့လရှိရိုးသား" },
+{ char: "好逸恶劳", pinyin: "hàoyì wùláo", meaning: "ပျင်းရိအလုပ်မုန်း" },
+{ char: "忠厚老实", pinyin: "zhōnghòu lǎoshi", meaning: "သစ္စာရှိရိုးသား" },
+{ char: "奸诈狡猾", pinyin: "jiānzhà jiǎohuá", meaning: "ငြူစူလိမ္မာပါးနပ်" },
+{ char: "温文尔雅", pinyin: "wēnwén'ěryǎ", meaning: "နူးညံ့ယဉ်ကျေးကျက်သရေရှိ" },
+{ char: "粗暴蛮横", pinyin: "cūbào mánhèng", meaning: "ကြမ်းတမ်းမိုက်မဲ" },
+{ char: "善解人意", pinyin: "shànjiě rényì", meaning: "စေတနာကောင်းနားလည်တတ်" },
+{ char: "蛮不讲理", pinyin: "mánbùjiǎnglǐ", meaning: "မိုက်မဲခေါင်းမာ" },
+{ char: "谦虚谨慎", pinyin: "qiānxū jǐnshèn", meaning: "နှိမ့်ချသတိကြီး" },
+{ char: "骄傲自大", pinyin: "jiāo'ào zìdà", meaning: "မာနကြီးထောင်လွှား" },
+{ char: "乐于助人", pinyin: "lèyú zhùrén", meaning: "ကူညီလိုစိတ်ရှိ" },
+{ char: "自私冷漠", pinyin: "zìsī lěngmò", meaning: "ကိုယ်ကျိုးရှာအေးစက်" },
+{ char: "勤奋好学", pinyin: "qínfèn hàoxué", meaning: "လုံ့လရှိစာသင်လို" },
+{ char: "好吃懒做", pinyin: "hàochī lǎnzuò", meaning: "စားချင်ပျင်းရိ" },
+{ char: "勇敢正义", pinyin: "yǒnggǎn zhèngyì", meaning: "ရဲရင့်တရားမျှတ" },
+{ char: "胆小怕事", pinyin: "dǎnxiǎo pàshì", meaning: "ကြောက်အလုပ်မလုပ်ရဲ" },
+{ char: "聪明睿智", pinyin: "cōngmíng ruìzhì", meaning: "လိမ္မာထက်မြက်" },
+{ char: "愚昧无知", pinyin: "yúmèi wúzhī", meaning: "မိုက်မဲမသိ" },
+{ char: "宽容大度", pinyin: "kuānróng dàdù", meaning: "သည်းခံရက်ရော" },
+{ char: "心胸狭窄", pinyin: "xīnxiōng xiázhǎi", meaning: "စိတ်ထားကျဉ်းမြောင်း" },
+{ char: "乐观开朗", pinyin: "lèguān kāilǎng", meaning: "အကောင်းမြင်ပွင့်လင်း" },
+{ char: "悲观消沉", pinyin: "bēiguān xiāochén", meaning: "အဆိုးမြင်အားငယ်" },
+{ char: "积极进取", pinyin: "jījí jìnqǔ", meaning: "တက်ကြွရှေ့သို့" },
+{ char: "消极畏缩", pinyin: "xiāojí wèisuō", meaning: "အားငယ်ဆုတ်ယုတ်" },
+{ char: "自信乐观", pinyin: "zìxìn lèguān", meaning: "ယုံကြည်မှုရှိအကောင်းမြင်" },
+{ char: "自卑悲观", pinyin: "zìbēi bēiguān", meaning: "ယုံကြည်မှုနည်းအဆိုးမြင်" },
+{ char: "幸福美满", pinyin: "xìngfú měimǎn", meaning: "ပျော်ရွှင်ချမ်းမြေ့" },
+{ char: "痛苦悲伤", pinyin: "tòngkǔ bēishāng", meaning: "ဆင်းရဲဝမ်းနည်း" },
+{ char: "忙碌充实", pinyin: "mánglù chōngshí", meaning: "အလုပ်များပြည့်ဝ" },
+{ char: "悠闲自得", pinyin: "yōuxián zìdé", meaning: "အားလပ်ကျေနပ်" },
+{ char: "丰富多彩", pinyin: "fēngfù duōcǎi", meaning: "ကြွယ်ဝစုံလင်" },
+{ char: "贫乏单调", pinyin: "pínfá dāndiào", meaning: "ဆင်းရဲငြီးငွေ့" },
+{ char: "热闹非凡", pinyin: "rènao fēifán", meaning: "အလွန်စည်ကား" },
+{ char: "冷清寂寞", pinyin: "lěngqīng jìmò", meaning: "ဆိတ်ငြိမ်အထီးကျန်" },
+{ char: "光明正大", pinyin: "guāngmíng zhèngdà", meaning: "ပွင့်လင်းဖြောင့်မတ်" },
+{ char: "偷偷摸摸", pinyin: "tōutōumōmō", meaning: "ခိုးဝှက်လျှို့ဝှက်" },
+{ char: "豪爽大方", pinyin: "háoshuǎng dàfāng", meaning: "ရက်ရောပွင့်လင်း" },
+{ char: "小气吝啬", pinyin: "xiǎoqì lìnsè", meaning: "ငြူစူဝန်တို" },
+{ char: "温柔体贴", pinyin: "wēnróu tǐtiē", meaning: "နူးညံ့ဂရုစိုက်" },
+{ char: "粗暴无情", pinyin: "cūbào wúqíng", meaning: "ကြမ်းတမ်းကရုဏာမရှိ" },
+{ char: "耐心细致", pinyin: "nàixīn xìzhì", meaning: "သည်းခံသေချာ" },
+{ char: "粗心大意", pinyin: "cūxīn dàyì", meaning: "မသေချာပေါ့ဆ" },
+{ char: "聪明能干", pinyin: "cōngmíng nénggàn", meaning: "လိမ္မာစွမ်းဆောင်ရည်ရှိ" },
+{ char: "笨拙无能", pinyin: "bènzhuō wúnéng", meaning: "တုံးတုံးတိမ်းတိမ်းစွမ်းရည်မရှိ" },
+{ char: "诚实可靠", pinyin: "chéngshí kěkào", meaning: "ရိုးသားအားကိုးရ" },
+{ char: "虚伪阴险", pinyin: "xūwěi yīnxiǎn", meaning: "အယောင်ဆောင်လျှို့ဝှက်" },
+{ char: "慷慨大方", pinyin: "kāngkǎi dàfāng", meaning: "ရက်ရောပေါင်းသင်းဆက်ဆံကောင်း" },
+{ char: "吝啬贪婪", pinyin: "lìnsè tānlán", meaning: "ဝန်တိုလောဘကြီး" },
+{ char: "高贵优雅", pinyin: "gāoguì yōuyǎ", meaning: "မြင့်မြတ်ကျက်သရေရှိ" },
+{ char: "低俗粗鲁", pinyin: "dīsú cūlǔ", meaning: "ယုတ်မာရိုင်းစိုင်း" },
+{ char: "纯洁善良", pinyin: "chúnjié shànliáng", meaning: "ဖြူစင်ကောင်း" },
+{ char: "邪恶污秽", pinyin: "xié'è wūhuì", meaning: "ဆိုးဝါးညစ်ညမ်း" },
+{ char: "神圣伟大", pinyin: "shénshèng wěidà", meaning: "မြင့်မြတ်ကြီးကျယ်" },
+{ char: "世俗平凡", pinyin: "shìsú píngfán", meaning: "လောကီဆန်သာမန်" },
+{ char: "天真烂漫", pinyin: "tiānzhēn lànmàn", meaning: "ရိုးသားဖြူစင်ပျော်ရွှင်" },
+{ char: "老谋深算", pinyin: "lǎomóu shēnsuàn", meaning: "အတွေ့အကြုံရင့်ကျက်တွက်ချက်တတ်" },
+{ char: "开朗活泼", pinyin: "kāilǎng huópo", meaning: "ပွင့်လင်းသွက်လက်" },
+{ char: "沉闷内向", pinyin: "chénmèn nèixiàng", meaning: "အားငယ်တွင်းဝင်" },
+{ char: "坦率真诚", pinyin: "tǎnshuài zhēnchéng", meaning: "ပွင့်လင်းရိုးသားစိတ်ရင်းမှန်" },
+{ char: "圆滑世故", pinyin: "yuánhuá shìgù", meaning: "ချောမွေ့လောကီရင့်ကျက်" },
+{ char: "果断坚决", pinyin: "guǒduàn jiānjué", meaning: "ပြတ်သားခိုင်မာ" },
+{ char: "优柔寡断", pinyin: "yōuróu guǎduàn", meaning: "ဝေခွဲမရဆုံးဖြတ်မရ" },
+{ char: "坚定不移", pinyin: "jiāndìng bùyí", meaning: "ခိုင်မာမယိမ်းယိုင်" },
+{ char: "摇摆不定", pinyin: "yáobǎi bùdìng", meaning: "ယိမ်းယိုင်မတည်ငြိမ်" },
+{ char: "团结一致", pinyin: "tuánjié yīzhì", meaning: "စည်းလုံးညီညွတ်" },
+{ char: "各自为政", pinyin: "gèzì wéizhèng", meaning: "သီးခြားစီလုပ်ဆောင်" },
+{ char: "和平友好", pinyin: "hépíng yǒuhǎo", meaning: "ငြိမ်းချမ်းဖော်ရွေ" },
+{ char: "敌对冲突", pinyin: "díduì chōngtū", meaning: "ရန်လိုပဋိပက္ခဖြစ်" },
+{ char: "繁荣兴旺", pinyin: "fánróng xīngwàng", meaning: "ဖွံ့ဖြိုးစည်ပင်" },
+{ char: "衰败没落", pinyin: "shuāibài mòluò", meaning: "ပျက်စီးကျဆင်း" },
+{ char: "强大无敌", pinyin: "qiángdà wúdí", meaning: "အားကြီးအောင်နိုင်မရှိ" },
+{ char: "弱小无助", pinyin: "ruòxiǎo wúzhù", meaning: "အားနည်းအကူမရှိ" },
+{ char: "广阔无垠", pinyin: "guǎngkuò wúyín", meaning: "ကျယ်ပြန့်အဆုံးအစမရှိ" },
+{ char: "狭小有限", pinyin: "xiáxiǎo yǒuxiàn", meaning: "ကျဉ်းမြောင်းအကန့်အသတ်ရှိ" },
+{ char: "深远持久", pinyin: "shēnyuǎn chíjiǔ", meaning: "နက်ရှိုင်းကြာရှည်" },
+{ char: "肤浅短暂", pinyin: "fūqiǎn duǎnzàn", meaning: "တိမ်ကောခဏတာ" },
+{ char: "宝贵珍稀", pinyin: "bǎoguì zhēnxī", meaning: "အဖိုးတန်ရှားပါး" },
+{ char: "普通常见", pinyin: "pǔtōng chángjiàn", meaning: "သာမန်တွေ့ရများ" },
+{ char: "优秀卓越", pinyin: "yōuxiù zhuóyuè", meaning: "ထူးချွန်လွန်ကဲ" },
+{ char: "平凡普通", pinyin: "píngfán pǔtōng", meaning: "သာမန်ထူးခြားမှုမရှိ" },
+{ char: "精致完美", pinyin: "jīngzhì wánměi", meaning: "သေချာပြည့်စုံ" },
+{ char: "粗糙简陋", pinyin: "cūcāo jiǎnlòu", meaning: "ကြမ်းတမ်းရိုးစင်း" },
+{ char: "光滑细腻", pinyin: "guānghuá xìni", meaning: "ချောမွေ့နူးညံ့" },
+{ char: "粗糙不平", pinyin: "cūcāo bùpíng", meaning: "ကြမ်းတမ်းမညီညာ" },
+{ char: "柔软舒适", pinyin: "róuruǎn shūshì", meaning: "နူးညံ့သက်တောင့်သက်သာရှိ" },
+{ char: "坚硬冰冷", pinyin: "jiānyìng bīnglěng", meaning: "မာကျောအေးစက်" },
+{ char: "灵活变通", pinyin: "línghuó biàntōng", meaning: "သွက်လက်လိုက်လျောညီထွေရှိ" },
+{ char: "固执死板", pinyin: "gùzhí sǐbǎn", meaning: "ခေါင်းမာတုံးတုံးတိမ်းတိမ်း" },
+{ char: "敏捷迅速", pinyin: "mǐnjié xùnsù", meaning: "လျင်မြန်အမြန်ဆန်ဆန်" },
+{ char: "迟钝缓慢", pinyin: "chídùn huǎnmàn", meaning: "နှေးကွေးအေးဆေး" },
+{ char: "聪明绝顶", pinyin: "cōngmíng juédǐng", meaning: "အလွန်လိမ္မာ" },
+{ char: "愚不可及", pinyin: "yú bùkě jí", meaning: "အလွန်မိုက်မဲ" },
+{ char: "善良仁厚", pinyin: "shànliáng rénhòu", meaning: "ကောင်းသောစေတနာရှိရက်ရော" },
+{ char: "邪恶凶残", pinyin: "xié'è xiōngcán", meaning: "ဆိုးဝါးကြမ်းကြုတ်" },
+{ char: "正直坦率", pinyin: "zhèngzhí tǎnshuài", meaning: "ဖြောင့်မတ်ပွင့်လင်း" },
+{ char: "虚伪狡诈", pinyin: "xūwěi jiǎozhà", meaning: "အယောင်ဆောင်လိမ္မာပါးနပ်" },
+{ char: "忠诚守信", pinyin: "zhōngchéng shǒuxìn", meaning: "သစ္စာရှိကတိတည်" },
+{ char: "背叛失信", pinyin: "bèipàn shīxìn", meaning: "သစ္စာဖောက်ကတိမတည်" },
+{ char: "聪明智慧", pinyin: "cōngmíng zhìhuì", meaning: "ဉာဏ်ရည်ထက်မြက်ပညာရှိ" },
+{ char: "愚钝笨拙", pinyin: "yúdùn bènzhuō", meaning: "ဉာဏ်ရည်နုံ့တုံးတုံးတိမ်းတိမ်း" },
+{ char: "优雅高贵", pinyin: "yōuyǎ gāoguì", meaning: "ကြည်ညိုဖွယ်ကောင်းမြင့်မြတ်" },
+{ char: "粗野低俗", pinyin: "cūyě dīsú", meaning: "ရိုင်းယုတ်မာ" },
+{ char: "文静贤淑", pinyin: "wénjìng xiánshū", meaning: "ယဉ်ကျေးသိမ်မွေ့" },
+{ char: "野蛮粗鲁", pinyin: "yěmán cūlǔ", meaning: "ရိုင်းကြမ်းတမ်း" },
+{ char: "聪明伶俐", pinyin: "cōngmíng línglì", meaning: "လိမ္မာသွက်လက်" },
+{ char: "呆头呆脑", pinyin: "dāitóu dāinǎo", meaning: "တုံးတုံးတိမ်းတိမ်းတုံ့ဆိုင်း" },
+{ char: "快乐幸福", pinyin: "kuàilè xìngfú", meaning: "ပျော်ရွှင်ချမ်းမြေ့" },
+{ char: "痛苦悲伤", pinyin: "tòngkǔ bēishāng", meaning: "ဆင်းရဲဝမ်းနည်း" },
+{ char: "温暖如春", pinyin: "wēnnuǎn rú chūn", meaning: "နွေးထွေးနွေဦးကဲ့သို့" },
+{ char: "寒冷如冰", pinyin: "hánlěng rú bīng", meaning: "အေးစက်ရေခဲကဲ့သို့" },
+{ char: "阳光明媚", pinyin: "yángguāng míngmèi", meaning: "နေရောင်ထွန်းလင်းတောက်ပ" },
+{ char: "阴雨绵绵", pinyin: "yīnyǔ miánmián", meaning: "မိုးရွာနေတိမ်မှောင်" },
+{ char: "善良温和", pinyin: "shànliáng wēnhé", meaning: "ကရုဏာရှိနူးညံ့" },
+{ char: "凶恶残暴", pinyin: "xiōng'è cánbào", meaning: "ဆိုးဝါးကြမ်းကြုတ်" },
+{ char: "聪明睿智", pinyin: "cōngmíng ruìzhì", meaning: "ဉာဏ်ကောင်းထက်မြက်" },
+{ char: "愚昧无知", pinyin: "yúmèi wúzhī", meaning: "မိုက်မဲမသိ" },
+{ char: "勇敢无畏", pinyin: "yǒnggǎn wúwèi", meaning: "ရဲရင့်မကြောက်" },
+{ char: "胆小如鼠", pinyin: "dǎnxiǎo rú shǔ", meaning: "ကြောက်တတ်ကြွက်ကဲ့သို့" },
+{ char: "勤奋努力", pinyin: "qínfèn nǔlì", meaning: "ကြိုးစားအားထုတ်" },
+{ char: "懒惰成性", pinyin: "lǎnduò chéngxìng", meaning: "ပျင်းရိအကျင့်ဖြစ်" },
+{ char: "诚实守信", pinyin: "chéngshí shǒuxìn", meaning: "ရိုးသားကတိတည်" },
+{ char: "欺诈狡猾", pinyin: "qīzhà jiǎohuá", meaning: "လိမ်ညာပါးနပ်" },
+{ char: "开朗乐观", pinyin: "kāilǎng lèguān", meaning: "ပွင့်လင်းအကောင်းမြင်" },
+{ char: "孤僻消沉", pinyin: "gūpì xiāochén", meaning: "သီးခြားနေအားငယ်" },
+{ char: "友善和蔼", pinyin: "yǒushàn hé'ǎi", meaning: "ဖော်ရွေကြင်နာ" },
+{ char: "敌视仇恨", pinyin: "díshì chóuhèn", meaning: "ရန်လိုမုန်းတီး" },
+{ char: "聪明乖巧", pinyin: "cōngmíng guāiqiǎo", meaning: "လိမ္မာနာခံတတ်" },
+{ char: "憨厚老实", pinyin: "hānhòu lǎoshi", meaning: "ရိုးသားဖြောင့်မတ်" },
+{ char: "精明强干", pinyin: "jīngmíng qiánggàn", meaning: "တော်စွမ်းဆောင်ရည်ရှိ" },
+{ char: "糊涂无能", pinyin: "hútu wúnéng", meaning: "ဝေဝါးစွမ်းရည်မရှိ" },
+{ char: "优秀杰出", pinyin: "yōuxiù jiéchū", meaning: "ထူးချွန်ထင်ရှား" },
+{ char: "平凡普通", pinyin: "píngfán pǔtōng", meaning: "သာမန်ထူးခြားမှုမရှိ" },
+{ char: "聪明智慧", pinyin: "cōngmíng zhìhuì", meaning: "ဉာဏ်ပညာရှိ" },
+{ char: "愚昧无知", pinyin: "yúmèi wúzhī", meaning: "မိုက်မဲမသိ" },
+{ char: "谦虚礼让", pinyin: "qiānxū lǐràng", meaning: "နှိမ့်ချယဉ်ကျေး" },
+{ char: "自大傲慢", pinyin: "zìdà àomàn", meaning: "မာနကြီးထောင်လွှား" },
+{ char: "善良宽厚", pinyin: "shànliáng kuānhòu", meaning: "ကရုဏာရှိသည်းခံ" },
+{ char: "狠毒刻薄", pinyin: "hěndú kèbó", meaning: "ဆိုးကြမ်းတမ်း" },
+{ char: "忠诚可靠", pinyin: "zhōngchéng kěkào", meaning: "သစ္စာရှိအားကိုးရ" },
+{ char: "背叛离弃", pinyin: "bèipàn líqì", meaning: "သစ္စာဖောက်စွန့်ခွာ" },
+{ char: "聪明好学", pinyin: "cōngmíng hàoxué", meaning: "လိမ္မာစာသင်လို" },
+{ char: "愚蠢厌学", pinyin: "yúchǔn yànxué", meaning: "မိုက်မဲစာသင်မုန်း" },
+{ char: "勇敢坚强", pinyin: "yǒnggǎn jiānqiáng", meaning: "ရဲရင့်ခိုင်မာ" },
+{ char: "胆小软弱", pinyin: "dǎnxiǎo ruǎnruò", meaning: "ကြောက်အားနည်း" },
+{ char: "勤奋刻苦", pinyin: "qínfèn kèkǔ", meaning: "လုံ့လရှိဇွဲရှိ" },
+{ char: "懒惰散漫", pinyin: "lǎnduò sǎnmàn", meaning: "ပျင်းရိစည်းကမ်းမဲ့" },
+{ char: "美丽动人", pinyin: "měilì dòngrén", meaning: "လှပဆွဲဆောင်မှုရှိ" },
+{ char: "丑陋恶心", pinyin: "chǒulòu ěxīn", meaning: "ရုပ်ဆိုးရွံစရာကောင်း" },
+{ char: "聪明过人", pinyin: "cōngmíng guòrén", meaning: "လူထက်လိမ္မာ" },
+{ char: "愚笨迟钝", pinyin: "yúbèn chídùn", meaning: "မိုက်မဲနှေးကွေး" },
+{ char: "开朗大方", pinyin: "kāilǎng dàfāng", meaning: "ပွင့်လင်းရက်ရော" },
+{ char: "小气拘谨", pinyin: "xiǎoqì jūjǐn", meaning: "ငြူစူကျဉ်းကျပ်" },
+{ char: "温柔善良", pinyin: "wēnróu shànliáng", meaning: "နူးညံ့ကောင်း" },
+{ char: "粗暴邪恶", pinyin: "cūbào xié'è", meaning: "ကြမ်းတမ်းဆိုးဝါး" },
+{ char: "耐心宽容", pinyin: "nàixīn kuānróng", meaning: "သည်းခံခွင့်လွှတ်" },
+{ char: "急躁狭隘", pinyin: "jízào xiá'ài", meaning: "စိတ်တိုကျဉ်းမြောင်း" },
+{ char: "聪明绝顶", pinyin: "cōngmíng juédǐng", meaning: "အလွန်လိမ္မာ" },
+{ char: "愚不可及", pinyin: "yú bùkě jí", meaning: "အလွန်မိုက်မဲ" },
+{ char: "勇敢善战", pinyin: "yǒnggǎn shànzhàn", meaning: "ရဲရင့်တိုက်ခိုက်ရာတွင်ကျွမ်းကျင်" },
+{ char: "胆小怕事", pinyin: "dǎnxiǎo pàshì", meaning: "ကြောက်အလုပ်မလုပ်ရဲ" },
+{ char: "勤奋好学", pinyin: "qínfèn hàoxué", meaning: "လုံ့လရှိစာသင်လို" },
+{ char: "懒惰无知", pinyin: "lǎnduò wúzhī", meaning: "ပျင်းရိမသိ" },
+{ char: "美丽优雅", pinyin: "měilì yōuyǎ", meaning: "လှပကျက်သရေရှိ" },
+{ char: "丑陋粗俗", pinyin: "chǒulòu cūsú", meaning: "ရုပ်ဆိုးရိုင်းစိုင်း" },
+{ char: "聪明善良", pinyin: "cōngmíng shànliáng", meaning: "လိမ္မာကောင်း" },
+{ char: "愚蠢邪恶", pinyin: "yúchǔn xié'è", meaning: "မိုက်မဲဆိုးဝါး" },
+{ char: "勇敢果断", pinyin: "yǒnggǎn guǒduàn", meaning: "ရဲရင့်ပြတ်သား" },
+{ char: "胆小犹豫", pinyin: "dǎnxiǎo yóuyù", meaning: "ကြောက်ဝေခွဲမရ" },
+{ char: "勤奋进取", pinyin: "qínfèn jìnqǔ", meaning: "လုံ့လရှိရှေ့သို့တက်လို" },
+{ char: "懒惰退缩", pinyin: "lǎnduò tuìsuō", meaning: "ပျင်းရိဆုတ်ယုတ်" },
+{ char: "美丽善良", pinyin: "měilì shànliáng", meaning: "လှပကောင်း" },
+{ char: "丑陋邪恶", pinyin: "chǒulòu xié'è", meaning: "ရုပ်ဆိုးဆိုးဝါး" },
+{ char: "聪明勇敢", pinyin: "cōngmíng yǒnggǎn", meaning: "လိမ္မာရဲရင့်" },
+{ char: "愚蠢胆小", pinyin: "yúchǔn dǎnxiǎo", meaning: "မိုက်မဲကြောက်တတ်" },
+{ char: "勤奋聪明", pinyin: "qínfèn cōngmíng", meaning: "လုံ့လရှိလိမ္မာ" },
+{ char: "懒惰愚蠢", pinyin: "lǎnduò yúchǔn", meaning: "ပျင်းရိမိုက်မဲ" },
+{ char: "美丽聪明", pinyin: "měilì cōngmíng", meaning: "လှပလိမ္မာ" },
+{ char: "丑陋愚蠢", pinyin: "chǒulòu yúchǔn", meaning: "ရုပ်ဆိုးမိုက်မဲ" },
+{ char: "善良勇敢", pinyin: "shànliáng yǒnggǎn", meaning: "ကောင်းရဲရင့်" },
+{ char: "邪恶胆小", pinyin: "xié'è dǎnxiǎo", meaning: "ဆိုးကြောက်တတ်" },
+{ char: "诚实聪明", pinyin: "chéngshí cōngmíng", meaning: "ရိုးသားလိမ္မာ" },
+{ char: "奸诈狡猾", pinyin: "jiānzhà jiǎohuá", meaning: "ငြူစူလိမ္မာပါးနပ်" },
+{ char: "诚实善良", pinyin: "chéngshí shànliáng", meaning: "ရိုးသားကောင်း" },
+{ char: "勇敢自信", pinyin: "yǒnggǎn zìxìn", meaning: "ရဲရင့်ယုံကြည်မှုရှိ" },
+{ char: "胆小自卑", pinyin: "dǎnxiǎo zìbēi", meaning: "ကြောက်ယုံကြည်မှုနည်း" },
+{ char: "勤奋刻苦", pinyin: "qínfèn kèkǔ", meaning: "လုံ့လရှိဇွဲရှိ" },
+{ char: "懒惰散漫", pinyin: "lǎnduò sǎnmàn", meaning: "ပျင်းရိစည်းကမ်းမဲ့" },
+{ char: "美丽高贵", pinyin: "měilì gāoguì", meaning: "လှပမြင့်မြတ်" },
+{ char: "丑陋低贱", pinyin: "chǒulòu dījiàn", meaning: "ရုပ်ဆိုးယုတ်မာ" },
+{ char: "聪明优雅", pinyin: "cōngmíng yōuyǎ", meaning: "လိမ္မာကျက်သရေရှိ" },
+{ char: "愚蠢粗俗", pinyin: "yúchǔn cūsú", meaning: "မိုက်မဲရိုင်းစိုင်း" },
+{ char: "善良温柔", pinyin: "shànliáng wēnróu", meaning: "ကောင်းနူးညံ့" },
+{ char: "邪恶粗暴", pinyin: "xié'è cūbào", meaning: "ဆိုးကြမ်းတမ်း" },
+{ char: "耐心宽容", pinyin: "nàixīn kuānróng", meaning: "သည်းခံခွင့်လွှတ်" },
+{ char: "急躁狭隘", pinyin: "jízào xiá'ài", meaning: "စိတ်တိုကျဉ်းမြောင်း" },
+{ char: "正直忠诚", pinyin: "zhèngzhí zhōngchéng", meaning: "ဖြောင့်မတ်သစ္စာရှိ" },
+{ char: "虚伪背叛", pinyin: "xūwěi bèipàn", meaning: "အယောင်ဆောင်သစ္စာဖောက်" },
+{ char: "谦虚礼貌", pinyin: "qiānxū lǐmào", meaning: "နှိမ့်ချယဉ်ကျေး" },
+{ char: "骄傲无礼", pinyin: "jiāo'ào wúlǐ", meaning: "မာနကြီးမယဉ်ကျေး" },
+{ char: "乐观开朗", pinyin: "lèguān kāilǎng", meaning: "အကောင်းမြင်ပွင့်လင်း" },
+{ char: "悲观孤僻", pinyin: "bēiguān gūpì", meaning: "အဆိုးမြင်သီးခြားနေ" },
+{ char: "积极向上", pinyin: "jījí xiàngshàng", meaning: "တက်ကြွရှေ့သို့" },
+{ char: "消极落后", pinyin: "xiāojí luòhòu", meaning: "အားငယ်နောက်ကျ" },
+{ char: "自信坚定", pinyin: "zìxìn jiāndìng", meaning: "ယုံကြည်မှုရှိခိုင်မာ" },
+{ char: "自卑动摇", pinyin: "zìbēi dòngyáo", meaning: "ယုံကြည်မှုနည်းယိမ်းယိုင်" },
+{ char: "幸福安康", pinyin: "xìngfú ānkāng", meaning: "ပျော်ရွှင်အေးချမ်း" },
+{ char: "痛苦悲伤", pinyin: "tòngkǔ bēishāng", meaning: "ဆင်းရဲဝမ်းနည်း" },
+{ char: "忙碌充实", pinyin: "mánglù chōngshí", meaning: "အလုပ်များပြည့်ဝ" },
+{ char: "空闲无聊", pinyin: "kòngxián wúliáo", meaning: "အားလပ်ငြီးငွေ့" },
+{ char: "丰富多彩", pinyin: "fēngfù duōcǎi", meaning: "ကြွယ်ဝစုံလင်" },
+{ char: "贫乏单调", pinyin: "pínfá dāndiào", meaning: "ဆင်းရဲငြီးငွေ့" },
+{ char: "热闹繁华", pinyin: "rènao fánhuá", meaning: "စည်ကားဖွံ့ဖြိုး" },
+{ char: "冷清萧条", pinyin: "lěngqīng xiāotiáo", meaning: "ဆိတ်ငြိမ်ကျဆင်း" },
+{ char: "明亮清澈", pinyin: "míngliàng qīngchè", meaning: "တောက်ပကြည်လင်" },
+{ char: "黑暗浑浊", pinyin: "hēi'àn húnzhuó", meaning: "မှောင်မိုက်ဝေဝါး" },
+{ char: "新鲜美味", pinyin: "xīnxiān měiwèi", meaning: "လန်းဆန်းအရသာရှိ" },
+{ char: "陈旧难吃", pinyin: "chénjiù nánchī", meaning: "ဟောင်းနွမ်းစားရခက်" },
+{ char: "香甜可口", pinyin: "xiāngtián kěkǒu", meaning: "မွှေးချိုအရသာရှိ" },
+{ char: "苦涩难咽", pinyin: "kǔsè nányàn", meaning: "ခါးသက်မျိုချရခက်" },
+{ char: "温暖舒适", pinyin: "wēnnuǎn shūshì", meaning: "နွေးထွေးသက်တောင့်သက်သာရှိ" },
+{ char: "寒冷刺骨", pinyin: "hánlěng cìgǔ", meaning: "အေးစက်ရိုးထိုး" },
+{ char: "潮湿闷热", pinyin: "cháoshī mènrè", meaning: "စိုစွတ်ပူပြင်း" },
+{ char: "干燥清爽", pinyin: "gānzào qīngshuǎng", meaning: "ခြောက်သွေ့သွက်လက်" },
+{ char: "美丽端庄", pinyin: "měilì duānzhuāng", meaning: "လှပကျက်သရေရှိ" },
+{ char: "丑陋粗野", pinyin: "chǒulòu cūyě", meaning: "ရုပ်ဆိုးရိုင်းစိုင်း" },
+{ char: "优雅大方", pinyin: "yōuyǎ dàfāng", meaning: "ကျက်သရေရှိရက်ရော" },
+{ char: "粗俗无礼", pinyin: "cūsú wúlǐ", meaning: "ရိုင်းစိုင်းမယဉ်ကျေး" },
+{ char: "高贵圣洁", pinyin: "gāoguì shèngjié", meaning: "မြင့်မြတ်ဖြူစင်" },
+{ char: "低贱污秽", pinyin: "dījiàn wūhuì", meaning: "ယုတ်မာညစ်ညမ်း" },
+{ char: "纯洁善良", pinyin: "chúnjié shànliáng", meaning: "ဖြူစင်ကောင်း" },
+{ char: "污秽邪恶", pinyin: "wūhuì xié'è", meaning: "ညစ်ညမ်းဆိုးဝါး" },
+{ char: "神圣伟大", pinyin: "shénshèng wěidà", meaning: "မြင့်မြတ်ကြီးကျယ်" },
+{ char: "世俗平凡", pinyin: "shìsú píngfán", meaning: "လောကီဆန်သာမန်" },
+{ char: "聪明智慧", pinyin: "cōngmíng zhìhuì", meaning: "လိမ္မာပညာရှိ" },
+{ char: "愚昧无知", pinyin: "yúmèi wúzhī", meaning: "မိုက်မဲမသိ" },
+{ char: "天真可爱", pinyin: "tiānzhēn kě'ài", meaning: "ရိုးသားဖြူစင်ချစ်စရာကောင်း" },
+{ char: "世故老练", pinyin: "shìgù lǎoliàn", meaning: "လောကီရင့်ကျက်အတွေ့အကြုံရှိ" },
+{ char: "开朗活泼", pinyin: "kāilǎng huópo", meaning: "ပွင့်လင်းသွက်လက်" },
+{ char: "忧郁沉闷", pinyin: "yōuyù chénmèn", meaning: "စိတ်ညစ်အားငယ်" },
+{ char: "坦率真诚", pinyin: "tǎnshuài zhēnchéng", meaning: "ပွင့်လင်းရိုးသားစိတ်ရင်းမှန်" },
+{ char: "含蓄内敛", pinyin: "hánxù nèiliǎn", meaning: "သိုသိပ်ချုပ်တည်း" },
+{ char: "果断坚决", pinyin: "guǒduàn jiānjué", meaning: "ပြတ်သားခိုင်မာ" },
+{ char: "犹豫不决", pinyin: "yóuyù bùjué", meaning: "ဝေခွဲမရဆုံးဖြတ်မရ" },
+{ char: "坚定不移", pinyin: "jiāndìng bùyí", meaning: "ခိုင်မာမယိမ်းယိုင်" },
+{ char: "动摇不定", pinyin: "dòngyáo bùdìng", meaning: "ယိမ်းယိုင်မတည်ငြိမ်" },
+{ char: "团结一致", pinyin: "tuánjié yīzhì", meaning: "စည်းလုံးညီညွတ်" },
+{ char: "分裂对立", pinyin: "fēnliè duìlì", meaning: "ကွဲပြားဆန့်ကျင်" },
+{ char: "和平友好", pinyin: "hépíng yǒuhǎo", meaning: "ငြိမ်းချမ်းဖော်ရွေ" },
+{ char: "战争敌对", pinyin: "zhànzhēng díduì", meaning: "စစ်ပွဲဖြစ်ရန်လို" },
+{ char: "繁荣兴旺", pinyin: "fánróng xīngwàng", meaning: "ဖွံ့ဖြိုးစည်ပင်" },
+{ char: "衰败没落", pinyin: "shuāibài mòluò", meaning: "ပျက်စီးကျဆင်း" },
+{ char: "强大无敌", pinyin: "qiángdà wúdí", meaning: "အားကြီးအောင်နိုင်မရှိ" },
+{ char: "弱小无助", pinyin: "ruòxiǎo wúzhù", meaning: "အားနည်းအကူမရှိ" },
+{ char: "广阔无边", pinyin: "guǎngkuò wúbiān", meaning: "ကျယ်ပြန့်အဆုံးအစမရှိ" },
+{ char: "狭窄有限", pinyin: "xiázhǎi yǒuxiàn", meaning: "ကျဉ်းမြောင်းအကန့်အသတ်ရှိ" },
+{ char: "深远持久", pinyin: "shēnyuǎn chíjiǔ", meaning: "နက်ရှိုင်းကြာရှည်" },
+{ char: "肤浅短暂", pinyin: "fūqiǎn duǎnzàn", meaning: "တိမ်ကောခဏတာ" },
+{ char: "宝贵无价", pinyin: "bǎoguì wújià", meaning: "အဖိုးတန်အတိုင်းမသိ" },
+{ char: "廉价不值", pinyin: "liánjià bùzhí", meaning: "စျေးပေါမတန်ဖိုး" },
+{ char: "优秀卓越", pinyin: "yōuxiù zhuóyuè", meaning: "ထူးချွန်လွန်ကဲ" },
+{ char: "劣质低等", pinyin: "lièzhì dīděng", meaning: "အရည်အသွေးနိမ့်အဆင့်နိမ့်" },
+{ char: "精致完美", pinyin: "jīngzhì wánměi", meaning: "သေချာပြည့်စုံ" },
+{ char: "粗糙简陋", pinyin: "cūcāo jiǎnlòu", meaning: "ကြမ်းတမ်းရိုးစင်း" },
+{ char: "光滑细腻", pinyin: "guānghuá xìni", meaning: "ချောမွေ့နူးညံ့" },
+{ char: "粗糙不平", pinyin: "cūcāo bùpíng", meaning: "ကြမ်းတမ်းမညီညာ" },
+{ char: "柔软舒适", pinyin: "róuruǎn shūshì", meaning: "နူးညံ့သက်တောင့်သက်သာရှိ" },
+{ char: "坚硬冰冷", pinyin: "jiānyìng bīnglěng", meaning: "မာကျောအေးစက်" },
+{ char: "灵活变通", pinyin: "línghuó biàntōng", meaning: "သွက်လက်လိုက်လျောညီထွေရှိ" },
+{ char: "呆板固执", pinyin: "dāibǎn gùzhí", meaning: "တုံးတုံးတိမ်းတိမ်းခေါင်းမာ" },
+{ char: "敏捷迅速", pinyin: "mǐnjié xùnsù", meaning: "လျင်မြန်အမြန်ဆန်ဆန်" },
+{ char: "迟钝缓慢", pinyin: "chídùn huǎnmàn", meaning: "နှေးကွေးအေးဆေး" },
+{ char: "聪明绝顶", pinyin: "cōngmíng juédǐng", meaning: "အလွန်လိမ္မာ" },
+{ char: "愚蠢至极", pinyin: "yúchǔn jízhì", meaning: "အလွန်မိုက်မဲ" },
+{ char: "善良仁爱", pinyin: "shànliáng rén'ài", meaning: "ကောင်းသောစေတနာရှိမေတ္တာရှိ" },
+{ char: "邪恶残忍", pinyin: "xié'è cánrěn", meaning: "ဆိုးဝါးကရုဏာမဲ့" },
+{ char: "正直坦荡", pinyin: "zhèngzhí tǎndàng", meaning: "ဖြောင့်မတ်ပွင့်လင်း" },
+{ char: "虚伪阴险", pinyin: "xūwěi yīnxiǎn", meaning: "အယောင်ဆောင်လျှို့ဝှက်ဆိုးယုတ်" },
+{ char: "忠诚坚定", pinyin: "zhōngchéng jiāndìng", meaning: "သစ္စာရှိခိုင်မာ" },
+{ char: "背叛不忠", pinyin: "bèipàn bùzhōng", meaning: "သစ္စာဖောက်မသစ္စာရှိ" },
+{ char: "聪明才智", pinyin: "cōngmíng cáizhì", meaning: "ဉာဏ်ရည်ထက်မြက်" },
+{ char: "愚钝无知", pinyin: "yúdùn wúzhī", meaning: "ဉာဏ်ရည်နုံ့မသိ" },
+{ char: "优雅高贵", pinyin: "yōuyǎ gāoguì", meaning: "ကြည်ညိုဖွယ်ကောင်းမြင့်မြတ်" },
+{ char: "粗鲁野蛮", pinyin: "cūlǔ yěmán", meaning: "ရိုင်းမယဉ်ကျေး" },
+{ char: "文静端庄", pinyin: "wénjìng duānzhuāng", meaning: "ယဉ်ကျေးကျက်သရေရှိ" },
+{ char: "野蛮粗暴", pinyin: "yěmán cūbào", meaning: "ရိုင်းကြမ်းတမ်း" },
+{ char: "聪明机灵", pinyin: "cōngmíng jīling", meaning: "လိမ္မာသွက်လက်" },
+{ char: "呆滞木讷", pinyin: "dāizhì mùnè", meaning: "တုံ့ဆိုင်းစကားနည်း" },
+{ char: "快乐无忧", pinyin: "kuàilè wúyōu", meaning: "ပျော်ရွှင်အစိုးရိမ်မရှိ" },
+{ char: "忧愁烦恼", pinyin: "yōuchóu fánnǎo", meaning: "စိုးရိမ်ပူပန်" },
+{ char: "温暖如春", pinyin: "wēnnuǎn rú chūn", meaning: "နွေးထွေးနွေဦးကဲ့သို့" },
+{ char: "冰冷刺骨", pinyin: "bīnglěng cìgǔ", meaning: "အလွန်အေးရိုးထိုး" },
+{ char: "阳光灿烂", pinyin: "yángguāng cànlàn", meaning: "နေရောင်ထွန်းလင်းတောက်ပ" },
+{ char: "阴沉昏暗", pinyin: "yīnchén hūn'àn", meaning: "တိမ်မှောင်မှိန်မှိုင်း" },
+{ char: "善良温和", pinyin: "shànliáng wēnhé", meaning: "ကရုဏာရှိနူးညံ့" },
+{ char: "残忍冷酷", pinyin: "cánrěn lěngkù", meaning: "ကရုဏာမဲ့အေးစက်" },
+{ char: "聪明睿智", pinyin: "cōngmíng ruìzhì", meaning: "ဉာဏ်ကောင်းထက်မြက်" },
+{ char: "平庸无能", pinyin: "píngyōng wúnéng", meaning: "သာမန်စွမ်းရည်မရှိ" },
+{ char: "勇敢无畏", pinyin: "yǒnggǎn wúwèi", meaning: "ရဲရင့်မကြောက်" },
+{ char: "怯懦畏缩", pinyin: "qiènuò wèisuō", meaning: "ကြောက်ဆုတ်ယုတ်" },
+{ char: "勤奋努力", pinyin: "qínfèn nǔlì", meaning: "ကြိုးစားအားထုတ်" },
+{ char: "懒惰成性", pinyin: "lǎnduò chéngxìng", meaning: "ပျင်းရိအကျင့်ဖြစ်" },
+{ char: "诚实守信", pinyin: "chéngshí shǒuxìn", meaning: "ရိုးသားကတိတည်" },
+{ char: "虚伪欺诈", pinyin: "xūwěi qīzhà", meaning: "အယောင်ဆောင်လိမ်ညာ" },
+{ char: "开朗乐观", pinyin: "kāilǎng lèguān", meaning: "ပွင့်လင်းအကောင်းမြင်" },
+{ char: "孤僻悲观", pinyin: "gūpì bēiguān", meaning: "သီးခြားနေအဆိုးမြင်" },
+{ char: "友善亲切", pinyin: "yǒushàn qīnqiè", meaning: "ဖော်ရွေရင်းနှီး" },
+{ char: "敌对仇恨", pinyin: "díduì chóuhèn", meaning: "ရန်လိုမုန်းတီး" },
+{ char: "聪明伶俐", pinyin: "cōngmíng línglì", meaning: "လိမ္မာသွက်လက်" },
+{ char: "憨厚老实", pinyin: "hānhòu lǎoshi", meaning: "ရိုးသားဖြောင့်မတ်" },
+{ char: "精明能干", pinyin: "jīngmíng nénggàn", meaning: "တော်စွမ်းဆောင်ရည်ရှိ" },
+{ char: "糊涂无能", pinyin: "hútu wúnéng", meaning: "ဝေဝါးစွမ်းရည်မရှိ" },
+{ char: "优秀杰出", pinyin: "yōuxiù jiéchū", meaning: "ထူးချွန်ထင်ရှား" },
+{ char: "普通平凡", pinyin: "pǔtōng píngfán", meaning: "သာမန်ထူးခြားမှုမရှိ" },
+{ char: "聪明智慧", pinyin: "cōngmíng zhìhuì", meaning: "ဉာဏ်ပညာရှိ" },
+{ char: "愚昧无知", pinyin: "yúmèi wúzhī", meaning: "မိုက်မဲမသိ" },
+{ char: "谦虚礼让", pinyin: "qiānxū lǐràng", meaning: "နှိမ့်ချယဉ်ကျေး" },
+{ char: "自大傲慢", pinyin: "zìdà àomàn", meaning: "မာနကြီးထောင်လွှား" },
+{ char: "善良宽厚", pinyin: "shànliáng kuānhòu", meaning: "ကရုဏာရှိသည်းခံ" },
+{ char: "狠毒刻薄", pinyin: "hěndú kèbó", meaning: "ဆိုးကြမ်းတမ်း" },
+{ char: "忠诚可靠", pinyin: "zhōngchéng kěkào", meaning: "သစ္စာရှိအားကိုးရ" },
+{ char: "背叛离弃", pinyin: "bèipàn líqì", meaning: "သစ္စာဖောက်စွန့်ခွာ" },
+{ char: "聪明好学", pinyin: "cōngmíng hàoxué", meaning: "လိမ္မာစာသင်လို" },
+{ char: "愚蠢厌学", pinyin: "yúchǔn yànxué", meaning: "မိုက်မဲစာသင်မုန်း" },
+{ char: "勇敢坚强", pinyin: "yǒnggǎn jiānqiáng", meaning: "ရဲရင့်ခိုင်မာ" },
+{ char: "胆小软弱", pinyin: "dǎnxiǎo ruǎnruò", meaning: "ကြောက်အားနည်း" },
+{ char: "勤奋刻苦", pinyin: "qínfèn kèkǔ", meaning: "လုံ့လရှိဇွဲရှိ" },
+{ char: "懒惰散漫", pinyin: "lǎnduò sǎnmàn", meaning: "ပျင်းရိစည်းကမ်းမဲ့" },
+{ char: "美丽动人", pinyin: "měilì dòngrén", meaning: "လှပဆွဲဆောင်မှုရှိ" },
+{ char: "丑陋恶心", pinyin: "chǒulòu ěxīn", meaning: "ရုပ်ဆိုးရွံစရာကောင်း" },
+{ char: "聪明过人", pinyin: "cōngmíng guòrén", meaning: "လူထက်လိမ္မာ" },
+{ char: "愚笨迟钝", pinyin: "yúbèn chídùn", meaning: "မိုက်မဲနှေးကွေး" },
+{ char: "开朗大方", pinyin: "kāilǎng dàfāng", meaning: "ပွင့်လင်းရက်ရော" },
+{ char: "小气拘谨", pinyin: "xiǎoqì jūjǐn", meaning: "ငြူစူကျဉ်းကျပ်" },
+{ char: "温柔善良", pinyin: "wēnróu shànliáng", meaning: "နူးညံ့ကောင်း" },
+{ char: "粗暴邪恶", pinyin: "cūbào xié'è", meaning: "ကြမ်းတမ်းဆိုးဝါး" },
+{ char: "耐心宽容", pinyin: "nàixīn kuānróng", meaning: "သည်းခံခွင့်လွှတ်" },
+{ char: "急躁狭隘", pinyin: "jízào xiá'ài", meaning: "စိတ်တိုကျဉ်းမြောင်း" },
+{ char: "聪明绝顶", pinyin: "cōngmíng juédǐng", meaning: "အလွန်လိမ္မာ" },
+{ char: "愚不可及", pinyin: "yú bùkě jí", meaning: "အလွန်မိုက်မဲ" },
+{ char: "勇敢善战", pinyin: "yǒnggǎn shànzhàn", meaning: "ရဲရင့်တိုက်ခိုက်ရာတွင်ကျွမ်းကျင်" },
+{ char: "胆小怕事", pinyin: "dǎnxiǎo pàshì", meaning: "ကြောက်အလုပ်မလုပ်ရဲ" },
+{ char: "勤奋好学", pinyin: "qínfèn hàoxué", meaning: "လုံ့လရှိစာသင်လို" },
+{ char: "懒惰无知", pinyin: "lǎnduò wúzhī", meaning: "ပျင်းရိမသိ" },
+{ char: "美丽优雅", pinyin: "měilì yōuyǎ", meaning: "လှပကျက်သရေရှိ" },
+{ char: "丑陋粗俗", pinyin: "chǒulòu cūsú", meaning: "ရုပ်ဆိုးရိုင်းစိုင်း" },
+{ char: "聪明善良", pinyin: "cōngmíng shànliáng", meaning: "လိမ္မာကောင်း" },
+{ char: "愚蠢邪恶", pinyin: "yúchǔn xié'è", meaning: "မိုက်မဲဆိုးဝါး" },
+{ char: "勇敢果断", pinyin: "yǒnggǎn guǒduàn", meaning: "ရဲရင့်ပြတ်သား" },
+{ char: "胆小犹豫", pinyin: "dǎnxiǎo yóuyù", meaning: "ကြောက်ဝေခွဲမရ" },
+{ char: "勤奋进取", pinyin: "qínfèn jìnqǔ", meaning: "လုံ့လရှိရှေ့သို့တက်လို" },
+{ char: "懒惰退缩", pinyin: "lǎnduò tuìsuō", meaning: "ပျင်းရိဆုတ်ယုတ်" },
+{ char: "美丽善良", pinyin: "měilì shànliáng", meaning: "လှပကောင်း" },
+{ char: "丑陋邪恶", pinyin: "chǒulòu xié'è", meaning: "ရုပ်ဆိုးဆိုးဝါး" },
+{ char: "聪明勇敢", pinyin: "cōngmíng yǒnggǎn", meaning: "လိမ္မာရဲရင့်" },
+{ char: "愚蠢胆小", pinyin: "yúchǔn dǎnxiǎo", meaning: "မိုက်မဲကြောက်တတ်" },
+{ char: "勤奋聪明", pinyin: "qínfèn cōngmíng", meaning: "လုံ့လရှိလိမ္မာ" },
+{ char: "懒惰愚蠢", pinyin: "lǎnduò yúchǔn", meaning: "ပျင်းရိမိုက်မဲ" },
+{ char: "美丽聪明", pinyin: "měilì cōngmíng", meaning: "လှပလိမ္မာ" },
+{ char: "丑陋愚蠢", pinyin: "chǒulòu yúchǔn", meaning: "ရုပ်ဆိုးမိုက်မဲ" },
+{ char: "善良勇敢", pinyin: "shànliáng yǒnggǎn", meaning: "ကောင်းရဲရင့်" },
+{ char: "邪恶胆小", pinyin: "xié'è dǎnxiǎo", meaning: "ဆိုးကြောက်တတ်" },
+{ char: "诚实聪明", pinyin: "chéngshí cōngmíng", meaning: "ရိုးသားလိမ္မာ" },
+{ char: "奸诈狡猾", pinyin: "jiānzhà jiǎohuá", meaning: "ငြူစူလိမ္မာပါးနပ်" },
+{ char: "诚实善良", pinyin: "chéngshí shànliáng", meaning: "ရိုးသားကောင်း" },
+{ char: "勇敢自信", pinyin: "yǒnggǎn zìxìn", meaning: "ရဲရင့်ယုံကြည်မှုရှိ" },
+{ char: "胆小自卑", pinyin: "dǎnxiǎo zìbēi", meaning: "ကြောက်ယုံကြည်မှုနည်း" },
+{ char: "勤奋刻苦", pinyin: "qínfèn kèkǔ", meaning: "လုံ့လရှိဇွဲရှိ" },
+{ char: "懒惰散漫", pinyin: "lǎnduò sǎnmàn", meaning: "ပျင်းရိစည်းကမ်းမဲ့" },
+{ char: "美丽高贵", pinyin: "měilì gāoguì", meaning: "လှပမြင့်မြတ်" },
+{ char: "丑陋低贱", pinyin: "chǒulòu dījiàn", meaning: "ရုပ်ဆိုးယုတ်မာ" }
+
+];
+
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const resultList = document.getElementById('resultList');
+    const resultMessage = document.getElementById('resultMessage');
+    const resultCount = document.getElementById('resultCount');
+
+    function renderResults(items) {
+      resultList.innerHTML = '';
+      if (!items || items.length === 0) {
+        const li = document.createElement('li');
+        li.className = 'empty-state';
+        li.innerHTML = `<i class="fas fa-search-minus"></i> ကိုက်ညီသည့် adjective မတွေ့ပါ`;
+        resultList.appendChild(li);
+        resultCount.textContent = '၀ ခု';
+        return;
+      }
+
+      items.forEach((item, index) => {
+        const li = document.createElement('li');
+
+        const charSpan = document.createElement('span');
+        charSpan.className = 'char';
+        charSpan.textContent = item.char;
+
+        const pinyinSpan = document.createElement('span');
+        pinyinSpan.className = 'pinyin';
+        pinyinSpan.textContent = item.pinyin;
+
+        const meaningSpan = document.createElement('span');
+        meaningSpan.className = 'meaning';
+        meaningSpan.textContent = item.meaning;
+
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        badge.textContent = '#' + (index + 1);
+
+        li.appendChild(charSpan);
+        li.appendChild(pinyinSpan);
+        li.appendChild(meaningSpan);
+        li.appendChild(badge);
+        resultList.appendChild(li);
+      });
+
+      resultCount.textContent = items.length + ' ခု';
+    }
+
+    function performSearch() {
+      const query = searchInput.value.trim().toLowerCase();
+      if (query === '') {
+        renderResults(dictionary);
+        resultMessage.innerHTML = `<i class="far fa-circle" style="margin-right: 6px;"></i> ရလဒ်အားလုံး (Adjective)`;
+        return;
+      }
+
+      const filtered = dictionary.filter(item => {
+        return item.char.toLowerCase().includes(query) ||
+               item.pinyin.toLowerCase().includes(query) ||
+               item.meaning.toLowerCase().includes(query);
+      });
+
+      renderResults(filtered);
+
+      if (filtered.length === 0) {
+        resultMessage.innerHTML = `<i class="fas fa-search-minus" style="margin-right: 6px;"></i> “${searchInput.value}” အတွက် မတွေ့ပါ`;
+      } else {
+        resultMessage.innerHTML = `<i class="fas fa-check" style="margin-right: 6px;"></i> “${searchInput.value}” အတွက် တွေ့ရှိချက်`;
+      }
+    }
+
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        performSearch();
+      }
+    });
+
+    // initial render
+    renderResults(dictionary);
+    resultMessage.innerHTML = `<i class="far fa-circle" style="margin-right: 6px;"></i> ရလဒ်အားလုံး (Adjective)`;
+    searchInput.placeholder = 'adjective / pinyin / မြန်မာ';
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,2423 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中文故事 · 阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(145deg, #0b0a1a, #1f1c3b, #191633);
+            padding: 30px 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 48px;
+            padding: 38px 32px;
+            max-width: 960px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            transition: 0.25s;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #f2e9c2;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 10px rgba(255, 215, 100, 0.15);
+        }
+
+        .sub {
+            color: #b8b0d0;
+            font-size: 1rem;
+            margin-bottom: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 14px;
+            letter-spacing: 1px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 18px;
+            color: #7aa2f7;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+            border: 1px solid rgba(122, 162, 247, 0.15);
+            padding: 6px 20px;
+            border-radius: 40px;
+            background: rgba(122, 162, 247, 0.05);
+        }
+        .back-link:hover {
+            color: #c4b5fd;
+            border-color: #c4b5fd;
+            background: rgba(196, 181, 253, 0.1);
+        }
+
+        .spinner-wrap {
+            margin: 10px 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .spinner-wrap label {
+            color: #ddd6f0;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        select {
+            padding: 14px 32px 14px 24px;
+            border-radius: 60px;
+            border: none;
+            background: #201e3e;
+            color: #f5f0ff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: 2px solid rgba(255, 255, 255, 0.1);
+            transition: 0.2s;
+            min-width: 220px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23c4b5fd' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 20px;
+        }
+
+        select:hover {
+            outline-color: #b7a5ff;
+            background-color: #2b2852;
+            box-shadow: 0 0 20px rgba(150, 120, 255, 0.15);
+        }
+
+        select option {
+            background: #1c1a38;
+            color: #f0ecff;
+        }
+
+        .count-badge {
+            display: inline-block;
+            background: rgba(196, 181, 253, 0.12);
+            color: #c4b5fd;
+            padding: 4px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            border: 1px solid rgba(196, 181, 253, 0.1);
+        }
+
+        /* ===== 故事展示区 ===== */
+        .story-display {
+            margin-top: 25px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            padding: 30px 28px;
+            border-left: 5px solid #f9a8d4;
+            min-height: 200px;
+            transition: 0.3s;
+        }
+
+        .story-display .title {
+            color: #f0e68c;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* ----- 三行样式: Hanzi, Pinyin, 缅甸语 ----- */
+        .story-block {
+            margin-bottom: 18px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid #7aa2f7;
+        }
+
+        .story-block .line-hanzi {
+            color: #f0ecff;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            letter-spacing: 0.5px;
+        }
+
+        .story-block .line-pinyin {
+            color: #f9a8d4;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-top: 2px;
+            opacity: 0.85;
+        }
+
+        .story-block .line-my {
+            color: #b8d0c0;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-top: 6px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.06);
+            padding-top: 8px;
+        }
+
+        .story-block .label-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 1px 12px;
+            border-radius: 20px;
+            margin-bottom: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #888;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== 词汇 ===== */
+        .vocab-section {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .vocab-section .vocab-title {
+            color: #fcd34d;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .vocab-section .vocab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            justify-content: center;
+        }
+
+        .vocab-section .vocab-tag {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 6px 16px;
+            border-radius: 30px;
+            color: #ddd;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .vocab-section .vocab-tag:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #b7a5ff;
+        }
+
+        .vocab-section .vocab-tag .pinyin {
+            color: #f9a8d4;
+            font-size: 0.75rem;
+        }
+
+        .vocab-section .vocab-tag .meaning {
+            color: #888;
+            font-size: 0.8rem;
+            margin-left: 4px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #5f5880;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 20px;
+            letter-spacing: 1px;
+        }
+
+        .developer {
+            margin-top: 28px;
+            padding: 18px 20px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .developer .dev-name {
+            color: #f0e68c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+        }
+
+        .developer .dev-detail {
+            color: #b0a8d0;
+            font-size: 0.95rem;
+            margin-top: 6px;
+            line-height: 1.9;
+        }
+
+        .developer .dev-detail span {
+            color: #b7a5ff;
+            font-weight: 500;
+        }
+
+        .developer .dev-detail a {
+            color: #7aa2f7;
+            text-decoration: none;
+            transition: 0.2s;
+            border-bottom: 1px dashed rgba(122, 162, 247, 0.25);
+        }
+
+        .developer .dev-detail a:hover {
+            color: #c4b5fd;
+            border-bottom-color: #c4b5fd;
+        }
+
+        .dev-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 26px 16px; }
+            h1 { font-size: 2rem; }
+            select { width: 100%; min-width: unset; font-size: 0.95rem; }
+            .story-display { padding: 20px 14px; }
+            .story-display .title { font-size: 1.2rem; }
+            .story-block { padding: 10px 12px; }
+            .story-block .line-hanzi { font-size: 1rem; }
+            .story-block .line-pinyin { font-size: 0.8rem; }
+            .story-block .line-my { font-size: 0.9rem; }
+            .vocab-section { padding: 14px; }
+            .developer { padding: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">⬅ 返回主页</a>
+
+        <h1>📖 中文故事</h1>
+        <div class="sub">阅读故事 · 学习中文</div>
+
+        <div class="count-badge" id="countBadge">📚 0 个故事</div>
+
+        <div class="spinner-wrap">
+            <label for="storySelect">📖 故事</label>
+            <select id="storySelect">
+                <!-- JS 动态生成 -->
+            </select>
+        </div>
+
+        <div class="story-display" id="storyDisplay">
+            <div class="title">👋 欢迎阅读</div>
+            <div style="color:#aaa; text-align:center; padding:20px 0;">
+                请选择一个故事开始阅读
+            </div>
+        </div>
+
+        <div class="developer">
+            <span class="dev-icon">👨‍💻</span>
+            <div class="dev-name">Yan Naing</div>
+            <div class="dev-detail">
+                📞 <span>09782992290</span><br />
+                📱 Telegram : <a href="https://t.me/To_my_new_world" target="_blank">@To_my_new_world</a>
+            </div>
+        </div>
+        <div class="footer">✨ 选择故事 · 沉浸阅读</div>
+    </div>
+
+    <script>
+        // =============================================================
+        //  DATA: 中文故事 (包含 Hanzi, Pinyin, 缅甸语 三行分开)
+        //  词汇 50+
+        // =============================================================
+        // =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 每个故事 20+ 段落, 词汇 50+
+// =============================================================
+
+const stories = [
+    // ===================== 故事 1: 善良的狮子 =====================
+    {
+        id: 1,
+        title: "善良的狮子",
+        paragraphs: [
+            { hanzi: "从前，在一片大森林里住着一头狮子。", pinyin: "Cóngqián, zài yīpiàn dà sēnlín lǐ zhù zhe yītóu shīzi.", my: "ရှေးလွန်လေပြီးသောအခါက တောအုပ်ကြီးတစ်ခုမှာ ခြင်္သေ့တစ်ကောင် နေထိုင်တယ်။" },
+            { hanzi: "这头狮子非常善良和温柔，不像其他狮子那样凶猛和危险。", pinyin: "Zhè tóu shīzi fēicháng shànliáng hé wēnróu, bùxiàng qítā shīzi nàyàng xiōngměng hé wēixiǎn.", my: "ဒီခြင်္သေ့က အခြားခြင်္သေ့တွေလို ရက်စက်ပြီး သတ္တိကြီးတာမဟုတ်ဘဲ အရမ်းကြင်နာပြီး နူးညံ့တယ်။" },
+            { hanzi: "他从来不伤害森林里的任何动物。", pinyin: "Tā cónglái bù shānghài sēnlín lǐ de rènhé dòngwù.", my: "သူဟာ တောအုပ်ထဲက ဘယ်တိရစ္ဆာန်ကိုမှ ဘယ်တော့မှ မထိခိုက်စေခဲ့ဘူး။" },
+            { hanzi: "有一天，一只小老鼠在森林里奔跑。", pinyin: "Yǒu yītiān, yīzhī xiǎo lǎoshǔ zài sēnlín lǐ bēnpǎo.", my: "တစ်နေ့မှာ ကြွက်ငယ်လေးတစ်ကောင်က တောအုပ်ထဲမှာ ပြေးလွှားနေတယ်။" },
+            { hanzi: "突然，小老鼠掉进了一个深洞里。", pinyin: "Tūrán, xiǎo lǎoshǔ diàojìn le yīgè shēn dòng lǐ.", my: "ရုတ်တရက် ကြွက်လေးက တွင်းနက်ကြီးတစ်ခုထဲ ပြုတ်ကျသွားတယ်။" },
+            { hanzi: "小老鼠大声呼救，但是没有人来。", pinyin: "Xiǎo lǎoshǔ dàshēng hūjiù, dànshì méiyǒu rén lái.", my: "ကြွက်လေးက အကူအညီတောင်းအော်ငိုပေမယ့် ဘယ်သူမှ မလာခဲ့ဘူး။" },
+            { hanzi: "善良的狮子听到了小老鼠的哭声，便来帮忙。", pinyin: "Shànliáng de shīzi tīngdào le xiǎo lǎoshǔ de kūshēng, biàn lái bāngmáng.", my: "ကြင်နာတဲ့ခြင်္သေ့က ကြွက်လေးရဲ့ငိုသံကိုကြားပြီး လာကူညီတယ်။" },
+            { hanzi: "狮子看到洞里的老鼠说：别担心，小朋友。我会帮助你的。", pinyin: "Shīzi kàndào dòng lǐ de lǎoshǔ shuō: Bié dānxīn, xiǎo péngyou. Wǒ huì bāngzhù nǐ de.", my: "ခြင်္သေ့က တွင်းထဲမှာရှိတဲ့ကြွက်လေးကိုမြင်တော့ မပူပါနဲ့ မိတ်ဆွေငယ်။ ငါ မင်းကိုကူညီမယ် လို့ပြောတယ်။" },
+            { hanzi: "狮子轻轻地把他的大爪子伸进洞里，把老鼠救了出来。", pinyin: "Shīzi qīngqīng de bǎ tā de dà zhuǎzi shēnjìn dòng lǐ, bǎ lǎoshǔ jiù le chūlái.", my: "ခြင်္သေ့က သူ့ယက်မကြီးကို ညင်သာစွာ တွင်းထဲထည့်ပြီး ကြွက်လေးကိုဆွဲထုတ်လိုက်တယ်။" },
+            { hanzi: "老鼠非常感激地说：谢谢你，亲爱的狮子！", pinyin: "Lǎoshǔ fēicháng gǎnjī de shuō: Xièxie nǐ, qīn'ài de shīzi!", my: "ကြွက်လေးက အရမ်းကျေးဇူးတင်ပြီး ကျေးဇူးပါ ခြင်္သေ့ကြီးရယ် လို့ပြောတယ်။" },
+            { hanzi: "如果你需要我的帮助，我一定会帮助你。", pinyin: "Rúguǒ nǐ xūyào wǒ de bāngzhù, wǒ yīdìng huì bāngzhù nǐ.", my: "မင်းကို ငါကူညီဖို့လိုရင် ငါကူညီမယ် လို့ပြောတယ်။" },
+            { hanzi: "狮子笑着说：你这样一只小老鼠怎么能帮助我这样的大狮子呢？", pinyin: "Shīzi xiào zhe shuō: Nǐ zhèyàng yīzhī xiǎo lǎoshǔ zěnme néng bāngzhù wǒ zhèyàng de dà shīzi ne?", my: "ခြင်္သေ့က ရယ်ပြီး မင်းလိုကြွက်ငယ်လေးက ငါ့လိုခြင်္သေ့ကြီးကို ဘယ်လိုကူညီနိုင်မလဲ လို့ပြောတယ်။" },
+            { hanzi: "老鼠笑着说：谁知道呢！", pinyin: "Lǎoshǔ xiào zhe shuō: Shuí zhīdào ne!", my: "ကြွက်လေးက ပြုံးပြီး ဘယ်သူသိမလဲ လို့ပြန်ပြောတယ်။" },
+            { hanzi: "几天后，狮子在森林里行走时，不小心踩到了猎人的陷阱。", pinyin: "Jǐtiān hòu, shīzi zài sēnlín lǐ xíngzǒu shí, bùxiǎoxīn cǎidào le lièrén de xiànjǐng.", my: "ရက်အနည်းငယ်ကြာတော့ ခြင်္သေ့က တောအုပ်ထဲမှာ လမ်းလျှောက်နေစဉ် မုဆိုးတစ်ယောက်ရဲ့ ထောင်ချောက်ထဲ နင်းမိသွားတယ်။" },
+            { hanzi: "一张大网落下来，把他困住了。", pinyin: "Yī zhāng dà wǎng luò xiàlái, bǎ tā kùnzhù le.", my: "ပိုက်ကြီးတစ်ခုက သူ့အပေါ်ကို ကျလာပြီး ဖမ်းမိသွားတယ်။" },
+            { hanzi: "狮子大声吼叫，但是没有人来救他。", pinyin: "Shīzi dàshēng hǒujiào, dànshì méiyǒu rén lái jiù tā.", my: "ခြင်္သေ့က ကျယ်လောင်စွာ ဟိန်းဟိန်းအော်ပေမယ့် ကူညီဖို့ ဘယ်သူမှ မလာခဲ့ဘူး။" },
+            { hanzi: "小老鼠听到了狮子的吼声，赶紧跑过来帮忙。", pinyin: "Xiǎo lǎoshǔ tīngdào le shīzi de hǒushēng, gǎnjǐn pǎo guòlái bāngmáng.", my: "ကြွက်ငယ်လေးက ခြင်္သေ့ရဲ့အသံကိုကြားပြီး ကူညီဖို့ ပြေးလာတယ်။" },
+            { hanzi: "小老鼠看到狮子被困在网里。", pinyin: "Xiǎo lǎoshǔ kàndào shīzi bèi kùn zài wǎng lǐ.", my: "ကြွက်လေးက ခြင်္သေ့ကို ပိုက်ထဲမှာဖမ်းမိနေတာကိုမြင်တယ်။" },
+            { hanzi: "他用自己的尖牙齿，迅速地咬断绳索。", pinyin: "Tā yòng zìjǐ de jiān yáchǐ, xùnsù de yǎoduàn shéngsuǒ.", my: "သူက သူ့သွားချွန်တွေနဲ့ ကြိုးတွေကို လျင်မြန်စွာ ကိုက်ဖြတ်လိုက်တယ်။" },
+            { hanzi: "几分钟后，狮子就自由了。", pinyin: "Jǐ fēnzhōng hòu, shīzi jiù zìyóu le.", my: "မိနစ်အနည်းငယ်ကြာတော့ ခြင်္သေ့ လွတ်သွားတယ်။" },
+            { hanzi: "狮子非常惊讶地说：我错了，小朋友。你救了我的命！", pinyin: "Shīzi fēicháng jīngyà de shuō: Wǒ cuò le, xiǎo péngyou. Nǐ jiù le wǒ de mìng!", my: "ခြင်္သေ့က အံ့ဩသွားပြီး ငါမှားသွားတယ် မိတ်ဆွေငယ်။ မင်း ငါ့အသက်ကို ကယ်လိုက်တယ် လို့ပြောတယ်။" },
+            { hanzi: "我永远不会忘记你的善良。", pinyin: "Wǒ yǒngyuǎn bùhuì wàngjì nǐ de shànliáng.", my: "မင်းရဲ့ကြင်နာမှုကို ငါ ဘယ်တော့မှ မေ့မှာမဟုတ်ဘူး လို့ပြောတယ်။" },
+            { hanzi: "从那天起，狮子和老鼠成为了最好的朋友。", pinyin: "Cóng nà tiān qǐ, shīzi hé lǎoshǔ chéngwéi le zuìhǎo de péngyou.", my: "အဲဒီနေ့ကစလို့ ခြင်္သေ့နဲ့ကြွက်က အကောင်းဆုံးသူငယ်ချင်းတွေ ဖြစ်သွားတယ်။" },
+            { hanzi: "他们快乐地生活在森林里。", pinyin: "Tāmen kuàilè de shēnghuó zài sēnlín lǐ.", my: "သူတို့ဟာ တောအုပ်ထဲမှာ အတူတကွ ပျော်ရွှင်စွာ နေထိုင်ကြတယ်။" }
+        ],
+        vocab: [
+            { word: "从前", pinyin: "cóngqián", meaning: "ရှေးအခါက" },
+            { word: "森林", pinyin: "sēnlín", meaning: "တောအုပ်" },
+            { word: "狮子", pinyin: "shīzi", meaning: "ခြင်္သေ့" },
+            { word: "善良", pinyin: "shànliáng", meaning: "ကြင်နာသော" },
+            { word: "温柔", pinyin: "wēnróu", meaning: "နူးညံ့သော" },
+            { word: "凶猛", pinyin: "xiōngměng", meaning: "ရက်စက်သော" },
+            { word: "危险", pinyin: "wēixiǎn", meaning: "အန္တရာယ်ရှိသော" },
+            { word: "伤害", pinyin: "shānghài", meaning: "ထိခိုက်စေသည်" },
+            { word: "动物", pinyin: "dòngwù", meaning: "တိရစ္ဆာန်" },
+            { word: "老鼠", pinyin: "lǎoshǔ", meaning: "ကြွက်" },
+            { word: "奔跑", pinyin: "bēnpǎo", meaning: "ပြေးလွှားသည်" },
+            { word: "突然", pinyin: "tūrán", meaning: "ရုတ်တရက်" },
+            { word: "深洞", pinyin: "shēndòng", meaning: "တွင်းနက်" },
+            { word: "呼救", pinyin: "hūjiù", meaning: "အကူအညီတောင်းသည်" },
+            { word: "哭声", pinyin: "kūshēng", meaning: "ငိုသံ" },
+            { word: "帮忙", pinyin: "bāngmáng", meaning: "ကူညီသည်" },
+            { word: "担心", pinyin: "dānxīn", meaning: "စိုးရိမ်သည်" },
+            { word: "朋友", pinyin: "péngyou", meaning: "သူငယ်ချင်း" },
+            { word: "爪子", pinyin: "zhuǎzi", meaning: "ယက်" },
+            { word: "感激", pinyin: "gǎnjī", meaning: "ကျေးဇူးတင်သည်" },
+            { word: "需要", pinyin: "xūyào", meaning: "လိုအပ်သည်" },
+            { word: "帮助", pinyin: "bāngzhù", meaning: "ကူညီသည်" },
+            { word: "行走", pinyin: "xíngzǒu", meaning: "လမ်းလျှောက်သည်" },
+            { word: "不小心", pinyin: "bùxiǎoxīn", meaning: "မသတိထားမိ" },
+            { word: "猎人", pinyin: "lièrén", meaning: "မုဆိုး" },
+            { word: "陷阱", pinyin: "xiànjǐng", meaning: "ထောင်ချောက်" },
+            { word: "网", pinyin: "wǎng", meaning: "ပိုက်" },
+            { word: "困住", pinyin: "kùnzhù", meaning: "ဖမ်းမိသည်" },
+            { word: "吼叫", pinyin: "hǒujiào", meaning: "ဟိန်းဟိန်းအော်သည်" },
+            { word: "赶紧", pinyin: "gǎnjǐn", meaning: "အမြန်" },
+            { word: "牙齿", pinyin: "yáchǐ", meaning: "သွား" },
+            { word: "迅速", pinyin: "xùnsù", meaning: "လျင်မြန်သော" },
+            { word: "咬断", pinyin: "yǎoduàn", meaning: "ကိုက်ဖြတ်သည်" },
+            { word: "绳索", pinyin: "shéngsuǒ", meaning: "ကြိုး" },
+            { word: "自由", pinyin: "zìyóu", meaning: "လွတ်လပ်သော" },
+            { word: "惊讶", pinyin: "jīngyà", meaning: "အံ့ဩသည်" },
+            { word: "救", pinyin: "jiù", meaning: "ကယ်ဆယ်သည်" },
+            { word: "命", pinyin: "mìng", meaning: "အသက်" },
+            { word: "永远", pinyin: "yǒngyuǎn", meaning: "ထာဝရ" },
+            { word: "忘记", pinyin: "wàngjì", meaning: "မေ့သည်" },
+            { word: "成为", pinyin: "chéngwéi", meaning: "ဖြစ်လာသည်" },
+            { word: "快乐", pinyin: "kuàilè", meaning: "ပျော်ရွှင်သော" },
+            { word: "生活", pinyin: "shēnghuó", meaning: "နေထိုင်သည်" },
+            { word: "一片", pinyin: "yīpiàn", meaning: "တစ်ခု" },
+            { word: "其他", pinyin: "qítā", meaning: "အခြား" },
+            { word: "那样", pinyin: "nàyàng", meaning: "ထိုကဲ့သို့" },
+            { word: "任何", pinyin: "rènhé", meaning: "ဘယ်...မဆို" },
+            { word: "大声", pinyin: "dàshēng", meaning: "ကျယ်လောင်စွာ" },
+            { word: "但是", pinyin: "dànshì", meaning: "သို့သော်" },
+            { word: "怎么", pinyin: "zěnme", meaning: "ဘယ်လို" },
+            { word: "知道", pinyin: "zhīdào", meaning: "သိသည်" }
+        ]
+    },
+
+    // ===================== 故事 2: 聪明的乌龟 =====================
+    {
+        id: 2,
+        title: "聪明的乌龟",
+        paragraphs: [
+            { hanzi: "很久很久以前，有一只聪明的乌龟住在一个小池塘里。", pinyin: "Hěn jiǔ hěn jiǔ yǐqián, yǒu yī zhī cōngmíng de wūguī zhù zài yī gè xiǎo chítáng lǐ.", my: "ရှေးရှေးတုန်းက လိပ်တစ်ကောင်ဟာ ကန်ငယ်လေးတစ်ခုမှာ နေထိုင်တယ်။" },
+            { hanzi: "每天，乌龟都要到池塘边散步，看看周围的花草树木。", pinyin: "Měitiān, wūguī dōu yào dào chítáng biān sànbù, kànkan zhōuwéi de huācǎo shùmù.", my: "နေ့တိုင်း လိပ်လေးက ကန်ဘေးမှာ လမ်းလျှောက်ပြီး ပန်းတွေ၊ သစ်ပင်တွေကို ကြည့်တယ်။" },
+            { hanzi: "一天，一只饥饿的狐狸来到了池塘边。", pinyin: "Yītiān, yī zhī jī'è de húlí lái dào le chítáng biān.", my: "တစ်နေ့မှာ ဗိုက်ဆာနေတဲ့ မြေခွေးတစ်ကောင်က ကန်ဘေးကို ရောက်လာတယ်။" },
+            { hanzi: "狐狸看到乌龟，心想：这只乌龟看起来很好吃，我要把他吃掉！", pinyin: "Húlí kàndào wūguī, xīn xiǎng: Zhè zhī wūguī kàn qǐlái hěn hǎochī, wǒ yào bǎ tā chīdiào!", my: "မြေခွေးက လိပ်ကိုမြင်တော့ ဒီလိပ်က စားလို့ကောင်းမယ်၊ ငါစားမယ် လို့ တွေးမိတယ်။" },
+            { hanzi: "但是乌龟很聪明，他知道狐狸想吃他。", pinyin: "Dànshì wūguī hěn cōngmíng, tā zhīdào húlí xiǎng chī tā.", my: "ဒါပေမယ့် လိပ်က အရမ်းထက်မြက်တယ်၊ မြေခွေးစားချင်တာကို သိတယ်။" },
+            { hanzi: "狐狸对乌龟说：小乌龟，你今天看起来真漂亮。", pinyin: "Húlí duì wūguī shuō: Xiǎo wūguī, nǐ jīntiān kàn qǐlái zhēn piàoliang.", my: "မြေခွေးက လိပ်ကို လိပ်ငယ် မင်းဒီနေ့ အရမ်းလှတယ် လို့ပြောတယ်။" },
+            { hanzi: "我有一件礼物要送给你，你过来拿吧。", pinyin: "Wǒ yǒu yī jiàn lǐwù yào sòng gěi nǐ, nǐ guòlái ná ba.", my: "ငါမင်းကို လက်ဆောင်တစ်ခုပေးမယ်၊ လာယူ လို့ပြောတယ်။" },
+            { hanzi: "乌龟笑了笑说：谢谢你，狐狸先生。", pinyin: "Wūguī xiào le xiào shuō: Xièxie nǐ, húlí xiānsheng.", my: "လိပ်က ပြုံးပြီး ကျေးဇူးပါ မြေခွေးကြီးရယ် လို့ပြောတယ်။" },
+            { hanzi: "但是我不能过去，因为我的壳太重了，我动不了。", pinyin: "Dànshì wǒ bùnéng guòqù, yīnwèi wǒ de ké tài zhòng le, wǒ dòng bù liǎo.", my: "ဒါပေမယ့် ငါမသွားနိုင်ဘူး၊ ငါ့အခွံက အရမ်းလေးလွန်းလို့ မလှုပ်နိုင်ဘူး လို့ပြောတယ်။" },
+            { hanzi: "狐狸心想：乌龟的壳很重？那我把他抱起来就可以了。", pinyin: "Húlí xīn xiǎng: Wūguī de ké hěn zhòng? Nà wǒ bǎ tā bào qǐlái jiù kěyǐ le.", my: "မြေခွေးက လိပ်ခွံက လေးတယ်ဆိုရင် ငါခါးပိုက်သွင်းလိုက်မယ် လို့ တွေးပြီး လိပ်အနားကိုသွားကာ ပါးစပ်ကြီးဖွင့်ကိုက်တယ်။" },
+            { hanzi: "于是狐狸走到乌龟身边，张开大嘴要咬乌龟。", pinyin: "Yúshì húlí zǒu dào wūguī shēnbiān, zhāngkāi dà zuǐ yào yǎo wūguī.", my: "မြေခွေးက လိပ်အနားကိုသွားကာ ပါးစပ်ကြီးဖွင့်ကိုက်တယ်။" },
+            { hanzi: "这时，乌龟一下子把头和脚缩进了壳里。", pinyin: "Zhè shí, wūguī yīxiàzi bǎ tóu hé jiǎo suō jìn le ké lǐ.", my: "အဲဒီအချိန်မှာ လိပ်က ခေါင်းနဲ့ခြေထောက်တွေကို အခွံထဲ ဆွဲထည့်လိုက်တယ်။" },
+            { hanzi: "狐狸咬到了坚硬的壳，牙齿都快掉了。", pinyin: "Húlí yǎo dào le jiānyìng de ké, yáchǐ dōu kuài diào le.", my: "မြေခွေးက မာကျောတဲ့အခွံကို ကိုက်မိပြီး သွားတွေ ကျွတ်လုနီးပါးဖြစ်သွားတယ်။" },
+            { hanzi: "狐狸疼得大叫：哎哟！你的壳太硬了！", pinyin: "Húlí téng de dà jiào: Āiyō! Nǐ de ké tài yìng le!", my: "မြေခွေးက အော်တယ် အိုး！ မင်းအခွံက မာလိုက်တာ လို့ပြောတယ်။" },
+            { hanzi: "乌龟在壳里笑着说：狐狸先生，我的壳确实很硬。", pinyin: "Wūguī zài ké lǐ xiào zhe shuō: Húlí xiānsheng, wǒ de ké quèshí hěn yìng.", my: "လိပ်က အခွံထဲမှာ ပြုံးပြီး မြေခွေးကြီးရယ် ငါ့အခွံက မာတယ် လို့ပြောတယ်။" },
+            { hanzi: "而且我还有一个秘密——如果你再靠近我，", pinyin: "Érqiě wǒ hái yǒu yīgè mìmì — rúguǒ nǐ zài kàojìn wǒ,", my: "နောက်ပြီး ငါ့မှာ လျှို့ဝှက်ချက်တစ်ခုရှိတယ် — မင်းငါ့ကိုနီးရင်" },
+            { hanzi: "我就会放出一种特别的气味，让你受不了。", pinyin: "Wǒ jiù huì fàngchū yī zhǒng tèbié de qìwèi, ràng nǐ shòu bù liǎo.", my: "ငါက မင်းမခံနိုင်တဲ့ အနံ့တစ်မျိုးကို ထုတ်ပေးမယ် လို့ပြောတယ်။" },
+            { hanzi: "狐狸被吓到了，他怕乌龟真的放出特别的气味，", pinyin: "Húlí bèi xià dào le, tā pà wūguī zhēn de fàngchū tèbié de qìwèi,", my: "မြေခွေးက ကြောက်သွားပြီး လိပ်က အနံ့ဆိုးထုတ်မှာစိုးလို့" },
+            { hanzi: "就赶紧跑走了。", pinyin: "Jiù gǎnjǐn pǎo zǒu le.", my: "အမြန်ပြေးသွားတယ်။" },
+            { hanzi: "乌龟从壳里伸出头，笑着看狐狸逃跑的背影。", pinyin: "Wūguī cóng ké lǐ shēn chū tóu, xiào zhe kàn húlí táopǎo de bèiyǐng.", my: "လိပ်က အခွံထဲကနေ ခေါင်းထုတ်ပြီး မြေခွေးပြေးတာကို ကြည့်ရင်း ရယ်တယ်။" },
+            { hanzi: "从那以后，狐狸再也不敢来找乌龟的麻烦了。", pinyin: "Cóng nà yǐhòu, húlí zài yě bù gǎn lái zhǎo wūguī de máfan le.", my: "အဲဒီကတည်းက မြေခွေးက လိပ်ကို ဘယ်တော့မှ မလာနှောင့်ယှက်တော့ဘူး။" },
+            { hanzi: "乌龟继续快乐地生活在小池塘边，", pinyin: "Wūguī jìxù kuàilè de shēnghuó zài xiǎo chítáng biān,", my: "လိပ်လေးက ကန်ငယ်ဘေးမှာ ဆက်ပြီး ပျော်ရွှင်စွာနေထိုင်ကာ" },
+            { hanzi: "每天散步，欣赏美丽的花草。", pinyin: "Měitiān sànbù, xīnshǎng měilì de huācǎo.", my: "နေ့တိုင်း လမ်းလျှောက်ပြီး ပန်းပင်တွေ ကြည့်နေတယ်။" }
+        ],
+        vocab: [
+            { word: "乌龟", pinyin: "wūguī", meaning: "လိပ်" },
+            { word: "聪明", pinyin: "cōngmíng", meaning: "ထက်မြက်သော" },
+            { word: "池塘", pinyin: "chítáng", meaning: "ကန်" },
+            { word: "散步", pinyin: "sànbù", meaning: "လမ်းလျှောက်သည်" },
+            { word: "周围", pinyin: "zhōuwéi", meaning: "ပတ်ဝန်းကျင်" },
+            { word: "花草", pinyin: "huācǎo", meaning: "ပန်းများ" },
+            { word: "树木", pinyin: "shùmù", meaning: "သစ်ပင်များ" },
+            { word: "饥饿", pinyin: "jī'è", meaning: "ဆာလောင်သော" },
+            { word: "狐狸", pinyin: "húlí", meaning: "မြေခွေး" },
+            { word: "看起来", pinyin: "kàn qǐlái", meaning: "ကြည့်ရတာ" },
+            { word: "好吃", pinyin: "hǎochī", meaning: "အရသာရှိသော" },
+            { word: "礼物", pinyin: "lǐwù", meaning: "လက်ဆောင်" },
+            { word: "先生", pinyin: "xiānsheng", meaning: "အကြီးကြီး" },
+            { word: "因为", pinyin: "yīnwèi", meaning: "ဘာလို့လဲဆိုတော့" },
+            { word: "壳", pinyin: "ké", meaning: "အခွံ" },
+            { word: "重", pinyin: "zhòng", meaning: "လေးသော" },
+            { word: "动不了", pinyin: "dòng bù liǎo", meaning: "မလှုပ်နိုင်" },
+            { word: "抱", pinyin: "bào", meaning: "ပွေ့သည်" },
+            { word: "于是", pinyin: "yúshì", meaning: "ထို့ကြောင့်" },
+            { word: "身边", pinyin: "shēnbiān", meaning: "အနီးအနား" },
+            { word: "张开", pinyin: "zhāngkāi", meaning: "ဖွင့်သည်" },
+            { word: "咬", pinyin: "yǎo", meaning: "ကိုက်သည်" },
+            { word: "缩进", pinyin: "suō jìn", meaning: "ဆွဲသွင်းသည်" },
+            { word: "坚硬", pinyin: "jiānyìng", meaning: "မာကျောသော" },
+            { word: "疼", pinyin: "téng", meaning: "နာသည်" },
+            { word: "哎哟", pinyin: "āiyō", meaning: "အိုး" },
+            { word: "确实", pinyin: "quèshí", meaning: "သေချာပေါက်" },
+            { word: "而且", pinyin: "érqiě", meaning: "ထို့ပြင်" },
+            { word: "秘密", pinyin: "mìmì", meaning: "လျှို့ဝှက်ချက်" },
+            { word: "特别", pinyin: "tèbié", meaning: "အထူး" },
+            { word: "气味", pinyin: "qìwèi", meaning: "အနံ့" },
+            { word: "受不了", pinyin: "shòu bù liǎo", meaning: "မခံနိုင်" },
+            { word: "吓到", pinyin: "xià dào", meaning: "ကြောက်သွားသည်" },
+            { word: "怕", pinyin: "pà", meaning: "ကြောက်သည်" },
+            { word: "逃跑", pinyin: "táopǎo", meaning: "ထွက်ပြေးသည်" },
+            { word: "背影", pinyin: "bèiyǐng", meaning: "နောက်ကျော" },
+            { word: "再也", pinyin: "zài yě", meaning: "ဘယ်တော့မှ" },
+            { word: "敢", pinyin: "gǎn", meaning: "ရဲသည်" },
+            { word: "麻烦", pinyin: "máfan", meaning: "ဒုက္ခ" },
+            { word: "继续", pinyin: "jìxù", meaning: "ဆက်လက်သည်" },
+            { word: "欣赏", pinyin: "xīnshǎng", meaning: "ကြည်နူးသည်" },
+            { word: "美丽", pinyin: "měilì", meaning: "လှပသော" },
+            { word: "很久", pinyin: "hěn jiǔ", meaning: "အရမ်းကြာပြီ" },
+            { word: "以前", pinyin: "yǐqián", meaning: "ရှေးက" },
+            { word: "每天", pinyin: "měitiān", meaning: "နေ့တိုင်း" },
+            { word: "要", pinyin: "yào", meaning: "လိုသည်" },
+            { word: "到", pinyin: "dào", meaning: "သို့" },
+            { word: "边", pinyin: "biān", meaning: "ဘေး" },
+            { word: "看看", pinyin: "kànkan", meaning: "ကြည့်သည်" },
+            { word: "真", pinyin: "zhēn", meaning: "တကယ်" }
+        ]
+    },
+
+    // ===================== 故事 3: 小鸟与春天 =====================
+     {
+        id: 3,
+        title: "小鸟与春天",
+        paragraphs: [
+            { hanzi: "春天来了，大地变得暖和起来。", pinyin: "Chūntiān lái le, dàdì biàn de nuǎnhuo qǐlái.", my: "နွေဦးရာသီ ရောက်လာတယ်။ မြေကြီးက နွေးထွေးလာတယ်။" },
+            { hanzi: "小鸟从南方飞回来了，他们在树枝上唱起了欢快的歌。", pinyin: "Xiǎoniǎo cóng nánfāng fēi huílái le, tāmen zài shùzhī shàng chàng qǐ le huānkuài de gē.", my: "ငှက်လေးတွေက တောင်ဘက်ကနေ ပြန်လာပြီး သစ်ကိုင်းတွေပေါ်မှာ ရွှင်လန်းစွာ သီချင်းဆိုကြတယ်။" },
+            { hanzi: "一只小燕子飞到一棵大树上，看到树上的花朵都开了。", pinyin: "Yī zhī xiǎo yànzi fēi dào yī kē dà shù shàng, kàndào shù shàng de huāduǒ dōu kāi le.", my: "မျိုလေးတစ်ကောင်က သစ်ပင်ကြီးတစ်ပင်ပေါ်ကို ပျံလာပြီး ပန်းတွေပွင့်နေတာကို မြင်တယ်။" },
+            { hanzi: "小燕子高兴地说：哇！春天真美丽！", pinyin: "Xiǎo yànzi gāoxìng de shuō: Wā! Chūntiān zhēn měilì!", my: "မျိုလေးက ဝိုး！ နွေဦးက အရမ်းလှတယ် လို့ ပျော်ရွှင်စွာ ပြောတယ်။" },
+            { hanzi: "这时，一只老喜鹊飞过来，对小燕子说：", pinyin: "Zhè shí, yī zhī lǎo xǐquè fēi guòlái, duì xiǎo yànzi shuō:", my: "အဲဒီအချိန်မှာ ကျီးကြီးအိုတစ်ကောင်က ပျံလာပြီး မျိုလေးကို ပြောတယ်။" },
+            { hanzi: "小燕子，你知道春天为什么这么美丽吗？", pinyin: "Xiǎo yànzi, nǐ zhīdào chūntiān wèishénme zhème měilì ma?", my: "မျိုလေး နွေဦးက ဘာလို့ ဒီလောက်လှတာလဲ သိလား လို့မေးတယ်။" },
+            { hanzi: "小燕子摇摇头说：我不知道。请您告诉我吧。", pinyin: "Xiǎo yànzi yáo yáo tóu shuō: Wǒ bù zhīdào. Qǐng nín gàosu wǒ ba.", my: "မျိုလေးက ခေါင်းခါပြီး မသိဘူး။ ပြောပြပါဦး လို့ပြောတယ်။" },
+            { hanzi: "老喜鹊笑着说：春天的美丽是因为所有的生命都醒来了。", pinyin: "Lǎo xǐquè xiào zhe shuō: Chūntiān de měilì shì yīnwèi suǒyǒu de shēngmìng dōu xǐng lái le.", my: "ကျီးကြီးအိုက ပြုံးပြီး နွေဦးရဲ့အလှက သက်ရှိအားလုံး နိုးထလာလို့ပဲ လို့ပြောတယ်။" },
+            { hanzi: "花儿开了，小草绿了，树木发芽了，小鸟们也回来了。", pinyin: "Huār kāi le, xiǎo cǎo lǜ le, shùmù fāyá le, xiǎoniǎo men yě huílái le.", my: "ပန်းတွေပွင့်တယ်၊ မြက်တွေစိမ်းတယ်၊ သစ်ပင်တွေ အညှောက်ထွက်တယ်၊ ငှက်တွေလည်း ပြန်လာကြတယ်။" },
+            { hanzi: "这就是春天的奇迹。", pinyin: "Zhè jiù shì chūntiān de qíjī.", my: "ဒါက နွေဦးရဲ့အံ့ဖွယ်ပါ လို့ပြောတယ်။" },
+            { hanzi: "小燕子点点头说：我明白了！春天是生命的季节。", pinyin: "Xiǎo yànzi diǎn diǎn tóu shuō: Wǒ míngbái le! Chūntiān shì shēngmìng de jìjié.", my: "မျိုလေးက ခေါင်းညိတ်ပြီး ကျွန်တော် နားလည်ပါပြီ။ နွေဦးဆိုတာ သက်ရှိတွေရဲ့ ရာသီပါ လို့ပြောတယ်။" },
+            { hanzi: "老喜鹊说：对！所以我们要珍惜春天，享受春天的每一天。", pinyin: "Lǎo xǐquè shuō: Duì! Suǒyǐ wǒmen yào zhēnxī chūntiān, xiǎngshòu chūntiān de měi yī tiān.", my: "ကျီးကြီးအိုက ဟုတ်တယ်။ ဒါကြောင့် နွေဦးကို တန်ဖိုးထားပြီး နေ့တိုင်းပျော်ရွှင်ရမယ် လို့ပြောတယ်။" },
+            { hanzi: "于是，小燕子和老喜鹊一起在蓝天上飞翔，", pinyin: "Yúshì, xiǎo yànzi hé lǎo xǐquè yīqǐ zài lántiān shàng fēixiáng,", my: "ဒါနဲ့ မျိုလေးနဲ့ကျီးကြီးအိုက ကောင်းကင်ပြာပေါ်မှာ အတူပျံသန်းပြီး" },
+            { hanzi: "唱起了春天的歌。", pinyin: "Chàng qǐ le chūntiān de gē.", my: "နွေဦးသီချင်းကို ဆိုကြတယ်။" },
+            { hanzi: "他们飞到花园里，看到蝴蝶在花丛中跳舞；", pinyin: "Tāmen fēi dào huāyuán lǐ, kàndào húdié zài huācóng zhōng tiàowǔ;", my: "သူတို့က ပန်းခြံထဲကို ပျံသွားတော့ လိပ်ပြာတွေ ပန်းတွေကြားမှာ ကခုန်နေတာမြင်ရတယ်။" },
+            { hanzi: "他们飞到田野上，看到农民在播种；", pinyin: "Tāmen fēi dào tiányě shàng, kàndào nóngmín zài bōzhǒng;", my: "လယ်ကွင်းပေါ်ကို ပျံသွားတော့ လယ်သမားတွေ မျိုးစေ့ချနေတာမြင်ရတယ်။" },
+            { hanzi: "他们飞到河边，看到小鱼在水里游来游去。", pinyin: "Tāmen fēi dào hé biān, kàndào xiǎo yú zài shuǐ lǐ yóu lái yóu qù.", my: "မြစ်ဘေးကိုရောက်တော့ ငါးငယ်လေးတွေ ရေထဲမှာ ကူးခုန်နေတာမြင်ရတယ်။" },
+            { hanzi: "小燕子感到非常快乐，他对老喜鹊说：", pinyin: "Xiǎo yànzi gǎndào fēicháng kuàilè, tā duì lǎo xǐquè shuō:", my: "မျိုလေးက အရမ်းပျော်သွားပြီး ကျီးကြီးအိုကို ပြောတယ်။" },
+            { hanzi: "谢谢您教会我珍惜春天。我会把这个道理告诉所有的小鸟。", pinyin: "Xièxie nín jiàohuì wǒ zhēnxī chūntiān. Wǒ huì bǎ zhège dàolǐ gàosu suǒyǒu de xiǎoniǎo.", my: "ကျွန်တော့်ကို နွေဦးကို တန်ဖိုးထားတတ်အောင် သင်ပေးတဲ့အတွက် ကျေးဇူးတင်ပါတယ်။ ဒီစကားကို ငှက်ငယ်တွေအားလုံးကို ပြောပြမယ် လို့ပြောတယ်။" },
+            { hanzi: "老喜鹊笑着说：很好！让我们一起赞美春天吧。", pinyin: "Lǎo xǐquè xiào zhe shuō: Hěn hǎo! Ràng wǒmen yīqǐ zànměi chūntiān ba.", my: "ကျီးကြီးအိုက ပြုံးပြီး ကောင်းပါတယ်။ အတူတူ နွေဦးကို ချီးမွမ်းကြရအောင် လို့ပြောတယ်။" },
+            { hanzi: "从那天起，小燕子每天都用美丽的歌声歌颂春天。", pinyin: "Cóng nà tiān qǐ, xiǎo yànzi měitiān dōu yòng měilì de gēshēng gēsòng chūntiān.", my: "အဲဒီကတည်းက မျိုလေးက နေ့တိုင်း လှပတဲ့အသံနဲ့ နွေဦးကို သီချင်းဆိုတယ်။" },
+            { hanzi: "森林里的小动物们都非常喜欢听小燕子唱歌。", pinyin: "Sēnlín lǐ de xiǎo dòngwù men dōu fēicháng xǐhuān tīng xiǎo yànzi chànggē.", my: "တောအုပ်ထဲက တိရစ္ဆာန်ငယ်တွေက မျိုလေးသီချင်းဆိုတာကို အရမ်းကြိုက်တယ်။" },
+            { hanzi: "春天因为有了小燕子的歌声变得更加美丽和温暖。", pinyin: "Chūntiān yīnwèi yǒu le xiǎo yànzi de gēshēng biàn de gèngjiā měilì hé wēnnuǎn.", my: "မျိုလေးရဲ့သီချင်းကြောင့် နွေဦးက ပိုလှပြီး ပိုနွေးထွေးလာတယ်။" }
+        ],
+        vocab: [
+            { word: "春天", pinyin: "chūntiān", meaning: "နွေဦး" },
+            { word: "大地", pinyin: "dàdì", meaning: "မြေကြီး" },
+            { word: "暖和", pinyin: "nuǎnhuo", meaning: "နွေးထွေးသော" },
+            { word: "小鸟", pinyin: "xiǎoniǎo", meaning: "ငှက်ငယ်" },
+            { word: "南方", pinyin: "nánfāng", meaning: "တောင်ဘက်" },
+            { word: "树枝", pinyin: "shùzhī", meaning: "သစ်ကိုင်း" },
+            { word: "欢快", pinyin: "huānkuài", meaning: "ရွှင်လန်းသော" },
+            { word: "歌", pinyin: "gē", meaning: "သီချင်း" },
+            { word: "燕子", pinyin: "yànzi", meaning: "မျို" },
+            { word: "花朵", pinyin: "huāduǒ", meaning: "ပန်း" },
+            { word: "高兴", pinyin: "gāoxìng", meaning: "ပျော်ရွှင်သော" },
+            { word: "哇", pinyin: "wā", meaning: "ဝိုး" },
+            { word: "老", pinyin: "lǎo", meaning: "အို" },
+            { word: "喜鹊", pinyin: "xǐquè", meaning: "ကျီး" },
+            { word: "为什么", pinyin: "wèishénme", meaning: "ဘာကြောင့်" },
+            { word: "这么", pinyin: "zhème", meaning: "ဒီလောက်" },
+            { word: "摇", pinyin: "yáo", meaning: "ခါသည်" },
+            { word: "头", pinyin: "tóu", meaning: "ခေါင်း" },
+            { word: "请", pinyin: "qǐng", meaning: "ကျေးဇူးပြု" },
+            { word: "告诉", pinyin: "gàosu", meaning: "ပြောပြသည်" },
+            { word: "生命", pinyin: "shēngmìng", meaning: "သက်ရှိ" },
+            { word: "醒来", pinyin: "xǐng lái", meaning: "နိုးသည်" },
+            { word: "花儿", pinyin: "huār", meaning: "ပန်းတွေ" },
+            { word: "草", pinyin: "cǎo", meaning: "မြက်" },
+            { word: "绿", pinyin: "lǜ", meaning: "စိမ်းသော" },
+            { word: "发芽", pinyin: "fāyá", meaning: "အညှောက်ထွက်သည်" },
+            { word: "奇迹", pinyin: "qíjī", meaning: "အံ့ဖွယ်" },
+            { word: "点头", pinyin: "diǎn tóu", meaning: "ခေါင်းညိတ်သည်" },
+            { word: "明白", pinyin: "míngbái", meaning: "နားလည်သည်" },
+            { word: "季节", pinyin: "jìjié", meaning: "ရာသီ" },
+            { word: "珍惜", pinyin: "zhēnxī", meaning: "တန်ဖိုးထားသည်" },
+            { word: "享受", pinyin: "xiǎngshòu", meaning: "ခံစားသည်" },
+            { word: "一起", pinyin: "yīqǐ", meaning: "အတူတကွ" },
+            { word: "蓝天", pinyin: "lántiān", meaning: "ကောင်းကင်ပြာ" },
+            { word: "飞翔", pinyin: "fēixiáng", meaning: "ပျံသန်းသည်" },
+            { word: "花园", pinyin: "huāyuán", meaning: "ပန်းခြံ" },
+            { word: "蝴蝶", pinyin: "húdié", meaning: "လိပ်ပြာ" },
+            { word: "跳舞", pinyin: "tiàowǔ", meaning: "ကခုန်သည်" },
+            { word: "田野", pinyin: "tiányě", meaning: "လယ်ကွင်း" },
+            { word: "农民", pinyin: "nóngmín", meaning: "လယ်သမား" },
+            { word: "播种", pinyin: "bōzhǒng", meaning: "မျိုးစေ့ချသည်" },
+            { word: "河边", pinyin: "hé biān", meaning: "မြစ်ကမ်း" },
+            { word: "鱼", pinyin: "yú", meaning: "ငါး" },
+            { word: "游来游去", pinyin: "yóu lái yóu qù", meaning: "ကူးခုန်သည်" },
+            { word: "感到", pinyin: "gǎndào", meaning: "ခံစားရသည်" },
+            { word: "教会", pinyin: "jiàohuì", meaning: "သင်ပေးသည်" },
+            { word: "道理", pinyin: "dàolǐ", meaning: "အကြောင်းအရာ" },
+            { word: "赞美", pinyin: "zànměi", meaning: "ချီးမွမ်းသည်" },
+            { word: "歌声", pinyin: "gēshēng", meaning: "သီချင်းသံ" },
+            { word: "歌颂", pinyin: "gēsòng", meaning: "ချီးကျူးသည်" }
+        ]
+    },
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 4-6
+// =============================================================
+
+{
+    id: 4,
+    title: "小马过河",
+    paragraphs: [
+        { hanzi: "小马和他的妈妈住在一条小河边。", pinyin: "Xiǎo mǎ hé tā de māma zhù zài yī tiáo xiǎo hé biān.", my: "မြင်းကလေးနဲ့ သူ့အမေက မြစ်ငယ်လေးတစ်စင်းအနားမှာ နေထိုင်တယ်။" },
+        { hanzi: "有一天，妈妈对小马说：你已经长大了，能帮妈妈做点事吗？", pinyin: "Yǒu yītiān, māma duì xiǎo mǎ shuō: Nǐ yǐjīng zhǎngdà le, néng bāng māma zuò diǎn shì ma?", my: "တစ်နေ့မှာ အမေက မြင်းကလေးကို မင်းကြီးပြောင်းသွားပြီ၊ အမေကို အကူအညီလုပ်ပေးနိုင်မလား လို့ပြောတယ်။" },
+        { hanzi: "小马高兴地说：当然可以！", pinyin: "Xiǎo mǎ gāoxìng de shuō: Dāngrán kěyǐ!", my: "မြင်းကလေးက ပျော်ရွှင်စွာ ဟုတ်ကဲ့ လုပ်နိုင်ပါတယ် လို့ပြောတယ်။" },
+        { hanzi: "妈妈说：你帮我把这袋粮食送到河对岸的村子里去吧。", pinyin: "Māma shuō: Nǐ bāng wǒ bǎ zhè dài liángshi sòng dào hé duì'àn de cūnzi lǐ qù ba.", my: "အမေက ဒီဆန်အိတ်ကို မြစ်တစ်ဖက်ကမ်းက ရွာကို သွားပို့ပေးပါ လို့ပြောတယ်။" },
+        { hanzi: "小马驮着粮食，来到小河边。", pinyin: "Xiǎo mǎ tuó zhe liángshi, lái dào xiǎo hé biān.", my: "မြင်းကလေးက ဆန်အိတ်ကိုထမ်းပြီး မြစ်ငယ်လေးအနားကို ရောက်လာတယ်။" },
+        { hanzi: "可是，河水有多深呢？小马不敢过河。", pinyin: "Kěshì, hé shuǐ yǒu duō shēn ne? Xiǎo mǎ bù gǎn guò hé.", my: "ဒါပေမယ့် မြစ်ရေက ဘယ်လောက်နက်လဲ။ မြင်းကလေးက မဖြတ်ဝံ့ဘူး။" },
+        { hanzi: "他看见一头老牛在河边吃草，就问道：牛伯伯，河水深吗？", pinyin: "Tā kànjiàn yī tóu lǎo niú zài hé biān chī cǎo, jiù wèn dào: Niú bóbo, hé shuǐ shēn ma?", my: "သူက နွားအိုတစ်ကောင်ကို မြစ်အနားမှာ မြက်စားနေတာတွေ့ပြီး နွားဦးကြီးရယ် မြစ်ရေနက်လား လို့မေးတယ်။" },
+        { hanzi: "老牛说：不深不深，水才到我的小腿。", pinyin: "Lǎo niú shuō: Bù shēn bù shēn, shuǐ cái dào wǒ de xiǎo tuǐ.", my: "နွားအိုက မနက်ဘူး မနက်ဘူး၊ ရေက ကျွန်တော့်ခြေသလုံးလောက်ပဲ ရှိတယ် လို့ပြောတယ်။" },
+        { hanzi: "小马正要过河，一只小松鼠跳出来说：别过河！", pinyin: "Xiǎo mǎ zhèngyào guò hé, yī zhī xiǎo sōngshǔ tiào chūlái shuō: Bié guò hé!", my: "မြင်းကလေး မြစ်ဖြတ်တော့မယ့်အချိန်မှာ ရှဉ့်ငယ်လေးတစ်ကောင်က ခုန်ထွက်လာပြီး မဖြတ်နဲ့ လို့ပြောတယ်။" },
+        { hanzi: "小松鼠说：河水很深，我的小伙伴昨天就淹死了！", pinyin: "Xiǎo sōngshǔ shuō: Hé shuǐ hěn shēn, wǒ de xiǎo huǒbàn zuótiān jiù yān sǐ le!", my: "ရှဉ့်ငယ်လေးက မြစ်ရေက အရမ်းနက်တယ်၊ ငါ့သူငယ်ချင်းလေးက မနေ့က ရေနစ်သေသွားတယ် လို့ပြောတယ်။" },
+        { hanzi: "小马不知道该怎么办，就跑回家问妈妈。", pinyin: "Xiǎo mǎ bù zhīdào gāi zěnme bàn, jiù pǎo huí jiā wèn māma.", my: "မြင်းကလေးက ဘယ်လိုလုပ်ရမှန်းမသိလို့ အိမ်ပြန်ပြီး အမေ့ကိုမေးတယ်။" },
+        { hanzi: "妈妈说：孩子，你要自己试一试，才知道河水深不深。", pinyin: "Māma shuō: Háizi, nǐ yào zìjǐ shì yī shì, cái zhīdào hé shuǐ shēn bù shēn.", my: "အမေက သားရယ်၊ မင်းကိုယ်တိုင်စမ်းကြည့်မှ မြစ်ရေနက်မနက်သိမယ် လို့ပြောတယ်။" },
+        { hanzi: "小马听了妈妈的话，又回到小河边。", pinyin: "Xiǎo mǎ tīng le māma de huà, yòu huí dào xiǎo hé biān.", my: "မြင်းကလေးက အမေ့စကားကိုနားထောင်ပြီး မြစ်ငယ်လေးအနားကို ပြန်လာတယ်။" },
+        { hanzi: "他小心地把脚伸进河水里，一步一步慢慢地走过去。", pinyin: "Tā xiǎoxīn de bǎ jiǎo shēnjìn hé shuǐ lǐ, yī bù yī bù mànmàn de zǒu guòqù.", my: "သူက ဂရုတစိုက် ခြေထောက်ကို မြစ်ရေထဲထည့်ပြီး တစ်လှမ်းချင်း ဖြည်းညင်းစွာ ဖြတ်ကူးသွားတယ်။" },
+        { hanzi: "原来，河水不像老牛说的那么浅，也不像小松鼠说的那么深。", pinyin: "Yuánlái, hé shuǐ bù xiàng lǎo niú shuō de nàme qiǎn, yě bù xiàng xiǎo sōngshǔ shuō de nàme shēn.", my: "အမှန်တော့ မြစ်ရေက နွားအိုပြောသလို ဒီလောက်တိမ်တာမဟုတ်ဘူး၊ ရှဉ့်ငယ်လေးပြောသလို ဒီလောက်နက်တာလည်းမဟုတ်ဘူး။" },
+        { hanzi: "小马顺利地过了河，把粮食送到了村子里。", pinyin: "Xiǎo mǎ shùnlì de guò le hé, bǎ liángshi sòng dào le cūnzi lǐ.", my: "မြင်းကလေး အဆင်ပြေပြေ မြစ်ကိုဖြတ်ပြီး ဆန်အိတ်ကို ရွာကို ပို့ပေးလိုက်တယ်။" },
+        { hanzi: "他明白了：做事情不能只听别人的话，要自己去尝试。", pinyin: "Tā míngbái le: Zuò shìqing bùnéng zhǐ tīng biérén de huà, yào zìjǐ qù chángshì.", my: "သူ နားလည်သွားတယ်။ အလုပ်တွေကို သူများစကားပဲနားထောင်လို့မရဘူး၊ ကိုယ်တိုင်စမ်းကြည့်ရမယ် ဆိုတာကို။" }
+    ],
+    vocab: [
+        { word: "小马", pinyin: "xiǎo mǎ", meaning: "မြင်းကလေး" },
+        { word: "河", pinyin: "hé", meaning: "မြစ်" },
+        { word: "妈妈", pinyin: "māma", meaning: "အမေ" },
+        { word: "长大", pinyin: "zhǎngdà", meaning: "ကြီးပြင်းသည်" },
+        { word: "帮助", pinyin: "bāngzhù", meaning: "ကူညီသည်" },
+        { word: "当然", pinyin: "dāngrán", meaning: "သေချာပေါက်" },
+        { word: "粮食", pinyin: "liángshi", meaning: "စားနပ်ရိက္ခာ" },
+        { word: "送", pinyin: "sòng", meaning: "ပို့သည်" },
+        { word: "对岸", pinyin: "duì'àn", meaning: "တစ်ဖက်ကမ်း" },
+        { word: "村子", pinyin: "cūnzi", meaning: "ရွာ" },
+        { word: "驮", pinyin: "tuó", meaning: "ထမ်းသည်" },
+        { word: "深", pinyin: "shēn", meaning: "နက်သော" },
+        { word: "敢", pinyin: "gǎn", meaning: "ရဲသည်" },
+        { word: "老牛", pinyin: "lǎo niú", meaning: "နွားအို" },
+        { word: "吃草", pinyin: "chī cǎo", meaning: "မြက်စားသည်" },
+        { word: "伯伯", pinyin: "bóbo", meaning: "ဦးကြီး" },
+        { word: "小腿", pinyin: "xiǎo tuǐ", meaning: "ခြေသလုံး" },
+        { word: "松鼠", pinyin: "sōngshǔ", meaning: "ရှဉ့်" },
+        { word: "跳", pinyin: "tiào", meaning: "ခုန်သည်" },
+        { word: "小伙伴", pinyin: "xiǎo huǒbàn", meaning: "သူငယ်ချင်းလေး" },
+        { word: "昨天", pinyin: "zuótiān", meaning: "မနေ့က" },
+        { word: "淹死", pinyin: "yān sǐ", meaning: "ရေနစ်သေသည်" },
+        { word: "怎么办", pinyin: "zěnme bàn", meaning: "ဘယ်လိုလုပ်မလဲ" },
+        { word: "跑", pinyin: "pǎo", meaning: "ပြေးသည်" },
+        { word: "孩子", pinyin: "háizi", meaning: "သား/သမီး" },
+        { word: "试", pinyin: "shì", meaning: "စမ်းသည်" },
+        { word: "小心", pinyin: "xiǎoxīn", meaning: "သတိထားသည်" },
+        { word: "脚", pinyin: "jiǎo", meaning: "ခြေထောက်" },
+        { word: "慢慢", pinyin: "mànmàn", meaning: "ဖြည်းညင်းစွာ" },
+        { word: "原来", pinyin: "yuánlái", meaning: "အမှန်တော့" },
+        { word: "浅", pinyin: "qiǎn", meaning: "တိမ်သော" },
+        { word: "顺利", pinyin: "shùnlì", meaning: "အဆင်ပြေသော" },
+        { word: "明白", pinyin: "míngbái", meaning: "နားလည်သည်" },
+        { word: "事情", pinyin: "shìqing", meaning: "အလုပ်" },
+        { word: "只听", pinyin: "zhǐ tīng", meaning: "သာနားထောင်သည်" },
+        { word: "别人", pinyin: "biérén", meaning: "သူတစ်ပါး" },
+        { word: "尝试", pinyin: "chángshì", meaning: "ကြိုးစားသည်" }
+    ]
+},
+
+{
+    id: 5,
+    title: "小猫种鱼",
+    paragraphs: [
+        { hanzi: "有一只小猫，特别喜欢吃鱼。", pinyin: "Yǒu yī zhī xiǎo māo, tèbié xǐhuān chī yú.", my: "ကြောင်ကလေးတစ်ကောင်ရှိတယ်၊ ငါးစားရတာ အရမ်းကြိုက်တယ်။" },
+        { hanzi: "每天，小猫都到河边去钓鱼。", pinyin: "Měitiān, xiǎo māo dōu dào hé biān qù diàoyú.", my: "နေ့တိုင်း ကြောင်ကလေးက မြစ်အနားကို ငါးမျှားသွားတယ်။" },
+        { hanzi: "但是，河水太急了，小猫总是钓不到鱼。", pinyin: "Dànshì, hé shuǐ tài jí le, xiǎo māo zǒngshì diào bù dào yú.", my: "ဒါပေမယ့် မြစ်ရေက အရမ်းစီးတယ်၊ ကြောင်ကလေးက ငါးအမြဲမရဘူး။" },
+        { hanzi: "有一天，小猫看见农民在田里种庄稼。", pinyin: "Yǒu yītiān, xiǎo māo kànjiàn nóngmín zài tián lǐ zhòng zhuāngjia.", my: "တစ်နေ့မှာ ကြောင်ကလေးက လယ်သမားတွေ လယ်ထဲမှာ စပါးစိုက်နေတာတွေ့တယ်။" },
+        { hanzi: "农民把种子埋进土里，浇水施肥。", pinyin: "Nóngmín bǎ zhǒngzi mái jìn tǔ lǐ, jiāo shuǐ shī féi.", my: "လယ်သမားတွေက မျိုးစေ့တွေကို မြေထဲမြှုပ်ပြီး ရေလောင်း မြေဩဇာကျွေးတယ်။" },
+        { hanzi: "过了几个月，田里长出了很多很多庄稼。", pinyin: "Guò le jǐ gè yuè, tián lǐ zhǎng chū le hěn duō hěn duō zhuāngjia.", my: "လအနည်းငယ်ကြာတော့ လယ်ထဲမှာ စပါးတွေ အများကြီးထွက်လာတယ်။" },
+        { hanzi: "小猫心想：如果我把小鱼种进土里，", pinyin: "Xiǎo māo xīn xiǎng: Rúguǒ wǒ bǎ xiǎo yú zhòng jìn tǔ lǐ,", my: "ကြောင်ကလေးက စဉ်းစားမိတယ်။ ငါငါးငယ်လေးတွေကို မြေထဲစိုက်ရင်" },
+        { hanzi: "是不是也能长出很多很多小鱼呢？", pinyin: "Shì bù shì yě néng zhǎng chū hěn duō hěn duō xiǎo yú ne?", my: "ငါးငယ်လေးတွေ အများကြီး ထွက်လာနိုင်မလား လို့ တွေးမိတယ်။" },
+        { hanzi: "于是，小猫挖了一个坑，把一条小鱼放了进去。", pinyin: "Yúshì, xiǎo māo wā le yī gè kēng, bǎ yī tiáo xiǎo yú fàng le jìnqù.", my: "ဒါနဲ့ ကြောင်ကလေးက မြေတွင်းတစ်ခုတူးပြီး ငါးငယ်လေးတစ်ကောင်ကို ထည့်လိုက်တယ်။" },
+        { hanzi: "他给小鱼埋上土，浇了水，施了肥。", pinyin: "Tā gěi xiǎo yú mái shàng tǔ, jiāo le shuǐ, shī le féi.", my: "သူက ငါးငယ်လေးကို မြေဖုံးပြီး ရေလောင်း မြေဩဇာကျွေးလိုက်တယ်။" },
+        { hanzi: "小猫每天都去看他的小鱼长出来没有。", pinyin: "Xiǎo māo měitiān dōu qù kàn tā de xiǎo yú zhǎng chūlái méiyǒu.", my: "ကြောင်ကလေးက သူ့ငါးငယ်လေး ထွက်လာပြီလားဆိုပြီး နေ့တိုင်းသွားကြည့်တယ်။" },
+        { hanzi: "一天过去了，两天过去了，很多天过去了。", pinyin: "Yī tiān guòqù le, liǎng tiān guòqù le, hěn duō tiān guòqù le.", my: "တစ်ရက်ကုန်တယ်၊ နှစ်ရက်ကုန်တယ်၊ ရက်တွေအများကြီးကုန်သွားတယ်။" },
+        { hanzi: "可是，土里什么也没有长出来。", pinyin: "Kěshì, tǔ lǐ shénme yě méiyǒu zhǎng chūlái.", my: "ဒါပေမယ့် မြေထဲမှာ ဘာမှမထွက်လာဘူး။" },
+        { hanzi: "小猫很失望，他挖开泥土一看，", pinyin: "Xiǎo māo hěn shīwàng, tā wā kāi ní tǔ yī kàn,", my: "ကြောင်ကလေး အရမ်းစိတ်ပျက်သွားပြီး မြေကြီးကိုတူးကြည့်တော့" },
+        { hanzi: "发现小鱼早就腐烂了，变成了一堆臭泥巴。", pinyin: "Fāxiàn xiǎo yú zǎo jiù fǔlàn le, biànchéng le yī duī chòu níba.", my: "ငါးငယ်လေးက ပုပ်သွားပြီး အနံ့ဆိုးထွက်နေတဲ့ ရွှံ့တစ်ပုံ ဖြစ်သွားတာကို တွေ့ရတယ်။" },
+        { hanzi: "小猫很难过，他跑去问妈妈：", pinyin: "Xiǎo māo hěn nánguò, tā pǎo qù wèn māma:", my: "ကြောင်ကလေး အရမ်းဝမ်းနည်းသွားပြီး အမေ့ဆီပြေးသွားမေးတယ်။" },
+        { hanzi: "妈妈，为什么种粮食能长出粮食，种鱼却不能长出鱼呢？", pinyin: "Māma, wèishénme zhòng liángshi néng zhǎng chū liángshi, zhòng yú què bùnéng zhǎng chū yú ne?", my: "အမေရယ်၊ ဘာကြောင့် စပါးစိုက်ရင် စပါးထွက်တာလဲ၊ ငါးစိုက်ရင် ငါးမထွက်တာလဲ လို့မေးတယ်။" },
+        { hanzi: "妈妈笑着说：孩子，鱼是生活在水里的动物，不是长在土里的。", pinyin: "Māma xiào zhe shuō: Háizi, yú shì shēnghuó zài shuǐ lǐ de dòngwù, bù shì zhǎng zài tǔ lǐ de.", my: "အမေက ပြုံးပြီး သားရယ်၊ ငါးက ရေထဲမှာနေတဲ့တိရစ္ဆာန်၊ မြေထဲမှာမပေါက်ဘူး လို့ပြောတယ်။" },
+        { hanzi: "植物才能从土里长出来，动物是生出来的。", pinyin: "Zhíwù cáinéng cóng tǔ lǐ zhǎng chūlái, dòngwù shì shēng chūlái de.", my: "အပင်တွေပဲ မြေထဲကပေါက်တာ၊ တိရစ္ဆာန်တွေက မွေးဖွားတာ လို့ပြောတယ်။" },
+        { hanzi: "小猫明白了，从此以后他再也不种鱼了，", pinyin: "Xiǎo māo míngbái le, cóngcǐ yǐhòu tā zài yě bù zhòng yú le,", my: "ကြောင်ကလေး နားလည်သွားတယ်။ အဲဒီကတည်းက သူ ငါးတွေကို ဘယ်တော့မှ မစိုက်တော့ဘူး။" },
+        { hanzi: "而是每天都去河边认真钓鱼。", pinyin: "Ér shì měitiān dōu qù hé biān rènzhēn diàoyú.", my: "ဒါပေမယ့် နေ့တိုင်း မြစ်အနားကို စေ့စေ့စပ်စပ် ငါးမျှားသွားတယ်။" },
+        { hanzi: "他终于学会了自己想吃的鱼要自己去钓。", pinyin: "Tā zhōngyú xuéhuì le zìjǐ xiǎng chī de yú yào zìjǐ qù diào.", my: "နောက်ဆုံးတော့ သူ စားချင်တဲ့ငါးကို ကိုယ်တိုင်မျှားရမယ်ဆိုတာ သင်ယူလိုက်တယ်။" }
+    ],
+    vocab: [
+        { word: "小猫", pinyin: "xiǎo māo", meaning: "ကြောင်ကလေး" },
+        { word: "特别", pinyin: "tèbié", meaning: "အထူးသဖြင့်" },
+        { word: "喜欢", pinyin: "xǐhuān", meaning: "ကြိုက်သည်" },
+        { word: "钓鱼", pinyin: "diàoyú", meaning: "ငါးမျှားသည်" },
+        { word: "急", pinyin: "jí", meaning: "စီးသော/မြန်သော" },
+        { word: "总是", pinyin: "zǒngshì", meaning: "အမြဲ" },
+        { word: "农民", pinyin: "nóngmín", meaning: "လယ်သမား" },
+        { word: "田", pinyin: "tián", meaning: "လယ်" },
+        { word: "庄稼", pinyin: "zhuāngjia", meaning: "စပါး/သီးနှံ" },
+        { word: "种子", pinyin: "zhǒngzi", meaning: "မျိုးစေ့" },
+        { word: "埋", pinyin: "mái", meaning: "မြှုပ်သည်" },
+        { word: "土", pinyin: "tǔ", meaning: "မြေ" },
+        { word: "浇水", pinyin: "jiāo shuǐ", meaning: "ရေလောင်းသည်" },
+        { word: "施肥", pinyin: "shī féi", meaning: "မြေဩဇာကျွေးသည်" },
+        { word: "过", pinyin: "guò", meaning: "ကုန်သည်" },
+        { word: "月", pinyin: "yuè", meaning: "လ" },
+        { word: "长", pinyin: "zhǎng", meaning: "ပေါက်သည်/ကြီးသည်" },
+        { word: "如果", pinyin: "rúguǒ", meaning: "အကယ်၍" },
+        { word: "挖", pinyin: "wā", meaning: "တူးသည်" },
+        { word: "坑", pinyin: "kēng", meaning: "တွင်း" },
+        { word: "放", pinyin: "fàng", meaning: "ထည့်သည်" },
+        { word: "失望", pinyin: "shīwàng", meaning: "စိတ်ပျက်သည်" },
+        { word: "发现", pinyin: "fāxiàn", meaning: "ရှာဖွေတွေ့ရှိသည်" },
+        { word: "腐烂", pinyin: "fǔlàn", meaning: "ပုပ်သည်" },
+        { word: "臭", pinyin: "chòu", meaning: "အနံ့ဆိုးသော" },
+        { word: "泥巴", pinyin: "níba", meaning: "ရွှံ့" },
+        { word: "难过", pinyin: "nánguò", meaning: "ဝမ်းနည်းသည်" },
+        { word: "为什么", pinyin: "wèishénme", meaning: "ဘာကြောင့်" },
+        { word: "却", pinyin: "què", meaning: "သို့သော်" },
+        { word: "植物", pinyin: "zhíwù", meaning: "အပင်" },
+        { word: "才能", pinyin: "cáinéng", meaning: "မှသာ" },
+        { word: "生", pinyin: "shēng", meaning: "မွေးသည်" },
+        { word: "从此", pinyin: "cóngcǐ", meaning: "ထိုအချိန်မှစ၍" },
+        { word: "以后", pinyin: "yǐhòu", meaning: "နောင်အခါ" },
+        { word: "认真", pinyin: "rènzhēn", meaning: "စေ့စေ့စပ်စပ်" },
+        { word: "终于", pinyin: "zhōngyú", meaning: "နောက်ဆုံးတွင်" },
+        { word: "学会", pinyin: "xuéhuì", meaning: "သင်ယူတတ်သည်" },
+        { word: "想", pinyin: "xiǎng", meaning: "စဉ်းစားသည်/လိုချင်သည်" }
+    ]
+},
+
+{
+    id: 6,
+    title: "乌鸦喝水",
+    paragraphs: [
+        { hanzi: "一只乌鸦口渴了，到处找水喝。", pinyin: "Yī zhī wūyā kǒukě le, dàochù zhǎo shuǐ hē.", my: "ကျီးကန်းတစ်ကောင်က ရေငတ်နေပြီး ရေသောက်ဖို့ နေရာတိုင်းရှာတယ်။" },
+        { hanzi: "乌鸦飞呀飞，飞了很久，终于看到了一个瓶子。", pinyin: "Wūyā fēi ya fēi, fēi le hěn jiǔ, zhōngyú kàndào le yīgè píngzi.", my: "ကျီးကန်းက ပျံပျံ၊ အကြာကြီးပျံပြီး နောက်ဆုံးတော့ ပုလင်းတစ်လုံးကိုတွေ့တယ်။" },
+        { hanzi: "瓶子里有水，但是瓶口很小，", pinyin: "Píngzi lǐ yǒu shuǐ, dànshì píngkǒu hěn xiǎo,", my: "ပုလင်းထဲမှာ ရေရှိတယ်၊ ဒါပေမယ့် ပုလင်းပါးစပ်က အရမ်းကျဉ်းတယ်။" },
+        { hanzi: "乌鸦的嘴伸不进去，喝不到水。", pinyin: "Wūyā de zuǐ shēn bù jìnqù, hē bù dào shuǐ.", my: "ကျီးကန်းရဲ့နှုတ်သီးက မဝင်နိုင်ဘူး၊ ရေမသောက်နိုင်ဘူး။" },
+        { hanzi: "乌鸦很着急，他围着瓶子飞来飞去。", pinyin: "Wūyā hěn zhāojí, tā wéi zhe píngzi fēi lái fēi qù.", my: "ကျီးကန်း အရမ်းစိတ်ပူသွားပြီး ပုလင်းကို ပျံဝဲပျံဝဲလုပ်တယ်။" },
+        { hanzi: "突然，乌鸦看到地上有很多小石子。", pinyin: "Tūrán, wūyā kàndào dì shàng yǒu hěnduō xiǎo shízǐ.", my: "ရုတ်တရက် ကျီးကန်းက မြေပေါ်မှာ ကျောက်စရစ်ငယ်တွေ အများကြီးရှိတာတွေ့တယ်။" },
+        { hanzi: "乌鸦想了想，想出一个好办法。", pinyin: "Wūyā xiǎng le xiǎng, xiǎng chū yī gè hǎo bànfǎ.", my: "ကျီးကန်းက စဉ်းစားစဉ်းစားပြီး နည်းလမ်းကောင်းတစ်ခု ရှာတွေ့တယ်။" },
+        { hanzi: "他用嘴叼起小石子，一颗一颗地放进瓶子里。", pinyin: "Tā yòng zuǐ diāo qǐ xiǎo shízǐ, yī kē yī kē de fàng jìn píngzi lǐ.", my: "သူက နှုတ်သီးနဲ့ ကျောက်စရစ်ငယ်တွေကို ကောက်ပြီး တစ်လုံးချင်း ပုလင်းထဲထည့်တယ်။" },
+        { hanzi: "石子放进水里，水就会慢慢升高。", pinyin: "Shízǐ fàng jìn shuǐ lǐ, shuǐ jiù huì mànmàn shēnggāo.", my: "ကျောက်စရစ်တွေကို ရေထဲထည့်ရင် ရေက တဖြည်းဖြည်း မြင့်လာတယ်။" },
+        { hanzi: "乌鸦继续叼石子，一颗、两颗、三颗……", pinyin: "Wūyā jìxù diāo shízǐ, yī kē, liǎng kē, sān kē……", my: "ကျီးကန်းက ကျောက်စရစ်တွေ ဆက်ကောက်တယ်၊ တစ်လုံး၊ နှစ်လုံး၊ သုံးလုံး……" },
+        { hanzi: "瓶子里的水慢慢地升到了瓶口。", pinyin: "Píngzi lǐ de shuǐ mànmàn de shēng dào le píngkǒu.", my: "ပုလင်းထဲက ရေက တဖြည်းဖြည်းနဲ့ ပုလင်းပါးစပ်အထိ မြင့်လာတယ်။" },
+        { hanzi: "乌鸦高兴极了，他伸长脖子，", pinyin: "Wūyā gāoxìng jí le, tā shēn cháng bózi,", my: "ကျီးကန်း အရမ်းပျော်သွားပြီး လည်ပင်းဆန့်ကာ" },
+        { hanzi: "终于喝到了清凉的水。", pinyin: "Zhōngyú hē dào le qīngliáng de shuǐ.", my: "နောက်ဆုံးတော့ အေးမြတဲ့ရေကို သောက်လိုက်ရတယ်။" },
+        { hanzi: "乌鸦喝饱了水，开心地唱起歌来。", pinyin: "Wūyā hē bǎo le shuǐ, kāixīn de chàng qǐ gē lái.", my: "ကျီးကန်း ရေဝဝသောက်ပြီး ပျော်ရွှင်စွာ သီချင်းဆိုတယ်။" },
+        { hanzi: "这个故事告诉我们：遇到困难不要放弃，", pinyin: "Zhège gùshi gàosu wǒmen: Yùdào kùnnan bùyào fàngqì,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- အခက်အခဲကြုံရင် လက်မလျှော့နဲ့" },
+        { hanzi: "只要动脑筋，一定能想出办法来解决问题。", pinyin: "Zhǐyào dòng nǎojīn, yīdìng néng xiǎng chū bànfǎ lái jiějué wèntí.", my: "ဦးနှောက်ကိုသုံးရင် ပြဿနာကိုဖြေရှင်းဖို့ နည်းလမ်းတွေ သေချာရှာတွေ့နိုင်တယ်။" }
+    ],
+    vocab: [
+        { word: "乌鸦", pinyin: "wūyā", meaning: "ကျီးကန်း" },
+        { word: "口渴", pinyin: "kǒukě", meaning: "ရေငတ်သည်" },
+        { word: "到处", pinyin: "dàochù", meaning: "နေရာတိုင်း" },
+        { word: "找", pinyin: "zhǎo", meaning: "ရှာသည်" },
+        { word: "喝", pinyin: "hē", meaning: "သောက်သည်" },
+        { word: "飞", pinyin: "fēi", meaning: "ပျံသည်" },
+        { word: "终于", pinyin: "zhōngyú", meaning: "နောက်ဆုံးတွင်" },
+        { word: "瓶子", pinyin: "píngzi", meaning: "ပုလင်း" },
+        { word: "瓶口", pinyin: "píngkǒu", meaning: "ပုလင်းပါးစပ်" },
+        { word: "嘴", pinyin: "zuǐ", meaning: "နှုတ်သီး" },
+        { word: "伸", pinyin: "shēn", meaning: "ဆန့်သည်/ထိုးသည်" },
+        { word: "着急", pinyin: "zhāojí", meaning: "စိတ်ပူသည်" },
+        { word: "围", pinyin: "wéi", meaning: "ဝိုင်းသည်" },
+        { word: "突然", pinyin: "tūrán", meaning: "ရုတ်တရက်" },
+        { word: "地上", pinyin: "dì shàng", meaning: "မြေပေါ်" },
+        { word: "石子", pinyin: "shízǐ", meaning: "ကျောက်စရစ်" },
+        { word: "想", pinyin: "xiǎng", meaning: "စဉ်းစားသည်" },
+        { word: "办法", pinyin: "bànfǎ", meaning: "နည်းလမ်း" },
+        { word: "叼", pinyin: "diāo", meaning: "နှုတ်သီးနဲ့ကောက်သည်" },
+        { word: "颗", pinyin: "kē", meaning: "လုံး (အစေ့အတွက် အတိုင်းအတာ)" },
+        { word: "放", pinyin: "fàng", meaning: "ထည့်သည်" },
+        { word: "升高", pinyin: "shēnggāo", meaning: "မြင့်တက်သည်" },
+        { word: "继续", pinyin: "jìxù", meaning: "ဆက်လက်သည်" },
+        { word: "慢慢", pinyin: "mànmàn", meaning: "တဖြည်းဖြည်း" },
+        { word: "高兴", pinyin: "gāoxìng", meaning: "ပျော်ရွှင်သည်" },
+        { word: "极了", pinyin: "jí le", meaning: "အလွန်" },
+        { word: "伸长", pinyin: "shēn cháng", meaning: "ဆန့်သည်" },
+        { word: "脖子", pinyin: "bózi", meaning: "လည်ပင်း" },
+        { word: "清凉", pinyin: "qīngliáng", meaning: "အေးမြသော" },
+        { word: "饱", pinyin: "bǎo", meaning: "ဝသော" },
+        { word: "开心", pinyin: "kāixīn", meaning: "ပျော်ရွှင်သည်" },
+        { word: "故事", pinyin: "gùshi", meaning: "ပုံပြင်" },
+        { word: "遇到", pinyin: "yùdào", meaning: "ကြုံသည်" },
+        { word: "困难", pinyin: "kùnnan", meaning: "အခက်အခဲ" },
+        { word: "放弃", pinyin: "fàngqì", meaning: "လက်လျှော့သည်" },
+        { word: "只要", pinyin: "zhǐyào", meaning: "သာလျှင်" },
+        { word: "动脑筋", pinyin: "dòng nǎojīn", meaning: "ဦးနှောက်သုံးသည်" },
+        { word: "解决", pinyin: "jiějué", meaning: "ဖြေရှင်းသည်" },
+        { word: "问题", pinyin: "wèntí", meaning: "ပြဿနာ" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 7-10
+// =============================================================
+
+{
+    id: 7,
+    title: "狼来了",
+    paragraphs: [
+        { hanzi: "从前，有一个放羊的孩子。", pinyin: "Cóngqián, yǒu yīgè fàngyáng de háizi.", my: "ရှေးတုန်းက သိုးကျောင်းတဲ့ ကောင်လေးတစ်ယောက်ရှိတယ်။" },
+        { hanzi: "他每天都要到山上去放羊。", pinyin: "Tā měitiān dōu yào dào shān shàng qù fàngyáng.", my: "သူက နေ့တိုင်း တောင်ပေါ်ကို သိုးကျောင်းသွားတယ်။" },
+        { hanzi: "有一天，他觉得非常无聊，就想捉弄一下别人。", pinyin: "Yǒu yītiān, tā juéde fēicháng wúliáo, jiù xiǎng zhuōnòng yīxià biérén.", my: "တစ်နေ့မှာ သူ အရမ်းပျင်းသွားလို့ လူတွေကို လှည့်စားချင်စိတ်ဖြစ်လာတယ်။" },
+        { hanzi: "他大声喊：狼来了！狼来了！快来帮忙啊！", pinyin: "Tā dàshēng hǎn: Láng lái le! Láng lái le! Kuài lái bāngmáng a!", my: "သူက ကျယ်လောင်စွာ အော်တယ်။ ဝံပုလွေလာတယ်။ ဝံပုလွေလာတယ်။ မြန်မြန်လာကူညီကြပါ လို့အော်တယ်။" },
+        { hanzi: "山下的大人们听到喊声，都拿着工具跑上山来。", pinyin: "Shān xià de dàren men tīngdào hǎnshēng, dōu ná zhe gōngjù pǎo shàng shān lái.", my: "တောင်အောက်က လူကြီးတွေက အော်သံကြားတော့ ကိရိယာတွေကိုင်ပြီး တောင်ပေါ်ကို ပြေးတက်လာကြတယ်။" },
+        { hanzi: "可是，当他们跑到山上，发现根本没有狼。", pinyin: "Kěshì, dāng tāmen pǎo dào shān shàng, fāxiàn gēnběn méiyǒu láng.", my: "ဒါပေမယ့် သူတို့ တောင်ပေါ်ရောက်တော့ ဝံပုလွေလုံးဝမရှိတာကို တွေ့ရတယ်။" },
+        { hanzi: "小孩哈哈大笑说：你们真笨，我是骗你们的！", pinyin: "Xiǎohái hāhā dàxiào shuō: Nǐmen zhēn bèn, wǒ shì piàn nǐmen de!", my: "ကောင်လေးက ဟားဟားရယ်ပြီး ခင်ဗျားတို့ မိုက်တယ်၊ ငါလိမ်တာ လို့ပြောတယ်။" },
+        { hanzi: "大人们很生气，摇摇头下山去了。", pinyin: "Dàren men hěn shēngqì, yáo yáo tóu xià shān qù le.", my: "လူကြီးတွေ အရမ်းစိတ်ဆိုးပြီး ခေါင်းခါကာ တောင်အောက်ကို ဆင်းသွားကြတယ်။" },
+        { hanzi: "第二天，小孩又喊：狼来了！狼来了！", pinyin: "Dì'èr tiān, xiǎohái yòu hǎn: Láng lái le! Láng lái le!", my: "နောက်တစ်နေ့ ကောင်လေးက ထပ်အော်တယ်။ ဝံပုလွေလာတယ်။ ဝံပုလွေလာတယ်။" },
+        { hanzi: "大人们又跑上山来帮忙，可是还是没有狼。", pinyin: "Dàren men yòu pǎo shàng shān lái bāngmáng, kěshì háishì méiyǒu láng.", my: "လူကြီးတွေ ထပ်ပြီး တောင်ပေါ်ပြေးတက်လာကြပေမယ့် ဝံပုလွေမရှိဘူး။" },
+        { hanzi: "小孩又笑着说：你们又上当了！", pinyin: "Xiǎohái yòu xiào zhe shuō: Nǐmen yòu shàngdàng le!", my: "ကောင်လေးက ထပ်ရယ်ပြီး ခင်ဗျားတို့ ထပ်လိမ်ခံလိုက်ပြီ လို့ပြောတယ်။" },
+        { hanzi: "大人们很生气，决定再也不相信这个小孩了。", pinyin: "Dàren men hěn shēngqì, juédìng zài yě bù xiāngxìn zhège xiǎohái le.", my: "လူကြီးတွေ အရမ်းဒေါသထွက်ပြီး ဒီကောင်လေးကို ဘယ်တော့မှ မယုံကြည်တော့ဘူးလို့ ဆုံးဖြတ်လိုက်ကြတယ်။" },
+        { hanzi: "过了几天，狼真的来了。", pinyin: "Guò le jǐ tiān, láng zhēn de lái le.", my: "ရက်အနည်းငယ်ကြာတော့ ဝံပုလွေ တကယ်လာတယ်။" },
+        { hanzi: "小孩害怕极了，拼命地喊：狼来了！狼来了！救命啊！", pinyin: "Xiǎohái hàipà jí le, pīnmìng de hǎn: Láng lái le! Láng lái le! Jiùmìng a!", my: "ကောင်လေး အရမ်းကြောက်သွားပြီး အသက်ပါမပါ အော်တယ်။ ဝံပုလွေလာတယ်။ ဝံပုလွေလာတယ်။ ကယ်ပါဦး။" },
+        { hanzi: "可是，大人们以为他又在骗人，", pinyin: "Kěshì, dàren men yǐwéi tā yòu zài piàn rén,", my: "ဒါပေမယ့် လူကြီးတွေက သူထပ်လိမ်နေပြန်ပြီလို့ ထင်ကြတယ်။" },
+        { hanzi: "没有一个人上山来救他。", pinyin: "Méiyǒu yīgè rén shàng shān lái jiù tā.", my: "သူ့ကိုကယ်ဖို့ တောင်ပေါ်ကို ဘယ်သူမှ မလာကြဘူး။" },
+        { hanzi: "狼把羊都咬死了，小孩后悔极了。", pinyin: "Láng bǎ yáng dōu yǎo sǐ le, xiǎohái hòuhuǐ jí le.", my: "ဝံပုလွေက သိုးအကုန်လုံးကို ကိုက်သတ်လိုက်တယ်။ ကောင်လေး အရမ်းနောင်တရသွားတယ်。" },
+        { hanzi: "这个故事告诉我们：做人要诚实，不能说谎。", pinyin: "Zhège gùshi gàosu wǒmen: Zuòrén yào chéngshí, bùnéng shuōhuǎng.", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်။ လူဖြစ်ရင် ရိုးသားရမယ်။ မလိမ်ညာရဘူး။" },
+        { hanzi: "如果经常说谎，等到真正需要帮助的时候，就没有人相信你了。", pinyin: "Rúguǒ jīngcháng shuōhuǎng, děng dào zhēnzhèng xūyào bāngzhù de shíhou, jiù méiyǒu rén xiāngxìn nǐ le.", my: "မကြာခဏလိမ်ညာနေရင် တကယ်အကူအညီလိုတဲ့အခါ ဘယ်သူမှ မယုံကြည်တော့ဘူး။" }
+    ],
+    vocab: [
+        { word: "放羊", pinyin: "fàngyáng", meaning: "သိုးကျောင်းသည်" },
+        { word: "山", pinyin: "shān", meaning: "တောင်" },
+        { word: "无聊", pinyin: "wúliáo", meaning: "ပျင်းသော" },
+        { word: "捉弄", pinyin: "zhuōnòng", meaning: "လှည့်စားသည်" },
+        { word: "别人", pinyin: "biérén", meaning: "သူတစ်ပါး" },
+        { word: "喊", pinyin: "hǎn", meaning: "အော်သည်" },
+        { word: "狼", pinyin: "láng", meaning: "ဝံပုလွေ" },
+        { word: "帮忙", pinyin: "bāngmáng", meaning: "ကူညီသည်" },
+        { word: "大人", pinyin: "dàren", meaning: "လူကြီး" },
+        { word: "声音", pinyin: "shēngyīn", meaning: "အသံ" },
+        { word: "工具", pinyin: "gōngjù", meaning: "ကိရိယာ" },
+        { word: "根本", pinyin: "gēnběn", meaning: "လုံးဝ" },
+        { word: "哈哈", pinyin: "hāhā", meaning: "ဟားဟား" },
+        { word: "大笑", pinyin: "dàxiào", meaning: "ရယ်သည်" },
+        { word: "笨", pinyin: "bèn", meaning: "မိုက်သော" },
+        { word: "骗", pinyin: "piàn", meaning: "လိမ်သည်" },
+        { word: "生气", pinyin: "shēngqì", meaning: "စိတ်ဆိုးသည်" },
+        { word: "摇头", pinyin: "yáo tóu", meaning: "ခေါင်းခါသည်" },
+        { word: "下山", pinyin: "xià shān", meaning: "တောင်ပေါ်ကဆင်းသည်" },
+        { word: "第二", pinyin: "dì'èr", meaning: "ဒုတိယ" },
+        { word: "上当", pinyin: "shàngdàng", meaning: "လိမ်ခံသည်" },
+        { word: "决定", pinyin: "juédìng", meaning: "ဆုံးဖြတ်သည်" },
+        { word: "相信", pinyin: "xiāngxìn", meaning: "ယုံကြည်သည်" },
+        { word: "真的", pinyin: "zhēn de", meaning: "တကယ်" },
+        { word: "害怕", pinyin: "hàipà", meaning: "ကြောက်သည်" },
+        { word: "拼命", pinyin: "pīnmìng", meaning: "အသက်ပါမပါ" },
+        { word: "救命", pinyin: "jiùmìng", meaning: "ကယ်ပါဦး" },
+        { word: "以为", pinyin: "yǐwéi", meaning: "ထင်သည်" },
+        { word: "咬死", pinyin: "yǎo sǐ", meaning: "ကိုက်သတ်သည်" },
+        { word: "后悔", pinyin: "hòuhuǐ", meaning: "နောင်တရသည်" },
+        { word: "诚实", pinyin: "chéngshí", meaning: "ရိုးသားသည်" },
+        { word: "说谎", pinyin: "shuōhuǎng", meaning: "လိမ်ညာသည်" },
+        { word: "经常", pinyin: "jīngcháng", meaning: "မကြာခဏ" },
+        { word: "真正", pinyin: "zhēnzhèng", meaning: "စစ်မှန်သော" },
+        { word: "需要", pinyin: "xūyào", meaning: "လိုအပ်သည်" },
+        { word: "时候", pinyin: "shíhou", meaning: "အချိန်" },
+        { word: "再也", pinyin: "zài yě", meaning: "ဘယ်တော့မှ" },
+        { word: "决定", pinyin: "juédìng", meaning: "ဆုံးဖြတ်သည်" }
+    ]
+},
+
+{
+    id: 8,
+    title: "猴子捞月",
+    paragraphs: [
+        { hanzi: "有一只小猴子在井边玩耍。", pinyin: "Yǒu yī zhī xiǎo hóuzi zài jǐng biān wánshuǎ.", my: "မျောက်ကလေးတစ်ကောင်က ရေတွင်းအနားမှာ ကစားနေတယ်။" },
+        { hanzi: "他往井里一看，发现井里有一个月亮。", pinyin: "Tā wǎng jǐng lǐ yī kàn, fāxiàn jǐng lǐ yǒu yīgè yuèliang.", my: "သူက ရေတွင်းထဲကိုကြည့်တော့ ရေတွင်းထဲမှာ လတစ်လုံးရှိတာတွေ့တယ်။" },
+        { hanzi: "小猴子吓了一跳，大喊：不好了！月亮掉到井里了！", pinyin: "Xiǎo hóuzi xià le yī tiào, dà hǎn: Bù hǎo le! Yuèliang diào dào jǐng lǐ le!", my: "မျောက်ကလေး ထိတ်လန့်သွားပြီး ကြောက်စရာကြီး။ လဟာ ရေတွင်းထဲကျသွားပြီ လို့အော်တယ်။" },
+        { hanzi: "其他猴子听到喊声，都跑过来看。", pinyin: "Qítā hóuzi tīngdào hǎnshēng, dōu pǎo guòlái kàn.", my: "အခြားမျောက်တွေက အော်သံကြားတော့ အကုန်ပြေးလာကြည့်ကြတယ်။" },
+        { hanzi: "大家往井里一看，真的有个月亮。", pinyin: "Dàjiā wǎng jǐng lǐ yī kàn, zhēn de yǒu gè yuèliang.", my: "အကုန်လုံး ရေတွင်းထဲကြည့်တော့ လတကယ်ရှိတယ်။" },
+        { hanzi: "猴子们急得团团转，说：月亮掉进井里了，怎么办？", pinyin: "Hóuzi men jí de tuántuán zhuàn, shuō: Yuèliang diào jìn jǐng lǐ le, zěnme bàn?", my: "မျောက်တွေ စိတ်ပူပြီး လည်လည်ဝိုင်းဝိုင်း လုပ်ကြတယ်။ လဟာ ရေတွင်းထဲကျသွားပြီ၊ ဘယ်လိုလုပ်မလဲ လို့ပြောကြတယ်။" },
+        { hanzi: "一只老猴子说：大家不要慌，我们想办法把月亮捞上来。", pinyin: "Yī zhī lǎo hóuzi shuō: Dàjiā bùyào huāng, wǒmen xiǎng bànfǎ bǎ yuèliang lāo shànglái.", my: "မျောက်အိုတစ်ကောင်က မထိတ်လန့်ကြနဲ့၊ လကိုဆယ်ဖို့ နည်းလမ်းရှာကြစို့ လို့ပြောတယ်။" },
+        { hanzi: "老猴子说：我们一个接一个倒挂起来，", pinyin: "Lǎo hóuzi shuō: Wǒmen yīgè jiē yīgè dàoguà qǐlái,", my: "မျောက်အိုက ငါတို့ တစ်ကောင်ချင်းစီ ဇောက်ထိုးဆွဲကြရအောင်" },
+        { hanzi: "最下面的猴子就能把月亮捞上来了。", pinyin: "Zuì xiàmiàn de hóuzi jiù néng bǎ yuèliang lāo shànglái le.", my: "အောက်ဆုံးက မျောက်က လကိုဆယ်လို့ရမယ် လို့ပြောတယ်။" },
+        { hanzi: "于是，猴子们一只拉着另一只的尾巴，", pinyin: "Yúshì, hóuzi men yī zhī lā zhe lìng yī zhī de wěiba,", my: "ဒါနဲ့ မျောက်တွေက တစ်ကောင်နဲ့တစ်ကောင် အမြီးဆွဲပြီး" },
+        { hanzi: "倒挂成一条长链子，一直挂到井里。", pinyin: "Dàoguà chéng yī tiáo cháng liànzi, yīzhí guà dào jǐng lǐ.", my: "ဇောက်ထိုးဆွဲကာ ရေတွင်းထဲအထိ ကွင်းဆက်ရှည်ကြီးတစ်ခုဖြစ်သွားတယ်။" },
+        { hanzi: "最下面的猴子把手伸进井水里，去捞月亮。", pinyin: "Zuì xiàmiàn de hóuzi bǎ shǒu shēnjìn jǐng shuǐ lǐ, qù lāo yuèliang.", my: "အောက်ဆုံးက မျောက်က လက်ကို ရေတွင်းထဲထိုးပြီး လကိုဆယ်တယ်。" },
+        { hanzi: "可是，他的手一碰到水面，月亮就碎了。", pinyin: "Kěshì, tā de shǒu yī pèng dào shuǐmiàn, yuèliang jiù suì le.", my: "ဒါပေမယ့် သူ့လက်က ရေမျက်နှာပြင်ကိုထိလိုက်တာနဲ့ လကွဲသွားတယ်။" },
+        { hanzi: "他试了一次又一次，每次都捞不到月亮。", pinyin: "Tā shì le yī cì yòu yī cì, měi cì dōu lāo bù dào yuèliang.", my: "သူက အကြိမ်ကြိမ်စမ်းတယ်။ အကြိမ်တိုင်း လမရဘူး။" },
+        { hanzi: "上面的猴子等得不耐烦了，说：你快点啊！", pinyin: "Shàngmiàn de hóuzi děng de bù nàifán le, shuō: Nǐ kuài diǎn a!", my: "အပေါ်က မျောက်တွေ စိတ်မရှည်တော့ဘူး။ မြန်မြန်လုပ်ကွာ လို့ပြောတယ်။" },
+        { hanzi: "突然，最上面的猴子抬头一看，", pinyin: "Tūrán, zuì shàngmiàn de hóuzi táitóu yī kàn,", my: "ရုတ်တရက် အပေါ်ဆုံးက မျောက်က ခေါင်းထောင်ကြည့်တော့" },
+        { hanzi: "发现月亮还好好地挂在天上呢！", pinyin: "Fāxiàn yuèliang hái hǎohǎo de guà zài tiān shàng ne!", my: "လက ကောင်းကောင်းကြီး ကောင်းကင်မှာ ရှိနေသေးတာကို တွေ့တယ်။" },
+        { hanzi: "他喊道：大家别捞了！月亮还在天上！", pinyin: "Tā hǎn dào: Dàjiā bié lāo le! Yuèliang hái zài tiān shàng!", my: "သူက အော်တယ်။ အကုန်လုံး မဆယ်ကြနဲ့။ လက ကောင်းကင်မှာပဲရှိတယ်။" },
+        { hanzi: "猴子们抬头一看，原来月亮一直都在天上。", pinyin: "Hóuzi men táitóu yī kàn, yuánlái yuèliang yīzhí dōu zài tiān shàng.", my: "မျောက်တွေ ခေါင်းထောင်ကြည့်တော့ လဟာ အမြဲတမ်း ကောင်းကင်မှာပဲရှိတယ်ဆိုတာ သိသွားကြတယ်。" },
+        { hanzi: "井里的月亮只是月亮的影子而已。", pinyin: "Jǐng lǐ de yuèliang zhǐshì yuèliang de yǐngzi éryǐ.", my: "ရေတွင်းထဲက လဟာ လရဲ့ အရိပ်သက်သက်ပဲ ဆိုတာကို သိသွားကြတယ်。" }
+    ],
+    vocab: [
+        { word: "猴子", pinyin: "hóuzi", meaning: "မျောက်" },
+        { word: "井", pinyin: "jǐng", meaning: "ရေတွင်း" },
+        { word: "玩耍", pinyin: "wánshuǎ", meaning: "ကစားသည်" },
+        { word: "月亮", pinyin: "yuèliang", meaning: "လ" },
+        { word: "吓一跳", pinyin: "xià yī tiào", meaning: "ထိတ်လန့်သွားသည်" },
+        { word: "大喊", pinyin: "dà hǎn", meaning: "ကျယ်လောင်စွာအော်သည်" },
+        { word: "其他", pinyin: "qítā", meaning: "အခြား" },
+        { word: "大家", pinyin: "dàjiā", meaning: "လူတိုင်း" },
+        { word: "急", pinyin: "jí", meaning: "စိတ်ပူသည်" },
+        { word: "团团转", pinyin: "tuántuán zhuàn", meaning: "လည်လည်ဝိုင်းဝိုင်း" },
+        { word: "怎么办", pinyin: "zěnme bàn", meaning: "ဘယ်လိုလုပ်မလဲ" },
+        { word: "慌", pinyin: "huāng", meaning: "ထိတ်လန့်သည်" },
+        { word: "办法", pinyin: "bànfǎ", meaning: "နည်းလမ်း" },
+        { word: "捞", pinyin: "lāo", meaning: "ဆယ်သည်" },
+        { word: "一个接一个", pinyin: "yīgè jiē yīgè", meaning: "တစ်ကောင်ပြီးတစ်ကောင်" },
+        { word: "倒挂", pinyin: "dàoguà", meaning: "ဇောက်ထိုးဆွဲသည်" },
+        { word: "最", pinyin: "zuì", meaning: "အ...ဆုံး" },
+        { word: "下面", pinyin: "xiàmiàn", meaning: "အောက်" },
+        { word: "尾巴", pinyin: "wěiba", meaning: "အမြီး" },
+        { word: "长链子", pinyin: "cháng liànzi", meaning: "ကွင်းဆက်ရှည်" },
+        { word: "一直", pinyin: "yīzhí", meaning: "အမြဲတမ်း" },
+        { word: "手", pinyin: "shǒu", meaning: "လက်" },
+        { word: "水面", pinyin: "shuǐmiàn", meaning: "ရေမျက်နှာပြင်" },
+        { word: "碰到", pinyin: "pèng dào", meaning: "ထိသည်" },
+        { word: "碎", pinyin: "suì", meaning: "ကွဲသည်" },
+        { word: "次", pinyin: "cì", meaning: "အကြိမ်" },
+        { word: "不耐烦", pinyin: "bù nàifán", meaning: "စိတ်မရှည်" },
+        { word: "快点", pinyin: "kuài diǎn", meaning: "မြန်မြန်" },
+        { word: "抬头", pinyin: "táitóu", meaning: "ခေါင်းထောင်သည်" },
+        { word: "好好", pinyin: "hǎohǎo", meaning: "ကောင်းကောင်း" },
+        { word: "挂", pinyin: "guà", meaning: "ဆွဲထားသည်" },
+        { word: "天上", pinyin: "tiān shàng", meaning: "ကောင်းကင်" },
+        { word: "原来", pinyin: "yuánlái", meaning: "အမှန်တော့" },
+        { word: "影子", pinyin: "yǐngzi", meaning: "အရိပ်" },
+        { word: "而已", pinyin: "éryǐ", meaning: "သက်သက်" }
+    ]
+},
+
+{
+    id: 9,
+    title: "乌龟赛跑",
+    paragraphs: [
+        { hanzi: "森林里住着一只兔子和一只乌龟。", pinyin: "Sēnlín lǐ zhù zhe yī zhī tùzi hé yī zhī wūguī.", my: "တောအုပ်ထဲမှာ ယုန်တစ်ကောင်နဲ့ လိပ်တစ်ကောင် နေထိုင်တယ်။" },
+        { hanzi: "兔子跑得很快，他常常嘲笑乌龟走得太慢。", pinyin: "Tùzi pǎo de hěn kuài, tā chángcháng cháoxiào wūguī zǒu de tài màn.", my: "ယုန်က အရမ်းမြန်မြန်ပြေးတယ်။ သူက လိပ်က သိပ်နှေးတယ်လို့ မကြာခဏ လှောင်ပြောင်တယ်။" },
+        { hanzi: "乌龟听了很不高兴，他说：兔子，我们来比赛吧！", pinyin: "Wūguī tīng le hěn bù gāoxìng, tā shuō: Tùzi, wǒmen lái bǐsài ba!", my: "လိပ်က ဒီစကားကြားတော့ အရမ်းမပျော်ဘူး။ ယုန်ရယ် ငါတို့ ပြိုင်ကြရအောင် လို့ပြောတယ်။" },
+        { hanzi: "兔子哈哈大笑说：你和我比赛？你肯定输！", pinyin: "Tùzi hāhā dàxiào shuō: Nǐ hé wǒ bǐsài? Nǐ kěndìng shū!", my: "ယုန်က ဟားဟားရယ်ပြီး မင်းငါ့ကိုပြိုင်မှာလား။ မင်းသေချာရှုံးမယ် လို့ပြောတယ်။" },
+        { hanzi: "乌龟说：谁输谁赢还不一定呢！", pinyin: "Wūguī shuō: Shuí shū shuí yíng hái bù yīdìng ne!", my: "လိပ်က ဘယ်သူရှုံးမယ် ဘယ်သူနိုင်မယ်ဆိုတာ မသေချာသေးဘူး လို့ပြောတယ်။" },
+        { hanzi: "于是，他们约定第二天在山脚下比赛。", pinyin: "Yúshì, tāmen yuēdìng dì'èr tiān zài shān jiǎo xià bǐsài.", my: "ဒါနဲ့ သူတို့ နောက်တစ်နေ့ တောင်ခြေမှာ ပြိုင်ဖို့ ကတိပေးကြတယ်။" },
+        { hanzi: "比赛开始了，兔子像箭一样飞快地跑出去。", pinyin: "Bǐsài kāishǐ le, tùzi xiàng jiàn yīyàng fēikuài de pǎo chūqù.", my: "ပြိုင်ပွဲစတယ်။ ယုန်က မြားလိုမြန်မြန်ပြေးထွက်သွားတယ်။" },
+        { hanzi: "乌龟一步一步地慢慢爬着，不慌不忙。", pinyin: "Wūguī yī bù yī bù de mànmàn pá zhe, bù huāng bù máng.", my: "လိပ်က တစ်လှမ်းချင်း ဖြည်းညင်းစွာ တွားသွားတယ်။ မထိတ်လန့်ဘူး။" },
+        { hanzi: "兔子跑了一半路，回头一看，根本看不见乌龟的影子。", pinyin: "Tùzi pǎo le yībàn lù, huítóu yī kàn, gēnběn kàn bù jiàn wūguī de yǐngzi.", my: "ယုန်က ဝက်ဝက်ရောက်တော့ လှည့်ကြည့်တယ်။ လိပ်ရဲ့အရိပ်ကို လုံးဝမမြင်ရဘူး။" },
+        { hanzi: "兔子心想：乌龟爬得那么慢，我就是睡一觉也能赢他。", pinyin: "Tùzi xīn xiǎng: Wūguī pá de nàme màn, wǒ jiùshì shuì yī jiào yě néng yíng tā.", my: "ယုန်က စဉ်းစားတယ်။ လိပ်က ဒီလောက်နှေးတာ၊ ငါအိပ်တောင်အိပ်လို့ရတယ် သူ့ကိုငါနိုင်မယ်။" },
+        { hanzi: "于是，兔子就在一棵大树下睡着了。", pinyin: "Yúshì, tùzi jiù zài yī kē dà shù xià shuì zháo le.", my: "ဒါနဲ့ ယုန်က သစ်ပင်ကြီးတစ်ပင်အောက်မှာ အိပ်ပျော်သွားတယ်。" },
+        { hanzi: "乌龟没有停下来，他继续一步一步地向前爬。", pinyin: "Wūguī méiyǒu tíng xiàlái, tā jìxù yī bù yī bù de xiàng qián pá.", my: "လိပ်က မရပ်ဘူး။ သူက တစ်လှမ်းချင်း ရှေ့ကို ဆက်တွားသွားတယ်။" },
+        { hanzi: "乌龟爬呀爬，终于爬到了终点。", pinyin: "Wūguī pá ya pá, zhōngyú pá dào le zhōngdiǎn.", my: "လိပ်က တွားတွားပြီး နောက်ဆုံးတော့ ပန်းတိုင်ကိုရောက်တယ်။" },
+        { hanzi: "当兔子醒来时，乌龟已经到了终点。", pinyin: "Dāng tùzi xǐnglái shí, wūguī yǐjīng dào le zhōngdiǎn.", my: "ယုန်နိုးလာတဲ့အခါ လိပ်က ပန်းတိုင်ကို ရောက်နေပြီ။" },
+        { hanzi: "兔子输了，他非常后悔自己太骄傲了。", pinyin: "Tùzi shū le, tā fēicháng hòuhuǐ zìjǐ tài jiāo'ào le.", my: "ယုန်ရှုံးသွားတယ်။ သူ ကိုယ့်ကိုယ်ကို အရမ်းမာန်ကြီးမိတဲ့အတွက် အရမ်းနောင်တရတယ်။" },
+        { hanzi: "这个故事告诉我们：骄傲使人落后，谦虚使人进步。", pinyin: "Zhège gùshi gàosu wǒmen: Jiāo'ào shǐ rén luòhòu, qiānxū shǐ rén jìnbù.", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- မာနကြီးခြင်းက လူကိုနောက်ကျစေတယ်၊ နှိမ့်ချခြင်းက လူကိုတိုးတက်စေတယ်။" },
+        { hanzi: "只要坚持不懈，就算速度慢也能取得成功。", pinyin: "Zhǐyào jiānchí bùxiè, jiùsuàn sùdù màn yě néng qǔdé chénggōng.", my: "မပြတ်ဇွဲရှိရင် အမြန်နှေးပေမယ့် အောင်မြင်မှုရနိုင်တယ်။" }
+    ],
+    vocab: [
+        { word: "兔子", pinyin: "tùzi", meaning: "ယုန်" },
+        { word: "跑", pinyin: "pǎo", meaning: "ပြေးသည်" },
+        { word: "快", pinyin: "kuài", meaning: "မြန်သော" },
+        { word: "嘲笑", pinyin: "cháoxiào", meaning: "လှောင်ပြောင်သည်" },
+        { word: "慢", pinyin: "màn", meaning: "နှေးသော" },
+        { word: "比赛", pinyin: "bǐsài", meaning: "ပြိုင်ပွဲ" },
+        { word: "肯定", pinyin: "kěndìng", meaning: "သေချာပေါက်" },
+        { word: "输", pinyin: "shū", meaning: "ရှုံးသည်" },
+        { word: "赢", pinyin: "yíng", meaning: "နိုင်သည်" },
+        { word: "约定", pinyin: "yuēdìng", meaning: "ကတိပေးသည်" },
+        { word: "山脚", pinyin: "shān jiǎo", meaning: "တောင်ခြေ" },
+        { word: "开始", pinyin: "kāishǐ", meaning: "စတင်သည်" },
+        { word: "像箭一样", pinyin: "xiàng jiàn yīyàng", meaning: "မြားလိုမြန်သည်" },
+        { word: "爬", pinyin: "pá", meaning: "တွားသည်" },
+        { word: "不慌不忙", pinyin: "bù huāng bù máng", meaning: "မထိတ်လန့်" },
+        { word: "一半", pinyin: "yībàn", meaning: "တစ်ဝက်" },
+        { word: "回头", pinyin: "huítóu", meaning: "လှည့်ကြည့်သည်" },
+        { word: "根本", pinyin: "gēnběn", meaning: "လုံးဝ" },
+        { word: "看不见", pinyin: "kàn bù jiàn", meaning: "မမြင်ရ" },
+        { word: "睡觉", pinyin: "shuìjiào", meaning: "အိပ်သည်" },
+        { word: "睡着", pinyin: "shuì zháo", meaning: "အိပ်ပျော်သည်" },
+        { word: "停下来", pinyin: "tíng xiàlái", meaning: "ရပ်သည်" },
+        { word: "继续", pinyin: "jìxù", meaning: "ဆက်လက်သည်" },
+        { word: "向前", pinyin: "xiàng qián", meaning: "ရှေ့သို့" },
+        { word: "终点", pinyin: "zhōngdiǎn", meaning: "ပန်းတိုင်" },
+        { word: "醒来", pinyin: "xǐnglái", meaning: "နိုးသည်" },
+        { word: "已经", pinyin: "yǐjīng", meaning: "ပြီးပြီ" },
+        { word: "后悔", pinyin: "hòuhuǐ", meaning: "နောင်တရသည်" },
+        { word: "骄傲", pinyin: "jiāo'ào", meaning: "မာနကြီးသော" },
+        { word: "落后", pinyin: "luòhòu", meaning: "နောက်ကျသည်" },
+        { word: "谦虚", pinyin: "qiānxū", meaning: "နှိမ့်ချသော" },
+        { word: "进步", pinyin: "jìnbù", meaning: "တိုးတက်သည်" },
+        { word: "坚持不懈", pinyin: "jiānchí bùxiè", meaning: "မပြတ်ဇွဲရှိသည်" },
+        { word: "就算", pinyin: "jiùsuàn", meaning: "တောင်မှ" },
+        { word: "速度", pinyin: "sùdù", meaning: "အမြန်နှုန်း" },
+        { word: "取得", pinyin: "qǔdé", meaning: "ရရှိသည်" },
+        { word: "成功", pinyin: "chénggōng", meaning: "အောင်မြင်မှု" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 10-12
+// =============================================================
+
+{
+    id: 10,
+    title: "三个和尚",
+    paragraphs: [
+        { hanzi: "从前，山上有座小庙。", pinyin: "Cóngqián, shān shàng yǒu zuò xiǎo miào.", my: "ရှေးတုန်းက တောင်ပေါ်မှာ ဘုရားကျောင်းငယ်လေးတစ်ကျောင်းရှိတယ်။" },
+        { hanzi: "庙里住着一个小和尚。", pinyin: "Miào lǐ zhù zhe yīgè xiǎo héshang.", my: "ဘုရားကျောင်းထဲမှာ သံဃာငယ်တစ်ပါးနေတယ်။" },
+        { hanzi: "小和尚每天都要下山挑水喝。", pinyin: "Xiǎo héshang měitiān dōu yào xià shān tiāo shuǐ hē.", my: "သံဃာငယ်က နေ့တိုင်း တောင်ပေါ်ကဆင်းပြီး ရေခပ် သောက်ရတယ်။" },
+        { hanzi: "虽然很辛苦，但是他一个人也够用了。", pinyin: "Suīrán hěn xīnkǔ, dànshì tā yīgè rén yě gòu yòng le.", my: "ပင်ပန်းပေမယ့် သူတစ်ယောက်တည်းအတွက် လုံလောက်တယ်။" },
+        { hanzi: "后来，来了一个瘦和尚。", pinyin: "Hòulái, lái le yīgè shòu héshang.", my: "နောက်ပိုင်း ပိန်တဲ့သံဃာတစ်ပါး ရောက်လာတယ်။" },
+        { hanzi: "瘦和尚说：我也要住在这里。", pinyin: "Shòu héshang shuō: Wǒ yě yào zhù zài zhèlǐ.", my: "ပိန်တဲ့သံဃာက ကျွန်တော်လည်း ဒီမှာနေမယ် လို့ပြောတယ်။" },
+        { hanzi: "小和尚说：好啊，但是你要和我一起下山挑水。", pinyin: "Xiǎo héshang shuō: Hǎo a, dànshì nǐ yào hé wǒ yīqǐ xià shān tiāo shuǐ.", my: "သံဃာငယ်က ကောင်းပါတယ်၊ ဒါပေမယ့် မင်းငါနဲ့အတူ တောင်ပေါ်ကဆင်းပြီး ရေခပ်ရမယ် လို့ပြောတယ်။" },
+        { hanzi: "于是，两个和尚每天一起下山挑水。", pinyin: "Yúshì, liǎng gè héshang měitiān yīqǐ xià shān tiāo shuǐ.", my: "ဒါနဲ့ သံဃာနှစ်ပါး နေ့တိုင်းအတူတူ တောင်ပေါ်ကဆင်းပြီး ရေခပ်ကြတယ်။" },
+        { hanzi: "他们用一根扁担抬水，比较轻松。", pinyin: "Tāmen yòng yī gēn biǎndàn tái shuǐ, bǐjiào qīngsōng.", my: "သူတို့က ထမ်းဘိုးတစ်ချောင်းနဲ့ ရေသယ်တယ်။ အတော်အသင့် သက်သာတယ်။" },
+        { hanzi: "又过了几天，来了一个胖和尚。", pinyin: "Yòu guò le jǐ tiān, lái le yīgè pàng héshang.", my: "နောက်ထပ် ရက်အနည်းငယ်ကြာတော့ သံဃာဝတစ်ပါး ရောက်လာတယ်။" },
+        { hanzi: "胖和尚说：我也想住在这里。", pinyin: "Pàng héshang shuō: Wǒ yě xiǎng zhù zài zhèlǐ.", my: "သံဃာဝက ကျွန်တော်လည်း ဒီမှာနေချင်တယ် လို့ပြောတယ်။" },
+        { hanzi: "可是，现在有三个人了，谁来挑水呢？", pinyin: "Kěshì, xiànzài yǒu sān gè rén le, shéi lái tiāo shuǐ ne?", my: "ဒါပေမယ့် အခု လူသုံးယောက်ရှိပြီ၊ ဘယ်သူရေခပ်မလဲ။" },
+        { hanzi: "小和尚说：你也要和我们一起挑水。", pinyin: "Xiǎo héshang shuō: Nǐ yě yào hé wǒmen yīqǐ tiāo shuǐ.", my: "သံဃာငယ်က မင်းလည်း ငါတို့နဲ့အတူ ရေခပ်ရမယ် လို့ပြောတယ်။" },
+        { hanzi: "胖和尚说：我不去，你们去挑吧！", pinyin: "Pàng héshang shuō: Wǒ bù qù, nǐmen qù tiāo ba!", my: "သံဃာဝက ကျွန်တော်မသွားဘူး၊ ခင်ဗျားတို့သွားခပ်ကြ လို့ပြောတယ်။" },
+        { hanzi: "瘦和尚说：我也不去！", pinyin: "Shòu héshang shuō: Wǒ yě bù qù!", my: "ပိန်တဲ့သံဃာက ကျွန်တော်လည်းမသွားဘူး လို့ပြောတယ်။" },
+        { hanzi: "三个人你推我，我推你，谁也不愿意去挑水。", pinyin: "Sān gè rén nǐ tuī wǒ, wǒ tuī nǐ, shéi yě bù yuànyì qù tiāo shuǐ.", my: "လူသုံးယောက် တစ်ယောက်ကိုတစ်ယောက် တွန်းကြတယ်၊ ဘယ်သူမှ ရေခပ်ချင်စိတ်မရှိဘူး။" },
+        { hanzi: "结果，他们都没有水喝了。", pinyin: "Jiéguǒ, tāmen dōu méiyǒu shuǐ hē le.", my: "နောက်ဆုံးတော့ သူတို့အကုန်လုံး ရေမရှိဘူး။" },
+        { hanzi: "小和尚说：我们不能这样下去！", pinyin: "Xiǎo héshang shuō: Wǒmen bùnéng zhèyàng xiàqù!", my: "သံဃာငယ်က ငါတို့ ဒီလိုမဆက်ဖြစ်နိုင်ဘူး လို့ပြောတယ်။" },
+        { hanzi: "于是，他们商量出一个办法：一起轮流挑水。", pinyin: "Yúshì, tāmen shāngliang chū yīgè bànfǎ: Yīqǐ lúnliú tiāo shuǐ.", my: "ဒါနဲ့ သူတို့ နည်းလမ်းတစ်ခု ဆွေးနွေးကြတယ်။ အတူတူ အလှည့်ကျ ရေခပ်ဖို့ ဆုံးဖြတ်ကြတယ်။" },
+        { hanzi: "今天你挑，明天我挑，后天他挑。", pinyin: "Jīntiān nǐ tiāo, míngtiān wǒ tiāo, hòutiān tā tiāo.", my: "ဒီနေ့မင်းခပ်၊ မနက်ဖြန်ငါခပ်၊ သန်ဘက်သူခပ် ဆိုပြီး အလှည့်ကျလုပ်ကြတယ်။" },
+        { hanzi: "从此以后，三个和尚都有了水喝，", pinyin: "Cóngcǐ yǐhòu, sān gè héshang dōu yǒu le shuǐ hē,", my: "အဲဒီကတည်းက သံဃာသုံးပါးလုံး ရေသောက်ရတယ်။" },
+        { hanzi: "他们也学会了要互相帮助，团结合作。", pinyin: "Tāmen yě xuéhuì le yào hùxiāng bāngzhù, tuánjié hézuò.", my: "သူတို့ အချင်းချင်းကူညီဖို့နဲ့ စည်းလုံးညီညွတ်ဖို့ သင်ယူလိုက်ကြတယ်။" }
+    ],
+    vocab: [
+        { word: "庙", pinyin: "miào", meaning: "ဘုရားကျောင်း" },
+        { word: "和尚", pinyin: "héshang", meaning: "သံဃာ" },
+        { word: "挑水", pinyin: "tiāo shuǐ", meaning: "ရေခပ်သည်" },
+        { word: "辛苦", pinyin: "xīnkǔ", meaning: "ပင်ပန်းသည်" },
+        { word: "够用", pinyin: "gòu yòng", meaning: "လုံလောက်သည်" },
+        { word: "瘦", pinyin: "shòu", meaning: "ပိန်သော" },
+        { word: "胖", pinyin: "pàng", meaning: "ဝသော" },
+        { word: "扁担", pinyin: "biǎndàn", meaning: "ထမ်းဘိုး" },
+        { word: "抬", pinyin: "tái", meaning: "သယ်သည်" },
+        { word: "轻松", pinyin: "qīngsōng", meaning: "သက်သာသည်" },
+        { word: "推", pinyin: "tuī", meaning: "တွန်းသည်" },
+        { word: "愿意", pinyin: "yuànyì", meaning: "ဆန္ဒရှိသည်" },
+        { word: "结果", pinyin: "jiéguǒ", meaning: "နောက်ဆုံးတွင်" },
+        { word: "下去", pinyin: "xiàqù", meaning: "ဆက်လုပ်သည်" },
+        { word: "商量", pinyin: "shāngliang", meaning: "ဆွေးနွေးသည်" },
+        { word: "轮流", pinyin: "lúnliú", meaning: "အလှည့်ကျ" },
+        { word: "今天", pinyin: "jīntiān", meaning: "ဒီနေ့" },
+        { word: "明天", pinyin: "míngtiān", meaning: "မနက်ဖြန်" },
+        { word: "后天", pinyin: "hòutiān", meaning: "သန်ဘက်" },
+        { word: "互相", pinyin: "hùxiāng", meaning: "အချင်းချင်း" },
+        { word: "团结", pinyin: "tuánjié", meaning: "စည်းလုံးသည်" },
+        { word: "合作", pinyin: "hézuò", meaning: "ပူးပေါင်းဆောင်ရွက်သည်" }
+    ]
+},
+
+{
+    id: 11,
+    title: "拔苗助长",
+    paragraphs: [
+        { hanzi: "古时候，有一个农夫，他非常着急。", pinyin: "Gǔ shíhou, yǒu yīgè nóngfū, tā fēicháng zhāojí.", my: "ရှေးခေတ်က လယ်သမားတစ်ယောက်ရှိတယ်၊ သူက အရမ်းစိတ်ပူတယ်။" },
+        { hanzi: "他种了一片禾苗，每天都要去看。", pinyin: "Tā zhòng le yī piàn hémiáo, měitiān dōu yào qù kàn.", my: "သူ စပါးခင်းတစ်ခု စိုက်ထားတယ်၊ နေ့တိုင်း သွားကြည့်တယ်။" },
+        { hanzi: "可是，禾苗长得太慢了。", pinyin: "Kěshì, hémiáo zhǎng de tài màn le.", my: "ဒါပေမယ့် စပါးတွေ အရမ်းနှေးနှေးကြီးပေါက်တယ်။" },
+        { hanzi: "农夫心想：有什么办法能让禾苗长得快一点呢？", pinyin: "Nóngfū xīn xiǎng: Yǒu shénme bànfǎ néng ràng hémiáo zhǎng de kuài yīdiǎn ne?", my: "လယ်သမား စဉ်းစားတယ်။ စပါးတွေ မြန်မြန်ကြီးအောင် ဘယ်လိုလုပ်ရမလဲ။" },
+        { hanzi: "他想了很久很久，终于想出了一个好办法。", pinyin: "Tā xiǎng le hěn jiǔ hěn jiǔ, zhōngyú xiǎng chū le yīgè hǎo bànfǎ.", my: "သူ အကြာကြီးစဉ်းစားပြီး နောက်ဆုံးတော့ နည်းလမ်းကောင်းတစ်ခုရှာတွေ့တယ်။" },
+        { hanzi: "他跑到田里，把禾苗一棵一棵地拔高。", pinyin: "Tā pǎo dào tián lǐ, bǎ hémiáo yī kē yī kē de bá gāo.", my: "သူ လယ်ကွင်းထဲပြေးသွားပြီး စပါးတွေကို တစ်ပင်ချင်း ဆွဲမြှင့်လိုက်တယ်。" },
+        { hanzi: "他从早上一直拔到太阳下山。", pinyin: "Tā cóng zǎoshang yīzhí bá dào tàiyáng xià shān.", my: "သူ မနက်ကနေ နေဝင်တဲ့အထိ ဆွဲမြှင့်နေတယ်။" },
+        { hanzi: "他终于把所有的禾苗都拔高了。", pinyin: "Tā zhōngyú bǎ suǒyǒu de hémiáo dōu bá gāo le.", my: "နောက်ဆုံးတော့ စပါးအကုန်လုံးကို ဆွဲမြှင့်လိုက်တယ်။" },
+        { hanzi: "他很高兴，回到家对儿子说：", pinyin: "Tā hěn gāoxìng, huí dào jiā duì érzi shuō:", my: "သူ အရမ်းပျော်သွားပြီး အိမ်ပြန်တော့ သားကိုပြောတယ်။" },
+        { hanzi: "今天可把我累坏了！我终于让禾苗长高了！", pinyin: "Jīntiān kě bǎ wǒ lèi huài le! Wǒ zhōngyú ràng hémiáo zhǎng gāo le!", my: "ဒီနေ့ ငါအရမ်းပင်ပန်းတယ်။ ငါနောက်ဆုံးတော့ စပါးတွေကြီးလာအောင် လုပ်လိုက်ပြီ။" },
+        { hanzi: "儿子听了很惊讶，马上跑到田里去看。", pinyin: "Érzi tīng le hěn jīngyà, mǎshàng pǎo dào tián lǐ qù kàn.", my: "သားက ဒီစကားကြားတော့ အံ့ဩသွားပြီး ချက်ချင်းလယ်ကွင်းကို ပြေးသွားကြည့်တယ်。" },
+        { hanzi: "可是，他发现所有的禾苗都枯萎了。", pinyin: "Kěshì, tā fāxiàn suǒyǒu de hémiáo dōu kūwěi le.", my: "ဒါပေမယ့် သူတွေ့တာက စပါးအကုန်လုံး ညှိုးနွမ်းသွားပြီ။" },
+        { hanzi: "原来，禾苗的根都被他拔断了，", pinyin: "Yuánlái, hémiáo de gēn dōu bèi tā bá duàn le,", my: "အမှန်တော့ စပါးတွေရဲ့ အမြစ်တွေ အကုန်ကျိုးသွားတယ်။" },
+        { hanzi: "禾苗吸收不到水分和养分，所以都死了。", pinyin: "Hémiáo xīshōu bù dào shuǐfèn hé yǎngfèn, suǒyǐ dōu sǐ le.", my: "စပါးတွေက ရေနဲ့အာဟာရကို စုပ်ယူလို့မရတော့ဘူး၊ ဒါကြောင့် အကုန်သေသွားတယ်။" },
+        { hanzi: "农夫知道了，伤心地哭了。", pinyin: "Nóngfū zhīdào le, shāngxīn de kū le.", my: "လယ်သမားက သိသွားတော့ ဝမ်းနည်းစွာ ငိုတယ်။" },
+        { hanzi: "这个故事告诉我们：做事情不能太着急，", pinyin: "Zhège gùshi gàosu wǒmen: Zuò shìqing bùnéng tài zhāojí,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- အလုပ်တွေကို အရမ်းအလျင်စလိုမလုပ်ရဘူး။" },
+        { hanzi: "要按规律办事，不能违背自然规律。", pinyin: "Yào àn guīlǜ bànshì, bùnéng wéibèi zìrán guīlǜ.", my: "စည်းမျဉ်းအတိုင်းလုပ်ရမယ်၊ သဘာဝစည်းမျဉ်းကို ဆန့်ကျင်လို့မရဘူး။" }
+    ],
+    vocab: [
+        { word: "农夫", pinyin: "nóngfū", meaning: "လယ်သမား" },
+        { word: "禾苗", pinyin: "hémiáo", meaning: "စပါးပင်ငယ်" },
+        { word: "长", pinyin: "zhǎng", meaning: "ကြီးထွားသည်" },
+        { word: "慢", pinyin: "màn", meaning: "နှေးသော" },
+        { word: "办法", pinyin: "bànfǎ", meaning: "နည်းလမ်း" },
+        { word: "拔", pinyin: "bá", meaning: "ဆွဲနုတ်သည်" },
+        { word: "高", pinyin: "gāo", meaning: "မြင့်သော" },
+        { word: "早上", pinyin: "zǎoshang", meaning: "မနက်ခင်း" },
+        { word: "太阳", pinyin: "tàiyáng", meaning: "နေ" },
+        { word: "下山", pinyin: "xià shān", meaning: "ဝင်သည်" },
+        { word: "所有", pinyin: "suǒyǒu", meaning: "အားလုံး" },
+        { word: "高兴", pinyin: "gāoxìng", meaning: "ပျော်ရွှင်သည်" },
+        { word: "儿子", pinyin: "érzi", meaning: "သား" },
+        { word: "累坏", pinyin: "lèi huài", meaning: "အရမ်းပင်ပန်းသည်" },
+        { word: "惊讶", pinyin: "jīngyà", meaning: "အံ့ဩသည်" },
+        { word: "马上", pinyin: "mǎshàng", meaning: "ချက်ချင်း" },
+        { word: "枯萎", pinyin: "kūwěi", meaning: "ညှိုးနွမ်းသည်" },
+        { word: "根", pinyin: "gēn", meaning: "အမြစ်" },
+        { word: "断", pinyin: "duàn", meaning: "ကျိုးသည်" },
+        { word: "吸收", pinyin: "xīshōu", meaning: "စုပ်ယူသည်" },
+        { word: "水分", pinyin: "shuǐfèn", meaning: "ရေဓာတ်" },
+        { word: "养分", pinyin: "yǎngfèn", meaning: "အာဟာရ" },
+        { word: "所以", pinyin: "suǒyǐ", meaning: "ဒါကြောင့်" },
+        { word: "死", pinyin: "sǐ", meaning: "သေသည်" },
+        { word: "伤心", pinyin: "shāngxīn", meaning: "ဝမ်းနည်းသည်" },
+        { word: "哭", pinyin: "kū", meaning: "ငိုသည်" },
+        { word: "规律", pinyin: "guīlǜ", meaning: "စည်းမျဉ်း" },
+        { word: "办事", pinyin: "bànshì", meaning: "အလုပ်လုပ်သည်" },
+        { word: "违背", pinyin: "wéibèi", meaning: "ဆန့်ကျင်သည်" },
+        { word: "自然", pinyin: "zìrán", meaning: "သဘာဝ" }
+    ]
+},
+
+{
+    id: 12,
+    title: "画蛇添足",
+    paragraphs: [
+        { hanzi: "古时候，楚国有个人得到了一壶酒。", pinyin: "Gǔ shíhou, Chǔ guó yǒu gè rén dédào le yī hú jiǔ.", my: "ရှေးခေတ် ချူးနိုင်ငံမှာ လူတစ်ယောက် သေရည်တစ်အိုးရတယ်။" },
+        { hanzi: "这壶酒很香，他非常想喝。", pinyin: "Zhè hú jiǔ hěn xiāng, tā fēicháng xiǎng hē.", my: "ဒီသေရည်က အရမ်းမွှေးတယ်၊ သူ အရမ်းသောက်ချင်တယ်။" },
+        { hanzi: "可是，酒只有一壶，一个人喝刚刚好。", pinyin: "Kěshì, jiǔ zhǐyǒu yī hú, yīgè rén hē gānggāng hǎo.", my: "ဒါပေမယ့် သေရည်က တစ်အိုးပဲရှိတယ်၊ တစ်ယောက်တည်းသောက်ရင် အတိအကျပဲ။" },
+        { hanzi: "如果很多人一起喝，就不够分了。", pinyin: "Rúguǒ hěnduō rén yīqǐ hē, jiù bù gòu fēn le.", my: "လူအများကြီး အတူသောက်ရင် မလုံလောက်ဘူး။" },
+        { hanzi: "这个人想了一个办法：我们比赛画蛇吧。", pinyin: "Zhège rén xiǎng le yīgè bànfǎ: Wǒmen bǐsài huà shé ba.", my: "ဒီလူက နည်းလမ်းတစ်ခုစဉ်းစားတယ်။ ငါတို့ မြွေဆွဲပြိုင်ကြရအောင်။" },
+        { hanzi: "谁先画完，谁就喝这壶酒。", pinyin: "Shuí xiān huà wán, shuí jiù hē zhè hú jiǔ.", my: "ဘယ်သူအရင်ဆွဲပြီးလဲ သူဒီသေရည်ကိုသောက်မယ်။" },
+        { hanzi: "大家都同意了，就开始画蛇。", pinyin: "Dàjiā dōu tóngyì le, jiù kāishǐ huà shé.", my: "လူတိုင်းသဘောတူပြီး မြွေဆွဲကြတယ်။" },
+        { hanzi: "有一个人画得很快，一会儿就画好了。", pinyin: "Yǒu yīgè rén huà de hěn kuài, yīhuìr jiù huà hǎo le.", my: "လူတစ်ယောက်က အရမ်းမြန်မြန်ဆွဲပြီး ခဏအတွင်း ပြီးသွားတယ်။" },
+        { hanzi: "他拿起酒壶，高兴地说：我赢了！", pinyin: "Tā ná qǐ jiǔ hú, gāoxìng de shuō: Wǒ yíng le!", my: "သူ သေရည်အိုးကိုကိုင်ပြီး ငါနိုင်ပြီ လို့ပျော်ရွှင်စွာပြောတယ်။" },
+        { hanzi: "可是，他看到别人还在画，就想：", pinyin: "Kěshì, tā kàndào biérén hái zài huà, jiù xiǎng:", my: "ဒါပေမယ့် သူတခြားသူတွေ ဆွဲနေတုန်းမြင်တော့ စဉ်းစားမိတယ်။" },
+        { hanzi: "我可以再给蛇画几只脚，让它更像真的。", pinyin: "Wǒ kěyǐ zài gěi shé huà jǐ zhī jiǎo, ràng tā gèng xiàng zhēn de.", my: "ငါ မြွေကို ခြေထောက်တွေထပ်ဆွဲပေးလို့ရတယ်၊ ပိုပြီးတကယ့်မြွေနဲ့တူအောင်။" },
+        { hanzi: "于是，他拿起笔给蛇画脚。", pinyin: "Yúshì, tā ná qǐ bǐ gěi shé huà jiǎo.", my: "ဒါနဲ့ သူ စုတ်တံကိုကိုင်ပြီး မြွေကို ခြေထောက်ဆွဲတယ်။" },
+        { hanzi: "这时，另一个人也画完了。", pinyin: "Zhè shí, lìng yīgè rén yě huà wán le.", my: "ဒီအချိန်မှာ နောက်လူတစ်ယောက်လည်း ဆွဲပြီးသွားတယ်။" },
+        { hanzi: "那个人说：蛇没有脚，你画的不是蛇！", pinyin: "Nàge rén shuō: Shé méiyǒu jiǎo, nǐ huà de bùshì shé!", my: "အဲဒီလူက မြွေမှာ ခြေထောက်မရှိဘူး၊ မင်းဆွဲတာ မြွေမဟုတ်ဘူး လို့ပြောတယ်。" },
+        { hanzi: "所以，我才是第一个画完的人。", pinyin: "Suǒyǐ, wǒ cái shì dìyī gè huà wán de rén.", my: "ဒါကြောင့် ငါပဲ ပထမဆုံးပြီးတဲ့လူ လို့ပြောတယ်။" },
+        { hanzi: "于是，那个人拿过酒壶，把酒喝了。", pinyin: "Yúshì, nàge rén ná guò jiǔ hú, bǎ jiǔ hē le.", my: "ဒါနဲ့ အဲဒီလူက သေရည်အိုးကိုယူပြီး သောက်လိုက်တယ်。" },
+        { hanzi: "而给蛇画脚的那个人，什么也没得到。", pinyin: "Ér gěi shé huà jiǎo de nàge rén, shénme yě méi dédào.", my: "ပြီးတော့ မြွေကိုခြေထောက်ဆွဲတဲ့လူက ဘာမှမရဘူး။" },
+        { hanzi: "这个故事告诉我们：做事情不要多此一举，", pinyin: "Zhège gùshi gàosu wǒmen: Zuò shìqing bùyào duōcǐ yījǔ,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- အလုပ်တွေကို မလိုအပ်တဲ့အရာတွေ မထည့်ရဘူး။" },
+        { hanzi: "有时候做得太多反而会弄巧成拙。", pinyin: "Yǒu shíhou zuò de tài duō fǎn'ér huì nòngqiǎo chéngzhuō.", my: "တစ်ခါတလေ အလွန်အကျွံလုပ်ရင် ဆန့်ကျင်ဘက်ဖြစ်သွားနိုင်တယ်။" }
+    ],
+    vocab: [
+        { word: "壶", pinyin: "hú", meaning: "အိုး" },
+        { word: "酒", pinyin: "jiǔ", meaning: "သေရည်" },
+        { word: "香", pinyin: "xiāng", meaning: "မွှေးသော" },
+        { word: "刚刚好", pinyin: "gānggāng hǎo", meaning: "အတိအကျ" },
+        { word: "够", pinyin: "gòu", meaning: "လုံလောက်သည်" },
+        { word: "分", pinyin: "fēn", meaning: "ဝေမျှသည်" },
+        { word: "画", pinyin: "huà", meaning: "ဆွဲသည်" },
+        { word: "蛇", pinyin: "shé", meaning: "မြွေ" },
+        { word: "先", pinyin: "xiān", meaning: "အရင်" },
+        { word: "完", pinyin: "wán", meaning: "ပြီးသည်" },
+        { word: "同意", pinyin: "tóngyì", meaning: "သဘောတူသည်" },
+        { word: "一会儿", pinyin: "yīhuìr", meaning: "ခဏအတွင်း" },
+        { word: "赢", pinyin: "yíng", meaning: "နိုင်သည်" },
+        { word: "脚", pinyin: "jiǎo", meaning: "ခြေထောက်" },
+        { word: "像", pinyin: "xiàng", meaning: "တူသည်" },
+        { word: "真的", pinyin: "zhēn de", meaning: "တကယ့်" },
+        { word: "笔", pinyin: "bǐ", meaning: "စုတ်တံ" },
+        { word: "另", pinyin: "lìng", meaning: "အခြား" },
+        { word: "不是", pinyin: "bùshì", meaning: "မဟုတ်" },
+        { word: "第一", pinyin: "dìyī", meaning: "ပထမ" },
+        { word: "拿过", pinyin: "ná guò", meaning: "ယူသည်" },
+        { word: "而", pinyin: "ér", meaning: "ပြီးတော့" },
+        { word: "什么", pinyin: "shénme", meaning: "ဘာ" },
+        { word: "得到", pinyin: "dédào", meaning: "ရရှိသည်" },
+        { word: "多此一举", pinyin: "duōcǐ yījǔ", meaning: "မလိုအပ်တဲ့အရာ" },
+        { word: "有时候", pinyin: "yǒu shíhou", meaning: "တစ်ခါတလေ" },
+        { word: "反而", pinyin: "fǎn'ér", meaning: "ဆန့်ကျင်ဘက်" },
+        { word: "弄巧成拙", pinyin: "nòngqiǎo chéngzhuō", meaning: "အကျိုးဆိုးဖြစ်သည်" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 13-14
+// =============================================================
+
+{
+    id: 13,
+    title: "守株待兔",
+    paragraphs: [
+        { hanzi: "古时候，宋国有一个农夫。", pinyin: "Gǔ shíhou, Sòng guó yǒu yīgè nóngfū.", my: "ရှေးခေတ် ဆောင်းနိုင်ငံမှာ လယ်သမားတစ်ယောက်ရှိတယ်။" },
+        { hanzi: "他每天都要到田里去干活。", pinyin: "Tā měitiān dōu yào dào tián lǐ qù gànhuó.", my: "သူက နေ့တိုင်း လယ်ကွင်းထဲကို အလုပ်သွားလုပ်တယ်။" },
+        { hanzi: "有一天，他在田里干活的时候，", pinyin: "Yǒu yītiān, tā zài tián lǐ gànhuó de shíhou,", my: "တစ်နေ့မှာ သူ လယ်ထဲမှာ အလုပ်လုပ်နေတုန်း" },
+        { hanzi: "突然看见一只兔子跑过来。", pinyin: "Tūrán kànjiàn yī zhī tùzi pǎo guòlái.", my: "ရုတ်တရက် ယုန်တစ်ကောင်ပြေးလာတာကိုတွေ့တယ်။" },
+        { hanzi: "兔子跑得很快，一头撞在田边的树桩上。", pinyin: "Tùzi pǎo de hěn kuài, yī tóu zhuàng zài tián biān de shùzhuāng shàng.", my: "ယုန်က အရမ်းမြန်မြန်ပြေးလာပြီး လယ်ဘေးက သစ်ငုတ်ပေါ် ခေါင်းတိုက်မိတယ်。" },
+        { hanzi: "兔子撞死了，倒在树桩旁边。", pinyin: "Tùzi zhuàng sǐ le, dǎo zài shùzhuāng pángbiān.", my: "ယုန်က ခေါင်းတိုက်ပြီး သေသွားတယ်၊ သစ်ငုတ်ဘေးမှာ လဲကျနေတယ်။" },
+        { hanzi: "农夫看见了，非常高兴。", pinyin: "Nóngfū kànjiàn le, fēicháng gāoxìng.", my: "လယ်သမား ဒါကိုမြင်တော့ အရမ်းပျော်သွားတယ်。" },
+        { hanzi: "他放下农具，走过去把兔子捡起来。", pinyin: "Tā fàngxià nóngjù, zǒu guòqù bǎ tùzi jiǎn qǐlái.", my: "သူ လယ်ကိရိယာတွေချပြီး သွားကောက်တယ်။" },
+        { hanzi: "农夫心想：这真是太好了！", pinyin: "Nóngfū xīn xiǎng: Zhè zhēnshi tài hǎo le!", my: "လယ်သမား စဉ်းစားတယ်။ ဒါ အရမ်းကောင်းတယ်။" },
+        { hanzi: "如果我每天都能捡到一只兔子，", pinyin: "Rúguǒ wǒ měitiān dōu néng jiǎn dào yī zhī tùzi,", my: "ငါနေ့တိုင်း ယုန်တစ်ကောင်စီ ကောက်ရရင်" },
+        { hanzi: "那就不用种田了，每天都有肉吃。", pinyin: "Nà jiù bùyòng zhòngtián le, měitiān dōu yǒu ròu chī.", my: "လယ်မလုပ်တော့ဘူး၊ နေ့တိုင်း အသားစားရမယ်။" },
+        { hanzi: "从那天起，农夫再也不去田里干活了。", pinyin: "Cóng nà tiān qǐ, nóngfū zài yě bù qù tián lǐ gànhuó le.", my: "အဲဒီနေ့ကစလို့ လယ်သမားက လယ်ထဲကို အလုပ်မသွားတော့ဘူး။" },
+        { hanzi: "他天天坐在树桩旁边，等兔子来撞。", pinyin: "Tā tiāntiān zuò zài shùzhuāng pángbiān, děng tùzi lái zhuàng.", my: "သူက နေ့တိုင်း သစ်ငုတ်ဘေးမှာ ထိုင်ပြီး ယုန်တိုက်လာမယ်လို့ စောင့်တယ်။" },
+        { hanzi: "一天过去了，两天过去了，很多天过去了。", pinyin: "Yī tiān guòqù le, liǎng tiān guòqù le, hěn duō tiān guòqù le.", my: "တစ်ရက်ကုန်တယ်၊ နှစ်ရက်ကုန်တယ်၊ ရက်တွေအများကြီးကုန်သွားတယ်。" },
+        { hanzi: "可是，再也没有兔子来撞树桩了。", pinyin: "Kěshì, zài yě méiyǒu tùzi lái zhuàng shùzhuāng le.", my: "ဒါပေမယ့် သစ်ငုတ်ကို လာတိုက်တဲ့ ယုန်တစ်ကောင်မှ မရှိတော့ဘူး。" },
+        { hanzi: "他的田里长满了野草，庄稼都枯死了。", pinyin: "Tā de tián lǐ zhǎng mǎn le yěcǎo, zhuāngjia dōu kū sǐ le.", my: "သူ့လယ်ကွင်းထဲမှာ မြက်တွေပြည့်နေပြီ၊ စပါးတွေလည်း ညှိုးသေသွားတယ်。" },
+        { hanzi: "农夫什么也没得到，最后只能饿肚子。", pinyin: "Nóngfū shénme yě méi dédào, zuìhòu zhǐnéng è dùzi.", my: "လယ်သမား ဘာမှမရတော့ဘူး၊ နောက်ဆုံးတော့ ဗိုက်ဆာနေရတယ်။" },
+        { hanzi: "这个故事告诉我们：不能靠运气过日子，", pinyin: "Zhège gùshi gàosu wǒmen: Bùnéng kào yùnqi guò rìzi,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- ကံကောင်းခြင်းကိုပဲ အားမကိုးရဘူး။" },
+        { hanzi: "只有通过自己的辛勤劳动，才能获得收获。", pinyin: "Zhǐyǒu tōngguò zìjǐ de xīnqín láodòng, cáinéng huòdé shōuhuò.", my: "ကိုယ့်ရဲ့ ပင်ပန်းတဲ့အလုပ်ကနေ ရမှသာ ရိတ်သိမ်းမှုရနိုင်တယ်။" }
+    ],
+    vocab: [
+        { word: "农夫", pinyin: "nóngfū", meaning: "လယ်သမား" },
+        { word: "干活", pinyin: "gànhuó", meaning: "အလုပ်လုပ်သည်" },
+        { word: "突然", pinyin: "tūrán", meaning: "ရုတ်တရက်" },
+        { word: "兔子", pinyin: "tùzi", meaning: "ယုန်" },
+        { word: "撞", pinyin: "zhuàng", meaning: "တိုက်သည်" },
+        { word: "树桩", pinyin: "shùzhuāng", meaning: "သစ်ငုတ်" },
+        { word: "倒", pinyin: "dǎo", meaning: "လဲသည်" },
+        { word: "旁边", pinyin: "pángbiān", meaning: "ဘေး" },
+        { word: "高兴", pinyin: "gāoxìng", meaning: "ပျော်ရွှင်သည်" },
+        { word: "放下", pinyin: "fàngxià", meaning: "ချသည်" },
+        { word: "农具", pinyin: "nóngjù", meaning: "လယ်ကိရိယာ" },
+        { word: "捡", pinyin: "jiǎn", meaning: "ကောက်သည်" },
+        { word: "真是", pinyin: "zhēnshi", meaning: "တကယ်ပဲ" },
+        { word: "如果", pinyin: "rúguǒ", meaning: "အကယ်၍" },
+        { word: "种田", pinyin: "zhòngtián", meaning: "လယ်လုပ်သည်" },
+        { word: "肉", pinyin: "ròu", meaning: "အသား" },
+        { word: "天天", pinyin: "tiāntiān", meaning: "နေ့တိုင်း" },
+        { word: "坐", pinyin: "zuò", meaning: "ထိုင်သည်" },
+        { word: "等", pinyin: "děng", meaning: "စောင့်သည်" },
+        { word: "野草", pinyin: "yěcǎo", meaning: "မြက်ရိုင်း" },
+        { word: "庄稼", pinyin: "zhuāngjia", meaning: "စပါး" },
+        { word: "枯死", pinyin: "kū sǐ", meaning: "ညှိုးသေသည်" },
+        { word: "最后", pinyin: "zuìhòu", meaning: "နောက်ဆုံးတွင်" },
+        { word: "饿肚子", pinyin: "è dùzi", meaning: "ဗိုက်ဆာသည်" },
+        { word: "靠", pinyin: "kào", meaning: "မှီခိုသည်" },
+        { word: "运气", pinyin: "yùnqi", meaning: "ကံကောင်းခြင်း" },
+        { word: "过日子", pinyin: "guò rìzi", meaning: "နေထိုင်သည်" },
+        { word: "通过", pinyin: "tōngguò", meaning: "မှတဆင့်" },
+        { word: "辛勤", pinyin: "xīnqín", meaning: "ပင်ပန်းသော" },
+        { word: "劳动", pinyin: "láodòng", meaning: "အလုပ်" },
+        { word: "获得", pinyin: "huòdé", meaning: "ရရှိသည်" },
+        { word: "收获", pinyin: "shōuhuò", meaning: "ရိတ်သိမ်းမှု" }
+    ]
+},
+
+{
+    id: 14,
+    title: "掩耳盗铃",
+    paragraphs: [
+        { hanzi: "古时候，有一个人非常贪心。", pinyin: "Gǔ shíhou, yǒu yīgè rén fēicháng tānxīn.", my: "ရှေးခေတ်က လူတစ်ယောက်က အရမ်းလောဘကြီးတယ်။" },
+        { hanzi: "他看到别人家里有一个漂亮的铃铛，", pinyin: "Tā kàndào biérén jiā lǐ yǒu yīgè piàoliang de língdang,", my: "သူ သူတစ်ပါးအိမ်မှာ ခေါင်းလောင်းလှလှလေးတစ်လုံးရှိတာကိုတွေ့တယ်။" },
+        { hanzi: "就想把它偷走。", pinyin: "Jiù xiǎng bǎ tā tōu zǒu.", my: "အဲဒါကို ခိုးချင်စိတ်ဖြစ်လာတယ်။" },
+        { hanzi: "可是，铃铛一碰就会发出声音。", pinyin: "Kěshì, língdang yī pèng jiù huì fāchū shēngyīn.", my: "ဒါပေမယ့် ခေါင်းလောင်းကို ထိရင် အသံထွက်တယ်။" },
+        { hanzi: "他怕别人听到声音，就不敢偷了。", pinyin: "Tā pà biérén tīngdào shēngyīn, jiù bù gǎn tōu le.", my: "သူ သူတစ်ပါးကြားမှာစိုးလို့ မခိုးဝံ့ဘူး။" },
+        { hanzi: "他想了很久，终于想出了一个好办法。", pinyin: "Tā xiǎng le hěn jiǔ, zhōngyú xiǎng chū le yīgè hǎo bànfǎ.", my: "သူ အကြာကြီးစဉ်းစားပြီး နောက်ဆုံးတော့ နည်းလမ်းကောင်းတစ်ခုရှာတွေ့တယ်။" },
+        { hanzi: "他想：如果我捂住自己的耳朵，", pinyin: "Tā xiǎng: Rúguǒ wǒ wǔ zhù zìjǐ de ěrduo,", my: "သူစဉ်းစားတယ်။ ငါ ကိုယ့်နားတွေကို ပိတ်လိုက်ရင်" },
+        { hanzi: "我就听不到声音了，别人也听不到了。", pinyin: "Wǒ jiù tīng bù dào shēngyīn le, biérén yě tīng bù dào le.", my: "ငါ့နားမကြားတော့ဘူး၊ သူတစ်ပါးလည်း မကြားနိုင်တော့ဘူး။" },
+        { hanzi: "于是，他找来一块布，把自己的耳朵捂住。", pinyin: "Yúshì, tā zhǎo lái yī kuài bù, bǎ zìjǐ de ěrduo wǔ zhù.", my: "ဒါနဲ့ သူ အထည်တစ်စကိုယူပြီး ကိုယ့်နားတွေကို ပိတ်လိုက်တယ်။" },
+        { hanzi: "他走到那家门口，伸手去拿铃铛。", pinyin: "Tā zǒu dào nà jiā ménkǒu, shēnshǒu qù ná língdang.", my: "သူ အဲဒီအိမ်တံခါးဝကိုသွားပြီး လက်ဆန့်ကာ ခေါင်းလောင်းကိုယူတယ်。" },
+        { hanzi: "可是，他一碰到铃铛，铃铛就响了。", pinyin: "Kěshì, tā yī pèng dào língdang, língdang jiù xiǎng le.", my: "ဒါပေမယ့် သူ ခေါင်းလောင်းကိုထိလိုက်တာနဲ့ အသံမြည်သွားတယ်。" },
+        { hanzi: "他自己听不到，但是别人都听到了。", pinyin: "Tā zìjǐ tīng bù dào, dànshì biérén dōu tīng dào le.", my: "သူ ကိုယ်တိုင်မကြားရပေမယ့် သူတစ်ပါးတွေ အကုန်ကြားကြတယ်。" },
+        { hanzi: "人们听到铃声，都跑出来看。", pinyin: "Rénmen tīngdào língshēng, dōu pǎo chūlái kàn.", my: "လူတွေ ခေါင်းလောင်းသံကြားတော့ အကုန်ပြေးထွက်လာကြည့်ကြတယ်。" },
+        { hanzi: "他们看到小偷正在偷铃铛，", pinyin: "Tāmen kàndào xiǎotōu zhèngzài tōu língdang,", my: "သူတို့ ခိုးသူ ခေါင်းလောင်းခိုးနေတာကိုတွေ့တယ်။" },
+        { hanzi: "就把他抓住了。", pinyin: "Jiù bǎ tā zhuā zhù le.", my: "ဒါနဲ့ သူ့ကိုဖမ်းလိုက်တယ်။" },
+        { hanzi: "小偷被抓后，还觉得很奇怪：", pinyin: "Xiǎotōu bèi zhuā hòu, hái juéde hěn qíguài:", my: "ခိုးသူက ဖမ်းခံရပြီးတော့မှ အရမ်းအံ့ဩသွားတယ်။" },
+        { hanzi: "我明明把耳朵捂住了，为什么你们还听到呢？", pinyin: "Wǒ míngmíng bǎ ěrduo wǔ zhù le, wèishénme nǐmen hái tīngdào ne?", my: "ငါ နားတွေကိုပိတ်ထားတာ သေချာပါတယ်၊ ဘာကြောင့် ခင်ဗျားတို့ ကြားကြတာလဲ လို့တွေးတယ်။" },
+        { hanzi: "人们大笑说：你捂住自己的耳朵，", pinyin: "Rénmen dàxiào shuō: Nǐ wǔ zhù zìjǐ de ěrduo,", my: "လူတွေ ရယ်ပြီး ပြောတယ်။ မင်းက ကိုယ့်နားကိုပိတ်ထားတာ" },
+        { hanzi: "只能让你自己听不到，但别人还是听得见的。", pinyin: "Zhǐnéng ràng nǐ zìjǐ tīng bù dào, dàn biérén háishì tīng dé jiàn de.", my: "မင်းကိုယ်တိုင်ပဲမကြားရတာ၊ ဒါပေမယ့် သူတစ်ပါးတွေကြားရတယ်ဆိုတာ သိလိုက်ရတယ်။" },
+        { hanzi: "这个故事告诉我们：不要自欺欺人，", pinyin: "Zhège gùshi gàosu wǒmen: Bùyào zìqī qīrén,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- ကိုယ့်ကိုယ်ကိုလည်း မလိမ်ညာနဲ့၊ သူများကိုလည်း မလိမ်ညာနဲ့။" },
+        { hanzi: "做坏事的人，最终都会受到惩罚。", pinyin: "Zuò huàishì de rén, zuìzhōng dōu huì shòudào chéngfá.", my: "မကောင်းမှုလုပ်တဲ့သူတွေ နောက်ဆုံးတော့ အပြစ်ဒဏ်ခံရမှာပဲ။" }
+    ],
+    vocab: [
+        { word: "贪心", pinyin: "tānxīn", meaning: "လောဘကြီးသော" },
+        { word: "别人", pinyin: "biérén", meaning: "သူတစ်ပါး" },
+        { word: "漂亮", pinyin: "piàoliang", meaning: "လှပသော" },
+        { word: "铃铛", pinyin: "língdang", meaning: "ခေါင်းလောင်း" },
+        { word: "偷", pinyin: "tōu", meaning: "ခိုးသည်" },
+        { word: "碰", pinyin: "pèng", meaning: "ထိသည်" },
+        { word: "发出", pinyin: "fāchū", meaning: "ထွက်သည်" },
+        { word: "声音", pinyin: "shēngyīn", meaning: "အသံ" },
+        { word: "怕", pinyin: "pà", meaning: "ကြောက်သည်" },
+        { word: "敢", pinyin: "gǎn", meaning: "ရဲသည်" },
+        { word: "捂住", pinyin: "wǔ zhù", meaning: "ဖုံးအုပ်သည်" },
+        { word: "耳朵", pinyin: "ěrduo", meaning: "နား" },
+        { word: "块", pinyin: "kuài", meaning: "စ" },
+        { word: "布", pinyin: "bù", meaning: "အထည်" },
+        { word: "门", pinyin: "mén", meaning: "တံခါး" },
+        { word: "伸手", pinyin: "shēnshǒu", meaning: "လက်ဆန့်သည်" },
+        { word: "拿", pinyin: "ná", meaning: "ယူသည်" },
+        { word: "响", pinyin: "xiǎng", meaning: "မြည်သည်" },
+        { word: "铃声", pinyin: "língshēng", meaning: "ခေါင်းလောင်းသံ" },
+        { word: "小偷", pinyin: "xiǎotōu", meaning: "ခိုးသူ" },
+        { word: "正在", pinyin: "zhèngzài", meaning: "လုပ်နေဆဲ" },
+        { word: "抓", pinyin: "zhuā", meaning: "ဖမ်းသည်" },
+        { word: "奇怪", pinyin: "qíguài", meaning: "ထူးဆန်းသည်" },
+        { word: "明明", pinyin: "míngmíng", meaning: "ရှင်းရှင်းလင်းလင်း" },
+        { word: "大笑", pinyin: "dàxiào", meaning: "ရယ်သည်" },
+        { word: "只能", pinyin: "zhǐnéng", meaning: "သာလျှင်" },
+        { word: "还是", pinyin: "háishì", meaning: "နေသေးတယ်" },
+        { word: "自欺欺人", pinyin: "zìqī qīrén", meaning: "ကိုယ်တိုင်လိမ် သူများလိမ်" },
+        { word: "坏事", pinyin: "huàishì", meaning: "မကောင်းမှု" },
+        { word: "最终", pinyin: "zuìzhōng", meaning: "နောက်ဆုံး" },
+        { word: "受到", pinyin: "shòudào", meaning: "ခံရသည်" },
+        { word: "惩罚", pinyin: "chéngfá", meaning: "အပြစ်ဒဏ်" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 15-16
+// =============================================================
+
+{
+    id: 15,
+    title: "狐假虎威",
+    paragraphs: [
+        { hanzi: "有一天，一只大老虎在森林里找食物。", pinyin: "Yǒu yītiān, yī zhī dà lǎohǔ zài sēnlín lǐ zhǎo shíwù.", my: "တစ်နေ့မှာ ကျားကြီးတစ်ကောင်က တောအုပ်ထဲမှာ အစာရှာတယ်။" },
+        { hanzi: "老虎找到了一只狐狸，想把他吃掉。", pinyin: "Lǎohǔ zhǎodào le yī zhī húlí, xiǎng bǎ tā chīdiào.", my: "ကျားက မြေခွေးတစ်ကောင်ကိုတွေ့ပြီး စားချင်သွားတယ်။" },
+        { hanzi: "狐狸很聪明，他心想：我得想个办法逃命。", pinyin: "Húlí hěn cōngmíng, tā xīn xiǎng: Wǒ děi xiǎng gè bànfǎ táomìng.", my: "မြေခွေးက အရမ်းထက်မြက်တယ်။ သူစဉ်းစားမိတယ်။ ငါ အသက်ရှင်ဖို့ နည်းလမ်းရှာရမယ်။" },
+        { hanzi: "狐狸对老虎说：你不能吃我！", pinyin: "Húlí duì lǎohǔ shuō: Nǐ bùnéng chī wǒ!", my: "မြေခွေးက ကျားကို မင်းငါ့ကိုမစားနဲ့ လို့ပြောတယ်။" },
+        { hanzi: "老虎问：为什么不能吃你？", pinyin: "Lǎohǔ wèn: Wèishénme bùnéng chī nǐ?", my: "ကျားက ဘာလို့မစားရတာလဲ လို့မေးတယ်။" },
+        { hanzi: "狐狸说：我是天帝派来管理百兽的。", pinyin: "Húlí shuō: Wǒ shì Tiāndì pài lái guǎnlǐ bǎi shòu de.", my: "မြေခွေးက ငါဟာ နတ်မင်းကြီးက သားရဲအကုန်လုံးကို အုပ်ချုပ်ဖို့ စေလွှတ်ထားတာ လို့ပြောတယ်。" },
+        { hanzi: "如果你吃了我，天帝会惩罚你的。", pinyin: "Rúguǒ nǐ chī le wǒ, Tiāndì huì chéngfá nǐ de.", my: "မင်းငါ့ကိုစားရင် နတ်မင်းကြီးက မင်းကိုအပြစ်ပေးမယ် လို့ပြောတယ်။" },
+        { hanzi: "老虎不相信，他说：你怎么证明呢？", pinyin: "Lǎohǔ bù xiāngxìn, tā shuō: Nǐ zěnme zhèngmíng ne?", my: "ကျားက မယုံဘူး။ မင်းဘယ်လိုသက်သေပြမလဲ လို့မေးတယ်။" },
+        { hanzi: "狐狸说：如果你不相信，就跟我来。", pinyin: "Húlí shuō: Rúguǒ nǐ bù xiāngxìn, jiù gēn wǒ lái.", my: "မြေခွေးက မင်းမယုံရင် ငါ့နောက်လိုက်လာခဲ့ လို့ပြောတယ်။" },
+        { hanzi: "我走在前面，你走在后面，看看百兽怕不怕我。", pinyin: "Wǒ zǒu zài qiánmiàn, nǐ zǒu zài hòumiàn, kànkan bǎi shòu pà bù pà wǒ.", my: "ငါရှေ့ကသွားမယ်၊ မင်းနောက်ကလိုက်ခဲ့၊ သားရဲတွေ ငါ့ကိုကြောက်လားဆိုတာ ကြည့်လိုက် လို့ပြောတယ်။" },
+        { hanzi: "老虎觉得有道理，就跟着狐狸走。", pinyin: "Lǎohǔ juéde yǒu dàolǐ, jiù gēn zhe húlí zǒu.", my: "ကျားက အကြောင်းပြချက်ရှိတယ်လို့ထင်ပြီး မြေခွေးနောက်လိုက်သွားတယ်။" },
+        { hanzi: "狐狸大摇大摆地走在前面，", pinyin: "Húlí dà yáo dà bǎi de zǒu zài qiánmiàn,", my: "မြေခွေးက ကြွားကြွားဝါဝါ ရှေ့ကသွားတယ်။" },
+        { hanzi: "老虎紧跟在后面，看起来很威风。", pinyin: "Lǎohǔ jǐn gēn zài hòumiàn, kàn qǐlái hěn wēifēng.", my: "ကျားက နောက်ကနေ တင်းတင်းကြပ်ကြပ် လိုက်သွားတယ်၊ အရမ်းကြီးကျယ်နေတယ်။" },
+        { hanzi: "森林里的动物们看到老虎来了，", pinyin: "Sēnlín lǐ de dòngwù men kàndào lǎohǔ lái le,", my: "တောအုပ်ထဲက တိရစ္ဆာန်တွေက ကျားလာတာကိုမြင်တော့" },
+        { hanzi: "都吓得四处逃跑。", pinyin: "Dōu xià de sìchù táopǎo.", my: "အကုန်လုံး ကြောက်လန့်ပြီး နေရာတိုင်းကို ပြေးကြတယ်။" },
+        { hanzi: "老虎不知道动物们怕的是自己，", pinyin: "Lǎohǔ bù zhīdào dòngwù men pà de shì zìjǐ,", my: "ကျားက တိရစ္ဆာန်တွေ ကြောက်တာ သူ့ကိုမှန်း မသိဘူး။" },
+        { hanzi: "还以为它们真的怕狐狸呢。", pinyin: "Hái yǐwéi tāmen zhēn de pà húlí ne.", my: "သူတို့ မြေခွေးကို တကယ်ကြောက်တာလို့ ထင်နေတယ်။" },
+        { hanzi: "狐狸得意洋洋地说：你看，百兽都怕我！", pinyin: "Húlí déyì yángyáng de shuō: Nǐ kàn, bǎi shòu dōu pà wǒ!", my: "မြေခွေးက ကြွားလုံးထုတ်ပြီး ကြည့်လေ၊ သားရဲအကုန်လုံး ငါ့ကိုကြောက်တယ် လို့ပြောတယ်။" },
+        { hanzi: "老虎相信了狐狸的话，就放他走了。", pinyin: "Lǎohǔ xiāngxìn le húlí de huà, jiù fàng tā zǒu le.", my: "ကျားက မြေခွေးစကားကိုယုံပြီး လွှတ်လိုက်တယ်။" },
+        { hanzi: "狐狸靠着老虎的威风，救了自己的命。", pinyin: "Húlí kào zhe lǎohǔ de wēifēng, jiù le zìjǐ de mìng.", my: "မြေခွေးက ကျားရဲ့ အာဏာကိုအသုံးချပြီး ကိုယ့်အသက်ကိုကယ်လိုက်တယ်။" },
+        { hanzi: "这个故事告诉我们：有些人利用别人的势力来吓唬别人。", pinyin: "Zhège gùshi gàosu wǒmen: Yǒuxiē rén lìyòng biérén de shìlì lái xiàhu biérén.", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- တချို့လူတွေက သူတစ်ပါးရဲ့ အာဏာကို အသုံးချပြီး သူများကို ခြိမ်းခြောက်တယ်။" }
+    ],
+    vocab: [
+        { word: "老虎", pinyin: "lǎohǔ", meaning: "ကျား" },
+        { word: "狐狸", pinyin: "húlí", meaning: "မြေခွေး" },
+        { word: "食物", pinyin: "shíwù", meaning: "အစာ" },
+        { word: "聪明", pinyin: "cōngmíng", meaning: "ထက်မြက်သော" },
+        { word: "逃命", pinyin: "táomìng", meaning: "အသက်ရှင်ဖို့ထွက်ပြေးသည်" },
+        { word: "天帝", pinyin: "Tiāndì", meaning: "နတ်မင်းကြီး" },
+        { word: "派", pinyin: "pài", meaning: "စေလွှတ်သည်" },
+        { word: "管理", pinyin: "guǎnlǐ", meaning: "အုပ်ချုပ်သည်" },
+        { word: "百兽", pinyin: "bǎi shòu", meaning: "သားရဲအကုန်လုံး" },
+        { word: "惩罚", pinyin: "chéngfá", meaning: "အပြစ်ပေးသည်" },
+        { word: "相信", pinyin: "xiāngxìn", meaning: "ယုံကြည်သည်" },
+        { word: "证明", pinyin: "zhèngmíng", meaning: "သက်သေပြသည်" },
+        { word: "前面", pinyin: "qiánmiàn", meaning: "ရှေ့" },
+        { word: "后面", pinyin: "hòumiàn", meaning: "နောက်" },
+        { word: "道理", pinyin: "dàolǐ", meaning: "အကြောင်းပြချက်" },
+        { word: "大摇大摆", pinyin: "dà yáo dà bǎi", meaning: "ကြွားကြွားဝါဝါ" },
+        { word: "紧", pinyin: "jǐn", meaning: "တင်းကြပ်စွာ" },
+        { word: "威风", pinyin: "wēifēng", meaning: "ကြီးကျယ်သော" },
+        { word: "四处", pinyin: "sìchù", meaning: "နေရာတိုင်း" },
+        { word: "逃跑", pinyin: "táopǎo", meaning: "ထွက်ပြေးသည်" },
+        { word: "以为", pinyin: "yǐwéi", meaning: "ထင်သည်" },
+        { word: "得意洋洋", pinyin: "déyì yángyáng", meaning: "ကြွားလုံးထုတ်သည်" },
+        { word: "放走", pinyin: "fàng zǒu", meaning: "လွှတ်လိုက်သည်" },
+        { word: "靠", pinyin: "kào", meaning: "အသုံးချသည်" },
+        { word: "利用", pinyin: "lìyòng", meaning: "အသုံးချသည်" },
+        { word: "势力", pinyin: "shìlì", meaning: "အာဏာ" },
+        { word: "吓唬", pinyin: "xiàhu", meaning: "ခြိမ်းခြောက်သည်" }
+    ]
+},
+
+{
+    id: 16,
+    title: "井底之蛙",
+    paragraphs: [
+        { hanzi: "有一口井，里面住着一只青蛙。", pinyin: "Yǒu yī kǒu jǐng, lǐmiàn zhù zhe yī zhǐ qīngwā.", my: "ရေတွင်းတစ်တွင်းရှိတယ်၊ အထဲမှာ ဖားတစ်ကောင်နေတယ်။" },
+        { hanzi: "青蛙每天在井里跳来跳去，", pinyin: "Qīngwā měitiān zài jǐng lǐ tiào lái tiào qù,", my: "ဖားက နေ့တိုင်း ရေတွင်းထဲမှာ ခုန်ပေါက်နေတယ်။" },
+        { hanzi: "他觉得自己的家很大很大。", pinyin: "Tā juéde zìjǐ de jiā hěn dà hěn dà.", my: "သူ ကိုယ့်အိမ်ကို အရမ်းကြီးတယ်လို့ ထင်တယ်။" },
+        { hanzi: "有一天，一只小鸟飞到井边喝水。", pinyin: "Yǒu yītiān, yī zhī xiǎo niǎo fēi dào jǐng biān hē shuǐ.", my: "တစ်နေ့မှာ ငှက်ငယ်လေးတစ်ကောင်က ရေတွင်းအနားကို ရေသောက်ဖို့ပျံလာတယ်။" },
+        { hanzi: "青蛙问小鸟：你从哪里来？", pinyin: "Qīngwā wèn xiǎo niǎo: Nǐ cóng nǎlǐ lái?", my: "ဖားက ငှက်ငယ်လေးကို မင်းဘယ်ကလာတာလဲ လို့မေးတယ်။" },
+        { hanzi: "小鸟说：我从天上来，飞了一整天了。", pinyin: "Xiǎo niǎo shuō: Wǒ cóng tiān shàng lái, fēi le yī zhěng tiān le.", my: "ငှက်ငယ်လေးက ကျွန်တော် ကောင်းကင်ကလာတာ၊ တစ်နေ့လုံး ပျံခဲ့တယ် လို့ပြောတယ်။" },
+        { hanzi: "青蛙很惊讶，说：天有多大？", pinyin: "Qīngwā hěn jīngyà, shuō: Tiān yǒu duō dà?", my: "ဖားက အံ့ဩသွားပြီး ကောင်းကင်က ဘယ်လောက်ကြီးလဲ လို့မေးတယ်။" },
+        { hanzi: "小鸟说：天很大很大，无边无际。", pinyin: "Xiǎo niǎo shuō: Tiān hěn dà hěn dà, wúbiān wújì.", my: "ငှက်ငယ်လေးက ကောင်းကင်က အရမ်းကြီးတယ်၊ အဆုံးအစမရှိဘူး လို့ပြောတယ်။" },
+        { hanzi: "青蛙不相信，他说：天只有井口那么大！", pinyin: "Qīngwā bù xiāngxìn, tā shuō: Tiān zhǐyǒu jǐngkǒu nàme dà!", my: "ဖားက မယုံဘူး။ ကောင်းကင်က ရေတွင်းပါးစပ်လောက်ပဲကြီးတယ် လို့ပြောတယ်။" },
+        { hanzi: "小鸟笑着说：你错了，天非常大。", pinyin: "Xiǎo niǎo xiào zhe shuō: Nǐ cuò le, tiān fēicháng dà.", my: "ငှက်ငယ်လေးက ပြုံးပြီး မင်းမှားတယ်၊ ကောင်းကင်က အရမ်းကြီးတယ် လို့ပြောတယ်။" },
+        { hanzi: "我飞了很远很远，还是看不到天的尽头。", pinyin: "Wǒ fēi le hěn yuǎn hěn yuǎn, háishì kàn bù dào tiān de jìntóu.", my: "ကျွန်တော် အရမ်းဝေးဝေးပျံသွားပေမယ့် ကောင်းကင်ရဲ့အဆုံးကို မမြင်ရဘူး လို့ပြောတယ်。" },
+        { hanzi: "青蛙说：我不相信！我只看到井口那么大的天。", pinyin: "Qīngwā shuō: Wǒ bù xiāngxìn! Wǒ zhǐ kàndào jǐngkǒu nàme dà de tiān.", my: "ဖားက ကျွန်တော်မယုံဘူး။ ကျွန်တော် ရေတွင်းပါးစပ်လောက်ပဲမြင်ရတယ် လို့ပြောတယ်。" },
+        { hanzi: "小鸟说：那是因为你一直住在井底，", pinyin: "Xiǎo niǎo shuō: Nà shì yīnwèi nǐ yīzhí zhù zài jǐng dǐ,", my: "ငှက်ငယ်လေးက အဲဒါ မင်းအမြဲ ရေတွင်းအောက်ခြေမှာနေလို့ပါ" },
+        { hanzi: "从来没有看过外面的世界。", pinyin: "Cónglái méiyǒu kàn guò wàimiàn de shìjiè.", my: "အပြင်လောကကို ဘယ်တုန်းကမှ မမြင်ဖူးလို့ပါ လို့ပြောတယ်။" },
+        { hanzi: "如果你跳出井口，就能看到真正的天了。", pinyin: "Rúguǒ nǐ tiào chū jǐngkǒu, jiù néng kàndào zhēnzhèng de tiān le.", my: "မင်း ရေတွင်းပါးစပ်ပေါ်ခုန်တက်ရင် တကယ့်ကောင်းကင်ကိုမြင်ရမယ် လို့ပြောတယ်။" },
+        { hanzi: "青蛙听了，心里很疑惑。", pinyin: "Qīngwā tīng le, xīn lǐ hěn yíhuò.", my: "ဖားက ဒီစကားကြားတော့ စိတ်ထဲမှာ အရမ်းရှုပ်သွားတယ်။" },
+        { hanzi: "他鼓起勇气，跳到了井口。", pinyin: "Tā gǔ qǐ yǒngqì, tiào dào le jǐngkǒu.", my: "သူ ရဲရင့်စွာ ရေတွင်းပါးစပ်ပေါ်ကို ခုန်တက်လိုက်တယ်。" },
+        { hanzi: "当他看到天空的时候，吓了一大跳。", pinyin: "Dāng tā kàndào tiānkōng de shíhou, xià le yī dà tiào.", my: "သူ ကောင်းကင်ကိုမြင်တဲ့အခါ အရမ်းအံ့ဩသွားတယ်။" },
+        { hanzi: "原来天真的很大很大，像小鸟说的一样。", pinyin: "Yuánlái tiān zhēn de hěn dà hěn dà, xiàng xiǎo niǎo shuō de yīyàng.", my: "အမှန်တော့ ကောင်းကင်က ငှက်ငယ်လေးပြောသလို အရမ်းကြီးတယ်။" },
+        { hanzi: "青蛙不好意思地说：我真是井底之蛙，见识太少了。", pinyin: "Qīngwā bù hǎoyìsi de shuō: Wǒ zhēnshi jǐngdǐ zhī wā, jiànshí tài shǎo le.", my: "ဖားက ရှက်သွားပြီး ကျွန်တော်ဟာ တကယ့် ရေတွင်းထဲကဖားပဲ၊ အမြင်ကျဉ်းလွန်းတယ် လို့ပြောတယ်。" },
+        { hanzi: "从此，青蛙跳出了井底，去看看广阔的世界。", pinyin: "Cóngcǐ, qīngwā tiào chū le jǐng dǐ, qù kànkan guǎngkuò de shìjiè.", my: "အဲဒီကတည်းက ဖားက ရေတွင်းအောက်ခြေကနေ ခုန်ထွက်ပြီး ကျယ်ပြန့်တဲ့ကမ္ဘာကို သွားကြည့်တယ်။" }
+    ],
+    vocab: [
+        { word: "井", pinyin: "jǐng", meaning: "ရေတွင်း" },
+        { word: "青蛙", pinyin: "qīngwā", meaning: "ဖား" },
+        { word: "跳", pinyin: "tiào", meaning: "ခုန်သည်" },
+        { word: "家", pinyin: "jiā", meaning: "အိမ်" },
+        { word: "小鸟", pinyin: "xiǎo niǎo", meaning: "ငှက်ငယ်" },
+        { word: "喝水", pinyin: "hē shuǐ", meaning: "ရေသောက်သည်" },
+        { word: "哪里", pinyin: "nǎlǐ", meaning: "ဘယ်နေရာ" },
+        { word: "天上", pinyin: "tiān shàng", meaning: "ကောင်းကင်" },
+        { word: "一整天", pinyin: "yī zhěng tiān", meaning: "တစ်နေ့လုံး" },
+        { word: "惊讶", pinyin: "jīngyà", meaning: "အံ့ဩသည်" },
+        { word: "无边无际", pinyin: "wúbiān wújì", meaning: "အဆုံးအစမရှိ" },
+        { word: "井口", pinyin: "jǐngkǒu", meaning: "ရေတွင်းပါးစပ်" },
+        { word: "尽头", pinyin: "jìntóu", meaning: "အဆုံး" },
+        { word: "一直", pinyin: "yīzhí", meaning: "အမြဲ" },
+        { word: "井底", pinyin: "jǐng dǐ", meaning: "ရေတွင်းအောက်ခြေ" },
+        { word: "外面", pinyin: "wàimiàn", meaning: "အပြင်" },
+        { word: "世界", pinyin: "shìjiè", meaning: "ကမ္ဘာ" },
+        { word: "跳出", pinyin: "tiào chū", meaning: "ခုန်ထွက်သည်" },
+        { word: "真正", pinyin: "zhēnzhèng", meaning: "တကယ့်" },
+        { word: "疑惑", pinyin: "yíhuò", meaning: "ရှုပ်ထွေးသည်" },
+        { word: "鼓起勇气", pinyin: "gǔ qǐ yǒngqì", meaning: "ရဲရင့်သည်" },
+        { word: "天空", pinyin: "tiānkōng", meaning: "ကောင်းကင်" },
+        { word: "吓一跳", pinyin: "xià yī tiào", meaning: "ထိတ်လန့်သည်" },
+        { word: "不好意思", pinyin: "bù hǎoyìsi", meaning: "ရှက်သည်" },
+        { word: "见识", pinyin: "jiànshí", meaning: "အတွေ့အကြုံ" },
+        { word: "广阔", pinyin: "guǎngkuò", meaning: "ကျယ်ပြန့်သော" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 17-18
+// =============================================================
+
+{
+    id: 17,
+    title: "自相矛盾",
+    paragraphs: [
+        { hanzi: "古时候，楚国有一个卖武器的人。", pinyin: "Gǔ shíhou, Chǔ guó yǒu yīgè mài wǔqì de rén.", my: "ရှေးခေတ် ချူးနိုင်ငံမှာ လက်နက်ရောင်းတဲ့လူတစ်ယောက်ရှိတယ်။" },
+        { hanzi: "他每天都到集市上去卖他的矛和盾。", pinyin: "Tā měitiān dōu dào jíshì shàng qù mài tā de máo hé dùn.", my: "သူက နေ့တိုင်း ဈေးကိုသွားပြီး သူ့လှံနဲ့ဒိုင်းကိုရောင်းတယ်။" },
+        { hanzi: "有一天，他举起了他的盾，", pinyin: "Yǒu yītiān, tā jǔ qǐ le tā de dùn,", my: "တစ်နေ့မှာ သူ သူ့ဒိုင်းကိုမြှောက်ပြီး" },
+        { hanzi: "大声对人们说：你们快来看啊！", pinyin: "Dàshēng duì rénmen shuō: Nǐmen kuài lái kàn a!", my: "လူတွေကို ကျယ်လောင်စွာ ပြောတယ်။ ခင်ဗျားတို့ မြန်မြန်လာကြည့်ကြ။" },
+        { hanzi: "我的盾是世界上最坚固的盾，", pinyin: "Wǒ de dùn shì shìjiè shàng zuì jiāngù de dùn,", my: "ငါ့ဒိုင်းက ကမ္ဘာပေါ်မှာ အခိုင်မာဆုံးဒိုင်းပဲ။" },
+        { hanzi: "没有什么武器能够刺穿它！", pinyin: "Méiyǒu shénme wǔqì nénggòu cìchuān tā!", my: "ဘယ်လက်နက်မှ ဒါကိုဖောက်လို့မရဘူး လို့ပြောတယ်။" },
+        { hanzi: "然后，他又举起他的矛，", pinyin: "Ránhòu, tā yòu jǔ qǐ tā de máo,", my: "ပြီးတော့ သူ သူ့လှံကိုမြှောက်ပြီး" },
+        { hanzi: "说：我的矛是世界上最锋利的矛，", pinyin: "Shuō: Wǒ de máo shì shìjiè shàng zuì fēnglì de máo,", my: "ပြောတယ်။ ငါ့လှံက ကမ္ဘာပေါ်မှာ အထက်ဆုံးလှံပဲ။" },
+        { hanzi: "没有什么盾牌能够挡住它！", pinyin: "Méiyǒu shénme dùnpái nénggòu dǎngzhù tā!", my: "ဘယ်ဒိုင်းမှ ဒါကိုမခံနိုင်ဘူး လို့ပြောတယ်။" },
+        { hanzi: "集市上的人们听了，都觉得很奇怪。", pinyin: "Jíshì shàng de rénmen tīng le, dōu juéde hěn qíguài.", my: "ဈေးထဲက လူတွေ ဒီစကားကြားတော့ အရမ်းအံ့ဩသွားကြတယ်။" },
+        { hanzi: "有一个人站出来说：你的话有矛盾！", pinyin: "Yǒu yīgè rén zhàn chūlái shuō: Nǐ de huà yǒu máodùn!", my: "လူတစ်ယောက်က ထွက်လာပြီး မင်းစကားမှာ ဆန့်ကျင်မှုရှိတယ် လို့ပြောတယ်။" },
+        { hanzi: "那人问他：如果用你的矛去刺你的盾，", pinyin: "Nà rén wèn tā: Rúguǒ yòng nǐ de máo qù cì nǐ de dùn,", my: "အဲဒီလူက မေးတယ်။ မင်းလှံနဲ့ မင်းဒိုင်းကိုထိုးရင်" },
+        { hanzi: "结果会怎么样呢？", pinyin: "Jiéguǒ huì zěnmeyàng ne?", my: "ဘယ်လိုဖြစ်မလဲ လို့မေးတယ်။" },
+        { hanzi: "卖武器的人听了，哑口无言，", pinyin: "Mài wǔqì de rén tīng le, yǎkǒu wúyán,", my: "လက်နက်ရောင်းတဲ့လူက ဒီစကားကြားတော့ စကားမပြောတတ်တော့ဘူး။" },
+        { hanzi: "不知道该怎么回答。", pinyin: "Bù zhīdào gāi zěnme huídá.", my: "ဘယ်လိုဖြေရမှန်း မသိဘူး။" },
+        { hanzi: "因为如果他的矛能刺穿他的盾，", pinyin: "Yīnwèi rúguǒ tā de máo néng cìchuān tā de dùn,", my: "ဘာလို့လဲဆိုတော့ သူ့လှံက သူ့ဒိုင်းကိုဖောက်နိုင်ရင်" },
+        { hanzi: "那么他的盾就不是最坚固的了。", pinyin: "Nàme tā de dùn jiù bùshì zuì jiāngù de le.", my: "သူ့ဒိုင်းက အခိုင်မာဆုံးမဟုတ်တော့ဘူး။" },
+        { hanzi: "如果他的矛刺不穿他的盾，", pinyin: "Rúguǒ tā de máo cì bù chuān tā de dùn,", my: "သူ့လှံက သူ့ဒိုင်းကိုမဖောက်နိုင်ရင်" },
+        { hanzi: "那么他的矛就不是最锋利了。", pinyin: "Nàme tā de máo jiù bùshì zuì fēnglì le.", my: "သူ့လှံက အထက်ဆုံးမဟုတ်တော့ဘူး။" },
+        { hanzi: "所以，他说的两句话不能同时成立。", pinyin: "Suǒyǐ, tā shuō de liǎng jù huà bùnéng tóngshí chénglì.", my: "ဒါကြောင့် သူပြောတဲ့စကားနှစ်ခွန်းက တစ်ပြိုင်နက်တည်း မှန်နိုင်ဘူး။" },
+        { hanzi: "这个故事告诉我们：说话做事要前后一致，", pinyin: "Zhège gùshi gàosu wǒmen: Shuōhuà zuòshì yào qiánhòu yīzhì,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- စကားပြော၊ အလုပ်လုပ်တဲ့အခါ ရှေ့နောက်ညီညွတ်ရမယ်။" },
+        { hanzi: "不能自己说的话和自己说的话相冲突。", pinyin: "Bùnéng zìjǐ shuō de huà hé zìjǐ shuō de huà xiāng chōngtū.", my: "ကိုယ်ပြောတဲ့စကားနဲ့ ကိုယ်ပြောတဲ့စကား ဆန့်ကျင်မနေရဘူး။" }
+    ],
+    vocab: [
+        { word: "卖", pinyin: "mài", meaning: "ရောင်းသည်" },
+        { word: "武器", pinyin: "wǔqì", meaning: "လက်နက်" },
+        { word: "集市", pinyin: "jíshì", meaning: "ဈေး" },
+        { word: "矛", pinyin: "máo", meaning: "လှံ" },
+        { word: "盾", pinyin: "dùn", meaning: "ဒိုင်း" },
+        { word: "举", pinyin: "jǔ", meaning: "မြှောက်သည်" },
+        { word: "坚固", pinyin: "jiāngù", meaning: "ခိုင်မာသော" },
+        { word: "刺穿", pinyin: "cìchuān", meaning: "ထိုးဖေါက်သည်" },
+        { word: "锋利", pinyin: "fēnglì", meaning: "ထက်သော" },
+        { word: "盾牌", pinyin: "dùnpái", meaning: "ဒိုင်း" },
+        { word: "挡住", pinyin: "dǎngzhù", meaning: "ပိတ်ဆို့သည်" },
+        { word: "奇怪", pinyin: "qíguài", meaning: "ထူးဆန်းသည်" },
+        { word: "站出来", pinyin: "zhàn chūlái", meaning: "ထွက်လာသည်" },
+        { word: "矛盾", pinyin: "máodùn", meaning: "ဆန့်ကျင်မှု" },
+        { word: "结果", pinyin: "jiéguǒ", meaning: "ရလဒ်" },
+        { word: "怎么样", pinyin: "zěnmeyàng", meaning: "ဘယ်လိုလဲ" },
+        { word: "哑口无言", pinyin: "yǎkǒu wúyán", meaning: "စကားမပြောတတ်" },
+        { word: "回答", pinyin: "huídá", meaning: "ဖြေသည်" },
+        { word: "因为", pinyin: "yīnwèi", meaning: "ဘာလို့လဲဆိုတော့" },
+        { word: "那么", pinyin: "nàme", meaning: "ဒါဆိုရင်" },
+        { word: "成立", pinyin: "chénglì", meaning: "မှန်ကန်သည်" },
+        { word: "前后", pinyin: "qiánhòu", meaning: "ရှေ့နောက်" },
+        { word: "一致", pinyin: "yīzhì", meaning: "ညီညွတ်သည်" },
+        { word: "冲突", pinyin: "chōngtū", meaning: "ဆန့်ကျင်သည်" }
+    ]
+},
+
+{
+    id: 18,
+    title: "对牛弹琴",
+    paragraphs: [
+        { hanzi: "古时候，有一个音乐家叫公明仪。", pinyin: "Gǔ shíhou, yǒu yīgè yīnyuèjiā jiào Gōngmíng Yí.", my: "ရှေးခေတ်က ဂုံမင်းရီဆိုတဲ့ ဂီတပညာရှင်တစ်ယောက်ရှိတယ်။" },
+        { hanzi: "他的琴弹得非常好听。", pinyin: "Tā de qín tán de fēicháng hǎotīng.", my: "သူ့စောင်းက အရမ်းလှပါတယ်။" },
+        { hanzi: "有一天，他看到一头牛在草地上吃草。", pinyin: "Yǒu yītiān, tā kàndào yī tóu niú zài cǎodì shàng chī cǎo.", my: "တစ်နေ့မှာ သူ နွားတစ်ကောင် မြက်ခင်းထဲမှာ မြက်စားနေတာကိုတွေ့တယ်။" },
+        { hanzi: "牛看起来很悠闲，公明仪想给牛弹一首曲子。", pinyin: "Niú kàn qǐlái hěn yōuxián, Gōngmíng Yí xiǎng gěi niú tán yī shǒu qǔzi.", my: "နွားက အနားယူနေတယ်။ ဂုံမင်းရီက နွားအတွက် တေးသွားတစ်ပုဒ်တီးပေးချင်တယ်။" },
+        { hanzi: "他坐在牛的面前，开始弹起琴来。", pinyin: "Tā zuò zài niú de miànqián, kāishǐ tán qǐ qín lái.", my: "သူ နွားရှေ့မှာထိုင်ပြီး စောင်းစတီးတယ်。" },
+        { hanzi: "琴声优美动听，像泉水一样流淌。", pinyin: "Qínshēng yōuměi dòngtīng, xiàng quánshuǐ yīyàng liútǎng.", my: "စောင်းသံက ညီညွတ်လှပပြီး စမ်းရေလိုစီးဆင်းနေတယ်။" },
+        { hanzi: "可是，牛好像一点也听不懂。", pinyin: "Kěshì, niú hǎoxiàng yīdiǎn yě tīng bù dǒng.", my: "ဒါပေမယ့် နွားက နည်းနည်းမှ နားမလည်သလိုပဲ။" },
+        { hanzi: "牛只顾着低头吃草，连头也不抬一下。", pinyin: "Niú zhǐ gù zhe dītóu chī cǎo, lián tóu yě bù tái yīxià.", my: "နွားက မြက်စားဖို့ပဲ ခေါင်းငုံ့ထားပြီး ခေါင်းတောင်မထူဘူး။" },
+        { hanzi: "公明仪又换了一首更优美的曲子，", pinyin: "Gōngmíng Yí yòu huàn le yī shǒu gèng yōuměi de qǔzi,", my: "ဂုံမင်းရီက ပိုလှတဲ့ တေးသွားကိုပြောင်းတီးတယ်။" },
+        { hanzi: "可是牛还是一点反应都没有。", pinyin: "Kěshì niú háishì yīdiǎn fǎnyìng dōu méiyǒu.", my: "ဒါပေမယ့် နွားက တုံ့ပြန်မှုလုံးဝမရှိဘူး။" },
+        { hanzi: "公明仪很失望，他说：为什么牛听不到我的琴声呢？", pinyin: "Gōngmíng Yí hěn shīwàng, tā shuō: Wèishénme niú tīng bù dào wǒ de qínshēng ne?", my: "ဂုံမင်းရီ စိတ်ပျက်သွားပြီး ဘာကြောင့် နွားက ငါ့စောင်းသံကိုမကြားရတာလဲ လို့ပြောတယ်။" },
+        { hanzi: "一个过路人看到了，对他说：", pinyin: "Yīgè guòlùrén kàndào le, duì tā shuō:", my: "လမ်းသွားတစ်ယောက်က ဒါကိုမြင်တော့ သူ့ကိုပြောတယ်။" },
+        { hanzi: "不是牛听不到你的琴声，", pinyin: "Bùshì niú tīng bù dào nǐ de qínshēng,", my: "နွားက မင်းစောင်းသံမကြားရတာမဟုတ်ဘူး။" },
+        { hanzi: "而是牛根本听不懂高雅的乐曲。", pinyin: "Ér shì niú gēnběn tīng bù dǒng gāoyǎ de yuèqǔ.", my: "နွားက မြင့်မြတ်တဲ့ဂီတကို လုံးဝနားမလည်လို့ပါ လို့ပြောတယ်。" },
+        { hanzi: "对牛弹琴，再好的音乐也是对牛弹琴。", pinyin: "Duì niú tánqín, zài hǎo de yīnyuè yě shì duì niú tánqín.", my: "နွားကိုစောင်းတီးတာက ဘယ်လောက်ကောင်းတဲ့ဂီတဖြစ်ဖြစ် နွားကိုစောင်းတီးတာပဲလို့ ပြောတယ်။" },
+        { hanzi: "公明仪明白了，他笑着说：是啊，我真是太傻了。", pinyin: "Gōngmíng Yí míngbái le, tā xiào zhe shuō: Shì a, wǒ zhēnshi tài shǎ le.", my: "ဂုံမင်းရီ နားလည်သွားပြီး ရယ်ပြီး ဟုတ်တယ်၊ ငါတကယ်မိုက်တယ် လို့ပြောတယ်。" },
+        { hanzi: "从此，他再也不对牛弹琴了。", pinyin: "Cóngcǐ, tā zài yě bù duì niú tánqín le.", my: "အဲဒီကတည်းက သူ နွားကို စောင်းဘယ်တော့မှ မတီးတော့ဘူး။" },
+        { hanzi: "这个故事告诉我们：说话做事要看对象，", pinyin: "Zhège gùshi gàosu wǒmen: Shuōhuà zuòshì yào kàn duìxiàng,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- စကားပြော၊ အလုပ်လုပ်တဲ့အခါ သူ့အလိုက်သူ ကြည့်ရမယ်။" },
+        { hanzi: "对什么样的人说什么样的话，", pinyin: "Duì shénme yàng de rén shuō shénme yàng de huà,", my: "ဘယ်လိုလူနဲ့ ဘယ်လိုစကားပြောရမယ်ဆိုတာ သိရမယ်။" },
+        { hanzi: "不要对不懂道理的人讲大道理。", pinyin: "Bùyào duì bù dǒng dàolǐ de rén jiǎng dà dàolǐ.", my: "အကြောင်းအရာနားမလည်တဲ့သူတွေကို အကြီးအကျယ်မဟောပြောနဲ့။" }
+    ],
+    vocab: [
+        { word: "音乐家", pinyin: "yīnyuèjiā", meaning: "ဂီတပညာရှင်" },
+        { word: "琴", pinyin: "qín", meaning: "စောင်း" },
+        { word: "弹", pinyin: "tán", meaning: "တီးသည်" },
+        { word: "好听", pinyin: "hǎotīng", meaning: "လှပသော" },
+        { word: "牛", pinyin: "niú", meaning: "နွား" },
+        { word: "草地", pinyin: "cǎodì", meaning: "မြက်ခင်း" },
+        { word: "吃草", pinyin: "chī cǎo", meaning: "မြက်စားသည်" },
+        { word: "悠闲", pinyin: "yōuxián", meaning: "အနားယူသည်" },
+        { word: "曲子", pinyin: "qǔzi", meaning: "တေးသွား" },
+        { word: "面前", pinyin: "miànqián", meaning: "ရှေ့" },
+        { word: "优美", pinyin: "yōuměi", meaning: "လှပသော" },
+        { word: "动听", pinyin: "dòngtīng", meaning: "နားထောင်ကောင်းသော" },
+        { word: "泉水", pinyin: "quánshuǐ", meaning: "စမ်းရေ" },
+        { word: "流淌", pinyin: "liútǎng", meaning: "စီးဆင်းသည်" },
+        { word: "好像", pinyin: "hǎoxiàng", meaning: "ပုံရသည်" },
+        { word: "听不懂", pinyin: "tīng bù dǒng", meaning: "နားမလည်" },
+        { word: "顾着", pinyin: "gù zhe", meaning: "ဂရုစိုက်သည်" },
+        { word: "低头", pinyin: "dītóu", meaning: "ခေါင်းငုံ့သည်" },
+        { word: "抬", pinyin: "tái", meaning: "မြှောက်သည်" },
+        { word: "换", pinyin: "huàn", meaning: "ပြောင်းသည်" },
+        { word: "反应", pinyin: "fǎnyìng", meaning: "တုံ့ပြန်မှု" },
+        { word: "失望", pinyin: "shīwàng", meaning: "စိတ်ပျက်သည်" },
+        { word: "过路人", pinyin: "guòlùrén", meaning: "လမ်းသွား" },
+        { word: "高雅", pinyin: "gāoyǎ", meaning: "မြင့်မြတ်သော" },
+        { word: "乐曲", pinyin: "yuèqǔ", meaning: "ဂီတ" },
+        { word: "对牛弹琴", pinyin: "duì niú tánqín", meaning: "နားမလည်သူကို ဟောပြောသည်" },
+        { word: "傻", pinyin: "shǎ", meaning: "မိုက်သော" },
+        { word: "对象", pinyin: "duìxiàng", meaning: "သူ့အလိုက်သူ" },
+        { word: "道理", pinyin: "dàolǐ", meaning: "အကြောင်းအရာ" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 17-18
+// =============================================================
+
+{
+    id: 17,
+    title: "盲人摸象",
+    paragraphs: [
+        { hanzi: "很久以前，有几个盲人住在一起。", pinyin: "Hěn jiǔ yǐqián, yǒu jǐ gè mángrén zhù zài yīqǐ.", my: "ရှေးလွန်လေပြီးသောအခါက မျက်မမြင်တစ်စုတစ်စည်းတည်း နေထိုင်ကြတယ်။" },
+        { hanzi: "他们从来没有见过大象，不知道大象长什么样。", pinyin: "Tāmen cónglái méiyǒu jiàn guò dàxiàng, bù zhīdào dàxiàng zhǎng shénme yàng.", my: "သူတို့ ဆင်တစ်ကောင်ကို ဘယ်တုန်းကမှ မမြင်ဖူးဘူး၊ ဆင်ဘယ်လိုပုံလဲ မသိဘူး။" },
+        { hanzi: "有一天，有人牵来一头大象让他们摸。", pinyin: "Yǒu yītiān, yǒurén qiān lái yī tóu dàxiàng ràng tāmen mō.", my: "တစ်နေ့မှာ တစ်ယောက်ယောက်က ဆင်တစ်ကောင်ကို ဆွဲလာပြီး သူတို့ကိုထိတွေ့ကြည့်ခိုင်းတယ်။" },
+        { hanzi: "第一个盲人摸到了大象的大腿。", pinyin: "Dì yī gè mángrén mō dào le dàxiàng de dàtuǐ.", my: "ပထမမျက်မမြင်က ဆင်ရဲ့ပေါင်ကိုထိမိတယ်။" },
+        { hanzi: "他说：大象就像一根大柱子！", pinyin: "Tā shuō: Dàxiàng jiù xiàng yī gēn dà zhùzi!", my: "သူပြောတယ်- ဆင်က တိုင်ကြီးတစ်တိုင်လိုပဲ လို့ပြောတယ်။" },
+        { hanzi: "第二个盲人摸到了大象的耳朵。", pinyin: "Dì èr gè mángrén mō dào le dàxiàng de ěrduo.", my: "ဒုတိယမျက်မမြင်က ဆင်ရဲ့နားကိုထိမိတယ်။" },
+        { hanzi: "他说：不对，大象就像一把大扇子！", pinyin: "Tā shuō: Bùduì, dàxiàng jiù xiàng yī bǎ dà shànzi!", my: "သူပြောတယ်- မဟုတ်ဘူး၊ ဆင်က ပန်ကာကြီးတစ်ခုလိုပဲ လို့ပြောတယ်။" },
+        { hanzi: "第三个盲人摸到了大象的尾巴。", pinyin: "Dì sān gè mángrén mō dào le dàxiàng de wěiba.", my: "တတိယမျက်မမြင်က ဆင်ရဲ့အမြီးကိုထိမိတယ်။" },
+        { hanzi: "他说：你们都错了，大象就像一条绳子！", pinyin: "Tā shuō: Nǐmen dōu cuò le, dàxiàng jiù xiàng yī tiáo shéngzi!", my: "သူပြောတယ်- ခင်ဗျားတို့ အကုန်မှားတယ်၊ ဆင်က ကြိုးတစ်ချောင်းလိုပဲ လို့ပြောတယ်။" },
+        { hanzi: "第四个盲人摸到了大象的身体。", pinyin: "Dì sì gè mángrén mō dào le dàxiàng de shēntǐ.", my: "စတုတ္ထမျက်မမြင်က ဆင်ရဲ့ကိုယ်ခန္ဓာကိုထိမိတယ်။" },
+        { hanzi: "他说：你们说得都不对，大象就像一堵墙！", pinyin: "Tā shuō: Nǐmen shuō de dōu bùduì, dàxiàng jiù xiàng yī dǔ qiáng!", my: "သူပြောတယ်- ခင်ဗျားတို့ ပြောတာ မမှန်ဘူး၊ ဆင်က နံရံတစ်ခုလိုပဲ လို့ပြောတယ်။" },
+        { hanzi: "第五个盲人摸到了大象的象牙。", pinyin: "Dì wǔ gè mángrén mō dào le dàxiàng de xiàngyá.", my: "ပဉ္စမမျက်မမြင်က ဆင်ရဲ့ဆင်စွယ်ကိုထိမိတယ်။" },
+        { hanzi: "他说：大象就像一根大萝卜！", pinyin: "Tā shuō: Dàxiàng jiù xiàng yī gēn dà luóbo!", my: "သူပြောတယ်- ဆင်က မုန်လာဥကြီးတစ်လုံးလိုပဲ လို့ပြောတယ်။" },
+        { hanzi: "第六个盲人摸到了大象的鼻子。", pinyin: "Dì liù gè mángrén mō dào le dàxiàng de bízi.", my: "ဆဌမမျက်မမြင်က ဆင်ရဲ့နှာမောင်းကိုထိမိတယ်။" },
+        { hanzi: "他说：大象就像一条大蟒蛇！", pinyin: "Tā shuō: Dàxiàng jiù xiàng yī tiáo dà mǎngshé!", my: "သူပြောတယ်- ဆင်က စပါးအုံးမြွေကြီးတစ်ကောင်လိုပဲ လို့ပြောတယ်။" },
+        { hanzi: "他们每个人都只摸到了大象的一部分，", pinyin: "Tāmen měi gè rén dōu zhǐ mō dào le dàxiàng de yī bùfèn,", my: "သူတို့တစ်ယောက်ချင်းစီက ဆင်ရဲ့ တစ်စိတ်တစ်ပိုင်းကိုပဲ ထိခဲ့ကြတယ်။" },
+        { hanzi: "所以都说大象像自己摸到的东西。", pinyin: "Suǒyǐ dōu shuō dàxiàng xiàng zìjǐ mō dào de dōngxi.", my: "ဒါကြောင့် ဆင်က ကိုယ်ထိမိတဲ့အရာနဲ့တူတယ်လို့ အကုန်ပြောကြတယ်။" },
+        { hanzi: "他们争论不休，谁也不服谁。", pinyin: "Tāmen zhēnglùn bùxiū, shéi yě bù fú shéi.", my: "သူတို့ ငြင်းခုံကြတယ်၊ ဘယ်သူမှ တစ်ယောက်ကိုတစ်ယောက် မလက်ခံဘူး။" },
+        { hanzi: "这时，有人告诉他们：大象不是柱子，", pinyin: "Zhè shí, yǒurén gàosu tāmen: Dàxiàng bùshì zhùzi,", my: "ဒီအချိန်မှာ တစ်ယောက်ယောက်က သူတို့ကို ပြောတယ်- ဆင်က တိုင်မဟုတ်ဘူး။" },
+        { hanzi: "也不是扇子、绳子、墙、萝卜或蟒蛇。", pinyin: "Yě bùshì shànzi, shéngzi, qiáng, luóbo huò mǎngshé.", my: "ပန်ကာ၊ ကြိုး၊ နံရံ၊ မုန်လာဥ ဒါမှမဟုတ် စပါးအုံးမြွေလည်း မဟုတ်ဘူး။" },
+        { hanzi: "大象就是大象，它有柱子一样的腿，", pinyin: "Dàxiàng jiùshì dàxiàng, tā yǒu zhùzi yīyàng de tuǐ,", my: "ဆင်ဆိုတာ ဆင်ပဲ၊ သူ့မှာ တိုင်လိုခြေထောက်တွေရှိတယ်။" },
+        { hanzi: "扇子一样的耳朵，绳子一样的尾巴，", pinyin: "Shànzi yīyàng de ěrduo, shéngzi yīyàng de wěiba,", my: "ပန်ကာလိုနားတွေ၊ ကြိုးလိုအမြီး" },
+        { hanzi: "墙一样的身体，萝卜一样的象牙，", pinyin: "Qiáng yīyàng de shēntǐ, luóbo yīyàng de xiàngyá,", my: "နံရံလိုကိုယ်ခန္ဓာ၊ မုန်လာဥလိုဆင်စွယ်" },
+        { hanzi: "还有蟒蛇一样的鼻子。", pinyin: "Hái yǒu mǎngshé yīyàng de bízi.", my: "ပြီးတော့ စပါးအုံးမြွေလိုနှာမောင်းလည်း ရှိတယ်။" },
+        { hanzi: "这个故事告诉我们：看事情要看全面，", pinyin: "Zhège gùshi gàosu wǒmen: Kàn shìqing yào kàn quánmiàn,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- အရာတွေကို ဘက်စုံကြည့်ရမယ်။" },
+        { hanzi: "不能只看到一部分就下结论。", pinyin: "Bùnéng zhǐ kàndào yī bùfèn jiù xià jiélùn.", my: "တစ်စိတ်တစ်ပိုင်းပဲမြင်ပြီး ကောက်ချက်မချရဘူး။" }
+    ],
+    vocab: [
+        { word: "盲人", pinyin: "mángrén", meaning: "မျက်မမြင်" },
+        { word: "大象", pinyin: "dàxiàng", meaning: "ဆင်" },
+        { word: "见过", pinyin: "jiàn guò", meaning: "မြင်ဖူးသည်" },
+        { word: "牵", pinyin: "qiān", meaning: "ဆွဲသည်" },
+        { word: "摸", pinyin: "mō", meaning: "ထိသည်" },
+        { word: "大腿", pinyin: "dàtuǐ", meaning: "ပေါင်" },
+        { word: "柱子", pinyin: "zhùzi", meaning: "တိုင်" },
+        { word: "耳朵", pinyin: "ěrduo", meaning: "နား" },
+        { word: "扇子", pinyin: "shànzi", meaning: "ပန်ကာ" },
+        { word: "尾巴", pinyin: "wěiba", meaning: "အမြီး" },
+        { word: "绳子", pinyin: "shéngzi", meaning: "ကြိုး" },
+        { word: "身体", pinyin: "shēntǐ", meaning: "ကိုယ်ခန္ဓာ" },
+        { word: "墙", pinyin: "qiáng", meaning: "နံရံ" },
+        { word: "象牙", pinyin: "xiàngyá", meaning: "ဆင်စွယ်" },
+        { word: "萝卜", pinyin: "luóbo", meaning: "မုန်လာဥ" },
+        { word: "鼻子", pinyin: "bízi", meaning: "နှာမောင်း" },
+        { word: "蟒蛇", pinyin: "mǎngshé", meaning: "စပါးအုံးမြွေ" },
+        { word: "一部分", pinyin: "yī bùfèn", meaning: "တစ်စိတ်တစ်ပိုင်း" },
+        { word: "东西", pinyin: "dōngxi", meaning: "အရာ" },
+        { word: "争论不休", pinyin: "zhēnglùn bùxiū", meaning: "အဆုံးမရှိငြင်းခုံသည်" },
+        { word: "服", pinyin: "fú", meaning: "လက်ခံသည်" },
+        { word: "告诉", pinyin: "gàosu", meaning: "ပြောပြသည်" },
+        { word: "腿", pinyin: "tuǐ", meaning: "ခြေထောက်" },
+        { word: "全面", pinyin: "quánmiàn", meaning: "ဘက်စုံ" },
+        { word: "结论", pinyin: "jiélùn", meaning: "ကောက်ချက်" }
+    ]
+},
+
+{
+    id: 18,
+    title: "自相矛盾",
+    paragraphs: [
+        { hanzi: "古时候，楚国有一个卖兵器的人。", pinyin: "Gǔ shíhou, Chǔ guó yǒu yīgè mài bīngqì de rén.", my: "ရှေးခေတ် ချူးနိုင်ငံမှာ လက်နက်ရောင်းတဲ့လူတစ်ယောက်ရှိတယ်။" },
+        { hanzi: "他专门卖矛和盾。", pinyin: "Tā zhuānmén mài máo hé dùn.", my: "သူက လှံနဲ့ဒိုင်းကို အထူးရောင်းတယ်။" },
+        { hanzi: "他拿起盾，对大家说：我的盾非常坚固。", pinyin: "Tā ná qǐ dùn, duì dàjiā shuō: Wǒ de dùn fēicháng jiāngù.", my: "သူ ဒိုင်းကိုကိုင်ပြီး လူတိုင်းကို ပြောတယ်။ ငါ့ဒိုင်းက အရမ်းခိုင်မာတယ်။" },
+        { hanzi: "世界上没有任何东西能刺穿它！", pinyin: "Shìjiè shàng méiyǒu rènhé dōngxi néng cìchuān tā!", my: "ကမ္ဘာပေါ်မှာ ဘာမှ ဒီဒိုင်းကို ထိုးဖေါက်လို့မရဘူး လို့ပြောတယ်။" },
+        { hanzi: "接着，他又拿起矛，对大家说：", pinyin: "Jiēzhe, tā yòu ná qǐ máo, duì dàjiā shuō:", my: "ပြီးတော့ သူ လှံကိုကိုင်ပြီး လူတိုင်းကို ပြောတယ်။" },
+        { hanzi: "我的矛非常锋利，世界上没有它刺不穿的盾！", pinyin: "Wǒ de máo fēicháng fēnglì, shìjiè shàng méiyǒu tā cì bù chuān de dùn!", my: "ငါ့လှံက အရမ်းထက်တယ်၊ ကမ္ဘာပေါ်မှာ ဒီလှံမထိုးဖေါက်နိုင်တဲ့ ဒိုင်းမရှိဘူး လို့ပြောတယ်。" },
+        { hanzi: "这时，有一个人站出来问他：", pinyin: "Zhè shí, yǒu yīgè rén zhàn chūlái wèn tā:", my: "ဒီအချိန်မှာ လူတစ်ယောက်က ထွက်လာပြီး မေးတယ်။" },
+        { hanzi: "如果用你的矛，去刺你的盾，结果会怎么样呢？", pinyin: "Rúguǒ yòng nǐ de máo, qù cì nǐ de dùn, jiéguǒ huì zěnmeyàng ne?", my: "မင်းရဲ့လှံနဲ့ မင်းရဲ့ဒိုင်းကိုထိုးရင် ဘယ်လိုဖြစ်မလဲ လို့မေးတယ်။" },
+        { hanzi: "卖兵器的人一听，愣住了，张着嘴说不出话来。", pinyin: "Mài bīngqì de rén yī tīng, lèng zhù le, zhāng zhe zuǐ shuō bù chū huà lái.", my: "လက်နက်ရောင်းတဲ့လူက ဒီစကားကြားတော့ တုန်သွားပြီး ပါးစပ်ဟကာ ဘာမှမပြောနိုင်တော့ဘူး။" },
+        { hanzi: "他心里想：如果我的矛能刺穿我的盾，", pinyin: "Tā xīn lǐ xiǎng: Rúguǒ wǒ de máo néng cìchuān wǒ de dùn,", my: "သူစဉ်းစားတယ်။ ငါ့လှံက ငါ့ဒိုင်းကိုထိုးဖေါက်နိုင်ရင်" },
+        { hanzi: "那就说明我的盾不是最坚固的。", pinyin: "Nà jiù shuōmíng wǒ de dùn bùshì zuì jiāngù de.", my: "ငါ့ဒိုင်းက အခိုင်မာဆုံးမဟုတ်ဘူးဆိုတာ သက်သေပြတယ်။" },
+        { hanzi: "如果我的矛刺不穿我的盾，", pinyin: "Rúguǒ wǒ de máo cì bù chuān wǒ de dùn,", my: "ငါ့လှံက ငါ့ဒိုင်းကိုမထိုးဖေါက်နိုင်ရင်" },
+        { hanzi: "那就说明我的矛不是最锋利的。", pinyin: "Nà jiù shuōmíng wǒ de máo bùshì zuì fēnglì de.", my: "ငါ့လှံက အထက်ဆုံးမဟုတ်ဘူးဆိုတာ သက်သေပြတယ်။" },
+        { hanzi: "不管结果如何，他都无法自圆其说。", pinyin: "Bùguǎn jiéguǒ rúhé, tā dōu wúfǎ zìyuán qí shuō.", my: "ရလဒ်ဘယ်လိုပဲဖြစ်ဖြစ် သူ ကိုယ့်စကားကို ရှင်းပြလို့မရတော့ဘူး။" },
+        { hanzi: "大家都笑了，摇摇头走了。", pinyin: "Dàjiā dōu xiào le, yáo yáo tóu zǒu le.", my: "လူတိုင်း ရယ်ပြီး ခေါင်းခါကာ ထွက်သွားကြတယ်။" },
+        { hanzi: "卖兵器的人非常难为情，赶紧收拾东西走了。", pinyin: "Mài bīngqì de rén fēicháng nánwéiqíng, gǎnjǐn shōushi dōngxi zǒu le.", my: "လက်နက်ရောင်းတဲ့လူ အရမ်းရှက်သွားပြီး ပစ္စည်းတွေကောက်ကာ အမြန်ထွက်သွားတယ်။" },
+        { hanzi: "这个故事告诉我们：说话做事要前后一致，", pinyin: "Zhège gùshi gàosu wǒmen: Shuōhuà zuòshì yào qiánhòu yīzhì,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- ပြောတာနဲ့လုပ်တာ ရှေ့နောက်ညီရမယ်။" },
+        { hanzi: "不能夸夸其谈，自相矛盾。", pinyin: "Bùnéng kuākuā qítán, zìxiāng máodùn.", my: "ကြွားလုံးထုတ်ပြီး ကိုယ့်စကားနဲ့ကိုယ် ဆန့်ကျင်မနေရဘူး။" }
+    ],
+    vocab: [
+        { word: "卖", pinyin: "mài", meaning: "ရောင်းသည်" },
+        { word: "兵器", pinyin: "bīngqì", meaning: "လက်နက်" },
+        { word: "矛", pinyin: "máo", meaning: "လှံ" },
+        { word: "盾", pinyin: "dùn", meaning: "ဒိုင်း" },
+        { word: "坚固", pinyin: "jiāngù", meaning: "ခိုင်မာသော" },
+        { word: "刺穿", pinyin: "cìchuān", meaning: "ထိုးဖေါက်သည်" },
+        { word: "锋利", pinyin: "fēnglì", meaning: "ထက်သော" },
+        { word: "站出来", pinyin: "zhàn chūlái", meaning: "ထွက်လာသည်" },
+        { word: "结果", pinyin: "jiéguǒ", meaning: "ရလဒ်" },
+        { word: "怎么样", pinyin: "zěnmeyàng", meaning: "ဘယ်လိုလဲ" },
+        { word: "愣住", pinyin: "lèng zhù", meaning: "တုန်သွားသည်" },
+        { word: "说不出话", pinyin: "shuō bù chū huà", meaning: "စကားမပြောနိုင်" },
+        { word: "说明", pinyin: "shuōmíng", meaning: "သက်သေပြသည်" },
+        { word: "最", pinyin: "zuì", meaning: "အ...ဆုံး" },
+        { word: "不管", pinyin: "bùguǎn", meaning: "မည်သို့ပင်ဖြစ်စေ" },
+        { word: "无法", pinyin: "wúfǎ", meaning: "မဖြစ်နိုင်" },
+        { word: "自圆其说", pinyin: "zìyuán qí shuō", meaning: "ကိုယ့်စကားကိုရှင်းပြသည်" },
+        { word: "难为情", pinyin: "nánwéiqíng", meaning: "ရှက်သည်" },
+        { word: "收拾", pinyin: "shōushi", meaning: "ကောက်သည်" },
+        { word: "前后一致", pinyin: "qiánhòu yīzhì", meaning: "ရှေ့နောက်ညီသည်" },
+        { word: "夸夸其谈", pinyin: "kuākuā qítán", meaning: "ကြွားလုံးထုတ်သည်" },
+        { word: "自相矛盾", pinyin: "zìxiāng máodùn", meaning: "ကိုယ့်စကားနဲ့ကိုယ်ဆန့်ကျင်" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 19-20
+// =============================================================
+
+{
+    id: 19,
+    title: "农夫与蛇",
+    paragraphs: [
+        { hanzi: "冬天的一个早晨，天气非常寒冷。", pinyin: "Dōngtiān de yīgè zǎochén, tiānqì fēicháng hánlěng.", my: "ဆောင်းရာသီ မနက်ခင်းတစ်ခုမှာ ရာသီဥတု အရမ်းအေးတယ်။" },
+        { hanzi: "一个农夫走在路上，看到一条蛇冻僵了。", pinyin: "Yīgè nóngfū zǒu zài lù shàng, kàndào yī tiáo shé dòngjiāng le.", my: "လယ်သမားတစ်ယောက် လမ်းပေါ်မှာ လျှောက်သွားရင်း မြွေတစ်ကောင် အေးခဲနေတာကိုတွေ့တယ်。" },
+        { hanzi: "蛇躺在雪地里，快要冻死了。", pinyin: "Shé tǎng zài xuě dì lǐ, kuài yào dòng sǐ le.", my: "မြွေက နှင်းထဲမှာ လဲနေပြီး အေးခဲပြီး သေတော့မယ်။" },
+        { hanzi: "农夫很善良，他可怜这条蛇。", pinyin: "Nóngfū hěn shànliáng, tā kělián zhè tiáo shé.", my: "လယ်သမားက အရမ်းကြင်နာတယ်၊ သူ ဒီမြွေကို သနားတယ်။" },
+        { hanzi: "他想：蛇太可怜了，我应该救它。", pinyin: "Tā xiǎng: Shé tài kělián le, wǒ yīnggāi jiù tā.", my: "သူစဉ်းစားတယ်- မြွေက သနားစရာကြီး၊ ငါကယ်သင့်တယ် လို့တွေးမိတယ်။" },
+        { hanzi: "于是，农夫把蛇捡起来，放进怀里。", pinyin: "Yúshì, nóngfū bǎ shé jiǎn qǐlái, fàng jìn huái lǐ.", my: "ဒါနဲ့ လယ်သမားက မြွေကိုကောက်ပြီး ရင်ခွင်ထဲထည့်လိုက်တယ်。" },
+        { hanzi: "他用自己的体温给蛇取暖。", pinyin: "Tā yòng zìjǐ de tǐwēn gěi shé qǔnuǎn.", my: "သူ ကိုယ့်ခန္ဓာအပူနဲ့ မြွေကိုနွေးပေးတယ်။" },
+        { hanzi: "过了一会儿，蛇慢慢地醒过来了。", pinyin: "Guò le yīhuìr, shé mànmàn de xǐng guòlái le.", my: "ခဏကြာတော့ မြွေက တဖြည်းဖြည်း နိုးလာတယ်။" },
+        { hanzi: "可是，蛇一醒来，就咬了农夫一口。", pinyin: "Kěshì, shé yī xǐnglái, jiù yǎo le nóngfū yī kǒu.", my: "ဒါပေမယ့် မြွေနိုးလာတာနဲ့ လယ်သမားကို ကိုက်လိုက်တယ်。" },
+        { hanzi: "农夫很疼，他生气地说：我救了你，", pinyin: "Nóngfū hěn téng, tā shēngqì de shuō: Wǒ jiù le nǐ,", my: "လယ်သမား အရမ်းနာသွားပြီး ဒေါသထွက်ကာ ပြောတယ်- ငါမင်းကိုကယ်တယ်" },
+        { hanzi: "你为什么要咬我呢？", pinyin: "Nǐ wèishénme yào yǎo wǒ ne?", my: "မင်းဘာလို့ငါ့ကိုကိုက်တာလဲ လို့မေးတယ်။" },
+        { hanzi: "蛇说：我是蛇，你是人，", pinyin: "Shé shuō: Wǒ shì shé, nǐ shì rén,", my: "မြွေက ပြောတယ်- ငါကမြွေ၊ မင်းကလူ" },
+        { hanzi: "我天生就会咬人，这是我的本性。", pinyin: "Wǒ tiānshēng jiù huì yǎo rén, zhè shì wǒ de běnxìng.", my: "ငါ့မှာ သဘာဝအလျောက် ကိုက်တတ်တယ်၊ ဒါက ငါ့ရဲ့ဇာတိပါ လို့ပြောတယ်။" },
+        { hanzi: "农夫听了，知道自己不该救这条蛇。", pinyin: "Nóngfū tīng le, zhīdào zìjǐ bù gāi jiù zhè tiáo shé.", my: "လယ်သမားက ဒီစကားကြားတော့ ဒီမြွေကိုမကယ်သင့်ဘူးဆိုတာ သိသွားတယ်။" },
+        { hanzi: "他中了蛇毒，很快就死了。", pinyin: "Tā zhòng le shé dú, hěn kuài jiù sǐ le.", my: "သူ မြွေအဆိပ်မိပြီး မကြာခင် သေသွားတယ်။" },
+        { hanzi: "临死前，他说：我不该对恶人心存怜悯。", pinyin: "Lín sǐ qián, tā shuō: Wǒ bù gāi duì èrén xīn cún liánmǐn.", my: "သေခါနီးမှာ သူပြောတယ်- ငါ လူဆိုးကို သနားတာမလုပ်သင့်ဘူး လို့ပြောတယ်။" },
+        { hanzi: "这个故事告诉我们：对坏人仁慈，就是对自己残忍。", pinyin: "Zhège gùshi gàosu wǒmen: Duì huàirén réncí, jiùshì duì zìjǐ cánrěn.", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- လူဆိုးကို ကရုဏာထားတာက ကိုယ့်ကိုယ်ကို ရက်စက်တာပဲ။" }
+    ],
+    vocab: [
+        { word: "冬天", pinyin: "dōngtiān", meaning: "ဆောင်းရာသီ" },
+        { word: "早晨", pinyin: "zǎochén", meaning: "မနက်ခင်း" },
+        { word: "天气", pinyin: "tiānqì", meaning: "ရာသီဥတု" },
+        { word: "寒冷", pinyin: "hánlěng", meaning: "အေးသော" },
+        { word: "农夫", pinyin: "nóngfū", meaning: "လယ်သမား" },
+        { word: "路", pinyin: "lù", meaning: "လမ်း" },
+        { word: "蛇", pinyin: "shé", meaning: "မြွေ" },
+        { word: "冻僵", pinyin: "dòngjiāng", meaning: "အေးခဲသည်" },
+        { word: "雪地", pinyin: "xuě dì", meaning: "နှင်းမြေ" },
+        { word: "可怜", pinyin: "kělián", meaning: "သနားစရာ" },
+        { word: "应该", pinyin: "yīnggāi", meaning: "သင့်သည်" },
+        { word: "捡", pinyin: "jiǎn", meaning: "ကောက်သည်" },
+        { word: "怀", pinyin: "huái", meaning: "ရင်ခွင်" },
+        { word: "体温", pinyin: "tǐwēn", meaning: "ခန္ဓာအပူ" },
+        { word: "取暖", pinyin: "qǔnuǎn", meaning: "နွေးသည်" },
+        { word: "一会儿", pinyin: "yīhuìr", meaning: "ခဏ" },
+        { word: "醒过来", pinyin: "xǐng guòlái", meaning: "နိုးလာသည်" },
+        { word: "咬", pinyin: "yǎo", meaning: "ကိုက်သည်" },
+        { word: "疼", pinyin: "téng", meaning: "နာသည်" },
+        { word: "天生", pinyin: "tiānshēng", meaning: "သဘာဝအလျောက်" },
+        { word: "本性", pinyin: "běnxìng", meaning: "ဇာတိ" },
+        { word: "不该", pinyin: "bù gāi", meaning: "မသင့်" },
+        { word: "中", pinyin: "zhòng", meaning: "မိသည်" },
+        { word: "毒", pinyin: "dú", meaning: "အဆိပ်" },
+        { word: "临死前", pinyin: "lín sǐ qián", meaning: "သေခါနီး" },
+        { word: "恶人", pinyin: "èrén", meaning: "လူဆိုး" },
+        { word: "怜悯", pinyin: "liánmǐn", meaning: "သနားခြင်း" },
+        { word: "仁慈", pinyin: "réncí", meaning: "ကရုဏာ" },
+        { word: "残忍", pinyin: "cánrěn", meaning: "ရက်စက်သော" }
+    ]
+},
+
+{
+    id: 20,
+    title: "杯弓蛇影",
+    paragraphs: [
+        { hanzi: "古时候，有一个人叫乐广。", pinyin: "Gǔ shíhou, yǒu yīgè rén jiào Yuè Guǎng.", my: "ရှေးခေတ်က ယွေကွမ်း ဆိုတဲ့လူတစ်ယောက်ရှိတယ်။" },
+        { hanzi: "他有一个好朋友，两个人经常来往。", pinyin: "Tā yǒu yīgè hǎo péngyou, liǎng gè rén jīngcháng láiwǎng.", my: "သူ့မှာ သူငယ်ချင်းကောင်းတစ်ယောက်ရှိတယ်၊ သူတို့နှစ်ယောက် မကြာခဏ သွားလာဆက်ဆံကြတယ်။" },
+        { hanzi: "有一天，乐广请朋友来家里喝酒。", pinyin: "Yǒu yītiān, Yuè Guǎng qǐng péngyou lái jiā lǐ hē jiǔ.", my: "တစ်နေ့မှာ ယွေကွမ်းက သူငယ်ချင်းကို အိမ်ကို သေရည်သောက်ဖို့ ဖိတ်တယ်။" },
+        { hanzi: "朋友坐在客厅里，端起酒杯正要喝。", pinyin: "Péngyou zuò zài kètīng lǐ, duān qǐ jiǔbēi zhèngyào hē.", my: "သူငယ်ချင်းက ဧည့်ခန်းမှာထိုင်ပြီး သေရည်ခွက်ကိုကိုင်ကာ သောက်တော့မယ်။" },
+        { hanzi: "突然，他看到杯子里好像有一条小蛇在动！", pinyin: "Tūrán, tā kàndào bēizi lǐ hǎoxiàng yǒu yī tiáo xiǎo shé zài dòng!", my: "ရုတ်တရက် သူ ခွက်ထဲမှာ မြွေငယ်လေးတစ်ကောင် လှုပ်နေသလိုမြင်လိုက်တယ်။" },
+        { hanzi: "他吓了一大跳，但是碍于面子，", pinyin: "Tā xià le yī dà tiào, dànshì ài yú miànzi,", my: "သူ အရမ်းကြောက်သွားပေမယ့် မျက်နှာကြောင့်" },
+        { hanzi: "还是勉强把酒喝了下去。", pinyin: "Háishì miǎnqiǎng bǎ jiǔ hē le xiàqù.", my: "သေရည်ကို အတင်းသောက်လိုက်တယ်။" },
+        { hanzi: "回到家后，他越想越害怕，", pinyin: "Huí dào jiā hòu, tā yuè xiǎng yuè hàipà,", my: "အိမ်ပြန်ရောက်တော့ သူ စဉ်းစားလေလေ ပိုကြောက်လေလေ။" },
+        { hanzi: "觉得自己肚子里真的有一条蛇。", pinyin: "Juéde zìjǐ dùzi lǐ zhēn de yǒu yī tiáo shé.", my: "သူ့ဗိုက်ထဲမှာ တကယ်မြွေတစ်ကောင်ရှိတယ်လို့ ထင်လာတယ်။" },
+        { hanzi: "他生病了，吃不下饭，也睡不着觉。", pinyin: "Tā shēngbìng le, chī bù xià fàn, yě shuì bù zháo jiào.", my: "သူ ဖျားသွားတယ်၊ ထမင်းမဝင်တော့ဘူး၊ အိပ်လည်းမပျော်တော့ဘူး။" },
+        { hanzi: "乐广知道了，觉得很奇怪。", pinyin: "Yuè Guǎng zhīdào le, juéde hěn qíguài.", my: "ယွေကွမ်း သိသွားတော့ အရမ်းထူးဆန်းတယ်လို့ ထင်မိတယ်။" },
+        { hanzi: "他想：朋友为什么突然生病了呢？", pinyin: "Tā xiǎng: Péngyou wèishénme tūrán shēngbìng le ne?", my: "သူစဉ်းစားတယ်- သူငယ်ချင်း ဘာလို့ ရုတ်တရက်ဖျားသွားတာလဲ။" },
+        { hanzi: "于是，他来到朋友家看望他。", pinyin: "Yúshì, tā lái dào péngyou jiā kànwàng tā.", my: "ဒါနဲ့ သူ သူငယ်ချင်းအိမ်ကို သွားတွေ့တယ်။" },
+        { hanzi: "朋友把那天喝酒的事告诉了他。", pinyin: "Péngyou bǎ nà tiān hē jiǔ de shì gàosu le tā.", my: "သူငယ်ချင်းက အဲဒီနေ့ သေရည်သောက်တဲ့အကြောင်း ပြောပြတယ်။" },
+        { hanzi: "乐广听了，回到家里仔细查看。", pinyin: "Yuè Guǎng tīng le, huí dào jiā lǐ zǐxì chákàn.", my: "ယွေကွမ်း ဒီစကားကြားတော့ အိမ်ပြန်ပြီး သေချာစစ်ကြည့်တယ်。" },
+        { hanzi: "他发现墙上挂着一把弓，", pinyin: "Tā fāxiàn qiáng shàng guà zhe yī bǎ gōng,", my: "သူတွေ့တာက နံရံမှာ လေးတစ်လက်ဆွဲထားတယ်။" },
+        { hanzi: "弓的影子正好映在朋友坐的位置上。", pinyin: "Gōng de yǐngzi zhènghǎo yìng zài péngyou zuò de wèizhi shàng.", my: "လေးရဲ့အရိပ်က သူငယ်ချင်းထိုင်တဲ့နေရာကို ကျနေတယ်။" },
+        { hanzi: "乐广明白了，杯子里的小蛇", pinyin: "Yuè Guǎng míngbái le, bēizi lǐ de xiǎo shé", my: "ယွေကွမ်း နားလည်သွားတယ်။ ခွက်ထဲက မြွေငယ်လေးက" },
+        { hanzi: "其实是墙上那把弓的影子。", pinyin: "Qíshí shì qiáng shàng nà bǎ gōng de yǐngzi.", my: "တကယ်တော့ နံရံပေါ်က လေးရဲ့အရိပ်ပါပဲ။" },
+        { hanzi: "他马上请朋友再来喝酒，", pinyin: "Tā mǎshàng qǐng péngyou zài lái hē jiǔ,", my: "သူ ချက်ချင်း သူငယ်ချင်းကို ထပ်ဖိတ်ပြီး သေရည်သောက်တယ်။" },
+        { hanzi: "让他坐在原来的位置上，", pinyin: "Ràng tā zuò zài yuánlái de wèizhi shàng,", my: "သူ့ကို အရင်နေရာမှာပဲ ထိုင်ခိုင်းတယ်。" },
+        { hanzi: "又给他看了弓的影子。", pinyin: "Yòu gěi tā kàn le gōng de yǐngzi.", my: "ပြီးတော့ လေးရဲ့အရိပ်ကို ပြလိုက်တယ်။" },
+        { hanzi: "朋友这才明白，原来是自己吓自己。", pinyin: "Péngyou zhè cái míngbái, yuánlái shì zìjǐ xià zìjǐ.", my: "သူငယ်ချင်းက ဒီမှသာ နားလည်သွားတယ်။ တကယ်တော့ ကိုယ့်ကိုယ်ကို ကြောက်နေတာပါ။" },
+        { hanzi: "他的病一下子就好了。", pinyin: "Tā de bìng yīxiàzi jiù hǎo le.", my: "သူ့ဖျားနာမှုက ချက်ချင်းပျောက်သွားတယ်။" },
+        { hanzi: "这个故事告诉我们：不要疑神疑鬼，", pinyin: "Zhège gùshi gàosu wǒmen: Bùyào yíshén yíguǐ,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- အကြောင်းမရှိဘဲ မထင်မှားနဲ့။" },
+        { hanzi: "很多事情其实都是自己吓自己。", pinyin: "Hěnduō shìqing qíshí dōu shì zìjǐ xià zìjǐ.", my: "အများကြီးက တကယ်တော့ ကိုယ့်ကိုယ်ကို ကြောက်တာပါ။" }
+    ],
+    vocab: [
+        { word: "酒杯", pinyin: "jiǔbēi", meaning: "သေရည်ခွက်" },
+        { word: "客厅", pinyin: "kètīng", meaning: "ဧည့်ခန်း" },
+        { word: "端", pinyin: "duān", meaning: "ကိုင်သည်" },
+        { word: "好像", pinyin: "hǎoxiàng", meaning: "သလို" },
+        { word: "吓一跳", pinyin: "xià yī tiào", meaning: "ထိတ်လန့်သွားသည်" },
+        { word: "碍于面子", pinyin: "ài yú miànzi", meaning: "မျက်နှာကြောင့်" },
+        { word: "勉强", pinyin: "miǎnqiǎng", meaning: "အတင်း" },
+        { word: "肚子", pinyin: "dùzi", meaning: "ဗိုက်" },
+        { word: "生病", pinyin: "shēngbìng", meaning: "ဖျားသည်" },
+        { word: "吃不下饭", pinyin: "chī bù xià fàn", meaning: "ထမင်းမဝင်" },
+        { word: "睡不着觉", pinyin: "shuì bù zháo jiào", meaning: "အိပ်မပျော်" },
+        { word: "奇怪", pinyin: "qíguài", meaning: "ထူးဆန်းသော" },
+        { word: "看望", pinyin: "kànwàng", meaning: "သွားတွေ့သည်" },
+        { word: "仔细", pinyin: "zǐxì", meaning: "သေချာ" },
+        { word: "查看", pinyin: "chákàn", meaning: "စစ်ဆေးသည်" },
+        { word: "弓", pinyin: "gōng", meaning: "လေး" },
+        { word: "影子", pinyin: "yǐngzi", meaning: "အရိပ်" },
+        { word: "映", pinyin: "yìng", meaning: "ကျသည်" },
+        { word: "位置", pinyin: "wèizhi", meaning: "နေရာ" },
+        { word: "其实", pinyin: "qíshí", meaning: "တကယ်တော့" },
+        { word: "马上", pinyin: "mǎshàng", meaning: "ချက်ချင်း" },
+        { word: "原来", pinyin: "yuánlái", meaning: "မူလ" },
+        { word: "疑神疑鬼", pinyin: "yíshén yíguǐ", meaning: "အကြောင်းမရှိဘဲထင်မှား" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 21-22
+// =============================================================
+
+{
+    id: 21,
+    title: "愚公移山",
+    paragraphs: [
+        { hanzi: "很久以前，有一位九十岁的老人叫愚公。", pinyin: "Hěn jiǔ yǐqián, yǒu yī wèi jiǔshí suì de lǎorén jiào Yú Gōng.", my: "ရှေးလွန်လေပြီးသောအခါက အသက်ကိုးဆယ်အရွယ် အဘိုးအိုတစ်ယောက်ရှိတယ်၊ သူ့နာမည်က ယုကုန်း။" },
+        { hanzi: "愚公的家门前有两座大山，", pinyin: "Yú Gōng de jiā mén qián yǒu liǎng zuò dà shān,", my: "ယုကုန်းရဲ့အိမ်ရှေ့မှာ တောင်ကြီးနှစ်လုံးရှိတယ်။" },
+        { hanzi: "一座叫太行山，一座叫王屋山。", pinyin: "Yī zuò jiào Tàiháng Shān, yī zuò jiào Wángwū Shān.", my: "တစ်လုံးက တိုင်ဟန့်တောင်၊ နောက်တစ်လုံးက ဝမ်ဝူတောင် လို့ခေါ်တယ်။" },
+        { hanzi: "这两座山挡在门口，家人出行很不方便。", pinyin: "Zhè liǎng zuò shān dǎng zài ménkǒu, jiārén chūxíng hěn bù fāngbiàn.", my: "ဒီတောင်နှစ်လုံးက တံခါးဝမှာ ပိတ်ဆို့နေလို့ မိသားစုသွားလာရ အရမ်းခက်တယ်။" },
+        { hanzi: "愚公决定要把这两座山搬走。", pinyin: "Yú Gōng juédìng yào bǎ zhè liǎng zuò shān bān zǒu.", my: "ယုကုန်းက ဒီတောင်နှစ်လုံးကို ရွှေ့ပစ်ဖို့ ဆုံးဖြတ်လိုက်တယ်။" },
+        { hanzi: "家人听了都很惊讶，说：您这么大年纪了，", pinyin: "Jiārén tīng le dōu hěn jīngyà, shuō: Nín zhème dà niánjì le,", my: "မိသားစုက ဒီစကားကြားတော့ အရမ်းအံ့ဩသွားပြီး ပြောတယ်- အဖိုးကြီးလာပြီ" },
+        { hanzi: "怎么能搬得动这两座大山呢？", pinyin: "Zěnme néng bān de dòng zhè liǎng zuò dà shān ne?", my: "ဒီတောင်ကြီးနှစ်လုံးကို ဘယ်လိုရွှေ့နိုင်မလဲ လို့မေးကြတယ်။" },
+        { hanzi: "愚公说：我虽然老了，但是我还有儿子。", pinyin: "Yú Gōng shuō: Wǒ suīrán lǎo le, dànshì wǒ hái yǒu érzi.", my: "ယုကုန်းက ပြောတယ်- ငါအိုပေမယ့် သားတွေရှိတယ်။" },
+        { hanzi: "儿子还有孙子，孙子还有曾孙。", pinyin: "Érzi hái yǒu sūnzi, sūnzi hái yǒu zēngsūn.", my: "သားတွေမှာ မြေးတွေရှိတယ်၊ မြေးတွေမှာ မြစ်တွေရှိတယ်။" },
+        { hanzi: "子子孙孙，一代一代传下去，", pinyin: "Zǐzǐ sūnsūn, yīdài yīdài chuán xiàqù,", my: "သားမြေးမြစ်တွေ မျိုးဆက်တစ်ခုပြီးတစ်ခု ဆက်သွားမယ်။" },
+        { hanzi: "总有一天能把山挖平的。", pinyin: "Zǒng yǒu yītiān néng bǎ shān wā píng de.", my: "တစ်နေ့ကျရင် တောင်ကို ပြန့်အောင်တူးနိုင်မယ် လို့ပြောတယ်။" },
+        { hanzi: "于是，愚公带领家人开始挖山。", pinyin: "Yúshì, Yú Gōng dàilǐng jiārén kāishǐ wā shān.", my: "ဒါနဲ့ ယုကုန်းက မိသားစုကို ခေါ်ပြီး တောင်တူးတယ်။" },
+        { hanzi: "他们每天挖一点，坚持不懈。", pinyin: "Tāmen měitiān wā yī diǎn, jiānchí bùxiè.", my: "သူတို့ နေ့တိုင်း နည်းနည်းချင်းတူးတယ်၊ ဇွဲမလျှော့ဘူး။" },
+        { hanzi: "有个聪明的老人叫智叟，看见他们挖山，", pinyin: "Yǒu gè cōngmíng de lǎorén jiào Zhìsǒu, kànjiàn tāmen wā shān,", my: "ပညာရှိအဘိုးအိုတစ်ယောက်က သူတို့တောင်တူးနေတာမြင်တော့" },
+        { hanzi: "就嘲笑说：你们太傻了，这山怎么挖得完呢？", pinyin: "Jiù cháoxiào shuō: Nǐmen tài shǎ le, zhè shān zěnme wā de wán ne?", my: "လှောင်ပြောင်ပြီး ပြောတယ်- ခင်ဗျားတို့ မိုက်လိုက်တာ၊ ဒီတောင်က ဘယ်လိုပြီးနိုင်မလဲ လို့ပြောတယ်။" },
+        { hanzi: "愚公说：我虽然笨，但我有决心。", pinyin: "Yú Gōng shuō: Wǒ suīrán bèn, dàn wǒ yǒu juéxīn.", my: "ယုကုန်းက ပြောတယ်- ငါမိုက်ပေမယ့် စိတ်ပိုင်းဖြတ်ထားတယ်။" },
+        { hanzi: "你虽然聪明，但你没有毅力。", pinyin: "Nǐ suīrán cōngmíng, dàn nǐ méiyǒu yìlì.", my: "မင်းပညာရှိပေမယ့် ဇွဲမရှိဘူး လို့ပြောတယ်။" },
+        { hanzi: "天帝被愚公的精神感动了，", pinyin: "Tiāndì bèi Yú Gōng de jīngshén gǎndòng le,", my: "နတ်မင်းကြီးက ယုကုန်းရဲ့စိတ်ဓာတ်ကို သဘောကျသွားတယ်။" },
+        { hanzi: "就派了两个神仙把两座山搬走了。", pinyin: "Jiù pài le liǎng gè shénxiān bǎ liǎng zuò shān bān zǒu le.", my: "ဒါနဲ့ နတ်သားနှစ်ပါးကို စေလွှတ်ပြီး တောင်နှစ်လုံးကို ရွှေ့ခိုင်းတယ်။" },
+        { hanzi: "从此，愚公家门口的路畅通无阻了。", pinyin: "Cóngcǐ, Yú Gōng jiā ménkǒu de lù chàngtōng wúzǔ le.", my: "အဲဒီကတည်းက ယုကုန်းရဲ့အိမ်ရှေ့က လမ်းက အတားအဆီးမရှိတော့ဘူး။" },
+        { hanzi: "这个故事告诉我们：只要有坚定的决心和毅力，", pinyin: "Zhège gùshi gàosu wǒmen: Zhǐyào yǒu jiāndìng de juéxīn hé yìlì,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- စိတ်ပိုင်းဖြတ်မှုနဲ့ ဇွဲရှိရင်" },
+        { hanzi: "再难的事情也能做成功。", pinyin: "Zài nán de shìqing yě néng zuò chénggōng.", my: "ဘယ်လောက်ခက်ခဲတဲ့အလုပ်မဆို အောင်မြင်နိုင်တယ်။" }
+    ],
+    vocab: [
+        { word: "愚公", pinyin: "Yú Gōng", meaning: "ယုကုန်း (အမည်)" },
+        { word: "山", pinyin: "shān", meaning: "တောင်" },
+        { word: "门前", pinyin: "mén qián", meaning: "အိမ်ရှေ့" },
+        { word: "挡", pinyin: "dǎng", meaning: "ပိတ်ဆို့သည်" },
+        { word: "出行", pinyin: "chūxíng", meaning: "သွားလာသည်" },
+        { word: "方便", pinyin: "fāngbiàn", meaning: "အဆင်ပြေသည်" },
+        { word: "决定", pinyin: "juédìng", meaning: "ဆုံးဖြတ်သည်" },
+        { word: "搬", pinyin: "bān", meaning: "ရွှေ့သည်" },
+        { word: "惊讶", pinyin: "jīngyà", meaning: "အံ့ဩသည်" },
+        { word: "年纪", pinyin: "niánjì", meaning: "အသက်အရွယ်" },
+        { word: "虽然", pinyin: "suīrán", meaning: "သော်လည်း" },
+        { word: "儿子", pinyin: "érzi", meaning: "သား" },
+        { word: "孙子", pinyin: "sūnzi", meaning: "မြေး" },
+        { word: "曾孙", pinyin: "zēngsūn", meaning: "မြစ်" },
+        { word: "一代", pinyin: "yīdài", meaning: "မျိုးဆက်" },
+        { word: "传下去", pinyin: "chuán xiàqù", meaning: "ဆက်လက်သည်" },
+        { word: "挖", pinyin: "wā", meaning: "တူးသည်" },
+        { word: "平", pinyin: "píng", meaning: "ပြန့်သည်" },
+        { word: "带领", pinyin: "dàilǐng", meaning: "ခေါင်းဆောင်သည်" },
+        { word: "坚持不懈", pinyin: "jiānchí bùxiè", meaning: "ဇွဲမလျှော့" },
+        { word: "聪明", pinyin: "cōngmíng", meaning: "ပညာရှိ" },
+        { word: "嘲笑", pinyin: "cháoxiào", meaning: "လှောင်ပြောင်သည်" },
+        { word: "傻", pinyin: "shǎ", meaning: "မိုက်သော" },
+        { word: "决心", pinyin: "juéxīn", meaning: "စိတ်ပိုင်းဖြတ်မှု" },
+        { word: "毅力", pinyin: "yìlì", meaning: "ဇွဲ" },
+        { word: "天帝", pinyin: "Tiāndì", meaning: "နတ်မင်းကြီး" },
+        { word: "感动", pinyin: "gǎndòng", meaning: "သဘောကျသည်" },
+        { word: "神仙", pinyin: "shénxiān", meaning: "နတ်သား" },
+        { word: "畅通无阻", pinyin: "chàngtōng wúzǔ", meaning: "အတားအဆီးမရှိ" },
+        { word: "坚定", pinyin: "jiāndìng", meaning: "ခိုင်မာသော" }
+    ]
+},
+
+{
+    id: 22,
+    title: "塞翁失马",
+    paragraphs: [
+        { hanzi: "古时候，在边塞住着一位老翁。", pinyin: "Gǔ shíhou, zài biānsài zhù zhe yī wèi lǎo wēng.", my: "ရှေးခေတ်က နယ်စပ်မှာ အဘိုးအိုတစ်ယောက်နေတယ်။" },
+        { hanzi: "人们都叫他塞翁。", pinyin: "Rénmen dōu jiào tā Sài Wēng.", my: "လူတွေက သူ့ကို ဆိုင်ဝမ်း လို့ခေါ်ကြတယ်။" },
+        { hanzi: "有一天，塞翁的马跑丢了。", pinyin: "Yǒu yītiān, Sài Wēng de mǎ pǎo diū le.", my: "တစ်နေ့မှာ ဆိုင်ဝမ်းရဲ့မြင်းက ပြေးပျောက်သွားတယ်။" },
+        { hanzi: "邻居们都很替他惋惜，说：真可惜啊！", pinyin: "Línjū men dōu hěn tì tā wǎnxī, shuō: Zhēn kěxī a!", my: "အိမ်နီးချင်းတွေက သူ့ကိုစိတ်မကောင်းဖြစ်ပြီး သနားစရာကြီး လို့ပြောကြတယ်။" },
+        { hanzi: "塞翁说：丢了马不一定是坏事。", pinyin: "Sài Wēng shuō: Diū le mǎ bù yīdìng shì huàishì.", my: "ဆိုင်ဝမ်းက ပြောတယ်- မြင်းပျောက်တာက ဆိုးတာမဟုတ်ဘူး။" },
+        { hanzi: "果然，几天后，那匹马回来了。", pinyin: "Guǒrán, jǐ tiān hòu, nà pǐ mǎ huílái le.", my: "တကယ်ပဲ ရက်အနည်းငယ်ကြာတော့ ဒီမြင်းပြန်လာတယ်။" },
+        { hanzi: "它不仅回来了，还带回来一匹漂亮的马。", pinyin: "Tā bùjǐn huílái le, hái dài huílái yī pǐ piàoliang de mǎ.", my: "သူပြန်လာရုံမက မြင်းလှလှတစ်ကောင်ကိုပါ ခေါ်လာတယ်။" },
+        { hanzi: "邻居们都很高兴，说：你真幸运！", pinyin: "Línjū men dōu hěn gāoxìng, shuō: Nǐ zhēn xìngyùn!", my: "အိမ်နီးချင်းတွေ အရမ်းပျော်သွားပြီး မင်းကံကောင်းလိုက်တာ လို့ပြောကြတယ်။" },
+        { hanzi: "塞翁说：得到马不一定是好事。", pinyin: "Sài Wēng shuō: Dédào mǎ bù yīdìng shì hǎoshì.", my: "ဆိုင်ဝမ်းက ပြောတယ်- မြင်းရတာက ကောင်းတာမဟုတ်ဘူး။" },
+        { hanzi: "果然，他的儿子很喜欢骑马。", pinyin: "Guǒrán, tā de érzi hěn xǐhuān qí mǎ.", my: "တကယ်ပဲ သူ့သားက မြင်းစီးရတာ အရမ်းကြိုက်တယ်။" },
+        { hanzi: "有一天，儿子骑那匹马时，从马上摔了下来。", pinyin: "Yǒu yītiān, érzi qí nà pǐ mǎ shí, cóng mǎ shàng shuāi le xiàlái.", my: "တစ်နေ့မှာ သားက ဒီမြင်းစီးရင်း မြင်းပေါ်ကနေ ပြုတ်ကျသွားတယ်。" },
+        { hanzi: "他的腿摔断了，成了残疾人。", pinyin: "Tā de tuǐ shuāi duàn le, chéng le cánjí rén.", my: "သူ့ခြေထောက်ကျိုးပြီး မသန်စွမ်းဖြစ်သွားတယ်။" },
+        { hanzi: "邻居们都很同情他，说：真不幸啊！", pinyin: "Línjū men dōu hěn tóngqíng tā, shuō: Zhēn bùxìng a!", my: "အိမ်နီးချင်းတွေ သူ့ကိုစာနာပြီး ကံဆိုးလိုက်တာ လို့ပြောကြတယ်။" },
+        { hanzi: "塞翁说：摔断腿不一定是坏事。", pinyin: "Sài Wēng shuō: Shuāi duàn tuǐ bù yīdìng shì huàishì.", my: "ဆိုင်ဝမ်းက ပြောတယ်- ခြေထောက်ကျိုးတာက ဆိုးတာမဟုတ်ဘူး။" },
+        { hanzi: "后来，边境发生了战争。", pinyin: "Hòulái, biānjìng fāshēng le zhànzhēng.", my: "နောက်ပိုင်း နယ်စပ်မှာ စစ်ပွဲဖြစ်လာတယ်。" },
+        { hanzi: "所有的年轻人都被征去当兵了。", pinyin: "Suǒyǒu de niánqīng rén dōu bèi zhēng qù dāng bīng le.", my: "လူငယ်အကုန်လုံးကို စစ်မှုထမ်းခိုင်းတယ်။" },
+        { hanzi: "很多人在战场上牺牲了。", pinyin: "Hěnduō rén zài zhànchǎng shàng xīshēng le.", my: "လူအများကြီး စစ်မြေပြင်မှာ ကျဆုံးသွားတယ်။" },
+        { hanzi: "可是，塞翁的儿子因为腿残疾，", pinyin: "Kěshì, Sài Wēng de érzi yīnwèi tuǐ cánjí,", my: "ဒါပေမယ့် ဆိုင်ဝမ်းရဲ့သားက ခြေမသန်လို့" },
+        { hanzi: "不用去当兵，保住了性命。", pinyin: "Bùyòng qù dāng bīng, bǎozhù le xìngmìng.", my: "စစ်မသွားရဘူး၊ အသက်လွတ်သွားတယ်။" },
+        { hanzi: "邻居们都说：塞翁真是有智慧啊！", pinyin: "Línjū men dōu shuō: Sài Wēng zhēnshi yǒu zhìhuì a!", my: "အိမ်နီးချင်းတွေ အကုန်ပြောတယ်- ဆိုင်ဝမ်းက တကယ်ပဲ ပညာရှိလိုက်တာ လို့ပြောကြတယ်။" },
+        { hanzi: "这个故事告诉我们：好事和坏事是可以相互转化的。", pinyin: "Zhège gùshi gàosu wǒmen: Hǎoshì hé huàishì shì kěyǐ xiānghù zhuǎnhuà de.", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- ကောင်းတာနဲ့ဆိုးတာက အပြန်အလှန်ပြောင်းလဲနိုင်တယ်။" },
+        { hanzi: "所以，遇到困难不要气馁，", pinyin: "Suǒyǐ, yùdào kùnnan bùyào qìněi,", my: "ဒါကြောင့် အခက်အခဲကြုံရင် စိတ်မပျက်နဲ့။" },
+        { hanzi: "遇到好事也不要太得意。", pinyin: "Yùdào hǎoshì yě bùyào tài déyì.", my: "ကောင်းတာကြုံရင်လည်း အရမ်းမကြွားနဲ့။" }
+    ],
+    vocab: [
+        { word: "塞翁", pinyin: "Sài Wēng", meaning: "ဆိုင်ဝမ်း (အမည်)" },
+        { word: "边塞", pinyin: "biānsài", meaning: "နယ်စပ်" },
+        { word: "马", pinyin: "mǎ", meaning: "မြင်း" },
+        { word: "丢", pinyin: "diū", meaning: "ပျောက်သည်" },
+        { word: "邻居", pinyin: "línjū", meaning: "အိမ်နီးချင်း" },
+        { word: "惋惜", pinyin: "wǎnxī", meaning: "စိတ်မကောင်းဖြစ်သည်" },
+        { word: "可惜", pinyin: "kěxī", meaning: "သနားစရာ" },
+        { word: "坏事", pinyin: "huàishì", meaning: "ဆိုးတဲ့အရာ" },
+        { word: "果然", pinyin: "guǒrán", meaning: "တကယ်ပဲ" },
+        { word: "不仅", pinyin: "bùjǐn", meaning: "ရုံမက" },
+        { word: "漂亮", pinyin: "piàoliang", meaning: "လှပသော" },
+        { word: "幸运", pinyin: "xìngyùn", meaning: "ကံကောင်းခြင်း" },
+        { word: "好事", pinyin: "hǎoshì", meaning: "ကောင်းတဲ့အရာ" },
+        { word: "骑马", pinyin: "qí mǎ", meaning: "မြင်းစီးသည်" },
+        { word: "摔", pinyin: "shuāi", meaning: "ပြုတ်ကျသည်" },
+        { word: "腿", pinyin: "tuǐ", meaning: "ခြေထောက်" },
+        { word: "断", pinyin: "duàn", meaning: "ကျိုးသည်" },
+        { word: "残疾人", pinyin: "cánjí rén", meaning: "မသန်စွမ်းသူ" },
+        { word: "同情", pinyin: "tóngqíng", meaning: "စာနာသည်" },
+        { word: "不幸", pinyin: "bùxìng", meaning: "ကံဆိုးခြင်း" },
+        { word: "战争", pinyin: "zhànzhēng", meaning: "စစ်ပွဲ" },
+        { word: "年轻", pinyin: "niánqīng", meaning: "လူငယ်" },
+        { word: "征", pinyin: "zhēng", meaning: "စစ်မှုထမ်းခိုင်းသည်" },
+        { word: "当兵", pinyin: "dāng bīng", meaning: "စစ်သားဖြစ်သည်" },
+        { word: "战场", pinyin: "zhànchǎng", meaning: "စစ်မြေပြင်" },
+        { word: "牺牲", pinyin: "xīshēng", meaning: "ကျဆုံးသည်" },
+        { word: "性命", pinyin: "xìngmìng", meaning: "အသက်" },
+        { word: "智慧", pinyin: "zhìhuì", meaning: "ပညာ" },
+        { word: "相互", pinyin: "xiānghù", meaning: "အပြန်အလှန်" },
+        { word: "转化", pinyin: "zhuǎnhuà", meaning: "ပြောင်းလဲသည်" },
+        { word: "气馁", pinyin: "qìněi", meaning: "စိတ်ပျက်သည်" },
+        { word: "得意", pinyin: "déyì", meaning: "ကြွားသည်" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 23-24
+// =============================================================
+
+{
+    id: 23,
+    title: "亡羊补牢",
+    paragraphs: [
+        { hanzi: "从前，有一个人养了一群羊。", pinyin: "Cóngqián, yǒu yīgè rén yǎng le yī qún yáng.", my: "ရှေးတုန်းက လူတစ်ယောက်က သိုးအုပ်တစ်အုပ်မွေးတယ်။" },
+        { hanzi: "他每天都要到羊圈去看他的羊。", pinyin: "Tā měitiān dōu yào dào yángjuàn qù kàn tā de yáng.", my: "သူက နေ့တိုင်း သိုးခြံကို သွားကြည့်တယ်။" },
+        { hanzi: "有一天早上，他发现羊圈破了一个洞。", pinyin: "Yǒu yītiān zǎoshang, tā fāxiàn yángjuàn pò le yīgè dòng.", my: "တစ်နေ့မနက်မှာ သိုးခြံမှာ အပေါက်တစ်ပေါက်ပေါက်နေတာကိုတွေ့တယ်。" },
+        { hanzi: "他数了数羊，发现丢了一只羊。", pinyin: "Tā shǔ le shǔ yáng, fāxiàn diū le yī zhǐ yáng.", my: "သူ သိုးတွေကိုရေတွက်ကြည့်တော့ သိုးတစ်ကောင်ပျောက်နေတယ်။" },
+        { hanzi: "邻居说：你赶紧把羊圈修好吧！", pinyin: "Línjū shuō: Nǐ gǎnjǐn bǎ yángjuàn xiū hǎo ba!", my: "အိမ်နီးချင်းက ပြောတယ်- သိုးခြံကို မြန်မြန်ပြင်စမ်းပါ လို့ပြောတယ်။" },
+        { hanzi: "他说：羊已经丢了，修羊圈还有什么用呢？", pinyin: "Tā shuō: Yáng yǐjīng diū le, xiū yángjuàn hái yǒu shénme yòng ne?", my: "သူပြောတယ်- သိုးပျောက်သွားပြီ၊ သိုးခြံပြင်လို့ ဘာအကျိုးရှိမှာလဲ လို့ပြောတယ်။" },
+        { hanzi: "第二天早上，他又发现丢了一只羊。", pinyin: "Dì'èr tiān zǎoshang, tā yòu fāxiàn diū le yī zhǐ yáng.", my: "နောက်တစ်နေ့မနက်မှာ သူ နောက်ထပ်သိုးတစ်ကောင်ပျောက်နေတာကိုတွေ့တယ်။" },
+        { hanzi: "原来，狼从那个洞里钻进来，把羊叼走了。", pinyin: "Yuánlái, láng cóng nàge dòng lǐ zuān jìnlái, bǎ yáng diāo zǒu le.", my: "အမှန်တော့ ဝံပုလွေက အဲဒီအပေါက်ကနေ ဝင်လာပြီး သိုးကိုကိုက်သွားတယ်။" },
+        { hanzi: "他后悔极了，说：我真是太傻了！", pinyin: "Tā hòuhuǐ jí le, shuō: Wǒ zhēnshi tài shǎ le!", my: "သူ အရမ်းနောင်တရသွားပြီး ငါမိုက်လိုက်တာ လို့ပြောတယ်။" },
+        { hanzi: "于是，他赶紧把羊圈修好了。", pinyin: "Yúshì, tā gǎnjǐn bǎ yángjuàn xiū hǎo le.", my: "ဒါနဲ့ သူ သိုးခြံကို မြန်မြန်ပြင်လိုက်တယ်。" },
+        { hanzi: "他把洞补得严严实实的，", pinyin: "Tā bǎ dòng bǔ de yányán shíshí de,", my: "သူ အပေါက်ကို ခိုင်ခိုင်မာမာ ပြင်လိုက်တယ်။" },
+        { hanzi: "从此以后，再也没有丢过羊了。", pinyin: "Cóngcǐ yǐhòu, zài yě méiyǒu diū guò yáng le.", my: "အဲဒီကတည်းက သိုးတွေ ဘယ်တော့မှ မပျောက်တော့ဘူး။" },
+        { hanzi: "这个故事告诉我们：做错了事要及时改正，", pinyin: "Zhège gùshi gàosu wǒmen: Zuò cuò le shì yào jíshí gǎizhèng,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- အမှားလုပ်မိရင် အချိန်မီပြင်ရမယ်။" },
+        { hanzi: "只要及时补救，就还不算晚。", pinyin: "Zhǐyào jíshí bǔjiù, jiù hái bù suàn wǎn.", my: "အချိန်မီပြင်ရင် မနောက်ကျသေးဘူး။" }
+    ],
+    vocab: [
+        { word: "养", pinyin: "yǎng", meaning: "မွေးသည်" },
+        { word: "羊", pinyin: "yáng", meaning: "သိုး" },
+        { word: "羊圈", pinyin: "yángjuàn", meaning: "သိုးခြံ" },
+        { word: "破", pinyin: "pò", meaning: "ပေါက်သည်" },
+        { word: "洞", pinyin: "dòng", meaning: "အပေါက်" },
+        { word: "数", pinyin: "shǔ", meaning: "ရေတွက်သည်" },
+        { word: "丢", pinyin: "diū", meaning: "ပျောက်သည်" },
+        { word: "邻居", pinyin: "línjū", meaning: "အိမ်နီးချင်း" },
+        { word: "赶紧", pinyin: "gǎnjǐn", meaning: "မြန်မြန်" },
+        { word: "修", pinyin: "xiū", meaning: "ပြင်သည်" },
+        { word: "已经", pinyin: "yǐjīng", meaning: "ပြီးပြီ" },
+        { word: "用", pinyin: "yòng", meaning: "အသုံး" },
+        { word: "狼", pinyin: "láng", meaning: "ဝံပုလွေ" },
+        { word: "钻", pinyin: "zuān", meaning: "ဝင်သည်" },
+        { word: "叼", pinyin: "diāo", meaning: "ကိုက်သွားသည်" },
+        { word: "后悔", pinyin: "hòuhuǐ", meaning: "နောင်တရသည်" },
+        { word: "傻", pinyin: "shǎ", meaning: "မိုက်သော" },
+        { word: "补", pinyin: "bǔ", meaning: "ပြင်ဆင်သည်" },
+        { word: "严严实实", pinyin: "yányán shíshí", meaning: "ခိုင်ခိုင်မာမာ" },
+        { word: "改正", pinyin: "gǎizhèng", meaning: "ပြင်ဆင်သည်" },
+        { word: "及时", pinyin: "jíshí", meaning: "အချိန်မီ" },
+        { word: "补救", pinyin: "bǔjiù", meaning: "ပြန်လည်ပြင်ဆင်" },
+        { word: "晚", pinyin: "wǎn", meaning: "နောက်ကျသည်" }
+    ]
+},
+
+{
+    id: 24,
+    title: "对牛弹琴",
+    paragraphs: [
+        { hanzi: "古时候，有一个非常喜欢音乐的人。", pinyin: "Gǔ shíhou, yǒu yīgè fēicháng xǐhuān yīnyuè de rén.", my: "ရှေးခေတ်က ဂီတကို အရမ်းကြိုက်တဲ့လူတစ်ယောက်ရှိတယ်။" },
+        { hanzi: "他弹琴弹得非常好听。", pinyin: "Tā tán qín tán de fēicháng hǎotīng.", my: "သူ စောင်းတီးတာ အရမ်းကောင်းတယ်။" },
+        { hanzi: "有一天，他看到一头牛在草地上吃草。", pinyin: "Yǒu yītiān, tā kàndào yī tóu niú zài cǎodì shàng chī cǎo.", my: "တစ်နေ့မှာ သူ နွားတစ်ကောင် မြက်ခင်းပေါ်မှာ မြက်စားနေတာကိုတွေ့တယ်။" },
+        { hanzi: "他想：我的琴声这么好听，", pinyin: "Tā xiǎng: Wǒ de qínshēng zhème hǎotīng,", my: "သူစဉ်းစားတယ်- ငါ့စောင်းသံက ဒီလောက်ကောင်းတာ" },
+        { hanzi: "如果弹给牛听，它一定会很喜欢的。", pinyin: "Rúguǒ tán gěi niú tīng, tā yīdìng huì hěn xǐhuān de.", my: "နွားကိုတီးပြရင် သူကြိုက်သွားမှာပဲ လို့တွေးမိတယ်။" },
+        { hanzi: "于是，他坐在牛面前，弹起琴来。", pinyin: "Yúshì, tā zuò zài niú miànqián, tán qǐ qín lái.", my: "ဒါနဲ့ သူ နွားရှေ့မှာထိုင်ပြီး စောင်းတီးတယ်။" },
+        { hanzi: "琴声悠扬动听，像流水一样美妙。", pinyin: "Qínshēng yōuyáng dòngtīng, xiàng liúshuǐ yīyàng měimiào.", my: "စောင်းသံက ညီညွတ်လှပြီး စမ်းချောင်းစီးသလို သာယာတယ်။" },
+        { hanzi: "可是，牛一点反应也没有。", pinyin: "Kěshì, niú yī diǎn fǎnyìng yě méiyǒu.", my: "ဒါပေမယ့် နွားက ဘာတုံ့ပြန်မှုမှမရှိဘူး။" },
+        { hanzi: "牛还是低着头，专心地吃草。", pinyin: "Niú háishì dī zhe tóu, zhuānxīn de chī cǎo.", my: "နွားက ခေါင်းငုံ့ပြီး မြက်ကိုပဲ အာရုံစိုက်စားနေတယ်။" },
+        { hanzi: "这个人觉得很奇怪，为什么牛不喜欢听呢？", pinyin: "Zhège rén juéde hěn qíguài, wèishénme niú bù xǐhuān tīng ne?", my: "ဒီလူက အရမ်းထူးဆန်းတယ်လို့ထင်မိတယ်။ နွားက ဘာလို့မကြိုက်တာလဲ။" },
+        { hanzi: "他又换了更美妙的曲子，继续弹给牛听。", pinyin: "Tā yòu huàn le gèng měimiào de qǔzi, jìxù tán gěi niú tīng.", my: "သူ ပိုကောင်းတဲ့တေးသွားတွေပြောင်းပြီး နွားကိုဆက်တီးတယ်။" },
+        { hanzi: "可是，牛还是不理他，只顾着吃草。", pinyin: "Kěshì, niú háishì bù lǐ tā, zhǐgù zhe chī cǎo.", my: "ဒါပေမယ့် နွားက သူ့ကိုဂရုမစိုက်ဘူး၊ မြက်ပဲဆက်စားနေတယ်။" },
+        { hanzi: "最后，这个人明白了：", pinyin: "Zuìhòu, zhège rén míngbái le:", my: "နောက်ဆုံးတော့ ဒီလူ နားလည်သွားတယ်။" },
+        { hanzi: "牛根本不懂得欣赏音乐，", pinyin: "Niú gēnběn bù dǒngde xīnshǎng yīnyuè,", my: "နွားက ဂီတကို နားလည်းမလည်ဘူး။" },
+        { hanzi: "对牛弹琴，就是在浪费时间。", pinyin: "Duì niú tán qín, jiùshì zài làngfèi shíjiān.", my: "နွားကိုစောင်းတီးတာက အချိန်ဖြုန်းတာပဲ ဆိုတာ သိသွားတယ်။" },
+        { hanzi: "这个故事告诉我们：说话做事要看对象，", pinyin: "Zhège gùshi gàosu wǒmen: Shuōhuà zuòshì yào kàn duìxiàng,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- ပြောတာလုပ်တာက လူကိုလိုက်ပြီးလုပ်ရမယ်။" },
+        { hanzi: "对不懂道理的人讲道理，是没有用的。", pinyin: "Duì bù dǒng dàolǐ de rén jiǎng dàolǐ, shì méiyǒu yòng de.", my: "နားမလည်တဲ့သူကို အကြောင်းပြတာက အကျိုးမရှိဘူး။" }
+    ],
+    vocab: [
+        { word: "音乐", pinyin: "yīnyuè", meaning: "ဂီတ" },
+        { word: "弹琴", pinyin: "tán qín", meaning: "စောင်းတီးသည်" },
+        { word: "好听", pinyin: "hǎotīng", meaning: "နားထောင်ကောင်းသည်" },
+        { word: "牛", pinyin: "niú", meaning: "နွား" },
+        { word: "草地", pinyin: "cǎodì", meaning: "မြက်ခင်း" },
+        { word: "吃草", pinyin: "chī cǎo", meaning: "မြက်စားသည်" },
+        { word: "琴声", pinyin: "qínshēng", meaning: "စောင်းသံ" },
+        { word: "面前", pinyin: "miànqián", meaning: "ရှေ့မှာ" },
+        { word: "悠扬", pinyin: "yōuyáng", meaning: "ညီညွတ်သော" },
+        { word: "动听", pinyin: "dòngtīng", meaning: "နားထောင်ကောင်းသော" },
+        { word: "流水", pinyin: "liúshuǐ", meaning: "စမ်းချောင်း" },
+        { word: "美妙", pinyin: "měimiào", meaning: "သာယာသော" },
+        { word: "反应", pinyin: "fǎnyìng", meaning: "တုံ့ပြန်မှု" },
+        { word: "低头", pinyin: "dī tóu", meaning: "ခေါင်းငုံ့သည်" },
+        { word: "专心", pinyin: "zhuānxīn", meaning: "အာရုံစိုက်သည်" },
+        { word: "奇怪", pinyin: "qíguài", meaning: "ထူးဆန်းသော" },
+        { word: "曲子", pinyin: "qǔzi", meaning: "တေးသွား" },
+        { word: "继续", pinyin: "jìxù", meaning: "ဆက်လက်သည်" },
+        { word: "不理", pinyin: "bù lǐ", meaning: "ဂရုမစိုက်" },
+        { word: "只顾", pinyin: "zhǐgù", meaning: "သာဂရုစိုက်သည်" },
+        { word: "根本", pinyin: "gēnběn", meaning: "လုံးဝ" },
+        { word: "懂得", pinyin: "dǒngde", meaning: "နားလည်သည်" },
+        { word: "欣赏", pinyin: "xīnshǎng", meaning: "သဘောကျသည်" },
+        { word: "浪费时间", pinyin: "làngfèi shíjiān", meaning: "အချိန်ဖြုန်းသည်" },
+        { word: "对象", pinyin: "duìxiàng", meaning: "ပစ်မှတ်" },
+        { word: "道理", pinyin: "dàolǐ", meaning: "အကြောင်းအရာ" },
+        { word: "用", pinyin: "yòng", meaning: "အကျိုး" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 25-26
+// =============================================================
+
+{
+    id: 25,
+    title: "刻舟求剑",
+    paragraphs: [
+        { hanzi: "古时候，有一个人坐船过江。", pinyin: "Gǔ shíhou, yǒu yīgè rén zuò chuán guò jiāng.", my: "ရှေးခေတ်က လူတစ်ယောက်က သင်္ဘောစီးပြီး မြစ်ကိုဖြတ်တယ်။" },
+        { hanzi: "船在江上航行，两岸的风景很美。", pinyin: "Chuán zài jiāng shàng hángxíng, liǎng àn de fēngjǐng hěn měi.", my: "သင်္ဘောက မြစ်ပေါ်မှာ သွားနေတယ်၊ ကမ်းနှစ်ဖက်က ရှုခင်းတွေ အရမ်းလှတယ်။" },
+        { hanzi: "他站在船上，腰里挂着一把宝剑。", pinyin: "Tā zhàn zài chuán shàng, yāo lǐ guà zhe yī bǎ bǎojiàn.", my: "သူ သင်္ဘောပေါ်မှာ ရပ်နေတယ်၊ ခါးမှာ ဓားကောင်းတစ်လက်ဆွဲထားတယ်။" },
+        { hanzi: "突然，船晃动了一下，", pinyin: "Tūrán, chuán huàngdòng le yīxià,", my: "ရုတ်တရက် သင်္ဘောတုန်သွားတယ်။" },
+        { hanzi: "他的宝剑掉进了江里。", pinyin: "Tā de bǎojiàn diào jìn le jiāng lǐ.", my: "သူ့ဓားက မြစ်ထဲကျသွားတယ်။" },
+        { hanzi: "他非常着急，赶紧在船边做记号。", pinyin: "Tā fēicháng zhāojí, gǎnjǐn zài chuán biān zuò jìhao.", my: "သူ အရမ်းစိတ်ပူသွားပြီး သင်္ဘောဘေးမှာ အမှတ်အသားလုပ်တယ်။" },
+        { hanzi: "他在宝剑掉下去的地方刻了一个记号。", pinyin: "Tā zài bǎojiàn diào xiàqù de dìfang kè le yīgè jìhao.", my: "သူ ဓားကျတဲ့နေရာမှာ အမှတ်အသားတစ်ခုထွင်းထားတယ်။" },
+        { hanzi: "船上的人问他：你在干什么？", pinyin: "Chuán shàng de rén wèn tā: Nǐ zài gàn shénme?", my: "သင်္ဘောပေါ်က လူတွေက မင်းဘာလုပ်နေတာလဲ လို့မေးတယ်။" },
+        { hanzi: "他说：我的宝剑掉到江里了。", pinyin: "Tā shuō: Wǒ de bǎojiàn diào dào jiāng lǐ le.", my: "သူပြောတယ်- ငါ့ဓား မြစ်ထဲကျသွားတယ် လို့ပြောတယ်။" },
+        { hanzi: "我在船上刻个记号，等船靠岸了，", pinyin: "Wǒ zài chuán shàng kè gè jìhao, děng chuán kào'àn le,", my: "ငါ သင်္ဘောပေါ်မှာ အမှတ်အသားလုပ်ထားတယ်၊ သင်္ဘောကမ်းတက်ရင်" },
+        { hanzi: "我就从这个记号的地方下去找我的剑。", pinyin: "Wǒ jiù cóng zhège jìhao de dìfang xiàqù zhǎo wǒ de jiàn.", my: "ဒီအမှတ်အသားနေရာကနေ ဆင်းပြီး ငါ့ဓားကိုရှာမယ် လို့ပြောတယ်။" },
+        { hanzi: "大家都笑了，说：你真笨！", pinyin: "Dàjiā dōu xiào le, shuō: Nǐ zhēn bèn!", my: "လူတိုင်းရယ်ပြီး မင်းမိုက်လိုက်တာ လို့ပြောကြတယ်။" },
+        { hanzi: "船一直在走，可是剑不会动。", pinyin: "Chuán yīzhí zài zǒu, kěshì jiàn bù huì dòng.", my: "သင်္ဘောက ဆက်သွားနေတယ်၊ ဒါပေမယ့် ဓားက မလှုပ်ဘူး။" },
+        { hanzi: "船靠岸后，他按记号下水找剑。", pinyin: "Chuán kào'àn hòu, tā àn jìhao xià shuǐ zhǎo jiàn.", my: "သင်္ဘောကမ်းတက်တော့ သူ အမှတ်အသားအတိုင်း ရေထဲဆင်းပြီး ဓားရှာတယ်。" },
+        { hanzi: "可是，他找了很久很久，什么也没有找到。", pinyin: "Kěshì, tā zhǎo le hěn jiǔ hěn jiǔ, shénme yě méiyǒu zhǎodào.", my: "ဒါပေမယ့် သူ အကြာကြီးရှာပေမယ့် ဘာမှမတွေ့ဘူး။" },
+        { hanzi: "这时他才明白：剑在江里不会动，", pinyin: "Zhè shí tā cái míngbái: Jiàn zài jiāng lǐ bù huì dòng,", my: "ဒီအချိန်မှသာ သူနားလည်သွားတယ်။ ဓားက မြစ်ထဲမှာ မလှုပ်ဘူး။" },
+        { hanzi: "船却一直在走，按记号找剑是没有用的。", pinyin: "Chuán què yīzhí zài zǒu, àn jìhao zhǎo jiàn shì méiyǒu yòng de.", my: "သင်္ဘောက ဆက်သွားနေတယ်၊ အမှတ်အသားနဲ့ ဓားရှာတာက အကျိုးမရှိဘူး။" },
+        { hanzi: "这个故事告诉我们：世界上的事物总是在变化，", pinyin: "Zhège gùshi gàosu wǒmen: Shìjiè shàng de shìwù zǒng shì zài biànhuà,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- ကမ္ဘာပေါ်က အရာတွေက အမြဲပြောင်းလဲနေတယ်။" },
+        { hanzi: "我们做事不能太死板，要懂得灵活变通。", pinyin: "Wǒmen zuòshì bùnéng tài sǐbǎn, yào dǒngde línghuó biàntōng.", my: "ငါတို့ အလုပ်တွေကို အရမ်းတင်းကျပ်မလုပ်ရဘူး၊ လိုက်လျောညီထွေ ရှိရမယ်။" }
+    ],
+    vocab: [
+        { word: "坐船", pinyin: "zuò chuán", meaning: "သင်္ဘောစီးသည်" },
+        { word: "过江", pinyin: "guò jiāng", meaning: "မြစ်ကိုဖြတ်သည်" },
+        { word: "航行", pinyin: "hángxíng", meaning: "သွားလာသည်" },
+        { word: "两岸", pinyin: "liǎng àn", meaning: "ကမ်းနှစ်ဖက်" },
+        { word: "风景", pinyin: "fēngjǐng", meaning: "ရှုခင်း" },
+        { word: "站", pinyin: "zhàn", meaning: "ရပ်သည်" },
+        { word: "腰", pinyin: "yāo", meaning: "ခါး" },
+        { word: "宝剑", pinyin: "bǎojiàn", meaning: "ဓားကောင်း" },
+        { word: "晃动", pinyin: "huàngdòng", meaning: "တုန်သည်" },
+        { word: "掉", pinyin: "diào", meaning: "ကျသည်" },
+        { word: "江", pinyin: "jiāng", meaning: "မြစ်" },
+        { word: "着急", pinyin: "zhāojí", meaning: "စိတ်ပူသည်" },
+        { word: "记号", pinyin: "jìhao", meaning: "အမှတ်အသား" },
+        { word: "刻", pinyin: "kè", meaning: "ထွင်းသည်" },
+        { word: "靠岸", pinyin: "kào'àn", meaning: "ကမ်းတက်သည်" },
+        { word: "找", pinyin: "zhǎo", meaning: "ရှာသည်" },
+        { word: "笨", pinyin: "bèn", meaning: "မိုက်သော" },
+        { word: "下水", pinyin: "xià shuǐ", meaning: "ရေထဲဆင်း" },
+        { word: "事物", pinyin: "shìwù", meaning: "အရာ" },
+        { word: "变化", pinyin: "biànhuà", meaning: "ပြောင်းလဲသည်" },
+        { word: "死板", pinyin: "sǐbǎn", meaning: "တင်းကျပ်သော" },
+        { word: "灵活", pinyin: "línghuó", meaning: "လိုက်လျောညီထွေရှိသော" },
+        { word: "变通", pinyin: "biàntōng", meaning: "လိုက်လျောသည်" }
+    ]
+},
+
+{
+    id: 26,
+    title: "邯郸学步",
+    paragraphs: [
+        { hanzi: "古时候，燕国有个年轻人。", pinyin: "Gǔ shíhou, Yān guó yǒu gè niánqīng rén.", my: "ရှေးခေတ် ယန်နိုင်ငံမှာ လူငယ်တစ်ယောက်ရှိတယ်။" },
+        { hanzi: "他听说赵国首都邯郸的人走路姿势非常优美。", pinyin: "Tā tīngshuō Zhào guó shǒudū Hándān de rén zǒulù zīshì fēicháng yōuměi.", my: "သူ ဇောနိုင်ငံရဲ့မြို့တော် ဟန်တန်မှာ လူတွေ လမ်းလျှောက်ပုံ အရမ်းလှတယ်လို့ ကြားတယ်။" },
+        { hanzi: "他很羡慕，决心去邯郸学走路。", pinyin: "Tā hěn xiànmù, juéxīn qù Hándān xué zǒulù.", my: "သူ အရမ်းအားကျသွားပြီး ဟန်တန်ကို လမ်းလျှောက်တတ်ဖို့ သွားဖို့ ဆုံးဖြတ်လိုက်တယ်။" },
+        { hanzi: "于是，他收拾行李，来到了邯郸。", pinyin: "Yúshì, tā shōushi xíngli, lái dào le Hándān.", my: "ဒါနဲ့ သူ ပစ္စည်းတွေကောက်ပြီး ဟန်တန်ကိုရောက်လာတယ်။" },
+        { hanzi: "他看到邯郸人走路的样子，果然非常好看。", pinyin: "Tā kàndào Hándān rén zǒulù de yàngzi, guǒrán fēicháng hǎokàn.", my: "သူ ဟန်တန်လူတွေ လမ်းလျှောက်ပုံကိုမြင်တော့ တကယ်ပဲ အရမ်းလှတယ်။" },
+        { hanzi: "年轻人就开始学邯郸人走路。", pinyin: "Niánqīng rén jiù kāishǐ xué Hándān rén zǒulù.", my: "လူငယ်က ဟန်တန်လူတွေလိုလမ်းလျှောက်တတ်ဖို့ စသင်တယ်။" },
+        { hanzi: "他跟在邯郸人后面，模仿他们的步伐。", pinyin: "Tā gēn zài Hándān rén hòumiàn, mófǎng tāmen de bùfá.", my: "သူ ဟန်တန်လူတွေရဲ့နောက်က လိုက်ပြီး သူတို့ရဲ့ခြေလှမ်းတွေကို အတုယူတယ်။" },
+        { hanzi: "可是，他怎么也学不像。", pinyin: "Kěshì, tā zěnme yě xué bù xiàng.", my: "ဒါပေမယ့် သူ ဘယ်လိုမှ မတူအောင်မသင်နိုင်ဘူး။" },
+        { hanzi: "他觉得自己原来的走路姿势太难看，", pinyin: "Tā juéde zìjǐ yuánlái de zǒulù zīshì tài nánkàn,", my: "သူ ကိုယ့်ရဲ့မူလလမ်းလျှောက်ပုံက အရမ်းဆိုးတယ်လို့ ထင်တယ်။" },
+        { hanzi: "就想完全忘掉自己原来的走法。", pinyin: "Jiù xiǎng wánquán wàngdiào zìjǐ yuánlái de zǒufǎ.", my: "ဒါနဲ့ ကိုယ့်ရဲ့မူလလမ်းလျှောက်ပုံကို လုံးဝမေ့ပစ်ချင်တယ်။" },
+        { hanzi: "他每天从早到晚都在练习邯郸人的步伐。", pinyin: "Tā měitiān cóng zǎo dào wǎn dōu zài liànxí Hándān rén de bùfá.", my: "သူ နေ့တိုင်း မနက်ကနေညနေအထိ ဟန်တန်လူတွေရဲ့ခြေလှမ်းတွေကို လေ့ကျင့်တယ်။" },
+        { hanzi: "可是，他越学越乱，越走越别扭。", pinyin: "Kěshì, tā yuè xué yuè luàn, yuè zǒu yuè bièniu.", my: "ဒါပေမယ့် သူ လေ့ကျင့်လေလေ ပိုရှုပ်လေလေ၊ လမ်းလျှောက်တာ ပိုဆိုးလေလေ။" },
+        { hanzi: "最后，他不但没有学会邯郸人走路，", pinyin: "Zuìhòu, tā bùdàn méiyǒu xuéhuì Hándān rén zǒulù,", my: "နောက်ဆုံးတော့ သူ ဟန်တန်လူတွေလိုလမ်းလျှောက်တတ်တာမရတဲ့အပြင်" },
+        { hanzi: "还忘记了自己原来是怎么走路的。", pinyin: "Hái wàngjì le zìjǐ yuánlái shì zěnme zǒulù de.", my: "ကိုယ့်မူလလမ်းလျှောက်ပုံကိုပါ မေ့သွားတယ်။" },
+        { hanzi: "他连路都不会走了，只好爬着回家。", pinyin: "Tā lián lù dōu bù huì zǒu le, zhǐhǎo pá zhe huí jiā.", my: "သူ လမ်းလျှောက်တာတောင် မတတ်တော့ဘူး၊ တွားပြီးပဲ အိမ်ပြန်ရတယ်။" },
+        { hanzi: "这个故事告诉我们：学习别人不能盲目模仿，", pinyin: "Zhège gùshi gàosu wǒmen: Xuéxí biérén bùnéng mángmù mófǎng,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- သူတစ်ပါးကို မျက်ကန်းအတုမယူရဘူး။" },
+        { hanzi: "要保留自己的优点，不能丢掉自己的特色。", pinyin: "Yào bǎoliú zìjǐ de yōudiǎn, bùnéng diūdiào zìjǐ de tèsè.", my: "ကိုယ့်ရဲ့အားသာချက်တွေကို ထိန်းသိမ်းရမယ်၊ ကိုယ့်ရဲ့ထူးခြားချက်တွေကို မပျောက်စေရဘူး။" }
+    ],
+    vocab: [
+        { word: "首都", pinyin: "shǒudū", meaning: "မြို့တော်" },
+        { word: "走路", pinyin: "zǒulù", meaning: "လမ်းလျှောက်သည်" },
+        { word: "姿势", pinyin: "zīshì", meaning: "ဟန်" },
+        { word: "优美", pinyin: "yōuměi", meaning: "လှပသော" },
+        { word: "羡慕", pinyin: "xiànmù", meaning: "အားကျသည်" },
+        { word: "决心", pinyin: "juéxīn", meaning: "စိတ်ပိုင်းဖြတ်သည်" },
+        { word: "收拾", pinyin: "shōushi", meaning: "ကောက်သည်" },
+        { word: "行李", pinyin: "xíngli", meaning: "ပစ္စည်း" },
+        { word: "样子", pinyin: "yàngzi", meaning: "ပုံ" },
+        { word: "果然", pinyin: "guǒrán", meaning: "တကယ်ပဲ" },
+        { word: "模仿", pinyin: "mófǎng", meaning: "အတုယူသည်" },
+        { word: "步伐", pinyin: "bùfá", meaning: "ခြေလှမ်း" },
+        { word: "难看", pinyin: "nánkàn", meaning: "ဆိုးသည်" },
+        { word: "完全", pinyin: "wánquán", meaning: "လုံးဝ" },
+        { word: "忘掉", pinyin: "wàngdiào", meaning: "မေ့ပစ်သည်" },
+        { word: "从早到晚", pinyin: "cóng zǎo dào wǎn", meaning: "မနက်ကနေညနေအထိ" },
+        { word: "练习", pinyin: "liànxí", meaning: "လေ့ကျင့်သည်" },
+        { word: "乱", pinyin: "luàn", meaning: "ရှုပ်သည်" },
+        { word: "别扭", pinyin: "bièniu", meaning: "ဆိုးသည်" },
+        { word: "不但", pinyin: "bùdàn", meaning: "မကသာ" },
+        { word: "连", pinyin: "lián", meaning: "တောင်" },
+        { word: "爬", pinyin: "pá", meaning: "တွားသည်" },
+        { word: "盲目", pinyin: "mángmù", meaning: "မျက်ကန်း" },
+        { word: "保留", pinyin: "bǎoliú", meaning: "ထိန်းသိမ်းသည်" },
+        { word: "优点", pinyin: "yōudiǎn", meaning: "အားသာချက်" },
+        { word: "特色", pinyin: "tèsè", meaning: "ထူးခြားချက်" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 27-28
+// =============================================================
+
+{
+    id: 27,
+    title: "叶公好龙",
+    paragraphs: [
+        { hanzi: "古时候，有一个人叫叶公。", pinyin: "Gǔ shíhou, yǒu yīgè rén jiào Yè Gōng.", my: "ရှေးခေတ်က ရှီးကုန်း ဆိုတဲ့လူတစ်ယောက်ရှိတယ်။" },
+        { hanzi: "叶公非常喜欢龙，特别喜欢龙。", pinyin: "Yè Gōng fēicháng xǐhuān lóng, tèbié xǐhuān lóng.", my: "ရှီးကုန်းက နဂါးကို အရမ်းကြိုက်တယ်၊ အထူးသဖြင့် နဂါးကို ကြိုက်တယ်။" },
+        { hanzi: "他的家里到处都画着龙，", pinyin: "Tā de jiā lǐ dàochù dōu huà zhe lóng,", my: "သူ့အိမ်မှာ နဂါးတွေ အနှံ့အပြားဆွဲထားတယ်။" },
+        { hanzi: "墙壁上、柱子上、衣服上，都有龙的图案。", pinyin: "Qiángbì shàng, zhùzi shàng, yīfu shàng, dōu yǒu lóng de tú'àn.", my: "နံရံတွေ၊ တိုင်တွေ၊ အဝတ်တွေပေါ်မှာ နဂါးပုံတွေရှိတယ်。" },
+        { hanzi: "他还经常对别人说：我最喜欢龙了！", pinyin: "Tā hái jīngcháng duì biérén shuō: Wǒ zuì xǐhuān lóng le!", my: "သူ သူတစ်ပါးကို မကြာခဏပြောတယ်- ငါ နဂါးကို အကြိုက်ဆုံးပဲ လို့ပြောတယ်။" },
+        { hanzi: "天上的真龙知道了，非常感动。", pinyin: "Tiān shàng de zhēn lóng zhīdào le, fēicháng gǎndòng.", my: "ကောင်းကင်ပေါ်က တကယ့်နဂါးက ဒါကိုသိသွားတော့ အရမ်းသဘောကျသွားတယ်။" },
+        { hanzi: "他想：叶公这么喜欢我，我应该去看看他。", pinyin: "Tā xiǎng: Yè Gōng zhème xǐhuān wǒ, wǒ yīnggāi qù kànkan tā.", my: "သူစဉ်းစားတယ်- ရှီးကုန်း ငါ့ကို ဒီလောက်ကြိုက်တယ်၊ ငါသွားတွေ့သင့်တယ် လို့တွေးမိတယ်။" },
+        { hanzi: "于是，真龙从天上飞下来，", pinyin: "Yúshì, zhēn lóng cóng tiān shàng fēi xiàlái,", my: "ဒါနဲ့ တကယ့်နဂါးက ကောင်းကင်ပေါ်ကနေ ဆင်းပျံလာတယ်။" },
+        { hanzi: "把头伸进叶公的窗户里。", pinyin: "Bǎ tóu shēn jìn Yè Gōng de chuānghu lǐ.", my: "ခေါင်းကို ရှီးကုန်းရဲ့ပြတင်းပေါက်ထဲ ထိုးထည့်လိုက်တယ်。" },
+        { hanzi: "叶公正在屋里，看到真龙来了，", pinyin: "Yè Gōng zhèngzài wū lǐ, kàndào zhēn lóng lái le,", my: "ရှီးကုန်းက အိမ်ထဲမှာ နဂါးတကယ်လာတာကိုမြင်တော့" },
+        { hanzi: "吓得脸色苍白，浑身发抖。", pinyin: "Xià de liǎnsè cāngbái, húnshēn fādǒu.", my: "ကြောက်လို့ မျက်နှာဖြူသွားပြီး တစ်ကိုယ်လုံး တုန်သွားတယ်。" },
+        { hanzi: "他转身就跑，拼命地逃走了。", pinyin: "Tā zhuǎnshēn jiù pǎo, pīnmìng de táo zǒu le.", my: "သူ လှည့်ပြေးပြီး အသက်ပါမပါ ထွက်ပြေးသွားတယ်။" },
+        { hanzi: "真龙很奇怪，说：你不是很喜欢我吗？", pinyin: "Zhēn lóng hěn qíguài, shuō: Nǐ bùshì hěn xǐhuān wǒ ma?", my: "တကယ့်နဂါးက အရမ်းထူးဆန်းသွားပြီး ပြောတယ်- မင်းငါ့ကို အရမ်းကြိုက်တာမဟုတ်လား လို့မေးတယ်။" },
+        { hanzi: "为什么我来了，你反而吓得逃跑呢？", pinyin: "Wèishénme wǒ lái le, nǐ fǎn'ér xià de táopǎo ne?", my: "ဘာကြောင့် ငါလာတော့ မင်းကြောက်ပြီး ပြေးတာလဲ လို့မေးတယ်။" },
+        { hanzi: "原来，叶公喜欢的只是画上的假龙，", pinyin: "Yuánlái, Yè Gōng xǐhuān de zhǐshì huà shàng de jiǎ lóng,", my: "အမှန်တော့ ရှီးကုန်းကြိုက်တာက ပုံထဲကနဂါးအတုတွေပဲ" },
+        { hanzi: "不是真正的龙。", pinyin: "Bùshì zhēnzhèng de lóng.", my: "တကယ့်နဂါးကို မကြိုက်ဘူး ဆိုတာ သိသွားတယ်။" },
+        { hanzi: "这个故事告诉我们：喜欢什么东西要看清楚，", pinyin: "Zhège gùshi gàosu wǒmen: Xǐhuān shénme dōngxi yào kàn qīngchu,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- ဘာကိုမဆိုကြိုက်ရင် သေချာကြည့်ရမယ်။" },
+        { hanzi: "不能只喜欢表面的东西，要真心实意。", pinyin: "Bùnéng zhǐ xǐhuān biǎomiàn de dōngxi, yào zhēnxīn shíyì.", my: "အပေါ်ယံကိုပဲကြိုက်လို့မရဘူး၊ စိတ်ရင်းမှန်ရမယ်။" }
+    ],
+    vocab: [
+        { word: "龙", pinyin: "lóng", meaning: "နဂါး" },
+        { word: "墙壁", pinyin: "qiángbì", meaning: "နံရံ" },
+        { word: "柱子", pinyin: "zhùzi", meaning: "တိုင်" },
+        { word: "衣服", pinyin: "yīfu", meaning: "အဝတ်" },
+        { word: "图案", pinyin: "tú'àn", meaning: "ပုံ" },
+        { word: "经常", pinyin: "jīngcháng", meaning: "မကြာခဏ" },
+        { word: "真龙", pinyin: "zhēn lóng", meaning: "တကယ့်နဂါး" },
+        { word: "感动", pinyin: "gǎndòng", meaning: "သဘောကျသည်" },
+        { word: "应该", pinyin: "yīnggāi", meaning: "သင့်သည်" },
+        { word: "窗户", pinyin: "chuānghu", meaning: "ပြတင်းပေါက်" },
+        { word: "脸色", pinyin: "liǎnsè", meaning: "မျက်နှာအရောင်" },
+        { word: "苍白", pinyin: "cāngbái", meaning: "ဖြူသည်" },
+        { word: "浑身", pinyin: "húnshēn", meaning: "တစ်ကိုယ်လုံး" },
+        { word: "发抖", pinyin: "fādǒu", meaning: "တုန်သည်" },
+        { word: "转身", pinyin: "zhuǎnshēn", meaning: "လှည့်သည်" },
+        { word: "拼命", pinyin: "pīnmìng", meaning: "အသက်ပါမပါ" },
+        { word: "逃跑", pinyin: "táopǎo", meaning: "ထွက်ပြေးသည်" },
+        { word: "反而", pinyin: "fǎn'ér", meaning: "ဆန့်ကျင်ဘက်" },
+        { word: "假", pinyin: "jiǎ", meaning: "အတု" },
+        { word: "真正", pinyin: "zhēnzhèng", meaning: "တကယ့်" },
+        { word: "表面", pinyin: "biǎomiàn", meaning: "အပေါ်ယံ" },
+        { word: "真心实意", pinyin: "zhēnxīn shíyì", meaning: "စိတ်ရင်းမှန်" }
+    ]
+},
+
+{
+    id: 28,
+    title: "买椟还珠",
+    paragraphs: [
+        { hanzi: "古时候，有一个楚国人，他有一颗非常漂亮的珍珠。", pinyin: "Gǔ shíhou, yǒu yīgè Chǔ guó rén, tā yǒu yī kē fēicháng piàoliang de zhēnzhū.", my: "ရှေးခေတ် ချူးနိုင်ငံသားတစ်ယောက်မှာ ပုလဲလုံးအရမ်းလှတစ်လုံးရှိတယ်။" },
+        { hanzi: "他想把珍珠卖个好价钱，", pinyin: "Tā xiǎng bǎ zhēnzhū mài gè hǎo jiàqián,", my: "သူ ပုလဲကို ဈေးကောင်းကောင်းနဲ့ ရောင်းချင်တယ်။" },
+        { hanzi: "就做了一个非常精美的盒子来装珍珠。", pinyin: "Jiù zuò le yīgè fēicháng jīngměi de hézi lái zhuāng zhēnzhū.", my: "ဒါနဲ့ ပုလဲထည့်ဖို့ သေတ္တာအရမ်းလှလှလေးတစ်လုံး လုပ်လိုက်တယ်။" },
+        { hanzi: "盒子用珍贵的木头做成，", pinyin: "Hézi yòng zhēnguì de mùtou zuò chéng,", my: "သေတ္တာကို သစ်ကောင်းနဲ့လုပ်ထားတယ်။" },
+        { hanzi: "还镶嵌了美丽的花朵和宝石。", pinyin: "Hái xiāngqiàn le měilì de huāduǒ hé bǎoshí.", my: "ပန်းတွေနဲ့ ကျောက်မျက်ရတနာတွေကိုလည်း ထည့်ထားတယ်。" },
+        { hanzi: "他又在盒子上喷了香料，让盒子香气扑鼻。", pinyin: "Tā yòu zài hézi shàng pēn le xiāngliào, ràng hézi xiāngqì pūbí.", my: "သေတ္တာပေါ်မှာ မွှေးရည်ဖြန်းထားလို့ အနံ့မွှေးနေတယ်။" },
+        { hanzi: "然后，他拿着盒子到市场上去卖。", pinyin: "Ránhòu, tā ná zhe hézi dào shìchǎng shàng qù mài.", my: "ပြီးတော့ သေတ္တာကိုကိုင်ပြီး ဈေးကိုသွားရောင်းတယ်。" },
+        { hanzi: "一个郑国人看到了这个盒子，非常喜欢。", pinyin: "Yīgè Zhèng guó rén kàndào le zhège hézi, fēicháng xǐhuān.", my: "ကျိန်နိုင်ငံသားတစ်ယောက်က ဒီသေတ္တာကိုမြင်တော့ အရမ်းကြိုက်သွားတယ်。" },
+        { hanzi: "他问：这个盒子多少钱？", pinyin: "Tā wèn: Zhège hézi duōshao qián?", my: "သူမေးတယ်- ဒီသေတ္တာ ဘယ်လောက်လဲ လို့မေးတယ်။" },
+        { hanzi: "楚国人说了一个价钱，郑国人觉得合理，就买了下来。", pinyin: "Chǔ guó rén shuō le yīgè jiàqián, Zhèng guó rén juéde hélǐ, jiù mǎi le xiàlái.", my: "ချူးနိုင်ငံသားက ဈေးပြောတယ်၊ ကျိန်နိုင်ငံသားက သင့်တော်တယ်လို့ထင်ပြီး ဝယ်လိုက်တယ်。" },
+        { hanzi: "可是，他打开盒子后，", pinyin: "Kěshì, tā dǎkāi hézi hòu,", my: "ဒါပေမယ့် သူ သေတ္တာဖွင့်ကြည့်တော့" },
+        { hanzi: "发现里面有一颗珍珠，却对珍珠不感兴趣。", pinyin: "Fāxiàn lǐmiàn yǒu yī kē zhēnzhū, què duì zhēnzhū bù gǎn xìngqù.", my: "ထဲမှာ ပုလဲတစ်လုံးပါတာတွေ့ပေမယ့် ပုလဲကို စိတ်မဝင်စားဘူး။" },
+        { hanzi: "他把珍珠拿出来，还给了楚国人。", pinyin: "Tā bǎ zhēnzhū ná chūlái, hái gěi le Chǔ guó rén.", my: "သူ ပုလဲကိုထုတ်ပြီး ချူးနိုင်ငံသားကို ပြန်ပေးလိုက်တယ်。" },
+        { hanzi: "他只拿走了那个精美的盒子，高高兴兴地回家了。", pinyin: "Tā zhǐ ná zǒu le nàge jīngměi de hézi, gāogāo xìngxìng de huí jiā le.", my: "သူ သေတ္တာလှလှလေးကိုပဲယူပြီး ပျော်ပျော်ရွှင်ရွှင် အိမ်ပြန်သွားတယ်。" },
+        { hanzi: "楚国人很惊讶，说：我卖的是珍珠，", pinyin: "Chǔ guó rén hěn jīngyà, shuō: Wǒ mài de shì zhēnzhū,", my: "ချူးနိုင်ငံသား အရမ်းအံ့ဩသွားပြီး ပြောတယ်- ငါရောင်းတာက ပုလဲ၊" },
+        { hanzi: "不是盒子啊！你怎么只买了盒子呢？", pinyin: "Bùshì hézi a! Nǐ zěnme zhǐ mǎi le hézi ne?", my: "သေတ္တာမဟုတ်ဘူး။ မင်းဘာလို့ သေတ္တာပဲဝယ်တာလဲ လို့မေးတယ်။" },
+        { hanzi: "郑国人说：我喜欢的是这个盒子，而不是珍珠。", pinyin: "Zhèng guó rén shuō: Wǒ xǐhuān de shì zhège hézi, ér bùshì zhēnzhū.", my: "ကျိန်နိုင်ငံသားက ပြောတယ်- ငါကြိုက်တာက ဒီသေတ္တာ၊ ပုလဲမဟုတ်ဘူး လို့ပြောတယ်。" },
+        { hanzi: "这个故事告诉我们：看事物要分清主次，", pinyin: "Zhège gùshi gàosu wǒmen: Kàn shìwù yào fēnqīng zhǔcì,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- အရာတွေကို အဓိကနဲ့သာမက ခွဲခြားသိရမယ်။" },
+        { hanzi: "不能只注意外表，而忽略了真正有价值的东西。", pinyin: "Bùnéng zhǐ zhùyì wàibiǎo, ér hūlüè le zhēnzhèng yǒu jiàzhí de dōngxi.", my: "အပြင်ပန်းကိုပဲ အာရုံစိုက်ပြီး တန်ဖိုးရှိတဲ့အရာကို လျစ်လျူမရှုရဘူး။" }
+    ],
+    vocab: [
+        { word: "珍珠", pinyin: "zhēnzhū", meaning: "ပုလဲ" },
+        { word: "价钱", pinyin: "jiàqián", meaning: "ဈေးနှုန်း" },
+        { word: "精美", pinyin: "jīngměi", meaning: "အလွန်လှပသော" },
+        { word: "盒子", pinyin: "hézi", meaning: "သေတ္တာ" },
+        { word: "装", pinyin: "zhuāng", meaning: "ထည့်သည်" },
+        { word: "珍贵", pinyin: "zhēnguì", meaning: "တန်ဖိုးရှိသော" },
+        { word: "木头", pinyin: "mùtou", meaning: "သစ်" },
+        { word: "镶嵌", pinyin: "xiāngqiàn", meaning: "စီခြယ်သည်" },
+        { word: "花朵", pinyin: "huāduǒ", meaning: "ပန်း" },
+        { word: "宝石", pinyin: "bǎoshí", meaning: "ကျောက်မျက်ရတနာ" },
+        { word: "香料", pinyin: "xiāngliào", meaning: "မွှေးရည်" },
+        { word: "香气扑鼻", pinyin: "xiāngqì pūbí", meaning: "အနံ့မွှေးသည်" },
+        { word: "市场", pinyin: "shìchǎng", meaning: "ဈေး" },
+        { word: "合理", pinyin: "hélǐ", meaning: "သင့်တော်သော" },
+        { word: "打开", pinyin: "dǎkāi", meaning: "ဖွင့်သည်" },
+        { word: "感兴趣", pinyin: "gǎn xìngqù", meaning: "စိတ်ဝင်စားသည်" },
+        { word: "拿出来", pinyin: "ná chūlái", meaning: "ထုတ်သည်" },
+        { word: "还给", pinyin: "hái gěi", meaning: "ပြန်ပေးသည်" },
+        { word: "高高兴兴", pinyin: "gāogāo xìngxìng", meaning: "ပျော်ရွှင်စွာ" },
+        { word: "惊讶", pinyin: "jīngyà", meaning: "အံ့ဩသည်" },
+        { word: "主次", pinyin: "zhǔcì", meaning: "အဓိက/သာမက" },
+        { word: "外表", pinyin: "wàibiǎo", meaning: "အပြင်ပန်း" },
+        { word: "忽略", pinyin: "hūlüè", meaning: "လျစ်လျူရှုသည်" },
+        { word: "价值", pinyin: "jiàzhí", meaning: "တန်ဖိုး" }
+    ]
+},
+// =============================================================
+// STORY DATA: 中文故事 (三行: Hanzi, Pinyin, 缅甸语)
+// 故事 29-30
+// =============================================================
+
+{
+    id: 29,
+    title: "郑人买履",
+    paragraphs: [
+        { hanzi: "古时候，郑国有一个人想买一双新鞋。", pinyin: "Gǔ shíhou, Zhèng guó yǒu yīgè rén xiǎng mǎi yī shuāng xīn xié.", my: "ရှေးခေတ် ကျိန်နိုင်ငံမှာ လူတစ်ယောက်က ဖိနပ်အသစ်တစ်ရံ ဝယ်ချင်တယ်။" },
+        { hanzi: "他先量好了自己脚的尺寸，", pinyin: "Tā xiān liáng hǎo le zìjǐ jiǎo de chǐcùn,", my: "သူ အရင်က ကိုယ့်ခြေထောက်အရွယ်ကို တိုင်းထားတယ်။" },
+        { hanzi: "把尺寸写在了一张纸上，", pinyin: "Bǎ chǐcùn xiě zài le yī zhāng zhǐ shàng,", my: "အရွယ်ကို စာရွက်တစ်ရွက်ပေါ်မှာ ရေးထားတယ်။" },
+        { hanzi: "然后高高兴兴地出门去买鞋。", pinyin: "Ránhòu gāogāo xìngxìng de chūmén qù mǎi xié.", my: "ပြီးတော့ ပျော်ပျော်ရွှင်ရွှင် ဖိနပ်ဝယ်ဖို့ အိမ်ကထွက်သွားတယ်。" },
+        { hanzi: "他走了很远的路，来到了集市。", pinyin: "Tā zǒu le hěn yuǎn de lù, lái dào le jíshì.", my: "သူ လမ်းအဝေးကြီးလျှောက်ပြီး ဈေးကိုရောက်တယ်。" },
+        { hanzi: "集市上有很多鞋铺，摆满了各种各样的鞋。", pinyin: "Jíshì shàng yǒu hěnduō xié pù, bǎi mǎn le gèzhǒng gèyàng de xié.", my: "ဈေးထဲမှာ ဖိနပ်ဆိုင်တွေ အများကြီးရှိတယ်၊ ဖိနပ်အမျိုးမျိုး ပြည့်နေတယ်。" },
+        { hanzi: "他挑了一双非常喜欢的鞋，", pinyin: "Tā tiāo le yī shuāng fēicháng xǐhuān de xié,", my: "သူ အရမ်းကြိုက်တဲ့ဖိနပ်တစ်ရံ ရွေးလိုက်တယ်။" },
+        { hanzi: "正准备试穿的时候，突然想起来了。", pinyin: "Zhèng zhǔnbèi shì chuān de shíhou, tūrán xiǎng qǐlái le.", my: "စမ်းဝတ်တော့မယ့်အချိန်မှာ ရုတ်တရက် သတိရသွားတယ်။" },
+        { hanzi: "他拍了拍脑袋说：哎呀！我忘了带那张量好的尺寸纸了！", pinyin: "Tā pāi le pāi nǎodai shuō: Āiyā! Wǒ wàng le dài nà zhāng liáng hǎo de chǐcùn zhǐ le!", my: "သူ ခေါင်းကိုပုတ်ပြီး ပြောတယ်- အိုး！ ငါ တိုင်းထားတဲ့စာရွက်ကို ယူလာဖို့မေ့နေတယ် လို့ပြောတယ်。" },
+        { hanzi: "于是，他对卖鞋的人说：对不起，我忘了带尺寸了，", pinyin: "Yúshì, tā duì mài xié de rén shuō: Duìbuqǐ, wǒ wàng le dài chǐcùn le,", my: "ဒါနဲ့ သူ ဖိနပ်ရောင်းတဲ့လူကို ပြောတယ်- တောင်းပန်ပါတယ်၊ ကျွန်တော် အရွယ်ယူလာဖို့မေ့နေတယ်" },
+        { hanzi: "我这就回家去拿。", pinyin: "Wǒ zhè jiù huí jiā qù ná.", my: "ကျွန်တော် အိမ်ပြန်သွားယူမယ် လို့ပြောတယ်။" },
+        { hanzi: "说完，他放下鞋，急急忙忙地往家跑。", pinyin: "Shuō wán, tā fàngxià xié, jí jí máng máng de wǎng jiā pǎo.", my: "ဒီလိုပြောပြီး သူ ဖိနပ်ချပြီး အိမ်ကို အမြန်ပြေးသွားတယ်。" },
+        { hanzi: "他跑回家，拿了那张纸，又急急忙忙地跑回集市。", pinyin: "Tā pǎo huí jiā, ná le nà zhāng zhǐ, yòu jí jí máng máng de pǎo huí jíshì.", my: "သူ အိမ်ပြန်ရောက်တော့ စာရွက်ကိုယူပြီး ထပ်ပြီးအမြန်ဈေးကိုပြေးပြန်တယ်。" },
+        { hanzi: "可是，当他回到集市的时候，", pinyin: "Kěshì, dāng tā huí dào jíshì de shíhou,", my: "ဒါပေမယ့် သူ ဈေးကိုပြန်ရောက်တဲ့အခါ" },
+        { hanzi: "集市已经散了，卖鞋的人也走了。", pinyin: "Jíshì yǐjīng sàn le, mài xié de rén yě zǒu le.", my: "ဈေးက ပြီးသွားပြီ၊ ဖိနပ်ရောင်းတဲ့လူလည်း သွားပြီ။" },
+        { hanzi: "他非常失望，什么鞋也没有买到。", pinyin: "Tā fēicháng shīwàng, shénme xié yě méiyǒu mǎi dào.", my: "သူ အရမ်းစိတ်ပျက်သွားတယ်၊ ဖိနပ်ဘာမှမဝယ်လိုက်ရဘူး。" },
+        { hanzi: "有人问他：你为什么不用自己的脚去试鞋呢？", pinyin: "Yǒurén wèn tā: Nǐ wèishénme bù yòng zìjǐ de jiǎo qù shì xié ne?", my: "တစ်ယောက်ယောက်က သူ့ကိုမေးတယ်- မင်းဘာလို့ ကိုယ့်ခြေထောက်နဲ့ မစမ်းတာလဲ လို့မေးတယ်。" },
+        { hanzi: "他说：我宁愿相信尺寸，也不相信自己的脚。", pinyin: "Tā shuō: Wǒ nìngyuàn xiāngxìn chǐcùn, yě bù xiāngxìn zìjǐ de jiǎo.", my: "သူပြောတယ်- ငါ ကိုယ့်ခြေထောက်ထက် အရွယ်ကိုပဲ ယုံမယ် လို့ပြောတယ်။" },
+        { hanzi: "这个故事告诉我们：做事要灵活变通，", pinyin: "Zhège gùshi gàosu wǒmen: Zuòshì yào línghuó biàntōng,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- အလုပ်တွေကို လိုက်လျောညီထွေရှိရမယ်။" },
+        { hanzi: "不能墨守成规，死板教条。", pinyin: "Bùnéng mòshǒu chéngguī, sǐbǎn jiàotiáo.", my: "စည်းကမ်းတွေကို အလွန်အကျွံမလိုက်နာရဘူး၊ တင်းကျပ်လွန်းရင် မဖြစ်ဘူး။" }
+    ],
+    vocab: [
+        { word: "鞋", pinyin: "xié", meaning: "ဖိနပ်" },
+        { word: "量", pinyin: "liáng", meaning: "တိုင်းသည်" },
+        { word: "尺寸", pinyin: "chǐcùn", meaning: "အရွယ်" },
+        { word: "纸", pinyin: "zhǐ", meaning: "စာရွက်" },
+        { word: "出门", pinyin: "chūmén", meaning: "အိမ်ကထွက်သည်" },
+        { word: "集市", pinyin: "jíshì", meaning: "ဈေး" },
+        { word: "铺子", pinyin: "pùzi", meaning: "ဆိုင်" },
+        { word: "摆满", pinyin: "bǎi mǎn", meaning: "ပြည့်အောင်ထားသည်" },
+        { word: "各种各样", pinyin: "gèzhǒng gèyàng", meaning: "အမျိုးမျိုး" },
+        { word: "挑", pinyin: "tiāo", meaning: "ရွေးသည်" },
+        { word: "准备", pinyin: "zhǔnbèi", meaning: "ပြင်ဆင်သည်" },
+        { word: "试穿", pinyin: "shì chuān", meaning: "စမ်းဝတ်သည်" },
+        { word: "拍", pinyin: "pāi", meaning: "ပုတ်သည်" },
+        { word: "脑袋", pinyin: "nǎodai", meaning: "ခေါင်း" },
+        { word: "哎呀", pinyin: "āiyā", meaning: "အိုး" },
+        { word: "对不起", pinyin: "duìbuqǐ", meaning: "တောင်းပန်ပါတယ်" },
+        { word: "急急忙忙", pinyin: "jí jí máng máng", meaning: "အမြန်အလျင်" },
+        { word: "散", pinyin: "sàn", meaning: "ပြီးသည်" },
+        { word: "失望", pinyin: "shīwàng", meaning: "စိတ်ပျက်သည်" },
+        { word: "宁愿", pinyin: "nìngyuàn", meaning: "ကြိုက်သည်" },
+        { word: "灵活", pinyin: "línghuó", meaning: "လိုက်လျောညီထွေ" },
+        { word: "变通", pinyin: "biàntōng", meaning: "လိုက်လျောသည်" },
+        { word: "墨守成规", pinyin: "mòshǒu chéngguī", meaning: "စည်းကမ်းတွေကိုတင်းကျပ်စွာလိုက်နာသည်" },
+        { word: "死板", pinyin: "sǐbǎn", meaning: "တင်းကျပ်သည်" },
+        { word: "教条", pinyin: "jiàotiáo", meaning: "စည်းမျဉ်း" }
+    ]
+},
+
+{
+    id: 30,
+    title: "东施效颦",
+    paragraphs: [
+        { hanzi: "古时候，西施是一个非常美丽的女子。", pinyin: "Gǔ shíhou, Xīshī shì yīgè fēicháng měilì de nǚzǐ.", my: "ရှေးခေတ်က ရှီရှီဆိုတာ အရမ်းလှတဲ့မိန်းကလေးတစ်ယောက်ဖြစ်တယ်။" },
+        { hanzi: "她长得非常漂亮，很多人都喜欢她。", pinyin: "Tā zhǎng de fēicháng piàoliang, hěnduō rén dōu xǐhuān tā.", my: "သူ အရမ်းလှတယ်၊ လူအများကြီးက သူ့ကိုကြိုက်တယ်။" },
+        { hanzi: "西施有心口疼的毛病，", pinyin: "Xīshī yǒu xīnkǒu téng de máobìng,", my: "ရှီရှီမှာ ရင်ဘတ်အောင့်တဲ့ရောဂါရှိတယ်။" },
+        { hanzi: "每次犯病的时候，她就皱着眉头，捂着胸口。", pinyin: "Měi cì fàn bìng de shíhou, tā jiù zhòu zhe méitou, wǔ zhe xiōngkǒu.", my: "ရောဂါဖြစ်တိုင်း သူ မျက်မှောင်ကြုတ်ပြီး ရင်ဘတ်ကိုဖုံးထားတယ်。" },
+        { hanzi: "虽然她生病的样子看起来很痛苦，", pinyin: "Suīrán tā shēngbìng de yàngzi kàn qǐlái hěn tòngkǔ,", my: "သူဖျားနေတဲ့ပုံက နာကျင်နေပုံရပေမယ့်" },
+        { hanzi: "但是因为她长得美，反而显得更加娇媚动人。", pinyin: "Dànshì yīnwèi tā zhǎng de měi, fǎn'ér xiǎnde gèngjiā jiāomèi dòngrén.", my: "သူလှတဲ့အတွက် ပိုပြီးချစ်စရာကောင်းနေတယ်။" },
+        { hanzi: "村里有一个很丑的女子叫东施。", pinyin: "Cūn lǐ yǒu yīgè hěn chǒu de nǚzǐ jiào Dōngshī.", my: "ရွာထဲမှာ ဒေါင်းရှီဆိုတဲ့ အရမ်းရုပ်ဆိုးတဲ့မိန်းကလေးတစ်ယောက်ရှိတယ်။" },
+        { hanzi: "东施看到西施皱眉头的样子很好看，", pinyin: "Dōngshī kàndào Xīshī zhòu méitou de yàngzi hěn hǎokàn,", my: "ဒေါင်းရှီက ရှီရှီမျက်မှောင်ကြုတ်တဲ့ပုံ အရမ်းလှတာကိုမြင်တယ်။" },
+        { hanzi: "她觉得西施就是因为这个动作才那么美。", pinyin: "Tā juéde Xīshī jiùshì yīnwèi zhège dòngzuò cái nàme měi.", my: "သူ ရှီရှီ ဒီအမူအရာကြောင့်ပဲ ဒီလောက်လှတာလို့ ထင်တယ်။" },
+        { hanzi: "于是，她也学着西施的样子，", pinyin: "Yúshì, tā yě xué zhe Xīshī de yàngzi,", my: "ဒါနဲ့ သူလည်း ရှီရှီလို အတုယူပြီး" },
+        { hanzi: "皱着眉头，捂着胸口，在村里走来走去。", pinyin: "Zhòu zhe méitou, wǔ zhe xiōngkǒu, zài cūn lǐ zǒu lái zǒu qù.", my: "မျက်မှောင်ကြုတ်ပြီး ရင်ဘတ်ကိုဖုံးကာ ရွာထဲမှာ လမ်းလျှောက်တယ်။" },
+        { hanzi: "她以为这样就会变得和西施一样美丽。", pinyin: "Tā yǐwéi zhèyàng jiù huì biàn de hé Xīshī yīyàng měilì.", my: "သူ ဒီလိုလုပ်ရင် ရှီရှီလိုလှသွားမယ်လို့ ထင်တယ်။" },
+        { hanzi: "可是，她本来就很丑，", pinyin: "Kěshì, tā běnlái jiù hěn chǒu,", my: "ဒါပေမယ့် သူက မူလက ရုပ်ဆိုးတယ်။" },
+        { hanzi: "这样一做，显得更丑更难看了。", pinyin: "Zhèyàng yī zuò, xiǎnde gèng chǒu gèng nánkàn le.", my: "ဒီလိုလုပ်တော့ ပိုရုပ်ဆိုးပြီး ပိုကြည့်ရဆိုးသွားတယ်။" },
+        { hanzi: "村里的人看到她这个样子，", pinyin: "Cūn lǐ de rén kàndào tā zhège yàngzi,", my: "ရွာထဲကလူတွေ သူ့ကိုဒီလိုမြင်တော့" },
+        { hanzi: "都吓得躲得远远的。", pinyin: "Dōu xià de duǒ de yuǎn yuǎn de.", my: "အကုန်လုံး ကြောက်ပြီး အဝေးကြီးရှောင်ကြတယ်။" },
+        { hanzi: "富人看见她，赶紧把门关上；", pinyin: "Fùrén kànjiàn tā, gǎnjǐn bǎ mén guān shàng;", my: "ချမ်းသာသူတွေက သူ့ကိုမြင်တော့ တံခါးပိတ်လိုက်ကြတယ်။" },
+        { hanzi: "穷人看见她，带着家人赶快离开。", pinyin: "Qióngrén kànjiàn tā, dài zhe jiārén gǎnkuài líkāi.", my: "ဆင်းရဲသားတွေက သူ့ကိုမြင်တော့ မိသားစုနဲ့ အမြန်ထွက်သွားကြတယ်။" },
+        { hanzi: "东施很伤心，不知道自己错在哪里。", pinyin: "Dōngshī hěn shāngxīn, bù zhīdào zìjǐ cuò zài nǎlǐ.", my: "ဒေါင်းရှီက အရမ်းဝမ်းနည်းသွားပြီး ကိုယ်ဘယ်မှားနေလဲ မသိဘူး။" },
+        { hanzi: "这个故事告诉我们：学习别人不能盲目模仿，", pinyin: "Zhège gùshi gàosu wǒmen: Xuéxí biérén bùnéng mángmù mófǎng,", my: "ဒီပုံပြင်က ကျွန်တော်တို့ကို ပြောပြတယ်- သူတစ်ပါးကို မျက်ကန်းအတုမယူရဘူး။" },
+        { hanzi: "要找到适合自己的方法，不能生搬硬套。", pinyin: "Yào zhǎodào shìhé zìjǐ de fāngfǎ, bùnéng shēngbān yìngtào.", my: "ကိုယ်နဲ့သင့်တော်တဲ့နည်းလမ်းရှာရမယ်၊ အတင်းအကျပ်မလုပ်ရဘူး။" }
+    ],
+    vocab: [
+        { word: "西施", pinyin: "Xīshī", meaning: "ရှီရှီ (အမည်)" },
+        { word: "美丽", pinyin: "měilì", meaning: "လှပသော" },
+        { word: "女子", pinyin: "nǚzǐ", meaning: "မိန်းကလေး" },
+        { word: "漂亮", pinyin: "piàoliang", meaning: "လှသည်" },
+        { word: "心口", pinyin: "xīnkǒu", meaning: "ရင်ဘတ်" },
+        { word: "毛病", pinyin: "máobìng", meaning: "ရောဂါ" },
+        { word: "犯病", pinyin: "fàn bìng", meaning: "ရောဂါဖြစ်သည်" },
+        { word: "皱眉头", pinyin: "zhòu méitou", meaning: "မျက်မှောင်ကြုတ်သည်" },
+        { word: "捂", pinyin: "wǔ", meaning: "ဖုံးသည်" },
+        { word: "胸口", pinyin: "xiōngkǒu", meaning: "ရင်ဘတ်" },
+        { word: "痛苦", pinyin: "tòngkǔ", meaning: "နာကျင်သည်" },
+        { word: "娇媚", pinyin: "jiāomèi", meaning: "ချစ်စရာကောင်းသော" },
+        { word: "动人", pinyin: "dòngrén", meaning: "ဆွဲဆောင်မှုရှိသော" },
+        { word: "丑", pinyin: "chǒu", meaning: "ရုပ်ဆိုးသော" },
+        { word: "东施", pinyin: "Dōngshī", meaning: "ဒေါင်းရှီ (အမည်)" },
+        { word: "动作", pinyin: "dòngzuò", meaning: "အမူအရာ" },
+        { word: "模仿", pinyin: "mófǎng", meaning: "အတုယူသည်" },
+        { word: "躲", pinyin: "duǒ", meaning: "ရှောင်သည်" },
+        { word: "富人", pinyin: "fùrén", meaning: "ချမ်းသာသူ" },
+        { word: "穷人", pinyin: "qióngrén", meaning: "ဆင်းရဲသား" },
+        { word: "离开", pinyin: "líkāi", meaning: "ထွက်သွားသည်" },
+        { word: "伤心", pinyin: "shāngxīn", meaning: "ဝမ်းနည်းသည်" },
+        { word: "盲目", pinyin: "mángmù", meaning: "မျက်ကန်း" },
+        { word: "适合", pinyin: "shìhé", meaning: "သင့်တော်သည်" },
+        { word: "方法", pinyin: "fāngfǎ", meaning: "နည်းလမ်း" },
+        { word: "生搬硬套", pinyin: "shēngbān yìngtào", meaning: "အတင်းအကျပ်လုပ်သည်" }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+];
+
+        // =============================================================
+        //  DOM refs
+        // =============================================================
+        const selectEl = document.getElementById('storySelect');
+        const displayEl = document.getElementById('storyDisplay');
+        const badgeEl = document.getElementById('countBadge');
+
+        // 填充 spinner
+        stories.forEach((story, index) => {
+            const opt = document.createElement('option');
+            opt.value = index;
+            opt.textContent = `${story.id}. ${story.title}`;
+            selectEl.appendChild(opt);
+        });
+
+        // 更新 badge
+        badgeEl.textContent = `📚 ${stories.length} 个故事`;
+
+        // =============================================================
+        //  显示故事 (三行: Hanzi, Pinyin, 缅甸语)
+        // =============================================================
+        function showStory(index) {
+            const story = stories[index];
+            if (!story) return;
+
+            let blocksHtml = '';
+            story.paragraphs.forEach(p => {
+                blocksHtml += `
+                    <div class="story-block">
+                        <div class="line-hanzi">${p.hanzi}</div>
+                        <div class="line-pinyin">${p.pinyin}</div>
+                        <div class="line-my">${p.my}</div>
+                    </div>
+                `;
+            });
+
+            // 词汇
+            let vocabHtml = '';
+            story.vocab.forEach(v => {
+                vocabHtml += `
+                    <span class="vocab-tag">
+                        ${v.word}
+                        <span class="pinyin">${v.pinyin}</span>
+                        <span class="meaning">- ${v.meaning}</span>
+                    </span>
+                `;
+            });
+
+            displayEl.innerHTML = `
+                <div class="title">${story.id}. ${story.title}</div>
+                ${blocksHtml}
+                <div class="vocab-section">
+                    <div class="vocab-title">📝 词汇 · Vocabulary (၅၀+)</div>
+                    <div class="vocab-list">${vocabHtml}</div>
+                </div>
+            `;
+        }
+
+        // =============================================================
+        //  Events + load
+        // =============================================================
+        selectEl.addEventListener('change', function() {
+            const idx = parseInt(this.value);
+            showStory(idx);
+            localStorage.setItem('selectedChineseStory', idx);
+        });
+
+        function loadSaved() {
+            const saved = localStorage.getItem('selectedChineseStory');
+            if (saved !== null && stories[saved]) {
+                selectEl.value = saved;
+                showStory(parseInt(saved));
+            } else {
+                selectEl.value = '0';
+                showStory(0);
+            }
+        }
+
+        loadSaved();
+        console.log('✅ 中文故事已加载 (三行: Hanzi / Pinyin / 缅甸语)');
+    </script>
+</body>
+</html>

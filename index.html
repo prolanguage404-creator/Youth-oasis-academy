@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Language Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 40px;
+            padding: 40px 35px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .sub {
+            color: #aab;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+        }
+
+        .spinner-wrap {
+            margin: 20px 0 30px;
+        }
+
+        .spinner-wrap label {
+            color: #ddd;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-right: 12px;
+        }
+
+        select {
+            padding: 14px 28px;
+            border-radius: 50px;
+            border: none;
+            background: #1e1e3a;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: 2px solid rgba(255, 255, 255, 0.15);
+            transition: 0.25s;
+            min-width: 200px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 20px;
+        }
+
+        select:hover {
+            outline-color: #8b7bf7;
+            background-color: #2a2a50;
+        }
+
+        select option {
+            background: #1a1a32;
+            color: #fff;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 16px 18px;
+            border-left: 4px solid #6c5ce7;
+            transition: 0.25s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeUp 0.4s forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.03s; border-left-color: #fd79a8; }
+        .card:nth-child(2) { animation-delay: 0.06s; border-left-color: #fdcb6e; }
+        .card:nth-child(3) { animation-delay: 0.09s; border-left-color: #55efc4; }
+        .card:nth-child(4) { animation-delay: 0.12s; border-left-color: #74b9ff; }
+        .card:nth-child(5) { animation-delay: 0.15s; border-left-color: #a29bfe; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card .label {
+            color: #eee;
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .card .label small {
+            color: #888;
+            font-weight: 400;
+            font-size: 0.75rem;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .card .btn-go {
+            padding: 6px 20px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.10);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: 0.2s;
+            width: 100%;
+        }
+
+        .card .btn-go:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: scale(1.04);
+            border-color: #8b7bf7;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+        }
+
+        .developer {
+            margin-top: 28px;
+            padding: 20px 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .developer .dev-name {
+            color: #f0e68c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .developer .dev-detail {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+
+        .developer .dev-detail span {
+            color: #8b7bf7;
+            font-weight: 500;
+        }
+
+        .developer .dev-detail a {
+            color: #74b9ff;
+            text-decoration: none;
+            transition: 0.2s;
+            border-bottom: 1px dashed rgba(116, 185, 255, 0.3);
+        }
+
+        .developer .dev-detail a:hover {
+            color: #a29bfe;
+            border-bottom-color: #a29bfe;
+        }
+
+        .dev-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Dialog / Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-box {
+            background: #1a1a3a;
+            border-radius: 30px;
+            padding: 35px 30px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-box .modal-title {
+            color: #ff6b6b;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .modal-box .modal-body {
+            color: #ddd;
+            font-size: 0.98rem;
+            line-height: 1.9;
+            text-align: left;
+        }
+
+        .modal-box .modal-body .highlight {
+            color: #fdcb6e;
+            font-weight: 600;
+        }
+
+        .modal-box .modal-body .warning {
+            color: #ff6b6b;
+        }
+
+        .modal-box .modal-body .info {
+            color: #74b9ff;
+        }
+
+        .modal-box .modal-body ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .modal-box .modal-body ul li {
+            margin-bottom: 8px;
+        }
+
+        .modal-box .modal-close-btn {
+            display: block;
+            margin: 25px auto 0;
+            padding: 12px 45px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .modal-box .modal-close-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4);
+        }
+
+        .modal-box .modal-close-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* scrollbar style */
+        .modal-box::-webkit-scrollbar {
+            width: 5px;
+        }
+        .modal-box::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .modal-box::-webkit-scrollbar-thumb {
+            background: #6c5ce7;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 500px) {
+            .container { padding: 28px 16px; }
+            h1 { font-size: 1.9rem; }
+            select { width: 100%; }
+            .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .card { padding: 12px; }
+            .card .label { font-size: 0.85rem; }
+            .developer { padding: 16px; }
+            .developer .dev-name { font-size: 1rem; }
+            .modal-box { padding: 25px 18px; }
+            .modal-box .modal-title { font-size: 1.4rem; }
+            .modal-box .modal-body { font-size: 0.9rem; }
+        }
+
+        @media (max-width: 380px) {
+            .cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🌍 Language Hub</h1>
+        <div class="sub">Choose a language to explore</div>
+
+        <div class="spinner-wrap">
+            <label for="langSelect">📖</label>
+            <select id="langSelect">
+                <option value="russian">🇷🇺 Russian</option>
+                <option value="china">🇨🇳 China</option>
+                <option value="english">🇬🇧 English</option>
+                <option value="korean">🇰🇷 Korean</option>
+                <option value="world">🌍 World</option>
+            </select>
+        </div>
+
+        <div class="cards" id="cardsContainer">
+            <!-- JS က ထည့်ပေးမယ် -->
+        </div>
+
+        <div class="developer">
+            <span class="dev-icon">👨‍💻</span>
+            <div class="dev-name">Ma Nadi moe sat</div>
+            <div class="dev-detail">
+                📞 <span>09757574224</span><br />
+                📱 Telegram : <a href="https://t.me/yez_218" target="_blank">@yez_218</a>
+            </div>
+        </div>
+
+        <div class="footer">⚡ select a language · click to go</div>
+    </div>
+
+    <!-- Dialog Modal 
+    <div class="modal-overlay" id="welcomeModal">
+        <div class="modal-box">
+            <div class="modal-title">❌ သတိပြုရင် ❌</div>
+            <div class="modal-body">
+                <ul>
+                    <li><span class="highlight">(၁)</span> <span class="info">world</span> ဆိုသောနေရာတွင် အချက်အလတ်အမှန်ရေးစရာမလိုဘဲ အကောင့်ဖွင့်ပြီး သုံးနိုင်ပါတယ်။</li>
+                    <li><span class="highlight">(၂)</span> Version အသစ်ကို 📞 09782992290 နှင့် 📱 Telegram : <a href="https://t.me/To_my_new_world" target="_blank" style="color:#74b9ff;">@To_my_new_world</a> မှာရယူနိုင်ပါတယ်။ ထို့အပြင် ဆွေးနွေးချင်တာ မေးမြန်းချင်တာဆိုလည်း လာရောက်တိုင်ပင်နိုင်ပါတယ်။</li>
+                    <li><span class="highlight">(၃)</span> App တစ်ခုကို တစ်ယောက်ထဲရေးထားတာဖြစ်သလို application တိုင်းမှာ အားနည်းချက်ဆိုတာရှိပါတယ်။ ကျွန်တော်၏ application ကို လုံခြုံရေးအရ နည်းပညာအနည်းငယ်သာသိသော ကျွန်တော်ကိုယ်တိုင် ပြန် hack လုပ်ကြည့်တာတောင် အချိန်ခနဖြင့်သာ အားနည်းချက်များကိုရှာတွေ့ခဲ့ပါတယ်။ ဒါကြောင့် <span class="warning">ကျွမ်းကျင်သူများအနေဖြင့် တိုက်ခိုက်တာမျိုး၊ script တွေချိန်းပြစ်တာမျိုး၊ api ခိုးခြင်းများ မလုပ်ဖို့ တောင်းဆိုချင်ပါတယ်။</span></li>
+                    <li><span class="highlight">(၄)</span> ထို applicationတွင် <span class="info">language တစ်ခုအတွက် 20000</span> ဖြစ်ပါသည်။</li>
+                    <li><span class="highlight">(၅)</span> ဆော့ဝဲဖန်တီးသူသည်ပို၍ကောင်းမွန်သော ဘာသာစကားများထပ်မံဖြည့်စွက်နိုင်ရန် အဆင့်မြင့်သောနည်းပညာများ ဗဟုသုတရစရာများupdateလုပ်နိုင်ရန် support ပေးခြင်းဖြင့်ကူညီနိုင်ပါတယ် support ရာတွင် လူအများသိအောင်လုပ်ပေးခြင်း၊တတ်နိုင်သ‌ေလာက်ငွေကြေးပံ့ပိုးခြင်းလုပ်ခြင်းများသာဖြစ်ပါသည်။ application တွင်ပါ‌ဝင်သော အရာများကို နားမလည်ပါက မေးမြန်နိုင်ပါတယ်။ <span class="info">❤️❤️</span> </li>
+                    <li><span class="highlight">(၅)</span> ယခုverion သည် 2.0 ဖြစ်သည် version အသစ်တင်ပါက download လုပ်ခြင်းဖြင့်ကောင်းမွန်သောသင်ခန်းစာများရယူနိုင်ပါသည်<span class="info">❤️❤️</span> </li>
+
+                </ul>
+            </div>
+
+            <button class="modal-close-btn" id="closeModalBtn">✔ သဘောတူပြီး ဆက်သွားမည်</button>
+        </div>
+    </div>
+-->
+    <script>
+        // --------------------------------------------------------------
+        //  DATA: ဘာသာစကားတစ်ခုချင်းစီအတွက် link များ
+        // --------------------------------------------------------------
+        const data = {
+            russian: {
+                label: '🇷🇺 Russian',
+                items: [
+                    { name: 'Russian meaning (noun)',   link: 'rnoun.html' },
+                    { name: 'Russian meaning (verb)',   link: 'rusverb.html' },
+                    { name: 'Russian grammar ',   link: 'rg.html' },
+                    { name: 'Russian dialog',   link: 'rdialog.html' },
+                    { name: 'Russian A1',   link: 'ruslv1.html' },
+                    { name: 'Russian A2',   link: 'rusa2.html' },
+                    { name: 'Russian B1',   link: 'rb1.html' },
+                    { name: 'Russian Story ',   link: 'rstory.html' },
+                    { name: 'Russian verb myanmar ',   link: 'rvm.html' },
+                    { name: 'Russian noun myanmar ',   link: 'rnm.html' },
+                    { name: 'Russian day by day ',   link: 'rusdaybyday.html' },
+
+                ]
+            },
+
+            china: {
+                label: '🇨🇳 China',
+                items: [
+                    { name: 'China meaning (verb)',     link: 'chinaverb.html' },
+                    { name: 'China meaning (noun)',     link: 'chinanoun.html' },
+                    { name: 'China grammar part1',      link: 'chinagrammar.html' },
+                    { name: 'China grammar part2',      link: 'cgrammar.html' },
+                    { name: 'China hsk1',               link: 'hsk1.html' },
+                    { name: 'China hsk2',               link: 'hsk2.html' },
+                    { name: 'China bonus',              link: 'hskbonus.html' },
+                    { name: 'China adjective',          link: 'cadj.html' },
+                    { name: 'China story',              link: 'chinastr.html' },
+                    { name: 'China hsk meaning ',              link: 'hsk.html' }
+
+                ]
+            },
+
+            english: {
+                label: '🇬🇧 English',
+                items: [
+                    { name: 'English meaning (noun)',      link: 'english-noun.html' },
+                    { name: 'English meaning (verb)',      link: 'english-verb.html' },
+                    { name: 'English meaning (verb ing)',  link: 'english-verbing.html' },
+                    { name: 'English conversation',        link: 'english-convo.html' },
+                    { name: 'English grammar (1-100)',     link: 'english-grammar.html' },
+                    { name: 'English grammar (100-200)',   link: 'english-grammar200.html' },
+                    { name: 'English Story',               link: 'estory.html' },
+                    { name: 'English (adj and adv) meaning', link: 'englishadj.html' },
+                    { name: 'English A1 Level',            link: 'english-a1.html' },
+                    { name: 'English A2 Level',            link: 'englisha2.html' },
+                    { name: 'English B1 Level',            link: 'englisha3.html' }
+                ]
+            },
+
+            korean: {
+                label: '🇰🇷 Korean',
+                items: [
+                    { name: 'Korean meaning (noun)',    link: 'korean-noun.html' },
+                    { name: 'Korean meaning (verb)',    link: 'korean-verb.html' },
+                    { name: 'korean conversation  ',   link: 'kconvo.html' },
+                    { name: 'korea story ',   link: 'update.html' },
+                    { name: 'korea level 1 ',   link: 'klevel1.html' },
+                    { name: 'korea level 2 ',   link: 'klevel2.html' },
+                    { name: 'korea level 3 ',   link: 'klevel3.html' },
+                    { name: 'korea grammar ',   link: 'kg.html' },
+                ]
+            },
+
+            world: {
+                label: '🌍 World',
+                items: [
+                    { name: 'World', link: 'gpchat.html' },
+                    { name: 'note', link: 'note.html' },
+               //     { name: 'Video Lesson', link: 'video.html' },
+                    { name: 'phishing ', link: 'phishing.html' },
+               //     { name: 'new version', link: 'version.html' },
+
+                ]
+            }
+        };
+
+        const selectEl = document.getElementById('langSelect');
+        const container = document.getElementById('cardsContainer');
+
+        // --------------------------------------------------------------
+        //  Function: cards ကို ပြန်ဆွဲမယ်
+        // --------------------------------------------------------------
+        function renderCards(langKey) {
+            const langData = data[langKey];
+            if (!langData) return;
+
+            let html = '';
+            langData.items.forEach((item, index) => {
+                const delay = (index * 0.05).toFixed(2);
+                html += `
+                    <div class="card" style="animation-delay: ${delay}s">
+                        <span class="label">
+                            ${item.name}
+                            <small>➜</small>
+                        </span>
+                        <a href="${item.link}" class="btn-go">Open</a>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // --------------------------------------------------------------
+        //  Spinner ပြောင်းတိုင်း cards ပြောင်းမယ် + Local Storage မှာ သိမ်းမယ်
+        // --------------------------------------------------------------
+        selectEl.addEventListener('change', function() {
+            const selected = this.value;
+            localStorage.setItem('selectedLanguage', selected);
+            renderCards(selected);
+        });
+
+        // --------------------------------------------------------------
+        //  Page load မှာ Local Storage ကနေ ဖတ်ပြီး ရွေးထားတာကို ပြမယ်
+        // --------------------------------------------------------------
+        function loadSavedLanguage() {
+            const savedLang = localStorage.getItem('selectedLanguage');
+            
+            if (savedLang && data[savedLang]) {
+                selectEl.value = savedLang;
+                renderCards(savedLang);
+            } else {
+                selectEl.value = 'russian';
+                renderCards('russian');
+            }
+        }
+
+        loadSavedLanguage();
+
+        // --------------------------------------------------------------
+        //  Dialog/Modal ပိတ်ခြင်း (ဝင်ဝင်ချင်းတိုင်း ပြမယ်)
+        // --------------------------------------------------------------
+        const modal = document.getElementById('welcomeModal');
+        const closeBtn = document.getElementById('closeModalBtn');
+
+        // modal ကို ပိတ်မယ်
+        function closeModal() {
+            modal.style.display = 'none';
+            // ထပ်မပြစေဖို့ localStorage မှာ သိမ်းထားမယ် (ဒါမှမဟုတ် sessionStorage)
+            sessionStorage.setItem('modalShown', 'true');
+        }
+
+        // close button နှိပ်ရင် ပိတ်မယ်
+        closeBtn.addEventListener('click', closeModal);
+
+        // modal အပြင်ဘက်ကို နှိပ်ရင်လည်း ပိတ်မယ်
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Page load မှာ modal ပြမလား စစ်မယ်
+        // sessionStorage ကို သုံးထားတော့ tab ပိတ်မှ ပြန်ပြမယ်
+        // (ဝင်ဝင်ချင်းတိုင်းပြချင်ရင် sessionStorage ကိုဖယ်လိုက်ပါ)
+        window.addEventListener('load', function() {
+            // sessionStorage မှာ modalShown ရှိရင် မပြဘူး
+            const alreadyShown = sessionStorage.getItem('modalShown');
+            if (alreadyShown) {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'flex';
+            }
+        });
+
+        console.log('✅ Language Hub loaded - with welcome dialog');
+    </script>
+
+</body>
+</html>

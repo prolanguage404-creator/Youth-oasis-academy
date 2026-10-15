@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS ကျယ်ကျယ်ပြန့်ပြန့် သင်ခန်းစာ (မြန်မာလို)</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Pyidaungsu', 'Segoe UI', 'Noto Sans Myanmar', sans-serif;
+            background: #f0f4f8;
+            color: #0b2a1f;
+            padding: 24px 16px;
+            line-height: 1.7;
+        }
+        .web-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 40px;
+            padding: 30px 30px 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 20, 10, 0.25);
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            border-bottom: 3px solid #0a7c5e;
+            padding-bottom: 18px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .main-header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #064e3a;
+            letter-spacing: -0.5px;
+        }
+        .main-header h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #2d5a4a;
+            margin-left: 14px;
+            background: #e2f0ea;
+            padding: 2px 18px;
+            border-radius: 40px;
+        }
+        .header-badge {
+            background: #0a7c5e;
+            color: white;
+            padding: 8px 22px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 8px rgba(10, 124, 94, 0.2);
+        }
+
+        /* ===== TOC ===== */
+        .toc {
+            background: #f0f7f3;
+            padding: 16px 24px;
+            border-radius: 60px;
+            margin-bottom: 34px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+            align-items: center;
+            border: 1px solid #cde0d7;
+        }
+        .toc span {
+            font-weight: 600;
+            color: #0b4f3b;
+        }
+        .toc a {
+            color: #065e45;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            padding: 2px 0;
+        }
+        .toc a:hover {
+            border-bottom-color: #0a7c5e;
+            color: #023b2b;
+        }
+
+        /* ===== SECTION CARDS ===== */
+        .section-card {
+            background: #fafdfb;
+            border-radius: 28px;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+            border: 1px solid #e3eee8;
+            transition: 0.2s ease;
+        }
+        .section-card:hover {
+            border-color: #b6d2c4;
+            background: #ffffff;
+            box-shadow: 0 6px 18px rgba(6, 78, 58, 0.05);
+        }
+
+        .section-card h2 {
+            font-size: 1.9rem;
+            color: #064e3a;
+            border-left: 8px solid #0a7c5e;
+            padding-left: 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+        .section-card h2 .tag-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+        .section-card h3 {
+            font-size: 1.3rem;
+            color: #1d5a44;
+            margin: 20px 0 8px 0;
+            border-bottom: 2px dashed #d2e3da;
+            padding-bottom: 6px;
+        }
+
+        /* ===== CODE & PRE ===== */
+        code {
+            background: #eaf0ed;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-family: 'JetBrains Mono', 'Cascadia Code', monospace;
+            font-size: 0.9rem;
+            color: #094434;
+            display: inline-block;
+            margin: 2px 4px 2px 0;
+            border: 1px solid #d3e2da;
+        }
+        pre {
+            background: #14261f;
+            color: #e3f0ea;
+            padding: 20px 24px;
+            border-radius: 22px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin: 18px 0;
+            border-left: 8px solid #2f9f80;
+            white-space: pre-wrap;
+            word-break: break-word;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+        }
+        pre .css-selector { color: #b3e0d0; }
+        pre .css-prop { color: #ffd9a8; }
+        pre .css-val { color: #c7e8d6; }
+
+        .example-box {
+            background: white;
+            border-radius: 20px;
+            padding: 16px 22px;
+            border: 1px solid #cbdfd4;
+            margin: 14px 0;
+        }
+
+        /* ===== LISTS ===== */
+        ul, ol {
+            padding-left: 28px;
+            margin: 12px 0;
+        }
+        li {
+            margin: 7px 0;
+        }
+        .badge-tag {
+            background: #0a7c5e;
+            color: white;
+            border-radius: 60px;
+            padding: 0 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        .note {
+            background: #edf6f1;
+            padding: 14px 22px;
+            border-radius: 20px;
+            border-left: 8px solid #2f9f80;
+            margin: 20px 0;
+        }
+        .note strong {
+            color: #054433;
+        }
+        .warning {
+            background: #fef8e7;
+            border-left-color: #f59e0b;
+        }
+
+        /* ===== GRID ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        .grid-2 > div, .grid-3 > div {
+            background: #f6fbf9;
+            border-radius: 24px;
+            padding: 16px 20px;
+            border: 1px solid #d8eae1;
+        }
+
+        /* ===== LIVE DEMO BOX (CSS သက်ရောက်မှုပြရန်) ===== */
+        .demo-box {
+            background: #f0f7f3;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 16px 0;
+            border: 2px dashed #2f9f80;
+        }
+        .demo-box .demo-element {
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        /* ဥပမာ CSS သက်ရောက်မှုပြရန် */
+        .color-example { background: #d4edda; color: #155724; }
+        .font-example { font-family: 'Georgia', serif; font-size: 1.2rem; }
+        .border-example { border: 3px solid #0a7c5e; }
+        .shadow-example { box-shadow: 4px 4px 12px rgba(0,0,0,0.15); }
+        .flex-example { display: flex; gap: 12px; flex-wrap: wrap; }
+        .flex-example > span { background: #0a7c5e; color: white; padding: 8px 16px; border-radius: 40px; }
+
+        @media (max-width: 700px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .main-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .toc { border-radius: 30px; padding: 14px 18px; }
+        }
+
+        hr {
+            margin: 30px 0 10px 0;
+            border: 1px solid #d2e3da;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #3f6b5b;
+            font-size: 0.95rem;
+            border-top: 1px solid #d2e3da;
+            padding-top: 24px;
+        }
+    </style>
+</head>
+<body>
+<div class="web-container">
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <h1>🎨 CSS <small>မြန်မာလို အကျယ်တဝင့်</small></h1>
+        <div class="header-badge">အစအဆုံး · အကုန်လုံး</div>
+    </header>
+
+    <!-- TOC -->
+    <nav class="toc">
+        <span>📑 အညွှန်း :</span>
+        <a href="#sec-intro">နိဒါန်း</a>
+        <a href="#sec-selector">Selector</a>
+        <a href="#sec-color">အရောင်/ဖောင့်</a>
+        <a href="#sec-box">Box Model</a>
+        <a href="#sec-flex">Flexbox</a>
+        <a href="#sec-grid">Grid</a>
+        <a href="#sec-position">Position</a>
+        <a href="#sec-animation">Animation</a>
+        <a href="#sec-responsive">Responsive</a>
+    </nav>
+
+    <!-- ============================================= -->
+    <!-- SECTION 1 — INTRO -->
+    <section class="section-card" id="sec-intro">
+        <h2><span class="tag-icon">🎨</span> ၁။ CSS ဆိုတာ ဘာလဲ။ (အခြေခံသဘောတရား)</h2>
+        <p><strong>CSS</strong> ဆိုတာ <strong>Cascading Style Sheets</strong> ရဲ့ အတိုကောက်ပါ။ ဝက်ဘ်စာမျက်နှာရဲ့ <strong>အသွင်အပြင် (presentation)</strong> ကို သတ်မှတ်ပေးတဲ့ ဘာသာစကားဖြစ်ပါတယ်။</p>
+        <ul>
+            <li><strong>HTML</strong> = အရိုးစု (အိမ်ရဲ့ ဘောင်ခတ်မှု)</li>
+            <li><strong>CSS</strong> = အလှဆင်ခြင်း (ဆေးသုတ်၊ ပရိဘောဂ၊ ကုလားကာ)</li>
+            <li><strong>JavaScript</strong> = အလုပ်လုပ်ပုံ (လျှပ်စစ်၊ ရေ၊ အလိုအလျောက်စနစ်)</li>
+        </ul>
+        <p>CSS ကို နည်း ၃ မျိုးဖြင့် ထည့်သွင်းနိုင်ပါတယ် −</p>
+        <ol>
+            <li><strong>Inline CSS</strong> — HTML element ထဲတွင် <code>style</code> attribute ဖြင့် ထည့်ခြင်း</li>
+            <li><strong>Internal CSS</strong> — <code>&lt;head&gt;</code> ထဲတွင် <code>&lt;style&gt;</code> tag ဖြင့် ထည့်ခြင်း</li>
+            <li><strong>External CSS</strong> — သီးခြား <code>.css</code> ဖိုင်ခွဲထုတ်ပြီး <code>&lt;link&gt;</code> ဖြင့် ချိတ်ခြင်း (အကောင်းဆုံး)</li>
+        </ol>
+        <pre>&lt;!-- Inline CSS --&gt;
+&lt;h1 style="color: blue;"&gt;မင်္ဂလာပါ&lt;/h1&gt;
+
+&lt;!-- Internal CSS (in &lt;head&gt;) --&gt;
+&lt;style&gt;
+  h1 { color: green; }
+&lt;/style&gt;
+
+&lt;!-- External CSS --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;</pre>
+        <div class="note"><strong>📌 အကြံပြု:</strong> External CSS ကို အသုံးများဆုံးဖြစ်ပြီး ပြုပြင်ထိန်းသိမ်းရလွယ်ကူတယ်။</div>
+    </section>
+
+    <!-- SECTION 2 — SELECTOR -->
+    <section class="section-card" id="sec-selector">
+        <h2><span class="tag-icon">🎯</span> ၂။ Selector များ (ဘယ် element ကို ပြင်မလဲ)</h2>
+        <p><strong>Selector</strong> ဆိုတာ CSS စည်းမျဉ်းတွေ ဘယ် HTML element ပေါ်မှာ သက်ရောက်မယ်ဆိုတာ သတ်မှတ်ပေးတဲ့အပိုင်းပါ။</p>
+        <div class="grid-2">
+            <div>
+                <h3>🔹 အခြေခံ Selector</h3>
+                <ul>
+                    <li><code>element</code> — tag name (ဥပမာ <code>h1</code>, <code>p</code>)</li>
+                    <li><code>.class</code> — class name (ဥပမာ <code>.highlight</code>)</li>
+                    <li><code>#id</code> — id name (ဥပမာ <code>#header</code>)</li>
+                    <li><code>*</code> — အားလုံး (universal)</li>
+                </ul>
+            </div>
+            <div>
+                <h3>🔸 ပေါင်းစပ် Selector</h3>
+                <ul>
+                    <li><code>div p</code> — descendant (အတွင်းမှာ ရှိသမျှ)</li>
+                    <li><code>div &gt; p</code> — child (တိုက်ရိုက်သား)</li>
+                    <li><code>h1 + p</code> — adjacent sibling (ကပ်လျက်)</li>
+                    <li><code>h1 ~ p</code> — general sibling (နောက်လိုက်အားလုံး)</li>
+                </ul>
+            </div>
+        </div>
+        <h3>🎨 Pseudo-classes &amp; Pseudo-elements</h3>
+        <ul>
+            <li><code>:hover</code> — မောက်စ်တင်ထားချိန်</li>
+            <li><code>:focus</code> — focus ရောက်ချိန် (input)</li>
+            <li><code>:nth-child(n)</code> — သတ်မှတ်နေရာ၏ သားသမီး</li>
+            <li><code>::before</code> / <code>::after</code> — element ရှေ့/နောက်တွင် ထည့်သွင်းခြင်း</li>
+        </ul>
+        <pre><span class="css-selector">/* Element selector */</span>
+<span class="css-selector">h1</span> { <span class="css-prop">color</span>: <span class="css-val">#064e3a</span>; }
+
+<span class="css-selector">/* Class selector */</span>
+<span class="css-selector">.highlight</span> { <span class="css-prop">background</span>: <span class="css-val">yellow</span>; }
+
+<span class="css-selector">/* ID selector */</span>
+<span class="css-selector">#main-title</span> { <span class="css-prop">font-size</span>: <span class="css-val">2.5rem</span>; }
+
+<span class="css-selector">/* Pseudo-class */</span>
+<span class="css-selector">a:hover</span> { <span class="css-prop">color</span>: <span class="css-val">#0a7c5e</span>; }
+
+<span class="css-selector">/* Pseudo-element */</span>
+<span class="css-selector">p::first-letter</span> { <span class="css-prop">font-size</span>: <span class="css-val">2em</span>; }</pre>
+        <div class="note"><strong>💡 အရေးကြီး:</strong> Class ကို အများဆုံးသုံးပြီး ID ကို တစ်မျက်နှာလျှင် တစ်ကြိမ်သာ သုံးသင့်တယ်။</div>
+    </section>
+
+    <!-- SECTION 3 — COLOR & FONT -->
+    <section class="section-card" id="sec-color">
+        <h2><span class="tag-icon">🌈</span> ၃။ အရောင် (Color) နှင့် ဖောင့် (Font)</h2>
+        <div class="grid-2">
+            <div>
+                <h3>🎨 အရောင်သတ်မှတ်နည်းများ</h3>
+                <ul>
+                    <li><code>color: red;</code> — ကြိုသတ်မှတ်ထားသောအမည်</li>
+                    <li><code>color: #0a7c5e;</code> — Hex code</li>
+                    <li><code>color: rgb(10, 124, 94);</code> — RGB</li>
+                    <li><code>color: rgba(10, 124, 94, 0.7);</code> — RGB + alpha (ပွင့်လင်းမှု)</li>
+                    <li><code>color: hsl(160, 85%, 26%);</code> — HSL</li>
+                </ul>
+                <div class="demo-box">
+                    <div class="demo-element color-example">ဤသည်မှာ အရောင်ဥပမာ (background: #d4edda)</div>
+                </div>
+            </div>
+            <div>
+                <h3>🔤 ဖောင့် (Font) သတ်မှတ်ခြင်း</h3>
+                <ul>
+                    <li><code>font-family</code> — ဖောင့်အမျိုးအစား (ဥပမာ Arial, Pyidaungsu)</li>
+                    <li><code>font-size</code> — အရွယ်အစား (px, rem, em, %)</li>
+                    <li><code>font-weight</code> — အထူ (bold, 400, 700)</li>
+                    <li><code>font-style</code> — စောင်း (italic, normal)</li>
+                    <li><code>text-align</code> — စာသားနေရာချထားမှု (left, center, right)</li>
+                    <li><code>text-decoration</code> — မျဉ်းသတ်ခြင်း (underline, none)</li>
+                </ul>
+                <div class="demo-box">
+                    <div class="demo-element font-example">ဤသည်မှာ ဖောင့်ဥပမာ (Georgia, 1.2rem)</div>
+                </div>
+            </div>
+        </div>
+        <pre><span class="css-selector">p</span> {
+  <span class="css-prop">color</span>: <span class="css-val">#1d5a44</span>;
+  <span class="css-prop">font-family</span>: <span class="css-val">'Pyidaungsu', 'Segoe UI', sans-serif</span>;
+  <span class="css-prop">font-size</span>: <span class="css-val">1.1rem</span>;
+  <span class="css-prop">font-weight</span>: <span class="css-val">400</span>;
+  <span class="css-prop">text-align</span>: <span class="css-val">justify</span>;
+  <span class="css-prop">line-height</span>: <span class="css-val">1.8</span>;
+}</pre>
+    </section>
+
+    <!-- SECTION 4 — BOX MODEL -->
+    <section class="section-card" id="sec-box">
+        <h2><span class="tag-icon">📦</span> ၄။ Box Model (အကွက်သဘောတရား)</h2>
+        <p>HTML element တိုင်းကို <strong>စတုဂံသေတ္တာ (box)</strong> တစ်ခုအနေဖြင့် မြင်နိုင်ပါတယ်။ Box Model မှာ −</p>
+        <ul>
+            <li><strong>Content</strong> — စာသား/ပုံ အမှန်တကယ်ပါဝင်သည့်နေရာ</li>
+            <li><strong>Padding</strong> — Content နှင့် Border ကြားအကွာအဝေး (အတွင်းခံ)</li>
+            <li><strong>Border</strong> — အနားသတ်မျဉ်း</li>
+            <li><strong>Margin</strong> — အခြား element များနှင့် ခြားသည့်အကွာအဝေး (အပြင်ခံ)</li>
+        </ul>
+        <pre><span class="css-selector">.box-example</span> {
+  <span class="css-prop">width</span>: <span class="css-val">300px</span>;
+  <span class="css-prop">padding</span>: <span class="css-val">20px</span>;          <span class="css-selector">/* အတွင်းခံ */</span>
+  <span class="css-prop">border</span>: <span class="css-val">3px solid #0a7c5e</span>;
+  <span class="css-prop">margin</span>: <span class="css-val">16px auto</span>;        <span class="css-selector">/* အပြင်ခံ + အလယ်ချိန် */</span>
+  <span class="css-prop">border-radius</span>: <span class="css-val">16px</span>;   <span class="css-selector">/* ထောင့်ဝိုင်းခြင်း */</span>
+  <span class="css-prop">box-sizing</span>: <span class="css-val">border-box</span>; <span class="css-selector">/* width ထဲ padding+border ပါဝင်စေရန် */</span>
+}</pre>
+        <div class="demo-box">
+            <div class="demo-element border-example" style="padding: 16px; margin: 8px 0;">
+                ဤသည်မှာ Box Model ဥပမာ — Border + Padding + Margin
+            </div>
+            <div class="demo-element shadow-example" style="padding: 16px; margin: 8px 0;">
+                Shadow (အရိပ်) ပါသော အကွက်
+            </div>
+        </div>
+        <div class="note"><strong>📌 အရေးကြီး:</strong> <code>box-sizing: border-box;</code> ကို အားလုံးအတွက် သတ်မှတ်ထားခြင်းဖြင့် အရွယ်အစားတွက်ရလွယ်ကူစေတယ်။</div>
+    </section>
+
+    <!-- SECTION 5 — FLEXBOX -->
+    <section class="section-card" id="sec-flex">
+        <h2><span class="tag-icon">🧘</span> ၅။ Flexbox (ပြောင်းလွယ်ပြင်လွယ် Layout)</h2>
+        <p><strong>Flexbox</strong> သည် container အတွင်းရှိ items များကို ဘေးတိုက်/ဒေါင်လိုက် လိုသလိုစီစဉ်ရန် အားကောင်းသော layout model ဖြစ်တယ်။</p>
+        <div class="grid-2">
+            <div>
+                <h3>Container Properties</h3>
+                <ul>
+                    <li><code>display: flex;</code> — flex container ဖြစ်စေရန်</li>
+                    <li><code>flex-direction</code> — row / column / row-reverse</li>
+                    <li><code>justify-content</code> — main axis ပေါ် နေရာချ (center, space-between, etc)</li>
+                    <li><code>align-items</code> — cross axis ပေါ် နေရာချ (center, stretch, etc)</li>
+                    <li><code>flex-wrap</code> — wrap / nowrap</li>
+                    <li><code>gap</code> — items ကြားအကွာအဝေး</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Item Properties</h3>
+                <ul>
+                    <li><code>flex-grow</code> — နေရာလွတ်ကို ဘယ်လောက်ယူမည်</li>
+                    <li><code>flex-shrink</code> — ကျုံ့နိုင်မှု</li>
+                    <li><code>flex-basis</code> — အခြေခံအရွယ်</li>
+                    <li><code>align-self</code> — ကိုယ်ပိုင် align သတ်မှတ်</li>
+                    <li><code>order</code> — အစဉ်ပြောင်းရန်</li>
+                </ul>
+            </div>
+        </div>
+        <div class="demo-box">
+            <div class="flex-example">
+                <span>Item 1</span>
+                <span>Item 2</span>
+                <span>Item 3</span>
+                <span>Item 4</span>
+            </div>
+            <p style="font-size:0.9rem; color:#3f6b5b; margin-top:6px;">⬆️ Flexbox ဖြင့် ဘေးတိုက်စီထားသော items</p>
+        </div>
+        <pre><span class="css-selector">.flex-container</span> {
+  <span class="css-prop">display</span>: <span class="css-val">flex</span>;
+  <span class="css-prop">flex-direction</span>: <span class="css-val">row</span>;
+  <span class="css-prop">justify-content</span>: <span class="css-val">space-between</span>;
+  <span class="css-prop">align-items</span>: <span class="css-val">center</span>;
+  <span class="css-prop">flex-wrap</span>: <span class="css-val">wrap</span>;
+  <span class="css-prop">gap</span>: <span class="css-val">16px</span>;
+}
+
+<span class="css-selector">.flex-item</span> {
+  <span class="css-prop">flex</span>: <span class="css-val">1 1 150px</span>; <span class="css-selector">/* grow shrink basis */</span>
+  <span class="css-prop">padding</span>: <span class="css-val">12px</span>;
+  <span class="css-prop">background</span>: <span class="css-val">#e2f0ea</span>;
+}</pre>
+    </section>
+
+    <!-- SECTION 6 — GRID -->
+    <section class="section-card" id="sec-grid">
+        <h2><span class="tag-icon">📐</span> ၆။ CSS Grid (ဇယားကွက် Layout)</h2>
+        <p><strong>Grid</strong> သည် ၂ ဖက်မြင် (rows နှင့် columns) ဖြင့် layout ကိုတည်ဆောက်ရန် အစွမ်းထက်ဆုံး CSS module ဖြစ်တယ်။</p>
+        <ul>
+            <li><code>display: grid;</code> — grid container ဖြစ်စေရန်</li>
+            <li><code>grid-template-columns</code> — column အရေအတွက်နှင့်အရွယ်</li>
+            <li><code>grid-template-rows</code> — row အရေအတွက်နှင့်အရွယ်</li>
+            <li><code>gap</code> — grid အကွက်များကြားအကွာ</li>
+            <li><code>grid-column</code> / <code>grid-row</code> — အကွက်တစ်ခုစီ၏ နေရာသတ်မှတ်</li>
+        </ul>
+        <pre><span class="css-selector">.grid-container</span> {
+  <span class="css-prop">display</span>: <span class="css-val">grid</span>;
+  <span class="css-prop">grid-template-columns</span>: <span class="css-val">1fr 2fr 1fr</span>; <span class="css-selector">/* 3 columns */</span>
+  <span class="css-prop">grid-template-rows</span>: <span class="css-val">auto 200px</span>;
+  <span class="css-prop">gap</span>: <span class="css-val">16px</span>;
+}
+
+<span class="css-selector">.grid-item</span> {
+  <span class="css-prop">background</span>: <span class="css-val">#f0f7f3</span>;
+  <span class="css-prop">padding</span>: <span class="css-val">16px</span>;
+  <span class="css-prop">border-radius</span>: <span class="css-val">12px</span>;
+}
+
+<span class="css-selector">.item-large</span> {
+  <span class="css-prop">grid-column</span>: <span class="css-val">1 / 3</span>; <span class="css-selector">/* column 1 မှ 3 အထိ */</span>
+}</pre>
+        <div class="note"><strong>📌 နှိုင်းယှဉ်ချက်:</strong> Flexbox က ၁ ဖက်မြင် (row/column) အတွက် သင့်တော်ပြီး Grid က ၂ ဖက်မြင် (row + column) အတွက် အကောင်းဆုံးဖြစ်တယ်။</div>
+    </section>
+
+    <!-- SECTION 7 — POSITION -->
+    <section class="section-card" id="sec-position">
+        <h2><span class="tag-icon">📍</span> ၇။ Position (နေရာချထားခြင်း)</h2>
+        <p><code>position</code> property က element တစ်ခုကို ပုံမှန်စီးဆင်းမှုမှ ထုတ်ပြီး နေရာချရန် သုံးတယ်။</p>
+        <div class="grid-2">
+            <div>
+                <ul>
+                    <li><code>static</code> — ပုံမှန် (မူလ)</li>
+                    <li><code>relative</code> — ပုံမှန်နေရာမှ ရွှေ့ခြင်း</li>
+                    <li><code>absolute</code> — အနီးဆုံး relative/absolute ပေါ်မူတည်၍ နေရာချ</li>
+                    <li><code>fixed</code> — viewport ပေါ်တွင် သတ်မှတ်နေရာ (scroll လုပ်လည်းမပြောင်း)</li>
+                    <li><code>sticky</code> — scroll လုပ်သည့်အခါ သတ်မှတ်နေရာတွင် ကပ်နေခြင်း</li>
+                </ul>
+            </div>
+            <div>
+                <h3>🔹 offset properties</h3>
+                <p><code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> ဖြင့် အကွာအဝေးသတ်မှတ်နိုင်တယ်။</p>
+                <p><code>z-index</code> ဖြင့် အထက်အောက်အဆင့်သတ်မှတ်နိုင်တယ်။</p>
+            </div>
+        </div>
+        <pre><span class="css-selector">.relative-box</span> {
+  <span class="css-prop">position</span>: <span class="css-val">relative</span>;
+  <span class="css-prop">top</span>: <span class="css-val">10px</span>;
+  <span class="css-prop">left</span>: <span class="css-val">20px</span>;
+}
+
+<span class="css-selector">.absolute-box</span> {
+  <span class="css-prop">position</span>: <span class="css-val">absolute</span>;
+  <span class="css-prop">top</span>: <span class="css-val">0</span>;
+  <span class="css-prop">right</span>: <span class="css-val">0</span>;
+}
+
+<span class="css-selector">.fixed-header</span> {
+  <span class="css-prop">position</span>: <span class="css-val">fixed</span>;
+  <span class="css-prop">top</span>: <span class="css-val">0</span>;
+  <span class="css-prop">width</span>: <span class="css-val">100%</span>;
+  <span class="css-prop">z-index</span>: <span class="css-val">100</span>;
+}</pre>
+    </section>
+
+    <!-- SECTION 8 — ANIMATION & TRANSITION -->
+    <section class="section-card" id="sec-animation">
+        <h2><span class="tag-icon">✨</span> ၈။ Animation &amp; Transition</h2>
+        <div class="grid-2">
+            <div>
+                <h3>🔄 Transition</h3>
+                <p>အခြေအနေပြောင်းလဲမှုကို ချောမွေ့စေရန် −</p>
+                <ul>
+                    <li><code>transition-property</code> — ဘယ် property ကို</li>
+                    <li><code>transition-duration</code> — ကြာချိန်</li>
+                    <li><code>transition-timing-function</code> — အရှိန် (ease, linear, etc)</li>
+                </ul>
+            </div>
+            <div>
+                <h3>🎬 Keyframe Animation</h3>
+                <p><code>@keyframes</code> ဖြင့် အဆင့်ဆင့်သတ်မှတ်ပြီး <code>animation</code> property ဖြင့် ခေါ်သုံးတယ်။</p>
+            </div>
+        </div>
+        <pre><span class="css-selector">/* Transition */</span>
+<span class="css-selector">.btn</span> {
+  <span class="css-prop">background</span>: <span class="css-val">#0a7c5e</span>;
+  <span class="css-prop">transition</span>: <span class="css-val">background 0.3s ease, transform 0.2s</span>;
+}
+<span class="css-selector">.btn:hover</span> {
+  <span class="css-prop">background</span>: <span class="css-val">#064e3a</span>;
+  <span class="css-prop">transform</span>: <span class="css-val">scale(1.05)</span>;
+}
+
+<span class="css-selector">/* Keyframe Animation */</span>
+<span class="css-selector">@keyframes slideIn</span> {
+  <span class="css-val">0%</span> { <span class="css-prop">transform</span>: <span class="css-val">translateX(-100px)</span>; <span class="css-prop">opacity</span>: <span class="css-val">0</span>; }
+  <span class="css-val">100%</span> { <span class="css-prop">transform</span>: <span class="css-val">translateX(0)</span>; <span class="css-prop">opacity</span>: <span class="css-val">1</span>; }
+}
+<span class="css-selector">.animated</span> {
+  <span class="css-prop">animation</span>: <span class="css-val">slideIn 0.8s ease-out</span>;
+}</pre>
+        <div class="demo-box">
+            <div class="demo-element" style="background:#0a7c5e; color:white; text-align:center; transition: all 0.3s; cursor:pointer;"
+                 onmouseover="this.style.transform='scale(1.05)'; this.style.background='#064e3a';"
+                 onmouseout="this.style.transform='scale(1)'; this.style.background='#0a7c5e';">
+                🖱️ မောက်စ်တင်ကြည့်ပါ (Transition)
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9 — RESPONSIVE -->
+    <section class="section-card" id="sec-responsive">
+        <h2><span class="tag-icon">📱</span> ၉။ Responsive Design (Media Queries)</h2>
+        <p><strong>Media Queries</strong> ဖြင့် မျက်နှာပြင်အရွယ်အစားအလိုက် CSS ကိုပြောင်းလဲနိုင်တယ်။</p>
+        <ul>
+            <li><code>@media (max-width: 768px) { ... }</code> — ဖုန်းအရွယ်</li>
+            <li><code>@media (min-width: 769px) and (max-width: 1024px) { ... }</code> — တက်ဘလက်</li>
+            <li><code>@media (min-width: 1025px) { ... }</code> — ဒက်စ်တော့</li>
+        </ul>
+        <pre><span class="css-selector">/* Default (desktop) */</span>
+<span class="css-selector">.container</span> {
+  <span class="css-prop">display</span>: <span class="css-val">grid</span>;
+  <span class="css-prop">grid-template-columns</span>: <span class="css-val">repeat(4, 1fr)</span>;
+  <span class="css-prop">gap</span>: <span class="css-val">20px</span>;
+}
+
+<span class="css-selector">/* Tablet */</span>
+<span class="css-selector">@media (max-width: 1024px)</span> {
+  <span class="css-selector">.container</span> {
+    <span class="css-prop">grid-template-columns</span>: <span class="css-val">repeat(2, 1fr)</span>;
+  }
+}
+
+<span class="css-selector">/* Mobile */</span>
+<span class="css-selector">@media (max-width: 600px)</span> {
+  <span class="css-selector">.container</span> {
+    <span class="css-prop">grid-template-columns</span>: <span class="css-val">1fr</span>;
+  }
+  <span class="css-selector">body</span> {
+    <span class="css-prop">padding</span>: <span class="css-val">12px</span>;
+  }
+}</pre>
+        <div class="note"><strong>📌 အရေးကြီး:</strong> <code>meta viewport</code> ကို HTML တွင်ထည့်ရန် မမေ့ပါနှင့်။</div>
+    </section>
+
+    <!-- ===== FINAL SUMMARY ===== -->
+    <section class="section-card" style="background: #e7f3ed; border-color: #2f9f80;">
+        <h2><span class="tag-icon">🏁</span> အနှစ်ချုပ် &amp; နောက်ထပ်လမ်းညွှန်</h2>
+        <p>ဤသင်ခန်းစာတွင် <strong>CSS ၏ အခြေခံမှအဆင့်မြင့်အထိ အကုန်လုံးနီးပါး</strong> ကို မြန်မာလိုရှင်းလင်းတင်ပြထားပါတယ်။</p>
+        <ul>
+            <li>✅ CSS ထည့်သွင်းနည်း ၃ မျိုး</li>
+            <li>✅ Selector များ (element, class, id, pseudo-class, etc)</li>
+            <li>✅ အရောင်၊ ဖောင့်၊ Box Model</li>
+            <li>✅ Flexbox နှင့် Grid (ခေတ်မီ layout)</li>
+            <li>✅ Position, Animation, Transition</li>
+            <li>✅ Responsive Design (Media Queries)</li>
+        </ul>
+        <p style="margin-top: 16px;"><strong>📖 ဆက်လက်လေ့လာရန် −</strong> CSS ကိုကျွမ်းကျင်ပြီးပါက JavaScript ကိုဆက်လေ့လာပါ။ ထို့အပြင် CSS Frameworks (Bootstrap, Tailwind) များကိုလည်း စူးစမ်းနိုင်ပါတယ်။</p>
+        <hr>
+        <p style="font-style: italic; color: #174c3a; font-size: 1.1rem;">“CSS ကို လက်တွေ့စမ်းသပ်ခြင်းဖြင့်သာ အမှန်တကယ်နားလည်လာမည်။”</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 · CSS သင်ခန်းစာ (အကျယ်တဝင့်) · မြန်မာလို အစအဆုံး</p>
+        <p style="font-size: 0.85rem; margin-top: 4px;">🧑‍🏫 ဤစာမျက်နှာတွင် CSS အကြောင်းအရာ အားလုံးနီးပါး ပါဝင်ပါတယ်။</p>
+    </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Learn - Update Posts</title>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // ============================================================
+        // ၁။ Firebase Config
+        // ============================================================
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import { 
+            getFirestore, 
+            collection, 
+            addDoc, 
+            getDocs, 
+            onSnapshot,
+            query,
+            orderBy,
+            doc,
+            updateDoc,
+            deleteDoc,
+            increment
+        } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCK8750OLb7WCLyXV2JIL1RaTth55wOQII",
+            authDomain: "main-apk-3209b.firebaseapp.com",
+            projectId: "main-apk-3209b",
+            storageBucket: "main-apk-3209b.firebasestorage.app",
+            messagingSenderId: "729839795941",
+            appId: "1:729839795941:web:48b23f39e7bf6f3cf11e0c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ============================================================
+        // ၂။ DOM Elements
+        // ============================================================
+        const postsContainer = document.getElementById('postsContainer');
+        const statusMsg = document.getElementById('statusMsg');
+        const versionInput = document.getElementById('versionInput');
+        const descInput = document.getElementById('descInput');
+        const postBtn = document.getElementById('postBtn');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // ============================================================
+        // ၃။ Toast
+        // ============================================================
+        function showToast(message, color = '#00ff88') {
+            toastMessage.textContent = message;
+            toast.style.backgroundColor = color;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // ============================================================
+        // ၄။ Render Posts (Real-time)
+        // ============================================================
+        function renderPosts(posts) {
+            if (!posts || posts.length === 0) {
+                postsContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>Update များ မရှိသေးပါ</p>
+                        <p style="font-size:13px; color:#555;">ပထမဆုံး Update တင်ပါ။</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort by newest first (by createdAt)
+            const sorted = [...posts].sort((a, b) => {
+                return b.createdAt?.toDate?.() - a.createdAt?.toDate?.() || 0;
+            });
+
+            postsContainer.innerHTML = sorted.map((post) => {
+                const id = post.id;
+                const version = post.version || '(Version မပါ)';
+                const description = post.description || '(ဖော်ပြချက်မရှိပါ)';
+                const time = post.createdAt?.toDate?.()?.toLocaleString('my') || 'အခုလေးတင်';
+                const likes = post.likes || 0;
+                const emoji = post.emoji || getEmoji(version);
+
+                return `
+                    <div class="post-card" data-id="${id}">
+                        <div class="post-header">
+                            <div class="avatar">${emoji}</div>
+                            <div class="post-user">
+                                <div class="name">Update ${version}</div>
+                                <div class="timestamp">${time}</div>
+                            </div>
+                            <div class="post-actions">
+                                <button class="like-btn" data-id="${id}">
+                                    ❤️ <span class="like-count">${likes}</span>
+                                </button>
+                                <button class="delete-btn" data-id="${id}">🗑️</button>
+                            </div>
+                        </div>
+
+                        <div class="post-content">${description}</div>
+
+                        <div class="version-tag">
+                            <span class="tag">🔢 ${version}</span>
+                        </div>
+
+                        <div class="post-footer">
+                            <button class="copy-btn" onclick="copyText('${description.replace(/'/g, "\\'")}')">
+                                📋 ကူးယူမည်
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // ===== Event Listeners =====
+            document.querySelectorAll('.like-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    handleLike(this.dataset.id);
+                });
+            });
+
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = this.dataset.id;
+                    if (confirm('ဒီ Update ကို ဖျက်မှာသေချာလား?')) {
+                        deletePost(id);
+                    }
+                });
+            });
+        }
+
+        // ============================================================
+        // ၅။ Emoji Generator
+        // ============================================================
+        function getEmoji(version) {
+            const num = parseInt(version.replace(/[^0-9]/g, '')) || 0;
+            const emojis = ['📝', '📖', '📚', '🎯', '💡', '🔥', '⭐', '🌟', '✨', '🎉', '🚀', '💎', '🌈', '🎊', '🏆'];
+            return emojis[(num - 1) % emojis.length] || '📝';
+        }
+
+        // ============================================================
+        // ၆။ Post တင်ခြင်း (Add to Update Collection)
+        // ============================================================
+        async function addPost() {
+            const version = versionInput.value.trim();
+            const description = descInput.value.trim();
+
+            if (!version || !description) {
+                showToast('⚠️ Version နဲ့ Update Description နှစ်ခုလုံးကို ဖြည့်ပါ။', '#ffcc00');
+                return;
+            }
+
+            try {
+                const docRef = await addDoc(collection(db, "Update"), {
+                    version: version,
+                    description: description,
+                    emoji: getEmoji(version),
+                    likes: 0,
+                    createdAt: new Date()
+                });
+
+                versionInput.value = '';
+                descInput.value = '';
+                showToast(`✅ Update ${version} ကို အောင်မြင်စွာ တင်ပြီးပါပြီ။`, '#00ff88');
+
+            } catch (error) {
+                console.error("Post error:", error);
+                showToast('❌ Post တင်ရာတွင် အမှားရှိပါသည်။', '#ff4444');
+            }
+        }
+
+        // ============================================================
+        // ၇။ Like လုပ်ခြင်း
+        // ============================================================
+        async function handleLike(docId) {
+            try {
+                const docRef = doc(db, "Update", docId);
+                await updateDoc(docRef, {
+                    likes: increment(1)
+                });
+                showToast('❤️ အသဲပေးပြီးပါပြီ။', '#ff4444');
+            } catch (error) {
+                console.error("Like error:", error);
+                showToast('❌ အမှားရှိပါသည်။', '#ff4444');
+            }
+        }
+
+        // ============================================================
+        // ၈။ Delete Post
+        // ============================================================
+        async function deletePost(docId) {
+            try {
+                await deleteDoc(doc(db, "Update", docId));
+                showToast('🗑️ Update ကို ဖျက်ပြီးပါပြီ။', '#ff4444');
+            } catch (error) {
+                console.error("Delete error:", error);
+                showToast('❌ ဖျက်ရာတွင် အမှားရှိပါသည်။', '#ff4444');
+            }
+        }
+
+        // ============================================================
+        // ၉။ Copy to Clipboard
+        // ============================================================
+        window.copyText = function(text) {
+            if (!text || text === '(ဖော်ပြချက်မရှိပါ)') {
+                showToast('⚠️ ကူးယူရန် စာသားမရှိပါ။', '#ffcc00');
+                return;
+            }
+
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('✅ Copy ယူပြီးပါပြီ။', '#00ff88');
+            }).catch(() => {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showToast('✅ Copy ယူပြီးပါပြီ။', '#00ff88');
+            });
+        };
+
+        // ============================================================
+        // ၁၀။ Real-time Listener (Update Collection)
+        // ============================================================
+        function setupRealtimeListener() {
+            const q = query(collection(db, "Update"), orderBy("createdAt", "desc"));
+
+            onSnapshot(q, (querySnapshot) => {
+                const posts = [];
+                querySnapshot.forEach((doc) => {
+                    posts.push({ id: doc.id, ...doc.data() });
+                });
+                console.log('🔄 Real-time update:', posts.length, 'posts');
+                renderPosts(posts);
+                statusMsg.textContent = `✅ Update ${posts.length} ခု`;
+                statusMsg.style.color = '#00ff88';
+            }, (error) => {
+                console.error("❌ Real-time error:", error);
+                statusMsg.textContent = '❌ ' + error.message;
+                statusMsg.style.color = '#ff4444';
+            });
+        }
+
+        // ============================================================
+        // ၁၁။ Event Listeners
+        // ============================================================
+        postBtn.addEventListener('click', addPost);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                if (document.activeElement === versionInput || document.activeElement === descInput) {
+                    addPost();
+                }
+            }
+        });
+
+        // ============================================================
+        // ၁၂။ Start
+        // ============================================================
+        statusMsg.textContent = '⏳ စတင်နေပါသည်...';
+        setupRealtimeListener();
+
+        console.log('✅ Update Posts App ကို စတင်ပြီးပါပြီ။');
+        console.log('📂 Collection: Update');
+    </script>
+
+    <style>
+        /* ============================================================
+            UI Design
+        ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0f;
+            color: #e4e6eb;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .app-container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ===== Header ===== */
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4px 20px 4px;
+            border-bottom: 1px solid #2a2a3e;
+            margin-bottom: 20px;
+        }
+
+        .app-header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #e94560;
+        }
+
+        .app-header h1 span {
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .app-header .badge {
+            background: #2a2a3e;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            color: #888;
+            border: 1px solid #3a3a4e;
+        }
+
+        /* ===== Status ===== */
+        .status-bar {
+            background: #14141f;
+            padding: 10px 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #888;
+            border: 1px solid #2a2a3e;
+            text-align: center;
+        }
+
+        /* ===== Add Section ===== */
+        .add-section {
+            background: #14141f;
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 24px;
+            border: 1px solid #2a2a3e;
+        }
+
+        .add-section .label {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .add-section .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .add-section .input-group input {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #2a2a3e;
+            background: #0a0a0f;
+            color: #e4e6eb;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .add-section .input-group input:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+
+        .add-section .input-group input::placeholder {
+            color: #555;
+        }
+
+        .add-section .input-group .post-btn {
+            padding: 10px 24px;
+            background: #e94560;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+
+        .add-section .input-group .post-btn:hover {
+            background: #c73652;
+        }
+
+        /* ===== Post Card ===== */
+        .post-card {
+            background: #14141f;
+            border-radius: 16px;
+            padding: 18px 20px 14px 20px;
+            margin-bottom: 16px;
+            border: 1px solid #2a2a3e;
+            transition: all 0.3s ease;
+        }
+
+        .post-card:hover {
+            border-color: #3a3a5e;
+        }
+
+        /* ===== Post Header ===== */
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e94560, #c73652);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .post-user {
+            flex: 1;
+        }
+
+        .post-user .name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #e4e6eb;
+        }
+
+        .post-user .timestamp {
+            font-size: 12px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .post-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .post-actions .like-btn {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .post-actions .like-btn:hover {
+            background: rgba(233, 69, 96, 0.1);
+            color: #ff4444;
+        }
+
+        .post-actions .delete-btn {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .post-actions .delete-btn:hover {
+            background: rgba(255, 68, 68, 0.1);
+            color: #ff4444;
+        }
+
+        /* ===== Post Content ===== */
+        .post-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #e4e6eb;
+            padding: 4px 0 12px 0;
+            word-break: break-word;
+        }
+
+        /* ===== Version Tag ===== */
+        .version-tag {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0 10px 0;
+        }
+
+        .version-tag .tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: #e94560;
+            background: rgba(233, 69, 96, 0.1);
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(233, 69, 96, 0.2);
+        }
+
+        /* ===== Post Footer ===== */
+        .post-footer {
+            display: flex;
+            gap: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #2a2a3e;
+            margin-top: 4px;
+        }
+
+        .post-footer .copy-btn {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .post-footer .copy-btn:hover {
+            background: rgba(29, 155, 240, 0.08);
+            color: #1d9bf0;
+        }
+
+        /* ===== Empty State ===== */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 56px;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        /* ===== Toast ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #00ff88;
+            color: #000;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            z-index: 1000;
+            max-width: 90%;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            .post-card {
+                padding: 14px;
+            }
+            .add-section {
+                padding: 14px;
+            }
+            .add-section .input-group input {
+                min-width: 100%;
+            }
+            .add-section .input-group .post-btn {
+                width: 100%;
+            }
+            .post-content {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- ===== Header ===== -->
+        <div class="app-header">
+            <h1>📚 Pro <span>Learn</span></h1>
+            <span class="badge">🔄 Update</span>
+        </div>
+
+        <!-- ===== Status ===== -->
+        <div class="status-bar" id="statusMsg">⏳ စတင်နေပါသည်...</div>
+
+        <!-- ===== Add Section ===== -->
+        <div class="add-section">
+            <span class="label">✏️ Update အသစ်တင်ရန်</span>
+            <div class="input-group">
+                <input type="text" id="versionInput" placeholder="Version (ဥပမာ - v1.0)" />
+                <input type="text" id="descInput" placeholder="Update Description" />
+                <button class="post-btn" id="postBtn">📤 တင်မည်</button>
+            </div>
+        </div>
+
+        <!-- ===== Posts Container ===== -->
+        <div id="postsContainer">
+            <div class="empty-state">
+                <div class="empty-icon">📭</div>
+                <p>Update များ မရှိသေးပါ</p>
+                <p style="font-size:13px; color:#555;">ပထမဆုံး Update တင်ပါ။</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== Toast ===== -->
+    <div class="toast" id="toast">
+        <span id="toastMessage">✅ အောင်မြင်ပါပြီ။</span>
+    </div>
+
+</body>
+</html>

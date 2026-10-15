@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Verb Forms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            padding: 30px 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 40px;
+            padding: 40px 35px;
+            max-width: 1300px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .sub {
+            color: #aab;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #74b9ff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            color: #a29bfe;
+        }
+
+        .count-badge {
+            display: inline-block;
+            background: rgba(85, 239, 196, 0.15);
+            color: #55efc4;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            border: 1px solid rgba(85, 239, 196, 0.1);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+            min-width: 900px;
+        }
+
+        thead th {
+            background: rgba(108, 92, 231, 0.3);
+            color: #f0e68c;
+            padding: 14px 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.5px;
+        }
+
+        thead th:nth-child(1) { 
+            background: rgba(253, 121, 168, 0.25); 
+            min-width: 50px;
+        }
+        thead th:nth-child(2) { 
+            background: rgba(116, 185, 255, 0.25); 
+            min-width: 120px;
+        }
+        thead th:nth-child(3) { 
+            background: rgba(85, 239, 196, 0.25); 
+            min-width: 120px;
+        }
+        thead th:nth-child(4) { 
+            background: rgba(253, 203, 110, 0.25); 
+            min-width: 120px;
+        }
+        thead th:nth-child(5) { 
+            background: rgba(162, 155, 254, 0.25); 
+            min-width: 120px;
+        }
+        thead th:nth-child(6) { 
+            background: rgba(253, 121, 168, 0.15); 
+            min-width: 130px;
+        }
+
+        tbody td {
+            padding: 8px 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+
+        tbody tr {
+            transition: 0.2s;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Verb Forms */
+        .verb-form {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .verb-pron {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: #888;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        tbody td:nth-child(2) .verb-form { color: #fd79a8; }
+        tbody td:nth-child(3) .verb-form { color: #74b9ff; }
+        tbody td:nth-child(4) .verb-form { color: #55efc4; }
+        tbody td:nth-child(5) .verb-form { color: #fdcb6e; }
+
+        tbody td:nth-child(2) .verb-pron { color: #fd79a8; }
+        tbody td:nth-child(3) .verb-pron { color: #74b9ff; }
+        tbody td:nth-child(4) .verb-pron { color: #55efc4; }
+        tbody td:nth-child(5) .verb-pron { color: #fdcb6e; }
+
+        tbody td:nth-child(6) {
+            color: #a29bfe;
+            font-weight: 500;
+        }
+
+        .row-number {
+            color: #555;
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 16px 0 8px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 4px;
+            border-radius: 4px;
+        }
+
+        .legend-color.v1 { background: #fd79a8; }
+        .legend-color.v2 { background: #74b9ff; }
+        .legend-color.v3 { background: #55efc4; }
+        .legend-color.ving { background: #fdcb6e; }
+
+        .footer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+        }
+
+        .developer {
+            margin-top: 28px;
+            padding: 20px 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .developer .dev-name {
+            color: #f0e68c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .developer .dev-detail {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+
+        .developer .dev-detail span {
+            color: #8b7bf7;
+            font-weight: 500;
+        }
+
+        .developer .dev-detail a {
+            color: #74b9ff;
+            text-decoration: none;
+            transition: 0.2s;
+            border-bottom: 1px dashed rgba(116, 185, 255, 0.3);
+        }
+
+        .developer .dev-detail a:hover {
+            color: #a29bfe;
+            border-bottom-color: #a29bfe;
+        }
+
+        .dev-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 900px) {
+            .container { padding: 28px 16px; }
+            h1 { font-size: 1.9rem; }
+            table { font-size: 0.85rem; min-width: 700px; }
+            thead th { padding: 10px 8px; font-size: 0.85rem; }
+            tbody td { padding: 8px 8px; }
+            .verb-form { font-size: 0.9rem; }
+            .verb-pron { font-size: 0.6rem; }
+            .developer { padding: 16px; }
+        }
+
+        @media (max-width: 600px) {
+            table { font-size: 0.7rem; min-width: 550px; }
+            thead th { padding: 6px 6px; font-size: 0.7rem; }
+            tbody td { padding: 6px 6px; }
+            .verb-form { font-size: 0.75rem; }
+            .verb-pron { font-size: 0.55rem; }
+            .legend { gap: 10px; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <a href="index.html" class="back-link">⬅ Back to Hub</a>
+
+        <h1>📚 English Verb Forms</h1>
+        <div class="sub">V1 · V2 · V3 · V-ing with Pronunciation</div>
+
+        <div class="count-badge">📖 10 Verbs</div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <span class="legend-item">
+                <span class="legend-color v1"></span> V1 (Base)
+            </span>
+            <span class="legend-item">
+                <span class="legend-color v2"></span> V2 (Past)
+            </span>
+            <span class="legend-item">
+                <span class="legend-color v3"></span> V3 (Past Participle)
+            </span>
+            <span class="legend-item">
+                <span class="legend-color ving"></span> V-ing
+            </span>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>V1 (Base)<br><span style="font-size:0.7rem;font-weight:300;color:#888;">အခြေခံ</span></th>
+                        <th>V2 (Past)<br><span style="font-size:0.7rem;font-weight:300;color:#888;">အတိတ်</span></th>
+                        <th>V3 (P.Participle)<br><span style="font-size:0.7rem;font-weight:300;color:#888;">အတိတ်ကာလ</span></th>
+                        <th>V-ing<br><span style="font-size:0.7rem;font-weight:300;color:#888;">ပစ္စုပ္ပန်</span></th>
+                        <th>🇲🇲 အဓိပ္ပာယ်</th>
+                    </tr>
+                </thead>
+                <tbody id="verbTableBody">
+                    <!-- JS က ထည့်ပေးမယ် -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="developer">
+            <span class="dev-icon">👨‍💻</span>
+            <div class="dev-name">Yan Naing</div>
+            <div class="dev-detail">
+                📞 <span>09782992290</span><br />
+                📱 Telegram : <a href="https://t.me/To_my_new_world" target="_blank">@To_my_new_world</a>
+            </div>
+        </div>
+
+        <div class="footer">⚡ learn verb forms · improve your English</div>
+    </div>
+
+    <script>
+        // =============================================================
+        //  DATA: Verb Forms (V1, V2, V3, V-ing) - 10 Verbs
+        //  တစ်ခုချင်းစီအောက်မှာ အသံထွက်ပါ
+        // =============================================================
+       // =============================================================
+//  VERB 100 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - verb-forms.html ရဲ့ verbs array ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+const verbs = [
+    // 1-10
+    { v1: "eat", v1_pron: "အိသ်", v2: "ate", v2_pron: "အိတ်", v3: "eaten", v3_pron: "အီတန်", ving: "eating", ving_pron: "အီတင့်", meaning: "စားသည်" },
+    { v1: "drink", v1_pron: "ဒရင့်", v2: "drank", v2_pron: "ဒရန့်", v3: "drunk", v3_pron: "ဒရန့်", ving: "drinking", ving_pron: "ဒရင့်ကင်", meaning: "သောက်သည်" },
+    { v1: "go", v1_pron: "ဂိုး", v2: "went", v2_pron: "ဝဲန့်", v3: "gone", v3_pron: "ဂွန်", ving: "going", ving_pron: "ဂိုးအင့်", meaning: "သွားသည်" },
+    { v1: "run", v1_pron: "ရန်း", v2: "ran", v2_pron: "ရန်း", v3: "run", v3_pron: "ရန်း", ving: "running", ving_pron: "ရန်းနင့်", meaning: "ပြေးသည်" },
+    { v1: "write", v1_pron: "ရိုက်", v2: "wrote", v2_pron: "ရိုးသ်", v3: "written", v3_pron: "ရစ်တန်", ving: "writing", ving_pron: "ရိုက်တင့်", meaning: "ရေးသည်" },
+    { v1: "read", v1_pron: "ရီးဒ်", v2: "read", v2_pron: "ရက်ဒ်", v3: "read", v3_pron: "ရက်ဒ်", ving: "reading", ving_pron: "ရီးဒင့်", meaning: "ဖတ်သည်" },
+    { v1: "speak", v1_pron: "စပီးခ်", v2: "spoke", v2_pron: "စပိုးခ်", v3: "spoken", v3_pron: "စပိုးကန်", ving: "speaking", ving_pron: "စပီးကင့်", meaning: "ပြောသည်" },
+    { v1: "teach", v1_pron: "တီးချ်", v2: "taught", v2_pron: "တော့", v3: "taught", v3_pron: "တော့", ving: "teaching", ving_pron: "တီးချင့်", meaning: "သင်ကြားသည်" },
+    { v1: "swim", v1_pron: "စွီမ့်", v2: "swam", v2_pron: "စွမ့်", v3: "swum", v3_pron: "စွမ့်", ving: "swimming", ving_pron: "စွီမင့်", meaning: "ရေကူးသည်" },
+    { v1: "drive", v1_pron: "ဒရိုက်", v2: "drove", v2_pron: "ဒရိုးဗ်", v3: "driven", v3_pron: "ဒရီဗန်", ving: "driving", ving_pron: "ဒရိုက်ဗင့်", meaning: "ကားမောင်းသည်" },
+    // 11-20
+    { v1: "walk", v1_pron: "ဝေါ့", v2: "walked", v2_pron: "ဝေါ့", v3: "walked", v3_pron: "ဝေါ့", ving: "walking", ving_pron: "ဝေါ့ကင်", meaning: "လမ်းလျှောက်သည်" },
+    { v1: "run", v1_pron: "ရန်း", v2: "ran", v2_pron: "ရန်း", v3: "run", v3_pron: "ရန်း", ving: "running", ving_pron: "ရန်းနင့်", meaning: "ပြေးသည်" },
+    { v1: "jump", v1_pron: "ဇမ့်", v2: "jumped", v2_pron: "ဇမ့်", v3: "jumped", v3_pron: "ဇမ့်", ving: "jumping", ving_pron: "ဇမ့်ပင်", meaning: "ခုန်သည်" },
+    { v1: "sit", v1_pron: "စစ်", v2: "sat", v2_pron: "ဆကျ်", v3: "sat", v3_pron: "ဆကျ်", ving: "sitting", ving_pron: "စစ်တင့်", meaning: "ထိုင်သည်" },
+    { v1: "stand", v1_pron: "စတန့်", v2: "stood", v2_pron: "စတုဒ်", v3: "stood", v3_pron: "စတုဒ်", ving: "standing", ving_pron: "စတန့်ဒင့်", meaning: "ရပ်သည်" },
+    { v1: "sleep", v1_pron: "စလိပ့်", v2: "slept", v2_pron: "စလက့်", v3: "slept", v3_pron: "စလက့်", ving: "sleeping", ving_pron: "စလိပ့်ပင်", meaning: "အိပ်သည်" },
+    { v1: "wake", v1_pron: "ဝိတ်", v2: "woke", v2_pron: "ဝိုက်", v3: "woken", v3_pron: "ဝိုက်ကန်", ving: "waking", ving_pron: "ဝိတ်ကင်", meaning: "နိုးသည်" },
+    { v1: "see", v1_pron: "စီး", v2: "saw", v2_pron: "စော", v3: "seen", v3_pron: "စီးန်", ving: "seeing", ving_pron: "စီးအင့်", meaning: "မြင်သည်" },
+    { v1: "hear", v1_pron: "ဟီးယား", v2: "heard", v2_pron: "ဟတ်ဒ်", v3: "heard", v3_pron: "ဟတ်ဒ်", ving: "hearing", ving_pron: "ဟီးယားရင့်", meaning: "ကြားသည်" },
+    { v1: "speak", v1_pron: "စပီးခ်", v2: "spoke", v2_pron: "စပိုးခ်", v3: "spoken", v3_pron: "စပိုးကန်", ving: "speaking", ving_pron: "စပီးကင့်", meaning: "စကားပြောသည်" },
+    // 21-30
+    { v1: "talk", v1_pron: "တော်က်", v2: "talked", v2_pron: "တော်က်", v3: "talked", v3_pron: "တော်က်", ving: "talking", ving_pron: "တော်ကင့်", meaning: "စကားပြောသည်" },
+    { v1: "listen", v1_pron: "လစ်ဆန်", v2: "listened", v2_pron: "လစ်ဆန့်", v3: "listened", v3_pron: "လစ်ဆန့်", ving: "listening", ving_pron: "လစ်ဆန်နင့်", meaning: "နားထောင်သည်" },
+    { v1: "open", v1_pron: "အိုးပင်", v2: "opened", v2_pron: "အိုးပန့်", v3: "opened", v3_pron: "အိုးပန့်", ving: "opening", ving_pron: "အိုးပန်နင့်", meaning: "ဖွင့်သည်" },
+    { v1: "close", v1_pron: "ကလိုးဇ်", v2: "closed", v2_pron: "ကလိုးဇ်ဒ်", v3: "closed", v3_pron: "ကလိုးဇ်ဒ်", ving: "closing", ving_pron: "ကလိုးဇင့်", meaning: "ပိတ်သည်" },
+    { v1: "buy", v1_pron: "ဘိုင်း", v2: "bought", v2_pron: "ဘော့", v3: "bought", v3_pron: "ဘော့", ving: "buying", ving_pron: "ဘိုင်အင့်", meaning: "ဝယ်သည်" },
+    { v1: "sell", v1_pron: "ဆယ်လ်", v2: "sold", v2_pron: "ဆိုးလ်", v3: "sold", v3_pron: "ဆိုးလ်", ving: "selling", ving_pron: "ဆယ်လင့်", meaning: "ရောင်းသည်" },
+    { v1: "give", v1_pron: "ဂစ်ဗ်", v2: "gave", v2_pron: "ဂေးဗ်", v3: "given", v3_pron: "ဂစ်ဗန်", ving: "giving", ving_pron: "ဂစ်ဗင့်", meaning: "ပေးသည်" },
+    { v1: "take", v1_pron: "တိတ်", v2: "took", v2_pron: "တုတ်", v3: "taken", v3_pron: "တိတ်ကန်", ving: "taking", ving_pron: "တိတ်ကင်", meaning: "ယူသည်" },
+    { v1: "use", v1_pron: "ယူဇ်", v2: "used", v2_pron: "ယူဇ်ဒ်", v3: "used", v3_pron: "ယူဇ်ဒ်", ving: "using", ving_pron: "ယူဇင့်", meaning: "သုံးသည်" },
+    { v1: "make", v1_pron: "မက်", v2: "made", v2_pron: "မက်ဒ်", v3: "made", v3_pron: "မက်ဒ်", ving: "making", ving_pron: "မက်ကင်", meaning: "လုပ်သည်" },
+    // 31-40
+    { v1: "do", v1_pron: "ဒူး", v2: "did", v2_pron: "ဒစ်", v3: "done", v3_pron: "ဒန်း", ving: "doing", ving_pron: "ဒူးအင့်", meaning: "လုပ်ဆောင်သည်" },
+    { v1: "have", v1_pron: "ဟပ်", v2: "had", v2_pron: "ဟက်", v3: "had", v3_pron: "ဟက်", ving: "having", ving_pron: "ဟပ်ဗင့်", meaning: "ရှိသည်" },
+    { v1: "get", v1_pron: "ဂက်သ်", v2: "got", v2_pron: "ဂေါ့", v3: "got/gotten", v3_pron: "ဂေါ့/ဂေါ်တန်", ving: "getting", ving_pron: "ဂက်တင့်", meaning: "ရသည်" },
+    { v1: "put", v1_pron: "ပွတ်", v2: "put", v2_pron: "ပွတ်", v3: "put", v3_pron: "ပွတ်", ving: "putting", ving_pron: "ပွတ်တင့်", meaning: "ထားသည်" },
+    { v1: "set", v1_pron: "စက်သ်", v2: "set", v2_pron: "စက်သ်", v3: "set", v3_pron: "စက်သ်", ving: "setting", ving_pron: "စက်တင့်", meaning: "သတ်မှတ်သည်" },
+    { v1: "keep", v1_pron: "ကီးပ်", v2: "kept", v2_pron: "ကပ်သ်", v3: "kept", v3_pron: "ကပ်သ်", ving: "keeping", ving_pron: "ကီးပင့်", meaning: "ထားရှိသည်" },
+    { v1: "hold", v1_pron: "ဟိုးလ်", v2: "held", v2_pron: "ဟဲလ်", v3: "held", v3_pron: "ဟဲလ်", ving: "holding", ving_pron: "ဟိုးလ်ဒင့်", meaning: "ကိုင်သည်" },
+    { v1: "bring", v1_pron: "ဘရင့်", v2: "brought", v2_pron: "ဘရော့", v3: "brought", v3_pron: "ဘရော့", ving: "bringing", ving_pron: "ဘရင်အင့်", meaning: "ယူလာသည်" },
+    { v1: "think", v1_pron: "သင့်", v2: "thought", v2_pron: "သော", v3: "thought", v3_pron: "သော", ving: "thinking", ving_pron: "သင်ကင့်", meaning: "စဉ်းစားသည်" },
+    { v1: "believe", v1_pron: "ဘီလိဗ်", v2: "believed", v2_pron: "ဘီလိဗ်ဒ်", v3: "believed", v3_pron: "ဘီလိဗ်ဒ်", ving: "believing", ving_pron: "ဘီလိဗင့်", meaning: "ယုံကြည်သည်" },
+    // 41-50
+    { v1: "feel", v1_pron: "ဖီးလ်", v2: "felt", v2_pron: "ဖဲလ်", v3: "felt", v3_pron: "ဖဲလ်", ving: "feeling", ving_pron: "ဖီးလင့်", meaning: "ခံစားသည်" },
+    { v1: "need", v1_pron: "နီးဒ်", v2: "needed", v2_pron: "နီးဒင်", v3: "needed", v3_pron: "နီးဒင်", ving: "needing", ving_pron: "နီးဒင့်", meaning: "လိုအပ်သည်" },
+    { v1: "want", v1_pron: "ဝန့်", v2: "wanted", v2_pron: "ဝန်တင်", v3: "wanted", v3_pron: "ဝန်တင်", ving: "wanting", ving_pron: "ဝန်တင့်", meaning: "လိုချင်သည်" },
+    { v1: "like", v1_pron: "လိုက်", v2: "liked", v2_pron: "လိုက်", v3: "liked", v3_pron: "လိုက်", ving: "liking", ving_pron: "လိုက်ကင်", meaning: "ကြိုက်သည်" },
+    { v1: "love", v1_pron: "လပ်", v2: "loved", v2_pron: "လဗ်ဒ်", v3: "loved", v3_pron: "လဗ်ဒ်", ving: "loving", ving_pron: "လပ်ဗင့်", meaning: "ချစ်သည်" },
+    { v1: "hate", v1_pron: "ဟိတ်", v2: "hated", v2_pron: "ဟိတ်ဒင်", v3: "hated", v3_pron: "ဟိတ်ဒင်", ving: "hating", ving_pron: "ဟိတ်တင့်", meaning: "မုန်းသည်" },
+    { v1: "hope", v1_pron: "ဟိုးပ်", v2: "hoped", v2_pron: "ဟိုးပ်", v3: "hoped", v3_pron: "ဟိုးပ်", ving: "hoping", ving_pron: "ဟိုးပင့်", meaning: "မျှော်လင့်သည်" },
+    { v1: "try", v1_pron: "ထရိုင်း", v2: "tried", v2_pron: "ထရိုက်", v3: "tried", v3_pron: "ထရိုက်", ving: "trying", ving_pron: "ထရိုင်အင့်", meaning: "ကြိုးစားသည်" },
+    { v1: "help", v1_pron: "ဟဲ့", v2: "helped", v2_pron: "ဟဲ့", v3: "helped", v3_pron: "ဟဲ့", ving: "helping", ving_pron: "ဟဲ့ပင်", meaning: "ကူညီသည်" },
+    { v1: "learn", v1_pron: "လန်း", v2: "learned/learnt", v2_pron: "လန်း/လန့်", v3: "learned/learnt", v3_pron: "လန်း/လန့်", ving: "learning", ving_pron: "လန်းနင့်", meaning: "သင်ယူသည်" },
+    // 51-60
+    { v1: "study", v1_pron: "စတာဒီ", v2: "studied", v2_pron: "စတာဒီ", v3: "studied", v3_pron: "စတာဒီ", ving: "studying", ving_pron: "စတာဒီအင့်", meaning: "စာကျက်သည်" },
+    { v1: "work", v1_pron: "ဝတ်ခ်", v2: "worked", v2_pron: "ဝတ်ခ်", v3: "worked", v3_pron: "ဝတ်ခ်", ving: "working", ving_pron: "ဝတ်ကင့်", meaning: "အလုပ်လုပ်သည်" },
+    { v1: "play", v1_pron: "ပလေ", v2: "played", v2_pron: "ပလေး", v3: "played", v3_pron: "ပလေး", ving: "playing", ving_pron: "ပလေအင့်", meaning: "ကစားသည်" },
+    { v1: "sing", v1_pron: "စင့်", v2: "sang", v2_pron: "ဆန့်", v3: "sung", v3_pron: "ဆန့်", ving: "singing", ving_pron: "စင်အင့်", meaning: "သီချင်းဆိုသည်" },
+    { v1: "dance", v1_pron: "ဒန်းစ်", v2: "danced", v2_pron: "ဒန်းစ်", v3: "danced", v3_pron: "ဒန်းစ်", ving: "dancing", ving_pron: "ဒန်းစင့်", meaning: "ကသည်" },
+    { v1: "draw", v1_pron: "ဒရော", v2: "drew", v2_pron: "ဒရူး", v3: "drawn", v3_pron: "ဒရော", ving: "drawing", ving_pron: "ဒရောအင့်", meaning: "ပန်းချီဆွဲသည်" },
+    { v1: "paint", v1_pron: "ပိန့်", v2: "painted", v2_pron: "ပိန်တင်", v3: "painted", v3_pron: "ပိန်တင်", ving: "painting", ving_pron: "ပိန်တင့်", meaning: "ဆေးသုတ်သည်" },
+    { v1: "build", v1_pron: "ဘစ်", v2: "built", v2_pron: "ဘစ်", v3: "built", v3_pron: "ဘစ်", ving: "building", ving_pron: "ဘစ်ဒင့်", meaning: "ဆောက်လုပ်သည်" },
+    { v1: "grow", v1_pron: "ဂရိုး", v2: "grew", v2_pron: "ဂရူး", v3: "grown", v3_pron: "ဂရိုး", ving: "growing", ving_pron: "ဂရိုးအင့်", meaning: "ကြီးထွားသည်" },
+    { v1: "cut", v1_pron: "ကတ်", v2: "cut", v2_pron: "ကတ်", v3: "cut", v3_pron: "ကတ်", ving: "cutting", ving_pron: "ကတ်တင့်", meaning: "ဖြတ်သည်" },
+    // 61-70
+    { v1: "fall", v1_pron: "ဖော်လ်", v2: "fell", v2_pron: "ဖဲလ်", v3: "fallen", v3_pron: "ဖော်လန်", ving: "falling", ving_pron: "ဖော်လင့်", meaning: "ပြုတ်ကျသည်" },
+    { v1: "break", v1_pron: "ဘရိတ်", v2: "broke", v2_pron: "ဘရိုက်", v3: "broken", v3_pron: "ဘရိုက်ကန်", ving: "breaking", ving_pron: "ဘရိတ်ကင်", meaning: "ကျိုးသည်" },
+    { v1: "choose", v1_pron: "ချူးဇ်", v2: "chose", v2_pron: "ချိုးဇ်", v3: "chosen", v3_pron: "ချိုးဇန်", ving: "choosing", ving_pron: "ချူးဇင့်", meaning: "ရွေးချယ်သည်" },
+    { v1: "forget", v1_pron: "ဖာဂက်", v2: "forgot", v2_pron: "ဖာဂေါ့", v3: "forgotten", v3_pron: "ဖာဂေါ်တန်", ving: "forgetting", ving_pron: "ဖာဂက်တင့်", meaning: "မေ့သည်" },
+    { v1: "remember", v1_pron: "ရီမမ်ဘာ", v2: "remembered", v2_pron: "ရီမမ်ဘား", v3: "remembered", v3_pron: "ရီမမ်ဘား", ving: "remembering", ving_pron: "ရီမမ်ဘာရင့်", meaning: "မှတ်မိသည်" },
+    { v1: "understand", v1_pron: "အန်ဒာစတန့်", v2: "understood", v2_pron: "အန်ဒာစတုဒ်", v3: "understood", v3_pron: "အန်ဒာစတုဒ်", ving: "understanding", ving_pron: "အန်ဒာစတန့်ဒင့်", meaning: "နားလည်သည်" },
+    { v1: "know", v1_pron: "နိုး", v2: "knew", v2_pron: "နျူး", v3: "known", v3_pron: "နိုး", ving: "knowing", ving_pron: "နိုးအင့်", meaning: "သိသည်" },
+    { v1: "show", v1_pron: "ရှိုး", v2: "showed", v2_pron: "ရှိုး", v3: "shown", v3_pron: "ရှိုး", ving: "showing", ving_pron: "ရှိုးအင့်", meaning: "ပြသည်" },
+    { v1: "tell", v1_pron: "တဲလ်", v2: "told", v2_pron: "တိုးလ်", v3: "told", v3_pron: "တိုးလ်", ving: "telling", ving_pron: "တဲလင့်", meaning: "ပြောပြသည်" },
+    { v1: "ask", v1_pron: "အာ့စ်", v2: "asked", v2_pron: "အာ့စ်", v3: "asked", v3_pron: "အာ့စ်", ving: "asking", ving_pron: "အာ့စ်ကင်", meaning: "မေးသည်" },
+    // 71-80
+    { v1: "answer", v1_pron: "အန်ဆာ", v2: "answered", v2_pron: "အန်ဆား", v3: "answered", v3_pron: "အန်ဆား", ving: "answering", ving_pron: "အန်ဆာရင့်", meaning: "ဖြေသည်" },
+    { v1: "live", v1_pron: "လစ်ဗ်", v2: "lived", v2_pron: "လစ်ဗ်", v3: "lived", v3_pron: "လစ်ဗ်", ving: "living", ving_pron: "လစ်ဗင့်", meaning: "နေထိုင်သည်" },
+    { v1: "die", v1_pron: "ဒိုင်", v2: "died", v2_pron: "ဒိုင်", v3: "died", v3_pron: "ဒိုင်", ving: "dying", ving_pron: "ဒိုင်အင့်", meaning: "သေသည်" },
+    { v1: "win", v1_pron: "ဝင်း", v2: "won", v2_pron: "ဝန်း", v3: "won", v3_pron: "ဝန်း", ving: "winning", ving_pron: "ဝင်းနင့်", meaning: "အနိုင်ရသည်" },
+    { v1: "lose", v1_pron: "လူးဇ်", v2: "lost", v2_pron: "လော့စ်", v3: "lost", v3_pron: "လော့စ်", ving: "losing", ving_pron: "လူးဇင့်", meaning: "ရှုံးသည်" },
+    { v1: "send", v1_pron: "ဆင့်", v2: "sent", v2_pron: "ဆင့်", v3: "sent", v3_pron: "ဆင့်", ving: "sending", ving_pron: "ဆင့်ဒင့်", meaning: "ပို့သည်" },
+    { v1: "receive", v1_pron: "ရီစီးဗ်", v2: "received", v2_pron: "ရီစီးဗ်", v3: "received", v3_pron: "ရီစီးဗ်", ving: "receiving", ving_pron: "ရီစီးဗင့်", meaning: "လက်ခံရရှိသည်" },
+    { v1: "turn", v1_pron: "တန်း", v2: "turned", v2_pron: "တန်း", v3: "turned", v3_pron: "တန်း", ving: "turning", ving_pron: "တန်းနင့်", meaning: "လှည့်သည်" },
+    { v1: "start", v1_pron: "စတာ့", v2: "started", v2_pron: "စတာ့", v3: "started", v3_pron: "စတာ့", ving: "starting", ving_pron: "စတာ့တင့်", meaning: "စတင်သည်" },
+    { v1: "finish", v1_pron: "ဖင်နစ်", v2: "finished", v2_pron: "ဖင်နစ်", v3: "finished", v3_pron: "ဖင်နစ်", ving: "finishing", ving_pron: "ဖင်နစ်ရှင့်", meaning: "ပြီးဆုံးသည်" },
+    // 81-90
+    { v1: "call", v1_pron: "ခေါ်လ်", v2: "called", v2_pron: "ခေါ်လ်", v3: "called", v3_pron: "ခေါ်လ်", ving: "calling", ving_pron: "ခေါ်လင့်", meaning: "ခေါ်သည်" },
+    { v1: "come", v1_pron: "ကမ်း", v2: "came", v2_pron: "ကမ်း", v3: "come", v3_pron: "ကမ်း", ving: "coming", ving_pron: "ကမ်မင့်", meaning: "လာသည်" },
+    { v1: "stay", v1_pron: "စတေ", v2: "stayed", v2_pron: "စတေး", v3: "stayed", v3_pron: "စတေး", ving: "staying", ving_pron: "စတေအင့်", meaning: "နေသည်" },
+    { v1: "leave", v1_pron: "လိဗ်", v2: "left", v2_pron: "လက်ဖ်", v3: "left", v3_pron: "လက်ဖ်", ving: "leaving", ving_pron: "လိဗ်ဗင့်", meaning: "ထွက်ခွာသည်" },
+    { v1: "meet", v1_pron: "မီးသ်", v2: "met", v2_pron: "မက်", v3: "met", v3_pron: "မက်", ving: "meeting", ving_pron: "မီးသင့်", meaning: "တွေ့သည်" },
+    { v1: "return", v1_pron: "ရီတန်း", v2: "returned", v2_pron: "ရီတန်း", v3: "returned", v3_pron: "ရီတန်း", ving: "returning", ving_pron: "ရီတန်းနင့်", meaning: "ပြန်လာသည်" },
+    { v1: "travel", v1_pron: "ထရဗ်ဗယ်", v2: "traveled", v2_pron: "ထရဗ်ဗယ်", v3: "traveled", v3_pron: "ထရဗ်ဗယ်", ving: "traveling", ving_pron: "ထရဗ်ဗယ်လင့်", meaning: "ခရီးသွားသည်" },
+    { v1: "visit", v1_pron: "ဗစ်ဇစ်", v2: "visited", v2_pron: "ဗစ်ဇစ်", v3: "visited", v3_pron: "ဗစ်ဇစ်", ving: "visiting", ving_pron: "ဗစ်ဇစ်တင့်", meaning: "လည်ပတ်သည်" },
+    { v1: "enjoy", v1_pron: "အင်ဂျွိုင်", v2: "enjoyed", v2_pron: "အင်ဂျွိုင်", v3: "enjoyed", v3_pron: "အင်ဂျွိုင်", ving: "enjoying", ving_pron: "အင်ဂျွိုင်အင့်", meaning: "ပျော်ရွှင်သည်" },
+    { v1: "cook", v1_pron: "ကူး", v2: "cooked", v2_pron: "ကူး", v3: "cooked", v3_pron: "ကူး", ving: "cooking", ving_pron: "ကူးကင်", meaning: "ချက်ပြုတ်သည်" },
+    // 91-100
+    { v1: "wash", v1_pron: "ဝေါ့ရှ်", v2: "washed", v2_pron: "ဝေါ့ရှ်", v3: "washed", v3_pron: "ဝေါ့ရှ်", ving: "washing", ving_pron: "ဝေါ့ရှင့်", meaning: "ဆေးသည်" },
+    { v1: "clean", v1_pron: "ကလီးန်", v2: "cleaned", v2_pron: "ကလီးန်", v3: "cleaned", v3_pron: "ကလီးန်", ving: "cleaning", ving_pron: "ကလီးနင့်", meaning: "သန့်ရှင်းသည်" },
+    { v1: "fix", v1_pron: "ဖစ်ခ်", v2: "fixed", v2_pron: "ဖစ်ခ်", v3: "fixed", v3_pron: "ဖစ်ခ်", ving: "fixing", ving_pron: "ဖစ်ကင့်", meaning: "ပြင်ဆင်သည်" },
+    { v1: "change", v1_pron: "ချိန့်", v2: "changed", v2_pron: "ချိန့်", v3: "changed", v3_pron: "ချိန့်", ving: "changing", ving_pron: "ချိန့်ဂျင့်", meaning: "ပြောင်းလဲသည်" },
+    { v1: "save", v1_pron: "ဆေးဗ်", v2: "saved", v2_pron: "ဆေးဗ်", v3: "saved", v3_pron: "ဆေးဗ်", ving: "saving", ving_pron: "ဆေးဗင့်", meaning: "ကယ်တင်သည်" },
+    { v1: "hurry", v1_pron: "ဟာရီ", v2: "hurried", v2_pron: "ဟာရီ", v3: "hurried", v3_pron: "ဟာရီ", ving: "hurrying", ving_pron: "ဟာရီအင့်", meaning: "အလျင်စလိုလုပ်သည်" },
+    { v1: "wait", v1_pron: "ဝိတ်", v2: "waited", v2_pron: "ဝိတ်ဒင်", v3: "waited", v3_pron: "ဝိတ်ဒင်", ving: "waiting", ving_pron: "ဝိတ်တင့်", meaning: "စောင့်သည်" },
+    { v1: "follow", v1_pron: "ဖော်လို", v2: "followed", v2_pron: "ဖော်လို", v3: "followed", v3_pron: "ဖော်လို", ving: "following", ving_pron: "ဖော်လိုအင့်", meaning: "လိုက်သည်" },
+    { v1: "remember", v1_pron: "ရီမမ်ဘာ", v2: "remembered", v2_pron: "ရီမမ်ဘား", v3: "remembered", v3_pron: "ရီမမ်ဘား", ving: "remembering", ving_pron: "ရီမမ်ဘာရင့်", meaning: "မှတ်မိသည်" },
+    { v1: "forget", v1_pron: "ဖာဂက်", v2: "forgot", v2_pron: "ဖာဂေါ့", v3: "forgotten", v3_pron: "ဖာဂေါ်တန်", ving: "forgetting", ving_pron: "ဖာဂက်တင့်", meaning: "မေ့သည်" },
+     // =============================================================
+//  VERB 101 to 200 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - verb-forms.html ရဲ့ verbs array ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 101-110
+{ v1: "accept", v1_pron: "အက်စက့်", v2: "accepted", v2_pron: "အက်စက့်", v3: "accepted", v3_pron: "အက်စက့်", ving: "accepting", ving_pron: "အက်စက်တင့်", meaning: "လက်ခံသည်" },
+{ v1: "achieve", v1_pron: "အချီးဗ်", v2: "achieved", v2_pron: "အချီးဗ်", v3: "achieved", v3_pron: "အချီးဗ်", ving: "achieving", ving_pron: "အချီးဗင့်", meaning: "ပြီးမြောက်အောင်မြင်သည်" },
+{ v1: "add", v1_pron: "အဒ်", v2: "added", v2_pron: "အဒ်", v3: "added", v3_pron: "အဒ်", ving: "adding", ving_pron: "အဒ်ဒင့်", meaning: "ထည့်သည်" },
+{ v1: "admit", v1_pron: "အဒ်မစ်", v2: "admitted", v2_pron: "အဒ်မစ်", v3: "admitted", v3_pron: "အဒ်မစ်", ving: "admitting", ving_pron: "အဒ်မစ်တင့်", meaning: "ဝန်ခံသည်" },
+{ v1: "adopt", v1_pron: "အဒေါ့", v2: "adopted", v2_pron: "အဒေါ့", v3: "adopted", v3_pron: "အဒေါ့", ving: "adopting", ving_pron: "အဒေါ့တင့်", meaning: "မွေးစားသည်" },
+{ v1: "advise", v1_pron: "အဒ်ဗိုက်ဇ်", v2: "advised", v2_pron: "အဒ်ဗိုက်ဇ်", v3: "advised", v3_pron: "အဒ်ဗိုက်ဇ်", ving: "advising", ving_pron: "အဒ်ဗိုက်ဇင့်", meaning: "အကြံပေးသည်" },
+{ v1: "afford", v1_pron: "အဖော်ဒ်", v2: "afforded", v2_pron: "အဖော်ဒ်", v3: "afforded", v3_pron: "အဖော်ဒ်", ving: "affording", ving_pron: "အဖော်ဒ်ဒင့်", meaning: "တတ်နိုင်သည်" },
+{ v1: "agree", v1_pron: "အဂရီး", v2: "agreed", v2_pron: "အဂရီး", v3: "agreed", v3_pron: "အဂရီး", ving: "agreeing", ving_pron: "အဂရီးအင့်", meaning: "သဘောတူသည်" },
+{ v1: "allow", v1_pron: "အလောင်း", v2: "allowed", v2_pron: "အလောင်း", v3: "allowed", v3_pron: "အလောင်း", ving: "allowing", ving_pron: "အလောင်းအင့်", meaning: "ခွင့်ပြုသည်" },
+{ v1: "apply", v1_pron: "အပလိုင်", v2: "applied", v2_pron: "အပလိုင်", v3: "applied", v3_pron: "အပလိုင်", ving: "applying", ving_pron: "အပလိုင်အင့်", meaning: "လျှောက်ထားသည်" },
+// 111-120
+{ v1: "appear", v1_pron: "အပီးယား", v2: "appeared", v2_pron: "အပီးယား", v3: "appeared", v3_pron: "အပီးယား", ving: "appearing", ving_pron: "အပီးယားရင့်", meaning: "ပေါ်လာသည်" },
+{ v1: "arrange", v1_pron: "အရိန့်", v2: "arranged", v2_pron: "အရိန့်", v3: "arranged", v3_pron: "အရိန့်", ving: "arranging", ving_pron: "အရိန့်ဂျင့်", meaning: "စီစဉ်သည်" },
+{ v1: "arrive", v1_pron: "အရိုက်", v2: "arrived", v2_pron: "အရိုက်", v3: "arrived", v3_pron: "အရိုက်", ving: "arriving", ving_pron: "အရိုက်ဗင့်", meaning: "ရောက်ရှိသည်" },
+{ v1: "ask", v1_pron: "အာ့စ်", v2: "asked", v2_pron: "အာ့စ်", v3: "asked", v3_pron: "အာ့စ်", ving: "asking", ving_pron: "အာ့စ်ကင်", meaning: "မေးသည်" },
+{ v1: "attach", v1_pron: "အတက်ချ်", v2: "attached", v2_pron: "အတက်ချ်", v3: "attached", v3_pron: "အတက်ချ်", ving: "attaching", ving_pron: "အတက်ချင့်", meaning: "တွဲထားသည်" },
+{ v1: "attempt", v1_pron: "အတင့်", v2: "attempted", v2_pron: "အတင့်", v3: "attempted", v3_pron: "အတင့်", ving: "attempting", ving_pron: "အတင့်တင့်", meaning: "ကြိုးပမ်းသည်" },
+{ v1: "attend", v1_pron: "အတင့်", v2: "attended", v2_pron: "အတင့်", v3: "attended", v3_pron: "အတင့်", ving: "attending", ving_pron: "အတင့်ဒင့်", meaning: "တက်ရောက်သည်" },
+{ v1: "avoid", v1_pron: "အဗွိုက်", v2: "avoided", v2_pron: "အဗွိုက်", v3: "avoided", v3_pron: "အဗွိုက်", ving: "avoiding", ving_pron: "အဗွိုင်အင့်", meaning: "ရှောင်ရှားသည်" },
+{ v1: "awake", v1_pron: "အွေ့", v2: "awoke", v2_pron: "အွမ့်", v3: "awoken", v3_pron: "အွမ်ကန်", ving: "awaking", ving_pron: "အွေ့ကင်", meaning: "နိုးသည်" },
+{ v1: "beat", v1_pron: "ဘိသ်", v2: "beat", v2_pron: "ဘိသ်", v3: "beaten", v3_pron: "ဘိသ်တန်", ving: "beating", ving_pron: "ဘိသ်တင့်", meaning: "ရိုက်သည်" },
+// 121-130
+{ v1: "become", v1_pron: "ဘီကမ်း", v2: "became", v2_pron: "ဘီကမ်း", v3: "become", v3_pron: "ဘီကမ်း", ving: "becoming", ving_pron: "ဘီကမ်မင့်", meaning: "ဖြစ်လာသည်" },
+{ v1: "begin", v1_pron: "ဘီဂင်း", v2: "began", v2_pron: "ဘီဂန်း", v3: "begun", v3_pron: "ဘီဂန်း", ving: "beginning", ving_pron: "ဘီဂင်းနင့်", meaning: "စတင်သည်" },
+{ v1: "behave", v1_pron: "ဘီဟေးဗ်", v2: "behaved", v2_pron: "ဘီဟေးဗ်", v3: "behaved", v3_pron: "ဘီဟေးဗ်", ving: "behaving", ving_pron: "ဘီဟေးဗင့်", meaning: "ပြုမူသည်" },
+{ v1: "belong", v1_pron: "ဘီလောင်း", v2: "belonged", v2_pron: "ဘီလောင်း", v3: "belonged", v3_pron: "ဘီလောင်း", ving: "belonging", ving_pron: "ဘီလောင်းအင့်", meaning: "ပိုင်ဆိုင်သည်" },
+{ v1: "bend", v1_pron: "ဘင့်", v2: "bent", v2_pron: "ဘင့်", v3: "bent", v3_pron: "ဘင့်", ving: "bending", ving_pron: "ဘင့်ဒင့်", meaning: "ကိုင်းညွှတ်သည်" },
+{ v1: "bet", v1_pron: "ဘက်သ်", v2: "bet", v2_pron: "ဘက်သ်", v3: "bet", v3_pron: "ဘက်သ်", ving: "betting", ving_pron: "ဘက်တင့်", meaning: "အလောင်းအစားလုပ်သည်" },
+{ v1: "bite", v1_pron: "ဘိုက်", v2: "bit", v2_pron: "ဘစ်", v3: "bitten", v3_pron: "ဘစ်တန်", ving: "biting", ving_pron: "ဘိုက်တင့်", meaning: "ကိုက်သည်" },
+{ v1: "blow", v1_pron: "ဘလိုး", v2: "blew", v2_pron: "ဘလူး", v3: "blown", v3_pron: "ဘလိုး", ving: "blowing", ving_pron: "ဘလိုးအင့်", meaning: "မှုတ်သည်" },
+{ v1: "borrow", v1_pron: "ဘော်ရိုး", v2: "borrowed", v2_pron: "ဘော်ရိုး", v3: "borrowed", v3_pron: "ဘော်ရိုး", ving: "borrowing", ving_pron: "ဘော်ရိုးအင့်", meaning: "ငှားသည်" },
+{ v1: "bother", v1_pron: "ဘော့သာ", v2: "bothered", v2_pron: "ဘော့သာ", v3: "bothered", v3_pron: "ဘော့သာ", ving: "bothering", ving_pron: "ဘော့သာရင့်", meaning: "စိတ်အနှောင့်အယှက်ဖြစ်သည်" },
+// 131-140
+{ v1: "breathe", v1_pron: "ဘရီးဒ်", v2: "breathed", v2_pron: "ဘရီးဒ်", v3: "breathed", v3_pron: "ဘရီးဒ်", ving: "breathing", ving_pron: "ဘရီးဒင့်", meaning: "အသက်ရှူသည်" },
+{ v1: "calculate", v1_pron: "ကယ်လကျူလိတ်", v2: "calculated", v2_pron: "ကယ်လကျူလိတ်", v3: "calculated", v3_pron: "ကယ်လကျူလိတ်", ving: "calculating", ving_pron: "ကယ်လကျူလိတ်တင့်", meaning: "တွက်ချက်သည်" },
+{ v1: "cancel", v1_pron: "ကန်ဆယ်", v2: "canceled", v2_pron: "ကန်ဆယ်", v3: "canceled", v3_pron: "ကန်ဆယ်", ving: "canceling", ving_pron: "ကန်ဆယ်လင့်", meaning: "ဖျက်သိမ်းသည်" },
+{ v1: "celebrate", v1_pron: "ဆယ်လဘရိတ်", v2: "celebrated", v2_pron: "ဆယ်လဘရိတ်", v3: "celebrated", v3_pron: "ဆယ်လဘရိတ်", ving: "celebrating", ving_pron: "ဆယ်လဘရိတ်တင့်", meaning: "ဂုဏ်ပြုသည်" },
+{ v1: "challenge", v1_pron: "ချယ်လိန့်", v2: "challenged", v2_pron: "ချယ်လိန့်", v3: "challenged", v3_pron: "ချယ်လိန့်", ving: "challenging", ving_pron: "ချယ်လိန့်ဂျင့်", meaning: "စိန်ခေါ်သည်" },
+{ v1: "charge", v1_pron: "ချာ့", v2: "charged", v2_pron: "ချာ့", v3: "charged", v3_pron: "ချာ့", ving: "charging", ving_pron: "ချာ့ဂျင့်", meaning: "အားသွင်းသည်" },
+{ v1: "cheat", v1_pron: "ချိသ်", v2: "cheated", v2_pron: "ချိသ်", v3: "cheated", v3_pron: "ချိသ်", ving: "cheating", ving_pron: "ချိသ်တင့်", meaning: "လှည့်စားသည်" },
+{ v1: "check", v1_pron: "ချက်ခ်", v2: "checked", v2_pron: "ချက်ခ်", v3: "checked", v3_pron: "ချက်ခ်", ving: "checking", ving_pron: "ချက်ကင့်", meaning: "စစ်ဆေးသည်" },
+{ v1: "chew", v1_pron: "ချူး", v2: "chewed", v2_pron: "ချူး", v3: "chewed", v3_pron: "ချူး", ving: "chewing", ving_pron: "ချူးအင့်", meaning: "ဝါးသည်" },
+{ v1: "clap", v1_pron: "ကလပ်", v2: "clapped", v2_pron: "ကလပ်", v3: "clapped", v3_pron: "ကလပ်", ving: "clapping", ving_pron: "ကလပ်ပင်", meaning: "လက်ခုပ်တီးသည်" },
+// 141-150
+{ v1: "collect", v1_pron: "ကောလက်ခ်", v2: "collected", v2_pron: "ကောလက်ခ်", v3: "collected", v3_pron: "ကောလက်ခ်", ving: "collecting", ving_pron: "ကောလက်တင့်", meaning: "စုဆောင်းသည်" },
+{ v1: "compare", v1_pron: "ကမ်ပဲ", v2: "compared", v2_pron: "ကမ်ပဲ", v3: "compared", v3_pron: "ကမ်ပဲ", ving: "comparing", ving_pron: "ကမ်ပဲရင့်", meaning: "နှိုင်းယှဉ်သည်" },
+{ v1: "compete", v1_pron: "ကမ်ပီးသ်", v2: "competed", v2_pron: "ကမ်ပီးသ်", v3: "competed", v3_pron: "ကမ်ပီးသ်", ving: "competing", ving_pron: "ကမ်ပီးသင့်", meaning: "ယှဉ်ပြိုင်သည်" },
+{ v1: "complain", v1_pron: "ကမ်ပလိန်", v2: "complained", v2_pron: "ကမ်ပလိန်", v3: "complained", v3_pron: "ကမ်ပလိန်", ving: "complaining", ving_pron: "ကမ်ပလိန်နင့်", meaning: "မကျေနပ်သည်" },
+{ v1: "complete", v1_pron: "ကမ်ပလိသ်", v2: "completed", v2_pron: "ကမ်ပလိသ်", v3: "completed", v3_pron: "ကမ်ပလိသ်", ving: "completing", ving_pron: "ကမ်ပလိသ်တင့်", meaning: "ပြီးစီးသည်" },
+{ v1: "concentrate", v1_pron: "ကွန်စင်ထရိတ်", v2: "concentrated", v2_pron: "ကွန်စင်ထရိတ်", v3: "concentrated", v3_pron: "ကွန်စင်ထရိတ်", ving: "concentrating", ving_pron: "ကွန်စင်ထရိတ်တင့်", meaning: "အာရုံစိုက်သည်" },
+{ v1: "confess", v1_pron: "ကွန်ဖက်စ်", v2: "confessed", v2_pron: "ကွန်ဖက်စ်", v3: "confessed", v3_pron: "ကွန်ဖက်စ်", ving: "confessing", ving_pron: "ကွန်ဖက်စင့်", meaning: "ဝန်ခံသည်" },
+{ v1: "confuse", v1_pron: "ကွန်ဖူးဇ်", v2: "confused", v2_pron: "ကွန်ဖူးဇ်", v3: "confused", v3_pron: "ကွန်ဖူးဇ်", ving: "confusing", ving_pron: "ကွန်ဖူးဇင့်", meaning: "ရှုပ်ထွေးစေသည်" },
+{ v1: "connect", v1_pron: "ကွန်နက်ခ်", v2: "connected", v2_pron: "ကွန်နက်ခ်", v3: "connected", v3_pron: "ကွန်နက်ခ်", ving: "connecting", ving_pron: "ကွန်နက်တင့်", meaning: "ချိတ်ဆက်သည်" },
+{ v1: "consider", v1_pron: "ကွန်ဆစ်ဒါ", v2: "considered", v2_pron: "ကွန်ဆစ်ဒါ", v3: "considered", v3_pron: "ကွန်ဆစ်ဒါ", ving: "considering", ving_pron: "ကွန်ဆစ်ဒါရင့်", meaning: "ထည့်သွင်းစဉ်းစားသည်" },
+// 151-160
+{ v1: "contain", v1_pron: "ကွန်တိန်", v2: "contained", v2_pron: "ကွန်တိန်", v3: "contained", v3_pron: "ကွန်တိန်", ving: "containing", ving_pron: "ကွန်တိန်နင့်", meaning: "ပါဝင်သည်" },
+{ v1: "continue", v1_pron: "ကွန်တီးနှူး", v2: "continued", v2_pron: "ကွန်တီးနှူး", v3: "continued", v3_pron: "ကွန်တီးနှူး", ving: "continuing", ving_pron: "ကွန်တီးနှူးအင့်", meaning: "ဆက်လုပ်သည်" },
+{ v1: "convince", v1_pron: "ကွန်ဗင်စ်", v2: "convinced", v2_pron: "ကွန်ဗင်စ်", v3: "convinced", v3_pron: "ကွန်ဗင်စ်", ving: "convincing", ving_pron: "ကွန်ဗင်စင့်", meaning: "စည်းရုံးသည်" },
+{ v1: "cough", v1_pron: "ခေါ့", v2: "coughed", v2_pron: "ခေါ့", v3: "coughed", v3_pron: "ခေါ့", ving: "coughing", ving_pron: "ခေါ့ဖင့်", meaning: "ချောင်းဆိုးသည်" },
+{ v1: "count", v1_pron: "ကောင့်", v2: "counted", v2_pron: "ကောင့်", v3: "counted", v3_pron: "ကောင့်", ving: "counting", ving_pron: "ကောင့်တင့်", meaning: "ရေတွက်သည်" },
+{ v1: "cover", v1_pron: "ကဗ်ဗာ", v2: "covered", v2_pron: "ကဗ်ဗာ", v3: "covered", v3_pron: "ကဗ်ဗာ", ving: "covering", ving_pron: "ကဗ်ဗာရင့်", meaning: "ဖုံးအုပ်သည်" },
+{ v1: "crack", v1_pron: "ခရက်", v2: "cracked", v2_pron: "ခရက်", v3: "cracked", v3_pron: "ခရက်", ving: "cracking", ving_pron: "ခရက်ကင်", meaning: "ကွဲသည်" },
+{ v1: "create", v1_pron: "ခရီးအယ်", v2: "created", v2_pron: "ခရီးအယ်", v3: "created", v3_pron: "ခရီးအယ်", ving: "creating", ving_pron: "ခရီးအယ်တင့်", meaning: "ဖန်တီးသည်" },
+{ v1: "cross", v1_pron: "ခရော့စ်", v2: "crossed", v2_pron: "ခရော့စ်", v3: "crossed", v3_pron: "ခရော့စ်", ving: "crossing", ving_pron: "ခရော့စင့်", meaning: "ဖြတ်ကူးသည်" },
+{ v1: "cry", v1_pron: "ခရိုင်", v2: "cried", v2_pron: "ခရိုင်", v3: "cried", v3_pron: "ခရိုင်", ving: "crying", ving_pron: "ခရိုင်အင့်", meaning: "ငိုသည်" },
+// 161-170
+{ v1: "damage", v1_pron: "ဒမ်မစ်", v2: "damaged", v2_pron: "ဒမ်မစ်", v3: "damaged", v3_pron: "ဒမ်မစ်", ving: "damaging", ving_pron: "ဒမ်မစ်ဂျင့်", meaning: "ပျက်စီးစေသည်" },
+{ v1: "dare", v1_pron: "ဒဲ", v2: "dared", v2_pron: "ဒဲ", v3: "dared", v3_pron: "ဒဲ", ving: "daring", ving_pron: "ဒဲရင့်", meaning: "ရဲသည်" },
+{ v1: "deal", v1_pron: "ဒီးလ်", v2: "dealt", v2_pron: "ဒဲလ်", v3: "dealt", v3_pron: "ဒဲလ်", ving: "dealing", ving_pron: "ဒီးလင့်", meaning: "ကိုင်တွယ်သည်" },
+{ v1: "decide", v1_pron: "ဒီစိုက်", v2: "decided", v2_pron: "ဒီစိုက်", v3: "decided", v3_pron: "ဒီစိုက်", ving: "deciding", ving_pron: "ဒီစိုက်ဒင့်", meaning: "ဆုံးဖြတ်သည်" },
+{ v1: "defeat", v1_pron: "ဒီဖိသ်", v2: "defeated", v2_pron: "ဒီဖိသ်", v3: "defeated", v3_pron: "ဒီဖိသ်", ving: "defeating", ving_pron: "ဒီဖိသ်တင့်", meaning: "အနိုင်ယူသည်" },
+{ v1: "defend", v1_pron: "ဒီဖင့်", v2: "defended", v2_pron: "ဒီဖင့်", v3: "defended", v3_pron: "ဒီဖင့်", ving: "defending", ving_pron: "ဒီဖင့်ဒင့်", meaning: "ကာကွယ်သည်" },
+{ v1: "delay", v1_pron: "ဒီလေ", v2: "delayed", v2_pron: "ဒီလေ", v3: "delayed", v3_pron: "ဒီလေ", ving: "delaying", ving_pron: "ဒီလေအင့်", meaning: "နှောင့်နှေးသည်" },
+{ v1: "deliver", v1_pron: "ဒီလစ်ဗာ", v2: "delivered", v2_pron: "ဒီလစ်ဗာ", v3: "delivered", v3_pron: "ဒီလစ်ဗာ", ving: "delivering", ving_pron: "ဒီလစ်ဗာရင့်", meaning: "ပို့ဆောင်သည်" },
+{ v1: "demand", v1_pron: "ဒီမန့်", v2: "demanded", v2_pron: "ဒီမန့်", v3: "demanded", v3_pron: "ဒီမန့်", ving: "demanding", ving_pron: "ဒီမန့်ဒင့်", meaning: "တောင်းဆိုသည်" },
+{ v1: "deny", v1_pron: "ဒီနိုင်း", v2: "denied", v2_pron: "ဒီနိုင်း", v3: "denied", v3_pron: "ဒီနိုင်း", ving: "denying", ving_pron: "ဒီနိုင်အင့်", meaning: "ငြင်းဆန်သည်" },
+// 171-180
+{ v1: "depend", v1_pron: "ဒီပန့်", v2: "depended", v2_pron: "ဒီပန့်", v3: "depended", v3_pron: "ဒီပန့်", ving: "depending", ving_pron: "ဒီပန့်ဒင့်", meaning: "မူတည်သည်" },
+{ v1: "describe", v1_pron: "ဒီစကရိုက်", v2: "described", v2_pron: "ဒီစကရိုက်", v3: "described", v3_pron: "ဒီစကရိုက်", ving: "describing", ving_pron: "ဒီစကရိုက်ဗင့်", meaning: "ဖော်ပြသည်" },
+{ v1: "deserve", v1_pron: "ဒီဇာ့", v2: "deserved", v2_pron: "ဒီဇာ့", v3: "deserved", v3_pron: "ဒီဇာ့", ving: "deserving", ving_pron: "ဒီဇာ့ဗင့်", meaning: "ထိုက်တန်သည်" },
+{ v1: "destroy", v1_pron: "ဒီစထရိုင်", v2: "destroyed", v2_pron: "ဒီစထရိုင်", v3: "destroyed", v3_pron: "ဒီစထရိုင်", ving: "destroying", ving_pron: "ဒီစထရိုင်အင့်", meaning: "ဖျက်ဆီးသည်" },
+{ v1: "develop", v1_pron: "ဒီဗဲလပ်", v2: "developed", v2_pron: "ဒီဗဲလပ်", v3: "developed", v3_pron: "ဒီဗဲလပ်", ving: "developing", ving_pron: "ဒီဗဲလပ်ပင်", meaning: "ဖွံ့ဖြိုးစေသည်" },
+{ v1: "devote", v1_pron: "ဒီဗိုးသ်", v2: "devoted", v2_pron: "ဒီဗိုးသ်", v3: "devoted", v3_pron: "ဒီဗိုးသ်", ving: "devoting", ving_pron: "ဒီဗိုးသ်တင့်", meaning: "မြှုပ်နှံသည်" },
+{ v1: "direct", v1_pron: "ဒိုရက်ခ်", v2: "directed", v2_pron: "ဒိုရက်ခ်", v3: "directed", v3_pron: "ဒိုရက်ခ်", ving: "directing", ving_pron: "ဒိုရက်တင့်", meaning: "ညွှန်ကြားသည်" },
+{ v1: "disappear", v1_pron: "ဒစ်စပီးယား", v2: "disappeared", v2_pron: "ဒစ်စပီးယား", v3: "disappeared", v3_pron: "ဒစ်စပီးယား", ving: "disappearing", ving_pron: "ဒစ်စပီးယားရင့်", meaning: "ပျောက်ကွယ်သည်" },
+{ v1: "discover", v1_pron: "ဒစ်စကဗ်ဗာ", v2: "discovered", v2_pron: "ဒစ်စကဗ်ဗာ", v3: "discovered", v3_pron: "ဒစ်စကဗ်ဗာ", ving: "discovering", ving_pron: "ဒစ်စကဗ်ဗာရင့်", meaning: "ရှာဖွေတွေ့ရှိသည်" },
+{ v1: "discuss", v1_pron: "ဒစ်စကစ်", v2: "discussed", v2_pron: "ဒစ်စကစ်", v3: "discussed", v3_pron: "ဒစ်စကစ်", ving: "discussing", ving_pron: "ဒစ်စကစ်ဆင့်", meaning: "ဆွေးနွေးသည်" },
+// 181-190
+{ v1: "dislike", v1_pron: "ဒစ်စလိုက်", v2: "disliked", v2_pron: "ဒစ်စလိုက်", v3: "disliked", v3_pron: "ဒစ်စလိုက်", ving: "disliking", ving_pron: "ဒစ်စလိုက်ကင်", meaning: "မကြိုက်" },
+{ v1: "disturb", v1_pron: "ဒစ်စတာ့", v2: "disturbed", v2_pron: "ဒစ်စတာ့", v3: "disturbed", v3_pron: "ဒစ်စတာ့", ving: "disturbing", ving_pron: "ဒစ်စတာ့ဗင့်", meaning: "နှောင့်ယှက်သည်" },
+{ v1: "divide", v1_pron: "ဒီဗိုက်", v2: "divided", v2_pron: "ဒီဗိုက်", v3: "divided", v3_pron: "ဒီဗိုက်", ving: "dividing", ving_pron: "ဒီဗိုက်ဒင့်", meaning: "ခွဲသည်" },
+{ v1: "doubt", v1_pron: "ဒေါက်", v2: "doubted", v2_pron: "ဒေါက်", v3: "doubted", v3_pron: "ဒေါက်", ving: "doubting", ving_pron: "ဒေါက်တင့်", meaning: "သံသယရှိသည်" },
+{ v1: "drag", v1_pron: "ဒရက်", v2: "dragged", v2_pron: "ဒရက်", v3: "dragged", v3_pron: "ဒရက်", ving: "dragging", ving_pron: "ဒရက်ကင်", meaning: "ဆွဲငင်သည်" },
+{ v1: "dress", v1_pron: "ဒရက်စ်", v2: "dressed", v2_pron: "ဒရက်စ်", v3: "dressed", v3_pron: "ဒရက်စ်", ving: "dressing", ving_pron: "ဒရက်စင့်", meaning: "ဝတ်ဆင်သည်" },
+{ v1: "drop", v1_pron: "ဒရော့", v2: "dropped", v2_pron: "ဒရော့", v3: "dropped", v3_pron: "ဒရော့", ving: "dropping", ving_pron: "ဒရော့ပင်", meaning: "ပစ်ချသည်" },
+{ v1: "dry", v1_pron: "ဒရိုင်", v2: "dried", v2_pron: "ဒရိုင်", v3: "dried", v3_pron: "ဒရိုင်", ving: "drying", ving_pron: "ဒရိုင်အင့်", meaning: "ခြောက်သွေ့စေသည်" },
+{ v1: "earn", v1_pron: "အန်း", v2: "earned", v2_pron: "အန်း", v3: "earned", v3_pron: "အန်း", ving: "earning", ving_pron: "အန်းနင့်", meaning: "ရှာသည်" },
+{ v1: "educate", v1_pron: "အက်ဒ်ယူကတ်", v2: "educated", v2_pron: "အက်ဒ်ယူကတ်", v3: "educated", v3_pron: "အက်ဒ်ယူကတ်", ving: "educating", ving_pron: "အက်ဒ်ယူကတ်တင့်", meaning: "ပညာသင်ကြားပေးသည်" },
+// 191-200
+{ v1: "embrace", v1_pron: "အင်ဘရေ့စ်", v2: "embraced", v2_pron: "အင်ဘရေ့စ်", v3: "embraced", v3_pron: "အင်ဘရေ့စ်", ving: "embracing", ving_pron: "အင်ဘရေ့စင့်", meaning: "ပွေ့ဖက်သည်" },
+{ v1: "emerge", v1_pron: "အီးမာ့", v2: "emerged", v2_pron: "အီးမာ့", v3: "emerged", v3_pron: "အီးမာ့", ving: "emerging", ving_pron: "အီးမာ့ဂျင့်", meaning: "ပေါ်ထွက်လာသည်" },
+{ v1: "employ", v1_pron: "အမ်ပလွိုင်", v2: "employed", v2_pron: "အမ်ပလွိုင်", v3: "employed", v3_pron: "အမ်ပလွိုင်", ving: "employing", ving_pron: "အမ်ပလိုင်အင့်", meaning: "အလုပ်ပေးသည်" },
+{ v1: "enable", v1_pron: "အင်နေဘယ်", v2: "enabled", v2_pron: "အင်နေဘယ်", v3: "enabled", v3_pron: "အင်နေဘယ်", ving: "enabling", ving_pron: "အင်နေဘယ်လင့်", meaning: "ဖြစ်စေသည်" },
+{ v1: "encounter", v1_pron: "အင်ကောင်တာ", v2: "encountered", v2_pron: "အင်ကောင်တာ", v3: "encountered", v3_pron: "အင်ကောင်တာ", ving: "encountering", ving_pron: "အင်ကောင်တာရင့်", meaning: "ကြုံတွေ့သည်" },
+{ v1: "encourage", v1_pron: "အင်ကရစ်", v2: "encouraged", v2_pron: "အင်ကရစ်", v3: "encouraged", v3_pron: "အင်ကရစ်", ving: "encouraging", ving_pron: "အင်ကရစ်ဂျင့်", meaning: "အားပေးသည်" },
+{ v1: "endanger", v1_pron: "အင်ဒိန်ချာ", v2: "endangered", v2_pron: "အင်ဒိန်ချာ", v3: "endangered", v3_pron: "အင်ဒိန်ချာ", ving: "endangering", ving_pron: "အင်ဒိန်ချာရင့်", meaning: "အန္တရာယ်ရှိစေသည်" },
+{ v1: "endure", v1_pron: "အင်ဒူးယား", v2: "endured", v2_pron: "အင်ဒူးယား", v3: "endured", v3_pron: "အင်ဒူးယား", ving: "enduring", ving_pron: "အင်ဒူးယားရင့်", meaning: "ခံနိုင်ရည်ရှိသည်" },
+{ v1: "engage", v1_pron: "အင်ဂေ့", v2: "engaged", v2_pron: "အင်ဂေ့", v3: "engaged", v3_pron: "အင်ဂေ့", ving: "engaging", ving_pron: "အင်ဂေ့ဂျင့်", meaning: "ပါဝင်ဆောင်ရွက်သည်" },
+{ v1: "enhance", v1_pron: "အင်ဟန်းစ်", v2: "enhanced", v2_pron: "အင်ဟန်းစ်", v3: "enhanced", v3_pron: "အင်ဟန်းစ်", ving: "enhancing", ving_pron: "အင်ဟန်းစင့်", meaning: "မြှင့်တင်သည်" },
+// =============================================================
+//  VERB 201 to 300 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - verb-forms.html ရဲ့ verbs array ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 201-210
+{ v1: "enjoy", v1_pron: "အင်ဂျွိုင်", v2: "enjoyed", v2_pron: "အင်ဂျွိုင်", v3: "enjoyed", v3_pron: "အင်ဂျွိုင်", ving: "enjoying", ving_pron: "အင်ဂျွိုင်အင့်", meaning: "ပျော်ရွှင်သည်" },
+{ v1: "enlarge", v1_pron: "အင်လာ့", v2: "enlarged", v2_pron: "အင်လာ့", v3: "enlarged", v3_pron: "အင်လာ့", ving: "enlarging", ving_pron: "အင်လာ့ဂျင့်", meaning: "ချဲ့သည်" },
+{ v1: "enlighten", v1_pron: "အင်လိုက်တန်", v2: "enlightened", v2_pron: "အင်လိုက်တန်", v3: "enlightened", v3_pron: "အင်လိုက်တန်", ving: "enlightening", ving_pron: "အင်လိုက်တန်နင့်", meaning: "အသိပေးသည်" },
+{ v1: "enroll", v1_pron: "အင်ရိုးလ်", v2: "enrolled", v2_pron: "အင်ရိုးလ်", v3: "enrolled", v3_pron: "အင်ရိုးလ်", ving: "enrolling", ving_pron: "အင်ရိုးလင့်", meaning: "စာရင်းသွင်းသည်" },
+{ v1: "ensure", v1_pron: "အင်ရှူးယား", v2: "ensured", v2_pron: "အင်ရှူးယား", v3: "ensured", v3_pron: "အင်ရှူးယား", ving: "ensuring", ving_pron: "အင်ရှူးယားရင့်", meaning: "သေချာစေသည်" },
+{ v1: "enter", v1_pron: "အင်တာ", v2: "entered", v2_pron: "အင်တာ", v3: "entered", v3_pron: "အင်တာ", ving: "entering", ving_pron: "အင်တာရင့်", meaning: "ဝင်သည်" },
+{ v1: "establish", v1_pron: "အီစတက်ဘလစ်", v2: "established", v2_pron: "အီစတက်ဘလစ်", v3: "established", v3_pron: "အီစတက်ဘလစ်", ving: "establishing", ving_pron: "အီစတက်ဘလစ်ရှင့်", meaning: "တည်ထောင်သည်" },
+{ v1: "estimate", v1_pron: "အဲစတီမက်", v2: "estimated", v2_pron: "အဲစတီမက်", v3: "estimated", v3_pron: "အဲစတီမက်", ving: "estimating", ving_pron: "အဲစတီမက်တင့်", meaning: "ခန့်မှန်းသည်" },
+{ v1: "evaluate", v1_pron: "အီဗယ်လူအိတ်", v2: "evaluated", v2_pron: "အီဗယ်လူအိတ်", v3: "evaluated", v3_pron: "အီဗယ်လူအိတ်", ving: "evaluating", ving_pron: "အီဗယ်လူအိတ်တင့်", meaning: "အကဲဖြတ်သည်" },
+{ v1: "examine", v1_pron: "အက်ဇမ်မင်", v2: "examined", v2_pron: "အက်ဇမ်မင်", v3: "examined", v3_pron: "အက်ဇမ်မင်", ving: "examining", ving_pron: "အက်ဇမ်မင်နင့်", meaning: "စစ်ဆေးသည်" },
+// 211-220
+{ v1: "exceed", v1_pron: "အက်စီး", v2: "exceeded", v2_pron: "အက်စီး", v3: "exceeded", v3_pron: "အက်စီး", ving: "exceeding", ving_pron: "အက်စီးဒင့်", meaning: "ကျော်လွန်သည်" },
+{ v1: "exchange", v1_pron: "အက်စ်ချိန့်", v2: "exchanged", v2_pron: "အက်စ်ချိန့်", v3: "exchanged", v3_pron: "အက်စ်ချိန့်", ving: "exchanging", ving_pron: "အက်စ်ချိန့်ဂျင့်", meaning: "လဲလှယ်သည်" },
+{ v1: "excite", v1_pron: "အက်စိုက်", v2: "excited", v2_pron: "အက်စိုက်", v3: "excited", v3_pron: "အက်စိုက်", ving: "exciting", ving_pron: "အက်စိုက်တင့်", meaning: "စိတ်လှုပ်ရှားစေသည်" },
+{ v1: "exclude", v1_pron: "အက်စကလူး", v2: "excluded", v2_pron: "အက်စကလူး", v3: "excluded", v3_pron: "အက်စကလူး", ving: "excluding", ving_pron: "အက်စကလူးဒင့်", meaning: "ဖယ်ထုတ်သည်" },
+{ v1: "execute", v1_pron: "အက်စီကျု", v2: "executed", v2_pron: "အက်စီကျု", v3: "executed", v3_pron: "အက်စီကျု", ving: "executing", ving_pron: "အက်စီကျုတင့်", meaning: "ကွပ်မျက်သည်" },
+{ v1: "exist", v1_pron: "အက်ဇစ်", v2: "existed", v2_pron: "အက်ဇစ်", v3: "existed", v3_pron: "အက်ဇစ်", ving: "existing", ving_pron: "အက်ဇစ်စတင့်", meaning: "တည်ရှိသည်" },
+{ v1: "expand", v1_pron: "အက်စပန့်", v2: "expanded", v2_pron: "အက်စပန့်", v3: "expanded", v3_pron: "အက်စပန့်", ving: "expanding", ving_pron: "အက်စပန့်ဒင့်", meaning: "ချဲ့ထွင်သည်" },
+{ v1: "expect", v1_pron: "အက်စပက်", v2: "expected", v2_pron: "အက်စပက်", v3: "expected", v3_pron: "အက်စပက်", ving: "expecting", ving_pron: "အက်စပက်တင့်", meaning: "မျှော်လင့်သည်" },
+{ v1: "explain", v1_pron: "အက်စပလိန်", v2: "explained", v2_pron: "အက်စပလိန်", v3: "explained", v3_pron: "အက်စပလိန်", ving: "explaining", ving_pron: "အက်စပလိန်နင့်", meaning: "ရှင်းပြသည်" },
+{ v1: "explode", v1_pron: "အက်စပလိုး", v2: "exploded", v2_pron: "အက်စပလိုး", v3: "exploded", v3_pron: "အက်စပလိုး", ving: "exploding", ving_pron: "အက်စပလိုးဒင့်", meaning: "ပေါက်ကွဲသည်" },
+// 221-230
+{ v1: "explore", v1_pron: "အက်စပလော", v2: "explored", v2_pron: "အက်စပလော", v3: "explored", v3_pron: "အက်စပလော", ving: "exploring", ving_pron: "အက်စပလော်ရင့်", meaning: "စူးစမ်းသည်" },
+{ v1: "express", v1_pron: "အက်စပရက်စ်", v2: "expressed", v2_pron: "အက်စပရက်စ်", v3: "expressed", v3_pron: "အက်စပရက်စ်", ving: "expressing", ving_pron: "အက်စပရက်စင့်", meaning: "ဖော်ပြသည်" },
+{ v1: "extend", v1_pron: "အက်စတင့်", v2: "extended", v2_pron: "အက်စတင့်", v3: "extended", v3_pron: "အက်စတင့်", ving: "extending", ving_pron: "အက်စတင့်ဒင့်", meaning: "တိုးချဲ့သည်" },
+{ v1: "face", v1_pron: "ဖိတ်စ်", v2: "faced", v2_pron: "ဖိတ်စ်", v3: "faced", v3_pron: "ဖိတ်စ်", ving: "facing", ving_pron: "ဖိတ်စင့်", meaning: "ရင်ဆိုင်သည်" },
+{ v1: "fail", v1_pron: "ဖေလ်", v2: "failed", v2_pron: "ဖေလ်", v3: "failed", v3_pron: "ဖေလ်", ving: "failing", ving_pron: "ဖေလင့်", meaning: "ကျရှုံးသည်" },
+{ v1: "faint", v1_pron: "ဖိန့်", v2: "fainted", v2_pron: "ဖိန့်", v3: "fainted", v3_pron: "ဖိန့်", ving: "fainting", ving_pron: "ဖိန့်တင့်", meaning: "မူးလဲသည်" },
+{ v1: "fancy", v1_pron: "ဖန်စီ", v2: "fancied", v2_pron: "ဖန်စီ", v3: "fancied", v3_pron: "ဖန်စီ", ving: "fancying", ving_pron: "ဖန်စီအင့်", meaning: "စိတ်ကူးသည်" },
+{ v1: "fasten", v1_pron: "ဖာဆန်", v2: "fastened", v2_pron: "ဖာဆန်", v3: "fastened", v3_pron: "ဖာဆန်", ving: "fastening", ving_pron: "ဖာဆန်နင့်", meaning: "တွယ်ကပ်သည်" },
+{ v1: "fear", v1_pron: "ဖီးယား", v2: "feared", v2_pron: "ဖီးယား", v3: "feared", v3_pron: "ဖီးယား", ving: "fearing", ving_pron: "ဖီးယားရင့်", meaning: "ကြောက်သည်" },
+{ v1: "feed", v1_pron: "ဖီးဒ်", v2: "fed", v2_pron: "ဖဒ်", v3: "fed", v3_pron: "ဖဒ်", ving: "feeding", ving_pron: "ဖီးဒင့်", meaning: "ကျွေးသည်" },
+// 231-240
+{ v1: "fight", v1_pron: "ဖိုက်", v2: "fought", v2_pron: "ဖော့", v3: "fought", v3_pron: "ဖော့", ving: "fighting", ving_pron: "ဖိုက်တင့်", meaning: "တိုက်ခိုက်သည်" },
+{ v1: "fill", v1_pron: "ဖီးလ်", v2: "filled", v2_pron: "ဖီးလ်", v3: "filled", v3_pron: "ဖီးလ်", ving: "filling", ving_pron: "ဖီးလင့်", meaning: "ဖြည့်သည်" },
+{ v1: "find", v1_pron: "ဖိုင်န်", v2: "found", v2_pron: "ဖောင့်", v3: "found", v3_pron: "ဖောင့်", ving: "finding", ving_pron: "ဖိုင်န်ဒင့်", meaning: "ရှာတွေ့သည်" },
+{ v1: "fire", v1_pron: "ဖိုင်ယာ", v2: "fired", v2_pron: "ဖိုင်ယာ", v3: "fired", v3_pron: "ဖိုင်ယာ", ving: "firing", ving_pron: "ဖိုင်ယာရင့်", meaning: "ပစ်ခတ်သည်" },
+{ v1: "fit", v1_pron: "ဖစ်", v2: "fitted", v2_pron: "ဖစ်", v3: "fitted", v3_pron: "ဖစ်", ving: "fitting", ving_pron: "ဖစ်တင့်", meaning: "အံဝင်သည်" },
+{ v1: "fix", v1_pron: "ဖစ်ခ်", v2: "fixed", v2_pron: "ဖစ်ခ်", v3: "fixed", v3_pron: "ဖစ်ခ်", ving: "fixing", ving_pron: "ဖစ်ကင့်", meaning: "ပြင်ဆင်သည်" },
+{ v1: "float", v1_pron: "ဖလိုး", v2: "floated", v2_pron: "ဖလိုး", v3: "floated", v3_pron: "ဖလိုး", ving: "floating", ving_pron: "ဖလိုးတင့်", meaning: "မျောသည်" },
+{ v1: "flood", v1_pron: "ဖလတ်", v2: "flooded", v2_pron: "ဖလတ်", v3: "flooded", v3_pron: "ဖလတ်", ving: "flooding", ving_pron: "ဖလတ်ဒင့်", meaning: "ရေလွှမ်းမိုးသည်" },
+{ v1: "flourish", v1_pron: "ဖလောရစ်", v2: "flourished", v2_pron: "ဖလောရစ်", v3: "flourished", v3_pron: "ဖလောရစ်", ving: "flourishing", ving_pron: "ဖလောရစ်ရှင့်", meaning: "ထွန်းကားသည်" },
+{ v1: "fly", v1_pron: "ဖလိုင်", v2: "flew", v2_pron: "ဖလူး", v3: "flown", v3_pron: "ဖလိုး", ving: "flying", ving_pron: "ဖလိုင်အင့်", meaning: "ပျံသန်းသည်" },
+// 241-250
+{ v1: "fold", v1_pron: "ဖိုးလ်", v2: "folded", v2_pron: "ဖိုးလ်", v3: "folded", v3_pron: "ဖိုးလ်", ving: "folding", ving_pron: "ဖိုးလ်ဒင့်", meaning: "ခေါက်သည်" },
+{ v1: "force", v1_pron: "ဖော့စ်", v2: "forced", v2_pron: "ဖော့စ်", v3: "forced", v3_pron: "ဖော့စ်", ving: "forcing", ving_pron: "ဖော့စင့်", meaning: "အတင်းအကျပ်ခိုင်းသည်" },
+{ v1: "form", v1_pron: "ဖော်မ်", v2: "formed", v2_pron: "ဖော်မ်", v3: "formed", v3_pron: "ဖော်မ်", ving: "forming", ving_pron: "ဖော်မ်မင်", meaning: "ဖွဲ့စည်းသည်" },
+{ v1: "freeze", v1_pron: "ဖရီးဇ်", v2: "froze", v2_pron: "ဖရိုးဇ်", v3: "frozen", v3_pron: "ဖရိုးဇန်", ving: "freezing", ving_pron: "ဖရီးဇင့်", meaning: "အေးခဲသည်" },
+{ v1: "fry", v1_pron: "ဖရိုင်", v2: "fried", v2_pron: "ဖရိုင်", v3: "fried", v3_pron: "ဖရိုင်", ving: "frying", ving_pron: "ဖရိုင်အင့်", meaning: "ကြော်သည်" },
+{ v1: "gather", v1_pron: "ဂါသာ", v2: "gathered", v2_pron: "ဂါသာ", v3: "gathered", v3_pron: "ဂါသာ", ving: "gathering", ving_pron: "ဂါသာရင့်", meaning: "စုဝေးသည်" },
+{ v1: "glow", v1_pron: "ဂလိုး", v2: "glowed", v2_pron: "ဂလိုး", v3: "glowed", v3_pron: "ဂလိုး", ving: "glowing", ving_pron: "ဂလိုးအင့်", meaning: "တောက်ပသည်" },
+{ v1: "grab", v1_pron: "ဂရပ်", v2: "grabbed", v2_pron: "ဂရပ်", v3: "grabbed", v3_pron: "ဂရပ်", ving: "grabbing", ving_pron: "ဂရပ်ပင်", meaning: "ဆုပ်ကိုင်သည်" },
+{ v1: "greet", v1_pron: "ဂရိသ်", v2: "greeted", v2_pron: "ဂရိသ်", v3: "greeted", v3_pron: "ဂရိသ်", ving: "greeting", ving_pron: "ဂရိသ်တင့်", meaning: "နှုတ်ဆက်သည်" },
+{ v1: "guess", v1_pron: "ဂက်စ်", v2: "guessed", v2_pron: "ဂက်စ်", v3: "guessed", v3_pron: "ဂက်စ်", ving: "guessing", ving_pron: "ဂက်စင့်", meaning: "မှန်းဆသည်" },
+// 251-260
+{ v1: "guide", v1_pron: "ဂိုက်", v2: "guided", v2_pron: "ဂိုက်", v3: "guided", v3_pron: "ဂိုက်", ving: "guiding", ving_pron: "ဂိုက်ဒင့်", meaning: "လမ်းပြသည်" },
+{ v1: "handle", v1_pron: "ဟန်ဒယ်", v2: "handled", v2_pron: "ဟန်ဒယ်", v3: "handled", v3_pron: "ဟန်ဒယ်", ving: "handling", ving_pron: "ဟန်ဒယ်လင့်", meaning: "ကိုင်တွယ်သည်" },
+{ v1: "hang", v1_pron: "ဟန့်", v2: "hung", v2_pron: "ဟန့်", v3: "hung", v3_pron: "ဟန့်", ving: "hanging", ving_pron: "ဟန်အင့်", meaning: "ဆွဲထားသည်" },
+{ v1: "happen", v1_pron: "ဟပ်ပန်", v2: "happened", v2_pron: "ဟပ်ပန်", v3: "happened", v3_pron: "ဟပ်ပန်", ving: "happening", ving_pron: "ဟပ်ပန်နင့်", meaning: "ဖြစ်ပျက်သည်" },
+{ v1: "harm", v1_pron: "ဟာမ်", v2: "harmed", v2_pron: "ဟာမ်", v3: "harmed", v3_pron: "ဟာမ်", ving: "harming", ving_pron: "ဟာမ်မင်", meaning: "ထိခိုက်စေသည်" },
+{ v1: "hate", v1_pron: "ဟိတ်", v2: "hated", v2_pron: "ဟိတ်", v3: "hated", v3_pron: "ဟိတ်", ving: "hating", ving_pron: "ဟိတ်တင့်", meaning: "မုန်းသည်" },
+{ v1: "hunt", v1_pron: "ဟန့်", v2: "hunted", v2_pron: "ဟန့်", v3: "hunted", v3_pron: "ဟန့်", ving: "hunting", ving_pron: "ဟန့်တင့်", meaning: "အမဲလိုက်သည်" },
+{ v1: "hurry", v1_pron: "ဟာရီ", v2: "hurried", v2_pron: "ဟာရီ", v3: "hurried", v3_pron: "ဟာရီ", ving: "hurrying", ving_pron: "ဟာရီအင့်", meaning: "အလျင်စလိုလုပ်သည်" },
+{ v1: "ignore", v1_pron: "အစ်နော", v2: "ignored", v2_pron: "အစ်နော", v3: "ignored", v3_pron: "အစ်နော", ving: "ignoring", ving_pron: "အစ်နော်ရင့်", meaning: "လျစ်လျူရှုသည်" },
+{ v1: "imagine", v1_pron: "အီမက်ဂျင်း", v2: "imagined", v2_pron: "အီမက်ဂျင်း", v3: "imagined", v3_pron: "အီမက်ဂျင်း", ving: "imagining", ving_pron: "အီမက်ဂျင်းနင့်", meaning: "စိတ်ကူးသည်" },
+// 261-270
+{ v1: "improve", v1_pron: "အမ်ပရိုး", v2: "improved", v2_pron: "အမ်ပရိုး", v3: "improved", v3_pron: "အမ်ပရိုး", ving: "improving", ving_pron: "အမ်ပရိုးဗင့်", meaning: "တိုးတက်စေသည်" },
+{ v1: "include", v1_pron: "အင်ကလူး", v2: "included", v2_pron: "အင်ကလူး", v3: "included", v3_pron: "အင်ကလူး", ving: "including", ving_pron: "အင်ကလူးဒင့်", meaning: "ပါဝင်စေသည်" },
+{ v1: "increase", v1_pron: "အင်ခရီးစ်", v2: "increased", v2_pron: "အင်ခရီးစ်", v3: "increased", v3_pron: "အင်ခရီးစ်", ving: "increasing", ving_pron: "အင်ခရီးစင့်", meaning: "တိုးမြှင့်သည်" },
+{ v1: "indicate", v1_pron: "အင်ဒီကိတ်", v2: "indicated", v2_pron: "အင်ဒီကိတ်", v3: "indicated", v3_pron: "အင်ဒီကိတ်", ving: "indicating", ving_pron: "အင်ဒီကိတ်တင့်", meaning: "ညွှန်ပြသည်" },
+{ v1: "infect", v1_pron: "အင်fကက်", v2: "infected", v2_pron: "အင်fကက်", v3: "infected", v3_pron: "အင်fကက်", ving: "infecting", ving_pron: "အင်fကက်တင့်", meaning: "ကူးစက်စေသည်" },
+{ v1: "inform", v1_pron: "အင်fဖော်မ်", v2: "informed", v2_pron: "အင်fဖော်မ်", v3: "informed", v3_pron: "အင်fဖော်မ်", ving: "informing", ving_pron: "အင်fဖော်မ်မင်", meaning: "အကြောင်းကြားသည်" },
+{ v1: "injure", v1_pron: "အင်ဂျာ", v2: "injured", v2_pron: "အင်ဂျာ", v3: "injured", v3_pron: "အင်ဂျာ", ving: "injuring", ving_pron: "အင်ဂျာရင့်", meaning: "ဒဏ်ရာရစေသည်" },
+{ v1: "insist", v1_pron: "အင်စစ်", v2: "insisted", v2_pron: "အင်စစ်", v3: "insisted", v3_pron: "အင်စစ်", ving: "insisting", ving_pron: "အင်စစ်တင့်", meaning: "အခိုင်အမာပြောဆိုသည်" },
+{ v1: "instruct", v1_pron: "အင်စထရတ်", v2: "instructed", v2_pron: "အင်စထရတ်", v3: "instructed", v3_pron: "အင်စထရတ်", ving: "instructing", ving_pron: "အင်စထရက်တင့်", meaning: "ညွှန်ကြားသည်" },
+{ v1: "intend", v1_pron: "အင်တင့်", v2: "intended", v2_pron: "အင်တင့်", v3: "intended", v3_pron: "အင်တင့်", ving: "intending", ving_pron: "အင်တင့်ဒင့်", meaning: "ရည်ရွယ်သည်" },
+// 271-280
+{ v1: "interrupt", v1_pron: "အင်တာရပ်", v2: "interrupted", v2_pron: "အင်တာရပ်", v3: "interrupted", v3_pron: "အင်တာရပ်", ving: "interrupting", ving_pron: "အင်တာရပ်ပင်", meaning: "ကြားဖြတ်သည်" },
+{ v1: "introduce", v1_pron: "အင်ထရိုဒူးစ်", v2: "introduced", v2_pron: "အင်ထရိုဒူးစ်", v3: "introduced", v3_pron: "အင်ထရိုဒူးစ်", ving: "introducing", ving_pron: "အင်ထရိုဒူးစင့်", meaning: "မိတ်ဆက်သည်" },
+{ v1: "invite", v1_pron: "အမ်ဗိုက်", v2: "invited", v2_pron: "အမ်ဗိုက်", v3: "invited", v3_pron: "အမ်ဗိုက်", ving: "inviting", ving_pron: "အမ်ဗိုက်တင့်", meaning: "ဖိတ်ကြားသည်" },
+{ v1: "join", v1_pron: "ဂျွိုင်", v2: "joined", v2_pron: "ဂျွိုင်", v3: "joined", v3_pron: "ဂျွိုင်", ving: "joining", ving_pron: "ဂျိုင်အင့်", meaning: "ပါဝင်သည်" },
+{ v1: "joke", v1_pron: "ဂျိုက်", v2: "joked", v2_pron: "ဂျိုက်", v3: "joked", v3_pron: "ဂျိုက်", ving: "joking", ving_pron: "ဂျိုက်ကင်", meaning: "ဟာသလုပ်သည်" },
+{ v1: "judge", v1_pron: "ဂျအ်", v2: "judged", v2_pron: "ဂျအ်", v3: "judged", v3_pron: "ဂျအ်", ving: "judging", ving_pron: "ဂျအ်ဂျင့်", meaning: "ဆုံးဖြတ်သည်" },
+{ v1: "kick", v1_pron: "ကစ်", v2: "kicked", v2_pron: "ကစ်", v3: "kicked", v3_pron: "ကစ်", ving: "kicking", ving_pron: "ကစ်ကင်", meaning: "ကန်သည်" },
+{ v1: "kill", v1_pron: "ကီးလ်", v2: "killed", v2_pron: "ကီးလ်", v3: "killed", v3_pron: "ကီးလ်", ving: "killing", ving_pron: "ကီးလင့်", meaning: "သတ်သည်" },
+{ v1: "kiss", v1_pron: "ကစ်", v2: "kissed", v2_pron: "ကစ်", v3: "kissed", v3_pron: "ကစ်", ving: "kissing", ving_pron: "ကစ်စင့်", meaning: "နမ်းသည်" },
+{ v1: "knock", v1_pron: "နော့", v2: "knocked", v2_pron: "နော့", v3: "knocked", v3_pron: "နော့", ving: "knocking", ving_pron: "နော့ကင်", meaning: "ခေါက်သည်" },
+// 281-290
+{ v1: "land", v1_pron: "လန့်", v2: "landed", v2_pron: "လန့်", v3: "landed", v3_pron: "လန့်", ving: "landing", ving_pron: "လန့်ဒင့်", meaning: "ဆင်းသက်သည်" },
+{ v1: "laugh", v1_pron: "လဖ်", v2: "laughed", v2_pron: "လဖ်", v3: "laughed", v3_pron: "လဖ်", ving: "laughing", ving_pron: "လဖ်ဖင့်", meaning: "ရယ်သည်" },
+{ v1: "launch", v1_pron: "လောင့်", v2: "launched", v2_pron: "လောင့်", v3: "launched", v3_pron: "လောင့်", ving: "launching", ving_pron: "လောင့်ချင့်", meaning: "စတင်သည်" },
+{ v1: "lay", v1_pron: "လေ", v2: "laid", v2_pron: "လေး", v3: "laid", v3_pron: "လေး", ving: "laying", ving_pron: "လေအင့်", meaning: "ချထားသည်" },
+{ v1: "lead", v1_pron: "လီးဒ်", v2: "led", v2_pron: "လက်", v3: "led", v3_pron: "လက်", ving: "leading", ving_pron: "လီးဒင့်", meaning: "ဦးဆောင်သည်" },
+{ v1: "lean", v1_pron: "လီးန်", v2: "leaned/leant", v2_pron: "လီးန်/လင့်", v3: "leaned/leant", v3_pron: "လီးန်/လင့်", ving: "leaning", ving_pron: "လီးနင့်", meaning: "ကိုင်းညွှတ်သည်" },
+{ v1: "leap", v1_pron: "လိပ့်", v2: "leapt/leaped", v2_pron: "လက့်/လိပ့်", v3: "leapt/leaped", v3_pron: "လက့်/လိပ့်", ving: "leaping", ving_pron: "လိပ့်ပင်", meaning: "ခုန်သည်" },
+{ v1: "light", v1_pron: "လိုက်", v2: "lit", v2_pron: "လစ်", v3: "lit", v3_pron: "လစ်", ving: "lighting", ving_pron: "လိုက်တင့်", meaning: "မီးထွန်းသည်" },
+{ v1: "lock", v1_pron: "လော့", v2: "locked", v2_pron: "လော့", v3: "locked", v3_pron: "လော့", ving: "locking", ving_pron: "လော့ကင်", meaning: "သော့ခတ်သည်" },
+{ v1: "look", v1_pron: "လုပ်", v2: "looked", v2_pron: "လုပ်", v3: "looked", v3_pron: "လုပ်", ving: "looking", ving_pron: "လုပ်ကင်", meaning: "ကြည့်သည်" },
+// 291-300
+{ v1: "lower", v1_pron: "လိုးဝါ", v2: "lowered", v2_pron: "လိုးဝါ", v3: "lowered", v3_pron: "လိုးဝါ", ving: "lowering", ving_pron: "လိုးဝါရင့်", meaning: "လျှော့ချသည်" },
+{ v1: "march", v1_pron: "မာ့", v2: "marched", v2_pron: "မာ့", v3: "marched", v3_pron: "မာ့", ving: "marching", ving_pron: "မာ့ချင့်", meaning: "ချီတက်သည်" },
+{ v1: "mention", v1_pron: "မန်းရှန်", v2: "mentioned", v2_pron: "မန်းရှန်", v3: "mentioned", v3_pron: "မန်းရှန်", ving: "mentioning", ving_pron: "မန်းရှန်နင့်", meaning: "ဖော်ပြသည်" },
+{ v1: "merge", v1_pron: "မ့ာ", v2: "merged", v2_pron: "မ့ာ", v3: "merged", v3_pron: "မ့ာ", ving: "merging", ving_pron: "မ့ာဂျင့်", meaning: "ပေါင်းစည်းသည်" },
+{ v1: "mind", v1_pron: "မိုင်", v2: "minded", v2_pron: "မိုင်", v3: "minded", v3_pron: "မိုင်", ving: "minding", ving_pron: "မိုင်ဒင့်", meaning: "စိတ်ထဲထားသည်" },
+{ v1: "miss", v1_pron: "မစ်", v2: "missed", v2_pron: "မစ်", v3: "missed", v3_pron: "မစ်", ving: "missing", ving_pron: "မစ်စင့်", meaning: "လွတ်သွားသည်" },
+{ v1: "mix", v1_pron: "မစ်", v2: "mixed", v2_pron: "မစ်", v3: "mixed", v3_pron: "မစ်", ving: "mixing", ving_pron: "မစ်စင့်", meaning: "ရောသည်" },
+{ v1: "notice", v1_pron: "နိုးတစ်", v2: "noticed", v2_pron: "နိုးတစ်", v3: "noticed", v3_pron: "နိုးတစ်", ving: "noticing", ving_pron: "နိုးတစ်စင့်", meaning: "သတိပြုမိသည်" },
+{ v1: "obey", v1_pron: "အိုဘေ", v2: "obeyed", v2_pron: "အိုဘေ", v3: "obeyed", v3_pron: "အိုဘေ", ving: "obeying", ving_pron: "အိုဘေအင့်", meaning: "နာခံသည်" },
+{ v1: "observe", v1_pron: "အက်ဇာ့", v2: "observed", v2_pron: "အက်ဇာ့", v3: "observed", v3_pron: "အက်ဇာ့", ving: "observing", ving_pron: "အက်ဇာ့ဗင့်", meaning: "လေ့လာသည်" }
+,
+// =============================================================
+//  VERB 301 to 400 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - verb-forms.html ရဲ့ verbs array ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 301-310
+{ v1: "obtain", v1_pron: "အက်ဗ်တိန်", v2: "obtained", v2_pron: "အက်ဗ်တိန်", v3: "obtained", v3_pron: "အက်ဗ်တိန်", ving: "obtaining", ving_pron: "အက်ဗ်တိန်နင့်", meaning: "ရရှိသည်" },
+{ v1: "occupy", v1_pron: "အက်ကျူပါင်", v2: "occupied", v2_pron: "အက်ကျူပါင်", v3: "occupied", v3_pron: "အက်ကျူပါင်", ving: "occupying", ving_pron: "အက်ကျူပါိုင်အင့်", meaning: "သိမ်းပိုက်သည်" },
+{ v1: "occur", v1_pron: "အက်ကာ", v2: "occurred", v2_pron: "အက်ကာ", v3: "occurred", v3_pron: "အက်ကာ", ving: "occurring", ving_pron: "အက်ကာရင့်", meaning: "ဖြစ်ပေါ်သည်" },
+{ v1: "offer", v1_pron: "အော်ဖာ", v2: "offered", v2_pron: "အော်ဖာ", v3: "offered", v3_pron: "အော်ဖာ", ving: "offering", ving_pron: "အော်ဖာရင့်", meaning: "ကမ်းလှမ်းသည်" },
+{ v1: "operate", v1_pron: "အော်ပရိတ်", v2: "operated", v2_pron: "အော်ပရိတ်", v3: "operated", v3_pron: "အော်ပရိတ်", ving: "operating", ving_pron: "အော်ပရိတ်တင့်", meaning: "လုပ်ကိုင်သည်" },
+{ v1: "oppose", v1_pron: "အော့ပိုးဇ်", v2: "opposed", v2_pron: "အော့ပိုးဇ်", v3: "opposed", v3_pron: "အော့ပိုးဇ်", ving: "opposing", ving_pron: "အော့ပိုးဇင့်", meaning: "ဆန့်ကျင်သည်" },
+{ v1: "order", v1_pron: "အော်ဒါ", v2: "ordered", v2_pron: "အော်ဒါ", v3: "ordered", v3_pron: "အော်ဒါ", ving: "ordering", ving_pron: "အော်ဒါရင့်", meaning: "မှာကြားသည်" },
+{ v1: "organize", v1_pron: "အော်ဂါနိုက်ဇ်", v2: "organized", v2_pron: "အော်ဂါနိုက်ဇ်", v3: "organized", v3_pron: "အော်ဂါနိုက်ဇ်", ving: "organizing", ving_pron: "အော်ဂါနိုက်ဇင့်", meaning: "စီစဉ်သည်" },
+{ v1: "overcome", v1_pron: "အိုဗာကမ်း", v2: "overcame", v2_pron: "အိုဗာကမ်း", v3: "overcome", v3_pron: "အိုဗာကမ်း", ving: "overcoming", ving_pron: "အိုဗာကမ်မင့်", meaning: "ကျော်လွှားသည်" },
+{ v1: "overlook", v1_pron: "အိုဗာလုပ်", v2: "overlooked", v2_pron: "အိုဗာလုပ်", v3: "overlooked", v3_pron: "အိုဗာလုပ်", ving: "overlooking", ving_pron: "အိုဗာလုပ်ကင်", meaning: "လျစ်လျူရှုသည်" },
+// 311-320
+{ v1: "oversleep", v1_pron: "အိုဗာစလိပ့်", v2: "overslept", v2_pron: "အိုဗာစလက့်", v3: "overslept", v3_pron: "အိုဗာစလက့်", ving: "oversleeping", ving_pron: "အိုဗာစလိပ့်ပင်", meaning: "အိပ်လွန်သည်" },
+{ v1: "overtake", v1_pron: "အိုဗာတိတ်", v2: "overtook", v2_pron: "အိုဗာတုတ်", v3: "overtaken", v3_pron: "အိုဗာတိတ်ကန်", ving: "overtaking", ving_pron: "အိုဗာတိတ်ကင်", meaning: "ကျော်တက်သည်" },
+{ v1: "owe", v1_pron: "အိုး", v2: "owed", v2_pron: "အိုး", v3: "owed", v3_pron: "အိုး", ving: "owing", ving_pron: "အိုးအင့်", meaning: "ကြွေးတင်သည်" },
+{ v1: "own", v1_pron: "အိုး", v2: "owned", v2_pron: "အိုး", v3: "owned", v3_pron: "အိုး", ving: "owning", ving_pron: "အိုးအင့်", meaning: "ပိုင်ဆိုင်သည်" },
+{ v1: "pack", v1_pron: "ပက်", v2: "packed", v2_pron: "ပက်", v3: "packed", v3_pron: "ပက်", ving: "packing", ving_pron: "ပက်ကင်", meaning: "ထုပ်ပိုးသည်" },
+{ v1: "park", v1_pron: "ပါ", v2: "parked", v2_pron: "ပါ", v3: "parked", v3_pron: "ပါ", ving: "parking", ving_pron: "ပါကင်", meaning: "ရပ်ထားသည်" },
+{ v1: "participate", v1_pron: "ပါတီစီပက်", v2: "participated", v2_pron: "ပါတီစီပက်", v3: "participated", v3_pron: "ပါတီစီပက်", ving: "participating", ving_pron: "ပါတီစီပက်တင့်", meaning: "ပါဝင်သည်" },
+{ v1: "pass", v1_pron: "ပါ့စ်", v2: "passed", v2_pron: "ပါ့စ်", v3: "passed", v3_pron: "ပါ့စ်", ving: "passing", ving_pron: "ပါ့စင့်", meaning: "ဖြတ်သန်းသည်" },
+{ v1: "paste", v1_pron: "ပက်စ်", v2: "pasted", v2_pron: "ပက်စ်", v3: "pasted", v3_pron: "ပက်စ်", ving: "pasting", ving_pron: "ပက်စ်တင့်", meaning: "ကူးထည့်သည်" },
+{ v1: "pat", v1_pron: "ပက်", v2: "patted", v2_pron: "ပက်", v3: "patted", v3_pron: "ပက်", ving: "patting", ving_pron: "ပက်တင့်", meaning: "ပုတ်သည်" },
+// 321-330
+{ v1: "pause", v1_pron: "ပေါ့ဇ်", v2: "paused", v2_pron: "ပေါ့ဇ်", v3: "paused", v3_pron: "ပေါ့ဇ်", ving: "pausing", ving_pron: "ပေါ့ဇင့်", meaning: "ရပ်နားသည်" },
+{ v1: "peel", v1_pron: "ပီးလ်", v2: "peeled", v2_pron: "ပီးလ်", v3: "peeled", v3_pron: "ပီးလ်", ving: "peeling", ving_pron: "ပီးလင့်", meaning: "အခွံခွာသည်" },
+{ v1: "perceive", v1_pron: "ပါစီးဗ်", v2: "perceived", v2_pron: "ပါစီးဗ်", v3: "perceived", v3_pron: "ပါစီးဗ်", ving: "perceiving", ving_pron: "ပါစီးဗင့်", meaning: "သိမြင်သည်" },
+{ v1: "perform", v1_pron: "ပါဖော်မ်", v2: "performed", v2_pron: "ပါဖော်မ်", v3: "performed", v3_pron: "ပါဖော်မ်", ving: "performing", ving_pron: "ပါဖော်မ်မင်", meaning: "ဖျော်ဖြေသည်" },
+{ v1: "permit", v1_pron: "ပါမစ်", v2: "permitted", v2_pron: "ပါမစ်", v3: "permitted", v3_pron: "ပါမစ်", ving: "permitting", ving_pron: "ပါမစ်တင့်", meaning: "ခွင့်ပြုသည်" },
+{ v1: "persuade", v1_pron: "ပါစွီး", v2: "persuaded", v2_pron: "ပါစွီး", v3: "persuaded", v3_pron: "ပါစွီး", ving: "persuading", ving_pron: "ပါစွီးဒင့်", meaning: "ဆွဲဆောင်သည်" },
+{ v1: "pick", v1_pron: "ပစ်", v2: "picked", v2_pron: "ပစ်", v3: "picked", v3_pron: "ပစ်", ving: "picking", ving_pron: "ပစ်ကင်", meaning: "ကောက်သည်" },
+{ v1: "pin", v1_pron: "ပင်", v2: "pinned", v2_pron: "ပင်", v3: "pinned", v3_pron: "ပင်", ving: "pinning", ving_pron: "ပင်နင့်", meaning: "တွယ်ကပ်သည်" },
+{ v1: "place", v1_pron: "ပလိတ်စ်", v2: "placed", v2_pron: "ပလိတ်စ်", v3: "placed", v3_pron: "ပလိတ်စ်", ving: "placing", ving_pron: "ပလိတ်စင့်", meaning: "ထားရှိသည်" },
+{ v1: "plan", v1_pron: "ပလန်", v2: "planned", v2_pron: "ပလန်", v3: "planned", v3_pron: "ပလန်", ving: "planning", ving_pron: "ပလန်နင့်", meaning: "အစီအစဉ်ဆွဲသည်" },
+// 331-340
+{ v1: "plant", v1_pron: "ပလန့်", v2: "planted", v2_pron: "ပလန့်", v3: "planted", v3_pron: "ပလန့်", ving: "planting", ving_pron: "ပလန့်တင့်", meaning: "စိုက်ပျိုးသည်" },
+{ v1: "play", v1_pron: "ပလေ", v2: "played", v2_pron: "ပလေး", v3: "played", v3_pron: "ပလေး", ving: "playing", ving_pron: "ပလေအင့်", meaning: "ကစားသည်" },
+{ v1: "please", v1_pron: "ပလီးဇ်", v2: "pleased", v2_pron: "ပလီးဇ်", v3: "pleased", v3_pron: "ပလီးဇ်", ving: "pleasing", ving_pron: "ပလီးဇင့်", meaning: "ကျေနပ်စေသည်" },
+{ v1: "point", v1_pron: "ပွိုင့်", v2: "pointed", v2_pron: "ပွိုင့်", v3: "pointed", v3_pron: "ပွိုင့်", ving: "pointing", ving_pron: "ပွိုင့်တင့်", meaning: "ညွှန်ပြသည်" },
+{ v1: "polish", v1_pron: "ပေါ်လစ်", v2: "polished", v2_pron: "ပေါ်လစ်", v3: "polished", v3_pron: "ပေါ်လစ်", ving: "polishing", ving_pron: "ပေါ်လစ်ရှင့်", meaning: "တောက်ပစေသည်" },
+{ v1: "pop", v1_pron: "ပေါ့", v2: "popped", v2_pron: "ပေါ့", v3: "popped", v3_pron: "ပေါ့", ving: "popping", ving_pron: "ပေါ့ပင်", meaning: "ပေါက်ထွက်သည်" },
+{ v1: "possess", v1_pron: "ပါဇက်စ်", v2: "possessed", v2_pron: "ပါဇက်စ်", v3: "possessed", v3_pron: "ပါဇက်စ်", ving: "possessing", ving_pron: "ပါဇက်စင့်", meaning: "ပိုင်ဆိုင်သည်" },
+{ v1: "postpone", v1_pron: "ပိုစ့်ပိုး", v2: "postponed", v2_pron: "ပိုစ့်ပိုး", v3: "postponed", v3_pron: "ပိုစ့်ပိုး", ving: "postponing", ving_pron: "ပိုစ့်ပိုးနင့်", meaning: "ရွှေ့ဆိုင်းသည်" },
+{ v1: "pour", v1_pron: "ပေါ်", v2: "poured", v2_pron: "ပေါ်", v3: "poured", v3_pron: "ပေါ်", ving: "pouring", ving_pron: "ပေါ်ရင့်", meaning: "လောင်းသည်" },
+{ v1: "practise", v1_pron: "ပရက်တစ်", v2: "practised", v2_pron: "ပရက်တစ်", v3: "practised", v3_pron: "ပရက်တစ်", ving: "practising", ving_pron: "ပရက်တစ်စင့်", meaning: "လေ့ကျင့်သည်" },
+// 341-350
+{ v1: "praise", v1_pron: "ပရေဇ်", v2: "praised", v2_pron: "ပရေဇ်", v3: "praised", v3_pron: "ပရေဇ်", ving: "praising", ving_pron: "ပရေဇင့်", meaning: "ချီးမွမ်းသည်" },
+{ v1: "pray", v1_pron: "ပရေ", v2: "prayed", v2_pron: "ပရေ", v3: "prayed", v3_pron: "ပရေ", ving: "praying", ving_pron: "ပရေအင့်", meaning: "ဆုတောင်းသည်" },
+{ v1: "prefer", v1_pron: "ပရီဖာ", v2: "preferred", v2_pron: "ပရီဖာ", v3: "preferred", v3_pron: "ပရီဖာ", ving: "preferring", ving_pron: "ပရီဖာရင့်", meaning: "ပိုနှစ်သက်သည်" },
+{ v1: "prepare", v1_pron: "ပရီပဲ", v2: "prepared", v2_pron: "ပရီပဲ", v3: "prepared", v3_pron: "ပရီပဲ", ving: "preparing", ving_pron: "ပရီပဲရင့်", meaning: "ပြင်ဆင်သည်" },
+{ v1: "present", v1_pron: "ပရီဇင့်", v2: "presented", v2_pron: "ပရီဇင့်", v3: "presented", v3_pron: "ပရီဇင့်", ving: "presenting", ving_pron: "ပရီဇင့်ဒင့်", meaning: "တင်ပြသည်" },
+{ v1: "preserve", v1_pron: "ပရီဇာ", v2: "preserved", v2_pron: "ပရီဇာ", v3: "preserved", v3_pron: "ပရီဇာ", ving: "preserving", ving_pron: "ပရီဇာရင့်", meaning: "ထိန်းသိမ်းသည်" },
+{ v1: "press", v1_pron: "ပရက်စ်", v2: "pressed", v2_pron: "ပရက်စ်", v3: "pressed", v3_pron: "ပရက်စ်", ving: "pressing", ving_pron: "ပရက်စင့်", meaning: "နှိပ်သည်" },
+{ v1: "pretend", v1_pron: "ပရီတင့်", v2: "pretended", v2_pron: "ပရီတင့်", v3: "pretended", v3_pron: "ပရီတင့်", ving: "pretending", ving_pron: "ပရီတင့်ဒင့်", meaning: "ဟန်ဆောင်သည်" },
+{ v1: "prevent", v1_pron: "ပရီဗင့်", v2: "prevented", v2_pron: "ပရီဗင့်", v3: "prevented", v3_pron: "ပရီဗင့်", ving: "preventing", ving_pron: "ပရီဗင့်ဒင့်", meaning: "ကာကွယ်သည်" },
+{ v1: "print", v1_pron: "ပရင့်", v2: "printed", v2_pron: "ပရင့်", v3: "printed", v3_pron: "ပရင့်", ving: "printing", ving_pron: "ပရင့်တင့်", meaning: "ပုံနှိပ်သည်" },
+// 351-360
+{ v1: "proceed", v1_pron: "ပရိုစီး", v2: "proceeded", v2_pron: "ပရိုစီး", v3: "proceeded", v3_pron: "ပရိုစီး", ving: "proceeding", ving_pron: "ပရိုစီးဒင့်", meaning: "ဆက်လက်ဆောင်ရွက်သည်" },
+{ v1: "produce", v1_pron: "ပရိုဒူးစ်", v2: "produced", v2_pron: "ပရိုဒူးစ်", v3: "produced", v3_pron: "ပရိုဒူးစ်", ving: "producing", ving_pron: "ပရိုဒူးစင့်", meaning: "ထုတ်လုပ်သည်" },
+{ v1: "promote", v1_pron: "ပရိုမိုးသ်", v2: "promoted", v2_pron: "ပရိုမိုးသ်", v3: "promoted", v3_pron: "ပရိုမိုးသ်", ving: "promoting", ving_pron: "ပရိုမိုးသ်တင့်", meaning: "မြှင့်တင်သည်" },
+{ v1: "protect", v1_pron: "ပရိုတက်ခ်", v2: "protected", v2_pron: "ပရိုတက်ခ်", v3: "protected", v3_pron: "ပရိုတက်ခ်", ving: "protecting", ving_pron: "ပရိုတက်တင့်", meaning: "ကာကွယ်သည်" },
+{ v1: "prove", v1_pron: "ပရိုး", v2: "proved", v2_pron: "ပရိုး", v3: "proved/proven", v3_pron: "ပရိုး/ပရိုဗန်", ving: "proving", ving_pron: "ပရိုးဗင့်", meaning: "သက်သေပြသည်" },
+{ v1: "provide", v1_pron: "ပရိုဗိုက်", v2: "provided", v2_pron: "ပရိုဗိုက်", v3: "provided", v3_pron: "ပရိုဗိုက်", ving: "providing", ving_pron: "ပရိုဗိုက်ဒင့်", meaning: "ထောက်ပံ့သည်" },
+{ v1: "publish", v1_pron: "ပပ်ဘလစ်", v2: "published", v2_pron: "ပပ်ဘလစ်", v3: "published", v3_pron: "ပပ်ဘလစ်", ving: "publishing", ving_pron: "ပပ်ဘလစ်ရှင့်", meaning: "ထုတ်ဝေသည်" },
+{ v1: "pull", v1_pron: "ပုလ်", v2: "pulled", v2_pron: "ပုလ်", v3: "pulled", v3_pron: "ပုလ်", ving: "pulling", ving_pron: "ပုလ်လင့်", meaning: "ဆွဲသည်" },
+{ v1: "pump", v1_pron: "ပမ့်", v2: "pumped", v2_pron: "ပမ့်", v3: "pumped", v3_pron: "ပမ့်", ving: "pumping", ving_pron: "ပမ့်ပင်", meaning: "ညှစ်သည်" },
+{ v1: "punish", v1_pron: "ပနစ်", v2: "punished", v2_pron: "ပနစ်", v3: "punished", v3_pron: "ပနစ်", ving: "punishing", ving_pron: "ပနစ်ရှင့်", meaning: "အပြစ်ပေးသည်" },
+// 361-370
+{ v1: "purchase", v1_pron: "ပါချက်စ်", v2: "purchased", v2_pron: "ပါချက်စ်", v3: "purchased", v3_pron: "ပါချက်စ်", ving: "purchasing", ving_pron: "ပါချက်စင့်", meaning: "ဝယ်ယူသည်" },
+{ v1: "pursue", v1_pron: "ပါစူး", v2: "pursued", v2_pron: "ပါစူး", v3: "pursued", v3_pron: "ပါစူး", ving: "pursuing", ving_pron: "ပါစူးအင့်", meaning: "လိုက်စားသည်" },
+{ v1: "push", v1_pron: "ပုရှ်", v2: "pushed", v2_pron: "ပုရှ်", v3: "pushed", v3_pron: "ပုရှ်", ving: "pushing", ving_pron: "ပုရှင့်", meaning: "တွန်းသည်" },
+{ v1: "qualify", v1_pron: "ကွယ်လိုဖိုင်", v2: "qualified", v2_pron: "ကွယ်လိုဖိုင်", v3: "qualified", v3_pron: "ကွယ်လိုဖိုင်", ving: "qualifying", ving_pron: "ကွယ်လိုဖိုင်အင့်", meaning: "အရည်အချင်းပြည့်မီသည်" },
+{ v1: "question", v1_pron: "ကွစ်ချှင်", v2: "questioned", v2_pron: "ကွစ်ချှင်", v3: "questioned", v3_pron: "ကွစ်ချှင်", ving: "questioning", ving_pron: "ကွစ်ချှန်နင့်", meaning: "မေးခွန်းထုတ်သည်" },
+{ v1: "quit", v1_pron: "ကွိတ်", v2: "quit", v2_pron: "ကွိတ်", v3: "quit", v3_pron: "ကွိတ်", ving: "quitting", ving_pron: "ကွိတ်တင့်", meaning: "ထွက်သည်" },
+{ v1: "quote", v1_pron: "ကွီး", v2: "quoted", v2_pron: "ကွီး", v3: "quoted", v3_pron: "ကွီး", ving: "quoting", ving_pron: "ကွီးတင့်", meaning: "ကိုးကားသည်" },
+{ v1: "race", v1_pron: "ရေ့စ်", v2: "raced", v2_pron: "ရေ့စ်", v3: "raced", v3_pron: "ရေ့စ်", ving: "racing", ving_pron: "ရေ့စင့်", meaning: "ပြိုင်သည်" },
+{ v1: "raise", v1_pron: "ရေဇ်", v2: "raised", v2_pron: "ရေဇ်", v3: "raised", v3_pron: "ရေဇ်", ving: "raising", ving_pron: "ရေဇင့်", meaning: "မြှင့်တင်သည်" },
+{ v1: "reach", v1_pron: "ရီးချ်", v2: "reached", v2_pron: "ရီးချ်", v3: "reached", v3_pron: "ရီးချ်", ving: "reaching", ving_pron: "ရီးချင့်", meaning: "ရောက်ရှိသည်" },
+// 371-380
+{ v1: "react", v1_pron: "ရီအက်", v2: "reacted", v2_pron: "ရီအက်", v3: "reacted", v3_pron: "ရီအက်", ving: "reacting", ving_pron: "ရီအက်တင့်", meaning: "တုံ့ပြန်သည်" },
+{ v1: "realize", v1_pron: "ရီယလိုက်ဇ်", v2: "realized", v2_pron: "ရီယလိုက်ဇ်", v3: "realized", v3_pron: "ရီယလိုက်ဇ်", ving: "realizing", ving_pron: "ရီယလိုက်ဇင့်", meaning: "သဘောပေါက်သည်" },
+{ v1: "rebel", v1_pron: "ရီဘဲလ်", v2: "rebelled", v2_pron: "ရီဘဲလ်", v3: "rebelled", v3_pron: "ရီဘဲလ်", ving: "rebelling", ving_pron: "ရီဘဲလင့်", meaning: "ပုန်ကန်သည်" },
+{ v1: "recall", v1_pron: "ရီခေါ်", v2: "recalled", v2_pron: "ရီခေါ်", v3: "recalled", v3_pron: "ရီခေါ်", ving: "recalling", ving_pron: "ရီခေါ်လင့်", meaning: "ပြန်အမှတ်ရသည်" },
+{ v1: "receive", v1_pron: "ရီစီးဗ်", v2: "received", v2_pron: "ရီစီးဗ်", v3: "received", v3_pron: "ရီစီးဗ်", ving: "receiving", ving_pron: "ရီစီးဗင့်", meaning: "လက်ခံရရှိသည်" },
+{ v1: "reckon", v1_pron: "ရက်ကန်", v2: "reckoned", v2_pron: "ရက်ကန်", v3: "reckoned", v3_pron: "ရက်ကန်", ving: "reckoning", ving_pron: "ရက်ကန်နင့်", meaning: "တွက်ချက်သည်" },
+{ v1: "recognize", v1_pron: "ရက်က်နိုက်ဇ်", v2: "recognized", v2_pron: "ရက်က်နိုက်ဇ်", v3: "recognized", v3_pron: "ရက်က်နိုက်ဇ်", ving: "recognizing", ving_pron: "ရက်က်နိုက်ဇင့်", meaning: "အသိအမှတ်ပြုသည်" },
+{ v1: "recommend", v1_pron: "ရက်က်မန့်", v2: "recommended", v2_pron: "ရက်က်မန့်", v3: "recommended", v3_pron: "ရက်က်မန့်", ving: "recommending", ving_pron: "ရက်က်မန့်ဒင့်", meaning: "အကြံပြုသည်" },
+{ v1: "reduce", v1_pron: "ရီဒူးစ်", v2: "reduced", v2_pron: "ရီဒူးစ်", v3: "reduced", v3_pron: "ရီဒူးစ်", ving: "reducing", ving_pron: "ရီဒူးစင့်", meaning: "လျှော့ချသည်" },
+{ v1: "reflect", v1_pron: "ရီဖလက်ခ်", v2: "reflected", v2_pron: "ရီဖလက်ခ်", v3: "reflected", v3_pron: "ရီဖလက်ခ်", ving: "reflecting", ving_pron: "ရီဖလက်တင့်", meaning: "ရောင်ပြန်ဟပ်သည်" },
+// 381-390
+{ v1: "refuse", v1_pron: "ရီဖူးဇ်", v2: "refused", v2_pron: "ရီဖူးဇ်", v3: "refused", v3_pron: "ရီဖူးဇ်", ving: "refusing", ving_pron: "ရီဖူးဇင့်", meaning: "ငြင်းဆန်သည်" },
+{ v1: "regard", v1_pron: "ရီဂါ", v2: "regarded", v2_pron: "ရီဂါ", v3: "regarded", v3_pron: "ရီဂါ", ving: "regarding", ving_pron: "ရီဂါရင့်", meaning: "ရှုမြင်သည်" },
+{ v1: "regret", v1_pron: "ရီဂရက်", v2: "regretted", v2_pron: "ရီဂရက်", v3: "regretted", v3_pron: "ရီဂရက်", ving: "regretting", ving_pron: "ရီဂရက်တင့်", meaning: "နောင်တရသည်" },
+{ v1: "reject", v1_pron: "ရီဂျက်", v2: "rejected", v2_pron: "ရီဂျက်", v3: "rejected", v3_pron: "ရီဂျက်", ving: "rejecting", ving_pron: "ရီဂျက်တင့်", meaning: "ပယ်ချသည်" },
+{ v1: "release", v1_pron: "ရီလိစ်", v2: "released", v2_pron: "ရီလိစ်", v3: "released", v3_pron: "ရီလိစ်", ving: "releasing", ving_pron: "ရီလိစ်စင့်", meaning: "လွှတ်ပေးသည်" },
+{ v1: "remain", v1_pron: "ရီမန်း", v2: "remained", v2_pron: "ရီမန်း", v3: "remained", v3_pron: "ရီမန်း", ving: "remaining", ving_pron: "ရီမန်းနင့်", meaning: "ကျန်ရှိသည်" },
+{ v1: "remember", v1_pron: "ရီမမ်ဘာ", v2: "remembered", v2_pron: "ရီမမ်ဘာ", v3: "remembered", v3_pron: "ရီမမ်ဘာ", ving: "remembering", ving_pron: "ရီမမ်ဘာရင့်", meaning: "မှတ်မိသည်" },
+{ v1: "remove", v1_pron: "ရီမူးဗ်", v2: "removed", v2_pron: "ရီမူးဗ်", v3: "removed", v3_pron: "ရီမူးဗ်", ving: "removing", ving_pron: "ရီမူးဗင့်", meaning: "ဖယ်ရှားသည်" },
+{ v1: "repair", v1_pron: "ရီပဲ", v2: "repaired", v2_pron: "ရီပဲ", v3: "repaired", v3_pron: "ရီပဲ", ving: "repairing", ving_pron: "ရီပဲရင့်", meaning: "ပြင်ဆင်သည်" },
+{ v1: "repeat", v1_pron: "ရီပီးသ်", v2: "repeated", v2_pron: "ရီပီးသ်", v3: "repeated", v3_pron: "ရီပီးသ်", ving: "repeating", ving_pron: "ရီပီးသ်တင့်", meaning: "ပြန်လုပ်သည်" },
+// 391-400
+{ v1: "replace", v1_pron: "ရီပလေ့စ်", v2: "replaced", v2_pron: "ရီပလေ့စ်", v3: "replaced", v3_pron: "ရီပလေ့စ်", ving: "replacing", ving_pron: "ရီပလေ့စင့်", meaning: "အစားထိုးသည်" },
+{ v1: "reply", v1_pron: "ရီပလိုင်", v2: "replied", v2_pron: "ရီပလိုင်", v3: "replied", v3_pron: "ရီပလိုင်", ving: "replying", ving_pron: "ရီပလိုင်အင့်", meaning: "ပြန်ကြားသည်" },
+{ v1: "report", v1_pron: "ရီပေါ့", v2: "reported", v2_pron: "ရီပေါ့", v3: "reported", v3_pron: "ရီပေါ့", ving: "reporting", ving_pron: "ရီပေါ့တင့်", meaning: "သတင်းပို့သည်" },
+{ v1: "represent", v1_pron: "ရက်ပရီဇင့်", v2: "represented", v2_pron: "ရက်ပရီဇင့်", v3: "represented", v3_pron: "ရက်ပရီဇင့်", ving: "representing", ving_pron: "ရက်ပရီဇင့်ဒင့်", meaning: "ကိုယ်စားပြုသည်" },
+{ v1: "require", v1_pron: "ရီကွိုင်ယာ", v2: "required", v2_pron: "ရီကွိုင်ယာ", v3: "required", v3_pron: "ရီကွိုင်ယာ", ving: "requiring", ving_pron: "ရီကွိုင်ယာရင့်", meaning: "လိုအပ်သည်" },
+{ v1: "rescue", v1_pron: "ရက်စကီူး", v2: "rescued", v2_pron: "ရက်စကီူး", v3: "rescued", v3_pron: "ရက်စကီူး", ving: "rescuing", ving_pron: "ရက်စကီူးအင့်", meaning: "ကယ်ဆယ်သည်" },
+{ v1: "research", v1_pron: "ရီစာ့", v2: "researched", v2_pron: "ရီစာ့", v3: "researched", v3_pron: "ရီစာ့", ving: "researching", ving_pron: "ရီစာ့ချင့်", meaning: "သုတေသနပြုသည်" },
+{ v1: "resign", v1_pron: "ရီဇိုင်း", v2: "resigned", v2_pron: "ရီဇိုင်း", v3: "resigned", v3_pron: "ရီဇိုင်း", ving: "resigning", ving_pron: "ရီဇိုင်အင့်", meaning: "နုတ်ထွက်သည်" },
+{ v1: "resist", v1_pron: "ရီဇစ်", v2: "resisted", v2_pron: "ရီဇစ်", v3: "resisted", v3_pron: "ရီဇစ်", ving: "resisting", ving_pron: "ရီဇစ်တင့်", meaning: "ခုခံသည်" },
+{ v1: "resolve", v1_pron: "ရီဇော့", v2: "resolved", v2_pron: "ရီဇော့", v3: "resolved", v3_pron: "ရီဇော့", ving: "resolving", ving_pron: "ရီဇော့ဗင့်", meaning: "ဖြေရှင်းသည်" }
+,
+// =============================================================
+//  VERB 401 to 500 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - verb-forms.html ရဲ့ verbs array ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 401-410
+{ v1: "rest", v1_pron: "ရက်စ်", v2: "rested", v2_pron: "ရက်စ်", v3: "rested", v3_pron: "ရက်စ်", ving: "resting", ving_pron: "ရက်စ်တင့်", meaning: "အနားယူသည်" },
+{ v1: "restore", v1_pron: "ရက်စတော", v2: "restored", v2_pron: "ရက်စတော", v3: "restored", v3_pron: "ရက်စတော", ving: "restoring", ving_pron: "ရက်စတော်ရင့်", meaning: "ပြန်လည်ထူထောင်သည်" },
+{ v1: "restrict", v1_pron: "ရက်စထရစ်", v2: "restricted", v2_pron: "ရက်စထရစ်", v3: "restricted", v3_pron: "ရက်စထရစ်", ving: "restricting", ving_pron: "ရက်စထရစ်တင့်", meaning: "ကန့်သတ်သည်" },
+{ v1: "retain", v1_pron: "ရီတိန်း", v2: "retained", v2_pron: "ရီတိန်း", v3: "retained", v3_pron: "ရီတိန်း", ving: "retaining", ving_pron: "ရီတိန်းနင့်", meaning: "ထိန်းသိမ်းသည်" },
+{ v1: "retire", v1_pron: "ရီတိုင်ယာ", v2: "retired", v2_pron: "ရီတိုင်ယာ", v3: "retired", v3_pron: "ရီတိုင်ယာ", ving: "retiring", ving_pron: "ရီတိုင်ယာရင့်", meaning: "အငြိမ်းစားယူသည်" },
+{ v1: "retreat", v1_pron: "ရီထရိသ်", v2: "retreated", v2_pron: "ရီထရိသ်", v3: "retreated", v3_pron: "ရီထရိသ်", ving: "retreating", ving_pron: "ရီထရိသ်တင့်", meaning: "ဆုတ်ခွာသည်" },
+{ v1: "return", v1_pron: "ရီတန်း", v2: "returned", v2_pron: "ရီတန်း", v3: "returned", v3_pron: "ရီတန်း", ving: "returning", ving_pron: "ရီတန်းနင့်", meaning: "ပြန်လာသည်" },
+{ v1: "reveal", v1_pron: "ရီဗီးလ်", v2: "revealed", v2_pron: "ရီဗီးလ်", v3: "revealed", v3_pron: "ရီဗီးလ်", ving: "revealing", ving_pron: "ရီဗီးလင့်", meaning: "ဖော်ထုတ်သည်" },
+{ v1: "reverse", v1_pron: "ရီဗာ့စ်", v2: "reversed", v2_pron: "ရီဗာ့စ်", v3: "reversed", v3_pron: "ရီဗာ့စ်", ving: "reversing", ving_pron: "ရီဗာ့စင့်", meaning: "ပြောင်းပြန်လှန်သည်" },
+{ v1: "review", v1_pron: "ရီဗျူး", v2: "reviewed", v2_pron: "ရီဗျူး", v3: "reviewed", v3_pron: "ရီဗျူး", ving: "reviewing", ving_pron: "ရီဗျူးအင့်", meaning: "ပြန်လည်သုံးသပ်သည်" },
+// 411-420
+{ v1: "revise", v1_pron: "ရီဗိုက်ဇ်", v2: "revised", v2_pron: "ရီဗိုက်ဇ်", v3: "revised", v3_pron: "ရီဗိုက်ဇ်", ving: "revising", ving_pron: "ရီဗိုက်ဇင့်", meaning: "ပြန်လည်ပြင်ဆင်သည်" },
+{ v1: "revolt", v1_pron: "ရီဗိုးလ်", v2: "revolted", v2_pron: "ရီဗိုးလ်", v3: "revolted", v3_pron: "ရီဗိုးလ်", ving: "revolting", ving_pron: "ရီဗိုးလ်တင့်", meaning: "ပုန်ကန်သည်" },
+{ v1: "ride", v1_pron: "ရိုက်", v2: "rode", v2_pron: "ရိုးဒ်", v3: "ridden", v3_pron: "ရစ်ဒန်", ving: "riding", ving_pron: "ရိုက်ဒင့်", meaning: "စီးသည်" },
+{ v1: "ring", v1_pron: "ရင့်", v2: "rang", v2_pron: "ရန့်", v3: "rung", v3_pron: "ရန့်", ving: "ringing", ving_pron: "ရင်အင့်", meaning: "မြည်သည်" },
+{ v1: "rise", v1_pron: "ရိုက်ဇ်", v2: "rose", v2_pron: "ရိုးဇ်", v3: "risen", v3_pron: "ရစ်ဇန်", ving: "rising", ving_pron: "ရိုက်ဇင့်", meaning: "တက်သည်" },
+{ v1: "risk", v1_pron: "ရစ်စ်", v2: "risked", v2_pron: "ရစ်စ်", v3: "risked", v3_pron: "ရစ်စ်", ving: "risking", ving_pron: "ရစ်စ်ကင်", meaning: "စွန့်စားသည်" },
+{ v1: "roll", v1_pron: "ရိုးလ်", v2: "rolled", v2_pron: "ရိုးလ်", v3: "rolled", v3_pron: "ရိုးလ်", ving: "rolling", ving_pron: "ရိုးလ်လင့်", meaning: "လူးသည်" },
+{ v1: "rot", v1_pron: "ရော့", v2: "rotted", v2_pron: "ရော့", v3: "rotted", v3_pron: "ရော့", ving: "rotting", ving_pron: "ရော့တင့်", meaning: "ပုပ်သည်" },
+{ v1: "rough", v1_pron: "ရဖ်", v2: "roughed", v2_pron: "ရဖ်", v3: "roughed", v3_pron: "ရဖ်", ving: "roughing", ving_pron: "ရဖ်ဖင့်", meaning: "ကြမ်းတမ်းစေသည်" },
+{ v1: "ruin", v1_pron: "ရူးအင်း", v2: "ruined", v2_pron: "ရူးအင်း", v3: "ruined", v3_pron: "ရူးအင်း", ving: "ruining", ving_pron: "ရူးအင်းနင့်", meaning: "ပျက်စီးစေသည်" },
+// 421-430
+{ v1: "rush", v1_pron: "ရပ်ရှ်", v2: "rushed", v2_pron: "ရပ်ရှ်", v3: "rushed", v3_pron: "ရပ်ရှ်", ving: "rushing", ving_pron: "ရပ်ရှင့်", meaning: "အလျင်စလိုလုပ်သည်" },
+{ v1: "sail", v1_pron: "ဆေး", v2: "sailed", v2_pron: "ဆေး", v3: "sailed", v3_pron: "ဆေး", ving: "sailing", ving_pron: "ဆေးအင့်", meaning: "ရွက်လွှင့်သည်" },
+{ v1: "satisfy", v1_pron: "ဆက်စ်ဖိုင်", v2: "satisfied", v2_pron: "ဆက်စ်ဖိုင်", v3: "satisfied", v3_pron: "ဆက်စ်ဖိုင်", ving: "satisfying", ving_pron: "ဆက်စ်ဖိုင်အင့်", meaning: "ကျေနပ်စေသည်" },
+{ v1: "save", v1_pron: "ဆေးဗ်", v2: "saved", v2_pron: "ဆေးဗ်", v3: "saved", v3_pron: "ဆေးဗ်", ving: "saving", ving_pron: "ဆေးဗင့်", meaning: "ကယ်တင်သည်" },
+{ v1: "scare", v1_pron: "စကဲ", v2: "scared", v2_pron: "စကဲ", v3: "scared", v3_pron: "စကဲ", ving: "scaring", ving_pron: "စကဲရင့်", meaning: "ကြောက်စေသည်" },
+{ v1: "scatter", v1_pron: "စကက်တာ", v2: "scattered", v2_pron: "စကက်တာ", v3: "scattered", v3_pron: "စကက်တာ", ving: "scattering", ving_pron: "စကက်တာရင့်", meaning: "ဖြန့်ကျဲစေသည်" },
+{ v1: "schedule", v1_pron: "ရှက်ဒျူး", v2: "scheduled", v2_pron: "ရှက်ဒျူး", v3: "scheduled", v3_pron: "ရှက်ဒျူး", ving: "scheduling", ving_pron: "ရှက်ဒျူးအင့်", meaning: "အချိန်ဇယားဆွဲသည်" },
+{ v1: "scratch", v1_pron: "စကရက်", v2: "scratched", v2_pron: "စကရက်", v3: "scratched", v3_pron: "စကရက်", ving: "scratching", ving_pron: "စကရက်ကင်", meaning: "ခြစ်သည်" },
+{ v1: "scream", v1_pron: "စကရီးမ်", v2: "screamed", v2_pron: "စကရီးမ်", v3: "screamed", v3_pron: "စကရီးမ်", ving: "screaming", ving_pron: "စကရီးမ်မင်", meaning: "အော်ဟစ်သည်" },
+{ v1: "seal", v1_pron: "စီးလ်", v2: "sealed", v2_pron: "စီးလ်", v3: "sealed", v3_pron: "စီးလ်", ving: "sealing", ving_pron: "စီးလင့်", meaning: "တံဆိပ်ခတ်သည်" },
+// 431-440
+{ v1: "search", v1_pron: "ဆာ့", v2: "searched", v2_pron: "ဆာ့", v3: "searched", v3_pron: "ဆာ့", ving: "searching", ving_pron: "ဆာ့ချင့်", meaning: "ရှာဖွေသည်" },
+{ v1: "secure", v1_pron: "စီကျူးယား", v2: "secured", v2_pron: "စီကျူးယား", v3: "secured", v3_pron: "စီကျူးယား", ving: "securing", ving_pron: "စီကျူးယားရင့်", meaning: "လုံခြုံစေသည်" },
+{ v1: "select", v1_pron: "စီလက်ခ်", v2: "selected", v2_pron: "စီလက်ခ်", v3: "selected", v3_pron: "စီလက်ခ်", ving: "selecting", ving_pron: "စီလက်တင့်", meaning: "ရွေးချယ်သည်" },
+{ v1: "separate", v1_pron: "စက်ပရိတ်", v2: "separated", v2_pron: "စက်ပရိတ်", v3: "separated", v3_pron: "စက်ပရိတ်", ving: "separating", ving_pron: "စက်ပရိတ်တင့်", meaning: "ခွဲခြားသည်" },
+{ v1: "settle", v1_pron: "ဆက်တယ်", v2: "settled", v2_pron: "ဆက်တယ်", v3: "settled", v3_pron: "ဆက်တယ်", ving: "settling", ving_pron: "ဆက်တယ်လင့်", meaning: "ဖြေရှင်းသည်" },
+{ v1: "shake", v1_pron: "ရှိတ်", v2: "shook", v2_pron: "ရှုတ်", v3: "shaken", v3_pron: "ရှိတ်ကန်", ving: "shaking", ving_pron: "ရှိတ်ကင်", meaning: "လှုပ်သည်" },
+{ v1: "shave", v1_pron: "ရှေးဗ်", v2: "shaved", v2_pron: "ရှေးဗ်", v3: "shaved", v3_pron: "ရှေးဗ်", ving: "shaving", ving_pron: "ရှေးဗင့်", meaning: "မုတ်ဆိတ်ရိတ်သည်" },
+{ v1: "shelter", v1_pron: "ရှယ်လ်တာ", v2: "sheltered", v2_pron: "ရှယ်လ်တာ", v3: "sheltered", v3_pron: "ရှယ်လ်တာ", ving: "sheltering", ving_pron: "ရှယ်လ်တာရင့်", meaning: "ခိုလှုံသည်" },
+{ v1: "shift", v1_pron: "ရှစ်", v2: "shifted", v2_pron: "ရှစ်", v3: "shifted", v3_pron: "ရှစ်", ving: "shifting", ving_pron: "ရှစ်ဖင့်", meaning: "ပြောင်းရွှေ့သည်" },
+{ v1: "shine", v1_pron: "ရှိုင်း", v2: "shone", v2_pron: "ရှုန်း", v3: "shone", v3_pron: "ရှုန်း", ving: "shining", ving_pron: "ရှိုင်းနင့်", meaning: "တောက်ပသည်" },
+// 441-450
+{ v1: "shout", v1_pron: "ရှောင့်", v2: "shouted", v2_pron: "ရှောင့်", v3: "shouted", v3_pron: "ရှောင့်", ving: "shouting", ving_pron: "ရှောင့်တင့်", meaning: "အော်သည်" },
+{ v1: "shut", v1_pron: "ရှတ်", v2: "shut", v2_pron: "ရှတ်", v3: "shut", v3_pron: "ရှတ်", ving: "shutting", ving_pron: "ရှတ်တင့်", meaning: "ပိတ်သည်" },
+{ v1: "signal", v1_pron: "စစ်နယ်", v2: "signaled", v2_pron: "စစ်နယ်", v3: "signaled", v3_pron: "စစ်နယ်", ving: "signaling", ving_pron: "စစ်နယ်လင့်", meaning: "အချက်ပြသည်" },
+{ v1: "simplify", v1_pron: "စင်ပလီဖိုင်", v2: "simplified", v2_pron: "စင်ပလီဖိုင်", v3: "simplified", v3_pron: "စင်ပလီဖိုင်", ving: "simplifying", ving_pron: "စင်ပလီဖိုင်အင့်", meaning: "ရိုးရှင်းစေသည်" },
+{ v1: "sing", v1_pron: "စင့်", v2: "sang", v2_pron: "ဆန့်", v3: "sung", v3_pron: "ဆန့်", ving: "singing", ving_pron: "စင်အင့်", meaning: "သီချင်းဆိုသည်" },
+{ v1: "sink", v1_pron: "စင့်", v2: "sank", v2_pron: "ဆန့်", v3: "sunk", v3_pron: "ဆန့်", ving: "sinking", ving_pron: "စင်ကင့်", meaning: "နစ်သည်" },
+{ v1: "sketch", v1_pron: "စကက်ချ်", v2: "sketched", v2_pron: "စကက်ချ်", v3: "sketched", v3_pron: "စကက်ချ်", ving: "sketching", ving_pron: "စကက်ချင့်", meaning: "ပုံကြမ်းဆွဲသည်" },
+{ v1: "skip", v1_pron: "စကစ်", v2: "skipped", v2_pron: "စကစ်", v3: "skipped", v3_pron: "စကစ်", ving: "skipping", ving_pron: "စကစ်ပင်", meaning: "ကျော်သွားသည်" },
+{ v1: "slap", v1_pron: "စလပ်", v2: "slapped", v2_pron: "စလပ်", v3: "slapped", v3_pron: "စလပ်", ving: "slapping", ving_pron: "စလပ်ပင်", meaning: "ရိုက်သည်" },
+{ v1: "slide", v1_pron: "စလိုက်", v2: "slid", v2_pron: "စလစ်", v3: "slid", v3_pron: "စလစ်", ving: "sliding", ving_pron: "စလိုက်ဒင့်", meaning: "ချော်သည်" },
+// 451-460
+{ v1: "smooth", v1_pron: "စမူးဒ်", v2: "smoothed", v2_pron: "စမူးဒ်", v3: "smoothed", v3_pron: "စမူးဒ်", ving: "smoothing", ving_pron: "စမူးဒင့်", meaning: "ချောမွေ့စေသည်" },
+{ v1: "snap", v1_pron: "စနပ်", v2: "snapped", v2_pron: "စနပ်", v3: "snapped", v3_pron: "စနပ်", ving: "snapping", ving_pron: "စနပ်ပင်", meaning: "ကျိုးသည်" },
+{ v1: "snatch", v1_pron: "စနက်ချ်", v2: "snatched", v2_pron: "စနက်ချ်", v3: "snatched", v3_pron: "စနက်ချ်", ving: "snatching", ving_pron: "စနက်ချင့်", meaning: "ဆွဲယူသည်" },
+{ v1: "sneak", v1_pron: "စနီး", v2: "sneaked", v2_pron: "စနီး", v3: "sneaked", v3_pron: "စနီး", ving: "sneaking", ving_pron: "စနီးကင်", meaning: "ခိုးဝင်သည်" },
+{ v1: "sneeze", v1_pron: "စနီးဇ်", v2: "sneezed", v2_pron: "စနီးဇ်", v3: "sneezed", v3_pron: "စနီးဇ်", ving: "sneezing", ving_pron: "စနီးဇင့်", meaning: "နှာချေသည်" },
+{ v1: "snore", v1_pron: "စနော", v2: "snored", v2_pron: "စနော", v3: "snored", v3_pron: "စနော", ving: "snoring", ving_pron: "စနော်ရင့်", meaning: "ဟောက်သည်" },
+{ v1: "soak", v1_pron: "ဆိုက်", v2: "soaked", v2_pron: "ဆိုက်", v3: "soaked", v3_pron: "ဆိုက်", ving: "soaking", ving_pron: "ဆိုက်ကင်", meaning: "စိမ်သည်" },
+{ v1: "spare", v1_pron: "စပဲ", v2: "spared", v2_pron: "စပဲ", v3: "spared", v3_pron: "စပဲ", ving: "sparing", ving_pron: "စပဲရင့်", meaning: "ကယ်တင်သည်" },
+{ v1: "spark", v1_pron: "စပါ", v2: "sparked", v2_pron: "စပါ", v3: "sparked", v3_pron: "စပါ", ving: "sparking", ving_pron: "စပါကင်", meaning: "မီးပွားထွက်စေသည်" },
+{ v1: "specialize", v1_pron: "စပက်ရှယ်လိုက်ဇ်", v2: "specialized", v2_pron: "စပက်ရှယ်လိုက်ဇ်", v3: "specialized", v3_pron: "စပက်ရှယ်လိုက်ဇ်", ving: "specializing", ving_pron: "စပက်ရှယ်လိုက်ဇင့်", meaning: "အထူးပြုသည်" },
+// 461-470
+{ v1: "spell", v1_pron: "စပဲလ်", v2: "spelled", v2_pron: "စပဲလ်", v3: "spelled", v3_pron: "စပဲလ်", ving: "spelling", ving_pron: "စပဲလင့်", meaning: "စာလုံးပေါင်းသည်" },
+{ v1: "spend", v1_pron: "စပင့်", v2: "spent", v2_pron: "စပင့်", v3: "spent", v3_pron: "စပင့်", ving: "spending", ving_pron: "စပင့်ဒင့်", meaning: "သုံးစွဲသည်" },
+{ v1: "spill", v1_pron: "စပီးလ်", v2: "spilled", v2_pron: "စပီးလ်", v3: "spilled", v3_pron: "စပီးလ်", ving: "spilling", ving_pron: "စပီးလင့်", meaning: "ဖိတ်သည်" },
+{ v1: "spin", v1_pron: "စပင်", v2: "spun", v2_pron: "စပန်း", v3: "spun", v3_pron: "စပန်း", ving: "spinning", ving_pron: "စပင်နင့်", meaning: "လည်သည်" },
+{ v1: "spit", v1_pron: "စပစ်", v2: "spit", v2_pron: "စပစ်", v3: "spit", v3_pron: "စပစ်", ving: "spitting", ving_pron: "စပစ်တင့်", meaning: "တံထွေးသည်" },
+{ v1: "splash", v1_pron: "စပလက်ရှ်", v2: "splashed", v2_pron: "စပလက်ရှ်", v3: "splashed", v3_pron: "စပလက်ရှ်", ving: "splashing", ving_pron: "စပလက်ရှင့်", meaning: "ဖျန်းသည်" },
+{ v1: "split", v1_pron: "စပလစ်", v2: "split", v2_pron: "စပလစ်", v3: "split", v3_pron: "စပလစ်", ving: "splitting", ving_pron: "စပလစ်တင့်", meaning: "ကွဲသည်" },
+{ v1: "spoil", v1_pron: "စပွိုင်", v2: "spoiled", v2_pron: "စပွိုင်", v3: "spoiled", v3_pron: "စပွိုင်", ving: "spoiling", ving_pron: "စပွိုင်အင့်", meaning: "ပျက်စီးစေသည်" },
+{ v1: "spread", v1_pron: "စပရက်ဒ်", v2: "spread", v2_pron: "စပရက်ဒ်", v3: "spread", v3_pron: "စပရက်ဒ်", ving: "spreading", ving_pron: "စပရက်ဒင့်", meaning: "ဖြန့်သည်" },
+{ v1: "squeeze", v1_pron: "စကီးဇ်", v2: "squeezed", v2_pron: "စကီးဇ်", v3: "squeezed", v3_pron: "စကီးဇ်", ving: "squeezing", ving_pron: "စကီးဇင့်", meaning: "ညှစ်သည်" },
+// 471-480
+{ v1: "stare", v1_pron: "စတဲ", v2: "stared", v2_pron: "စတဲ", v3: "stared", v3_pron: "စတဲ", ving: "staring", ving_pron: "စတဲရင့်", meaning: "စိုက်ကြည့်သည်" },
+{ v1: "start", v1_pron: "စတာ့", v2: "started", v2_pron: "စတာ့", v3: "started", v3_pron: "စတာ့", ving: "starting", ving_pron: "စတာ့တင့်", meaning: "စတင်သည်" },
+{ v1: "starve", v1_pron: "စတာ့", v2: "starved", v2_pron: "စတာ့", v3: "starved", v3_pron: "စတာ့", ving: "starving", ving_pron: "စတာ့ဗင့်", meaning: "ငတ်သည်" },
+{ v1: "steal", v1_pron: "စတီးလ်", v2: "stole", v2_pron: "စတိုးလ်", v3: "stolen", v3_pron: "စတိုးလန်", ving: "stealing", ving_pron: "စတီးလင့်", meaning: "ခိုးသည်" },
+{ v1: "steer", v1_pron: "စတီးယား", v2: "steered", v2_pron: "စတီးယား", v3: "steered", v3_pron: "စတီးယား", ving: "steering", ving_pron: "စတီးယားရင့်", meaning: "ထိန်းကိုင်သည်" },
+{ v1: "stir", v1_pron: "စတာ", v2: "stirred", v2_pron: "စတာ", v3: "stirred", v3_pron: "စတာ", ving: "stirring", ving_pron: "စတာရင့်", meaning: "မွှေသည်" },
+{ v1: "stop", v1_pron: "စတော့", v2: "stopped", v2_pron: "စတော့", v3: "stopped", v3_pron: "စတော့", ving: "stopping", ving_pron: "စတော့ပင်", meaning: "ရပ်သည်" },
+{ v1: "store", v1_pron: "စတော", v2: "stored", v2_pron: "စတော", v3: "stored", v3_pron: "စတော", ving: "storing", ving_pron: "စတော်ရင့်", meaning: "သိုလှောင်သည်" },
+{ v1: "stretch", v1_pron: "စထရက်ချ်", v2: "stretched", v2_pron: "စထရက်ချ်", v3: "stretched", v3_pron: "စထရက်ချ်", ving: "stretching", ving_pron: "စထရက်ချင့်", meaning: "ဆန့်သည်" },
+{ v1: "strike", v1_pron: "စထရိုက်", v2: "struck", v2_pron: "စထရတ်", v3: "struck", v3_pron: "စထရတ်", ving: "striking", ving_pron: "စထရိုက်ကင်", meaning: "ရိုက်သည်" },
+// 481-490
+{ v1: "struggle", v1_pron: "စထရတ်ဂယ်", v2: "struggled", v2_pron: "စထရတ်ဂယ်", v3: "struggled", v3_pron: "စထရတ်ဂယ်", ving: "struggling", ving_pron: "စထရတ်ဂယ်လင့်", meaning: "ရုန်းကန်သည်" },
+{ v1: "study", v1_pron: "စတာဒီ", v2: "studied", v2_pron: "စတာဒီ", v3: "studied", v3_pron: "စတာဒီ", ving: "studying", ving_pron: "စတာဒီအင့်", meaning: "စာကျက်သည်" },
+{ v1: "submit", v1_pron: "စပ်ဘမစ်", v2: "submitted", v2_pron: "စပ်ဘမစ်", v3: "submitted", v3_pron: "စပ်ဘမစ်", ving: "submitting", ving_pron: "စပ်ဘမစ်တင့်", meaning: "တင်သွင်းသည်" },
+{ v1: "succeed", v1_pron: "စက်စီး", v2: "succeeded", v2_pron: "စက်စီး", v3: "succeeded", v3_pron: "စက်စီး", ving: "succeeding", ving_pron: "စက်စီးဒင့်", meaning: "အောင်မြင်သည်" },
+{ v1: "suffer", v1_pron: "စဖာ", v2: "suffered", v2_pron: "စဖာ", v3: "suffered", v3_pron: "စဖာ", ving: "suffering", ving_pron: "စဖာရင့်", meaning: "ခံစားရသည်" },
+{ v1: "suggest", v1_pron: "စက်ဂျက်စ်", v2: "suggested", v2_pron: "စက်ဂျက်စ်", v3: "suggested", v3_pron: "စက်ဂျက်စ်", ving: "suggesting", ving_pron: "စက်ဂျက်စ်တင့်", meaning: "အကြံပြုသည်" },
+{ v1: "supply", v1_pron: "စပလိုင်", v2: "supplied", v2_pron: "စပလိုင်", v3: "supplied", v3_pron: "စပလိုင်", ving: "supplying", ving_pron: "စပလိုင်အင့်", meaning: "ထောက်ပံ့သည်" },
+{ v1: "support", v1_pron: "စပေါ့", v2: "supported", v2_pron: "စပေါ့", v3: "supported", v3_pron: "စပေါ့", ving: "supporting", ving_pron: "စပေါ့တင့်", meaning: "ထောက်ပံ့သည်" },
+{ v1: "suppose", v1_pron: "စပိုးဇ်", v2: "supposed", v2_pron: "စပိုးဇ်", v3: "supposed", v3_pron: "စပိုးဇ်", ving: "supposing", ving_pron: "စပိုးဇင့်", meaning: "ထင်သည်" },
+{ v1: "surprise", v1_pron: "စာပရိုက်ဇ်", v2: "surprised", v2_pron: "စာပရိုက်ဇ်", v3: "surprised", v3_pron: "စာပရိုက်ဇ်", ving: "surprising", ving_pron: "စာပရိုက်ဇင့်", meaning: "အံ့သြစေသည်" },
+// 491-500
+{ v1: "surround", v1_pron: "စာရောင့်", v2: "surrounded", v2_pron: "စာရောင့်", v3: "surrounded", v3_pron: "စာရောင့်", ving: "surrounding", ving_pron: "စာရောင့်ဒင့်", meaning: "ဝန်းရံသည်" },
+{ v1: "survive", v1_pron: "စာဗိုက်", v2: "survived", v2_pron: "စာဗိုက်", v3: "survived", v3_pron: "စာဗိုက်", ving: "surviving", ving_pron: "စာဗိုက်ဗင့်", meaning: "အသက်ရှင်ကျန်သည်" },
+{ v1: "suspect", v1_pron: "စက်စပက်", v2: "suspected", v2_pron: "စက်စပက်", v3: "suspected", v3_pron: "စက်စပက်", ving: "suspecting", ving_pron: "စက်စပက်တင့်", meaning: "သံသယရှိသည်" },
+{ v1: "suspend", v1_pron: "စက်စပန့်", v2: "suspended", v2_pron: "စက်စပန့်", v3: "suspended", v3_pron: "စက်စပန့်", ving: "suspending", ving_pron: "စက်စပန့်ဒင့်", meaning: "ဆိုင်းငံ့သည်" },
+{ v1: "sustain", v1_pron: "စက်စတိန်း", v2: "sustained", v2_pron: "စက်စတိန်း", v3: "sustained", v3_pron: "စက်စတိန်း", ving: "sustaining", ving_pron: "စက်စတိန်းနင့်", meaning: "ရေရှည်တည်တံ့စေသည်" },
+{ v1: "swallow", v1_pron: "စွာအိုး", v2: "swallowed", v2_pron: "စွာအိုး", v3: "swallowed", v3_pron: "စွာအိုး", ving: "swallowing", ving_pron: "စွာအိုးအင့်", meaning: "မျိုသည်" },
+{ v1: "swap", v1_pron: "စွပ်", v2: "swapped", v2_pron: "စွပ်", v3: "swapped", v3_pron: "စွပ်", ving: "swapping", ving_pron: "စွပ်ပင်", meaning: "လဲလှယ်သည်" },
+{ v1: "sway", v1_pron: "စွီ", v2: "swayed", v2_pron: "စွီ", v3: "swayed", v3_pron: "စွီ", ving: "swaying", ving_pron: "စွီအင့်", meaning: "ယိမ်းနွဲ့သည်" },
+{ v1: "sweep", v1_pron: "စွီ့", v2: "swept", v2_pron: "စွက်", v3: "swept", v3_pron: "စွက်", ving: "sweeping", ving_pron: "စွီးပင့်", meaning: "တံမြက်စည်းလှည်းသည်" },
+{ v1: "swell", v1_pron: "စွဲလ်", v2: "swelled", v2_pron: "စွဲလ်", v3: "swollen", v3_pron: "စွဲလန်", ving: "swelling", ving_pron: "စွဲလင့်", meaning: "ရောင်ရမ်းသည်" }
+,
+// =============================================================
+//  VERB 501 to 600 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - verb-forms.html ရဲ့ verbs array ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 501-510
+{ v1: "swim", v1_pron: "စွီမ့်", v2: "swam", v2_pron: "စွမ့်", v3: "swum", v3_pron: "စွမ့်", ving: "swimming", ving_pron: "စွီမင့်", meaning: "ရေကူးသည်" },
+{ v1: "swing", v1_pron: "စွင်", v2: "swung", v2_pron: "စွင်", v3: "swung", v3_pron: "စွင်", ving: "swinging", ving_pron: "စွင်အင့်", meaning: "လွှဲသည်" },
+{ v1: "switch", v1_pron: "စွစ်", v2: "switched", v2_pron: "စွစ်", v3: "switched", v3_pron: "စွစ်", ving: "switching", ving_pron: "စွစ်ချင့်", meaning: "ပြောင်းလဲသည်" },
+{ v1: "symbolize", v1_pron: "စင်ဘောလိုက်ဇ်", v2: "symbolized", v2_pron: "စင်ဘောလိုက်ဇ်", v3: "symbolized", v3_pron: "စင်ဘောလိုက်ဇ်", ving: "symbolizing", ving_pron: "စင်ဘောလိုက်ဇင့်", meaning: "သင်္ကေတပြုသည်" },
+{ v1: "tackle", v1_pron: "တက်ကယ်", v2: "tackled", v2_pron: "တက်ကယ်", v3: "tackled", v3_pron: "တက်ကယ်", ving: "tackling", ving_pron: "တက်ကယ်လင့်", meaning: "ကိုင်တွယ်ဖြေရှင်းသည်" },
+{ v1: "take", v1_pron: "တိတ်", v2: "took", v2_pron: "တုတ်", v3: "taken", v3_pron: "တိတ်ကန်", ving: "taking", ving_pron: "တိတ်ကင်", meaning: "ယူသည်" },
+{ v1: "talk", v1_pron: "တော်က်", v2: "talked", v2_pron: "တော်က်", v3: "talked", v3_pron: "တော်က်", ving: "talking", ving_pron: "တော်ကင့်", meaning: "စကားပြောသည်" },
+{ v1: "tap", v1_pron: "တပ်", v2: "tapped", v2_pron: "တပ်", v3: "tapped", v3_pron: "တပ်", ving: "tapping", ving_pron: "တပ်ပင်", meaning: "ပုတ်သည်" },
+{ v1: "taste", v1_pron: "တိတ်စ်", v2: "tasted", v2_pron: "တိတ်စ်", v3: "tasted", v3_pron: "တိတ်စ်", ving: "tasting", ving_pron: "တိတ်စင့်", meaning: "အရသာခံသည်" },
+{ v1: "teach", v1_pron: "တီးချ်", v2: "taught", v2_pron: "တော့", v3: "taught", v3_pron: "တော့", ving: "teaching", ving_pron: "တီးချင့်", meaning: "သင်ကြားသည်" },
+// 511-520
+{ v1: "tear", v1_pron: "တီးယား", v2: "tore", v2_pron: "တော", v3: "torn", v3_pron: "တော", ving: "tearing", ving_pron: "တီးယားရင့်", meaning: "ဆုတ်သည်" },
+{ v1: "tease", v1_pron: "တီးဇ်", v2: "teased", v2_pron: "တီးဇ်", v3: "teased", v3_pron: "တီးဇ်", ving: "teasing", ving_pron: "တီးဇင့်", meaning: "နောက်ပြောင်သည်" },
+{ v1: "tell", v1_pron: "တဲလ်", v2: "told", v2_pron: "တိုးလ်", v3: "told", v3_pron: "တိုးလ်", ving: "telling", ving_pron: "တဲလင့်", meaning: "ပြောပြသည်" },
+{ v1: "tempt", v1_pron: "တင့်", v2: "tempted", v2_pron: "တင့်", v3: "tempted", v3_pron: "တင့်", ving: "tempting", ving_pron: "တင့်တင့်", meaning: "ဆွယ်သည်" },
+{ v1: "tend", v1_pron: "တင့်", v2: "tended", v2_pron: "တင့်", v3: "tended", v3_pron: "တင့်", ving: "tending", ving_pron: "တင့်ဒင့်", meaning: "နေတတ်သည်" },
+{ v1: "terminate", v1_pron: "တာမီနိတ်", v2: "terminated", v2_pron: "တာမီနိတ်", v3: "terminated", v3_pron: "တာမီနိတ်", ving: "terminating", ving_pron: "တာမီနိတ်တင့်", meaning: "အဆုံးသတ်သည်" },
+{ v1: "test", v1_pron: "တက်စ်", v2: "tested", v2_pron: "တက်စ်", v3: "tested", v3_pron: "တက်စ်", ving: "testing", ving_pron: "တက်စ်တင့်", meaning: "စမ်းသပ်သည်" },
+{ v1: "thank", v1_pron: "သန့်", v2: "thanked", v2_pron: "သန့်", v3: "thanked", v3_pron: "သန့်", ving: "thanking", ving_pron: "သန့်ကင့်", meaning: "ကျေးဇူးတင်သည်" },
+{ v1: "thaw", v1_pron: "သော", v2: "thawed", v2_pron: "သော", v3: "thawed", v3_pron: "သော", ving: "thawing", ving_pron: "သောအင့်", meaning: "အရည်ပျော်သည်" },
+{ v1: "think", v1_pron: "သင့်", v2: "thought", v2_pron: "သော", v3: "thought", v3_pron: "သော", ving: "thinking", ving_pron: "သင်ကင့်", meaning: "စဉ်းစားသည်" },
+// 521-530
+{ v1: "threaten", v1_pron: "သရက်တန်", v2: "threatened", v2_pron: "သရက်တန်", v3: "threatened", v3_pron: "သရက်တန်", ving: "threatening", ving_pron: "သရက်တန်နင့်", meaning: "ခြိမ်းခြောက်သည်" },
+{ v1: "thrive", v1_pron: "သရိုက်", v2: "thrived", v2_pron: "သရိုက်", v3: "thrived", v3_pron: "သရိုက်", ving: "thriving", ving_pron: "သရိုက်ဗင့်", meaning: "ရှင်သန်သည်" },
+{ v1: "throw", v1_pron: "သရိုး", v2: "threw", v2_pron: "သရူး", v3: "thrown", v3_pron: "သရိုး", ving: "throwing", ving_pron: "သရိုးအင့်", meaning: "ပစ်သည်" },
+{ v1: "tickle", v1_pron: "တစ်ကယ်", v2: "tickled", v2_pron: "တစ်ကယ်", v3: "tickled", v3_pron: "တစ်ကယ်", ving: "tickling", ving_pron: "တစ်ကယ်လင့်", meaning: "ကလိချွတ်သည်" },
+{ v1: "tie", v1_pron: "တိုင်", v2: "tied", v2_pron: "တိုင်", v3: "tied", v3_pron: "တိုင်", ving: "tying", ving_pron: "တိုင်အင့်", meaning: "စည်းသည်" },
+{ v1: "tilt", v1_pron: "တစ်", v2: "tilted", v2_pron: "တစ်", v3: "tilted", v3_pron: "တစ်", ving: "tilting", ving_pron: "တစ်တင့်", meaning: "စောင်းသည်" },
+{ v1: "time", v1_pron: "တိုင်", v2: "timed", v2_pron: "တိုင်", v3: "timed", v3_pron: "တိုင်", ving: "timing", ving_pron: "တိုင်မင်", meaning: "အချိန်သတ်မှတ်သည်" },
+{ v1: "tire", v1_pron: "တိုင်ယာ", v2: "tired", v2_pron: "တိုင်ယာ", v3: "tired", v3_pron: "တိုင်ယာ", ving: "tiring", ving_pron: "တိုင်ယာရင့်", meaning: "ပင်ပန်းစေသည်" },
+{ v1: "tolerate", v1_pron: "တော်လရိတ်", v2: "tolerated", v2_pron: "တော်လရိတ်", v3: "tolerated", v3_pron: "တော်လရိတ်", ving: "tolerating", ving_pron: "တော်လရိတ်တင့်", meaning: "သည်းခံသည်" },
+{ v1: "touch", v1_pron: "တပ်ချ်", v2: "touched", v2_pron: "တပ်ချ်", v3: "touched", v3_pron: "တပ်ချ်", ving: "touching", ving_pron: "တပ်ချင့်", meaning: "ထိသည်" },
+// 531-540
+{ v1: "tough", v1_pron: "တပ်", v2: "toughed", v2_pron: "တပ်", v3: "toughed", v3_pron: "တပ်", ving: "toughing", ving_pron: "တပ်ဖင့်", meaning: "ခက်ခဲအောင်လုပ်သည်" },
+{ v1: "tour", v1_pron: "တူးယာ", v2: "toured", v2_pron: "တူးယာ", v3: "toured", v3_pron: "တူးယာ", ving: "touring", ving_pron: "တူးယာရင့်", meaning: "လည်ပတ်သည်" },
+{ v1: "tow", v1_pron: "တိုး", v2: "towed", v2_pron: "တိုး", v3: "towed", v3_pron: "တိုး", ving: "towing", ving_pron: "တိုးအင့်", meaning: "ဆွဲငင်သည်" },
+{ v1: "track", v1_pron: "ထရက်", v2: "tracked", v2_pron: "ထရက်", v3: "tracked", v3_pron: "ထရက်", ving: "tracking", ving_pron: "ထရက်ကင်", meaning: "ခြေရာခံသည်" },
+{ v1: "trade", v1_pron: "ထရိတ်", v2: "traded", v2_pron: "ထရိတ်", v3: "traded", v3_pron: "ထရိတ်", ving: "trading", ving_pron: "ထရိတ်ဒင့်", meaning: "အရောင်းအဝယ်လုပ်သည်" },
+{ v1: "trail", v1_pron: "ထရေး", v2: "trailed", v2_pron: "ထရေး", v3: "trailed", v3_pron: "ထရေး", ving: "trailing", ving_pron: "ထရေးအင့်", meaning: "နောက်လိုက်သည်" },
+{ v1: "train", v1_pron: "ထရိန်း", v2: "trained", v2_pron: "ထရိန်း", v3: "trained", v3_pron: "ထရိန်း", ving: "training", ving_pron: "ထရိန်းနင့်", meaning: "လေ့ကျင့်သည်" },
+{ v1: "transcribe", v1_pron: "ထရန်စကရိုက်", v2: "transcribed", v2_pron: "ထရန်စကရိုက်", v3: "transcribed", v3_pron: "ထရန်စကရိုက်", ving: "transcribing", ving_pron: "ထရန်စကရိုက်ဗင့်", meaning: "ကူးယူရေးသားသည်" },
+{ v1: "transfer", v1_pron: "ထရန်စဖာ", v2: "transferred", v2_pron: "ထရန်စဖာ", v3: "transferred", v3_pron: "ထရန်စဖာ", ving: "transferring", ving_pron: "ထရန်စဖာရင့်", meaning: "လွှဲပြောင်းသည်" },
+{ v1: "transform", v1_pron: "ထရန်စဖော်မ်", v2: "transformed", v2_pron: "ထရန်စဖော်မ်", v3: "transformed", v3_pron: "ထရန်စဖော်မ်", ving: "transforming", ving_pron: "ထရန်စဖော်မ်မင်", meaning: "ပြောင်းလဲစေသည်" },
+// 541-550
+{ v1: "translate", v1_pron: "ထရန်စလိတ်", v2: "translated", v2_pron: "ထရန်စလိတ်", v3: "translated", v3_pron: "ထရန်စလိတ်", ving: "translating", ving_pron: "ထရန်စလိတ်တင့်", meaning: "ဘာသာပြန်သည်" },
+{ v1: "transport", v1_pron: "ထရန်စပေါ့", v2: "transported", v2_pron: "ထရန်စပေါ့", v3: "transported", v3_pron: "ထရန်စပေါ့", ving: "transporting", ving_pron: "ထရန်စပေါ့တင့်", meaning: "သယ်ယူပို့ဆောင်သည်" },
+{ v1: "trap", v1_pron: "ထရပ်", v2: "trapped", v2_pron: "ထရပ်", v3: "trapped", v3_pron: "ထရပ်", ving: "trapping", ving_pron: "ထရပ်ပင်", meaning: "ထောင်ချောက်ဆင်သည်" },
+{ v1: "travel", v1_pron: "ထရဗ်ဗယ်", v2: "traveled", v2_pron: "ထရဗ်ဗယ်", v3: "traveled", v3_pron: "ထရဗ်ဗယ်", ving: "traveling", ving_pron: "ထရဗ်ဗယ်လင့်", meaning: "ခရီးသွားသည်" },
+{ v1: "treat", v1_pron: "ထရိသ်", v2: "treated", v2_pron: "ထရိသ်", v3: "treated", v3_pron: "ထရိသ်", ving: "treating", ving_pron: "ထရိသ်တင့်", meaning: "ဆက်ဆံသည်" },
+{ v1: "tremble", v1_pron: "ထရမ်ဘယ်", v2: "trembled", v2_pron: "ထရမ်ဘယ်", v3: "trembled", v3_pron: "ထရမ်ဘယ်", ving: "trembling", ving_pron: "ထရမ်ဘယ်လင့်", meaning: "တုန်လှုပ်သည်" },
+{ v1: "trick", v1_pron: "ထရစ်", v2: "tricked", v2_pron: "ထရစ်", v3: "tricked", v3_pron: "ထရစ်", ving: "tricking", ving_pron: "ထရစ်ကင်", meaning: "လှည့်စားသည်" },
+{ v1: "trim", v1_pron: "ထရင်မ်", v2: "trimmed", v2_pron: "ထရင်မ်", v3: "trimmed", v3_pron: "ထရင်မ်", ving: "trimming", ving_pron: "ထရင်မ်မင်", meaning: "ညှပ်သည်" },
+{ v1: "trip", v1_pron: "ထရစ်", v2: "tripped", v2_pron: "ထရစ်", v3: "tripped", v3_pron: "ထရစ်", ving: "tripping", ving_pron: "ထရစ်ပင်", meaning: "ခလုတ်တိုက်သည်" },
+{ v1: "triumph", v1_pron: "ထရိုင်အမ့်", v2: "triumphed", v2_pron: "ထရိုင်အမ့်", v3: "triumphed", v3_pron: "ထရိုင်အမ့်", ving: "triumphing", ving_pron: "ထရိုင်အမ်ဖင့်", meaning: "အောင်ပွဲခံသည်" },
+// 551-560
+{ v1: "trouble", v1_pron: "ထရပ်ဘယ်", v2: "troubled", v2_pron: "ထရပ်ဘယ်", v3: "troubled", v3_pron: "ထရပ်ဘယ်", ving: "troubling", ving_pron: "ထရပ်ဘယ်လင့်", meaning: "ဒုက္ခပေးသည်" },
+{ v1: "trust", v1_pron: "ထရတ်", v2: "trusted", v2_pron: "ထရတ်", v3: "trusted", v3_pron: "ထရတ်", ving: "trusting", ving_pron: "ထရတ်တင့်", meaning: "ယုံကြည်သည်" },
+{ v1: "try", v1_pron: "ထရိုင်း", v2: "tried", v2_pron: "ထရိုက်", v3: "tried", v3_pron: "ထရိုက်", ving: "trying", ving_pron: "ထရိုင်အင့်", meaning: "ကြိုးစားသည်" },
+{ v1: "tumble", v1_pron: "တမ်ဘယ်", v2: "tumbled", v2_pron: "တမ်ဘယ်", v3: "tumbled", v3_pron: "တမ်ဘယ်", ving: "tumbling", ving_pron: "တမ်ဘယ်လင့်", meaning: "လိမ့်သည်" },
+{ v1: "turn", v1_pron: "တန်း", v2: "turned", v2_pron: "တန်း", v3: "turned", v3_pron: "တန်း", ving: "turning", ving_pron: "တန်းနင့်", meaning: "လှည့်သည်" },
+{ v1: "twinkle", v1_pron: "တွင်းကယ်", v2: "twinkled", v2_pron: "တွင်းကယ်", v3: "twinkled", v3_pron: "တွင်းကယ်", ving: "twinkling", ving_pron: "တွင်းကယ်လင့်", meaning: "လက်တွေ့သည်" },
+{ v1: "twist", v1_pron: "တွစ်", v2: "twisted", v2_pron: "တွစ်", v3: "twisted", v3_pron: "တွစ်", ving: "twisting", ving_pron: "တွစ်စတင့်", meaning: "လိမ်သည်" },
+{ v1: "type", v1_pron: "တိုက်", v2: "typed", v2_pron: "တိုက်", v3: "typed", v3_pron: "တိုက်", ving: "typing", ving_pron: "တိုက်ပင်", meaning: "စာရိုက်သည်" },
+{ v1: "uncover", v1_pron: "အန်ကဗ်ဗာ", v2: "uncovered", v2_pron: "အန်ကဗ်ဗာ", v3: "uncovered", v3_pron: "အန်ကဗ်ဗာ", ving: "uncovering", ving_pron: "အန်ကဗ်ဗာရင့်", meaning: "ဖော်ထုတ်သည်" },
+{ v1: "undergo", v1_pron: "အန်ဒာဂိုး", v2: "underwent", v2_pron: "အန်ဒာဝဲန့်", v3: "undergone", v3_pron: "အန်ဒာဂွန်", ving: "undergoing", ving_pron: "အန်ဒာဂိုးအင့်", meaning: "ခံယူသည်" },
+// 561-570
+{ v1: "understand", v1_pron: "အန်ဒာစတန့်", v2: "understood", v2_pron: "အန်ဒာစတုဒ်", v3: "understood", v3_pron: "အန်ဒာစတုဒ်", ving: "understanding", ving_pron: "အန်ဒာစတန့်ဒင့်", meaning: "နားလည်သည်" },
+{ v1: "undertake", v1_pron: "အန်ဒာတိတ်", v2: "undertook", v2_pron: "အန်ဒာတုတ်", v3: "undertaken", v3_pron: "အန်ဒာတိတ်ကန်", ving: "undertaking", ving_pron: "အန်ဒာတိတ်ကင်", meaning: "တာဝန်ယူသည်" },
+{ v1: "undo", v1_pron: "အန်ဒူး", v2: "undid", v2_pron: "အန်ဒစ်", v3: "undone", v3_pron: "အန်ဒန်း", ving: "undoing", ving_pron: "အန်ဒူးအင့်", meaning: "ပြန်ဖျက်သည်" },
+{ v1: "unfold", v1_pron: "အန်ဖိုးလ်", v2: "unfolded", v2_pron: "အန်ဖိုးလ်", v3: "unfolded", v3_pron: "အန်ဖိုးလ်", ving: "unfolding", ving_pron: "အန်ဖိုးလ်ဒင့်", meaning: "ဖွင့်သည်" },
+{ v1: "unite", v1_pron: "ယူနိုက်", v2: "united", v2_pron: "ယူနိုက်", v3: "united", v3_pron: "ယူနိုက်", ving: "uniting", ving_pron: "ယူနိုက်တင့်", meaning: "စည်းလုံးသည်" },
+{ v1: "unlock", v1_pron: "အန်လော့", v2: "unlocked", v2_pron: "အန်လော့", v3: "unlocked", v3_pron: "အန်လော့", ving: "unlocking", ving_pron: "အန်လော့ကင်", meaning: "သော့ဖွင့်သည်" },
+{ v1: "unpack", v1_pron: "အန်ပက်", v2: "unpacked", v2_pron: "အန်ပက်", v3: "unpacked", v3_pron: "အန်ပက်", ving: "unpacking", ving_pron: "အန်ပက်ကင်", meaning: "ဖြေသည်" },
+{ v1: "unplug", v1_pron: "အန်ပလက်", v2: "unplugged", v2_pron: "အန်ပလက်", v3: "unplugged", v3_pron: "အန်ပလက်", ving: "unplugging", ving_pron: "အန်ပလက်ကင်", meaning: "ပလပ်ဖြုတ်သည်" },
+{ v1: "unroll", v1_pron: "အန်ရိုးလ်", v2: "unrolled", v2_pron: "အန်ရိုးလ်", v3: "unrolled", v3_pron: "အန်ရိုးလ်", ving: "unrolling", ving_pron: "အန်ရိုးလ်လင့်", meaning: "ဖြန့်သည်" },
+{ v1: "untie", v1_pron: "အန်တိုင်", v2: "untied", v2_pron: "အန်တိုင်", v3: "untied", v3_pron: "အန်တိုင်", ving: "untying", ving_pron: "အန်တိုင်အင့်", meaning: "ဖြေသည်" },
+// 571-580
+{ v1: "update", v1_pron: "အပ်ဒိတ်", v2: "updated", v2_pron: "အပ်ဒိတ်", v3: "updated", v3_pron: "အပ်ဒိတ်", ving: "updating", ving_pron: "အပ်ဒိတ်တင့်", meaning: "အသစ်ပြောင်းသည်" },
+{ v1: "upgrade", v1_pron: "အပ်ဂရိတ်", v2: "upgraded", v2_pron: "အပ်ဂရိတ်", v3: "upgraded", v3_pron: "အပ်ဂရိတ်", ving: "upgrading", ving_pron: "အပ်ဂရိတ်ဒင့်", meaning: "မြှင့်တင်သည်" },
+{ v1: "urge", v1_pron: "အာ", v2: "urged", v2_pron: "အာ", v3: "urged", v3_pron: "အာ", ving: "urging", ving_pron: "အာ့ဂျင့်", meaning: "တိုက်တွန်းသည်" },
+{ v1: "use", v1_pron: "ယူဇ်", v2: "used", v2_pron: "ယူဇ်ဒ်", v3: "used", v3_pron: "ယူဇ်ဒ်", ving: "using", ving_pron: "ယူဇင့်", meaning: "သုံးသည်" },
+{ v1: "utilize", v1_pron: "ယူတီလိုက်ဇ်", v2: "utilized", v2_pron: "ယူတီလိုက်ဇ်", v3: "utilized", v3_pron: "ယူတီလိုက်ဇ်", ving: "utilizing", ving_pron: "ယူတီလိုက်ဇင့်", meaning: "အသုံးချသည်" },
+{ v1: "utter", v1_pron: "အတာ", v2: "uttered", v2_pron: "အတာ", v3: "uttered", v3_pron: "အတာ", ving: "uttering", ving_pron: "အတာရင့်", meaning: "ပြောဆိုသည်" },
+{ v1: "vary", v1_pron: "ဗဲရီ", v2: "varied", v2_pron: "ဗဲရီ", v3: "varied", v3_pron: "ဗဲရီ", ving: "varying", ving_pron: "ဗဲရီအင့်", meaning: "ကွဲပြားသည်" },
+{ v1: "venture", v1_pron: "ဗင်းချာ", v2: "ventured", v2_pron: "ဗင်းချာ", v3: "ventured", v3_pron: "ဗင်းချာ", ving: "venturing", ving_pron: "ဗင်းချာရင့်", meaning: "စွန့်စားသည်" },
+{ v1: "verify", v1_pron: "ဗယ်ရီဖိုင်", v2: "verified", v2_pron: "ဗယ်ရီဖိုင်", v3: "verified", v3_pron: "ဗယ်ရီဖိုင်", ving: "verifying", ving_pron: "ဗယ်ရီဖိုင်အင့်", meaning: "အတည်ပြုသည်" },
+{ v1: "view", v1_pron: "ဗျူး", v2: "viewed", v2_pron: "ဗျူး", v3: "viewed", v3_pron: "ဗျူး", ving: "viewing", ving_pron: "ဗျူးအင့်", meaning: "ကြည့်ရှုသည်" },
+// 581-590
+{ v1: "violate", v1_pron: "ဗိုင်အိုလိတ်", v2: "violated", v2_pron: "ဗိုင်အိုလိတ်", v3: "violated", v3_pron: "ဗိုင်အိုလိတ်", ving: "violating", ving_pron: "ဗိုင်အိုလိတ်တင့်", meaning: "ချိုးဖောက်သည်" },
+{ v1: "visit", v1_pron: "ဗစ်ဇစ်", v2: "visited", v2_pron: "ဗစ်ဇစ်", v3: "visited", v3_pron: "ဗစ်ဇစ်", ving: "visiting", ving_pron: "ဗစ်ဇစ်တင့်", meaning: "လည်ပတ်သည်" },
+{ v1: "voice", v1_pron: "ဗွိုက်စ်", v2: "voiced", v2_pron: "ဗွိုက်စ်", v3: "voiced", v3_pron: "ဗွိုက်စ်", ving: "voicing", ving_pron: "ဗွိုက်စင့်", meaning: "ဖော်ပြသည်" },
+{ v1: "vote", v1_pron: "ဗိုးသ်", v2: "voted", v2_pron: "ဗိုးသ်", v3: "voted", v3_pron: "ဗိုးသ်", ving: "voting", ving_pron: "ဗိုးသ်တင့်", meaning: "မဲပေးသည်" },
+{ v1: "wait", v1_pron: "ဝိတ်", v2: "waited", v2_pron: "ဝိတ်ဒင်", v3: "waited", v3_pron: "ဝိတ်ဒင်", ving: "waiting", ving_pron: "ဝိတ်တင့်", meaning: "စောင့်သည်" },
+{ v1: "wake", v1_pron: "ဝိတ်", v2: "woke", v2_pron: "ဝိုက်", v3: "woken", v3_pron: "ဝိုက်ကန်", ving: "waking", ving_pron: "ဝိတ်ကင်", meaning: "နိုးသည်" },
+{ v1: "walk", v1_pron: "ဝေါ့", v2: "walked", v2_pron: "ဝေါ့", v3: "walked", v3_pron: "ဝေါ့", ving: "walking", ving_pron: "ဝေါ့ကင်", meaning: "လမ်းလျှောက်သည်" },
+{ v1: "wander", v1_pron: "ဝန်ဒါ", v2: "wandered", v2_pron: "ဝန်ဒါ", v3: "wandered", v3_pron: "ဝန်ဒါ", ving: "wandering", ving_pron: "ဝန်ဒါရင့်", meaning: "လှည့်လည်သည်" },
+{ v1: "want", v1_pron: "ဝန့်", v2: "wanted", v2_pron: "ဝန်တင်", v3: "wanted", v3_pron: "ဝန်တင်", ving: "wanting", ving_pron: "ဝန်တင့်", meaning: "လိုချင်သည်" },
+{ v1: "warn", v1_pron: "ဝေါန်", v2: "warned", v2_pron: "ဝေါန်", v3: "warned", v3_pron: "ဝေါန်", ving: "warning", ving_pron: "ဝေါန်နင့်", meaning: "သတိပေးသည်" },
+// 591-600
+{ v1: "waste", v1_pron: "ဝိတ်စ်", v2: "wasted", v2_pron: "ဝိတ်စ်", v3: "wasted", v3_pron: "ဝိတ်စ်", ving: "wasting", ving_pron: "ဝိတ်စင့်", meaning: "ဖြုန်းသည်" },
+{ v1: "watch", v1_pron: "ဝပ်ချ်", v2: "watched", v2_pron: "ဝပ်ချ်", v3: "watched", v3_pron: "ဝပ်ချ်", ving: "watching", ving_pron: "ဝပ်ချင့်", meaning: "ကြည့်သည်" },
+{ v1: "water", v1_pron: "ဝေါ်တာ", v2: "watered", v2_pron: "ဝေါ်တာ", v3: "watered", v3_pron: "ဝေါ်တာ", ving: "watering", ving_pron: "ဝေါ်တာရင့်", meaning: "ရေလောင်းသည်" },
+{ v1: "wear", v1_pron: "ဝဲ", v2: "wore", v2_pron: "ဝေါ", v3: "worn", v3_pron: "ဝေါ", ving: "wearing", ving_pron: "ဝဲရင့်", meaning: "ဝတ်ဆင်သည်" },
+{ v1: "weave", v1_pron: "ဝီးဗ်", v2: "wove", v2_pron: "ဝိုးဗ်", v3: "woven", v3_pron: "ဝိုးဗန်", ving: "weaving", ving_pron: "ဝီးဗင့်", meaning: "ရက်သည်" },
+{ v1: "weep", v1_pron: "ဝီးပ်", v2: "wept", v2_pron: "ဝဲ", v3: "wept", v3_pron: "ဝဲ", ving: "weeping", ving_pron: "ဝီးပင့်", meaning: "ငိုသည်" },
+{ v1: "weigh", v1_pron: "ဝေ", v2: "weighed", v2_pron: "ဝေ", v3: "weighed", v3_pron: "ဝေ", ving: "weighing", ving_pron: "ဝေအင့်", meaning: "ချိန်သည်" },
+{ v1: "welcome", v1_pron: "ဝဲလ်ကမ်း", v2: "welcomed", v2_pron: "ဝဲလ်ကမ်း", v3: "welcomed", v3_pron: "ဝဲလ်ကမ်း", ving: "welcoming", ving_pron: "ဝဲလ်ကမ်မင့်", meaning: "ကြိုဆိုသည်" },
+{ v1: "whisper", v1_pron: "ဝစ်စပါ", v2: "whispered", v2_pron: "ဝစ်စပါ", v3: "whispered", v3_pron: "ဝစ်စပါ", ving: "whispering", ving_pron: "ဝစ်စပါရင့်", meaning: "တိုးတိုးပြောသည်" },
+{ v1: "whistle", v1_pron: "ဝစ်စယ်", v2: "whistled", v2_pron: "ဝစ်စယ်", v3: "whistled", v3_pron: "ဝစ်စယ်", ving: "whistling", ving_pron: "ဝစ်စယ်လင့်", meaning: "ပါးစပ်ဖြင့်မှုတ်သည်" }
+,
+// =============================================================
+//  VERB 601 to 700 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - verb-forms.html ရဲ့ verbs array ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 601-610
+{ v1: "win", v1_pron: "ဝင်း", v2: "won", v2_pron: "ဝန်း", v3: "won", v3_pron: "ဝန်း", ving: "winning", ving_pron: "ဝင်းနင့်", meaning: "အနိုင်ရသည်" },
+{ v1: "wind", v1_pron: "ဝိုင်", v2: "wound", v2_pron: "ဝေါင်", v3: "wound", v3_pron: "ဝေါင်", ving: "winding", ving_pron: "ဝိုင်ဒင့်", meaning: "ရစ်ပတ်သည်" },
+{ v1: "wipe", v1_pron: "ဝိုက်", v2: "wiped", v2_pron: "ဝိုက်", v3: "wiped", v3_pron: "ဝိုက်", ving: "wiping", ving_pron: "ဝိုက်ပင်", meaning: "သုတ်သည်" },
+{ v1: "wish", v1_pron: "ဝစ်", v2: "wished", v2_pron: "ဝစ်", v3: "wished", v3_pron: "ဝစ်", ving: "wishing", ving_pron: "ဝစ်ရှင့်", meaning: "ဆုတောင်းသည်" },
+{ v1: "withdraw", v1_pron: "ဝစ်ဒရော", v2: "withdrew", v2_pron: "ဝစ်ဒရူး", v3: "withdrawn", v3_pron: "ဝစ်ဒရော", ving: "withdrawing", ving_pron: "ဝစ်ဒရောအင့်", meaning: "ပြန်လည်ရုပ်သိမ်းသည်" },
+{ v1: "withhold", v1_pron: "ဝစ်ဟိုးလ်", v2: "withheld", v2_pron: "ဝစ်ဟဲလ်", v3: "withheld", v3_pron: "ဝစ်ဟဲလ်", ving: "withholding", ving_pron: "ဝစ်ဟိုးလ်ဒင့်", meaning: "ချန်လှပ်သည်" },
+{ v1: "withstand", v1_pron: "ဝစ်စတန့်", v2: "withstood", v2_pron: "ဝစ်စတုဒ်", v3: "withstood", v3_pron: "ဝစ်စတုဒ်", ving: "withstanding", ving_pron: "ဝစ်စတန့်ဒင့်", meaning: "ခံနိုင်ရည်ရှိသည်" },
+{ v1: "witness", v1_pron: "ဝစ်နပ်စ်", v2: "witnessed", v2_pron: "ဝစ်နပ်စ်", v3: "witnessed", v3_pron: "ဝစ်နပ်စ်", ving: "witnessing", ving_pron: "ဝစ်နပ်စင့်", meaning: "မြင်တွေ့သည်" },
+{ v1: "wonder", v1_pron: "ဝန်ဒါ", v2: "wondered", v2_pron: "ဝန်ဒါ", v3: "wondered", v3_pron: "ဝန်ဒါ", ving: "wondering", ving_pron: "ဝန်ဒါရင့်", meaning: "အံ့ဩသည်" },
+{ v1: "work", v1_pron: "ဝတ်ခ်", v2: "worked", v2_pron: "ဝတ်ခ်", v3: "worked", v3_pron: "ဝတ်ခ်", ving: "working", ving_pron: "ဝတ်ကင့်", meaning: "အလုပ်လုပ်သည်" },
+// 611-620
+{ v1: "worry", v1_pron: "ဝါရီ", v2: "worried", v2_pron: "ဝါရီ", v3: "worried", v3_pron: "ဝါရီ", ving: "worrying", ving_pron: "ဝါရီအင့်", meaning: "စိုးရိမ်သည်" },
+{ v1: "wrap", v1_pron: "ရပ်", v2: "wrapped", v2_pron: "ရပ်", v3: "wrapped", v3_pron: "ရပ်", ving: "wrapping", ving_pron: "ရပ်ပင်", meaning: "ထုပ်သည်" },
+{ v1: "wreck", v1_pron: "ရက်ခ်", v2: "wrecked", v2_pron: "ရက်ခ်", v3: "wrecked", v3_pron: "ရက်ခ်", ving: "wrecking", ving_pron: "ရက်ကင်", meaning: "ပျက်စီးစေသည်" },
+{ v1: "wrestle", v1_pron: "ရက်စယ်", v2: "wrestled", v2_pron: "ရက်စယ်", v3: "wrestled", v3_pron: "ရက်စယ်", ving: "wrestling", ving_pron: "ရက်စယ်လင့်", meaning: "နပန်းဝင်သည်" },
+{ v1: "wriggle", v1_pron: "ရစ်ဂယ်", v2: "wriggled", v2_pron: "ရစ်ဂယ်", v3: "wriggled", v3_pron: "ရစ်ဂယ်", ving: "wriggling", ving_pron: "ရစ်ဂယ်လင့်", meaning: "လိမ်သည်" },
+{ v1: "write", v1_pron: "ရိုက်", v2: "wrote", v2_pron: "ရိုးသ်", v3: "written", v3_pron: "ရစ်တန်", ving: "writing", ving_pron: "ရိုက်တင့်", meaning: "ရေးသည်" },
+{ v1: "yawn", v1_pron: "ယောင်", v2: "yawned", v2_pron: "ယောင်", v3: "yawned", v3_pron: "ယောင်", ving: "yawning", ving_pron: "ယောင်နင့်", meaning: "မျက်ချည်ပြတ်သည်" },
+{ v1: "yell", v1_pron: "ယဲလ်", v2: "yelled", v2_pron: "ယဲလ်", v3: "yelled", v3_pron: "ယဲလ်", ving: "yelling", ving_pron: "ယဲလင့်", meaning: "အော်သည်" },
+{ v1: "yield", v1_pron: "ယီးလ်", v2: "yielded", v2_pron: "ယီးလ်", v3: "yielded", v3_pron: "ယီးလ်", ving: "yielding", ving_pron: "ယီးလင့်", meaning: "အထွက်နှုန်းပေးသည်" },
+{ v1: "zip", v1_pron: "ဇစ်", v2: "zipped", v2_pron: "ဇစ်", v3: "zipped", v3_pron: "ဇစ်", ving: "zipping", ving_pron: "ဇစ်ပင်", meaning: "ဇစ်တွဲသည်" },
+// 621-630
+{ v1: "zoom", v1_pron: "ဇူးမ်", v2: "zoomed", v2_pron: "ဇူးမ်", v3: "zoomed", v3_pron: "ဇူးမ်", ving: "zooming", ving_pron: "ဇူးမ်မင်", meaning: "အရှိန်မြှင့်သည်" },
+{ v1: "abuse", v1_pron: "အဘူးဇ်", v2: "abused", v2_pron: "အဘူးဇ်", v3: "abused", v3_pron: "အဘူးဇ်", ving: "abusing", ving_pron: "အဘူးဇင့်", meaning: "အလွဲသုံးစားလုပ်သည်" },
+{ v1: "accelerate", v1_pron: "အက္ကလရိတ်", v2: "accelerated", v2_pron: "အက္ကလရိတ်", v3: "accelerated", v3_pron: "အက္ကလရိတ်", ving: "accelerating", ving_pron: "အက္ကလရိတ်တင့်", meaning: "အရှိန်မြှင့်တင်သည်" },
+{ v1: "accompany", v1_pron: "အကမ်ပါနီ", v2: "accompanied", v2_pron: "အကမ်ပါနီ", v3: "accompanied", v3_pron: "အကမ်ပါနီ", ving: "accompanying", ving_pron: "အကမ်ပါနီအင့်", meaning: "လိုက်ပါသည်" },
+{ v1: "accomplish", v1_pron: "အကမ်ပလစ်", v2: "accomplished", v2_pron: "အကမ်ပလစ်", v3: "accomplished", v3_pron: "အကမ်ပလစ်", ving: "accomplishing", ving_pron: "အကမ်ပလစ်ရှင့်", meaning: "ပြီးမြောက်အောင်မြင်သည်" },
+{ v1: "accumulate", v1_pron: "အကျူမျူလိတ်", v2: "accumulated", v2_pron: "အကျူမျူလိတ်", v3: "accumulated", v3_pron: "အကျူမျူလိတ်", ving: "accumulating", ving_pron: "အကျူမျူလိတ်တင့်", meaning: "စုပုံသည်" },
+{ v1: "accuse", v1_pron: "အကျူးဇ်", v2: "accused", v2_pron: "အကျူးဇ်", v3: "accused", v3_pron: "အကျူးဇ်", ving: "accusing", ving_pron: "အကျူးဇင့်", meaning: "စွပ်စွဲသည်" },
+{ v1: "acknowledge", v1_pron: "အက်နောလစ်", v2: "acknowledged", v2_pron: "အက်နောလစ်", v3: "acknowledged", v3_pron: "အက်နောလစ်", ving: "acknowledging", ving_pron: "အက်နောလစ်ဂျင့်", meaning: "အသိအမှတ်ပြုသည်" },
+{ v1: "adapt", v1_pron: "အဒတ်", v2: "adapted", v2_pron: "အဒတ်", v3: "adapted", v3_pron: "အဒတ်", ving: "adapting", ving_pron: "အဒတ်တင့်", meaning: "လိုက်လျောညီထွေဖြစ်သည်" },
+{ v1: "adjust", v1_pron: "အဂျတ်", v2: "adjusted", v2_pron: "အဂျတ်", v3: "adjusted", v3_pron: "အဂျတ်", ving: "adjusting", ving_pron: "အဂျတ်တင့်", meaning: "ပြုပြင်ညှိနှိုင်းသည်" },
+// 631-640
+{ v1: "admire", v1_pron: "အဒ်မိုင်ယာ", v2: "admired", v2_pron: "အဒ်မိုင်ယာ", v3: "admired", v3_pron: "အဒ်မိုင်ယာ", ving: "admiring", ving_pron: "အဒ်မိုင်ယာရင့်", meaning: "အထင်ကြီးလေးစားသည်" },
+{ v1: "adore", v1_pron: "အဒေါ်", v2: "adored", v2_pron: "အဒေါ်", v3: "adored", v3_pron: "အဒေါ်", ving: "adoring", ving_pron: "အဒေါ်ရင့်", meaning: "ကြည်ညိုသည်" },
+{ v1: "advance", v1_pron: "အဒ်ဗန်းစ်", v2: "advanced", v2_pron: "အဒ်ဗန်းစ်", v3: "advanced", v3_pron: "အဒ်ဗန်းစ်", ving: "advancing", ving_pron: "အဒ်ဗန်းစင့်", meaning: "တိုးတက်စေသည်" },
+{ v1: "advertise", v1_pron: "အဒ်ဗာတိုက်ဇ်", v2: "advertised", v2_pron: "အဒ်ဗာတိုက်ဇ်", v3: "advertised", v3_pron: "အဒ်ဗာတိုက်ဇ်", ving: "advertising", ving_pron: "အဒ်ဗာတိုက်ဇင့်", meaning: "ကြော်ငြာသည်" },
+{ v1: "advocate", v1_pron: "အဒ်ဗိုကိတ်", v2: "advocated", v2_pron: "အဒ်ဗိုကိတ်", v3: "advocated", v3_pron: "အဒ်ဗိုကိတ်", ving: "advocating", ving_pron: "အဒ်ဗိုကိတ်တင့်", meaning: "ထောက်ခံအားပေးသည်" },
+{ v1: "affect", v1_pron: "အဖက်ခ်", v2: "affected", v2_pron: "အဖက်ခ်", v3: "affected", v3_pron: "အဖက်ခ်", ving: "affecting", ving_pron: "အဖက်တင့်", meaning: "သက်ရောက်မှုရှိသည်" },
+{ v1: "affirm", v1_pron: "အဖာမ်", v2: "affirmed", v2_pron: "အဖာမ်", v3: "affirmed", v3_pron: "အဖာမ်", ving: "affirming", ving_pron: "အဖာမ်မင်", meaning: "အတည်ပြုသည်" },
+{ v1: "aggravate", v1_pron: "အဂရဗိတ်", v2: "aggravated", v2_pron: "အဂရဗိတ်", v3: "aggravated", v3_pron: "အဂရဗိတ်", ving: "aggravating", ving_pron: "အဂရဗိတ်တင့်", meaning: "ပိုဆိုးစေသည်" },
+{ v1: "alarm", v1_pron: "အလာမ်", v2: "alarmed", v2_pron: "အလာမ်", v3: "alarmed", v3_pron: "အလာမ်", ving: "alarming", ving_pron: "အလာမ်မင်", meaning: "သတိပေးသည်" },
+{ v1: "allocate", v1_pron: "အလိုကိတ်", v2: "allocated", v2_pron: "အလိုကိတ်", v3: "allocated", v3_pron: "အလိုကိတ်", ving: "allocating", ving_pron: "အလိုကိတ်တင့်", meaning: "ခွဲဝေပေးသည်" },
+// 641-650
+{ v1: "alternate", v1_pron: "အလ်တာနိတ်", v2: "alternated", v2_pron: "အလ်တာနိတ်", v3: "alternated", v3_pron: "အလ်တာနိတ်", ving: "alternating", ving_pron: "အလ်တာနိတ်တင့်", meaning: "ပြောင်းလဲသည်" },
+{ v1: "amaze", v1_pron: "အမေဇ်", v2: "amazed", v2_pron: "အမေဇ်", v3: "amazed", v3_pron: "အမေဇ်", ving: "amazing", ving_pron: "အမေဇင့်", meaning: "အံ့သြစေသည်" },
+{ v1: "amend", v1_pron: "အမင့်", v2: "amended", v2_pron: "အမင့်", v3: "amended", v3_pron: "အမင့်", ving: "amending", ving_pron: "အမင့်ဒင့်", meaning: "ပြင်ဆင်သည်" },
+{ v1: "amplify", v1_pron: "အမ်ပလီဖိုင်", v2: "amplified", v2_pron: "အမ်ပလီဖိုင်", v3: "amplified", v3_pron: "အမ်ပလီဖိုင်", ving: "amplifying", ving_pron: "အမ်ပလီဖိုင်အင့်", meaning: "ချဲ့ထွင်သည်" },
+{ v1: "animate", v1_pron: "အန်နီမက်", v2: "animated", v2_pron: "အန်နီမက်", v3: "animated", v3_pron: "အန်နီမက်", ving: "animating", ving_pron: "အန်နီမက်တင့်", meaning: "သက်ဝင်လှုပ်ရှားစေသည်" },
+{ v1: "announce", v1_pron: "အနောင့်စ်", v2: "announced", v2_pron: "အနောင့်စ်", v3: "announced", v3_pron: "အနောင့်စ်", ving: "announcing", ving_pron: "အနောင့်စင့်", meaning: "ကြေငြာသည်" },
+{ v1: "annoy", v1_pron: "အနွိုင်", v2: "annoyed", v2_pron: "အနွိုင်", v3: "annoyed", v3_pron: "အနွိုင်", ving: "annoying", ving_pron: "အနွိုင်အင့်", meaning: "စိတ်အနှောင့်အယှက်ဖြစ်စေသည်" },
+{ v1: "anticipate", v1_pron: "အန်တစ်စပက်", v2: "anticipated", v2_pron: "အန်တစ်စပက်", v3: "anticipated", v3_pron: "အန်တစ်စပက်", ving: "anticipating", ving_pron: "အန်တစ်စပက်တင့်", meaning: "မျှော်မှန်းသည်" },
+{ v1: "applaud", v1_pron: "အပလော", v2: "applauded", v2_pron: "အပလော", v3: "applauded", v3_pron: "အပလော", ving: "applauding", ving_pron: "အပလော်ဒင့်", meaning: "လက်ခုပ်တီးသည်" },
+{ v1: "appoint", v1_pron: "အပွိုင့်", v2: "appointed", v2_pron: "အပွိုင့်", v3: "appointed", v3_pron: "အပွိုင့်", ving: "appointing", ving_pron: "အပွိုင့်တင့်", meaning: "ခန့်အပ်သည်" },
+// 651-660
+{ v1: "appreciate", v1_pron: "အပရီရှိတ်", v2: "appreciated", v2_pron: "အပရီရှိတ်", v3: "appreciated", v3_pron: "အပရီရှိတ်", ving: "appreciating", ving_pron: "အပရီရှိတ်တင့်", meaning: "တန်ဖိုးထားသည်" },
+{ v1: "apprehend", v1_pron: "အပရီဟင့်", v2: "apprehended", v2_pron: "အပရီဟင့်", v3: "apprehended", v3_pron: "အပရီဟင့်", ving: "apprehending", ving_pron: "အပရီဟင့်ဒင့်", meaning: "ဖမ်းဆီးသည်" },
+{ v1: "approve", v1_pron: "အပရိုး", v2: "approved", v2_pron: "အပရိုး", v3: "approved", v3_pron: "အပရိုး", ving: "approving", ving_pron: "အပရိုးဗင့်", meaning: "အတည်ပြုသည်" },
+{ v1: "arrest", v1_pron: "အရက်စ်", v2: "arrested", v2_pron: "အရက်စ်", v3: "arrested", v3_pron: "အရက်စ်", ving: "arresting", ving_pron: "အရက်စ်တင့်", meaning: "ဖမ်းဆီးသည်" },
+{ v1: "articulate", v1_pron: "အာတီကျူလိတ်", v2: "articulated", v2_pron: "အာတီကျူလိတ်", v3: "articulated", v3_pron: "အာတီကျူလိတ်", ving: "articulating", ving_pron: "အာတီကျူလိတ်တင့်", meaning: "ရှင်းရှင်းလင်းလင်းဖော်ပြသည်" },
+{ v1: "ascend", v1_pron: "အဆင့်", v2: "ascended", v2_pron: "အဆင့်", v3: "ascended", v3_pron: "အဆင့်", ving: "ascending", ving_pron: "အဆင့်ဒင့်", meaning: "တက်သည်" },
+{ v1: "assault", v1_pron: "အဆော", v2: "assaulted", v2_pron: "အဆော", v3: "assaulted", v3_pron: "အဆော", ving: "assaulting", ving_pron: "အဆော်တင့်", meaning: "တိုက်ခိုက်သည်" },
+{ v1: "assemble", v1_pron: "အဆမ်ဘယ်", v2: "assembled", v2_pron: "အဆမ်ဘယ်", v3: "assembled", v3_pron: "အဆမ်ဘယ်", ving: "assembling", ving_pron: "အဆမ်ဘယ်လင့်", meaning: "စုဝေးသည်" },
+{ v1: "assess", v1_pron: "အဆက်စ်", v2: "assessed", v2_pron: "အဆက်စ်", v3: "assessed", v3_pron: "အဆက်စ်", ving: "assessing", ving_pron: "အဆက်စင့်", meaning: "အကဲဖြတ်သည်" },
+{ v1: "assign", v1_pron: "အဆိုင်", v2: "assigned", v2_pron: "အဆိုင်", v3: "assigned", v3_pron: "အဆိုင်", ving: "assigning", ving_pron: "အဆိုင်အင့်", meaning: "တာဝန်ပေးသည်" },
+// 661-670
+{ v1: "assist", v1_pron: "အဆစ်", v2: "assisted", v2_pron: "အဆစ်", v3: "assisted", v3_pron: "အဆစ်", ving: "assisting", ving_pron: "အဆစ်စတင့်", meaning: "ကူညီသည်" },
+{ v1: "assume", v1_pron: "အဆူးမ်", v2: "assumed", v2_pron: "အဆူးမ်", v3: "assumed", v3_pron: "အဆူးမ်", ving: "assuming", ving_pron: "အဆူးမ်မင်", meaning: "ယူဆသည်" },
+{ v1: "assure", v1_pron: "အရှူးယား", v2: "assured", v2_pron: "အရှူးယား", v3: "assured", v3_pron: "အရှူးယား", ving: "assuring", ving_pron: "အရှူးယားရင့်", meaning: "အာမခံသည်" },
+{ v1: "astonish", v1_pron: "အစတောနစ်", v2: "astonished", v2_pron: "အစတောနစ်", v3: "astonished", v3_pron: "အစတောနစ်", ving: "astonishing", ving_pron: "အစတောနစ်ရှင့်", meaning: "အံ့အားသင့်စေသည်" },
+{ v1: "attain", v1_pron: "အတိန်း", v2: "attained", v2_pron: "အတိန်း", v3: "attained", v3_pron: "အတိန်း", ving: "attaining", ving_pron: "အတိန်းနင့်", meaning: "ရရှိသည်" },
+{ v1: "authorize", v1_pron: "ဩသရိုက်ဇ်", v2: "authorized", v2_pron: "ဩသရိုက်ဇ်", v3: "authorized", v3_pron: "ဩသရိုက်ဇ်", ving: "authorizing", ving_pron: "ဩသရိုက်ဇင့်", meaning: "ခွင့်ပြုသည်" },
+{ v1: "bake", v1_pron: "ဘိတ်", v2: "baked", v2_pron: "ဘိတ်", v3: "baked", v3_pron: "ဘိတ်", ving: "baking", ving_pron: "ဘိတ်ကင်", meaning: "ဖုတ်သည်" },
+{ v1: "ban", v1_pron: "ဘန်", v2: "banned", v2_pron: "ဘန်", v3: "banned", v3_pron: "ဘန်", ving: "banning", ving_pron: "ဘန်နင့်", meaning: "တားမြစ်သည်" },
+{ v1: "bargain", v1_pron: "ဘာဂိန်း", v2: "bargained", v2_pron: "ဘာဂိန်း", v3: "bargained", v3_pron: "ဘာဂိန်း", ving: "bargaining", ving_pron: "ဘာဂိန်းနင့်", meaning: "ဈေးဆစ်သည်" },
+{ v1: "bark", v1_pron: "ဘာ့", v2: "barked", v2_pron: "ဘာ့", v3: "barked", v3_pron: "ဘာ့", ving: "barking", ving_pron: "ဘာ့ကင်", meaning: "ဟောင်သည်" },
+// 671-680
+{ v1: "battle", v1_pron: "ဘက်တယ်", v2: "battled", v2_pron: "ဘက်တယ်", v3: "battled", v3_pron: "ဘက်တယ်", ving: "battling", ving_pron: "ဘက်တယ်လင့်", meaning: "တိုက်ပွဲဝင်သည်" },
+{ v1: "beam", v1_pron: "ဘီးမ်", v2: "beamed", v2_pron: "ဘီးမ်", v3: "beamed", v3_pron: "ဘီးမ်", ving: "beaming", ving_pron: "ဘီးမ်မင်", meaning: "ထွန်းလင်းသည်" },
+{ v1: "beg", v1_pron: "ဘက်", v2: "begged", v2_pron: "ဘက်", v3: "begged", v3_pron: "ဘက်", ving: "begging", ving_pron: "ဘက်ကင်", meaning: "တောင်းပန်သည်" },
+{ v1: "betray", v1_pron: "ဘထရေ", v2: "betrayed", v2_pron: "ဘထရေ", v3: "betrayed", v3_pron: "ဘထရေ", ving: "betraying", ving_pron: "ဘထရေအင့်", meaning: "သစ္စာဖောက်သည်" },
+{ v1: "blaze", v1_pron: "ဘလေဇ်", v2: "blazed", v2_pron: "ဘလေဇ်", v3: "blazed", v3_pron: "ဘလေဇ်", ving: "blazing", ving_pron: "ဘလေဇင့်", meaning: "တောက်လောင်သည်" },
+{ v1: "blend", v1_pron: "ဘလင့်", v2: "blended", v2_pron: "ဘလင့်", v3: "blended", v3_pron: "ဘလင့်", ving: "blending", ving_pron: "ဘလင့်ဒင့်", meaning: "ရောစပ်သည်" },
+{ v1: "bless", v1_pron: "ဘလက်စ်", v2: "blessed", v2_pron: "ဘလက်စ်", v3: "blessed", v3_pron: "ဘလက်စ်", ving: "blessing", ving_pron: "ဘလက်စင့်", meaning: "ကောင်းချီးပေးသည်" },
+{ v1: "bloom", v1_pron: "ဘလူးမ်", v2: "bloomed", v2_pron: "ဘလူးမ်", v3: "bloomed", v3_pron: "ဘလူးမ်", ving: "blooming", ving_pron: "ဘလူးမ်မင်", meaning: "ပွင့်သည်" },
+{ v1: "blossom", v1_pron: "ဘလောဆမ်", v2: "blossomed", v2_pron: "ဘလောဆမ်", v3: "blossomed", v3_pron: "ဘလောဆမ်", ving: "blossoming", ving_pron: "ဘလောဆမ်မင်", meaning: "ပွင့်ဖူးသည်" },
+{ v1: "blush", v1_pron: "ဘလပ်ရှ်", v2: "blushed", v2_pron: "ဘလပ်ရှ်", v3: "blushed", v3_pron: "ဘလပ်ရှ်", ving: "blushing", ving_pron: "ဘလပ်ရှင့်", meaning: "ရှက်သည်" },
+// 681-690
+{ v1: "boost", v1_pron: "ဘူးစ်", v2: "boosted", v2_pron: "ဘူးစ်", v3: "boosted", v3_pron: "ဘူးစ်", ving: "boosting", ving_pron: "ဘူးစ်တင့်", meaning: "မြှင့်တင်သည်" },
+{ v1: "bounce", v1_pron: "ဘောင်စ်", v2: "bounced", v2_pron: "ဘောင်စ်", v3: "bounced", v3_pron: "ဘောင်စ်", ving: "bouncing", ving_pron: "ဘောင်စင့်", meaning: "ပြန်ခုန်သည်" },
+{ v1: "brace", v1_pron: "ဘရေ့စ်", v2: "braced", v2_pron: "ဘရေ့စ်", v3: "braced", v3_pron: "ဘရေ့စ်", ving: "bracing", ving_pron: "ဘရေ့စင့်", meaning: "တည်ငြိမ်စေသည်" },
+{ v1: "brand", v1_pron: "ဘရန့်", v2: "branded", v2_pron: "ဘရန့်", v3: "branded", v3_pron: "ဘရန့်", ving: "branding", ving_pron: "ဘရန့်ဒင့်", meaning: "တံဆိပ်ကပ်သည်" },
+{ v1: "breed", v1_pron: "ဘရီးဒ်", v2: "bred", v2_pron: "ဘရက်", v3: "bred", v3_pron: "ဘရက်", ving: "breeding", ving_pron: "ဘရီးဒင့်", meaning: "မွေးမြူသည်" },
+{ v1: "bribe", v1_pron: "ဘရိုက်", v2: "bribed", v2_pron: "ဘရိုက်", v3: "bribed", v3_pron: "ဘရိုက်", ving: "bribing", ving_pron: "ဘရိုက်ဗင့်", meaning: "လာဘ်ပေးသည်" },
+{ v1: "broadcast", v1_pron: "ဘရောဒ်ကတ်စ်", v2: "broadcast", v2_pron: "ဘရောဒ်ကတ်စ်", v3: "broadcast", v3_pron: "ဘရောဒ်ကတ်စ်", ving: "broadcasting", ving_pron: "ဘရောဒ်ကတ်စ်တင့်", meaning: "ထုတ်လွှင့်သည်" },
+{ v1: "browse", v1_pron: "ဘရောင်ဇ်", v2: "browsed", v2_pron: "ဘရောင်ဇ်", v3: "browsed", v3_pron: "ဘရောင်ဇ်", ving: "browsing", ving_pron: "ဘရောင်ဇင့်", meaning: "ကြည့်ရှုသည်" },
+{ v1: "bump", v1_pron: "ဘမ့်", v2: "bumped", v2_pron: "ဘမ့်", v3: "bumped", v3_pron: "ဘမ့်", ving: "bumping", ving_pron: "ဘမ့်ပင်", meaning: "တိုက်မိသည်" },
+{ v1: "burn", v1_pron: "ဘန်း", v2: "burned", v2_pron: "ဘန်း", v3: "burned", v3_pron: "ဘန်း", ving: "burning", ving_pron: "ဘန်းနင့်", meaning: "လောင်ကျွမ်းသည်" },
+// 691-700
+{ v1: "burst", v1_pron: "ဘာစ်", v2: "burst", v2_pron: "ဘာစ်", v3: "burst", v3_pron: "ဘာစ်", ving: "bursting", ving_pron: "ဘာစ်တင့်", meaning: "ပေါက်ကွဲသည်" },
+{ v1: "bury", v1_pron: "ဘဲရီ", v2: "buried", v2_pron: "ဘဲရီ", v3: "buried", v3_pron: "ဘဲရီ", ving: "burying", ving_pron: "ဘဲရီအင့်", meaning: "မြှုပ်နှံသည်" },
+{ v1: "bustle", v1_pron: "ဘတ်စယ်", v2: "bustled", v2_pron: "ဘတ်စယ်", v3: "bustled", v3_pron: "ဘတ်စယ်", ving: "bustling", ving_pron: "ဘတ်စယ်လင့်", meaning: "စည်ကားသည်" },
+{ v1: "calculate", v1_pron: "ကယ်လကျူလိတ်", v2: "calculated", v2_pron: "ကယ်လကျူလိတ်", v3: "calculated", v3_pron: "ကယ်လကျူလိတ်", ving: "calculating", ving_pron: "ကယ်လကျူလိတ်တင့်", meaning: "တွက်ချက်သည်" },
+{ v1: "capture", v1_pron: "ကပ်ချာ", v2: "captured", v2_pron: "ကပ်ချာ", v3: "captured", v3_pron: "ကပ်ချာ", ving: "capturing", ving_pron: "ကပ်ချာရင့်", meaning: "ဖမ်းဆီးသည်" },
+{ v1: "care", v1_pron: "ကဲ", v2: "cared", v2_pron: "ကဲ", v3: "cared", v3_pron: "ကဲ", ving: "caring", ving_pron: "ကဲရင့်", meaning: "ဂရုစိုက်သည်" },
+{ v1: "carry", v1_pron: "ကယ်ရီ", v2: "carried", v2_pron: "ကယ်ရီ", v3: "carried", v3_pron: "ကယ်ရီ", ving: "carrying", ving_pron: "ကယ်ရီအင့်", meaning: "သယ်သည်" },
+{ v1: "cast", v1_pron: "ကတ်စ်", v2: "cast", v2_pron: "ကတ်စ်", v3: "cast", v3_pron: "ကတ်စ်", ving: "casting", ving_pron: "ကတ်စ်တင့်", meaning: "ပစ်သည်" },
+{ v1: "catch", v1_pron: "ကက်ချ်", v2: "caught", v2_pron: "ကော့", v3: "caught", v3_pron: "ကော့", ving: "catching", ving_pron: "ကက်ချင့်", meaning: "ဖမ်းသည်" },
+{ v1: "cause", v1_pron: "ကော့ဇ်", v2: "caused", v2_pron: "ကော့ဇ်", v3: "caused", v3_pron: "ကော့ဇ်", ving: "causing", ving_pron: "ကော့ဇင့်", meaning: "ဖြစ်စေသည်" }
+,
+// =============================================================
+//  VERB 701 to 800 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - verb-forms.html ရဲ့ verbs array ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 701-710
+{ v1: "cease", v1_pron: "စီးဇ်", v2: "ceased", v2_pron: "စီးဇ်", v3: "ceased", v3_pron: "စီးဇ်", ving: "ceasing", ving_pron: "စီးဇင့်", meaning: "ရပ်တန့်သည်" },
+{ v1: "choke", v1_pron: "ချိုက်", v2: "choked", v2_pron: "ချိုက်", v3: "choked", v3_pron: "ချိုက်", ving: "choking", ving_pron: "ချိုက်ကင်", meaning: "လည်ပင်းညှစ်သည်" },
+{ v1: "circulate", v1_pron: "ဆာကျူလိတ်", v2: "circulated", v2_pron: "ဆာကျူလိတ်", v3: "circulated", v3_pron: "ဆာကျူလိတ်", ving: "circulating", ving_pron: "ဆာကျူလိတ်တင့်", meaning: "ပျံ့နှံ့စေသည်" },
+{ v1: "civilize", v1_pron: "စစ်ဗလိုက်ဇ်", v2: "civilized", v2_pron: "စစ်ဗလိုက်ဇ်", v3: "civilized", v3_pron: "စစ်ဗလိုက်ဇ်", ving: "civilizing", ving_pron: "စစ်ဗလိုက်ဇင့်", meaning: "ယဉ်ကျေးအောင်ပြုလုပ်သည်" },
+{ v1: "claim", v1_pron: "ကလိမ်း", v2: "claimed", v2_pron: "ကလိမ်း", v3: "claimed", v3_pron: "ကလိမ်း", ving: "claiming", ving_pron: "ကလိမ်းနင့်", meaning: "တောင်းဆိုသည်" },
+{ v1: "clash", v1_pron: "ကလက်ရှ်", v2: "clashed", v2_pron: "ကလက်ရှ်", v3: "clashed", v3_pron: "ကလက်ရှ်", ving: "clashing", ving_pron: "ကလက်ရှင့်", meaning: "တိုက်ခိုက်သည်" },
+{ v1: "classify", v1_pron: "ကလက်စီဖိုင်", v2: "classified", v2_pron: "ကလက်စီဖိုင်", v3: "classified", v3_pron: "ကလက်စီဖိုင်", ving: "classifying", ving_pron: "ကလက်စီဖိုင်အင့်", meaning: "ခွဲခြားသည်" },
+{ v1: "coach", v1_pron: "ကိုးချ်", v2: "coached", v2_pron: "ကိုးချ်", v3: "coached", v3_pron: "ကိုးချ်", ving: "coaching", ving_pron: "ကိုးချင့်", meaning: "လေ့ကျင့်သင်ကြားပေးသည်" },
+{ v1: "coincide", v1_pron: "ကိုအင်ဆိုက်", v2: "coincided", v2_pron: "ကိုအင်ဆိုက်", v3: "coincided", v3_pron: "ကိုအင်ဆိုက်", ving: "coinciding", ving_pron: "ကိုအင်ဆိုက်ဒင့်", meaning: "တိုက်ဆိုင်သည်" },
+{ v1: "collapse", v1_pron: "ကိုလက်စ်", v2: "collapsed", v2_pron: "ကိုလက်စ်", v3: "collapsed", v3_pron: "ကိုလက်စ်", ving: "collapsing", ving_pron: "ကိုလက်စင့်", meaning: "ပြိုကျသည်" },
+// 711-720
+{ v1: "command", v1_pron: "ကိုမန့်", v2: "commanded", v2_pron: "ကိုမန့်", v3: "commanded", v3_pron: "ကိုမန့်", ving: "commanding", ving_pron: "ကိုမန့်ဒင့်", meaning: "အမိန့်ပေးသည်" },
+{ v1: "commence", v1_pron: "ကိုမန့်စ်", v2: "commenced", v2_pron: "ကိုမန့်စ်", v3: "commenced", v3_pron: "ကိုမန့်စ်", ving: "commencing", ving_pron: "ကိုမန့်စင့်", meaning: "စတင်သည်" },
+{ v1: "commit", v1_pron: "ကိုမစ်", v2: "committed", v2_pron: "ကိုမစ်", v3: "committed", v3_pron: "ကိုမစ်", ving: "committing", ving_pron: "ကိုမစ်တင့်", meaning: "ကျူးလွန်သည်" },
+{ v1: "communicate", v1_pron: "ကိုမျူနီကိတ်", v2: "communicated", v2_pron: "ကိုမျူနီကိတ်", v3: "communicated", v3_pron: "ကိုမျူနီကိတ်", ving: "communicating", ving_pron: "ကိုမျူနီကိတ်တင့်", meaning: "ဆက်သွယ်သည်" },
+{ v1: "compensate", v1_pron: "ကွန်ပျံစိတ်", v2: "compensated", v2_pron: "ကွန်ပျံစိတ်", v3: "compensated", v3_pron: "ကွန်ပျံစိတ်", ving: "compensating", ving_pron: "ကွန်ပျံစိတ်တင့်", meaning: "လျော်ကြေးပေးသည်" },
+{ v1: "compile", v1_pron: "ကွန်ပါင်", v2: "compiled", v2_pron: "ကွန်ပါင်", v3: "compiled", v3_pron: "ကွန်ပါင်", ving: "compiling", ving_pron: "ကွန်ပါင်လင့်", meaning: "စုစည်းသည်" },
+{ v1: "compose", v1_pron: "ကွန်ပိုးဇ်", v2: "composed", v2_pron: "ကွန်ပိုးဇ်", v3: "composed", v3_pron: "ကွန်ပိုးဇ်", ving: "composing", ving_pron: "ကွန်ပိုးဇင့်", meaning: "ရေးစပ်သည်" },
+{ v1: "comprehend", v1_pron: "ကွန်ပရီဟင့်", v2: "comprehended", v2_pron: "ကွန်ပရီဟင့်", v3: "comprehended", v3_pron: "ကွန်ပရီဟင့်", ving: "comprehending", ving_pron: "ကွန်ပရီဟင့်ဒင့်", meaning: "နားလည်သည်" },
+{ v1: "compress", v1_pron: "ကွန်ပရက်စ်", v2: "compressed", v2_pron: "ကွန်ပရက်စ်", v3: "compressed", v3_pron: "ကွန်ပရက်စ်", ving: "compressing", ving_pron: "ကွန်ပရက်စင့်", meaning: "ဖိအားပေးသည်" },
+{ v1: "comprise", v1_pron: "ကွန်ပရိုင်ဇ်", v2: "comprised", v2_pron: "ကွန်ပရိုင်ဇ်", v3: "comprised", v3_pron: "ကွန်ပရိုင်ဇ်", ving: "comprising", ving_pron: "ကွန်ပရိုင်ဇင့်", meaning: "ပါဝင်သည်" },
+// 721-730
+{ v1: "conceal", v1_pron: "ကွန်စီးလ်", v2: "concealed", v2_pron: "ကွန်စီးလ်", v3: "concealed", v3_pron: "ကွန်စီးလ်", ving: "concealing", ving_pron: "ကွန်စီးလင့်", meaning: "ဝှက်ထားသည်" },
+{ v1: "conceive", v1_pron: "ကွန်စီးဗ်", v2: "conceived", v2_pron: "ကွန်စီးဗ်", v3: "conceived", v3_pron: "ကွန်စီးဗ်", ving: "conceiving", ving_pron: "ကွန်စီးဗင့်", meaning: "စိတ်ကူးသည်" },
+{ v1: "concern", v1_pron: "ကွန်စန်း", v2: "concerned", v2_pron: "ကွန်စန်း", v3: "concerned", v3_pron: "ကွန်စန်း", ving: "concerning", ving_pron: "ကွန်စန်းနင့်", meaning: "သက်ဆိုင်သည်" },
+{ v1: "conclude", v1_pron: "ကွန်ကလူး", v2: "concluded", v2_pron: "ကွန်ကလူး", v3: "concluded", v3_pron: "ကွန်ကလူး", ving: "concluding", ving_pron: "ကွန်ကလူးဒင့်", meaning: "နိဂုံးချုပ်သည်" },
+{ v1: "conduct", v1_pron: "ကွန်ဒတ်", v2: "conducted", v2_pron: "ကွန်ဒတ်", v3: "conducted", v3_pron: "ကွန်ဒတ်", ving: "conducting", ving_pron: "ကွန်ဒတ်တင့်", meaning: "ဆောင်ရွက်သည်" },
+{ v1: "confer", v1_pron: "ကွန်ဖာ", v2: "conferred", v2_pron: "ကွန်ဖာ", v3: "conferred", v3_pron: "ကွန်ဖာ", ving: "conferring", ving_pron: "ကွန်ဖာရင့်", meaning: "ဆွေးနွေးသည်" },
+{ v1: "confess", v1_pron: "ကွန်ဖက်စ်", v2: "confessed", v2_pron: "ကွန်ဖက်စ်", v3: "confessed", v3_pron: "ကွန်ဖက်စ်", ving: "confessing", ving_pron: "ကွန်ဖက်စင့်", meaning: "ဝန်ခံသည်" },
+{ v1: "confine", v1_pron: "ကွန်ဖိုင်း", v2: "confined", v2_pron: "ကွန်ဖိုင်း", v3: "confined", v3_pron: "ကွန်ဖိုင်း", ving: "confining", ving_pron: "ကွန်ဖိုင်းနင့်", meaning: "ကန့်သတ်သည်" },
+{ v1: "confirm", v1_pron: "ကွန်ဖာမ်", v2: "confirmed", v2_pron: "ကွန်ဖာမ်", v3: "confirmed", v3_pron: "ကွန်ဖာမ်", ving: "confirming", ving_pron: "ကွန်ဖာမ်မင်", meaning: "အတည်ပြုသည်" },
+{ v1: "confront", v1_pron: "ကွန်ဖရန့်", v2: "confronted", v2_pron: "ကွန်ဖရန့်", v3: "confronted", v3_pron: "ကွန်ဖရန့်", ving: "confronting", ving_pron: "ကွန်ဖရန့်ဒင့်", meaning: "ရင်ဆိုင်သည်" },
+// 731-740
+{ v1: "confuse", v1_pron: "ကွန်ဖူးဇ်", v2: "confused", v2_pron: "ကွန်ဖူးဇ်", v3: "confused", v3_pron: "ကွန်ဖူးဇ်", ving: "confusing", ving_pron: "ကွန်ဖူးဇင့်", meaning: "ရှုပ်ထွေးစေသည်" },
+{ v1: "connect", v1_pron: "ကွန်နက်ခ်", v2: "connected", v2_pron: "ကွန်နက်ခ်", v3: "connected", v3_pron: "ကွန်နက်ခ်", ving: "connecting", ving_pron: "ကွန်နက်တင့်", meaning: "ချိတ်ဆက်သည်" },
+{ v1: "conquer", v1_pron: "ကွန်ကာ", v2: "conquered", v2_pron: "ကွန်ကာ", v3: "conquered", v3_pron: "ကွန်ကာ", ving: "conquering", ving_pron: "ကွန်ကာရင့်", meaning: "အောင်မြင်သည်" },
+{ v1: "conserve", v1_pron: "ကွန်ဆာ့", v2: "conserved", v2_pron: "ကွန်ဆာ့", v3: "conserved", v3_pron: "ကွန်ဆာ့", ving: "conserving", ving_pron: "ကွန်ဆာ့ဗင့်", meaning: "ထိန်းသိမ်းသည်" },
+{ v1: "consider", v1_pron: "ကွန်ဆစ်ဒါ", v2: "considered", v2_pron: "ကွန်ဆစ်ဒါ", v3: "considered", v3_pron: "ကွန်ဆစ်ဒါ", ving: "considering", ving_pron: "ကွန်ဆစ်ဒါရင့်", meaning: "ထည့်သွင်းစဉ်းစားသည်" },
+{ v1: "constitute", v1_pron: "ကွန်စတီကျု", v2: "constituted", v2_pron: "ကွန်စတီကျု", v3: "constituted", v3_pron: "ကွန်စတီကျု", ving: "constituting", ving_pron: "ကွန်စတီကျုတင့်", meaning: "ဖွဲ့စည်းသည်" },
+{ v1: "consult", v1_pron: "ကွန်ဆတ်", v2: "consulted", v2_pron: "ကွန်ဆတ်", v3: "consulted", v3_pron: "ကွန်ဆတ်", ving: "consulting", ving_pron: "ကွန်ဆတ်တင့်", meaning: "တိုင်ပင်သည်" },
+{ v1: "consume", v1_pron: "ကွန်ဆူးမ်", v2: "consumed", v2_pron: "ကွန်ဆူးမ်", v3: "consumed", v3_pron: "ကွန်ဆူးမ်", ving: "consuming", ving_pron: "ကွန်ဆူးမ်မင်", meaning: "စားသုံးသည်" },
+{ v1: "contain", v1_pron: "ကွန်တိန်", v2: "contained", v2_pron: "ကွန်တိန်", v3: "contained", v3_pron: "ကွန်တိန်", ving: "containing", ving_pron: "ကွန်တိန်နင့်", meaning: "ပါဝင်သည်" },
+{ v1: "contaminate", v1_pron: "ကွန်တမ်မီနိတ်", v2: "contaminated", v2_pron: "ကွန်တမ်မီနိတ်", v3: "contaminated", v3_pron: "ကွန်တမ်မီနိတ်", ving: "contaminating", ving_pron: "ကွန်တမ်မီနိတ်တင့်", meaning: "ညစ်ညမ်းစေသည်" },
+// 741-750
+{ v1: "contemplate", v1_pron: "ကွန်တမ်ပလိတ်", v2: "contemplated", v2_pron: "ကွန်တမ်ပလိတ်", v3: "contemplated", v3_pron: "ကွန်တမ်ပလိတ်", ving: "contemplating", ving_pron: "ကွန်တမ်ပလိတ်တင့်", meaning: "ဆင်ခြင်သုံးသပ်သည်" },
+{ v1: "contend", v1_pron: "ကွန်တင့်", v2: "contended", v2_pron: "ကွန်တင့်", v3: "contended", v3_pron: "ကွန်တင့်", ving: "contending", ving_pron: "ကွန်တင့်ဒင့်", meaning: "ပြိုင်ဆိုင်သည်" },
+{ v1: "contest", v1_pron: "ကွန်တက်စ်", v2: "contested", v2_pron: "ကွန်တက်စ်", v3: "contested", v3_pron: "ကွန်တက်စ်", ving: "contesting", ving_pron: "ကွန်တက်စ်တင့်", meaning: "စိန်ခေါ်သည်" },
+{ v1: "contract", v1_pron: "ကွန်ထရက်", v2: "contracted", v2_pron: "ကွန်ထရက်", v3: "contracted", v3_pron: "ကွန်ထရက်", ving: "contracting", ving_pron: "ကွန်ထရက်တင့်", meaning: "စာချုပ်ချုပ်သည်" },
+{ v1: "contradict", v1_pron: "ကွန်ထရာဒစ်", v2: "contradicted", v2_pron: "ကွန်ထရာဒစ်", v3: "contradicted", v3_pron: "ကွန်ထရာဒစ်", ving: "contradicting", ving_pron: "ကွန်ထရာဒစ်တင့်", meaning: "ဆန့်ကျင်ပြောဆိုသည်" },
+{ v1: "contribute", v1_pron: "ကွန်ထရီဗျူး", v2: "contributed", v2_pron: "ကွန်ထရီဗျူး", v3: "contributed", v3_pron: "ကွန်ထရီဗျူး", ving: "contributing", ving_pron: "ကွန်ထရီဗျူးအင့်", meaning: "ပါဝင်ကူညီသည်" },
+{ v1: "control", v1_pron: "ကွန်ထရိုး", v2: "controlled", v2_pron: "ကွန်ထရိုး", v3: "controlled", v3_pron: "ကွန်ထရိုး", ving: "controlling", ving_pron: "ကွန်ထရိုးအင့်", meaning: "ထိန်းချုပ်သည်" },
+{ v1: "controversy", v1_pron: "ကွန်ထရိုဗာစီ", v2: "controversied", v2_pron: "ကွန်ထရိုဗာစီ", v3: "controversied", v3_pron: "ကွန်ထရိုဗာစီ", ving: "controversying", ving_pron: "ကွန်ထရိုဗာစီအင့်", meaning: "အငြင်းပွားသည်" },
+{ v1: "convenience", v1_pron: "ကွန်ဗီနီယင့်", v2: "convenienced", v2_pron: "ကွန်ဗီနီယင့်", v3: "convenienced", v3_pron: "ကွန်ဗီနီယင့်", ving: "conveniencing", ving_pron: "ကွန်ဗီနီယင့်စင့်", meaning: "အဆင်ပြေစေသည်" },
+{ v1: "convene", v1_pron: "ကွန်ဗီးန်း", v2: "convened", v2_pron: "ကွန်ဗီးန်း", v3: "convened", v3_pron: "ကွန်ဗီးန်း", ving: "convening", ving_pron: "ကွန်ဗီးန်းနင့်", meaning: "စုဝေးစေသည်" },
+// 751-760
+{ v1: "converge", v1_pron: "ကွန်ဗာ", v2: "converged", v2_pron: "ကွန်ဗာ", v3: "converged", v3_pron: "ကွန်ဗာ", ving: "converging", ving_pron: "ကွန်ဗာ့ဂျင့်", meaning: "ဆုံသည်" },
+{ v1: "converse", v1_pron: "ကွန်ဗာ့စ်", v2: "conversed", v2_pron: "ကွန်ဗာ့စ်", v3: "conversed", v3_pron: "ကွန်ဗာ့စ်", ving: "conversing", ving_pron: "ကွန်ဗာ့စင့်", meaning: "စကားပြောဆိုသည်" },
+{ v1: "convert", v1_pron: "ကွန်ဗာ", v2: "converted", v2_pron: "ကွန်ဗာ", v3: "converted", v3_pron: "ကွန်ဗာ", ving: "converting", ving_pron: "ကွန်ဗာတင့်", meaning: "ပြောင်းလဲသည်" },
+{ v1: "convey", v1_pron: "ကွန်ဗေ", v2: "conveyed", v2_pron: "ကွန်ဗေ", v3: "conveyed", v3_pron: "ကွန်ဗေ", ving: "conveying", ving_pron: "ကွန်ဗေအင့်", meaning: "သယ်ဆောင်သည်" },
+{ v1: "convict", v1_pron: "ကွန်ဗစ်", v2: "convicted", v2_pron: "ကွန်ဗစ်", v3: "convicted", v3_pron: "ကွန်ဗစ်", ving: "convicting", ving_pron: "ကွန်ဗစ်တင့်", meaning: "အပြစ်ရှိကြောင်းဆုံးဖြတ်သည်" },
+{ v1: "cooperate", v1_pron: "ကိုအော့ပရိတ်", v2: "cooperated", v2_pron: "ကိုအော့ပရိတ်", v3: "cooperated", v3_pron: "ကိုအော့ပရိတ်", ving: "cooperating", ving_pron: "ကိုအော့ပရိတ်တင့်", meaning: "ပူးပေါင်းဆောင်ရွက်သည်" },
+{ v1: "coordinate", v1_pron: "ကိုအော်ဒီနိတ်", v2: "coordinated", v2_pron: "ကိုအော်ဒီနိတ်", v3: "coordinated", v3_pron: "ကိုအော်ဒီနိတ်", ving: "coordinating", ving_pron: "ကိုအော်ဒီနိတ်တင့်", meaning: "ညှိနှိုင်းဆောင်ရွက်သည်" },
+{ v1: "cope", v1_pron: "ကိုးပ်", v2: "coped", v2_pron: "ကိုးပ်", v3: "coped", v3_pron: "ကိုးပ်", ving: "coping", ving_pron: "ကိုးပင့်", meaning: "ရင်ဆိုင်ဖြေရှင်းသည်" },
+{ v1: "correspond", v1_pron: "ကော်ရစ်စပွန့်", v2: "corresponded", v2_pron: "ကော်ရစ်စပွန့်", v3: "corresponded", v3_pron: "ကော်ရစ်စပွန့်", ving: "corresponding", ving_pron: "ကော်ရစ်စပွန့်ဒင့်", meaning: "ဆက်သွယ်သည်" },
+{ v1: "corrupt", v1_pron: "ကော်ရပ်", v2: "corrupted", v2_pron: "ကော်ရပ်", v3: "corrupted", v3_pron: "ကော်ရပ်", ving: "corrupting", ving_pron: "ကော်ရပ်တင့်", meaning: "အဂတိလိုက်စားသည်" },
+// 761-770
+{ v1: "counsel", v1_pron: "ကောင်ဆယ်", v2: "counseled", v2_pron: "ကောင်ဆယ်", v3: "counseled", v3_pron: "ကောင်ဆယ်", ving: "counseling", ving_pron: "ကောင်ဆယ်လင့်", meaning: "အကြံပေးသည်" },
+{ v1: "crane", v1_pron: "ခရိန်း", v2: "craned", v2_pron: "ခရိန်း", v3: "craned", v3_pron: "ခရိန်း", ving: "craning", ving_pron: "ခရိန်းနင့်", meaning: "လည်ပင်းဆန့်သည်" },
+{ v1: "crash", v1_pron: "ခရက်ရှ်", v2: "crashed", v2_pron: "ခရက်ရှ်", v3: "crashed", v3_pron: "ခရက်ရှ်", ving: "crashing", ving_pron: "ခရက်ရှင့်", meaning: "တိုက်မိသည်" },
+{ v1: "credit", v1_pron: "ခရက်ဒစ်", v2: "credited", v2_pron: "ခရက်ဒစ်", v3: "credited", v3_pron: "ခရက်ဒစ်", ving: "crediting", ving_pron: "ခရက်ဒစ်တင့်", meaning: "ချီးကျူးသည်" },
+{ v1: "crush", v1_pron: "ခရပ်ရှ်", v2: "crushed", v2_pron: "ခရပ်ရှ်", v3: "crushed", v3_pron: "ခရပ်ရှ်", ving: "crushing", ving_pron: "ခရပ်ရှင့်", meaning: "ကြိတ်သည်" },
+{ v1: "cure", v1_pron: "ကျူးယား", v2: "cured", v2_pron: "ကျူးယား", v3: "cured", v3_pron: "ကျူးယား", ving: "curing", ving_pron: "ကျူးယားရင့်", meaning: "ကုသသည်" },
+{ v1: "curl", v1_pron: "ကာ", v2: "curled", v2_pron: "ကာ", v3: "curled", v3_pron: "ကာ", ving: "curling", ving_pron: "ကာလင့်", meaning: "ကောက်ကွေးသည်" },
+{ v1: "curse", v1_pron: "ကာ့စ်", v2: "cursed", v2_pron: "ကာ့စ်", v3: "cursed", v3_pron: "ကာ့စ်", ving: "cursing", ving_pron: "ကာ့စင့်", meaning: "ကျိန်ဆဲသည်" },
+{ v1: "curve", v1_pron: "ကာ့", v2: "curved", v2_pron: "ကာ့", v3: "curved", v3_pron: "ကာ့", ving: "curving", ving_pron: "ကာ့ဗင့်", meaning: "ကွေးသည်" },
+{ v1: "cycle", v1_pron: "ဆိုက်ကယ်", v2: "cycled", v2_pron: "ဆိုက်ကယ်", v3: "cycled", v3_pron: "ဆိုက်ကယ်", ving: "cycling", ving_pron: "ဆိုက်ကယ်လင့်", meaning: "စက်ဘီးစီးသည်" },
+// 771-780
+{ v1: "dam", v1_pron: "ဒမ်", v2: "dammed", v2_pron: "ဒမ်", v3: "dammed", v3_pron: "ဒမ်", ving: "damming", ving_pron: "ဒမ်မင်", meaning: "ဆည်ဖို့သည်" },
+{ v1: "damp", v1_pron: "ဒမ့်", v2: "damped", v2_pron: "ဒမ့်", v3: "damped", v3_pron: "ဒမ့်", ving: "damping", ving_pron: "ဒမ့်ပင်", meaning: "စိုစွတ်စေသည်" },
+{ v1: "dash", v1_pron: "ဒက်ရှ်", v2: "dashed", v2_pron: "ဒက်ရှ်", v3: "dashed", v3_pron: "ဒက်ရှ်", ving: "dashing", ving_pron: "ဒက်ရှင့်", meaning: "ပြေးသည်" },
+{ v1: "dazzle", v1_pron: "ဒဇ်ဇယ်", v2: "dazzled", v2_pron: "ဒဇ်ဇယ်", v3: "dazzled", v3_pron: "ဒဇ်ဇယ်", ving: "dazzling", ving_pron: "ဒဇ်ဇယ်လင့်", meaning: "မျက်စိပသာဒဖြစ်စေသည်" },
+{ v1: "dedicate", v1_pron: "ဒက်ဒီကိတ်", v2: "dedicated", v2_pron: "ဒက်ဒီကိတ်", v3: "dedicated", v3_pron: "ဒက်ဒီကိတ်", ving: "dedicating", ving_pron: "ဒက်ဒီကိတ်တင့်", meaning: "မြှုပ်နှံသည်" },
+{ v1: "deduct", v1_pron: "ဒီဒတ်", v2: "deducted", v2_pron: "ဒီဒတ်", v3: "deducted", v3_pron: "ဒီဒတ်", ving: "deducting", ving_pron: "ဒီဒတ်တင့်", meaning: "နုတ်ယူသည်" },
+{ v1: "deem", v1_pron: "ဒီးမ်", v2: "deemed", v2_pron: "ဒီးမ်", v3: "deemed", v3_pron: "ဒီးမ်", ving: "deeming", ving_pron: "ဒီးမ်မင်", meaning: "ယူဆသည်" },
+{ v1: "deepen", v1_pron: "ဒီးပန်", v2: "deepened", v2_pron: "ဒီးပန်", v3: "deepened", v3_pron: "ဒီးပန်", ving: "deepening", ving_pron: "ဒီးပန်နင့်", meaning: "နက်ရှိုင်းစေသည်" },
+{ v1: "defer", v1_pron: "ဒီဖာ", v2: "deferred", v2_pron: "ဒီဖာ", v3: "deferred", v3_pron: "ဒီဖာ", ving: "deferring", ving_pron: "ဒီဖာရင့်", meaning: "ရွှေ့ဆိုင်းသည်" },
+{ v1: "define", v1_pron: "ဒီဖိုင်း", v2: "defined", v2_pron: "ဒီဖိုင်း", v3: "defined", v3_pron: "ဒီဖိုင်း", ving: "defining", ving_pron: "ဒီဖိုင်းနင့်", meaning: "အဓိပ္ပါယ်ဖွင့်ဆိုသည်" },
+// 781-790
+{ v1: "defy", v1_pron: "ဒီဖိုင်", v2: "defied", v2_pron: "ဒီဖိုင်", v3: "defied", v3_pron: "ဒီဖိုင်", ving: "defying", ving_pron: "ဒီဖိုင်အင့်", meaning: "စိန်ခေါ်သည်" },
+{ v1: "delegate", v1_pron: "ဒယ်လီဂိတ်", v2: "delegated", v2_pron: "ဒယ်လီဂိတ်", v3: "delegated", v3_pron: "ဒယ်လီဂိတ်", ving: "delegating", ving_pron: "ဒယ်လီဂိတ်တင့်", meaning: "တာဝန်လွှဲအပ်သည်" },
+{ v1: "delight", v1_pron: "ဒီလိုက်", v2: "delighted", v2_pron: "ဒီလိုက်", v3: "delighted", v3_pron: "ဒီလိုက်", ving: "delighting", ving_pron: "ဒီလိုက်တင့်", meaning: "ပျော်ရွှင်စေသည်" },
+{ v1: "depict", v1_pron: "ဒီပစ်", v2: "depicted", v2_pron: "ဒီပစ်", v3: "depicted", v3_pron: "ဒီပစ်", ving: "depicting", ving_pron: "ဒီပစ်တင့်", meaning: "ပုံဖော်သည်" },
+{ v1: "deploy", v1_pron: "ဒီပလွိုင်", v2: "deployed", v2_pron: "ဒီပလွိုင်", v3: "deployed", v3_pron: "ဒီပလွိုင်", ving: "deploying", ving_pron: "ဒီပလိုင်အင့်", meaning: "ဖြန့်ကြက်သည်" },
+{ v1: "deposit", v1_pron: "ဒီပိုဇစ်", v2: "deposited", v2_pron: "ဒီပိုဇစ်", v3: "deposited", v3_pron: "ဒီပိုဇစ်", ving: "depositing", ving_pron: "ဒီပိုဇစ်တင့်", meaning: "အပ်နှံသည်" },
+{ v1: "deprive", v1_pron: "ဒီပရိုက်", v2: "deprived", v2_pron: "ဒီပရိုက်", v3: "deprived", v3_pron: "ဒီပရိုက်", ving: "depriving", ving_pron: "ဒီပရိုက်ဗင့်", meaning: "ဆုံးရှုံးစေသည်" },
+{ v1: "derive", v1_pron: "ဒီရိုက်", v2: "derived", v2_pron: "ဒီရိုက်", v3: "derived", v3_pron: "ဒီရိုက်", ving: "deriving", ving_pron: "ဒီရိုက်ဗင့်", meaning: "ရရှိသည်" },
+{ v1: "deserve", v1_pron: "ဒီဇာ့", v2: "deserved", v2_pron: "ဒီဇာ့", v3: "deserved", v3_pron: "ဒီဇာ့", ving: "deserving", ving_pron: "ဒီဇာ့ဗင့်", meaning: "ထိုက်တန်သည်" },
+{ v1: "despise", v1_pron: "ဒီစပိုက်ဇ်", v2: "despised", v2_pron: "ဒီစပိုက်ဇ်", v3: "despised", v3_pron: "ဒီစပိုက်ဇ်", ving: "despising", ving_pron: "ဒီစပိုက်ဇင့်", meaning: "မထီမဲ့မြင်ပြုသည်" },
+// 791-800
+{ v1: "destine", v1_pron: "ဒက်စတင်း", v2: "destined", v2_pron: "ဒက်စတင်း", v3: "destined", v3_pron: "ဒက်စတင်း", ving: "destining", ving_pron: "ဒက်စတင်းနင့်", meaning: "ကံကြမ္မာသတ်မှတ်သည်" },
+{ v1: "detach", v1_pron: "ဒီတက်ချ်", v2: "detached", v2_pron: "ဒီတက်ချ်", v3: "detached", v3_pron: "ဒီတက်ချ်", ving: "detaching", ving_pron: "ဒီတက်ချင့်", meaning: "ခွဲထုတ်သည်" },
+{ v1: "detect", v1_pron: "ဒီတက်ခ်", v2: "detected", v2_pron: "ဒီတက်ခ်", v3: "detected", v3_pron: "ဒီတက်ခ်", ving: "detecting", ving_pron: "ဒီတက်တင့်", meaning: "ရှာဖွေတွေ့ရှိသည်" },
+{ v1: "deter", v1_pron: "ဒီတာ", v2: "deterred", v2_pron: "ဒီတာ", v3: "deterred", v3_pron: "ဒီတာ", ving: "deterring", ving_pron: "ဒီတာရင့်", meaning: "တားဆီးသည်" },
+{ v1: "determine", v1_pron: "ဒီတာမင်", v2: "determined", v2_pron: "ဒီတာမင်", v3: "determined", v3_pron: "ဒီတာမင်", ving: "determining", ving_pron: "ဒီတာမင်နင့်", meaning: "ဆုံးဖြတ်သည်" },
+{ v1: "detonate", v1_pron: "ဒက်တိုနိတ်", v2: "detonated", v2_pron: "ဒက်တိုနိတ်", v3: "detonated", v3_pron: "ဒက်တိုနိတ်", ving: "detonating", ving_pron: "ဒက်တိုနိတ်တင့်", meaning: "ပေါက်ကွဲစေသည်" },
+{ v1: "devastate", v1_pron: "ဒက်ဗက်စတိတ်", v2: "devastated", v2_pron: "ဒက်ဗက်စတိတ်", v3: "devastated", v3_pron: "ဒက်ဗက်စတိတ်", ving: "devastating", ving_pron: "ဒက်ဗက်စတိတ်တင့်", meaning: "ပျက်စီးစေသည်" },
+{ v1: "diagnose", v1_pron: "ဒိုင်အက်နိုးဇ်", v2: "diagnosed", v2_pron: "ဒိုင်အက်နိုးဇ်", v3: "diagnosed", v3_pron: "ဒိုင်အက်နိုးဇ်", ving: "diagnosing", ving_pron: "ဒိုင်အက်နိုးဇင့်", meaning: "ရောဂါရှာဖွေသည်" },
+{ v1: "dictate", v1_pron: "ဒစ်တိတ်", v2: "dictated", v2_pron: "ဒစ်တိတ်", v3: "dictated", v3_pron: "ဒစ်တိတ်", ving: "dictating", ving_pron: "ဒစ်တိတ်တင့်", meaning: "အာဏာရှင်ဆန်စွာအမိန့်ပေးသည်" },
+{ v1: "differentiate", v1_pron: "ဒစ်ဖာရန်ရှိတ်", v2: "differentiated", v2_pron: "ဒစ်ဖာရန်ရှိတ်", v3: "differentiated", v3_pron: "ဒစ်ဖာရန်ရှိတ်", ving: "differentiating", ving_pron: "ဒစ်ဖာရန်ရှိတ်တင့်", meaning: "ကွဲပြားစေသည်" }
+,
+// =============================================================
+//  VERB 801 to 1000 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - verb-forms.html ရဲ့ verbs array ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+// 801-810
+{ v1: "diffuse", v1_pron: "ဒစ်ဖူးဇ်", v2: "diffused", v2_pron: "ဒစ်ဖူးဇ်", v3: "diffused", v3_pron: "ဒစ်ဖူးဇ်", ving: "diffusing", ving_pron: "ဒစ်ဖူးဇင့်", meaning: "ပျံ့နှံ့စေသည်" },
+{ v1: "digest", v1_pron: "ဒိုင်ဂျက်စ်", v2: "digested", v2_pron: "ဒိုင်ဂျက်စ်", v3: "digested", v3_pron: "ဒိုင်ဂျက်စ်", ving: "digesting", ving_pron: "ဒိုင်ဂျက်စ်တင့်", meaning: "အစာချေသည်" },
+{ v1: "dignify", v1_pron: "ဒစ်နီဖိုင်", v2: "dignified", v2_pron: "ဒစ်နီဖိုင်", v3: "dignified", v3_pron: "ဒစ်နီဖိုင်", ving: "dignifying", ving_pron: "ဒစ်နီဖိုင်အင့်", meaning: "ဂုဏ်မြှင့်တင်သည်" },
+{ v1: "dilute", v1_pron: "ဒိုင်လူး", v2: "diluted", v2_pron: "ဒိုင်လူး", v3: "diluted", v3_pron: "ဒိုင်လူး", ving: "diluting", ving_pron: "ဒိုင်လူးတင့်", meaning: "ဖျော်သည်" },
+{ v1: "dim", v1_pron: "ဒင်မ်", v2: "dimmed", v2_pron: "ဒင်မ်", v3: "dimmed", v3_pron: "ဒင်မ်", ving: "dimming", ving_pron: "ဒင်မ်မင်", meaning: "မှေးမှိန်စေသည်" },
+{ v1: "direct", v1_pron: "ဒိုရက်ခ်", v2: "directed", v2_pron: "ဒိုရက်ခ်", v3: "directed", v3_pron: "ဒိုရက်ခ်", ving: "directing", ving_pron: "ဒိုရက်တင့်", meaning: "ညွှန်ကြားသည်" },
+{ v1: "disable", v1_pron: "ဒစ်စေဘယ်", v2: "disabled", v2_pron: "ဒစ်စေဘယ်", v3: "disabled", v3_pron: "ဒစ်စေဘယ်", ving: "disabling", ving_pron: "ဒစ်စေဘယ်လင့်", meaning: "မလှုပ်ရှားနိုင်အောင်လုပ်သည်" },
+{ v1: "disagree", v1_pron: "ဒစ်စဂရီး", v2: "disagreed", v2_pron: "ဒစ်စဂရီး", v3: "disagreed", v3_pron: "ဒစ်စဂရီး", ving: "disagreeing", ving_pron: "ဒစ်စဂရီးအင့်", meaning: "သဘောမတူညီ" },
+{ v1: "disappear", v1_pron: "ဒစ်စပီးယား", v2: "disappeared", v2_pron: "ဒစ်စပီးယား", v3: "disappeared", v3_pron: "ဒစ်စပီးယား", ving: "disappearing", ving_pron: "ဒစ်စပီးယားရင့်", meaning: "ပျောက်ကွယ်သည်" },
+{ v1: "discipline", v1_pron: "ဒစ်ဆီပလင်", v2: "disciplined", v2_pron: "ဒစ်ဆီပလင်", v3: "disciplined", v3_pron: "ဒစ်ဆီပလင်", ving: "disciplining", ving_pron: "ဒစ်ဆီပလင်နင့်", meaning: "စည်းကမ်းပေးသည်" },
+// 811-820
+{ v1: "disclose", v1_pron: "ဒစ်စကလိုးဇ်", v2: "disclosed", v2_pron: "ဒစ်စကလိုးဇ်", v3: "disclosed", v3_pron: "ဒစ်စကလိုးဇ်", ving: "disclosing", ving_pron: "ဒစ်စကလိုးဇင့်", meaning: "ဖော်ထုတ်သည်" },
+{ v1: "discount", v1_pron: "ဒစ်စကောင့်", v2: "discounted", v2_pron: "ဒစ်စကောင့်", v3: "discounted", v3_pron: "ဒစ်စကောင့်", ving: "discounting", ving_pron: "ဒစ်စကောင့်တင့်", meaning: "လျှော့စျေးပေးသည်" },
+{ v1: "discourage", v1_pron: "ဒစ်စကာရစ်", v2: "discouraged", v2_pron: "ဒစ်စကာရစ်", v3: "discouraged", v3_pron: "ဒစ်စကာရစ်", ving: "discouraging", ving_pron: "ဒစ်စကာရစ်ဂျင့်", meaning: "စိတ်ဓာတ်ကျစေသည်" },
+{ v1: "discriminate", v1_pron: "ဒစ်စကရီမီနိတ်", v2: "discriminated", v2_pron: "ဒစ်စကရီမီနိတ်", v3: "discriminated", v3_pron: "ဒစ်စကရီမီနိတ်", ving: "discriminating", ving_pron: "ဒစ်စကရီမီနိတ်တင့်", meaning: "ခွဲခြားဆက်ဆံသည်" },
+{ v1: "dismantle", v1_pron: "ဒစ်စမန်တယ်", v2: "dismantled", v2_pron: "ဒစ်စမန်တယ်", v3: "dismantled", v3_pron: "ဒစ်စမန်တယ်", ving: "dismantling", ving_pron: "ဒစ်စမန်တယ်လင့်", meaning: "ဖျက်သိမ်းသည်" },
+{ v1: "dismiss", v1_pron: "ဒစ်စမစ်", v2: "dismissed", v2_pron: "ဒစ်စမစ်", v3: "dismissed", v3_pron: "ဒစ်စမစ်", ving: "dismissing", ving_pron: "ဒစ်စမစ်စင့်", meaning: "ပယ်ချသည်" },
+{ v1: "displace", v1_pron: "ဒစ်စပလေ့စ်", v2: "displaced", v2_pron: "ဒစ်စပလေ့စ်", v3: "displaced", v3_pron: "ဒစ်စပလေ့စ်", ving: "displacing", ving_pron: "ဒစ်စပလေ့စင့်", meaning: "နေရာရွှေ့ပြောင်းစေသည်" },
+{ v1: "display", v1_pron: "ဒစ်စပလေ", v2: "displayed", v2_pron: "ဒစ်စပလေ", v3: "displayed", v3_pron: "ဒစ်စပလေ", ving: "displaying", ving_pron: "ဒစ်စပလေအင့်", meaning: "ပြသသည်" },
+{ v1: "dispose", v1_pron: "ဒစ်စပိုးဇ်", v2: "disposed", v2_pron: "ဒစ်စပိုးဇ်", v3: "disposed", v3_pron: "ဒစ်စပိုးဇ်", ving: "disposing", ving_pron: "ဒစ်စပိုးဇင့်", meaning: "စွန့်ပစ်သည်" },
+{ v1: "dispute", v1_pron: "ဒစ်စပျူး", v2: "disputed", v2_pron: "ဒစ်စပျူး", v3: "disputed", v3_pron: "ဒစ်စပျူး", ving: "disputing", ving_pron: "ဒစ်စပျူးတင့်", meaning: "အငြင်းပွားသည်" },
+// 821-830
+{ v1: "disrupt", v1_pron: "ဒစ်စရပ်", v2: "disrupted", v2_pron: "ဒစ်စရပ်", v3: "disrupted", v3_pron: "ဒစ်စရပ်", ving: "disrupting", ving_pron: "ဒစ်စရပ်တင့်", meaning: "အနှောင့်အယှက်ဖြစ်စေသည်" },
+{ v1: "dissolve", v1_pron: "ဒစ်ဆော့", v2: "dissolved", v2_pron: "ဒစ်ဆော့", v3: "dissolved", v3_pron: "ဒစ်ဆော့", ving: "dissolving", ving_pron: "ဒစ်ဆော့ဗင့်", meaning: "အရည်ပျော်သည်" },
+{ v1: "distinguish", v1_pron: "ဒစ်စတင်ဂွစ်", v2: "distinguished", v2_pron: "ဒစ်စတင်ဂွစ်", v3: "distinguished", v3_pron: "ဒစ်စတင်ဂွစ်", ving: "distinguishing", ving_pron: "ဒစ်စတင်ဂွစ်ရှင့်", meaning: "ခွဲခြားသိမြင်သည်" },
+{ v1: "distort", v1_pron: "ဒစ်စတော", v2: "distorted", v2_pron: "ဒစ်စတော", v3: "distorted", v3_pron: "ဒစ်စတော", ving: "distorting", ving_pron: "ဒစ်စတော့တင့်", meaning: "ပုံပျက်စေသည်" },
+{ v1: "distribute", v1_pron: "ဒစ်စထရီဗျူး", v2: "distributed", v2_pron: "ဒစ်စထရီဗျူး", v3: "distributed", v3_pron: "ဒစ်စထရီဗျူး", ving: "distributing", ving_pron: "ဒစ်စထရီဗျူးအင့်", meaning: "ဖြန့်ဝေသည်" },
+{ v1: "disturb", v1_pron: "ဒစ်စတာ့", v2: "disturbed", v2_pron: "ဒစ်စတာ့", v3: "disturbed", v3_pron: "ဒစ်စတာ့", ving: "disturbing", ving_pron: "ဒစ်စတာ့ဗင့်", meaning: "နှောင့်ယှက်သည်" },
+{ v1: "diverge", v1_pron: "ဒိုင်ဗာ", v2: "diverged", v2_pron: "ဒိုင်ဗာ", v3: "diverged", v3_pron: "ဒိုင်ဗာ", ving: "diverging", ving_pron: "ဒိုင်ဗာ့ဂျင့်", meaning: "ကွဲပြားသည်" },
+{ v1: "divert", v1_pron: "ဒိုင်ဗာ", v2: "diverted", v2_pron: "ဒိုင်ဗာ", v3: "diverted", v3_pron: "ဒိုင်ဗာ", ving: "diverting", ving_pron: "ဒိုင်ဗာတင့်", meaning: "လွှဲပြောင်းသည်" },
+{ v1: "divorce", v1_pron: "ဒိုင်ဗော်စ်", v2: "divorced", v2_pron: "ဒိုင်ဗော်စ်", v3: "divorced", v3_pron: "ဒိုင်ဗော်စ်", ving: "divorcing", ving_pron: "ဒိုင်ဗော်စင့်", meaning: "ကွာရှင်းသည်" },
+{ v1: "document", v1_pron: "ဒက်ကျူမင့်", v2: "documented", v2_pron: "ဒက်ကျူမင့်", v3: "documented", v3_pron: "ဒက်ကျူမင့်", ving: "documenting", ving_pron: "ဒက်ကျူမင့်ဒင့်", meaning: "မှတ်တမ်းတင်သည်" },
+// 831-840
+{ v1: "domesticate", v1_pron: "ဒိုမက်စတီကိတ်", v2: "domesticated", v2_pron: "ဒိုမက်စတီကိတ်", v3: "domesticated", v3_pron: "ဒိုမက်စတီကိတ်", ving: "domesticating", ving_pron: "ဒိုမက်စတီကိတ်တင့်", meaning: "အိမ်မွေးတိရစ္ဆာန်အဖြစ်မွေးမြူသည်" },
+{ v1: "dominate", v1_pron: "ဒိုမီနိတ်", v2: "dominated", v2_pron: "ဒိုမီနိတ်", v3: "dominated", v3_pron: "ဒိုမီနိတ်", ving: "dominating", ving_pron: "ဒိုမီနိတ်တင့်", meaning: "ကြီးစိုးသည်" },
+{ v1: "donate", v1_pron: "ဒိုးနိတ်", v2: "donated", v2_pron: "ဒိုးနိတ်", v3: "donated", v3_pron: "ဒိုးနိတ်", ving: "donating", ving_pron: "ဒိုးနိတ်တင့်", meaning: "လှူဒါန်းသည်" },
+{ v1: "drain", v1_pron: "ဒရိန်း", v2: "drained", v2_pron: "ဒရိန်း", v3: "drained", v3_pron: "ဒရိန်း", ving: "draining", ving_pron: "ဒရိန်းနင့်", meaning: "ရေစီးထုတ်သည်" },
+{ v1: "dramatize", v1_pron: "ဒရာမာတိုက်ဇ်", v2: "dramatized", v2_pron: "ဒရာမာတိုက်ဇ်", v3: "dramatized", v3_pron: "ဒရာမာတိုက်ဇ်", ving: "dramatizing", ving_pron: "ဒရာမာတိုက်ဇင့်", meaning: "ပြဇာတ်ဖြစ်အောင်ရေးသည်" },
+{ v1: "dread", v1_pron: "ဒရက်", v2: "dreaded", v2_pron: "ဒရက်", v3: "dreaded", v3_pron: "ဒရက်", ving: "dreading", ving_pron: "ဒရက်ဒင့်", meaning: "ကြောက်ရွံ့သည်" },
+{ v1: "drift", v1_pron: "ဒရစ်", v2: "drifted", v2_pron: "ဒရစ်", v3: "drifted", v3_pron: "ဒရစ်", ving: "drifting", ving_pron: "ဒရစ်ဖင့်", meaning: "မျောပါသည်" },
+{ v1: "drip", v1_pron: "ဒရစ်", v2: "dripped", v2_pron: "ဒရစ်", v3: "dripped", v3_pron: "ဒရစ်", ving: "dripping", ving_pron: "ဒရစ်ပင်", meaning: "ယိုသည်" },
+{ v1: "duplicate", v1_pron: "ဒူပလီကိတ်", v2: "duplicated", v2_pron: "ဒူပလီကိတ်", v3: "duplicated", v3_pron: "ဒူပလီကိတ်", ving: "duplicating", ving_pron: "ဒူပလီကိတ်တင့်", meaning: "ပုံတူကူးသည်" },
+{ v1: "dwell", v1_pron: "ဒွယ်လ်", v2: "dwelt", v2_pron: "ဒွယ်လ်", v3: "dwelt", v3_pron: "ဒွယ်လ်", ving: "dwelling", ving_pron: "ဒွယ်လင့်", meaning: "နေထိုင်သည်" },
+// 841-850
+{ v1: "ease", v1_pron: "အီးဇ်", v2: "eased", v2_pron: "အီးဇ်", v3: "eased", v3_pron: "အီးဇ်", ving: "easing", ving_pron: "အီးဇင့်", meaning: "သက်သာစေသည်" },
+{ v1: "echo", v1_pron: "အက်ကိုး", v2: "echoed", v2_pron: "အက်ကိုး", v3: "echoed", v3_pron: "အက်ကိုး", ving: "echoing", ving_pron: "အက်ကိုးအင့်", meaning: "ပဲ့တင်ထပ်သည်" },
+{ v1: "eclipse", v1_pron: "အီးကလစ်", v2: "eclipsed", v2_pron: "အီးကလစ်", v3: "eclipsed", v3_pron: "အီးကလစ်", ving: "eclipsing", ving_pron: "အီးကလစ်စင့်", meaning: "လွှမ်းမိုးသည်" },
+{ v1: "economize", v1_pron: "အီကိုနိုမိုက်ဇ်", v2: "economized", v2_pron: "အီကိုနိုမိုက်ဇ်", v3: "economized", v3_pron: "အီကိုနိုမိုက်ဇ်", ving: "economizing", ving_pron: "အီကိုနိုမိုက်ဇင့်", meaning: "စီးပွားရေးတတ်သည်" },
+{ v1: "edit", v1_pron: "အဒစ်", v2: "edited", v2_pron: "အဒစ်", v3: "edited", v3_pron: "အဒစ်", ving: "editing", ving_pron: "အဒစ်တင့်", meaning: "ပြင်ဆင်သည်" },
+{ v1: "elect", v1_pron: "အီလက်ခ်", v2: "elected", v2_pron: "အီလက်ခ်", v3: "elected", v3_pron: "အီလက်ခ်", ving: "electing", ving_pron: "အီလက်တင့်", meaning: "ရွေးကောက်တင်မြှောက်သည်" },
+{ v1: "elevate", v1_pron: "အယ်လီဗိတ်", v2: "elevated", v2_pron: "အယ်လီဗိတ်", v3: "elevated", v3_pron: "အယ်လီဗိတ်", ving: "elevating", ving_pron: "အယ်လီဗိတ်တင့်", meaning: "မြှင့်တင်သည်" },
+{ v1: "eliminate", v1_pron: "အီလီမီနိတ်", v2: "eliminated", v2_pron: "အီလီမီနိတ်", v3: "eliminated", v3_pron: "အီလီမီနိတ်", ving: "eliminating", ving_pron: "အီလီမီနိတ်တင့်", meaning: "ဖယ်ရှားသည်" },
+{ v1: "elongate", v1_pron: "အီလောင်ဂိတ်", v2: "elongated", v2_pron: "အီလောင်ဂိတ်", v3: "elongated", v3_pron: "အီလောင်ဂိတ်", ving: "elongating", ving_pron: "အီလောင်ဂိတ်တင့်", meaning: "ရှည်စေသည်" },
+{ v1: "emanate", v1_pron: "အမ်မာနိတ်", v2: "emanated", v2_pron: "အမ်မာနိတ်", v3: "emanated", v3_pron: "အမ်မာနိတ်", ving: "emanating", ving_pron: "အမ်မာနိတ်တင့်", meaning: "ထွက်ပေါ်လာသည်" },
+// 851-860
+{ v1: "emerge", v1_pron: "အီးမာ့", v2: "emerged", v2_pron: "အီးမာ့", v3: "emerged", v3_pron: "အီးမာ့", ving: "emerging", ving_pron: "အီးမာ့ဂျင့်", meaning: "ပေါ်ထွက်လာသည်" },
+{ v1: "emigrate", v1_pron: "အမ်မီဂရိတ်", v2: "emigrated", v2_pron: "အမ်မီဂရိတ်", v3: "emigrated", v3_pron: "အမ်မီဂရိတ်", ving: "emigrating", ving_pron: "အမ်မီဂရိတ်တင့်", meaning: "ပြည်ပသို့ပြောင်းရွှေ့သည်" },
+{ v1: "emit", v1_pron: "အမ်မစ်", v2: "emitted", v2_pron: "အမ်မစ်", v3: "emitted", v3_pron: "အမ်မစ်", ving: "emitting", ving_pron: "အမ်မစ်တင့်", meaning: "ထုတ်လွှတ်သည်" },
+{ v1: "emphasize", v1_pron: "အမ်ဖာဆိုက်ဇ်", v2: "emphasized", v2_pron: "အမ်ဖာဆိုက်ဇ်", v3: "emphasized", v3_pron: "အမ်ဖာဆိုက်ဇ်", ving: "emphasizing", ving_pron: "အမ်ဖာဆိုက်ဇင့်", meaning: "အလေးပေးဖော်ပြသည်" },
+{ v1: "empower", v1_pron: "အမ်ပါဝါ", v2: "empowered", v2_pron: "အမ်ပါဝါ", v3: "empowered", v3_pron: "အမ်ပါဝါ", ving: "empowering", ving_pron: "အမ်ပါဝါရင့်", meaning: "အခွင့်အာဏာပေးသည်" },
+{ v1: "empty", v1_pron: "အမ်တီ", v2: "emptied", v2_pron: "အမ်တီ", v3: "emptied", v3_pron: "အမ်တီ", ving: "emptying", ving_pron: "အမ်တီအင့်", meaning: "ဗလာဖြစ်စေသည်" },
+{ v1: "enchant", v1_pron: "အင်ချန့်", v2: "enchanted", v2_pron: "အင်ချန့်", v3: "enchanted", v3_pron: "အင်ချန့်", ving: "enchanting", ving_pron: "အင်ချန့်တင့်", meaning: "မျက်လှည့်ပြသည်" },
+{ v1: "enclose", v1_pron: "အင်ကလိုးဇ်", v2: "enclosed", v2_pron: "အင်ကလိုးဇ်", v3: "enclosed", v3_pron: "အင်ကလိုးဇ်", ving: "enclosing", ving_pron: "အင်ကလိုးဇင့်", meaning: "ကာရံသည်" },
+{ v1: "encounter", v1_pron: "အင်ကောင်တာ", v2: "encountered", v2_pron: "အင်ကောင်တာ", v3: "encountered", v3_pron: "အင်ကောင်တာ", ving: "encountering", ving_pron: "အင်ကောင်တာရင့်", meaning: "ကြုံတွေ့သည်" },
+{ v1: "endanger", v1_pron: "အင်ဒိန်ချာ", v2: "endangered", v2_pron: "အင်ဒိန်ချာ", v3: "endangered", v3_pron: "အင်ဒိန်ချာ", ving: "endangering", ving_pron: "အင်ဒိန်ချာရင့်", meaning: "အန္တရာယ်ရှိစေသည်" },
+// 861-870
+{ v1: "endure", v1_pron: "အင်ဒူးယား", v2: "endured", v2_pron: "အင်ဒူးယား", v3: "endured", v3_pron: "အင်ဒူးယား", ving: "enduring", ving_pron: "အင်ဒူးယားရင့်", meaning: "သည်းခံသည်" },
+{ v1: "enforce", v1_pron: "အင်ဖော်စ်", v2: "enforced", v2_pron: "အင်ဖော်စ်", v3: "enforced", v3_pron: "အင်ဖော်စ်", ving: "enforcing", ving_pron: "အင်ဖော်စင့်", meaning: "အကျိုးသက်ရောက်စေသည်" },
+{ v1: "engage", v1_pron: "အင်ဂေ့", v2: "engaged", v2_pron: "အင်ဂေ့", v3: "engaged", v3_pron: "အင်ဂေ့", ving: "engaging", ving_pron: "အင်ဂေ့ဂျင့်", meaning: "ပါဝင်ဆောင်ရွက်သည်" },
+{ v1: "engrave", v1_pron: "အင်ဂရေးဗ်", v2: "engraved", v2_pron: "အင်ဂရေးဗ်", v3: "engraved", v3_pron: "အင်ဂရေးဗ်", ving: "engraving", ving_pron: "အင်ဂရေးဗင့်", meaning: "ထွင်းသည်" },
+{ v1: "enhance", v1_pron: "အင်ဟန်းစ်", v2: "enhanced", v2_pron: "အင်ဟန်းစ်", v3: "enhanced", v3_pron: "အင်ဟန်းစ်", ving: "enhancing", ving_pron: "အင်ဟန်းစင့်", meaning: "မြှင့်တင်သည်" },
+{ v1: "enrich", v1_pron: "အင်ရစ်ချ်", v2: "enriched", v2_pron: "အင်ရစ်ချ်", v3: "enriched", v3_pron: "အင်ရစ်ချ်", ving: "enriching", ving_pron: "အင်ရစ်ချင့်", meaning: "ကြွယ်ဝစေသည်" },
+{ v1: "enroll", v1_pron: "အင်ရိုးလ်", v2: "enrolled", v2_pron: "အင်ရိုးလ်", v3: "enrolled", v3_pron: "အင်ရိုးလ်", ving: "enrolling", ving_pron: "အင်ရိုးလင့်", meaning: "စာရင်းသွင်းသည်" },
+{ v1: "ensure", v1_pron: "အင်ရှူးယား", v2: "ensured", v2_pron: "အင်ရှူးယား", v3: "ensured", v3_pron: "အင်ရှူးယား", ving: "ensuring", ving_pron: "အင်ရှူးယားရင့်", meaning: "သေချာစေသည်" },
+{ v1: "entail", v1_pron: "အင်တေး", v2: "entailed", v2_pron: "အင်တေး", v3: "entailed", v3_pron: "အင်တေး", ving: "entailing", ving_pron: "အင်တေးအင့်", meaning: "ပါဝင်စေသည်" },
+{ v1: "enterprise", v1_pron: "အင်းတာပရိုက်ဇ်", v2: "enterprised", v2_pron: "အင်းတာပရိုက်ဇ်", v3: "enterprised", v3_pron: "အင်းတာပရိုက်ဇ်", ving: "enterprising", ving_pron: "အင်းတာပရိုက်ဇင့်", meaning: "စွန့်ဦးတီထွင်သည်" },
+// 871-880
+{ v1: "entertain", v1_pron: "အင်းတာတိန်း", v2: "entertained", v2_pron: "အင်းတာတိန်း", v3: "entertained", v3_pron: "အင်းတာတိန်း", ving: "entertaining", ving_pron: "အင်းတာတိန်းနင့်", meaning: "ဖျော်ဖြေသည်" },
+{ v1: "entitle", v1_pron: "အင်တိုက်တယ်", v2: "entitled", v2_pron: "အင်တိုက်တယ်", v3: "entitled", v3_pron: "အင်တိုက်တယ်", ving: "entitling", ving_pron: "အင်တိုက်တယ်လင့်", meaning: "အခွင့်အရေးပေးသည်" },
+{ v1: "entreat", v1_pron: "အင်ထရိသ်", v2: "entreated", v2_pron: "အင်ထရိသ်", v3: "entreated", v3_pron: "အင်ထရိသ်", ving: "entreating", ving_pron: "အင်ထရိသ်တင့်", meaning: "တောင်းပန်သည်" },
+{ v1: "envy", v1_pron: "အင်ဗီ", v2: "envied", v2_pron: "အင်ဗီ", v3: "envied", v3_pron: "အင်ဗီ", ving: "envying", ving_pron: "အင်ဗီအင့်", meaning: "မနာလိုသည်" },
+{ v1: "eradicate", v1_pron: "အီရက်ဒီကိတ်", v2: "eradicated", v2_pron: "အီရက်ဒီကိတ်", v3: "eradicated", v3_pron: "အီရက်ဒီကိတ်", ving: "eradicating", ving_pron: "အီရက်ဒီကိတ်တင့်", meaning: "ပယ်ရှင်းသည်" },
+{ v1: "erase", v1_pron: "အီရေ့စ်", v2: "erased", v2_pron: "အီရေ့စ်", v3: "erased", v3_pron: "အီရေ့စ်", ving: "erasing", ving_pron: "အီရေ့စင့်", meaning: "ဖျက်သည်" },
+{ v1: "erect", v1_pron: "အီရက်ခ်", v2: "erected", v2_pron: "အီရက်ခ်", v3: "erected", v3_pron: "အီရက်ခ်", ving: "erecting", ving_pron: "အီရက်တင့်", meaning: "တည်ဆောက်သည်" },
+{ v1: "erode", v1_pron: "အီရိုး", v2: "eroded", v2_pron: "အီရိုး", v3: "eroded", v3_pron: "အီရိုး", ving: "eroding", ving_pron: "အီရိုးဒင့်", meaning: "တိုက်စားသည်" },
+{ v1: "erupt", v1_pron: "အီရပ်", v2: "erupted", v2_pron: "အီရပ်", v3: "erupted", v3_pron: "အီရပ်", ving: "erupting", ving_pron: "အီရပ်တင့်", meaning: "ပေါက်ကွဲသည်" },
+{ v1: "escort", v1_pron: "အီစကော", v2: "escorted", v2_pron: "အီစကော", v3: "escorted", v3_pron: "အီစကော", ving: "escorting", ving_pron: "အီစကော့တင့်", meaning: "လိုက်ပို့သည်" },
+// 881-890
+{ v1: "evaluate", v1_pron: "အီဗယ်လူအိတ်", v2: "evaluated", v2_pron: "အီဗယ်လူအိတ်", v3: "evaluated", v3_pron: "အီဗယ်လူအိတ်", ving: "evaluating", ving_pron: "အီဗယ်လူအိတ်တင့်", meaning: "အကဲဖြတ်သည်" },
+{ v1: "evaporate", v1_pron: "အီဗာပရိတ်", v2: "evaporated", v2_pron: "အီဗာပရိတ်", v3: "evaporated", v3_pron: "အီဗာပရိတ်", ving: "evaporating", ving_pron: "အီဗာပရိတ်တင့်", meaning: "အငွေ့ပျံသည်" },
+{ v1: "evade", v1_pron: "အီဗေး", v2: "evaded", v2_pron: "အီဗေး", v3: "evaded", v3_pron: "အီဗေး", ving: "evading", ving_pron: "အီဗေးဒင့်", meaning: "ရှောင်လွှဲသည်" },
+{ v1: "evict", v1_pron: "အီဗစ်", v2: "evicted", v2_pron: "အီဗစ်", v3: "evicted", v3_pron: "အီဗစ်", ving: "evicting", ving_pron: "အီဗစ်တင့်", meaning: "နှင်ထုတ်သည်" },
+{ v1: "evolve", v1_pron: "အီဗော", v2: "evolved", v2_pron: "အီဗော", v3: "evolved", v3_pron: "အီဗော", ving: "evolving", ving_pron: "အီဗော်ဗင့်", meaning: "ဆင့်ကဲပြောင်းလဲသည်" },
+{ v1: "exaggerate", v1_pron: "အက်ဇာဂျရိတ်", v2: "exaggerated", v2_pron: "အက်ဇာဂျရိတ်", v3: "exaggerated", v3_pron: "အက်ဇာဂျရိတ်", ving: "exaggerating", ving_pron: "အက်ဇာဂျရိတ်တင့်", meaning: "ချဲ့ကားပြောဆိုသည်" },
+{ v1: "examine", v1_pron: "အက်ဇမ်မင်", v2: "examined", v2_pron: "အက်ဇမ်မင်", v3: "examined", v3_pron: "အက်ဇမ်မင်", ving: "examining", ving_pron: "အက်ဇမ်မင်နင့်", meaning: "စစ်ဆေးသည်" },
+{ v1: "exceed", v1_pron: "အက်စီး", v2: "exceeded", v2_pron: "အက်စီး", v3: "exceeded", v3_pron: "အက်စီး", ving: "exceeding", ving_pron: "အက်စီးဒင့်", meaning: "ကျော်လွန်သည်" },
+{ v1: "excel", v1_pron: "အက်ဆဲလ်", v2: "excelled", v2_pron: "အက်ဆဲလ်", v3: "excelled", v3_pron: "အက်ဆဲလ်", ving: "excelling", ving_pron: "အက်ဆဲလ်လင့်", meaning: "ထူးချွန်သည်" },
+{ v1: "except", v1_pron: "အက်စက့်", v2: "excepted", v2_pron: "အက်စက့်", v3: "excepted", v3_pron: "အက်စက့်", ving: "excepting", ving_pron: "အက်စက်တင့်", meaning: "ချန်လှပ်သည်" },
+// 891-900
+{ v1: "exempt", v1_pron: "အက်ဇင့်", v2: "exempted", v2_pron: "အက်ဇင့်", v3: "exempted", v3_pron: "အက်ဇင့်", ving: "exempting", ving_pron: "အက်ဇင့်တင့်", meaning: "ကင်းလွတ်ခွင့်ပေးသည်" },
+{ v1: "exercise", v1_pron: "အက်ဆာဆိုက်ဇ်", v2: "exercised", v2_pron: "အက်ဆာဆိုက်ဇ်", v3: "exercised", v3_pron: "အက်ဆာဆိုက်ဇ်", ving: "exercising", ving_pron: "အက်ဆာဆိုက်ဇင့်", meaning: "လေ့ကျင့်ခန်းလုပ်သည်" },
+{ v1: "exert", v1_pron: "အက်ဇာ", v2: "exerted", v2_pron: "အက်ဇာ", v3: "exerted", v3_pron: "အက်ဇာ", ving: "exerting", ving_pron: "အက်ဇာတင့်", meaning: "အားထုတ်သည်" },
+{ v1: "exhaust", v1_pron: "အက်ဇောစ်", v2: "exhausted", v2_pron: "အက်ဇောစ်", v3: "exhausted", v3_pron: "အက်ဇောစ်", ving: "exhausting", ving_pron: "အက်ဇောစ်တင့်", meaning: "ကုန်ဆုံးစေသည်" },
+{ v1: "exhibit", v1_pron: "အက်ဇီဘစ်", v2: "exhibited", v2_pron: "အက်ဇီဘစ်", v3: "exhibited", v3_pron: "အက်ဇီဘစ်", ving: "exhibiting", ving_pron: "အက်ဇီဘစ်တင့်", meaning: "ပြသသည်" },
+{ v1: "exile", v1_pron: "အက်ဇိုင်", v2: "exiled", v2_pron: "အက်ဇိုင်", v3: "exiled", v3_pron: "အက်ဇိုင်", ving: "exiling", ving_pron: "အက်ဇိုင်အင့်", meaning: "ပြည်နှင်ဒဏ်ပေးသည်" },
+{ v1: "expand", v1_pron: "အက်စပန့်", v2: "expanded", v2_pron: "အက်စပန့်", v3: "expanded", v3_pron: "အက်စပန့်", ving: "expanding", ving_pron: "အက်စပန့်ဒင့်", meaning: "ချဲ့ထွင်သည်" },
+{ v1: "expel", v1_pron: "အက်စပဲလ်", v2: "expelled", v2_pron: "အက်စပဲလ်", v3: "expelled", v3_pron: "အက်စပဲလ်", ving: "expelling", ving_pron: "အက်စပဲလင့်", meaning: "နှင်ထုတ်သည်" },
+{ v1: "experiment", v1_pron: "အက်စပဲရီမင့်", v2: "experimented", v2_pron: "အက်စပဲရီမင့်", v3: "experimented", v3_pron: "အက်စပဲရီမင့်", ving: "experimenting", ving_pron: "အက်စပဲရီမင့်ဒင့်", meaning: "စမ်းသပ်သည်" },
+{ v1: "explode", v1_pron: "အက်စပလိုး", v2: "exploded", v2_pron: "အက်စပလိုး", v3: "exploded", v3_pron: "အက်စပလိုး", ving: "exploding", ving_pron: "အက်စပလိုးဒင့်", meaning: "ပေါက်ကွဲသည်" },
+// 901-910
+{ v1: "exploit", v1_pron: "အက်စပလွိုက်", v2: "exploited", v2_pron: "အက်စပလွိုက်", v3: "exploited", v3_pron: "အက်စပလွိုက်", ving: "exploiting", ving_pron: "အက်စပလွိုင်တင့်", meaning: "အသုံးချသည်" },
+{ v1: "explore", v1_pron: "အက်စပလော", v2: "explored", v2_pron: "အက်စပလော", v3: "explored", v3_pron: "အက်စပလော", ving: "exploring", ving_pron: "အက်စပလော်ရင့်", meaning: "စူးစမ်းသည်" },
+{ v1: "export", v1_pron: "အက်စပေါ", v2: "exported", v2_pron: "အက်စပေါ", v3: "exported", v3_pron: "အက်စပေါ", ving: "exporting", ving_pron: "အက်စပေါ့တင့်", meaning: "ပြည်ပသို့တင်ပို့သည်" },
+{ v1: "expose", v1_pron: "အက်စပိုးဇ်", v2: "exposed", v2_pron: "အက်စပိုးဇ်", v3: "exposed", v3_pron: "အက်စပိုးဇ်", ving: "exposing", ving_pron: "အက်စပိုးဇင့်", meaning: "ဖွင့်ထုတ်သည်" },
+{ v1: "express", v1_pron: "အက်စပရက်စ်", v2: "expressed", v2_pron: "အက်စပရက်စ်", v3: "expressed", v3_pron: "အက်စပရက်စ်", ving: "expressing", ving_pron: "အက်စပရက်စင့်", meaning: "ဖော်ပြသည်" },
+{ v1: "extend", v1_pron: "အက်စတင့်", v2: "extended", v2_pron: "အက်စတင့်", v3: "extended", v3_pron: "အက်စတင့်", ving: "extending", ving_pron: "အက်စတင့်ဒင့်", meaning: "တိုးချဲ့သည်" },
+{ v1: "extinguish", v1_pron: "အက်စတင်ဂွစ်", v2: "extinguished", v2_pron: "အက်စတင်ဂွစ်", v3: "extinguished", v3_pron: "အက်စတင်ဂွစ်", ving: "extinguishing", ving_pron: "အက်စတင်ဂွစ်ရှင့်", meaning: "ငြှိမ်းသတ်သည်" },
+{ v1: "extract", v1_pron: "အက်စထရက်", v2: "extracted", v2_pron: "အက်စထရက်", v3: "extracted", v3_pron: "အက်စထရက်", ving: "extracting", ving_pron: "အက်စထရက်တင့်", meaning: "ထုတ်ယူသည်" },
+{ v1: "extradite", v1_pron: "အက်စထရာဒိုက်", v2: "extradited", v2_pron: "အက်စထရာဒိုက်", v3: "extradited", v3_pron: "အက်စထရာဒိုက်", ving: "extraditing", ving_pron: "အက်စထရာဒိုက်တင့်", meaning: "ပြန်လွှဲသည်" },
+{ v1: "extrapolate", v1_pron: "အက်စထရာပူလိတ်", v2: "extrapolated", v2_pron: "အက်စထရာပူလိတ်", v3: "extrapolated", v3_pron: "အက်စထရာပူလိတ်", ving: "extrapolating", ving_pron: "အက်စထရာပူလိတ်တင့်", meaning: "ခန့်မှန်းသည်" },
+// 911-920
+{ v1: "fabricate", v1_pron: "ဖက်ဘရီကိတ်", v2: "fabricated", v2_pron: "ဖက်ဘရီကိတ်", v3: "fabricated", v3_pron: "ဖက်ဘရီကိတ်", ving: "fabricating", ving_pron: "ဖက်ဘရီကိတ်တင့်", meaning: "လုပ်ကြံသည်" },
+{ v1: "facilitate", v1_pron: "ဖက်စီလီတိတ်", v2: "facilitated", v2_pron: "ဖက်စီလီတိတ်", v3: "facilitated", v3_pron: "ဖက်စီလီတိတ်", ving: "facilitating", ving_pron: "ဖက်စီလီတိတ်တင့်", meaning: "အဆင်ပြေစေသည်" },
+{ v1: "fade", v1_pron: "ဖိတ်", v2: "faded", v2_pron: "ဖိတ်", v3: "faded", v3_pron: "ဖိတ်", ving: "fading", ving_pron: "ဖိတ်ဒင့်", meaning: "မှေးမှိန်သည်" },
+{ v1: "falsify", v1_pron: "ဖော်ဆီဖိုင်", v2: "falsified", v2_pron: "ဖော်ဆီဖိုင်", v3: "falsified", v3_pron: "ဖော်ဆီဖိုင်", ving: "falsifying", ving_pron: "ဖော်ဆီဖိုင်အင့်", meaning: "အတုလုပ်သည်" },
+{ v1: "fashion", v1_pron: "ဖက်ရှင်", v2: "fashioned", v2_pron: "ဖက်ရှင်", v3: "fashioned", v3_pron: "ဖက်ရှင်", ving: "fashioning", ving_pron: "ဖက်ရှင်နင့်", meaning: "ပုံဖော်သည်" },
+{ v1: "fathom", v1_pron: "ဖက်သန်", v2: "fathomed", v2_pron: "ဖက်သန်", v3: "fathomed", v3_pron: "ဖက်သန်", ving: "fathoming", ving_pron: "ဖက်သန်နင့်", meaning: "နားလည်သည်" },
+{ v1: "favor", v1_pron: "ဖေးဗာ", v2: "favored", v2_pron: "ဖေးဗာ", v3: "favored", v3_pron: "ဖေးဗာ", ving: "favoring", ving_pron: "ဖေးဗာရင့်", meaning: "မျက်နှာသာပေးသည်" },
+{ v1: "fax", v1_pron: "ဖက်စ်", v2: "faxed", v2_pron: "ဖက်စ်", v3: "faxed", v3_pron: "ဖက်စ်", ving: "faxing", ving_pron: "ဖက်စင့်", meaning: "ဖက်စ်ပို့သည်" },
+{ v1: "federate", v1_pron: "ဖက်ဒရိတ်", v2: "federated", v2_pron: "ဖက်ဒရိတ်", v3: "federated", v3_pron: "ဖက်ဒရိတ်", ving: "federating", ving_pron: "ဖက်ဒရိတ်တင့်", meaning: "ပြည်ထောင်စုဖွဲ့သည်" },
+{ v1: "ferment", v1_pron: "ဖာမင့်", v2: "fermented", v2_pron: "ဖာမင့်", v3: "fermented", v3_pron: "ဖာမင့်", ving: "fermenting", ving_pron: "ဖာမင့်တင့်", meaning: "အချဉ်ဖောက်သည်" },
+// 921-930
+{ v1: "ferry", v1_pron: "ဖာရီ", v2: "ferried", v2_pron: "ဖာရီ", v3: "ferried", v3_pron: "ဖာရီ", ving: "ferrying", ving_pron: "ဖာရီအင့်", meaning: "ကူးတို့ဖြင့်သယ်ယူပို့ဆောင်သည်" },
+{ v1: "fertilize", v1_pron: "ဖာတီလိုက်ဇ်", v2: "fertilized", v2_pron: "ဖာတီလိုက်ဇ်", v3: "fertilized", v3_pron: "ဖာတီလိုက်ဇ်", ving: "fertilizing", ving_pron: "ဖာတီလိုက်ဇင့်", meaning: "မြေသြဇာကျွေးသည်" },
+{ v1: "fester", v1_pron: "ဖက်စတာ", v2: "festered", v2_pron: "ဖက်စတာ", v3: "festered", v3_pron: "ဖက်စတာ", ving: "festering", ving_pron: "ဖက်စတာရင့်", meaning: "ပြည်တည်သည်" },
+{ v1: "fidget", v1_pron: "ဖစ်ဂျစ်", v2: "fidgeted", v2_pron: "ဖစ်ဂျစ်", v3: "fidgeted", v3_pron: "ဖစ်ဂျစ်", ving: "fidgeting", ving_pron: "ဖစ်ဂျစ်တင့်", meaning: "ကလူကလာလုပ်သည်" },
+{ v1: "finance", v1_pron: "ဖိုင်နန်းစ်", v2: "financed", v2_pron: "ဖိုင်နန်းစ်", v3: "financed", v3_pron: "ဖိုင်နန်းစ်", ving: "financing", ving_pron: "ဖိုင်နန်းစင့်", meaning: "ဘဏ္ဍာငွေထောက်ပံ့သည်" },
+{ v1: "flatter", v1_pron: "ဖလက်တာ", v2: "flattered", v2_pron: "ဖလက်တာ", v3: "flattered", v3_pron: "ဖလက်တာ", ving: "flattering", ving_pron: "ဖလက်တာရင့်", meaning: "ချော့မော့ပြောဆိုသည်" },
+{ v1: "flee", v1_pron: "ဖလီး", v2: "fled", v2_pron: "ဖလက်", v3: "fled", v3_pron: "ဖလက်", ving: "fleeing", ving_pron: "ဖလီးအင့်", meaning: "ထွက်ပြေးသည်" },
+{ v1: "fling", v1_pron: "ဖလင့်", v2: "flung", v2_pron: "ဖလန့်", v3: "flung", v3_pron: "ဖလန့်", ving: "flinging", ving_pron: "ဖလင်အင့်", meaning: "ပစ်ချသည်" },
+{ v1: "flourish", v1_pron: "ဖလောရစ်", v2: "flourished", v2_pron: "ဖလောရစ်", v3: "flourished", v3_pron: "ဖလောရစ်", ving: "flourishing", ving_pron: "ဖလောရစ်ရှင့်", meaning: "ထွန်းကားသည်" },
+{ v1: "flutter", v1_pron: "ဖလတ်တာ", v2: "fluttered", v2_pron: "ဖလတ်တာ", v3: "fluttered", v3_pron: "ဖလတ်တာ", ving: "fluttering", ving_pron: "ဖလတ်တာရင့်", meaning: "တဖျပ်ဖျပ်ခတ်သည်" },
+// 931-940
+{ v1: "foil", v1_pron: "ဖွိုင်", v2: "foiled", v2_pron: "ဖွိုင်", v3: "foiled", v3_pron: "ဖွိုင်", ving: "foiling", ving_pron: "ဖွိုင်အင့်", meaning: "ပျက်ပြယ်စေသည်" },
+{ v1: "foresee", v1_pron: "ဖော်စီး", v2: "foresaw", v2_pron: "ဖော်စော", v3: "foreseen", v3_pron: "ဖော်စီးန်", ving: "foreseeing", ving_pron: "ဖော်စီးအင့်", meaning: "ကြိုမြင်သည်" },
+{ v1: "forfeit", v1_pron: "ဖော်ဖစ်", v2: "forfeited", v2_pron: "ဖော်ဖစ်", v3: "forfeited", v3_pron: "ဖော်ဖစ်", ving: "forfeiting", ving_pron: "ဖော်ဖစ်တင့်", meaning: "ဆုံးရှုံးစေသည်" },
+{ v1: "forgive", v1_pron: "ဖာဂစ်ဗ်", v2: "forgave", v2_pron: "ဖာဂေးဗ်", v3: "forgiven", v3_pron: "ဖာဂစ်ဗန်", ving: "forgiving", ving_pron: "ဖာဂစ်ဗင့်", meaning: "ခွင့်လွှတ်သည်" },
+{ v1: "formulate", v1_pron: "ဖော်မျူလိတ်", v2: "formulated", v2_pron: "ဖော်မျူလိတ်", v3: "formulated", v3_pron: "ဖော်မျူလိတ်", ving: "formulating", ving_pron: "ဖော်မျူလိတ်တင့်", meaning: "ရေးဆွဲသည်" },
+{ v1: "foster", v1_pron: "ဖော့စတာ", v2: "fostered", v2_pron: "ဖော့စတာ", v3: "fostered", v3_pron: "ဖော့စတာ", ving: "fostering", ving_pron: "ဖော့စတာရင့်", meaning: "အားပေးမြှင့်တင်သည်" },
+{ v1: "found", v1_pron: "ဖောင့်", v2: "founded", v2_pron: "ဖောင့်", v3: "founded", v3_pron: "ဖောင့်", ving: "founding", ving_pron: "ဖောင့်ဒင့်", meaning: "တည်ထောင်သည်" },
+{ v1: "fracture", v1_pron: "ဖရက်ချာ", v2: "fractured", v2_pron: "ဖရက်ချာ", v3: "fractured", v3_pron: "ဖရက်ချာ", ving: "fracturing", ving_pron: "ဖရက်ချာရင့်", meaning: "ကျိုးသည်" },
+{ v1: "fragment", v1_pron: "ဖရက်မင့်", v2: "fragmented", v2_pron: "ဖရက်မင့်", v3: "fragmented", v3_pron: "ဖရက်မင့်", ving: "fragmenting", ving_pron: "ဖရက်မင့်ဒင့်", meaning: "အပိုင်းအစများဖြစ်စေသည်" },
+{ v1: "frighten", v1_pron: "ဖရိုက်တန်", v2: "frightened", v2_pron: "ဖရိုက်တန်", v3: "frightened", v3_pron: "ဖရိုက်တန်", ving: "frightening", ving_pron: "ဖရိုက်တန်နင့်", meaning: "ကြောက်ရွံ့စေသည်" },
+// 941-950
+{ v1: "fringe", v1_pron: "ဖရင့်", v2: "fringed", v2_pron: "ဖရင့်", v3: "fringed", v3_pron: "ဖရင့်", ving: "fringing", ving_pron: "ဖရင့်ဂျင့်", meaning: "အနားသတ်သည်" },
+{ v1: "frown", v1_pron: "ဖရောင်း", v2: "frowned", v2_pron: "ဖရောင်း", v3: "frowned", v3_pron: "ဖရောင်း", ving: "frowning", ving_pron: "ဖရောင်းနင့်", meaning: "မျက်မှောင်ကြုတ်သည်" },
+{ v1: "frustrate", v1_pron: "ဖရတ်စထရိတ်", v2: "frustrated", v2_pron: "ဖရတ်စထရိတ်", v3: "frustrated", v3_pron: "ဖရတ်စထရိတ်", ving: "frustrating", ving_pron: "ဖရတ်စထရိတ်တင့်", meaning: "စိတ်ပျက်စေသည်" },
+{ v1: "fuel", v1_pron: "ဖူးအယ်", v2: "fueled", v2_pron: "ဖူးအယ်", v3: "fueled", v3_pron: "ဖူးအယ်", ving: "fueling", ving_pron: "ဖူးအယ်လင့်", meaning: "လောင်စာဖြည့်သည်" },
+{ v1: "fulfill", v1_pron: "ဖူလ်ဖီးလ်", v2: "fulfilled", v2_pron: "ဖူလ်ဖီးလ်", v3: "fulfilled", v3_pron: "ဖူလ်ဖီးလ်", ving: "fulfilling", ving_pron: "ဖူလ်ဖီးလင့်", meaning: "ပြည့်စုံစေသည်" },
+{ v1: "fume", v1_pron: "ဖူးမ်", v2: "fumed", v2_pron: "ဖူးမ်", v3: "fumed", v3_pron: "ဖူးမ်", ving: "fuming", ving_pron: "ဖူးမ်မင်", meaning: "ဒေါသထွက်သည်" },
+{ v1: "furnish", v1_pron: "ဖာနစ်", v2: "furnished", v2_pron: "ဖာနစ်", v3: "furnished", v3_pron: "ဖာနစ်", ving: "furnishing", ving_pron: "ဖာနစ်ရှင့်", meaning: "ပရိဘောဂတပ်ဆင်သည်" },
+{ v1: "fuse", v1_pron: "ဖူးဇ်", v2: "fused", v2_pron: "ဖူးဇ်", v3: "fused", v3_pron: "ဖူးဇ်", ving: "fusing", ving_pron: "ဖူးဇင့်", meaning: "ပေါင်းစပ်သည်" },
+{ v1: "gag", v1_pron: "ဂက်", v2: "gagged", v2_pron: "ဂက်", v3: "gagged", v3_pron: "ဂက်", ving: "gagging", ving_pron: "ဂက်ကင်", meaning: "ပါးစပ်ပိတ်သည်" },
+{ v1: "gamble", v1_pron: "ဂမ်ဘယ်", v2: "gambled", v2_pron: "ဂမ်ဘယ်", v3: "gambled", v3_pron: "ဂမ်ဘယ်", ving: "gambling", ving_pron: "ဂမ်ဘယ်လင့်", meaning: "လောင်းကစားသည်" },
+// 951-960
+{ v1: "garnish", v1_pron: "ဂါနစ်", v2: "garnished", v2_pron: "ဂါနစ်", v3: "garnished", v3_pron: "ဂါနစ်", ving: "garnishing", ving_pron: "ဂါနစ်ရှင့်", meaning: "အလှဆင်သည်" },
+{ v1: "gasp", v1_pron: "ဂါစ်", v2: "gasped", v2_pron: "ဂါစ်", v3: "gasped", v3_pron: "ဂါစ်", ving: "gasping", ving_pron: "ဂါစ်ပင်", meaning: "အသက်ရှူကျပ်သည်" },
+{ v1: "gaze", v1_pron: "ဂေ့ဇ်", v2: "gazed", v2_pron: "ဂေ့ဇ်", v3: "gazed", v3_pron: "ဂေ့ဇ်", ving: "gazing", ving_pron: "ဂေ့ဇင့်", meaning: "စိုက်ကြည့်သည်" },
+{ v1: "generate", v1_pron: "ဂျင်နရိတ်", v2: "generated", v2_pron: "ဂျင်နရိတ်", v3: "generated", v3_pron: "ဂျင်နရိတ်", ving: "generating", ving_pron: "ဂျင်နရိတ်တင့်", meaning: "ဖန်တီးသည်" },
+{ v1: "gesture", v1_pron: "ဂက်စချာ", v2: "gestured", v2_pron: "ဂက်စချာ", v3: "gestured", v3_pron: "ဂက်စချာ", ving: "gesturing", ving_pron: "ဂက်စချာရင့်", meaning: "အမူအရာပြသည်" },
+{ v1: "glisten", v1_pron: "ဂလစ်ဆန်", v2: "glistened", v2_pron: "ဂလစ်ဆန်", v3: "glistened", v3_pron: "ဂလစ်ဆန်", ving: "glistening", ving_pron: "ဂလစ်ဆန်နင့်", meaning: "တလက်လက်တောက်ပသည်" },
+{ v1: "glitter", v1_pron: "ဂလစ်တာ", v2: "glittered", v2_pron: "ဂလစ်တာ", v3: "glittered", v3_pron: "ဂလစ်တာ", ving: "glittering", ving_pron: "ဂလစ်တာရင့်", meaning: "စူးစူးရှရှတောက်ပသည်" },
+{ v1: "gossip", v1_pron: "ဂေါ်ဆစ်", v2: "gossiped", v2_pron: "ဂေါ်ဆစ်", v3: "gossiped", v3_pron: "ဂေါ်ဆစ်", ving: "gossiping", ving_pron: "ဂေါ်ဆစ်ပင်", meaning: "အတင်းပြောသည်" },
+{ v1: "govern", v1_pron: "ဂဗ်ဗန်", v2: "governed", v2_pron: "ဂဗ်ဗန်", v3: "governed", v3_pron: "ဂဗ်ဗန်", ving: "governing", ving_pron: "ဂဗ်ဗန်နင့်", meaning: "အုပ်ချုပ်သည်" },
+{ v1: "graduate", v1_pron: "ဂရက်ဒူအိတ်", v2: "graduated", v2_pron: "ဂရက်ဒူအိတ်", v3: "graduated", v3_pron: "ဂရက်ဒူအိတ်", ving: "graduating", ving_pron: "ဂရက်ဒူအိတ်တင့်", meaning: "ဘွဲ့ရသည်" },
+// 961-970
+{ v1: "grant", v1_pron: "ဂရန့်", v2: "granted", v2_pron: "ဂရန့်", v3: "granted", v3_pron: "ဂရန့်", ving: "granting", ving_pron: "ဂရန့်ဒင့်", meaning: "ခွင့်ပြုသည်" },
+{ v1: "grasp", v1_pron: "ဂရပ်", v2: "grasped", v2_pron: "ဂရပ်", v3: "grasped", v3_pron: "ဂရပ်", ving: "grasping", ving_pron: "ဂရပ်ပင်", meaning: "နားလည်သည်" },
+{ v1: "grieve", v1_pron: "ဂရီးဗ်", v2: "grieved", v2_pron: "ဂရီးဗ်", v3: "grieved", v3_pron: "ဂရီးဗ်", ving: "grieving", ving_pron: "ဂရီးဗင့်", meaning: "ဝမ်းနည်းသည်" },
+{ v1: "grill", v1_pron: "ဂရီးလ်", v2: "grilled", v2_pron: "ဂရီးလ်", v3: "grilled", v3_pron: "ဂရီးလ်", ving: "grilling", ving_pron: "ဂရီးလင့်", meaning: "ကင်သည်" },
+{ v1: "grin", v1_pron: "ဂရင်း", v2: "grinned", v2_pron: "ဂရင်း", v3: "grinned", v3_pron: "ဂရင်း", ving: "grinning", ving_pron: "ဂရင်းနင့်", meaning: "ပြုံးသည်" },
+{ v1: "groan", v1_pron: "ဂရိုး", v2: "groaned", v2_pron: "ဂရိုး", v3: "groaned", v3_pron: "ဂရိုး", ving: "groaning", ving_pron: "ဂရိုးနင့်", meaning: "ညည်းညူသည်" },
+{ v1: "guarantee", v1_pron: "ဂါရန့်တီး", v2: "guaranteed", v2_pron: "ဂါရန့်တီး", v3: "guaranteed", v3_pron: "ဂါရန့်တီး", ving: "guaranteeing", ving_pron: "ဂါရန့်တီးအင့်", meaning: "အာမခံသည်" },
+{ v1: "guard", v1_pron: "ဂါ", v2: "guarded", v2_pron: "ဂါ", v3: "guarded", v3_pron: "ဂါ", ving: "guarding", ving_pron: "ဂါဒင့်", meaning: "စောင့်ကြပ်သည်" },
+{ v1: "gulp", v1_pron: "ဂလပ်", v2: "gulped", v2_pron: "ဂလပ်", v3: "gulped", v3_pron: "ဂလပ်", ving: "gulping", ving_pron: "ဂလပ်ပင်", meaning: "မြိုသည်" },
+{ v1: "gush", v1_pron: "ဂပ်ရှ်", v2: "gushed", v2_pron: "ဂပ်ရှ်", v3: "gushed", v3_pron: "ဂပ်ရှ်", ving: "gushing", ving_pron: "ဂပ်ရှင့်", meaning: "ထွက်ယိုစီးသည်" },
+// 971-980
+{ v1: "hack", v1_pron: "ဟက်", v2: "hacked", v2_pron: "ဟက်", v3: "hacked", v3_pron: "ဟက်", ving: "hacking", ving_pron: "ဟက်ကင်", meaning: "ဖောက်ထွင်းသည်" },
+{ v1: "hail", v1_pron: "ဟေး", v2: "hailed", v2_pron: "ဟေး", v3: "hailed", v3_pron: "ဟေး", ving: "hailing", ving_pron: "ဟေးအင့်", meaning: "ကြိုဆိုသည်" },
+{ v1: "hamper", v1_pron: "ဟမ်ပါ", v2: "hampered", v2_pron: "ဟမ်ပါ", v3: "hampered", v3_pron: "ဟမ်ပါ", ving: "hampering", ving_pron: "ဟမ်ပါရင့်", meaning: "အနှောင့်အယှက်ပေးသည်" },
+{ v1: "handicap", v1_pron: "ဟန်ဒီကပ်", v2: "handicapped", v2_pron: "ဟန်ဒီကပ်", v3: "handicapped", v3_pron: "ဟန်ဒီကပ်", ving: "handicapping", ving_pron: "ဟန်ဒီကပ်ပင်", meaning: "အားနည်းစေသည်" },
+{ v1: "harbor", v1_pron: "ဟာဘာ", v2: "harbored", v2_pron: "ဟာဘာ", v3: "harbored", v3_pron: "ဟာဘာ", ving: "harboring", ving_pron: "ဟာဘာရင့်", meaning: "ခိုလှုံခွင့်ပေးသည်" },
+{ v1: "harden", v1_pron: "ဟာဒန်", v2: "hardened", v2_pron: "ဟာဒန်", v3: "hardened", v3_pron: "ဟာဒန်", ving: "hardening", ving_pron: "ဟာဒန်နင့်", meaning: "ခိုင်မာစေသည်" },
+{ v1: "harmonize", v1_pron: "ဟာမိုနိုက်ဇ်", v2: "harmonized", v2_pron: "ဟာမိုနိုက်ဇ်", v3: "harmonized", v3_pron: "ဟာမိုနိုက်ဇ်", ving: "harmonizing", ving_pron: "ဟာမိုနိုက်ဇင့်", meaning: "သဟဇာတဖြစ်စေသည်" },
+{ v1: "harvest", v1_pron: "ဟာဗက်စ်", v2: "harvested", v2_pron: "ဟာဗက်စ်", v3: "harvested", v3_pron: "ဟာဗက်စ်", ving: "harvesting", ving_pron: "ဟာဗက်စ်တင့်", meaning: "ရိတ်သိမ်းသည်" },
+{ v1: "haunt", v1_pron: "ဟောင့်", v2: "haunted", v2_pron: "ဟောင့်", v3: "haunted", v3_pron: "ဟောင့်", ving: "haunting", ving_pron: "ဟောင့်တင့်", meaning: "စွဲကပ်နေသည်" },
+{ v1: "heal", v1_pron: "ဟီးလ်", v2: "healed", v2_pron: "ဟီးလ်", v3: "healed", v3_pron: "ဟီးလ်", ving: "healing", ving_pron: "ဟီးလင့်", meaning: "အနာကျက်စေသည်" },
+// 981-990
+{ v1: "heap", v1_pron: "ဟိပ့်", v2: "heaped", v2_pron: "ဟိပ့်", v3: "heaped", v3_pron: "ဟိပ့်", ving: "heaping", ving_pron: "ဟိပ့်ပင်", meaning: "ပုံသည်" },
+{ v1: "heave", v1_pron: "ဟီးဗ်", v2: "heaved", v2_pron: "ဟီးဗ်", v3: "heaved", v3_pron: "ဟီးဗ်", ving: "heaving", ving_pron: "ဟီးဗင့်", meaning: "ကြွသည်" },
+{ v1: "hedge", v1_pron: "ဟက်ဂျ်", v2: "hedged", v2_pron: "ဟက်ဂျ်", v3: "hedged", v3_pron: "ဟက်ဂျ်", ving: "hedging", ving_pron: "ဟက်ဂျင့်", meaning: "ခြံစည်းရိုးကာသည်" },
+{ v1: "heighten", v1_pron: "ဟိုက်တန်", v2: "heightened", v2_pron: "ဟိုက်တန်", v3: "heightened", v3_pron: "ဟိုက်တန်", ving: "heightening", ving_pron: "ဟိုက်တန်နင့်", meaning: "မြင့်တက်စေသည်" },
+{ v1: "hesitate", v1_pron: "ဟက်ဇီတိတ်", v2: "hesitated", v2_pron: "ဟက်ဇီတိတ်", v3: "hesitated", v3_pron: "ဟက်ဇီတိတ်", ving: "hesitating", ving_pron: "ဟက်ဇီတိတ်တင့်", meaning: "ဝန်လေးသည်" },
+{ v1: "hinder", v1_pron: "ဟင်းဒါ", v2: "hindered", v2_pron: "ဟင်းဒါ", v3: "hindered", v3_pron: "ဟင်းဒါ", ving: "hindering", ving_pron: "ဟင်းဒါရင့်", meaning: "အနှောင့်အယှက်ဖြစ်စေသည်" },
+{ v1: "hoist", v1_pron: "ဟွိုက်", v2: "hoisted", v2_pron: "ဟွိုက်", v3: "hoisted", v3_pron: "ဟွိုက်", ving: "hoisting", ving_pron: "ဟွိုက်စတင့်", meaning: "မြှောက်သည်" },
+{ v1: "host", v1_pron: "ဟိုးစ်", v2: "hosted", v2_pron: "ဟိုးစ်", v3: "hosted", v3_pron: "ဟိုးစ်", ving: "hosting", ving_pron: "ဟိုးစ်တင့်", meaning: "အိမ်ရှင်အဖြစ်ဧည့်ခံသည်" },
+{ v1: "hover", v1_pron: "ဟိုဗာ", v2: "hovered", v2_pron: "ဟိုဗာ", v3: "hovered", v3_pron: "ဟိုဗာ", ving: "hovering", ving_pron: "ဟိုဗာရင့်", meaning: "ပျံဝဲသည်" },
+{ v1: "huddle", v1_pron: "ဟတ်ဒယ်", v2: "huddled", v2_pron: "ဟတ်ဒယ်", v3: "huddled", v3_pron: "ဟတ်ဒယ်", ving: "huddling", ving_pron: "ဟတ်ဒယ်လင့်", meaning: "စုရုံးနေသည်" },
+// 991-1000
+{ v1: "hum", v1_pron: "ဟမ်", v2: "hummed", v2_pron: "ဟမ်", v3: "hummed", v3_pron: "ဟမ်", ving: "humming", ving_pron: "ဟမ်မင်", meaning: "သီချင်းညည်းညူသည်" },
+{ v1: "humanize", v1_pron: "ဟူမန်နိုက်ဇ်", v2: "humanized", v2_pron: "ဟူမန်နိုက်ဇ်", v3: "humanized", v3_pron: "ဟူမန်နိုက်ဇ်", ving: "humanizing", ving_pron: "ဟူမန်နိုက်ဇင့်", meaning: "လူသားဆန်စေသည်" },
+{ v1: "humble", v1_pron: "ဟမ်ဘယ်", v2: "humbled", v2_pron: "ဟမ်ဘယ်", v3: "humbled", v3_pron: "ဟမ်ဘယ်", ving: "humbling", ving_pron: "ဟမ်ဘယ်လင့်", meaning: "နှိမ့်ချစေသည်" },
+{ v1: "hurl", v1_pron: "ဟာ", v2: "hurled", v2_pron: "ဟာ", v3: "hurled", v3_pron: "ဟာ", ving: "hurling", ving_pron: "ဟာလင့်", meaning: "ပစ်သည်" },
+{ v1: "hybridize", v1_pron: "ဟိုက်ဘရစ်ဒိုက်ဇ်", v2: "hybridized", v2_pron: "ဟိုက်ဘရစ်ဒိုက်ဇ်", v3: "hybridized", v3_pron: "ဟိုက်ဘရစ်ဒိုက်ဇ်", ving: "hybridizing", ving_pron: "ဟိုက်ဘရစ်ဒိုက်ဇင့်", meaning: "မျိုးစပ်သည်" },
+{ v1: "hypnotize", v1_pron: "ဟစ်နိုတိုက်ဇ်", v2: "hypnotized", v2_pron: "ဟစ်နိုတိုက်ဇ်", v3: "hypnotized", v3_pron: "ဟစ်နိုတိုက်ဇ်", ving: "hypnotizing", ving_pron: "ဟစ်နိုတိုက်ဇင့်", meaning: "ညှို့သည်" },
+{ v1: "hypothesize", v1_pron: "ဟိုက်ပေါ့သိုက်ဇ်", v2: "hypothesized", v2_pron: "ဟိုက်ပေါ့သိုက်ဇ်", v3: "hypothesized", v3_pron: "ဟိုက်ပေါ့သိုက်ဇ်", ving: "hypothesizing", ving_pron: "ဟိုက်ပေါ့သိုက်ဇင့်", meaning: "ယူဆချက်ပြုသည်" },
+{ v1: "idealize", v1_pron: "အိုင်ဒီယာလိုက်ဇ်", v2: "idealized", v2_pron: "အိုင်ဒီယာလိုက်ဇ်", v3: "idealized", v3_pron: "အိုင်ဒီယာလိုက်ဇ်", ving: "idealizing", ving_pron: "အိုင်ဒီယာလိုက်ဇင့်", meaning: "စံပြုသည်" },
+{ v1: "identify", v1_pron: "အိုင်ဒန်တီဖိုင်", v2: "identified", v2_pron: "အိုင်ဒန်တီဖိုင်", v3: "identified", v3_pron: "အိုင်ဒန်တီဖိုင်", ving: "identifying", ving_pron: "အိုင်ဒန်တီဖိုင်အင့်", meaning: "ခွဲခြားသတ်မှတ်သည်" },
+{ v1: "idle", v1_pron: "အိုင်ဒယ်", v2: "idled", v2_pron: "အိုင်ဒယ်", v3: "idled", v3_pron: "အိုင်ဒယ်", ving: "idling", ving_pron: "အိုင်ဒယ်လင့်", meaning: "အလုပ်မလုပ်ဘဲနေသည်" }
+];
+
+
+        
+
+        // =============================================================
+        //  Table ထဲကို Data တွေထည့်မယ်
+        // =============================================================
+        const tbody = document.getElementById('verbTableBody');
+
+        verbs.forEach((verb, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><span class="row-number">${index + 1}</span></td>
+                <td>
+                    <span class="verb-form">${verb.v1}</span>
+                    <span class="verb-pron">${verb.v1_pron}</span>
+                </td>
+                <td>
+                    <span class="verb-form">${verb.v2}</span>
+                    <span class="verb-pron">${verb.v2_pron}</span>
+                </td>
+                <td>
+                    <span class="verb-form">${verb.v3}</span>
+                    <span class="verb-pron">${verb.v3_pron}</span>
+                </td>
+                <td>
+                    <span class="verb-form">${verb.ving}</span>
+                    <span class="verb-pron">${verb.ving_pron}</span>
+                </td>
+                <td>${verb.meaning}</td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        console.log('✅ Verb forms loaded:', verbs.length);
+    </script>
+
+</body>
+</html>

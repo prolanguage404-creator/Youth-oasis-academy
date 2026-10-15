@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSK 2 · သင်ခန်းစာ အပြည့်အစုံ (Lesson 1-20)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #f5f3f0;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 24px 28px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+      transition: all 0.2s;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      color: #2c3e50;
+      border-left: 6px solid #e67e22;
+      padding-left: 18px;
+      margin-bottom: 20px;
+    }
+    .spinner-area {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      background: #faf8f6;
+      padding: 18px 22px;
+      border-radius: 60px;
+    }
+    .spinner-area label {
+      font-weight: 500;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    select {
+      padding: 12px 24px;
+      border-radius: 40px;
+      border: 1px solid #d0ccc6;
+      background: white;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #1e2b36;
+      min-width: 200px;
+      cursor: pointer;
+      outline: none;
+      transition: 0.2s;
+    }
+    select:hover {
+      border-color: #e67e22;
+      box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.15);
+    }
+    .lesson-title {
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #1e2b36;
+      margin: 12px 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: #e67e22;
+      color: white;
+      font-size: 0.9rem;
+      padding: 4px 16px;
+      border-radius: 40px;
+      font-weight: 500;
+    }
+    .dialog-box {
+      background: #f1efe9;
+      padding: 18px 22px;
+      border-radius: 24px;
+      margin: 20px 0 22px 0;
+      line-height: 1.9;
+    }
+    .dialog-box p {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+    .hanzi {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #1f2a36;
+    }
+    .pinyin {
+      color: #5b6f7e;
+      font-style: italic;
+      margin-left: 6px;
+    }
+    .meaning {
+      color: #2c5f2d;
+      background: #e6f0e6;
+      padding: 2px 12px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      margin-left: 8px;
+      display: inline-block;
+    }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 28px 0 12px 0;
+      color: #1f2a36;
+      border-bottom: 3px solid #e67e22;
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+    .vocab-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      background: #fcfbf9;
+      padding: 16px 18px;
+      border-radius: 20px;
+      margin: 8px 0 12px 0;
+    }
+    .vocab-item {
+      background: white;
+      padding: 6px 16px 6px 14px;
+      border-radius: 40px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid #eae5de;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .grammar-block {
+      background: #f9f6f0;
+      border-radius: 20px;
+      padding: 14px 20px;
+      margin: 16px 0;
+      border-left: 6px solid #d35400;
+    }
+    .grammar-pattern {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #1f2a36;
+      background: #ece6dc;
+      display: inline-block;
+      padding: 4px 18px;
+      border-radius: 40px;
+      margin-bottom: 8px;
+    }
+    .example-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 10px 0 4px 0;
+      padding-left: 10px;
+    }
+    .example-item {
+      background: white;
+      padding: 8px 16px;
+      border-radius: 30px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      border: 1px solid #e0dad2;
+    }
+    .exercise-area {
+      background: #f2f5f9;
+      border-radius: 28px;
+      padding: 18px 22px;
+      margin: 25px 0 10px 0;
+    }
+    .exercise-question {
+      padding: 12px 0 6px 0;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+    .exercise-answer {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin: 6px 0 12px 0;
+    }
+    .exercise-answer input {
+      padding: 10px 18px;
+      border-radius: 40px;
+      border: 1px solid #cbc4bb;
+      font-size: 1rem;
+      flex: 1 1 200px;
+      background: white;
+    }
+    .exercise-answer button {
+      background: #2c3e50;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.15s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .exercise-answer button:hover {
+      background: #1e2b36;
+      transform: scale(0.97);
+    }
+    .feedback {
+      padding: 12px 18px;
+      border-radius: 40px;
+      background: #eae5de;
+      margin-top: 8px;
+      color: #1f2a36;
+      font-weight: 450;
+    }
+    .correct-feedback {
+      background: #d4edda;
+      color: #0e4b2b;
+    }
+    .wrong-feedback {
+      background: #f8dddd;
+      color: #7a2a2a;
+    }
+    .footnote {
+      margin-top: 20px;
+      color: #5b6f7e;
+      font-size: 0.9rem;
+      border-top: 1px dashed #cfc7bd;
+      padding-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>📘 HSK 2 · သင်ခန်းစာအပြည့် (Lesson 1-20)</h1>
+    <div class="spinner-area">
+      <label for="lessonSelect">📖 သင်ခန်းစာရွေးရန်
+        <select id="lessonSelect"></select>
+      </label>
+      <span style="color:#5b6f7e;">| Lesson 1 မှ 20 အထိ</span>
+    </div>
+  </div>
+
+  <div id="lessonContainer"></div>
+
+  <div class="footnote">
+    ✦ Hanzi + Pinyin + မြန်မာ အဓိပ္ပါယ် (နေရာတိုင်း) ✦ Grammar pattern + ရှင်းလင်းချက်
+  </div>
+
+  <script>
+    // ============================================================
+    // LESSON 1
+    // ============================================================
+    const lesson1 = {
+      lessonNumber: 1,
+      title: "去逛街 · Qù guàngjiē · ဈေးဝယ်ထွက်ခြင်း",
+      dialog: [
+        { hanzi: "小王：明天你有空吗？", pinyin: "Xiǎo Wáng: Míngtiān nǐ yǒu kòng ma?", meaning: "မင်းမနက်ဖြန် အချိန်ရှိလား။" },
+        { hanzi: "丽丽：有空。怎么了？", pinyin: "Lìli: Yǒu kòng. Zěnme le?", meaning: "ရှိတယ်။ ဘာဖြစ်လို့လဲ။" },
+        { hanzi: "小王：我想去逛街，你跟我一起去吧。", pinyin: "Xiǎo Wáng: Wǒ xiǎng qù guàngjiē, nǐ gēn wǒ yīqǐ qù ba.", meaning: "ဈေးဝယ်ထွက်ချင်တယ်၊ မင်းလည်း အတူလာခဲ့။" },
+        { hanzi: "丽丽：好呀，我也想去买一件衣服。", pinyin: "Lìli: Hǎo ya, wǒ yě xiǎng qù mǎi yī jiàn yīfu.", meaning: "ကောင်းပြီ၊ ငါလည်း အဝတ်တစ်ထည်ဝယ်ချင်တယ်။" },
+        { hanzi: "小王：那明天上午十点，在商场门口见。", pinyin: "Xiǎo Wáng: Nà míngtiān shàngwǔ shí diǎn, zài shāngchǎng ménkǒu jiàn.", meaning: "ဒါဆိုမနက်ဖြန် နံနက် ၁၀ နာရီ ကုန်တိုက်ရှေ့မှာတွေ့မယ်။" },
+        { hanzi: "丽丽：好的，那家商场很大，有很多商店。", pinyin: "Lìli: Hǎo de, nà jiā shāngchǎng hěn dà, yǒu hěnduō shāngdiàn.", meaning: "ကောင်းပါတယ်၊ အဲဒီကုန်တိုက်ကြီးတယ်၊ ဆိုင်တွေအများကြီးရှိတယ်။" },
+        { hanzi: "小王：对，我上次在那买了一件衬衫。", pinyin: "Xiǎo Wáng: Duì, wǒ shàngcì zài nà mǎi le yī jiàn chènshān.", meaning: "ဟုတ်တယ်၊ ငါ အရင်တစ်ခါ အဲဒီမှာ ရှပ်အင်္ကျီတစ်ထည်ဝယ်ခဲ့တယ်။" },
+        { hanzi: "丽丽：好看吗？我也想看看。", pinyin: "Lìli: Hǎokàn ma? Wǒ yě xiǎng kànkan.", meaning: "လှလား။ ငါလည်းကြည့်ချင်တယ်။" },
+        { hanzi: "小王：很好看，而且不贵。", pinyin: "Xiǎo Wáng: Hěn hǎokàn, érqiě bù guì.", meaning: "အရမ်းလှတယ်၊ ပြီးတော့ ဈေးလည်းမကြီးဘူး။" },
+        { hanzi: "丽丽：太好了，那明天我们一起逛逛吧。", pinyin: "Lìli: Tài hǎo le, nà míngtiān wǒmen yīqǐ guàngguang ba.", meaning: "အရမ်းကောင်းတယ်၊ ဒါဆိုမနက်ဖြန် ငါတို့အတူလျှောက်ကြည့်ကြမယ်။" },
+        { hanzi: "小王：好的，我还可以给你推荐几家店。", pinyin: "Xiǎo Wáng: Hǎo de, wǒ hái kěyǐ gěi nǐ tuījiàn jǐ jiā diàn.", meaning: "ကောင်းပါတယ်၊ ငါ မင်းကို ဆိုင်အနည်းငယ်လည်း အကြံပေးနိုင်တယ်။" },
+        { hanzi: "丽丽：你真好！我们几点见面？", pinyin: "Lìli: Nǐ zhēn hǎo! Wǒmen jǐ diǎn jiànmiàn?", meaning: "မင်းတကယ်ကောင်းတယ်။ ငါတို့ ဘယ်နာရီတွေ့မလဲ။" },
+        { hanzi: "小王：十点吧，在商场正门口。", pinyin: "Xiǎo Wáng: Shí diǎn ba, zài shāngchǎng zhèng ménkǒu.", meaning: "၁၀ နာရီပေါ့၊ ကုန်တိုက်ရှေ့ပေါက်ဝမှာ။" },
+        { hanzi: "丽丽：好的，不见不散。", pinyin: "Lìli: Hǎo de, bù jiàn bù sàn.", meaning: "ကောင်းပါတယ်၊ မတွေ့ရင် မခွဲဘူး။" }
+      ],
+      vocab: [
+        { hanzi: "明天 (míngtiān)", pinyin: "míngtiān", meaning: "မနက်ဖြန်" },
+        { hanzi: "有空 (yǒu kòng)", pinyin: "yǒu kòng", meaning: "အချိန်ရှိသည်" },
+        { hanzi: "逛街 (guàngjiē)", pinyin: "guàngjiē", meaning: "ဈေးဝယ်ထွက်သည်" },
+        { hanzi: "一起 (yīqǐ)", pinyin: "yīqǐ", meaning: "အတူတူ" },
+        { hanzi: "衣服 (yīfu)", pinyin: "yīfu", meaning: "အဝတ်အစား" },
+        { hanzi: "商场 (shāngchǎng)", pinyin: "shāngchǎng", meaning: "ကုန်တိုက်" },
+        { hanzi: "门口 (ménkǒu)", pinyin: "ménkǒu", meaning: "ဝင်ပေါက်" },
+        { hanzi: "上午 (shàngwǔ)", pinyin: "shàngwǔ", meaning: "နံနက်ပိုင်း" },
+        { hanzi: "十点 (shí diǎn)", pinyin: "shí diǎn", meaning: "၁၀ နာရီ" },
+        { hanzi: "见 (jiàn)", pinyin: "jiàn", meaning: "တွေ့သည်" },
+        { hanzi: "想 (xiǎng)", pinyin: "xiǎng", meaning: "ချင်သည်" },
+        { hanzi: "买 (mǎi)", pinyin: "mǎi", meaning: "ဝယ်သည်" },
+        { hanzi: "那 (nà)", pinyin: "nà", meaning: "ဒါဆိုလျှင်" },
+        { hanzi: "好呀 (hǎo ya)", pinyin: "hǎo ya", meaning: "ကောင်းပြီလေ" },
+        { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+        { hanzi: "一件 (yī jiàn)", pinyin: "yī jiàn", meaning: "တစ်ထည်" },
+        { hanzi: "吧 (ba)", pinyin: "ba", meaning: "ပါ" },
+        { hanzi: "在 (zài)", pinyin: "zài", meaning: "မှာ" },
+        { hanzi: "什么 (shénme)", pinyin: "shénme", meaning: "ဘာ" },
+        { hanzi: "怎么 (zěnme)", pinyin: "zěnme", meaning: "ဘယ်လို" },
+        { hanzi: "了 (le)", pinyin: "le", meaning: "ပြီ" },
+        { hanzi: "跟 (gēn)", pinyin: "gēn", meaning: "နှင့်" },
+        { hanzi: "去 (qù)", pinyin: "qù", meaning: "သွားသည်" },
+        { hanzi: "好 (hǎo)", pinyin: "hǎo", meaning: "ကောင်းသည်" },
+        { hanzi: "大 (dà)", pinyin: "dà", meaning: "ကြီးသည်" },
+        { hanzi: "商店 (shāngdiàn)", pinyin: "shāngdiàn", meaning: "ဆိုင်" },
+        { hanzi: "衬衫 (chènshān)", pinyin: "chènshān", meaning: "ရှပ်အင်္ကျီ" },
+        { hanzi: "好看 (hǎokàn)", pinyin: "hǎokàn", meaning: "လှသည်" },
+        { hanzi: "贵 (guì)", pinyin: "guì", meaning: "ဈေးကြီးသည်" },
+        { hanzi: "推荐 (tuījiàn)", pinyin: "tuījiàn", meaning: "အကြံပြုသည်" },
+        { hanzi: "不见不散 (bù jiàn bù sàn)", pinyin: "bù jiàn bù sàn", meaning: "မတွေ့ရင် မခွဲဘူး" }
+      ],
+      grammar: [
+        {
+          pattern: "S + 想 + V (S xiǎng + V) · ချင်တယ်",
+          description: "တစ်စုံတစ်ခုကို လုပ်ချင်ကြောင်း ဖော်ပြ",
+          examples: [
+            { hanzi: "我想去逛街。 (Wǒ xiǎng qù guàngjiē.)", pinyin: "Wǒ xiǎng qù guàngjiē.", meaning: "ငါ ဈေးဝယ်ထွက်ချင်တယ်။" },
+            { hanzi: "她想买衣服。 (Tā xiǎng mǎi yīfu.)", pinyin: "Tā xiǎng mǎi yīfu.", meaning: "သူမ အဝတ်ဝယ်ချင်တယ်။" },
+            { hanzi: "你们想吃什么？ (Nǐmen xiǎng chī shénme?)", pinyin: "Nǐmen xiǎng chī shénme?", meaning: "မင်းတို့ ဘာစားချင်လဲ။" },
+            { hanzi: "我想喝茶。 (Wǒ xiǎng hē chá.)", pinyin: "Wǒ xiǎng hē chá.", meaning: "ငါ လက်ဖက်ရည်သောက်ချင်တယ်။" },
+            { hanzi: "他也想去看电影。 (Tā yě xiǎng qù kàn diànyǐng.)", pinyin: "Tā yě xiǎng qù kàn diànyǐng.", meaning: "သူလည်း ရုပ်ရှင်သွားကြည့်ချင်တယ်။" }
+          ]
+        },
+        {
+          pattern: "S + 跟 + O + 一起 + V (gēn ... yīqǐ) · နဲ့အတူ",
+          description: "တစ်စုံတစ်ယောက်နှင့် အတူတူ လုပ်ဆောင်ခြင်း",
+          examples: [
+            { hanzi: "我跟你一起去。 (Wǒ gēn nǐ yīqǐ qù.)", pinyin: "Wǒ gēn nǐ yīqǐ qù.", meaning: "ငါ မင်းနှင့်အတူသွားမယ်။" },
+            { hanzi: "她跟朋友一起逛街。 (Tā gēn péngyou yīqǐ guàngjiē.)", pinyin: "Tā gēn péngyou yīqǐ guàngjiē.", meaning: "သူမ သူငယ်ချင်းနှင့် ဈေးဝယ်ထွက်တယ်။" },
+            { hanzi: "我们跟老师一起吃饭。 (Wǒmen gēn lǎoshī yīqǐ chīfàn.)", pinyin: "Wǒmen gēn lǎoshī yīqǐ chīfàn.", meaning: "ငါတို့ ဆရာနှင့်အတူ ထမင်းစားတယ်။" },
+            { hanzi: "你跟谁一起去？ (Nǐ gēn shéi yīqǐ qù?)", pinyin: "Nǐ gēn shéi yīqǐ qù?", meaning: "မင်း ဘယ်သူနဲ့အတူသွားမလဲ။" },
+            { hanzi: "我跟妈妈一起买东西。 (Wǒ gēn māma yīqǐ mǎi dōngxi.)", pinyin: "Wǒ gēn māma yīqǐ mǎi dōngxi.", meaning: "ငါ အမေနဲ့အတူ ပစ္စည်းဝယ်တယ်။" }
+          ]
+        },
+        {
+          pattern: "在 + 地点 + V (zài + location + V) · မှာ",
+          description: "နေရာတစ်ခုမှာ လုပ်ဆောင်ခြင်း",
+          examples: [
+            { hanzi: "我在商场见面。 (Wǒ zài shāngchǎng jiànmiàn.)", pinyin: "Wǒ zài shāngchǎng jiànmiàn.", meaning: "ငါ ကုန်တိုက်မှာ တွေ့မယ်။" },
+            { hanzi: "他在学校学习。 (Tā zài xuéxiào xuéxí.)", pinyin: "Tā zài xuéxiào xuéxí.", meaning: "သူ ကျောင်းမှာ စာကျက်တယ်။" },
+            { hanzi: "我们在家吃饭。 (Wǒmen zài jiā chīfàn.)", pinyin: "Wǒmen zài jiā chīfàn.", meaning: "ငါတို့ အိမ်မှာ ထမင်းစားတယ်။" },
+            { hanzi: "她在商店买衣服。 (Tā zài shāngdiàn mǎi yīfu.)", pinyin: "Tā zài shāngdiàn mǎi yīfu.", meaning: "သူမ ဆိုင်မှာ အဝတ်ဝယ်တယ်။" },
+            { hanzi: "你们在哪儿工作？ (Nǐmen zài nǎr gōngzuò?)", pinyin: "Nǐmen zài nǎr gōngzuò?", meaning: "မင်းတို့ ဘယ်မှာ အလုပ်လုပ်လဲ။" }
+          ]
+        },
+        {
+          pattern: "S + 也 + V (yě) · လည်း",
+          description: "'လည်း' ကိုသုံးပြီး ထပ်တူပြုခြင်း",
+          examples: [
+            { hanzi: "我也想去。 (Wǒ yě xiǎng qù.)", pinyin: "Wǒ yě xiǎng qù.", meaning: "ငါလည်း သွားချင်တယ်။" },
+            { hanzi: "她也喜欢喝茶。 (Tā yě xǐhuān hē chá.)", pinyin: "Tā yě xǐhuān hē chá.", meaning: "သူမလည်း လက်ဖက်ရည်ကြိုက်တယ်။" },
+            { hanzi: "我们也是学生。 (Wǒmen yě shì xuéshēng.)", pinyin: "Wǒmen yě shì xuéshēng.", meaning: "ငါတို့လည်း ကျောင်းသားပါ။" },
+            { hanzi: "他也在北京。 (Tā yě zài Běijīng.)", pinyin: "Tā yě zài Běijīng.", meaning: "သူလည်း ဘေဂျင်းမှာပါ။" },
+            { hanzi: "我也买了一件衣服。 (Wǒ yě mǎi le yī jiàn yīfu.)", pinyin: "Wǒ yě mǎi le yī jiàn yīfu.", meaning: "ငါလည်း အဝတ်တစ်ထည်ဝယ်လိုက်တယ်။" }
+          ]
+        },
+        {
+          pattern: "V + 了 (le) · ပြီးပြီ",
+          description: "အခြေအနေပြောင်းလဲမှု သို့ ပြီးဆုံးကြောင်း",
+          examples: [
+            { hanzi: "他买了衣服。 (Tā mǎi le yīfu.)", pinyin: "Tā mǎi le yīfu.", meaning: "သူ အဝတ်ဝယ်လိုက်ပြီ။" },
+            { hanzi: "我们吃了饭。 (Wǒmen chī le fàn.)", pinyin: "Wǒmen chī le fàn.", meaning: "ငါတို့ ထမင်းစားပြီးပြီ။" },
+            { hanzi: "她去了商场。 (Tā qù le shāngchǎng.)", pinyin: "Tā qù le shāngchǎng.", meaning: "သူမ ကုန်တိုက်သွားပြီ။" },
+            { hanzi: "我看了电影。 (Wǒ kàn le diànyǐng.)", pinyin: "Wǒ kàn le diànyǐng.", meaning: "ငါ ရုပ်ရှင်ကြည့်ပြီးပြီ။" },
+            { hanzi: "他来了。 (Tā lái le.)", pinyin: "Tā lái le.", meaning: "သူ ရောက်လာပြီ။" }
+          ]
+        },
+        {
+          pattern: "好呀 (hǎo ya) · ကောင်းပြီလေ",
+          description: "သဘောတူညီချက်၊ ဝမ်းသာစွာ လက်ခံခြင်း",
+          examples: [
+            { hanzi: "好呀，我们一起去。 (Hǎo ya, wǒmen yīqǐ qù.)", pinyin: "Hǎo ya, wǒmen yīqǐ qù.", meaning: "ကောင်းပြီလေ၊ အတူသွားကြမယ်။" },
+            { hanzi: "好呀，我也想吃。 (Hǎo ya, wǒ yě xiǎng chī.)", pinyin: "Hǎo ya, wǒ yě xiǎng chī.", meaning: "ကောင်းပြီလေ၊ ငါလည်းစားချင်တယ်။" },
+            { hanzi: "好呀，明天见。 (Hǎo ya, míngtiān jiàn.)", pinyin: "Hǎo ya, míngtiān jiàn.", meaning: "ကောင်းပြီလေ၊ မနက်ဖြန်တွေ့မယ်။" },
+            { hanzi: "好呀，这个很好。 (Hǎo ya, zhège hěn hǎo.)", pinyin: "Hǎo ya, zhège hěn hǎo.", meaning: "ကောင်းပြီလေ၊ ဒါက အရမ်းကောင်းတယ်။" },
+            { hanzi: "好呀，没问题。 (Hǎo ya, méi wèntí.)", pinyin: "Hǎo ya, méi wèntí.", meaning: "ကောင်းပြီလေ၊ ပြဿနာမရှိဘူး။" }
+          ]
+        },
+        {
+          pattern: "吧 (ba) · ပါ (အကြံပြု)",
+          description: "ညင်သာစွာ အကြံပြုခြင်း၊ ဖိတ်ခေါ်ခြင်း",
+          examples: [
+            { hanzi: "我们去吧。 (Wǒmen qù ba.)", pinyin: "Wǒmen qù ba.", meaning: "သွားကြစို့။" },
+            { hanzi: "你跟我一起去吧。 (Nǐ gēn wǒ yīqǐ qù ba.)", pinyin: "Nǐ gēn wǒ yīqǐ qù ba.", meaning: "မင်း ငါနဲ့အတူသွားပါ။" },
+            { hanzi: "喝杯茶吧。 (Hē bēi chá ba.)", pinyin: "Hē bēi chá ba.", meaning: "လက်ဖက်ရည်တစ်ခွက်သောက်ပါ။" },
+            { hanzi: "等一下我吧。 (Děng yīxià wǒ ba.)", pinyin: "Děng yīxià wǒ ba.", meaning: "ငါ့ကို ခဏစောင့်ပါ။" },
+            { hanzi: "走吧。 (Zǒu ba.)", pinyin: "Zǒu ba.", meaning: "သွားကြစို့။" }
+          ]
+        },
+        {
+          pattern: "那 (nà) · ဒါဆိုလျှင်",
+          description: "ယခင်အကြောင်းအရာကိုဆက်စပ်၍ ဆုံးဖြတ်ချက်ချခြင်း",
+          examples: [
+            { hanzi: "那明天见。 (Nà míngtiān jiàn.)", pinyin: "Nà míngtiān jiàn.", meaning: "ဒါဆိုမနက်ဖြန်တွေ့မယ်။" },
+            { hanzi: "那我也去。 (Nà wǒ yě qù.)", pinyin: "Nà wǒ yě qù.", meaning: "ဒါဆိုငါလည်းသွားမယ်။" },
+            { hanzi: "那我们走吧。 (Nà wǒmen zǒu ba.)", pinyin: "Nà wǒmen zǒu ba.", meaning: "ဒါဆိုငါတို့သွားကြစို့။" },
+            { hanzi: "那好吧。 (Nà hǎo ba.)", pinyin: "Nà hǎo ba.", meaning: "ဒါဆိုကောင်းပြီ။" },
+            { hanzi: "那是什么？ (Nà shì shénme?)", pinyin: "Nà shì shénme?", meaning: "ဒါက ဘာလဲ။" }
+          ]
+        }
+      ],
+      exercises: [
+        { question: "小王明天想做什么？", answer: "去逛街" },
+        { question: "丽丽也想买什么？", answer: "衣服" },
+        { question: "他们什么时候见面？", answer: "上午十点" },
+        { question: "他们在哪儿见面？", answer: "商场门口" },
+        { question: "小王说 '你跟我一起去吧' 是什么意思？", answer: "一起逛街" },
+        { question: "丽丽回答 '好呀' 表示什么？", answer: "同意" },
+        { question: "他们打算在商场门口见，对吗？", answer: "对" },
+        { question: "小王和丽丽明天一起去逛街，对吗？", answer: "对" }
+      ]
+    };
+
+    // ============================================================
+    // LESSON 2
+    // ============================================================
+    const lesson2 = {
+      lessonNumber: 2,
+      title: "学语言 · Xué yǔyán · ဘာသာစကားသင်ယူခြင်း",
+      dialog: [
+        { hanzi: "玛丽：你在学汉语吗？", pinyin: "Mǎlì: Nǐ zài xué Hànyǔ ma?", meaning: "မင်း တရုတ်စာသင်နေလား။" },
+        { hanzi: "小明：是的，我学了两年了。", pinyin: "Xiǎo Míng: Shì de, wǒ xué le liǎng nián le.", meaning: "ဟုတ်တယ်၊ ငါ နှစ်နှစ်လောက်သင်ထားပြီ။" },
+        { hanzi: "玛丽：你觉得汉语难吗？", pinyin: "Mǎlì: Nǐ juéde Hànyǔ nán ma?", meaning: "မင်း တရုတ်စာခက်တယ်လို့ထင်လား။" },
+        { hanzi: "小明：有时候难，但是很有意思。", pinyin: "Xiǎo Míng: Yǒushíhòu nán, dànshì hěn yǒuyìsi.", meaning: "တစ်ခါတစ်လေခက်တယ်၊ ဒါပေမယ့် အရမ်းစိတ်ဝင်စားစရာကောင်းတယ်။" },
+        { hanzi: "玛丽：我也在学汉语，我每天学一个小时。", pinyin: "Mǎlì: Wǒ yě zài xué Hànyǔ, wǒ měitiān xué yī gè xiǎoshí.", meaning: "ငါလည်း တရုတ်စာသင်နေတယ်၊ နေ့တိုင်း တစ်နာရီသင်တယ်။" },
+        { hanzi: "小明：你学得怎么样？", pinyin: "Xiǎo Míng: Nǐ xué de zěnmeyàng?", meaning: "မင်း ဘယ်လောက်တတ်ပြီလဲ။" },
+        { hanzi: "玛丽：我觉得我的口语不太好。", pinyin: "Mǎlì: Wǒ juéde wǒ de kǒuyǔ bù tài hǎo.", meaning: "ငါ့ရဲ့ စကားပြောက သိပ်မကောင်းဘူးလို့ထင်တယ်။" },
+        { hanzi: "小明：多练习就好了。", pinyin: "Xiǎo Míng: Duō liànxí jiù hǎo le.", meaning: "အများကြီးလေ့ကျင့်ရင် ကောင်းလာမယ်။" },
+        { hanzi: "玛丽：你说得对，我们一起练习吧。", pinyin: "Mǎlì: Nǐ shuō de duì, wǒmen yīqǐ liànxí ba.", meaning: "မင်းပြောတာမှန်တယ်၊ ငါတို့အတူလေ့ကျင့်ကြမယ်။" },
+        { hanzi: "小明：好啊，周末有空吗？", pinyin: "Xiǎo Míng: Hǎo a, zhōumò yǒu kòng ma?", meaning: "ကောင်းပြီ၊ စနေတနင်္ဂနွေ အချိန်ရှိလား။" },
+        { hanzi: "玛丽：有空，周末我去找你。", pinyin: "Mǎlì: Yǒu kòng, zhōumò wǒ qù zhǎo nǐ.", meaning: "ရှိတယ်၊ စနေတနင်္ဂနွေ ငါမင်းဆီလာမယ်။" },
+        { hanzi: "小明：好的，我们可以一起看书、聊天。", pinyin: "Xiǎo Míng: Hǎo de, wǒmen kěyǐ yīqǐ kàn shū, liáotiān.", meaning: "ကောင်းပါတယ်၊ ငါတို့ အတူ စာဖတ်လို့ရတယ်၊ စကားလည်းပြောလို့ရတယ်။" },
+        { hanzi: "玛丽：太好了，我很期待。", pinyin: "Mǎlì: Tài hǎo le, wǒ hěn qīdài.", meaning: "အရမ်းကောင်းတယ်၊ ငါ အရမ်းမျှော်လင့်တယ်။" },
+        { hanzi: "小明：那周末见！", pinyin: "Xiǎo Míng: Nà zhōumò jiàn!", meaning: "ဒါဆိုစနေတနင်္ဂနွေတွေ့မယ်။" }
+      ],
+      vocab: [
+        { hanzi: "学 (xué)", pinyin: "xué", meaning: "သင်ယူသည်" },
+        { hanzi: "汉语 (Hànyǔ)", pinyin: "Hànyǔ", meaning: "တရုတ်စာ" },
+        { hanzi: "年 (nián)", pinyin: "nián", meaning: "နှစ်" },
+        { hanzi: "觉得 (juéde)", pinyin: "juéde", meaning: "ထင်သည်" },
+        { hanzi: "难 (nán)", pinyin: "nán", meaning: "ခက်သည်" },
+        { hanzi: "有时候 (yǒushíhòu)", pinyin: "yǒushíhòu", meaning: "တစ်ခါတစ်လေ" },
+        { hanzi: "但是 (dànshì)", pinyin: "dànshì", meaning: "ဒါပေမယ့်" },
+        { hanzi: "有意思 (yǒuyìsi)", pinyin: "yǒuyìsi", meaning: "စိတ်ဝင်စားစရာကောင်းသည်" },
+        { hanzi: "每天 (měitiān)", pinyin: "měitiān", meaning: "နေ့တိုင်း" },
+        { hanzi: "小时 (xiǎoshí)", pinyin: "xiǎoshí", meaning: "နာရီ" },
+        { hanzi: "口语 (kǒuyǔ)", pinyin: "kǒuyǔ", meaning: "စကားပြော" },
+        { hanzi: "练习 (liànxí)", pinyin: "liànxí", meaning: "လေ့ကျင့်သည်" },
+        { hanzi: "周末 (zhōumò)", pinyin: "zhōumò", meaning: "စနေတနင်္ဂနွေ" },
+        { hanzi: "找 (zhǎo)", pinyin: "zhǎo", meaning: "ရှာသည်" },
+        { hanzi: "看书 (kàn shū)", pinyin: "kàn shū", meaning: "စာဖတ်သည်" },
+        { hanzi: "聊天 (liáotiān)", pinyin: "liáotiān", meaning: "စကားပြောဆိုသည်" },
+        { hanzi: "期待 (qīdài)", pinyin: "qīdài", meaning: "မျှော်လင့်သည်" },
+        { hanzi: "对 (duì)", pinyin: "duì", meaning: "မှန်သည်" },
+        { hanzi: "多 (duō)", pinyin: "duō", meaning: "များသည်" },
+        { hanzi: "就 (jiù)", pinyin: "jiù", meaning: "ပဲ/ဆိုရင်" },
+        { hanzi: "说 (shuō)", pinyin: "shuō", meaning: "ပြောသည်" },
+        { hanzi: "一起 (yīqǐ)", pinyin: "yīqǐ", meaning: "အတူတူ" },
+        { hanzi: "可以 (kěyǐ)", pinyin: "kěyǐ", meaning: "ရသည်" },
+        { hanzi: "太 (tài)", pinyin: "tài", meaning: "အရမ်း" },
+        { hanzi: "在 (zài)", pinyin: "zài", meaning: "...နေ" },
+        { hanzi: "得 (de)", pinyin: "de", meaning: "(ကြိယာနောက်ဆက်တွင်)" },
+        { hanzi: "怎么样 (zěnmeyàng)", pinyin: "zěnmeyàng", meaning: "ဘယ်လိုလဲ" },
+        { hanzi: "好 (hǎo)", pinyin: "hǎo", meaning: "ကောင်းသည်" },
+        { hanzi: "期待 (qīdài)", pinyin: "qīdài", meaning: "မျှော်လင့်သည်" },
+        { hanzi: "学 (xué)", pinyin: "xué", meaning: "သင်သည်" }
+      ],
+      grammar: [
+        {
+          pattern: "S + 在 + V (zài + V) · နေ",
+          description: "လုပ်ဆောင်နေကြောင်း ပြခြင်း",
+          examples: [
+            { hanzi: "我在学汉语。 (Wǒ zài xué Hànyǔ.)", pinyin: "Wǒ zài xué Hànyǔ.", meaning: "ငါ တရုတ်စာသင်နေတယ်။" },
+            { hanzi: "她在看书。 (Tā zài kàn shū.)", pinyin: "Tā zài kàn shū.", meaning: "သူမ စာဖတ်နေတယ်။" },
+            { hanzi: "我们在吃饭。 (Wǒmen zài chīfàn.)", pinyin: "Wǒmen zài chīfàn.", meaning: "ငါတို့ ထမင်းစားနေတယ်။" },
+            { hanzi: "他在做什么？ (Tā zài zuò shénme?)", pinyin: "Tā zài zuò shénme?", meaning: "သူ ဘာလုပ်နေလဲ။" },
+            { hanzi: "我在等你。 (Wǒ zài děng nǐ.)", pinyin: "Wǒ zài děng nǐ.", meaning: "ငါ မင်းကိုစောင့်နေတယ်။" }
+          ]
+        },
+        {
+          pattern: "S + V + 了 + 时间 + 了 (V + le + time + le) · ထားပြီ",
+          description: "လုပ်ဆောင်ခဲ့သည့် ကြာချိန်",
+          examples: [
+            { hanzi: "我学了一年汉语了。 (Wǒ xué le yī nián Hànyǔ le.)", pinyin: "Wǒ xué le yī nián Hànyǔ le.", meaning: "ငါ တရုတ်စာ တစ်နှစ်သင်ထားပြီ။" },
+            { hanzi: "他工作了三年了。 (Tā gōngzuò le sān nián le.)", pinyin: "Tā gōngzuò le sān nián le.", meaning: "သူ သုံးနှစ်အလုပ်လုပ်ထားပြီ။" },
+            { hanzi: "我们等了两个小时了。 (Wǒmen děng le liǎng gè xiǎoshí le.)", pinyin: "Wǒmen děng le liǎng gè xiǎoshí le.", meaning: "ငါတို့ နှစ်နာရီစောင့်ထားပြီ။" },
+            { hanzi: "她学汉语半年了。 (Tā xué Hànyǔ bàn nián le.)", pinyin: "Tā xué Hànyǔ bàn nián le.", meaning: "သူမ တရုတ်စာ ခြောက်လသင်ထားပြီ။" },
+            { hanzi: "我住在这里两年了。 (Wǒ zhù zài zhèli liǎng nián le.)", pinyin: "Wǒ zhù zài zhèli liǎng nián le.", meaning: "ငါ ဒီမှာ နှစ်နှစ်နေထားပြီ။" }
+          ]
+        },
+        {
+          pattern: "S + 觉得 + O + Adj (juéde) · လို့ထင်သည်",
+          description: "'...လို့ထင်သည်' ခံစားချက်/ထင်မြင်ချက်",
+          examples: [
+            { hanzi: "我觉得汉语很有意思。 (Wǒ juéde Hànyǔ hěn yǒuyìsi.)", pinyin: "Wǒ juéde Hànyǔ hěn yǒuyìsi.", meaning: "တရုတ်စာ အရမ်းစိတ်ဝင်စားစရာကောင်းတယ်လို့ထင်တယ်။" },
+            { hanzi: "她觉得这个电影很好看。 (Tā juéde zhège diànyǐng hěn hǎokàn.)", pinyin: "Tā juéde zhège diànyǐng hěn hǎokàn.", meaning: "ဒီရုပ်ရှင်အရမ်းကြည့်ကောင်းတယ်လို့ သူမထင်တယ်။" },
+            { hanzi: "你觉得怎么样？ (Nǐ juéde zěnmeyàng?)", pinyin: "Nǐ juéde zěnmeyàng?", meaning: "မင်း ဘယ်လိုထင်လဲ။" },
+            { hanzi: "我觉得他很好。 (Wǒ juéde tā hěn hǎo.)", pinyin: "Wǒ juéde tā hěn hǎo.", meaning: "သူကောင်းတယ်လို့ ငါထင်တယ်။" },
+            { hanzi: "我觉得这个不太难。 (Wǒ juéde zhège bù tài nán.)", pinyin: "Wǒ juéde zhège bù tài nán.", meaning: "ဒါက သိပ်မခက်ဘူးလို့ ငါထင်တယ်။" }
+          ]
+        },
+        {
+          pattern: "S + V + 得 + Complement (V + de) · အနေ",
+          description: "ကြိယာ၏ အခြေအနေ/ရလဒ် ဖော်ပြခြင်း",
+          examples: [
+            { hanzi: "他说得很快。 (Tā shuō de hěn kuài.)", pinyin: "Tā shuō de hěn kuài.", meaning: "သူ မြန်မြန်ပြောတယ်။" },
+            { hanzi: "你学得怎么样？ (Nǐ xué de zěnmeyàng?)", pinyin: "Nǐ xué de zěnmeyàng?", meaning: "မင်း ဘယ်လောက်တတ်လဲ။" },
+            { hanzi: "她写得很好。 (Tā xiě de hěn hǎo.)", pinyin: "Tā xiě de hěn hǎo.", meaning: "သူမ ကောင်းကောင်းရေးတယ်။" },
+            { hanzi: "我吃得很饱。 (Wǒ chī de hěn bǎo.)", pinyin: "Wǒ chī de hěn bǎo.", meaning: "ငါ အရမ်းဝအောင်စားတယ်။" },
+            { hanzi: "他跑得很快。 (Tā pǎo de hěn kuài.)", pinyin: "Tā pǎo de hěn kuài.", meaning: "သူ မြန်မြန်ပြေးတယ်။" }
+          ]
+        },
+        {
+          pattern: "多 + V + 就 + Adj/好 (duō ... jiù) · များများလုပ်ရင်",
+          description: "'အများကြီးလုပ်ရင်...ဖြစ်လာမယ်' အကြံပြုချက်",
+          examples: [
+            { hanzi: "多练习就好了。 (Duō liànxí jiù hǎo le.)", pinyin: "Duō liànxí jiù hǎo le.", meaning: "အများကြီးလေ့ကျင့်ရင် ကောင်းလာမယ်။" },
+            { hanzi: "多看书就明白了。 (Duō kàn shū jiù míngbai le.)", pinyin: "Duō kàn shū jiù míngbai le.", meaning: "စာအများကြီးဖတ်ရင် နားလည်လာမယ်။" },
+            { hanzi: "多吃点就饱了。 (Duō chī diǎn jiù bǎo le.)", pinyin: "Duō chī diǎn jiù bǎo le.", meaning: "နည်းနည်းပိုစားရင် ဝလာမယ်။" },
+            { hanzi: "多问老师就知道了。 (Duō wèn lǎoshī jiù zhīdào le.)", pinyin: "Duō wèn lǎoshī jiù zhīdào le.", meaning: "ဆရာကို အများကြီးမေးရင် သိလာမယ်။" },
+            { hanzi: "多走走就习惯了。 (Duō zǒuzou jiù xíguàn le.)", pinyin: "Duō zǒuzou jiù xíguàn le.", meaning: "အများကြီးလမ်းလျှောက်ရင် ကျင့်သားရလာမယ်။" }
+          ]
+        },
+        {
+          pattern: "S + 对 (duì) · မှန်သည်",
+          description: "သဘောတူညီချက် သို့ 'မှန်ပါတယ်'",
+          examples: [
+            { hanzi: "你说得对。 (Nǐ shuō de duì.)", pinyin: "Nǐ shuō de duì.", meaning: "မင်းပြောတာမှန်တယ်။" },
+            { hanzi: "对，我也觉得。 (Duì, wǒ yě juéde.)", pinyin: "Duì, wǒ yě juéde.", meaning: "မှန်တယ်၊ ငါလည်းထင်တယ်။" },
+            { hanzi: "这个答案对吗？ (Zhège dá'àn duì ma?)", pinyin: "Zhège dá'àn duì ma?", meaning: "ဒီအဖြေမှန်လား။" },
+            { hanzi: "对，就是这样。 (Duì, jiùshì zhèyàng.)", pinyin: "Duì, jiùshì zhèyàng.", meaning: "မှန်တယ်၊ ဒီလိုပဲ။" },
+            { hanzi: "对不对？ (Duì bù duì?)", pinyin: "Duì bù duì?", meaning: "မှန်လား မမှန်ဘူးလား။" }
+          ]
+        },
+        {
+          pattern: "S + 可以 + V (kěyǐ) · ရသည်",
+          description: "'လုပ်လို့ရသည်' ခွင့်ပြုချက်/ဖြစ်နိုင်ချေ",
+          examples: [
+            { hanzi: "我们可以一起学习。 (Wǒmen kěyǐ yīqǐ xuéxí.)", pinyin: "Wǒmen kěyǐ yīqǐ xuéxí.", meaning: "ငါတို့ အတူ စာသင်လို့ရတယ်။" },
+            { hanzi: "你可以用我的书。 (Nǐ kěyǐ yòng wǒ de shū.)", pinyin: "Nǐ kěyǐ yòng wǒ de shū.", meaning: "မင်း ငါ့စာအုပ်သုံးလို့ရတယ်။" },
+            { hanzi: "我可以进来吗？ (Wǒ kěyǐ jìnlái ma?)", pinyin: "Wǒ kěyǐ jìnlái ma?", meaning: "ငါ ဝင်လို့ရမလား။" },
+            { hanzi: "我们可以周末见面。 (Wǒmen kěyǐ zhōumò jiànmiàn.)", pinyin: "Wǒmen kěyǐ zhōumò jiànmiàn.", meaning: "ငါတို့ စနေတနင်္ဂနွေ တွေ့လို့ရတယ်။" },
+            { hanzi: "这里可以停车吗？ (Zhèli kěyǐ tíngchē ma?)", pinyin: "Zhèli kěyǐ tíngchē ma?", meaning: "ဒီမှာ ကားရပ်လို့ရလား။" }
+          ]
+        },
+        {
+          pattern: "太 + Adj + 了 (tài ... le) · အရမ်း...တယ်",
+          description: "'အရမ်း...တယ်' ပိုလွန်ကြောင်းဖော်ပြ",
+          examples: [
+            { hanzi: "太好了！ (Tài hǎo le!)", pinyin: "Tài hǎo le!", meaning: "အရမ်းကောင်းတယ်။" },
+            { hanzi: "这个太贵了。 (Zhège tài guì le.)", pinyin: "Zhège tài guì le.", meaning: "ဒါက အရမ်းဈေးကြီးတယ်။" },
+            { hanzi: "他太快了。 (Tā tài kuài le.)", pinyin: "Tā tài kuài le.", meaning: "သူ အရမ်းမြန်တယ်။" },
+            { hanzi: "今天太热了。 (Jīntiān tài rè le.)", pinyin: "Jīntiān tài rè le.", meaning: "ဒီနေ့ အရမ်းပူတယ်။" },
+            { hanzi: "这个电影太有意思了。 (Zhège diànyǐng tài yǒuyìsi le.)", pinyin: "Zhège diànyǐng tài yǒuyìsi le.", meaning: "ဒီရုပ်ရှင် အရမ်းစိတ်ဝင်စားစရာကောင်းတယ်။" }
+          ]
+        }
+      ],
+      exercises: [
+        { question: "小明学汉语多久了？", answer: "两年" },
+        { question: "玛丽每天学几个小时汉语？", answer: "一个小时" },
+        { question: "玛丽觉得她的口语怎么样？", answer: "不太好" },
+        { question: "小明建议玛丽怎么做？", answer: "多练习" },
+        { question: "他们什么时候一起练习？", answer: "周末" },
+        { question: "小明觉得汉语怎么样？", answer: "有时候难，但是很有意思" },
+        { question: "玛丽也想学汉语吗？", answer: "是" },
+        { question: "他们可以一起做什么？", answer: "看书、聊天" }
+      ]
+    };
+
+    // ============================================================
+    // LESSON 3 - 20 တို့အတွက် placeholder (အပြည့်အစုံထည့်ရန်)
+    // သင့်အနေနဲ့ ဒီနေရာမှာ Lesson 3 ကနေ 20 အထိ ထည့်နိုင်ပါတယ်
+    // ============================================================
+    
+    // ဥပမာ - Lesson 3 placeholder
+    const lesson3 = {
+      lessonNumber: 3,
+      title: "旅行 · Lǚxíng · ခရီးသွားခြင်း",
+      dialog: [
+        { hanzi: "小张：你暑假去哪儿旅行了？", pinyin: "Xiǎo Zhāng: Nǐ shǔjià qù nǎr lǚxíng le?", meaning: "မင်း နွေရာသီအားလပ်ရက်မှာ ဘယ်သွားခရီးသွားခဲ့လဲ။" },
+        { hanzi: "李华：我去上海了。", pinyin: "Lǐ Huá: Wǒ qù Shànghǎi le.", meaning: "ငါ ရှန်ဟိုင်းသွားခဲ့တယ်။" },
+        { hanzi: "小张：上海怎么样？好玩吗？", pinyin: "Xiǎo Zhāng: Shànghǎi zěnmeyàng? Hǎowán ma?", meaning: "ရှန်ဟိုင်း ဘယ်လိုလဲ။ ပျော်စရာကောင်းလား။" },
+        { hanzi: "李华：非常好玩！我去了外滩和东方明珠。", pinyin: "Lǐ Huá: Fēicháng hǎowán! Wǒ qù le Wàitān hé Dōngfāng Míngzhū.", meaning: "အရမ်းပျော်စရာကောင်းတယ်။ ငါ ဝိုင်တန်နဲ့ အရှေ့ဘက်ပုလဲမျှော်စင်သွားခဲ့တယ်။" },
+        { hanzi: "小张：我也想去上海，但是没时间。", pinyin: "Xiǎo Zhāng: Wǒ yě xiǎng qù Shànghǎi, dànshì méi shíjiān.", meaning: "ငါလည်း ရှန်ဟိုင်းသွားချင်တယ်၊ ဒါပေမယ့် အချိန်မရှိဘူး။" },
+        { hanzi: "李华：你什么时候有时间？我们可以一起去。", pinyin: "Lǐ Huá: Nǐ shénme shíhou yǒu shíjiān? Wǒmen kěyǐ yīqǐ qù.", meaning: "မင်း ဘယ်အချိန်အချိန်ရှိလဲ။ ငါတို့အတူသွားလို့ရတယ်။" },
+        { hanzi: "小张：也许下个假期吧。", pinyin: "Xiǎo Zhāng: Yěxǔ xià gè jiàqī ba.", meaning: "နောက်အားလပ်ရက်ပေါ့။" },
+        { hanzi: "李华：好啊，我们可以计划一下。", pinyin: "Lǐ Huá: Hǎo a, wǒmen kěyǐ jìhuà yīxià.", meaning: "ကောင်းပြီ၊ ငါတို့ စီစဉ်လို့ရတယ်။" },
+        { hanzi: "小张：上海有什么好吃的？", pinyin: "Xiǎo Zhāng: Shànghǎi yǒu shénme hǎochī de?", meaning: "ရှန်ဟိုင်းမှာ ဘယ်အစားအစာတွေကောင်းလဲ။" },
+        { hanzi: "李华：有很多！小笼包和生煎包都很好吃。", pinyin: "Lǐ Huá: Yǒu hěnduō! Xiǎolóngbāo hé shēngjiān bāo dōu hěn hǎochī.", meaning: "အများကြီးရှိတယ်။ ရှောင်လုံဘောင်နဲ့ ရှင်းကျန်ဘောင်က အရမ်းအရသာရှိတယ်။" },
+        { hanzi: "小张：听起来真不错。", pinyin: "Xiǎo Zhāng: Tīng qǐlái zhēn bùcuò.", meaning: "ကြားရတာ တကယ်ကောင်းတယ်။" },
+        { hanzi: "李华：下次你去的话，我带你去吃。", pinyin: "Lǐ Huá: Xià cì nǐ qù dehuà, wǒ dài nǐ qù chī.", meaning: "နောက်တစ်ခါ မင်းသွားရင် ငါ မင်းကို ခေါ်သွားကျွေးမယ်။" },
+        { hanzi: "小张：太好了，我很喜欢上海。", pinyin: "Xiǎo Zhāng: Tài hǎo le, wǒ hěn xǐhuān Shànghǎi.", meaning: "အရမ်းကောင်းတယ်၊ ငါ ရှန်ဟိုင်းကို အရမ်းကြိုက်တယ်။" },
+        { hanzi: "李华：我也喜欢，那里很漂亮。", pinyin: "Lǐ Huá: Wǒ yě xǐhuān, nàli hěn piàoliang.", meaning: "ငါလည်းကြိုက်တယ်၊ အဲဒီမှာ အရမ်းလှတယ်။" }
+      ],
+      vocab: [
+        { hanzi: "暑假 (shǔjià)", pinyin: "shǔjià", meaning: "နွေရာသီအားလပ်ရက်" },
+        { hanzi: "旅行 (lǚxíng)", pinyin: "lǚxíng", meaning: "ခရီးသွားသည်" },
+        { hanzi: "上海 (Shànghǎi)", pinyin: "Shànghǎi", meaning: "ရှန်ဟိုင်းမြို့" },
+        { hanzi: "好玩 (hǎowán)", pinyin: "hǎowán", meaning: "ပျော်စရာကောင်းသည်" },
+        { hanzi: "外滩 (Wàitān)", pinyin: "Wàitān", meaning: "ဝိုင်တန်" },
+        { hanzi: "东方明珠 (Dōngfāng Míngzhū)", pinyin: "Dōngfāng Míngzhū", meaning: "အရှေ့ဘက်ပုလဲမျှော်စင်" },
+        { hanzi: "时间 (shíjiān)", pinyin: "shíjiān", meaning: "အချိန်" },
+        { hanzi: "也许 (yěxǔ)", pinyin: "yěxǔ", meaning: "ဖြစ်နိုင်သည်" },
+        { hanzi: "假期 (jiàqī)", pinyin: "jiàqī", meaning: "အားလပ်ရက်" },
+        { hanzi: "计划 (jìhuà)", pinyin: "jìhuà", meaning: "အစီအစဉ်" },
+        { hanzi: "好吃 (hǎochī)", pinyin: "hǎochī", meaning: "အရသာရှိသည်" },
+        { hanzi: "小笼包 (xiǎolóngbāo)", pinyin: "xiǎolóngbāo", meaning: "ရှောင်လုံဘောင်" },
+        { hanzi: "生煎包 (shēngjiān bāo)", pinyin: "shēngjiān bāo", meaning: "ရှင်းကျန်ဘောင်" },
+        { hanzi: "都 (dōu)", pinyin: "dōu", meaning: "အားလုံး" },
+        { hanzi: "听起来 (tīng qǐlái)", pinyin: "tīng qǐlái", meaning: "ကြားရသည်" },
+        { hanzi: "真 (zhēn)", pinyin: "zhēn", meaning: "တကယ်" },
+        { hanzi: "不错 (bùcuò)", pinyin: "bùcuò", meaning: "မဆိုးဘူး" },
+        { hanzi: "带 (dài)", pinyin: "dài", meaning: "ခေါ်သွားသည်" },
+        { hanzi: "喜欢 (xǐhuān)", pinyin: "xǐhuān", meaning: "ကြိုက်သည်" },
+        { hanzi: "漂亮 (piàoliang)", pinyin: "piàoliang", meaning: "လှသည်" },
+        { hanzi: "去 (qù)", pinyin: "qù", meaning: "သွားသည်" },
+        { hanzi: "有 (yǒu)", pinyin: "yǒu", meaning: "ရှိသည်" },
+        { hanzi: "下次 (xià cì)", pinyin: "xià cì", meaning: "နောက်တစ်ခါ" },
+        { hanzi: "的话 (dehuà)", pinyin: "dehuà", meaning: "ရင်" },
+        { hanzi: "那里 (nàli)", pinyin: "nàli", meaning: "အဲဒီမှာ" },
+        { hanzi: "非常 (fēicháng)", pinyin: "fēicháng", meaning: "အရမ်း" },
+        { hanzi: "但是 (dànshì)", pinyin: "dànshì", meaning: "ဒါပေမယ့်" },
+        { hanzi: "什么时候 (shénme shíhou)", pinyin: "shénme shíhou", meaning: "ဘယ်အချိန်" },
+        { hanzi: "计划 (jìhuà)", pinyin: "jìhuà", meaning: "စီစဉ်သည်" },
+        { hanzi: "喜欢 (xǐhuān)", pinyin: "xǐhuān", meaning: "ကြိုက်သည်" }
+      ],
+      grammar: [
+        {
+          pattern: "S + V + 了 (past) · ခဲ့",
+          description: "အတိတ်အချိန် လုပ်ဆောင်ပြီးကြောင်း",
+          examples: [
+            { hanzi: "我去上海了。 (Wǒ qù Shànghǎi le.)", pinyin: "Wǒ qù Shànghǎi le.", meaning: "ငါ ရှန်ဟိုင်းသွားခဲ့တယ်။" },
+            { hanzi: "他吃饭了。 (Tā chīfàn le.)", pinyin: "Tā chīfàn le.", meaning: "သူ ထမင်းစားပြီးပြီ။" },
+            { hanzi: "她买了一件衣服。 (Tā mǎi le yī jiàn yīfu.)", pinyin: "Tā mǎi le yī jiàn yīfu.", meaning: "သူမ အဝတ်တစ်ထည်ဝယ်ခဲ့တယ်။" },
+            { hanzi: "我们看了电影。 (Wǒmen kàn le diànyǐng.)", pinyin: "Wǒmen kàn le diànyǐng.", meaning: "ငါတို့ ရုပ်ရှင်ကြည့်ခဲ့တယ်။" },
+            { hanzi: "他们去了公园。 (Tāmen qù le gōngyuán.)", pinyin: "Tāmen qù le gōngyuán.", meaning: "သူတို့ ပန်းခြံသွားခဲ့တယ်။" }
+          ]
+        },
+        {
+          pattern: "S + 也 + V (yě) · လည်း",
+          description: "'လည်း' ကိုသုံးပြီး ထပ်တူပြုခြင်း",
+          examples: [
+            { hanzi: "我也想去上海。 (Wǒ yě xiǎng qù Shànghǎi.)", pinyin: "Wǒ yě xiǎng qù Shànghǎi.", meaning: "ငါလည်း ရှန်ဟိုင်းသွားချင်တယ်။" },
+            { hanzi: "她也喜欢小笼包。 (Tā yě xǐhuān xiǎolóngbāo.)", pinyin: "Tā yě xǐhuān xiǎolóngbāo.", meaning: "သူမလည်း ရှောင်လုံဘောင်ကြိုက်တယ်။" },
+            { hanzi: "我也觉得很好。 (Wǒ yě juéde hěn hǎo.)", pinyin: "Wǒ yě juéde hěn hǎo.", meaning: "ငါလည်း ကောင်းတယ်လို့ထင်တယ်။" },
+            { hanzi: "他也在北京工作。 (Tā yě zài Běijīng gōngzuò.)", pinyin: "Tā yě zài Běijīng gōngzuò.", meaning: "သူလည်း ဘေဂျင်းမှာအလုပ်လုပ်တယ်။" },
+            { hanzi: "我也喜欢吃生煎包。 (Wǒ yě xǐhuān chī shēngjiān bāo.)", pinyin: "Wǒ yě xǐhuān chī shēngjiān bāo.", meaning: "ငါလည်း ရှင်းကျန်ဘောင်စားကြိုက်တယ်။" }
+          ]
+        },
+        {
+          pattern: "S + 有 + N (yǒu) · ရှိသည်",
+          description: "'ရှိသည်' တည်ရှိမှု/ပိုင်ဆိုင်မှု",
+          examples: [
+            { hanzi: "上海有很多好吃的。 (Shànghǎi yǒu hěnduō hǎochī de.)", pinyin: "Shànghǎi yǒu hěnduō hǎochī de.", meaning: "ရှန်ဟိုင်းမှာ အရသာရှိတာတွေ အများကြီးရှိတယ်။" },
+            { hanzi: "我有时间。 (Wǒ yǒu shíjiān.)", pinyin: "Wǒ yǒu shíjiān.", meaning: "ငါ့မှာ အချိန်ရှိတယ်။" },
+            { hanzi: "她有一个姐姐。 (Tā yǒu yī gè jiějie.)", pinyin: "Tā yǒu yī gè jiějie.", meaning: "သူမမှာ အစ်မတစ်ယောက်ရှိတယ်။" },
+            { hanzi: "这里有很多人。 (Zhèli yǒu hěnduō rén.)", pinyin: "Zhèli yǒu hěnduō rén.", meaning: "ဒီမှာ လူအများကြီးရှိတယ်။" },
+            { hanzi: "你有问题吗？ (Nǐ yǒu wèntí ma?)", pinyin: "Nǐ yǒu wèntí ma?", meaning: "မင်းမှာ ပြဿနာရှိလား။" }
+          ]
+        },
+        {
+          pattern: "都 (dōu) · အားလုံး",
+          description: "'အားလုံး' ကိုသုံးပြီး စုစုပေါင်းဖော်ပြခြင်း",
+          examples: [
+            { hanzi: "小笼包和生煎包都很好吃。 (Xiǎolóngbāo hé shēngjiān bāo dōu hěn hǎochī.)", pinyin: "Xiǎolóngbāo hé shēngjiān bāo dōu hěn hǎochī.", meaning: "ရှောင်လုံဘောင်နဲ့ ရှင်းကျန်ဘောင်က အားလုံးအရသာရှိတယ်။" },
+            { hanzi: "我们都想去上海。 (Wǒmen dōu xiǎng qù Shànghǎi.)", pinyin: "Wǒmen dōu xiǎng qù Shànghǎi.", meaning: "ငါတို့အားလုံး ရှန်ဟိုင်းသွားချင်တယ်။" },
+            { hanzi: "她们都是学生。 (Tāmen dōu shì xuéshēng.)", pinyin: "Tāmen dōu shì xuéshēng.", meaning: "သူတို့အားလုံး ကျောင်းသားတွေပါ။" },
+            { hanzi: "这些衣服都很贵。 (Zhèxiē yīfu dōu hěn guì.)", pinyin: "Zhèxiē yīfu dōu hěn guì.", meaning: "ဒီအဝတ်တွေအားလုံး ဈေးကြီးတယ်။" },
+            { hanzi: "我们都喜欢旅行。 (Wǒmen dōu xǐhuān lǚxíng.)", pinyin: "Wǒmen dōu xǐhuān lǚxíng.", meaning: "ငါတို့အားလုံး ခရီးသွားကြိုက်တယ်။" }
+          ]
+        },
+        {
+          pattern: "听起来 + Adj (tīng qǐlái) · ကြားရတာ",
+          description: "'ကြားရတာ...' သတင်းကြားရသည့်ခံစားချက်",
+          examples: [
+            { hanzi: "听起来真不错。 (Tīng qǐlái zhēn bùcuò.)", pinyin: "Tīng qǐlái zhēn bùcuò.", meaning: "ကြားရတာ တကယ်မဆိုးဘူး။" },
+            { hanzi: "听起来很好玩。 (Tīng qǐlái hěn hǎowán.)", pinyin: "Tīng qǐlái hěn hǎowán.", meaning: "ကြားရတာ ပျော်စရာကောင်းတယ်။" },
+            { hanzi: "这个计划听起来不错。 (Zhège jìhuà tīng qǐlái bùcuò.)", pinyin: "Zhège jìhuà tīng qǐlái bùcuò.", meaning: "ဒီအစီအစဉ်က ကြားရတာမဆိုးဘူး။" },
+            { hanzi: "听起来很容易。 (Tīng qǐlái hěn róngyì.)", pinyin: "Tīng qǐlái hěn róngyì.", meaning: "ကြားရတာ လွယ်တယ်။" },
+            { hanzi: "她的故事听起来很有意思。 (Tā de gùshi tīng qǐlái hěn yǒuyìsi.)", pinyin: "Tā de gùshi tīng qǐlái hěn yǒuyìsi.", meaning: "သူမရဲ့ဇာတ်လမ်းက ကြားရတာ စိတ်ဝင်စားစရာကောင်းတယ်။" }
+          ]
+        },
+        {
+          pattern: "...的话 (dehuà) · ရင်",
+          description: "'ရင်' အခြေအနေပြဝါကျ",
+          examples: [
+            { hanzi: "下次你去的话，我带你去吃。 (Xià cì nǐ qù dehuà, wǒ dài nǐ qù chī.)", pinyin: "Xià cì nǐ qù dehuà, wǒ dài nǐ qù chī.", meaning: "နောက်တစ်ခါ မင်းသွားရင် ငါ ခေါ်သွားကျွေးမယ်။" },
+            { hanzi: "你有时间的话，我们一起去。 (Nǐ yǒu shíjiān dehuà, wǒmen yīqǐ qù.)", pinyin: "Nǐ yǒu shíjiān dehuà, wǒmen yīqǐ qù.", meaning: "မင်းအချိန်ရှိရင် ငါတို့အတူသွားမယ်။" },
+            { hanzi: "明天不下雨的话，我们去公园。 (Míngtiān bù xià yǔ dehuà, wǒmen qù gōngyuán.)", pinyin: "Míngtiān bù xià yǔ dehuà, wǒmen qù gōngyuán.", meaning: "မနက်ဖြန် မိုးမရွာရင် ပန်းခြံသွားမယ်။" },
+            { hanzi: "你想吃的话，我买给你。 (Nǐ xiǎng chī dehuà, wǒ mǎi gěi nǐ.)", pinyin: "Nǐ xiǎng chī dehuà, wǒ mǎi gěi nǐ.", meaning: "မင်းစားချင်ရင် ငါဝယ်ပေးမယ်။" },
+            { hanzi: "他有空的话，会来的。 (Tā yǒu kòng dehuà, huì lái de.)", pinyin: "Tā yǒu kòng dehuà, huì lái de.", meaning: "သူအချိန်ရှိရင် လာလိမ့်မယ်။" }
+          ]
+        },
+        {
+          pattern: "带 + O + 去 + V (dài ... qù) · ခေါ်သွား",
+          description: "တစ်စုံတစ်ယောက်ကို ခေါ်သွားပြီး လုပ်ဆောင်ခြင်း",
+          examples: [
+            { hanzi: "我带你去吃小笼包。 (Wǒ dài nǐ qù chī xiǎolóngbāo.)", pinyin: "Wǒ dài nǐ qù chī xiǎolóngbāo.", meaning: "ငါ မင်းကို ရှောင်လုံဘောင်စားခေါ်သွားမယ်။" },
+            { hanzi: "他带我去公园。 (Tā dài wǒ qù gōngyuán.)", pinyin: "Tā dài wǒ qù gōngyuán.", meaning: "သူ ငါ့ကို ပန်းခြံခေါ်သွားတယ်။" },
+            { hanzi: "妈妈带我去商店。 (Māma dài wǒ qù shāngdiàn.)", pinyin: "Māma dài wǒ qù shāngdiàn.", meaning: "အမေ ငါ့ကို ဆိုင်ခေါ်သွားတယ်။" },
+            { hanzi: "老师带我们参观学校。 (Lǎoshī dài wǒmen cānguān xuéxiào.)", pinyin: "Lǎoshī dài wǒmen cānguān xuéxiào.", meaning: "ဆရာ ငါတို့ကို ကျောင်းလှည့်ကြည့်ခေါ်သွားတယ်။" },
+            { hanzi: "你带我去看看。 (Nǐ dài wǒ qù kànkan.)", pinyin: "Nǐ dài wǒ qù kànkan.", meaning: "မင်း ငါ့ကို သွားကြည့်ခေါ်သွားပါ။" }
+          ]
+        },
+        {
+          pattern: "A 和 B 都 (hé ... dōu) · နှစ်ခုလုံး",
+          description: "A နဲ့ B နှစ်ခုလုံး အတူတူဖြစ်ကြောင်း",
+          examples: [
+            { hanzi: "小笼包和生煎包都好吃。 (Xiǎolóngbāo hé shēngjiān bāo dōu hǎochī.)", pinyin: "Xiǎolóngbāo hé shēngjiān bāo dōu hǎochī.", meaning: "ရှောင်လုံဘောင်နဲ့ ရှင်းကျန်ဘောင်နှစ်ခုလုံးအရသာရှိတယ်။" },
+            { hanzi: "北京和上海都很大。 (Běijīng hé Shànghǎi dōu hěn dà.)", pinyin: "Běijīng hé Shànghǎi dōu hěn dà.", meaning: "ဘေဂျင်းနဲ့ ရှန်ဟိုင်းနှစ်ခုလုံးကြီးတယ်။" },
+            { hanzi: "我和他都喜欢旅行。 (Wǒ hé tā dōu xǐhuān lǚxíng.)", pinyin: "Wǒ hé tā dōu xǐhuān lǚxíng.", meaning: "ငါနဲ့သူ နှစ်ယောက်လုံး ခရီးသွားကြိုက်တယ်။" },
+            { hanzi: "苹果和香蕉都好吃。 (Píngguǒ hé xiāngjiāo dōu hǎochī.)", pinyin: "Píngguǒ hé xiāngjiāo dōu hǎochī.", meaning: "ပန်းသီးနဲ့ ငှက်ပျောသီးနှစ်ခုလုံးအရသာရှိတယ်။" },
+            { hanzi: "汉语和英语都很难。 (Hànyǔ hé Yīngyǔ dōu hěn nán.)", pinyin: "Hànyǔ hé Yīngyǔ dōu hěn nán.", meaning: "တရုတ်စာနဲ့ အင်္ဂလိပ်စာနှစ်ခုလုံးခက်တယ်။" }
+          ]
+        }
+      ],
+      exercises: [
+        { question: "李华暑假去哪儿旅行了？", answer: "上海" },
+        { question: "李华去了上海的哪些地方？", answer: "外滩和东方明珠" },
+        { question: "小张为什么没去上海？", answer: "没时间" },
+        { question: "上海有什么好吃的？", answer: "小笼包和生煎包" },
+        { question: "李华说下次带小张去吃什么？", answer: "小笼包" },
+        { question: "小张觉得上海怎么样？", answer: "很好/喜欢" },
+        { question: "李华说下次什么时候去？", answer: "下次" },
+        { question: "他们可以一起计划什么？", answer: "旅行计划" }
+      ]
+    };
+
+    // Lesson 4-20 တို့အတွက် placeholder objects
+    // သင့်အနေနဲ့ ဆက်လက်ဖြည့်စွက်နိုင်ပါတယ်
+    const lesson4 = {
+    lessonNumber: 4,
+    title: "健康 · Jiànkāng · ကျန်းမာရေး",
+    dialog: [
+    { hanzi: "小刘：你最近怎么样？", pinyin: "Xiǎo Liú: Nǐ zuìjìn zěnmeyàng?", meaning: "မင်း မကြာသေးခင်က ဘယ်လိုလဲ။" },
+    { hanzi: "王芳：我最近开始运动了。", pinyin: "Wáng Fāng: Wǒ zuìjìn kāishǐ yùndòng le.", meaning: "ငါ မကြာသေးခင်က အားကစားစလုပ်တယ်။" },
+    // ... ဆက်လက်ဖြည့်ပါ
+    ],
+    vocab: [
+    { hanzi: "最近 (zuìjìn)", pinyin: "zuìjìn", meaning: "မကြာသေးခင်က" },
+    { hanzi: "开始 (kāishǐ)", pinyin: "kāishǐ", meaning: "စတင်သည်" },
+    // ... ဆက်လက်ဖြည့်ပါ
+    ],
+    grammar: [
+    {
+    pattern: "对 + N + 好/重要 (duì ... hǎo/zhòngyào)",
+    description: "'...အတွက် ကောင်းသည်/အရေးကြီးသည်'",
+    examples: [
+    { hanzi: "跑步对身体很好。 (Pǎobù duì shēntǐ hěn hǎo.)", pinyin: "Pǎobù duì shēntǐ hěn hǎo.", meaning: "ပြေးတာက ခန္ဓာကိုယ်အတွက်ကောင်းတယ်။" },
+    // ... ဆက်လက်ဖြည့်ပါ
+    ]
+    },
+    // ... ဆက်လက်ဖြည့်ပါ
+    ],
+    exercises: [
+    { question: "王芳最近开始做什么？", answer: "运动" },
+    // ... ဆက်လက်ဖြည့်ပါ
+    ]
+    };
+    const lesson5 = {
+    lessonNumber: 5,
+    title: "家 · Jiā · အိမ်",
+    dialog: [
+    { hanzi: "小陈：你住在哪儿？", pinyin: "Xiǎo Chén: Nǐ zhù zài nǎr?", meaning: "မင်း ဘယ်မှာနေလဲ။" },
+    { hanzi: "林林：我住在学校附近。", pinyin: "Línlin: Wǒ zhù zài xuéxiào fùjìn.", meaning: "ငါ ကျောင်းအနီးမှာနေတယ်။" },
+    { hanzi: "小陈：你一个人住吗？", pinyin: "Xiǎo Chén: Nǐ yī gè rén zhù ma?", meaning: "မင်း တစ်ယောက်တည်းနေလား။" },
+    { hanzi: "林林：不，我和室友一起住。", pinyin: "Línlin: Bù, wǒ hé shìyǒu yīqǐ zhù.", meaning: "မဟုတ်ဘူး၊ ငါ အခန်းဖော်နဲ့အတူနေတယ်။" },
+    { hanzi: "小陈：你们的房子怎么样？", pinyin: "Xiǎo Chén: Nǐmen de fángzi zěnmeyàng?", meaning: "မင်းတို့အိမ် ဘယ်လိုလဲ။" },
+    { hanzi: "林林：不大，但是很舒服。", pinyin: "Línlin: Bù dà, dànshì hěn shūfu.", meaning: "သိပ်မကြီးဘူး၊ ဒါပေမယ့် အရမ်းအဆင်ပြေတယ်။" },
+    { hanzi: "小陈：有几个房间？", pinyin: "Xiǎo Chén: Yǒu jǐ gè fángjiān?", meaning: "အခန်းဘယ်နှစ်ခန်းရှိလဲ။" },
+    { hanzi: "林林：有两个房间，一个客厅和一个厨房。", pinyin: "Línlin: Yǒu liǎng gè fángjiān, yī gè kètīng hé yī gè chúfáng.", meaning: "အခန်းနှစ်ခန်းရှိတယ်၊ ဧည့်ခန်းတစ်ခန်းနဲ့ မီးဖိုချောင်တစ်ခန်း။" },
+    { hanzi: "小陈：离超市远吗？", pinyin: "Xiǎo Chén: Lí chāoshì yuǎn ma?", meaning: "စူပါမားကတ်နဲ့ဝေးလား။" },
+    { hanzi: "林林：不远，走路五分钟就到。", pinyin: "Línlin: Bù yuǎn, zǒulù wǔ fēnzhōng jiù dào.", meaning: "မဝေးဘူး၊ ငါးမိနစ်လမ်းလျှောက်ရင်ရောက်တယ်။" },
+    { hanzi: "小陈：那很方便。", pinyin: "Xiǎo Chén: Nà hěn fāngbiàn.", meaning: "ဒါဆို အရမ်းအဆင်ပြေတယ်။" },
+    { hanzi: "林林：对，附近还有地铁站。", pinyin: "Línlin: Duì, fùjìn hái yǒu dìtiě zhàn.", meaning: "ဟုတ်တယ်၊ အနီးမှာ မြေအောက်ရထားဘူတာလည်းရှိတယ်။" },
+    { hanzi: "小陈：房租贵吗？", pinyin: "Xiǎo Chén: Fángzū guì ma?", meaning: "အိမ်ငှားခ ဈေးကြီးလား။" },
+    { hanzi: "林林：还可以，我们两个人分担。", pinyin: "Línlin: Hái kěyǐ, wǒmen liǎng gè rén fēndān.", meaning: "သိပ်မဆိုးဘူး၊ ငါတို့နှစ်ယောက်ခွဲပေးတယ်။" }
+    ],
+    vocab: [
+    { hanzi: "住 (zhù)", pinyin: "zhù", meaning: "နေထိုင်သည်" },
+    { hanzi: "附近 (fùjìn)", pinyin: "fùjìn", meaning: "အနီး" },
+    { hanzi: "一个人 (yī gè rén)", pinyin: "yī gè rén", meaning: "တစ်ယောက်တည်း" },
+    { hanzi: "室友 (shìyǒu)", pinyin: "shìyǒu", meaning: "အခန်းဖော်" },
+    { hanzi: "房子 (fángzi)", pinyin: "fángzi", meaning: "အိမ်" },
+    { hanzi: "舒服 (shūfu)", pinyin: "shūfu", meaning: "အဆင်ပြေသည်" },
+    { hanzi: "房间 (fángjiān)", pinyin: "fángjiān", meaning: "အခန်း" },
+    { hanzi: "客厅 (kètīng)", pinyin: "kètīng", meaning: "ဧည့်ခန်း" },
+    { hanzi: "厨房 (chúfáng)", pinyin: "chúfáng", meaning: "မီးဖိုချောင်" },
+    { hanzi: "超市 (chāoshì)", pinyin: "chāoshì", meaning: "စူပါမားကတ်" },
+    { hanzi: "远 (yuǎn)", pinyin: "yuǎn", meaning: "ဝေးသည်" },
+    { hanzi: "走路 (zǒulù)", pinyin: "zǒulù", meaning: "လမ်းလျှောက်သည်" },
+    { hanzi: "分钟 (fēnzhōng)", pinyin: "fēnzhōng", meaning: "မိနစ်" },
+    { hanzi: "到 (dào)", pinyin: "dào", meaning: "ရောက်သည်" },
+    { hanzi: "方便 (fāngbiàn)", pinyin: "fāngbiàn", meaning: "အဆင်ပြေသည်" },
+    { hanzi: "地铁站 (dìtiě zhàn)", pinyin: "dìtiě zhàn", meaning: "မြေအောက်ရထားဘူတာ" },
+    { hanzi: "房租 (fángzū)", pinyin: "fángzū", meaning: "အိမ်ငှားခ" },
+    { hanzi: "贵 (guì)", pinyin: "guì", meaning: "ဈေးကြီးသည်" },
+    { hanzi: "还可以 (hái kěyǐ)", pinyin: "hái kěyǐ", meaning: "သိပ်မဆိုးဘူး" },
+    { hanzi: "分担 (fēndān)", pinyin: "fēndān", meaning: "ခွဲပေးသည်" },
+    { hanzi: "在 (zài)", pinyin: "zài", meaning: "မှာ" },
+    { hanzi: "有 (yǒu)", pinyin: "yǒu", meaning: "ရှိသည်" },
+    { hanzi: "但是 (dànshì)", pinyin: "dànshì", meaning: "ဒါပေမယ့်" },
+    { hanzi: "很 (hěn)", pinyin: "hěn", meaning: "အရမ်း" },
+    { hanzi: "几 (jǐ)", pinyin: "jǐ", meaning: "ဘယ်နှစ်" },
+    { hanzi: "个 (gè)", pinyin: "gè", meaning: "ခု" },
+    { hanzi: "离 (lí)", pinyin: "lí", meaning: "နဲ့" },
+    { hanzi: "还 (hái)", pinyin: "hái", meaning: "လည်း" },
+    { hanzi: "我们 (wǒmen)", pinyin: "wǒmen", meaning: "ငါတို့" },
+    { hanzi: "不 (bù)", pinyin: "bù", meaning: "မ" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 住 + 在 + Location (zhù zài) · မှာနေ",
+    description: "'...မှာနေသည်' နေထိုင်ရာနေရာ",
+    examples: [
+    { hanzi: "我住在学校附近。 (Wǒ zhù zài xuéxiào fùjìn.)", pinyin: "Wǒ zhù zài xuéxiào fùjìn.", meaning: "ငါ ကျောင်းအနီးမှာနေတယ်။" },
+    { hanzi: "她住在北京。 (Tā zhù zài Běijīng.)", pinyin: "Tā zhù zài Běijīng.", meaning: "သူမ ဘေဂျင်းမှာနေတယ်။" },
+    { hanzi: "他们住在一个大房子。 (Tāmen zhù zài yī gè dà fángzi.)", pinyin: "Tāmen zhù zài yī gè dà fángzi.", meaning: "သူတို့ အိမ်ကြီးတစ်လုံးမှာနေတယ်။" },
+    { hanzi: "你住在哪儿？ (Nǐ zhù zài nǎr?)", pinyin: "Nǐ zhù zài nǎr?", meaning: "မင်း ဘယ်မှာနေလဲ။" },
+    { hanzi: "我们住在市中心。 (Wǒmen zhù zài shì zhōngxīn.)", pinyin: "Wǒmen zhù zài shì zhōngxīn.", meaning: "ငါတို့ မြို့လယ်မှာနေတယ်။" }
+    ]
+    },
+    {
+    pattern: "有 + N (yǒu) · ရှိ",
+    description: "တည်ရှိမှု/ပိုင်ဆိုင်မှု",
+    examples: [
+    { hanzi: "我们有两个房间。 (Wǒmen yǒu liǎng gè fángjiān.)", pinyin: "Wǒmen yǒu liǎng gè fángjiān.", meaning: "ငါတို့မှာ အခန်းနှစ်ခန်းရှိတယ်။" },
+    { hanzi: "这里有一个厨房。 (Zhèli yǒu yī gè chúfáng.)", pinyin: "Zhèli yǒu yī gè chúfáng.", meaning: "ဒီမှာ မီးဖိုချောင်တစ်ခန်းရှိတယ်။" },
+    { hanzi: "她有室友。 (Tā yǒu shìyǒu.)", pinyin: "Tā yǒu shìyǒu.", meaning: "သူမမှာ အခန်းဖော်ရှိတယ်။" },
+    { hanzi: "附近有地铁站吗？ (Fùjìn yǒu dìtiě zhàn ma?)", pinyin: "Fùjìn yǒu dìtiě zhàn ma?", meaning: "အနီးမှာ မြေအောက်ရထားဘူတာရှိလား။" },
+    { hanzi: "我没有很多钱。 (Wǒ méiyǒu hěnduō qián.)", pinyin: "Wǒ méiyǒu hěnduō qián.", meaning: "ငါ့မှာ ပိုက်ဆံအများကြီးမရှိဘူး။" }
+    ]
+    },
+    {
+    pattern: "离 + Place + 远/近 (lí ... yuǎn/jìn) · နဲ့ဝေး/နီး",
+    description: "'...နဲ့ဝေး/နီးသည်' အကွာအဝေး",
+    examples: [
+    { hanzi: "离超市远吗？ (Lí chāoshì yuǎn ma?)", pinyin: "Lí chāoshì yuǎn ma?", meaning: "စူပါမားကတ်နဲ့ဝေးလား။" },
+    { hanzi: "学校离我家很近。 (Xuéxiào lí wǒ jiā hěn jìn.)", pinyin: "Xuéxiào lí wǒ jiā hěn jìn.", meaning: "ကျောင်းက ငါ့အိမ်နဲ့နီးတယ်။" },
+    { hanzi: "地铁站离这里不远。 (Dìtiě zhàn lí zhèli bù yuǎn.)", pinyin: "Dìtiě zhàn lí zhèli bù yuǎn.", meaning: "မြေအောက်ရထားဘူတာက ဒီကနေမဝေးဘူး။" },
+    { hanzi: "你家离公司远吗？ (Nǐ jiā lí gōngsī yuǎn ma?)", pinyin: "Nǐ jiā lí gōngsī yuǎn ma?", meaning: "မင်းအိမ်က ကုမ္ပဏီနဲ့ဝေးလား။" },
+    { hanzi: "公园离这里很近。 (Gōngyuán lí zhèli hěn jìn.)", pinyin: "Gōngyuán lí zhèli hěn jìn.", meaning: "ပန်းခြံက ဒီကနေနီးတယ်။" }
+    ]
+    },
+    {
+    pattern: "V + 就 + V (jiù) · ရင်",
+    description: "'ရင်...ပဲ' ချက်ချင်းရလဒ်",
+    examples: [
+    { hanzi: "走路五分钟就到。 (Zǒulù wǔ fēnzhōng jiù dào.)", pinyin: "Zǒulù wǔ fēnzhōng jiù dào.", meaning: "ငါးမိနစ်လမ်းလျှောက်ရင်ရောက်တယ်။" },
+    { hanzi: "吃完饭就来。 (Chī wán fàn jiù lái.)", pinyin: "Chī wán fàn jiù lái.", meaning: "ထမင်းစားပြီးရင်လာမယ်။" },
+    { hanzi: "看到他就告诉他。 (Kàn dào tā jiù gàosu tā.)", pinyin: "Kàn dào tā jiù gàosu tā.", meaning: "သူ့ကိုတွေ့ရင်ပြောလိုက်။" },
+    { hanzi: "做完作业就看电视。 (Zuò wán zuòyè jiù kàn diànshì.)", pinyin: "Zuò wán zuòyè jiù kàn diànshì.", meaning: "အိမ်စာပြီးရင်တီဗီကြည့်မယ်။" },
+    { hanzi: "到了就给我打电话。 (Dào le jiù gěi wǒ dǎ diànhuà.)", pinyin: "Dào le jiù gěi wǒ dǎ diànhuà.", meaning: "ရောက်ရင်ငါ့ကိုဖုန်းဆက်ပါ။" }
+    ]
+    },
+    {
+    pattern: "还 (hái) · လည်း",
+    description: "ထပ်ဆောင်း အချက်အလက် ထည့်ခြင်း",
+    examples: [
+    { hanzi: "附近还有地铁站。 (Fùjìn hái yǒu dìtiě zhàn.)", pinyin: "Fùjìn hái yǒu dìtiě zhàn.", meaning: "အနီးမှာ မြေအောက်ရထားဘူတာလည်းရှိတယ်။" },
+    { hanzi: "我还有一个妹妹。 (Wǒ hái yǒu yī gè mèimei.)", pinyin: "Wǒ hái yǒu yī gè mèimei.", meaning: "ငါ့မှာ ညီမတစ်ယောက်လည်းရှိတယ်။" },
+    { hanzi: "他还会说英语。 (Tā hái huì shuō Yīngyǔ.)", pinyin: "Tā hái huì shuō Yīngyǔ.", meaning: "သူ အင်္ဂလိပ်စာလည်းပြောတတ်တယ်။" },
+    { hanzi: "我们还要等多久？ (Wǒmen hái yào děng duō jiǔ?)", pinyin: "Wǒmen hái yào děng duō jiǔ?", meaning: "ငါတို့ ဘယ်လောက်ကြာကြာ ထပ်စောင့်ရမလဲ။" },
+    { hanzi: "我还有问题。 (Wǒ hái yǒu wèntí.)", pinyin: "Wǒ hái yǒu wèntí.", meaning: "ငါ့မှာ မေးစရာလည်းရှိတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 和 + O + 一起 (hé ... yīqǐ) · နဲ့အတူ",
+    description: "'...နဲ့အတူ'",
+    examples: [
+    { hanzi: "我和室友一起住。 (Wǒ hé shìyǒu yīqǐ zhù.)", pinyin: "Wǒ hé shìyǒu yīqǐ zhù.", meaning: "ငါ အခန်းဖော်နဲ့အတူနေတယ်။" },
+    { hanzi: "她和朋友一起去。 (Tā hé péngyou yīqǐ qù.)", pinyin: "Tā hé péngyou yīqǐ qù.", meaning: "သူမ သူငယ်ချင်းနဲ့အတူသွားတယ်။" },
+    { hanzi: "我们和老师一起吃饭。 (Wǒmen hé lǎoshī yīqǐ chīfàn.)", pinyin: "Wǒmen hé lǎoshī yīqǐ chīfàn.", meaning: "ငါတို့ ဆရာနဲ့အတူ ထမင်းစားတယ်။" },
+    { hanzi: "你和谁一起住？ (Nǐ hé shéi yīqǐ zhù?)", pinyin: "Nǐ hé shéi yīqǐ zhù?", meaning: "မင်း ဘယ်သူနဲ့အတူနေလဲ။" },
+    { hanzi: "我和妈妈一起买菜。 (Wǒ hé māma yīqǐ mǎi cài.)", pinyin: "Wǒ hé māma yīqǐ mǎi cài.", meaning: "ငါ အမေနဲ့အတူ ဟင်းရွက်ဝယ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "不大，但是很 + Adj (bù dà, dànshì) · မကြီးပေမယ့်",
+    description: "ဆန့်ကျင်ဘက်အချက်နှစ်ခုကို ချိတ်ဆက်ခြင်း",
+    examples: [
+    { hanzi: "房子不大，但是很舒服。 (Fángzi bù dà, dànshì hěn shūfu.)", pinyin: "Fángzi bù dà, dànshì hěn shūfu.", meaning: "အိမ်သိပ်မကြီးဘူး၊ ဒါပေမယ့် အရမ်းအဆင်ပြေတယ်။" },
+    { hanzi: "这个不难，但是很重要。 (Zhège bù nán, dànshì hěn zhòngyào.)", pinyin: "Zhège bù nán, dànshì hěn zhòngyào.", meaning: "ဒါက မခက်ဘူး၊ ဒါပေမယ့် အရမ်းအရေးကြီးတယ်။" },
+    { hanzi: "他不太高，但是很帅。 (Tā bù tài gāo, dànshì hěn shuài.)", pinyin: "Tā bù tài gāo, dànshì hěn shuài.", meaning: "သူ သိပ်မမြင့်ဘူး၊ ဒါပေမယ့် အရမ်းချောတယ်။" },
+    { hanzi: "这个菜不贵，但是很好吃。 (Zhège cài bù guì, dànshì hěn hǎochī.)", pinyin: "Zhège cài bù guì, dànshì hěn hǎochī.", meaning: "ဒီဟင်း ဈေးမကြီးဘူး၊ ဒါပေမယ့် အရမ်းအရသာရှိတယ်။" },
+    { hanzi: "房间不大，但是很干净。 (Fángjiān bù dà, dànshì hěn gānjìng.)", pinyin: "Fángjiān bù dà, dànshì hěn gānjìng.", meaning: "အခန်းသိပ်မကြီးဘူး၊ ဒါပေမယ့် အရမ်းသန့်တယ်။" }
+    ]
+    },
+    {
+    pattern: "还可以 (hái kěyǐ) · သိပ်မဆိုး",
+    description: "'သိပ်မဆိုးဘူး' အတန်အသင့်ကောင်းသည်",
+    examples: [
+    { hanzi: "房租还可以。 (Fángzū hái kěyǐ.)", pinyin: "Fángzū hái kěyǐ.", meaning: "အိမ်ငှားခ သိပ်မဆိုးဘူး။" },
+    { hanzi: "他的汉语还可以。 (Tā de Hànyǔ hái kěyǐ.)", pinyin: "Tā de Hànyǔ hái kěyǐ.", meaning: "သူ့တရုတ်စာ သိပ်မဆိုးဘူး။" },
+    { hanzi: "这个电影还可以。 (Zhège diànyǐng hái kěyǐ.)", pinyin: "Zhège diànyǐng hái kěyǐ.", meaning: "ဒီရုပ်ရှင် သိပ်မဆိုးဘူး။" },
+    { hanzi: "今天的天气还可以。 (Jīntiān de tiānqì hái kěyǐ.)", pinyin: "Jīntiān de tiānqì hái kěyǐ.", meaning: "ဒီနေ့ရာသီဥတု သိပ်မဆိုးဘူး။" },
+    { hanzi: "这个餐厅还可以。 (Zhège cāntīng hái kěyǐ.)", pinyin: "Zhège cāntīng hái kěyǐ.", meaning: "ဒီစားသောက်ဆိုင် သိပ်မဆိုးဘူး။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "林林住在哪里？", answer: "学校附近" },
+    { question: "林林和谁一起住？", answer: "室友" },
+    { question: "他们的房子怎么样？", answer: "不大，但是很舒服" },
+    { question: "有几个房间？", answer: "两个" },
+    { question: "离超市远吗？", answer: "不远" },
+    { question: "走路几分钟到超市？", answer: "五分钟" },
+    { question: "附近还有什么？", answer: "地铁站" },
+    { question: "房租贵吗？", answer: "还可以" }
+    ]
+    };
+    const lesson6 = {
+    lessonNumber: 6,
+    title: "工作 · Gōngzuò · အလုပ်",
+    dialog: [
+    { hanzi: "小张：你在哪儿工作？", pinyin: "Xiǎo Zhāng: Nǐ zài nǎr gōngzuò?", meaning: "မင်း ဘယ်မှာအလုပ်လုပ်လဲ။" },
+    { hanzi: "李华：我在一家银行工作。", pinyin: "Lǐ Huá: Wǒ zài yī jiā yínháng gōngzuò.", meaning: "ငါ ဘဏ်တစ်ခုမှာအလုပ်လုပ်တယ်။" },
+    { hanzi: "小张：你做什么工作？", pinyin: "Xiǎo Zhāng: Nǐ zuò shénme gōngzuò?", meaning: "မင်း ဘာအလုပ်လုပ်လဲ။" },
+    { hanzi: "李华：我是银行职员。", pinyin: "Lǐ Huá: Wǒ shì yínháng zhíyuán.", meaning: "ငါ ဘဏ်ဝန်ထမ်းပါ။" },
+    { hanzi: "小张：你喜欢你的工作吗？", pinyin: "Xiǎo Zhāng: Nǐ xǐhuān nǐ de gōngzuò ma?", meaning: "မင်း မင်းအလုပ်ကိုကြိုက်လား။" },
+    { hanzi: "李华：很喜欢，但是有时候很忙。", pinyin: "Lǐ Huá: Hěn xǐhuān, dànshì yǒushíhòu hěn máng.", meaning: "အရမ်းကြိုက်တယ်၊ ဒါပေမယ့် တစ်ခါတစ်လေ အရမ်းအလုပ်များတယ်။" },
+    { hanzi: "小张：你每天工作多长时间？", pinyin: "Xiǎo Zhāng: Nǐ měitiān gōngzuò duō cháng shíjiān?", meaning: "မင်း နေ့တိုင်း ဘယ်လောက်ကြာကြာအလုပ်လုပ်လဲ။" },
+    { hanzi: "李华：八个小时。", pinyin: "Lǐ Huá: Bā gè xiǎoshí.", meaning: "ရှစ်နာရီ။" },
+    { hanzi: "小张：周末休息吗？", pinyin: "Xiǎo Zhāng: Zhōumò xiūxi ma?", meaning: "စနေတနင်္ဂနွေ အနားယူလား။" },
+    { hanzi: "李华：是的，周末休息。", pinyin: "Lǐ Huá: Shì de, zhōumò xiūxi.", meaning: "ဟုတ်တယ်၊ စနေတနင်္ဂနွေ အနားယူတယ်။" },
+    { hanzi: "小张：那很好。", pinyin: "Xiǎo Zhāng: Nà hěn hǎo.", meaning: "ဒါဆို ကောင်းတယ်။" },
+    { hanzi: "李华：对，周末可以和朋友一起玩。", pinyin: "Lǐ Huá: Duì, zhōumò kěyǐ hé péngyou yīqǐ wán.", meaning: "ဟုတ်တယ်၊ စနေတနင်္ဂနွေ သူငယ်ချင်းတွေနဲ့ အတူကစားလို့ရတယ်။" },
+    { hanzi: "小张：我也想找这样的工作。", pinyin: "Xiǎo Zhāng: Wǒ yě xiǎng zhǎo zhèyàng de gōngzuò.", meaning: "ငါလည်း ဒီလိုအလုပ်မျိုး ရှာချင်တယ်။" },
+    { hanzi: "李华：加油！你一定能找到。", pinyin: "Lǐ Huá: Jiāyóu! Nǐ yīdìng néng zhǎodào.", meaning: "အားပေးတယ်။ မင်း သေချာရှာတွေ့မယ်။" }
+    ],
+    vocab: [
+    { hanzi: "工作 (gōngzuò)", pinyin: "gōngzuò", meaning: "အလုပ်" },
+    { hanzi: "银行 (yínháng)", pinyin: "yínháng", meaning: "ဘဏ်" },
+    { hanzi: "职员 (zhíyuán)", pinyin: "zhíyuán", meaning: "ဝန်ထမ်း" },
+    { hanzi: "喜欢 (xǐhuān)", pinyin: "xǐhuān", meaning: "ကြိုက်သည်" },
+    { hanzi: "忙 (máng)", pinyin: "máng", meaning: "အလုပ်များသည်" },
+    { hanzi: "多长时间 (duō cháng shíjiān)", pinyin: "duō cháng shíjiān", meaning: "ဘယ်လောက်ကြာကြာ" },
+    { hanzi: "小时 (xiǎoshí)", pinyin: "xiǎoshí", meaning: "နာရီ" },
+    { hanzi: "周末 (zhōumò)", pinyin: "zhōumò", meaning: "စနေတနင်္ဂနွေ" },
+    { hanzi: "休息 (xiūxi)", pinyin: "xiūxi", meaning: "အနားယူသည်" },
+    { hanzi: "朋友 (péngyou)", pinyin: "péngyou", meaning: "သူငယ်ချင်း" },
+    { hanzi: "玩 (wán)", pinyin: "wán", meaning: "ကစားသည်" },
+    { hanzi: "找 (zhǎo)", pinyin: "zhǎo", meaning: "ရှာသည်" },
+    { hanzi: "这样 (zhèyàng)", pinyin: "zhèyàng", meaning: "ဒီလို" },
+    { hanzi: "一定 (yīdìng)", pinyin: "yīdìng", meaning: "သေချာ" },
+    { hanzi: "能 (néng)", pinyin: "néng", meaning: "နိုင်သည်" },
+    { hanzi: "找到 (zhǎodào)", pinyin: "zhǎodào", meaning: "ရှာတွေ့သည်" },
+    { hanzi: "在 (zài)", pinyin: "zài", meaning: "မှာ" },
+    { hanzi: "一家 (yī jiā)", pinyin: "yī jiā", meaning: "တစ်ခု" },
+    { hanzi: "做 (zuò)", pinyin: "zuò", meaning: "လုပ်သည်" },
+    { hanzi: "是 (shì)", pinyin: "shì", meaning: "ဖြစ်သည်" },
+    { hanzi: "但是 (dànshì)", pinyin: "dànshì", meaning: "ဒါပေမယ့်" },
+    { hanzi: "有时候 (yǒushíhòu)", pinyin: "yǒushíhòu", meaning: "တစ်ခါတစ်လေ" },
+    { hanzi: "每天 (měitiān)", pinyin: "měitiān", meaning: "နေ့တိုင်း" },
+    { hanzi: "八 (bā)", pinyin: "bā", meaning: "ရှစ်" },
+    { hanzi: "对 (duì)", pinyin: "duì", meaning: "ဟုတ်တယ်" },
+    { hanzi: "可以 (kěyǐ)", pinyin: "kěyǐ", meaning: "ရသည်" },
+    { hanzi: "一起 (yīqǐ)", pinyin: "yīqǐ", meaning: "အတူတူ" },
+    { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+    { hanzi: "加油 (jiāyóu)", pinyin: "jiāyóu", meaning: "အားပေးတယ်" },
+    { hanzi: "周末 (zhōumò)", pinyin: "zhōumò", meaning: "စနေတနင်္ဂနွေ" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 在 + Place + 工作 (zài ... gōngzuò) · မှာအလုပ်လုပ်",
+    description: "'...မှာအလုပ်လုပ်သည်'",
+    examples: [
+    { hanzi: "我在银行工作。 (Wǒ zài yínháng gōngzuò.)", pinyin: "Wǒ zài yínháng gōngzuò.", meaning: "ငါ ဘဏ်မှာအလုပ်လုပ်တယ်။" },
+    { hanzi: "他在学校工作。 (Tā zài xuéxiào gōngzuò.)", pinyin: "Tā zài xuéxiào gōngzuò.", meaning: "သူ ကျောင်းမှာအလုပ်လုပ်တယ်。" },
+    { hanzi: "她在医院工作。 (Tā zài yīyuàn gōngzuò.)", pinyin: "Tā zài yīyuàn gōngzuò.", meaning: "သူမ ဆေးရုံမှာအလုပ်လုပ်တယ်။" },
+    { hanzi: "你们在哪儿工作？ (Nǐmen zài nǎr gōngzuò?)", pinyin: "Nǐmen zài nǎr gōngzuò?", meaning: "မင်းတို့ ဘယ်မှာအလုပ်လုပ်လဲ။" },
+    { hanzi: "我在公司工作。 (Wǒ zài gōngsī gōngzuò.)", pinyin: "Wǒ zài gōngsī gōngzuò.", meaning: "ငါ ကုမ္ပဏီမှာအလုပ်လုပ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + N (shì) · ဖြစ်",
+    description: "'...ဖြစ်သည်' အလုပ်အကိုင်",
+    examples: [
+    { hanzi: "我是银行职员。 (Wǒ shì yínháng zhíyuán.)", pinyin: "Wǒ shì yínháng zhíyuán.", meaning: "ငါ ဘဏ်ဝန်ထမ်းပါ။" },
+    { hanzi: "他是老师。 (Tā shì lǎoshī.)", pinyin: "Tā shì lǎoshī.", meaning: "သူ ဆရာပါ။" },
+    { hanzi: "她是医生。 (Tā shì yīshēng.)", pinyin: "Tā shì yīshēng.", meaning: "သူမ ဆရာဝန်ပါ။" },
+    { hanzi: "你是学生吗？ (Nǐ shì xuéshēng ma?)", pinyin: "Nǐ shì xuéshēng ma?", meaning: "မင်း ကျောင်းသားလား။" },
+    { hanzi: "我们是朋友。 (Wǒmen shì péngyou.)", pinyin: "Wǒmen shì péngyou.", meaning: "ငါတို့ သူငယ်ချင်းတွေပါ။" }
+    ]
+    },
+    {
+    pattern: "S + 每天 + V + 多长时间 (měitiān ... duō cháng shíjiān)",
+    description: "'နေ့တိုင်း ဘယ်လောက်ကြာကြာ...'",
+    examples: [
+    { hanzi: "我每天工作八个小时。 (Wǒ měitiān gōngzuò bā gè xiǎoshí.)", pinyin: "Wǒ měitiān gōngzuò bā gè xiǎoshí.", meaning: "ငါ နေ့တိုင်း ရှစ်နာရီအလုပ်လုပ်တယ်။" },
+    { hanzi: "她每天学习三个小时。 (Tā měitiān xuéxí sān gè xiǎoshí.)", pinyin: "Tā měitiān xuéxí sān gè xiǎoshí.", meaning: "သူမ နေ့တိုင်း သုံးနာရီစာကျက်တယ်။" },
+    { hanzi: "你每天跑步多长时间？ (Nǐ měitiān pǎobù duō cháng shíjiān?)", pinyin: "Nǐ měitiān pǎobù duō cháng shíjiān?", meaning: "မင်း နေ့တိုင်း ဘယ်လောက်ကြာကြာပြေးလဲ။" },
+    { hanzi: "我们每天上课六小时。 (Wǒmen měitiān shàngkè liù xiǎoshí.)", pinyin: "Wǒmen měitiān shàngkè liù xiǎoshí.", meaning: "ငါတို့ နေ့တိုင်း ခြောက်နာရီစာသင်တယ်။" },
+    { hanzi: "他每天工作很长时间。 (Tā měitiān gōngzuò hěn cháng shíjiān.)", pinyin: "Tā měitiān gōngzuò hěn cháng shíjiān.", meaning: "သူ နေ့တိုင်း အချိန်အကြာကြီးအလုပ်လုပ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 喜欢 + N/V (xǐhuān) · ကြိုက်",
+    description: "'...ကိုကြိုက်သည်'",
+    examples: [
+    { hanzi: "我喜欢我的工作。 (Wǒ xǐhuān wǒ de gōngzuò.)", pinyin: "Wǒ xǐhuān wǒ de gōngzuò.", meaning: "ငါ ငါ့အလုပ်ကိုကြိုက်တယ်။" },
+    { hanzi: "她喜欢跑步。 (Tā xǐhuān pǎobù.)", pinyin: "Tā xǐhuān pǎobù.", meaning: "သူမ ပြေးတာကြိုက်တယ်။" },
+    { hanzi: "我们喜欢旅行。 (Wǒmen xǐhuān lǚxíng.)", pinyin: "Wǒmen xǐhuān lǚxíng.", meaning: "ငါတို့ ခရီးသွားကြိုက်တယ်။" },
+    { hanzi: "你喜欢什么？ (Nǐ xǐhuān shénme?)", pinyin: "Nǐ xǐhuān shénme?", meaning: "မင်း ဘာကြိုက်လဲ။" },
+    { hanzi: "他们都喜欢运动。 (Tāmen dōu xǐhuān yùndòng.)", pinyin: "Tāmen dōu xǐhuān yùndòng.", meaning: "သူတို့အားလုံး အားကစားကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "周末 + V (zhōumò) · စနေတနင်္ဂနွေ",
+    description: "'စနေတနင်္ဂနွေ...'",
+    examples: [
+    { hanzi: "周末休息。 (Zhōumò xiūxi.)", pinyin: "Zhōumò xiūxi.", meaning: "စနေတနင်္ဂနွေ အနားယူတယ်။" },
+    { hanzi: "周末我去找你。 (Zhōumò wǒ qù zhǎo nǐ.)", pinyin: "Zhōumò wǒ qù zhǎo nǐ.", meaning: "စနေတနင်္ဂနွေ ငါမင်းဆီလာမယ်။" },
+    { hanzi: "周末可以一起玩。 (Zhōumò kěyǐ yīqǐ wán.)", pinyin: "Zhōumò kěyǐ yīqǐ wán.", meaning: "စနေတနင်္ဂနွေ အတူကစားလို့ရတယ်။" },
+    { hanzi: "你周末做什么？ (Nǐ zhōumò zuò shénme?)", pinyin: "Nǐ zhōumò zuò shénme?", meaning: "မင်း စနေတနင်္ဂနွေ ဘာလုပ်လဲ။" },
+    { hanzi: "周末我们去看电影。 (Zhōumò wǒmen qù kàn diànyǐng.)", pinyin: "Zhōumò wǒmen qù kàn diànyǐng.", meaning: "စနေတနင်္ဂနွေ ငါတို့ ရုပ်ရှင်သွားကြည့်မယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 想 + V (xiǎng) · ချင်",
+    description: "'...ချင်သည်'",
+    examples: [
+    { hanzi: "我也想找这样的工作。 (Wǒ yě xiǎng zhǎo zhèyàng de gōngzuò.)", pinyin: "Wǒ yě xiǎng zhǎo zhèyàng de gōngzuò.", meaning: "ငါလည်း ဒီလိုအလုပ်မျိုး ရှာချင်တယ်။" },
+    { hanzi: "他想去上海。 (Tā xiǎng qù Shànghǎi.)", pinyin: "Tā xiǎng qù Shànghǎi.", meaning: "သူ ရှန်ဟိုင်းသွားချင်တယ်။" },
+    { hanzi: "她想买新衣服。 (Tā xiǎng mǎi xīn yīfu.)", pinyin: "Tā xiǎng mǎi xīn yīfu.", meaning: "သူမ အဝတ်အသစ်ဝယ်ချင်တယ်။" },
+    { hanzi: "我想喝茶。 (Wǒ xiǎng hē chá.)", pinyin: "Wǒ xiǎng hē chá.", meaning: "ငါ လက်ဖက်ရည်သောက်ချင်တယ်။" },
+    { hanzi: "你们想做什么？ (Nǐmen xiǎng zuò shénme?)", pinyin: "Nǐmen xiǎng zuò shénme?", meaning: "မင်းတို့ ဘာလုပ်ချင်လဲ။" }
+    ]
+    },
+    {
+    pattern: "一定 + 能 + V (yīdìng néng) · သေချာနိုင်",
+    description: "'သေချာနိုင်သည်'",
+    examples: [
+    { hanzi: "你一定能找到。 (Nǐ yīdìng néng zhǎodào.)", pinyin: "Nǐ yīdìng néng zhǎodào.", meaning: "မင်း သေချာရှာတွေ့မယ်။" },
+    { hanzi: "他一定能成功。 (Tā yīdìng néng chénggōng.)", pinyin: "Tā yīdìng néng chénggōng.", meaning: "သူ သေချာအောင်မြင်မယ်။" },
+    { hanzi: "我们一定能做到。 (Wǒmen yīdìng néng zuòdào.)", pinyin: "Wǒmen yīdìng néng zuòdào.", meaning: "ငါတို့ သေချာလုပ်နိုင်မယ်။" },
+    { hanzi: "她一定能来。 (Tā yīdìng néng lái.)", pinyin: "Tā yīdìng néng lái.", meaning: "သူမ သေချာလာနိုင်မယ်။" },
+    { hanzi: "你一定能学好汉语。 (Nǐ yīdìng néng xué hǎo Hànyǔ.)", pinyin: "Nǐ yīdìng néng xué hǎo Hànyǔ.", meaning: "မင်း သေချာ တရုတ်စာကောင်းကောင်းတတ်နိုင်မယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 也 + V (yě) · လည်း",
+    description: "'လည်း'",
+    examples: [
+    { hanzi: "我也想去。 (Wǒ yě xiǎng qù.)", pinyin: "Wǒ yě xiǎng qù.", meaning: "ငါလည်း သွားချင်တယ်။" },
+    { hanzi: "她也是职员。 (Tā yě shì zhíyuán.)", pinyin: "Tā yě shì zhíyuán.", meaning: "သူမလည်း ဝန်ထမ်းပါ။" },
+    { hanzi: "我们也很忙。 (Wǒmen yě hěn máng.)", pinyin: "Wǒmen yě hěn máng.", meaning: "ငါတို့လည်း အလုပ်များတယ်။" },
+    { hanzi: "他也在北京工作。 (Tā yě zài Běijīng gōngzuò.)", pinyin: "Tā yě zài Běijīng gōngzuò.", meaning: "သူလည်း ဘေဂျင်းမှာအလုပ်လုပ်တယ်။" },
+    { hanzi: "我也喜欢运动。 (Wǒ yě xǐhuān yùndòng.)", pinyin: "Wǒ yě xǐhuān yùndòng.", meaning: "ငါလည်း အားကစားကြိုက်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "李华在哪儿工作？", answer: "银行" },
+    { question: "李华做什么工作？", answer: "银行职员" },
+    { question: "李华喜欢她的工作吗？", answer: "很喜欢" },
+    { question: "李华每天工作多长时间？", answer: "八个小时" },
+    { question: "李华周末休息吗？", answer: "是" },
+    { question: "李华周末可以做什么？", answer: "和朋友一起玩" },
+    { question: "小张想找什么样的工作？", answer: "这样的工作" },
+    { question: "李华对小张说什么？", answer: "加油！你一定能找到" }
+    ]
+    };
+    const lesson7 = {
+    lessonNumber: 7,
+    title: "爱好 · Àihào · ဝါသနာ",
+    dialog: [
+    { hanzi: "小王：你有什么爱好？", pinyin: "Xiǎo Wáng: Nǐ yǒu shénme àihào?", meaning: "မင်း ဘာဝါသနာပါလဲ။" },
+    { hanzi: "小张：我喜欢听音乐。", pinyin: "Xiǎo Zhāng: Wǒ xǐhuān tīng yīnyuè.", meaning: "ငါ ဂီတနားထောင်တာကြိုက်တယ်။" },
+    { hanzi: "小王：你听什么音乐？", pinyin: "Xiǎo Wáng: Nǐ tīng shénme yīnyuè?", meaning: "မင်း ဘာဂီတနားထောင်လဲ။" },
+    { hanzi: "小张：流行音乐。", pinyin: "Xiǎo Zhāng: Liúxíng yīnyuè.", meaning: "ပေါ့ပ်ဂီတ။" },
+    { hanzi: "小王：我也喜欢流行音乐。", pinyin: "Xiǎo Wáng: Wǒ yě xǐhuān liúxíng yīnyuè.", meaning: "ငါလည်း ပေါ့ပ်ဂီတကြိုက်တယ်။" },
+    { hanzi: "小张：你还会什么？", pinyin: "Xiǎo Zhāng: Nǐ hái huì shénme?", meaning: "မင်း နောက်ထပ် ဘာတတ်သေးလဲ။" },
+    { hanzi: "小王：我会弹钢琴。", pinyin: "Xiǎo Wáng: Wǒ huì tán gāngqín.", meaning: "ငါ စန္ဒရားတီးတတ်တယ်။" },
+    { hanzi: "小张：真的吗？太厉害了！", pinyin: "Xiǎo Zhāng: Zhēn de ma? Tài lìhài le!", meaning: "တကယ်လား။ အရမ်းကောင်းတယ်။" },
+    { hanzi: "小王：你会什么乐器？", pinyin: "Xiǎo Wáng: Nǐ huì shénme yuèqì?", meaning: "မင်း ဘာဂီတတူရိယာတီးတတ်လဲ။" },
+    { hanzi: "小张：我会弹吉他，但是弹得不太好。", pinyin: "Xiǎo Zhāng: Wǒ huì tán jítā, dànshì tán de bù tài hǎo.", meaning: "ငါ ဂစ်တာတီးတတ်တယ်၊ ဒါပေမယ့် သိပ်မကောင်းဘူး။" },
+    { hanzi: "小王：没关系，多练习就好了。", pinyin: "Xiǎo Wáng: Méiguānxi, duō liànxí jiù hǎo le.", meaning: "ကိစ္စမရှိဘူး၊ အများကြီးလေ့ကျင့်ရင် ကောင်းလာမယ်။" },
+    { hanzi: "小张：你说得对。", pinyin: "Xiǎo Zhāng: Nǐ shuō de duì.", meaning: "မင်းပြောတာမှန်တယ်။" },
+    { hanzi: "小王：我们周末可以一起练琴。", pinyin: "Xiǎo Wáng: Wǒmen zhōumò kěyǐ yīqǐ liàn qín.", meaning: "ငါတို့ စနေတနင်္ဂနွေ အတူတီးလေ့ကျင့်လို့ရတယ်။" },
+    { hanzi: "小张：太好了！", pinyin: "Xiǎo Zhāng: Tài hǎo le!", meaning: "အရမ်းကောင်းတယ်။" }
+    ],
+    vocab: [
+    { hanzi: "爱好 (àihào)", pinyin: "àihào", meaning: "ဝါသနာ" },
+    { hanzi: "听音乐 (tīng yīnyuè)", pinyin: "tīng yīnyuè", meaning: "ဂီတနားထောင်သည်" },
+    { hanzi: "流行音乐 (liúxíng yīnyuè)", pinyin: "liúxíng yīnyuè", meaning: "ပေါ့ပ်ဂီတ" },
+    { hanzi: "会 (huì)", pinyin: "huì", meaning: "တတ်သည်" },
+    { hanzi: "弹钢琴 (tán gāngqín)", pinyin: "tán gāngqín", meaning: "စန္ဒရားတီးသည်" },
+    { hanzi: "厉害 (lìhài)", pinyin: "lìhài", meaning: "ကောင်းသည်" },
+    { hanzi: "乐器 (yuèqì)", pinyin: "yuèqì", meaning: "တူရိယာ" },
+    { hanzi: "吉他 (jítā)", pinyin: "jítā", meaning: "ဂစ်တာ" },
+    { hanzi: "弹得不太好 (tán de bù tài hǎo)", pinyin: "tán de bù tài hǎo", meaning: "သိပ်မကောင်းဘူးတီးတယ်" },
+    { hanzi: "没关系 (méiguānxi)", pinyin: "méiguānxi", meaning: "ကိစ္စမရှိဘူး" },
+    { hanzi: "练习 (liànxí)", pinyin: "liànxí", meaning: "လေ့ကျင့်သည်" },
+    { hanzi: "练琴 (liàn qín)", pinyin: "liàn qín", meaning: "တူရိယာတီးလေ့ကျင့်သည်" },
+    { hanzi: "喜欢 (xǐhuān)", pinyin: "xǐhuān", meaning: "ကြိုက်သည်" },
+    { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+    { hanzi: "还 (hái)", pinyin: "hái", meaning: "နောက်ထပ်" },
+    { hanzi: "真的 (zhēn de)", pinyin: "zhēn de", meaning: "တကယ်" },
+    { hanzi: "太 (tài)", pinyin: "tài", meaning: "အရမ်း" },
+    { hanzi: "了 (le)", pinyin: "le", meaning: "ပြီ" },
+    { hanzi: "但是 (dànshì)", pinyin: "dànshì", meaning: "ဒါပေမယ့်" },
+    { hanzi: "多 (duō)", pinyin: "duō", meaning: "များသည်" },
+    { hanzi: "就 (jiù)", pinyin: "jiù", meaning: "ပဲ" },
+    { hanzi: "好 (hǎo)", pinyin: "hǎo", meaning: "ကောင်းသည်" },
+    { hanzi: "周末 (zhōumò)", pinyin: "zhōumò", meaning: "စနေတနင်္ဂနွေ" },
+    { hanzi: "可以 (kěyǐ)", pinyin: "kěyǐ", meaning: "ရသည်" },
+    { hanzi: "一起 (yīqǐ)", pinyin: "yīqǐ", meaning: "အတူတူ" },
+    { hanzi: "说 (shuō)", pinyin: "shuō", meaning: "ပြောသည်" },
+    { hanzi: "对 (duì)", pinyin: "duì", meaning: "မှန်သည်" },
+    { hanzi: "弹 (tán)", pinyin: "tán", meaning: "တီးသည်" },
+    { hanzi: "音乐 (yīnyuè)", pinyin: "yīnyuè", meaning: "ဂီတ" },
+    { hanzi: "钢琴 (gāngqín)", pinyin: "gāngqín", meaning: "စန္ဒရား" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 有 + 爱好 (yǒu àihào) · ဝါသနာရှိ",
+    description: "'ဝါသနာရှိသည်'",
+    examples: [
+    { hanzi: "你有什么爱好？ (Nǐ yǒu shénme àihào?)", pinyin: "Nǐ yǒu shénme àihào?", meaning: "မင်း ဘာဝါသနာပါလဲ။" },
+    { hanzi: "他有很多爱好。 (Tā yǒu hěnduō àihào.)", pinyin: "Tā yǒu hěnduō àihào.", meaning: "သူမှာ ဝါသနာအများကြီးရှိတယ်။" },
+    { hanzi: "她有音乐爱好。 (Tā yǒu yīnyuè àihào.)", pinyin: "Tā yǒu yīnyuè àihào.", meaning: "သူမမှာ ဂီတဝါသနာရှိတယ်။" },
+    { hanzi: "你有爱好吗？ (Nǐ yǒu àihào ma?)", pinyin: "Nǐ yǒu àihào ma?", meaning: "မင်းမှာ ဝါသနာရှိလား။" },
+    { hanzi: "我们都有爱好。 (Wǒmen dōu yǒu àihào.)", pinyin: "Wǒmen dōu yǒu àihào.", meaning: "ငါတို့အားလုံးမှာ ဝါသနာရှိတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 喜欢 + V (xǐhuān) · ကြိုက်",
+    description: "'...ကြိုက်သည်'",
+    examples: [
+    { hanzi: "我喜欢听音乐。 (Wǒ xǐhuān tīng yīnyuè.)", pinyin: "Wǒ xǐhuān tīng yīnyuè.", meaning: "ငါ ဂီတနားထောင်တာကြိုက်တယ်။" },
+    { hanzi: "她喜欢唱歌。 (Tā xǐhuān chànggē.)", pinyin: "Tā xǐhuān chànggē.", meaning: "သူမ သီချင်းဆိုတာကြိုက်တယ်။" },
+    { hanzi: "我们喜欢跳舞。 (Wǒmen xǐhuān tiàowǔ.)", pinyin: "Wǒmen xǐhuān tiàowǔ.", meaning: "ငါတို့ အက ကတာကြိုက်တယ်။" },
+    { hanzi: "你喜欢什么？ (Nǐ xǐhuān shénme?)", pinyin: "Nǐ xǐhuān shénme?", meaning: "မင်း ဘာကြိုက်လဲ။" },
+    { hanzi: "他们都喜欢运动。 (Tāmen dōu xǐhuān yùndòng.)", pinyin: "Tāmen dōu xǐhuān yùndòng.", meaning: "သူတို့အားလုံး အားကစားကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 会 + V (huì) · တတ်",
+    description: "'...တတ်သည်'",
+    examples: [
+    { hanzi: "我会弹钢琴。 (Wǒ huì tán gāngqín.)", pinyin: "Wǒ huì tán gāngqín.", meaning: "ငါ စန္ဒရားတီးတတ်တယ်။" },
+    { hanzi: "他会说汉语。 (Tā huì shuō Hànyǔ.)", pinyin: "Tā huì shuō Hànyǔ.", meaning: "သူ တရုတ်စာပြောတတ်တယ်။" },
+    { hanzi: "她会弹吉他。 (Tā huì tán jítā.)", pinyin: "Tā huì tán jítā.", meaning: "သူမ ဂစ်တာတီးတတ်တယ်။" },
+    { hanzi: "你会做什么？ (Nǐ huì zuò shénme?)", pinyin: "Nǐ huì zuò shénme?", meaning: "မင်း ဘာလုပ်တတ်လဲ။" },
+    { hanzi: "我们会游泳。 (Wǒmen huì yóuyǒng.)", pinyin: "Wǒmen huì yóuyǒng.", meaning: "ငါတို့ ရေကူးတတ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + 得 + Complement (V + de) · အနေ",
+    description: "ကြိယာ၏ အခြေအနေ",
+    examples: [
+    { hanzi: "我弹得不太好。 (Wǒ tán de bù tài hǎo.)", pinyin: "Wǒ tán de bù tài hǎo.", meaning: "ငါ သိပ်မကောင်းဘူးတီးတယ်။" },
+    { hanzi: "他说得很好。 (Tā shuō de hěn hǎo.)", pinyin: "Tā shuō de hěn hǎo.", meaning: "သူ ကောင်းကောင်းပြောတယ်။" },
+    { hanzi: "她唱得很棒。 (Tā chàng de hěn bàng.)", pinyin: "Tā chàng de hěn bàng.", meaning: "သူမ ကောင်းကောင်းဆိုတယ်။" },
+    { hanzi: "你弹得怎么样？ (Nǐ tán de zěnmeyàng?)", pinyin: "Nǐ tán de zěnmeyàng?", meaning: "မင်း ဘယ်လိုတီးလဲ။" },
+    { hanzi: "他写得不错。 (Tā xiě de bùcuò.)", pinyin: "Tā xiě de bùcuò.", meaning: "သူ မဆိုးဘူးရေးတယ်။" }
+    ]
+    },
+    {
+    pattern: "没关系 + 多 + V + 就 + 好 (méiguānxi, duō ... jiù hǎo)",
+    description: "'ကိစ္စမရှိဘူး၊ အများကြီးလုပ်ရင် ကောင်းလာမယ်'",
+    examples: [
+    { hanzi: "没关系，多练习就好了。 (Méiguānxi, duō liànxí jiù hǎo le.)", pinyin: "Méiguānxi, duō liànxí jiù hǎo le.", meaning: "ကိစ္စမရှိဘူး၊ အများကြီးလေ့ကျင့်ရင် ကောင်းလာမယ်။" },
+    { hanzi: "没关系，多看书就明白了。 (Méiguānxi, duō kàn shū jiù míngbai le.)", pinyin: "Méiguānxi, duō kàn shū jiù míngbai le.", meaning: "ကိစ္စမရှိဘူး၊ စာအများကြီးဖတ်ရင် နားလည်လာမယ်။" },
+    { hanzi: "没关系，多问问就知道了。 (Méiguānxi, duō wènwen jiù zhīdào le.)", pinyin: "Méiguānxi, duō wènwen jiù zhīdào le.", meaning: "ကိစ္စမရှိဘူး၊ အများကြီးမေးရင် သိလာမယ်။" },
+    { hanzi: "没关系，多走走就习惯了。 (Méiguānxi, duō zǒuzou jiù xíguàn le.)", pinyin: "Méiguānxi, duō zǒuzou jiù xíguàn le.", meaning: "ကိစ္စမရှိဘူး၊ အများကြီးလမ်းလျှောက်ရင် ကျင့်သားရလာမယ်။" },
+    { hanzi: "没关系，多试试就会了。 (Méiguānxi, duō shìshi jiù huì le.)", pinyin: "Méiguānxi, duō shìshi jiù huì le.", meaning: "ကိစ္စမရှိဘူး၊ အများကြီးစမ်းရင် တတ်လာမယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 还 + V (hái) · နောက်ထပ်",
+    description: "ထပ်ဆောင်း အချက်အလက်",
+    examples: [
+    { hanzi: "你还会什么？ (Nǐ hái huì shénme?)", pinyin: "Nǐ hái huì shénme?", meaning: "မင်း နောက်ထပ် ဘာတတ်သေးလဲ။" },
+    { hanzi: "我还会说英语。 (Wǒ hái huì shuō Yīngyǔ.)", pinyin: "Wǒ hái huì shuō Yīngyǔ.", meaning: "ငါ အင်္ဂလိပ်စာလည်းပြောတတ်တယ်။" },
+    { hanzi: "她还会跳舞。 (Tā hái huì tiàowǔ.)", pinyin: "Tā hái huì tiàowǔ.", meaning: "သူမ အက လည်းကတတ်တယ်။" },
+    { hanzi: "我们还要等多久？ (Wǒmen hái yào děng duō jiǔ?)", pinyin: "Wǒmen hái yào děng duō jiǔ?", meaning: "ငါတို့ ဘယ်လောက်ကြာကြာ ထပ်စောင့်ရမလဲ။" },
+    { hanzi: "他还要工作。 (Tā hái yào gōngzuò.)", pinyin: "Tā hái yào gōngzuò.", meaning: "သူ နောက်ထပ်အလုပ်လုပ်ရသေးတယ်။" }
+    ]
+    },
+    {
+    pattern: "太 + Adj + 了 (tài ... le) · အရမ်း",
+    description: "'အရမ်း...တယ်'",
+    examples: [
+    { hanzi: "太厉害了！ (Tài lìhài le!)", pinyin: "Tài lìhài le!", meaning: "အရမ်းကောင်းတယ်။" },
+    { hanzi: "太好了！ (Tài hǎo le!)", pinyin: "Tài hǎo le!", meaning: "အရမ်းကောင်းတယ်။" },
+    { hanzi: "这个太贵了。 (Zhège tài guì le.)", pinyin: "Zhège tài guì le.", meaning: "ဒါက အရမ်းဈေးကြီးတယ်။" },
+    { hanzi: "今天太热了。 (Jīntiān tài rè le.)", pinyin: "Jīntiān tài rè le.", meaning: "ဒီနေ့ အရမ်းပူတယ်။" },
+    { hanzi: "他太快了。 (Tā tài kuài le.)", pinyin: "Tā tài kuài le.", meaning: "သူ အရမ်းမြန်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 对 + O + 说 (duì ... shuō) · ကိုပြော",
+    description: "'...ကိုပြောသည်'",
+    examples: [
+    { hanzi: "你对他说了什么？ (Nǐ duì tā shuō le shénme?)", pinyin: "Nǐ duì tā shuō le shénme?", meaning: "မင်း သူ့ကို ဘာပြောလဲ။" },
+    { hanzi: "我对她说：加油！ (Wǒ duì tā shuō: Jiāyóu!)", pinyin: "Wǒ duì tā shuō: Jiāyóu!", meaning: "ငါ သူမကို ပြောတယ်- အားပေးတယ်။" },
+    { hanzi: "老师对我们说：好好学习。 (Lǎoshī duì wǒmen shuō: Hǎohǎo xuéxí.)", pinyin: "Lǎoshī duì wǒmen shuō: Hǎohǎo xuéxí.", meaning: "ဆရာက ငါတို့ကို ပြောတယ်- ကောင်းကောင်းစာသင်ပါ။" },
+    { hanzi: "他对我说：明天见。 (Tā duì wǒ shuō: Míngtiān jiàn.)", pinyin: "Tā duì wǒ shuō: Míngtiān jiàn.", meaning: "သူ ငါ့ကို ပြောတယ်- မနက်ဖြန်တွေ့မယ်။" },
+    { hanzi: "你对我说什么？ (Nǐ duì wǒ shuō shénme?)", pinyin: "Nǐ duì wǒ shuō shénme?", meaning: "မင်း ငါ့ကို ဘာပြောလဲ။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小张有什么爱好？", answer: "听音乐" },
+    { question: "小张听什么音乐？", answer: "流行音乐" },
+    { question: "小王会做什么？", answer: "弹钢琴" },
+    { question: "小张会弹什么？", answer: "吉他" },
+    { question: "小张弹得怎么样？", answer: "不太好" },
+    { question: "小王建议小张怎么做？", answer: "多练习" },
+    { question: "他们什么时候可以一起练琴？", answer: "周末" },
+    { question: "小张觉得怎么样？", answer: "太好了" }
+    ]
+    };
+    const lesson8 = {
+    lessonNumber: 8,
+    title: "天气 · Tiānqì · ရာသီဥတု",
+    dialog: [
+    { hanzi: "小李：今天天气怎么样？", pinyin: "Xiǎo Lǐ: Jīntiān tiānqì zěnmeyàng?", meaning: "ဒီနေ့ ရာသီဥတု ဘယ်လိုလဲ။" },
+    { hanzi: "小王：今天很冷。", pinyin: "Xiǎo Wáng: Jīntiān hěn lěng.", meaning: "ဒီနေ့ အရမ်းအေးတယ်။" },
+    { hanzi: "小李：是啊，昨天还不冷。", pinyin: "Xiǎo Lǐ: Shì a, zuótiān hái bù lěng.", meaning: "ဟုတ်တယ်၊ မနေ့က မအေးသေးဘူး။" },
+    { hanzi: "小王：明天会下雨吗？", pinyin: "Xiǎo Wáng: Míngtiān huì xià yǔ ma?", meaning: "မနက်ဖြန် မိုးရွာမလား။" },
+    { hanzi: "小李：天气预报说，明天会下雪。", pinyin: "Xiǎo Lǐ: Tiānqì yùbào shuō, míngtiān huì xià xuě.", meaning: "မိုးလေဝသခန့်မှန်းချက်က ပြောတယ်၊ မနက်ဖြန် နှင်းကျမယ်။" },
+    { hanzi: "小王：下雪？太好了！", pinyin: "Xiǎo Wáng: Xià xuě? Tài hǎo le!", meaning: "နှင်းကျလား။ အရမ်းကောင်းတယ်။" },
+    { hanzi: "小李：你喜欢雪吗？", pinyin: "Xiǎo Lǐ: Nǐ xǐhuān xuě ma?", meaning: "မင်း နှင်းကြိုက်လား။" },
+    { hanzi: "小王：很喜欢，雪很美。", pinyin: "Xiǎo Wáng: Hěn xǐhuān, xuě hěn měi.", meaning: "အရမ်းကြိုက်တယ်၊ နှင်းက အရမ်းလှတယ်။" },
+    { hanzi: "小李：我也喜欢，但是下雪天很冷。", pinyin: "Xiǎo Lǐ: Wǒ yě xǐhuān, dànshì xià xuě tiān hěn lěng.", meaning: "ငါလည်းကြိုက်တယ်၊ ဒါပေမယ့် နှင်းကျတဲ့နေ့က အရမ်းအေးတယ်။" },
+    { hanzi: "小王：没关系，多穿点衣服。", pinyin: "Xiǎo Wáng: Méiguānxi, duō chuān diǎn yīfu.", meaning: "ကိစ္စမရှိဘူး၊ အဝတ်အစားများများဝတ်ပါ။" },
+    { hanzi: "小李：你说得对。", pinyin: "Xiǎo Lǐ: Nǐ shuō de duì.", meaning: "မင်းပြောတာမှန်တယ်။" },
+    { hanzi: "小王：明天我们可以一起玩雪。", pinyin: "Xiǎo Wáng: Míngtiān wǒmen kěyǐ yīqǐ wán xuě.", meaning: "မနက်ဖြန် ငါတို့ အတူ နှင်းကစားလို့ရတယ်။" },
+    { hanzi: "小李：太好了，我很期待。", pinyin: "Xiǎo Lǐ: Tài hǎo le, wǒ hěn qīdài.", meaning: "အရမ်းကောင်းတယ်၊ ငါ အရမ်းမျှော်လင့်တယ်။" },
+    { hanzi: "小王：那明天见！", pinyin: "Xiǎo Wáng: Nà míngtiān jiàn!", meaning: "ဒါဆို မနက်ဖြန်တွေ့မယ်။" }
+    ],
+    vocab: [
+    { hanzi: "天气 (tiānqì)", pinyin: "tiānqì", meaning: "ရာသီဥတု" },
+    { hanzi: "冷 (lěng)", pinyin: "lěng", meaning: "အေးသည်" },
+    { hanzi: "昨天 (zuótiān)", pinyin: "zuótiān", meaning: "မနေ့က" },
+    { hanzi: "会 (huì)", pinyin: "huì", meaning: "ဖြစ်မည်" },
+    { hanzi: "下雨 (xià yǔ)", pinyin: "xià yǔ", meaning: "မိုးရွာသည်" },
+    { hanzi: "天气预报 (tiānqì yùbào)", pinyin: "tiānqì yùbào", meaning: "မိုးလေဝသခန့်မှန်းချက်" },
+    { hanzi: "下雪 (xià xuě)", pinyin: "xià xuě", meaning: "နှင်းကျသည်" },
+    { hanzi: "雪 (xuě)", pinyin: "xuě", meaning: "နှင်း" },
+    { hanzi: "美 (měi)", pinyin: "měi", meaning: "လှသည်" },
+    { hanzi: "但是 (dànshì)", pinyin: "dànshì", meaning: "ဒါပေမယ့်" },
+    { hanzi: "穿 (chuān)", pinyin: "chuān", meaning: "ဝတ်သည်" },
+    { hanzi: "点 (diǎn)", pinyin: "diǎn", meaning: "နည်းနည်း" },
+    { hanzi: "衣服 (yīfu)", pinyin: "yīfu", meaning: "အဝတ်အစား" },
+    { hanzi: "玩雪 (wán xuě)", pinyin: "wán xuě", meaning: "နှင်းကစားသည်" },
+    { hanzi: "期待 (qīdài)", pinyin: "qīdài", meaning: "မျှော်လင့်သည်" },
+    { hanzi: "今天 (jīntiān)", pinyin: "jīntiān", meaning: "ဒီနေ့" },
+    { hanzi: "明天 (míngtiān)", pinyin: "míngtiān", meaning: "မနက်ဖြန်" },
+    { hanzi: "是啊 (shì a)", pinyin: "shì a", meaning: "ဟုတ်တယ်" },
+    { hanzi: "还不 (hái bù)", pinyin: "hái bù", meaning: "မသေး" },
+    { hanzi: "说 (shuō)", pinyin: "shuō", meaning: "ပြောသည်" },
+    { hanzi: "很好 (hěn hǎo)", pinyin: "hěn hǎo", meaning: "အရမ်းကောင်းသည်" },
+    { hanzi: "没关系 (méiguānxi)", pinyin: "méiguānxi", meaning: "ကိစ္စမရှိဘူး" },
+    { hanzi: "多 (duō)", pinyin: "duō", meaning: "များသည်" },
+    { hanzi: "对 (duì)", pinyin: "duì", meaning: "မှန်သည်" },
+    { hanzi: "一起 (yīqǐ)", pinyin: "yīqǐ", meaning: "အတူတူ" },
+    { hanzi: "可以 (kěyǐ)", pinyin: "kěyǐ", meaning: "ရသည်" },
+    { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+    { hanzi: "很冷 (hěn lěng)", pinyin: "hěn lěng", meaning: "အရမ်းအေးသည်" },
+    { hanzi: "下雪天 (xià xuě tiān)", pinyin: "xià xuě tiān", meaning: "နှင်းကျတဲ့နေ့" },
+    { hanzi: "期待 (qīdài)", pinyin: "qīdài", meaning: "မျှော်လင့်သည်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 会 + V (huì) · ဖြစ်မည်",
+    description: "'...ဖြစ်မည်' အနာဂတ်ကိုပြ",
+    examples: [
+    { hanzi: "明天会下雨吗？ (Míngtiān huì xià yǔ ma?)", pinyin: "Míngtiān huì xià yǔ ma?", meaning: "မနက်ဖြန် မိုးရွာမလား။" },
+    { hanzi: "明天会下雪。 (Míngtiān huì xià xuě.)", pinyin: "Míngtiān huì xià xuě.", meaning: "မနက်ဖြန် နှင်းကျမယ်။" },
+    { hanzi: "他会来吗？ (Tā huì lái ma?)", pinyin: "Tā huì lái ma?", meaning: "သူ လာမလား။" },
+    { hanzi: "我会等你。 (Wǒ huì děng nǐ.)", pinyin: "Wǒ huì děng nǐ.", meaning: "ငါ မင်းကိုစောင့်မယ်။" },
+    { hanzi: "她会唱歌。 (Tā huì chànggē.)", pinyin: "Tā huì chànggē.", meaning: "သူမ သီချင်းဆိုတတ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 说 + Clause (shuō) · ပြော",
+    description: "'...လို့ပြောသည်'",
+    examples: [
+    { hanzi: "天气预报说，明天会下雪。 (Tiānqì yùbào shuō, míngtiān huì xià xuě.)", pinyin: "Tiānqì yùbào shuō, míngtiān huì xià xuě.", meaning: "မိုးလေဝသခန့်မှန်းချက်က ပြောတယ်၊ မနက်ဖြန် နှင်းကျမယ်။" },
+    { hanzi: "老师说，明天考试。 (Lǎoshī shuō, míngtiān kǎoshì.)", pinyin: "Lǎoshī shuō, míngtiān kǎoshì.", meaning: "ဆရာက ပြောတယ်၊ မနက်ဖြန် စာမေးပွဲ။" },
+    { hanzi: "他说，他很忙。 (Tā shuō, tā hěn máng.)", pinyin: "Tā shuō, tā hěn máng.", meaning: "သူ ပြောတယ်၊ သူ အလုပ်များတယ်။" },
+    { hanzi: "她说，她喜欢音乐。 (Tā shuō, tā xǐhuān yīnyuè.)", pinyin: "Tā shuō, tā xǐhuān yīnyuè.", meaning: "သူမ ပြောတယ်၊ သူမ ဂီတကြိုက်တယ်။" },
+    { hanzi: "小王说，明天见。 (Xiǎo Wáng shuō, míngtiān jiàn.)", pinyin: "Xiǎo Wáng shuō, míngtiān jiàn.", meaning: "小王 ပြောတယ်၊ မနက်ဖြန်တွေ့မယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 喜欢 + N (xǐhuān) · ကြိုက်",
+    description: "'...ကြိုက်သည်'",
+    examples: [
+    { hanzi: "我喜欢雪。 (Wǒ xǐhuān xuě.)", pinyin: "Wǒ xǐhuān xuě.", meaning: "ငါ နှင်းကြိုက်တယ်။" },
+    { hanzi: "她喜欢冬天。 (Tā xǐhuān dōngtiān.)", pinyin: "Tā xǐhuān dōngtiān.", meaning: "သူမ ဆောင်းရာသီကြိုက်တယ်။" },
+    { hanzi: "我们喜欢夏天。 (Wǒmen xǐhuān xiàtiān.)", pinyin: "Wǒmen xǐhuān xiàtiān.", meaning: "ငါတို့ နွေရာသီကြိုက်တယ်။" },
+    { hanzi: "你喜欢什么季节？ (Nǐ xǐhuān shénme jìjié?)", pinyin: "Nǐ xǐhuān shénme jìjié?", meaning: "မင်း ဘာရာသီကြိုက်လဲ။" },
+    { hanzi: "他们都喜欢春天。 (Tāmen dōu xǐhuān chūntiān.)", pinyin: "Tāmen dōu xǐhuān chūntiān.", meaning: "သူတို့အားလုံး နွေဦးရာသီကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 也 + V (yě) · လည်း",
+    description: "'လည်း'",
+    examples: [
+    { hanzi: "我也喜欢雪。 (Wǒ yě xǐhuān xuě.)", pinyin: "Wǒ yě xǐhuān xuě.", meaning: "ငါလည်း နှင်းကြိုက်တယ်။" },
+    { hanzi: "她也喜欢冬天。 (Tā yě xǐhuān dōngtiān.)", pinyin: "Tā yě xǐhuān dōngtiān.", meaning: "သူမလည်း ဆောင်းရာသီကြိုက်တယ်။" },
+    { hanzi: "我们也很冷。 (Wǒmen yě hěn lěng.)", pinyin: "Wǒmen yě hěn lěng.", meaning: "ငါတို့လည်း အေးတယ်။" },
+    { hanzi: "他也在北京。 (Tā yě zài Běijīng.)", pinyin: "Tā yě zài Běijīng.", meaning: "သူလည်း ဘေဂျင်းမှာပါ။" },
+    { hanzi: "我也想去玩雪。 (Wǒ yě xiǎng qù wán xuě.)", pinyin: "Wǒ yě xiǎng qù wán xuě.", meaning: "ငါလည်း နှင်းကစားသွားချင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "多 + V + 点 + N (duō ... diǎn) · နည်းနည်းပို",
+    description: "'နည်းနည်းပို...'",
+    examples: [
+    { hanzi: "多穿点衣服。 (Duō chuān diǎn yīfu.)", pinyin: "Duō chuān diǎn yīfu.", meaning: "အဝတ်အစား နည်းနည်းပိုဝတ်ပါ။" },
+    { hanzi: "多吃点饭。 (Duō chī diǎn fàn.)", pinyin: "Duō chī diǎn fàn.", meaning: "ထမင်း နည်းနည်းပိုစားပါ။" },
+    { hanzi: "多喝点水。 (Duō hē diǎn shuǐ.)", pinyin: "Duō hē diǎn shuǐ.", meaning: "ရေ နည်းနည်းပိုသောက်ပါ။" },
+    { hanzi: "多看点书。 (Duō kàn diǎn shū.)", pinyin: "Duō kàn diǎn shū.", meaning: "စာ နည်းနည်းပိုဖတ်ပါ။" },
+    { hanzi: "多睡点觉。 (Duō shuì diǎn jiào.)", pinyin: "Duō shuì diǎn jiào.", meaning: "အိပ်ချိန် နည်းနည်းပိုအိပ်ပါ။" }
+    ]
+    },
+    {
+    pattern: "S + 很 + Adj (hěn) · အရမ်း",
+    description: "'အရမ်း...'",
+    examples: [
+    { hanzi: "今天很冷。 (Jīntiān hěn lěng.)", pinyin: "Jīntiān hěn lěng.", meaning: "ဒီနေ့ အရမ်းအေးတယ်။" },
+    { hanzi: "雪很美。 (Xuě hěn měi.)", pinyin: "Xuě hěn měi.", meaning: "နှင်းက အရမ်းလှတယ်။" },
+    { hanzi: "他很好。 (Tā hěn hǎo.)", pinyin: "Tā hěn hǎo.", meaning: "သူ အရမ်းကောင်းတယ်။" },
+    { hanzi: "她很忙。 (Tā hěn máng.)", pinyin: "Tā hěn máng.", meaning: "သူမ အရမ်းအလုပ်များတယ်။" },
+    { hanzi: "这个很贵。 (Zhège hěn guì.)", pinyin: "Zhège hěn guì.", meaning: "ဒါက အရမ်းဈေးကြီးတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 还 + 不 + Adj (hái bù) · မသေး",
+    description: "'မသေး'",
+    examples: [
+    { hanzi: "昨天还不冷。 (Zuótiān hái bù lěng.)", pinyin: "Zuótiān hái bù lěng.", meaning: "မနေ့က မအေးသေးဘူး။" },
+    { hanzi: "他还没来。 (Tā hái méi lái.)", pinyin: "Tā hái méi lái.", meaning: "သူ မလာသေးဘူး။" },
+    { hanzi: "我还没吃饭。 (Wǒ hái méi chīfàn.)", pinyin: "Wǒ hái méi chīfàn.", meaning: "ငါ ထမင်းမစားသေးဘူး။" },
+    { hanzi: "她还没到。 (Tā hái méi dào.)", pinyin: "Tā hái méi dào.", meaning: "သူမ မရောက်သေးဘူး။" },
+    { hanzi: "我们还没开始。 (Wǒmen hái méi kāishǐ.)", pinyin: "Wǒmen hái méi kāishǐ.", meaning: "ငါတို့ မစသေးဘူး။" }
+    ]
+    },
+    {
+    pattern: "那 + S + V (nà) · ဒါဆို",
+    description: "'ဒါဆိုလျှင်'",
+    examples: [
+    { hanzi: "那明天见。 (Nà míngtiān jiàn.)", pinyin: "Nà míngtiān jiàn.", meaning: "ဒါဆို မနက်ဖြန်တွေ့မယ်။" },
+    { hanzi: "那我也去。 (Nà wǒ yě qù.)", pinyin: "Nà wǒ yě qù.", meaning: "ဒါဆို ငါလည်းသွားမယ်။" },
+    { hanzi: "那我们走吧。 (Nà wǒmen zǒu ba.)", pinyin: "Nà wǒmen zǒu ba.", meaning: "ဒါဆို ငါတို့သွားကြစို့။" },
+    { hanzi: "那好吧。 (Nà hǎo ba.)", pinyin: "Nà hǎo ba.", meaning: "ဒါဆို ကောင်းပြီ။" },
+    { hanzi: "那是什么？ (Nà shì shénme?)", pinyin: "Nà shì shénme?", meaning: "ဒါက ဘာလဲ။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "今天天气怎么样？", answer: "很冷" },
+    { question: "昨天冷吗？", answer: "不冷" },
+    { question: "明天会下雨吗？", answer: "不会" },
+    { question: "明天会下什么？", answer: "雪" },
+    { question: "小王喜欢雪吗？", answer: "很喜欢" },
+    { question: "小李也喜欢雪吗？", answer: "是" },
+    { question: "下雪天怎么样？", answer: "很冷" },
+    { question: "小王建议小李做什么？", answer: "多穿点衣服" }
+    ]
+    };
+    const lesson9 = {
+    lessonNumber: 9,
+    title: "交通 · Jiāotōng · သယ်ယူပို့ဆောင်ရေး",
+    dialog: [
+    { hanzi: "小张：你怎么去学校？", pinyin: "Xiǎo Zhāng: Nǐ zěnme qù xuéxiào?", meaning: "မင်း ဘယ်လိုကျောင်းသွားလဲ။" },
+    { hanzi: "小李：我坐地铁去。", pinyin: "Xiǎo Lǐ: Wǒ zuò dìtiě qù.", meaning: "ငါ မြေအောက်ရထားစီးသွားတယ်။" },
+    { hanzi: "小张：地铁方便吗？", pinyin: "Xiǎo Zhāng: Dìtiě fāngbiàn ma?", meaning: "မြေအောက်ရထားက အဆင်ပြေလား။" },
+    { hanzi: "小李：很方便，而且很快。", pinyin: "Xiǎo Lǐ: Hěn fāngbiàn, érqiě hěn kuài.", meaning: "အရမ်းအဆင်ပြေတယ်၊ ပြီးတော့ အရမ်းမြန်တယ်။" },
+    { hanzi: "小张：坐地铁要多久？", pinyin: "Xiǎo Zhāng: Zuò dìtiě yào duō jiǔ?", meaning: "မြေအောက်ရထားစီးရင် ဘယ်လောက်ကြာလဲ။" },
+    { hanzi: "小李：二十分钟左右。", pinyin: "Xiǎo Lǐ: Èrshí fēnzhōng zuǒyòu.", meaning: "နှစ်ဆယ်မိနစ်လောက်။" },
+    { hanzi: "小张：那很快。", pinyin: "Xiǎo Zhāng: Nà hěn kuài.", meaning: "ဒါဆို မြန်တယ်။" },
+    { hanzi: "小李：是啊，比公交车快。", pinyin: "Xiǎo Lǐ: Shì a, bǐ gōngjiāo chē kuài.", meaning: "ဟုတ်တယ်၊ ဘတ်စ်ကားထက် မြန်တယ်။" },
+    { hanzi: "小张：你每天都坐地铁吗？", pinyin: "Xiǎo Zhāng: Nǐ měitiān dōu zuò dìtiě ma?", meaning: "မင်း နေ့တိုင်း မြေအောက်ရထားစီးလား။" },
+    { hanzi: "小李：是的，每天坐地铁上下班。", pinyin: "Xiǎo Lǐ: Shì de, měitiān zuò dìtiě shàngxiàbān.", meaning: "ဟုတ်တယ်၊ နေ့တိုင်း မြေအောက်ရထားစီးပြီး အလုပ်သွားလုပ်တယ်။" },
+    { hanzi: "小张：地铁票贵吗？", pinyin: "Xiǎo Zhāng: Dìtiě piào guì ma?", meaning: "မြေအောက်ရထားလက်မှတ် ဈေးကြီးလား။" },
+    { hanzi: "小李：不贵，很便宜。", pinyin: "Xiǎo Lǐ: Bù guì, hěn piányi.", meaning: "မကြီးဘူး၊ အရမ်းပေါတယ်။" },
+    { hanzi: "小张：那很好，我也试试。", pinyin: "Xiǎo Zhāng: Nà hěn hǎo, wǒ yě shìshi.", meaning: "ဒါဆို ကောင်းတယ်၊ ငါလည်းစမ်းကြည့်မယ်။" },
+    { hanzi: "小李：好啊，很方便的。", pinyin: "Xiǎo Lǐ: Hǎo a, hěn fāngbiàn de.", meaning: "ကောင်းပြီ၊ အရမ်းအဆင်ပြေတယ်။" }
+    ],
+    vocab: [
+    { hanzi: "怎么 (zěnme)", pinyin: "zěnme", meaning: "ဘယ်လို" },
+    { hanzi: "地铁 (dìtiě)", pinyin: "dìtiě", meaning: "မြေအောက်ရထား" },
+    { hanzi: "坐 (zuò)", pinyin: "zuò", meaning: "စီးသည်" },
+    { hanzi: "方便 (fāngbiàn)", pinyin: "fāngbiàn", meaning: "အဆင်ပြေသည်" },
+    { hanzi: "快 (kuài)", pinyin: "kuài", meaning: "မြန်သည်" },
+    { hanzi: "要多久 (yào duō jiǔ)", pinyin: "yào duō jiǔ", meaning: "ဘယ်လောက်ကြာမလဲ" },
+    { hanzi: "分钟 (fēnzhōng)", pinyin: "fēnzhōng", meaning: "မိနစ်" },
+    { hanzi: "左右 (zuǒyòu)", pinyin: "zuǒyòu", meaning: "ခန့်" },
+    { hanzi: "比 (bǐ)", pinyin: "bǐ", meaning: "ထက်" },
+    { hanzi: "公交车 (gōngjiāo chē)", pinyin: "gōngjiāo chē", meaning: "ဘတ်စ်ကား" },
+    { hanzi: "每天 (měitiān)", pinyin: "měitiān", meaning: "နေ့တိုင်း" },
+    { hanzi: "上下班 (shàngxiàbān)", pinyin: "shàngxiàbān", meaning: "အလုပ်သွား/ပြန်" },
+    { hanzi: "票 (piào)", pinyin: "piào", meaning: "လက်မှတ်" },
+    { hanzi: "便宜 (piányi)", pinyin: "piányi", meaning: "ပေါသည်" },
+    { hanzi: "试试 (shìshi)", pinyin: "shìshi", meaning: "စမ်းကြည့်သည်" },
+    { hanzi: "学校 (xuéxiào)", pinyin: "xuéxiào", meaning: "ကျောင်း" },
+    { hanzi: "去 (qù)", pinyin: "qù", meaning: "သွားသည်" },
+    { hanzi: "而且 (érqiě)", pinyin: "érqiě", meaning: "ပြီးတော့" },
+    { hanzi: "很 (hěn)", pinyin: "hěn", meaning: "အရမ်း" },
+    { hanzi: "是啊 (shì a)", pinyin: "shì a", meaning: "ဟုတ်တယ်" },
+    { hanzi: "都 (dōu)", pinyin: "dōu", meaning: "အားလုံး" },
+    { hanzi: "不 (bù)", pinyin: "bù", meaning: "မ" },
+    { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+    { hanzi: "好 (hǎo)", pinyin: "hǎo", meaning: "ကောင်းသည်" },
+    { hanzi: "方便 (fāngbiàn)", pinyin: "fāngbiàn", meaning: "အဆင်ပြေသည်" },
+    { hanzi: "便宜 (piányi)", pinyin: "piányi", meaning: "ပေါသည်" },
+    { hanzi: "快 (kuài)", pinyin: "kuài", meaning: "မြန်သည်" },
+    { hanzi: "二十分钟 (èrshí fēnzhōng)", pinyin: "èrshí fēnzhōng", meaning: "နှစ်ဆယ်မိနစ်" },
+    { hanzi: "每天 (měitiān)", pinyin: "měitiān", meaning: "နေ့တိုင်း" },
+    { hanzi: "试试 (shìshi)", pinyin: "shìshi", meaning: "စမ်းကြည့်သည်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 怎么 + V (zěnme) · ဘယ်လို",
+    description: "'ဘယ်လို...'",
+    examples: [
+    { hanzi: "你怎么去学校？ (Nǐ zěnme qù xuéxiào?)", pinyin: "Nǐ zěnme qù xuéxiào?", meaning: "မင်း ဘယ်လိုကျောင်းသွားလဲ။" },
+    { hanzi: "他怎么来？ (Tā zěnme lái?)", pinyin: "Tā zěnme lái?", meaning: "သူ ဘယ်လိုလာမလဲ။" },
+    { hanzi: "你怎么做？ (Nǐ zěnme zuò?)", pinyin: "Nǐ zěnme zuò?", meaning: "မင်း ဘယ်လိုလုပ်မလဲ။" },
+    { hanzi: "她怎么学汉语？ (Tā zěnme xué Hànyǔ?)", pinyin: "Tā zěnme xué Hànyǔ?", meaning: "သူမ တရုတ်စာ ဘယ်လိုသင်လဲ။" },
+    { hanzi: "你们怎么去？ (Nǐmen zěnme qù?)", pinyin: "Nǐmen zěnme qù?", meaning: "မင်းတို့ ဘယ်လိုသွားမလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 坐 + 交通工具 + 去 (zuò ... qù) · စီးသွား",
+    description: "'...စီးသွားသည်'",
+    examples: [
+    { hanzi: "我坐地铁去。 (Wǒ zuò dìtiě qù.)", pinyin: "Wǒ zuò dìtiě qù.", meaning: "ငါ မြေအောက်ရထားစီးသွားတယ်။" },
+    { hanzi: "他坐公交车去。 (Tā zuò gōngjiāo chē qù.)", pinyin: "Tā zuò gōngjiāo chē qù.", meaning: "သူ ဘတ်စ်ကားစီးသွားတယ်။" },
+    { hanzi: "她坐出租车去。 (Tā zuò chūzū chē qù.)", pinyin: "Tā zuò chūzū chē qù.", meaning: "သူမ တက္ကစီစီးသွားတယ်။" },
+    { hanzi: "我们坐火车去。 (Wǒmen zuò huǒchē qù.)", pinyin: "Wǒmen zuò huǒchē qù.", meaning: "ငါတို့ ရထားစီးသွားတယ်။" },
+    { hanzi: "你们坐什么去？ (Nǐmen zuò shénme qù?)", pinyin: "Nǐmen zuò shénme qù?", meaning: "မင်းတို့ ဘာစီးသွားမလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 比 + O + Adj (bǐ) · ထက်ပို",
+    description: "'...ထက်...ပိုသည်'",
+    examples: [
+    { hanzi: "地铁比公交车快。 (Dìtiě bǐ gōngjiāo chē kuài.)", pinyin: "Dìtiě bǐ gōngjiāo chē kuài.", meaning: "မြေအောက်ရထားက ဘတ်စ်ကားထက် မြန်တယ်။" },
+    { hanzi: "他比我高。 (Tā bǐ wǒ gāo.)", pinyin: "Tā bǐ wǒ gāo.", meaning: "သူ ငါ့ထက် မြင့်တယ်။" },
+    { hanzi: "她比我好看。 (Tā bǐ wǒ hǎokàn.)", pinyin: "Tā bǐ wǒ hǎokàn.", meaning: "သူမ ငါ့ထက် လှတယ်။" },
+    { hanzi: "这个比那个贵。 (Zhège bǐ nàge guì.)", pinyin: "Zhège bǐ nàge guì.", meaning: "ဒါက အဲဒါထက် ဈေးကြီးတယ်။" },
+    { hanzi: "今天比昨天冷。 (Jīntiān bǐ zuótiān lěng.)", pinyin: "Jīntiān bǐ zuótiān lěng.", meaning: "ဒီနေ့ မနေ့ကထက် အေးတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 要 + 多长时间 (yào duō cháng shíjiān) · ဘယ်လောက်ကြာ",
+    description: "'ဘယ်လောက်ကြာမလဲ'",
+    examples: [
+    { hanzi: "坐地铁要多久？ (Zuò dìtiě yào duō jiǔ?)", pinyin: "Zuò dìtiě yào duō jiǔ?", meaning: "မြေအောက်ရထားစီးရင် ဘယ်လောက်ကြာလဲ။" },
+    { hanzi: "去学校要多久？ (Qù xuéxiào yào duō jiǔ?)", pinyin: "Qù xuéxiào yào duō jiǔ?", meaning: "ကျောင်းသွားရင် ဘယ်လောက်ကြာလဲ။" },
+    { hanzi: "到北京要多长时间？ (Dào Běijīng yào duō cháng shíjiān?)", pinyin: "Dào Běijīng yào duō cháng shíjiān?", meaning: "ဘေဂျင်းရောက်ဖို့ ဘယ်လောက်ကြာမလဲ။" },
+    { hanzi: "吃饭要多久？ (Chīfàn yào duō jiǔ?)", pinyin: "Chīfàn yào duō jiǔ?", meaning: "ထမင်းစားဖို့ ဘယ်လောက်ကြာမလဲ။" },
+    { hanzi: "你要多长时间？ (Nǐ yào duō cháng shíjiān?)", pinyin: "Nǐ yào duō cháng shíjiān?", meaning: "မင်း ဘယ်လောက်ကြာမလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 都 + V (dōu) · အားလုံး",
+    description: "'အားလုံး'",
+    examples: [
+    { hanzi: "我每天都坐地铁。 (Wǒ měitiān dōu zuò dìtiě.)", pinyin: "Wǒ měitiān dōu zuò dìtiě.", meaning: "ငါ နေ့တိုင်း မြေအောက်ရထားစီးတယ်။" },
+    { hanzi: "我们都喜欢运动。 (Wǒmen dōu xǐhuān yùndòng.)", pinyin: "Wǒmen dōu xǐhuān yùndòng.", meaning: "ငါတို့အားလုံး အားကစားကြိုက်တယ်။" },
+    { hanzi: "她们都是学生。 (Tāmen dōu shì xuéshēng.)", pinyin: "Tāmen dōu shì xuéshēng.", meaning: "သူတို့အားလုံး ကျောင်းသားတွေပါ။" },
+    { hanzi: "我们都很忙。 (Wǒmen dōu hěn máng.)", pinyin: "Wǒmen dōu hěn máng.", meaning: "ငါတို့အားလုံး အလုပ်များတယ်။" },
+    { hanzi: "他们都喜欢旅行。 (Tāmen dōu xǐhuān lǚxíng.)", pinyin: "Tāmen dōu xǐhuān lǚxíng.", meaning: "သူတို့အားလုံး ခရီးသွားကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 可以 + V (kěyǐ) · ရသည်",
+    description: "'လုပ်လို့ရသည်'",
+    examples: [
+    { hanzi: "我们可以一起坐地铁。 (Wǒmen kěyǐ yīqǐ zuò dìtiě.)", pinyin: "Wǒmen kěyǐ yīqǐ zuò dìtiě.", meaning: "ငါတို့ အတူ မြေအောက်ရထားစီးလို့ရတယ်။" },
+    { hanzi: "你可以试试。 (Nǐ kěyǐ shìshi.)", pinyin: "Nǐ kěyǐ shìshi.", meaning: "မင်း စမ်းကြည့်လို့ရတယ်။" },
+    { hanzi: "我可以进来吗？ (Wǒ kěyǐ jìnlái ma?)", pinyin: "Wǒ kěyǐ jìnlái ma?", meaning: "ငါ ဝင်လို့ရမလား။" },
+    { hanzi: "我们可以周末见面。 (Wǒmen kěyǐ zhōumò jiànmiàn.)", pinyin: "Wǒmen kěyǐ zhōumò jiànmiàn.", meaning: "ငါတို့ စနေတနင်္ဂနွေ တွေ့လို့ရတယ်။" },
+    { hanzi: "你可以帮我吗？ (Nǐ kěyǐ bāng wǒ ma?)", pinyin: "Nǐ kěyǐ bāng wǒ ma?", meaning: "မင်း ငါ့ကိုကူညီလို့ရမလား။" }
+    ]
+    },
+    {
+    pattern: "S + 很 + Adj (hěn) · အရမ်း",
+    description: "'အရမ်း...'",
+    examples: [
+    { hanzi: "地铁很方便。 (Dìtiě hěn fāngbiàn.)", pinyin: "Dìtiě hěn fāngbiàn.", meaning: "မြေအောက်ရထားက အရမ်းအဆင်ပြေတယ်။" },
+    { hanzi: "地铁很快。 (Dìtiě hěn kuài.)", pinyin: "Dìtiě hěn kuài.", meaning: "မြေအောက်ရထားက အရမ်းမြန်တယ်။" },
+    { hanzi: "票很便宜。 (Piào hěn piányi.)", pinyin: "Piào hěn piányi.", meaning: "လက်မှတ်က အရမ်းပေါတယ်။" },
+    { hanzi: "他很忙。 (Tā hěn máng.)", pinyin: "Tā hěn máng.", meaning: "သူ အရမ်းအလုပ်များတယ်။" },
+    { hanzi: "她很高。 (Tā hěn gāo.)", pinyin: "Tā hěn gāo.", meaning: "သူမ အရမ်းမြင့်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 也 + V (yě) · လည်း",
+    description: "'လည်း'",
+    examples: [
+    { hanzi: "我也试试。 (Wǒ yě shìshi.)", pinyin: "Wǒ yě shìshi.", meaning: "ငါလည်း စမ်းကြည့်မယ်။" },
+    { hanzi: "她也喜欢地铁。 (Tā yě xǐhuān dìtiě.)", pinyin: "Tā yě xǐhuān dìtiě.", meaning: "သူမလည်း မြေအောက်ရထားကြိုက်တယ်။" },
+    { hanzi: "我们也很忙。 (Wǒmen yě hěn máng.)", pinyin: "Wǒmen yě hěn máng.", meaning: "ငါတို့လည်း အလုပ်များတယ်။" },
+    { hanzi: "他也在北京。 (Tā yě zài Běijīng.)", pinyin: "Tā yě zài Běijīng.", meaning: "သူလည်း ဘေဂျင်းမှာပါ။" },
+    { hanzi: "我也喜欢旅行。 (Wǒ yě xǐhuān lǚxíng.)", pinyin: "Wǒ yě xǐhuān lǚxíng.", meaning: "ငါလည်း ခရီးသွားကြိုက်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李怎么去学校？", answer: "坐地铁" },
+    { question: "地铁方便吗？", answer: "很方便" },
+    { question: "坐地铁要多久？", answer: "二十分钟左右" },
+    { question: "地铁比什么快？", answer: "公交车" },
+    { question: "小李每天都坐地铁吗？", answer: "是" },
+    { question: "地铁票贵吗？", answer: "不贵" },
+    { question: "小张想试试什么？", answer: "坐地铁" },
+    { question: "小李觉得地铁怎么样？", answer: "很方便" }
+    ]
+    };
+    
+    const lesson10 = {
+    lessonNumber: 10,
+    title: "购物 · Gòuwù · ဈေးဝယ်ခြင်း",
+    dialog: [
+    { hanzi: "妈妈：我们去超市吧。", pinyin: "Māma: Wǒmen qù chāoshì ba.", meaning: "အမေ- ငါတို့ စူပါမားကတ်သွားကြမယ်။" },
+    { hanzi: "女儿：好，我要买一些水果。", pinyin: "Nǚ'ér: Hǎo, wǒ yào mǎi yīxiē shuǐguǒ.", meaning: "သမီး- ကောင်းပြီ၊ သစ်သီးတွေဝယ်ချင်တယ်။" },
+    { hanzi: "妈妈：你想吃什么水果？", pinyin: "Māma: Nǐ xiǎng chī shénme shuǐguǒ?", meaning: "အမေ- မင်း ဘာသစ်သီးစားချင်လဲ။" },
+    { hanzi: "女儿：我想吃苹果和香蕉。", pinyin: "Nǚ'ér: Wǒ xiǎng chī píngguǒ hé xiāngjiāo.", meaning: "သမီး- ပန်းသီးနဲ့ ငှက်ပျောသီးစားချင်တယ်။" },
+    { hanzi: "妈妈：好的，我们再买一些蔬菜。", pinyin: "Māma: Hǎo de, wǒmen zài mǎi yīxiē shūcài.", meaning: "အမေ- ကောင်းပြီ၊ ငါတို့ ဟင်းသီးဟင်းရွက်တွေလည်းဝယ်မယ်။" },
+    { hanzi: "女儿：妈妈，这个苹果多少钱一斤？", pinyin: "Nǚ'ér: Māma, zhège píngguǒ duōshao qián yī jīn?", meaning: "သမီး- အမေ၊ ဒီပန်းသီး တစ်ကီလိုဘယ်လောက်လဲ။" },
+    { hanzi: "妈妈：五块一斤。", pinyin: "Māma: Wǔ kuài yī jīn.", meaning: "အမေ- ငါးယွမ် တစ်ကီလို။" },
+    { hanzi: "女儿：那买两斤吧。", pinyin: "Nǚ'ér: Nà mǎi liǎng jīn ba.", meaning: "သမီး- ဒါဆို နှစ်ကီလိုဝယ်မယ်။" },
+    { hanzi: "妈妈：香蕉呢？多少钱？", pinyin: "Māma: Xiāngjiāo ne? Duōshao qián?", meaning: "အမေ- ငှက်ပျောသီးရော။ ဘယ်လောက်လဲ။" },
+    { hanzi: "女儿：三块一斤，很便宜。", pinyin: "Nǚ'ér: Sān kuài yī jīn, hěn piányi.", meaning: "သမီး- သုံးယွမ် တစ်ကီလို၊ အရမ်းပေါတယ်။" },
+    { hanzi: "妈妈：好的，那买一些香蕉吧。", pinyin: "Māma: Hǎo de, nà mǎi yīxiē xiāngjiāo ba.", meaning: "အမေ- ကောင်းပြီ၊ ဒါဆို ငှက်ပျောသီးတွေဝယ်မယ်။" },
+    { hanzi: "女儿：妈妈，我们还要买什么？", pinyin: "Nǚ'ér: Māma, wǒmen hái yào mǎi shénme?", meaning: "သမီး- အမေ၊ ငါတို့ နောက်ထပ် ဘာဝယ်ရမလဲ။" },
+    { hanzi: "妈妈：买一些牛奶和面包。", pinyin: "Māma: Mǎi yīxiē niúnǎi hé miànbāo.", meaning: "အမေ- နွားနို့နဲ့ ပေါင်မုန့်တွေဝယ်မယ်။" },
+    { hanzi: "女儿：好的，我们去吧。", pinyin: "Nǚ'ér: Hǎo de, wǒmen qù ba.", meaning: "သမီး- ကောင်းပြီ၊ သွားကြစို့။" }
+    ],
+    vocab: [
+    { hanzi: "购物 (gòuwù)", pinyin: "gòuwù", meaning: "ဈေးဝယ်သည်" },
+    { hanzi: "超市 (chāoshì)", pinyin: "chāoshì", meaning: "စူပါမားကတ်" },
+    { hanzi: "水果 (shuǐguǒ)", pinyin: "shuǐguǒ", meaning: "သစ်သီး" },
+    { hanzi: "苹果 (píngguǒ)", pinyin: "píngguǒ", meaning: "ပန်းသီး" },
+    { hanzi: "香蕉 (xiāngjiāo)", pinyin: "xiāngjiāo", meaning: "ငှက်ပျောသီး" },
+    { hanzi: "蔬菜 (shūcài)", pinyin: "shūcài", meaning: "ဟင်းသီးဟင်းရွက်" },
+    { hanzi: "多少钱 (duōshao qián)", pinyin: "duōshao qián", meaning: "ဘယ်လောက်လဲ" },
+    { hanzi: "一斤 (yī jīn)", pinyin: "yī jīn", meaning: "တစ်ကီလို" },
+    { hanzi: "块 (kuài)", pinyin: "kuài", meaning: "ယွမ်" },
+    { hanzi: "便宜 (piányi)", pinyin: "piányi", meaning: "ပေါသည်" },
+    { hanzi: "牛奶 (niúnǎi)", pinyin: "niúnǎi", meaning: "နွားနို့" },
+    { hanzi: "面包 (miànbāo)", pinyin: "miànbāo", meaning: "ပေါင်မုန့်" },
+    { hanzi: "一些 (yīxiē)", pinyin: "yīxiē", meaning: "တချို့" },
+    { hanzi: "要 (yào)", pinyin: "yào", meaning: "ချင်သည်/လိုသည်" },
+    { hanzi: "买 (mǎi)", pinyin: "mǎi", meaning: "ဝယ်သည်" },
+    { hanzi: "想 (xiǎng)", pinyin: "xiǎng", meaning: "ချင်သည်" },
+    { hanzi: "吃 (chī)", pinyin: "chī", meaning: "စားသည်" },
+    { hanzi: "还 (hái)", pinyin: "hái", meaning: "နောက်ထပ်" },
+    { hanzi: "好的 (hǎo de)", pinyin: "hǎo de", meaning: "ကောင်းပါတယ်" },
+    { hanzi: "去 (qù)", pinyin: "qù", meaning: "သွားသည်" },
+    { hanzi: "吧 (ba)", pinyin: "ba", meaning: "ပါ" },
+    { hanzi: "呢 (ne)", pinyin: "ne", meaning: "ရော" },
+    { hanzi: "三 (sān)", pinyin: "sān", meaning: "သုံး" },
+    { hanzi: "五 (wǔ)", pinyin: "wǔ", meaning: "ငါး" },
+    { hanzi: "两 (liǎng)", pinyin: "liǎng", meaning: "နှစ်" },
+    { hanzi: "斤 (jīn)", pinyin: "jīn", meaning: "ကီလို" },
+    { hanzi: "牛奶 (niúnǎi)", pinyin: "niúnǎi", meaning: "နွားနို့" },
+    { hanzi: "面包 (miànbāo)", pinyin: "miànbāo", meaning: "ပေါင်မုန့်" },
+    { hanzi: "我们 (wǒmen)", pinyin: "wǒmen", meaning: "ငါတို့" },
+    { hanzi: "好的 (hǎo de)", pinyin: "hǎo de", meaning: "ကောင်းပါတယ်" },
+    { hanzi: "去 (qù)", pinyin: "qù", meaning: "သွားသည်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 要 + V (yào) · ချင်/လို",
+    description: "'...ချင်သည်/လိုသည်'",
+    examples: [
+    { hanzi: "我要买一些水果。 (Wǒ yào mǎi yīxiē shuǐguǒ.)", pinyin: "Wǒ yào mǎi yīxiē shuǐguǒ.", meaning: "ငါ သစ်သီးတွေဝယ်ချင်တယ်။" },
+    { hanzi: "他要喝水。 (Tā yào hē shuǐ.)", pinyin: "Tā yào hē shuǐ.", meaning: "သူ ရေသောက်ချင်တယ်။" },
+    { hanzi: "她要去学校。 (Tā yào qù xuéxiào.)", pinyin: "Tā yào qù xuéxiào.", meaning: "သူမ ကျောင်းသွားချင်တယ်။" },
+    { hanzi: "你要什么？ (Nǐ yào shénme?)", pinyin: "Nǐ yào shénme?", meaning: "မင်း ဘာလိုချင်လဲ။" },
+    { hanzi: "我们要吃饭。 (Wǒmen yào chīfàn.)", pinyin: "Wǒmen yào chīfàn.", meaning: "ငါတို့ ထမင်းစားချင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 想 + V (xiǎng) · ချင်",
+    description: "'...ချင်သည်'",
+    examples: [
+    { hanzi: "我想吃苹果。 (Wǒ xiǎng chī píngguǒ.)", pinyin: "Wǒ xiǎng chī píngguǒ.", meaning: "ငါ ပန်းသီးစားချင်တယ်။" },
+    { hanzi: "她想买衣服。 (Tā xiǎng mǎi yīfu.)", pinyin: "Tā xiǎng mǎi yīfu.", meaning: "သူမ အဝတ်ဝယ်ချင်တယ်။" },
+    { hanzi: "你想吃什么？ (Nǐ xiǎng chī shénme?)", pinyin: "Nǐ xiǎng chī shénme?", meaning: "မင်း ဘာစားချင်လဲ။" },
+    { hanzi: "我想去上海。 (Wǒ xiǎng qù Shànghǎi.)", pinyin: "Wǒ xiǎng qù Shànghǎi.", meaning: "ငါ ရှန်ဟိုင်းသွားချင်တယ်။" },
+    { hanzi: "我们都想旅行。 (Wǒmen dōu xiǎng lǚxíng.)", pinyin: "Wǒmen dōu xiǎng lǚxíng.", meaning: "ငါတို့အားလုံး ခရီးသွားချင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + 多少钱 (duōshao qián) · ဘယ်လောက်",
+    description: "'ဘယ်လောက်လဲ'",
+    examples: [
+    { hanzi: "这个苹果多少钱？ (Zhège píngguǒ duōshao qián?)", pinyin: "Zhège píngguǒ duōshao qián?", meaning: "ဒီပန်းသီး ဘယ်လောက်လဲ။" },
+    { hanzi: "这本书多少钱？ (Zhè běn shū duōshao qián?)", pinyin: "Zhè běn shū duōshao qián?", meaning: "ဒီစာအုပ် ဘယ်လောက်လဲ။" },
+    { hanzi: "这个包多少钱？ (Zhège bāo duōshao qián?)", pinyin: "Zhège bāo duōshao qián?", meaning: "ဒီအိတ် ဘယ်လောက်လဲ။" },
+    { hanzi: "车票多少钱？ (Chēpiào duōshao qián?)", pinyin: "Chēpiào duōshao qián?", meaning: "ယာဉ်လက်မှတ် ဘယ်လောက်လဲ။" },
+    { hanzi: "香蕉多少钱一斤？ (Xiāngjiāo duōshao qián yī jīn?)", pinyin: "Xiāngjiāo duōshao qián yī jīn?", meaning: "ငှက်ပျောသီး တစ်ကီလိုဘယ်လောက်လဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 还 + 要 + V (hái yào) · နောက်ထပ်လို",
+    description: "'နောက်ထပ်...လိုသည်/ချင်သည်'",
+    examples: [
+    { hanzi: "我们还要买什么？ (Wǒmen hái yào mǎi shénme?)", pinyin: "Wǒmen hái yào mǎi shénme?", meaning: "ငါတို့ နောက်ထပ် ဘာဝယ်ရမလဲ။" },
+    { hanzi: "我还要喝水。 (Wǒ hái yào hē shuǐ.)", pinyin: "Wǒ hái yào hē shuǐ.", meaning: "ငါ နောက်ထပ် ရေသောက်ချင်တယ်။" },
+    { hanzi: "他还要工作。 (Tā hái yào gōngzuò.)", pinyin: "Tā hái yào gōngzuò.", meaning: "သူ နောက်ထပ် အလုပ်လုပ်ရသေးတယ်။" },
+    { hanzi: "你还要什么？ (Nǐ hái yào shénme?)", pinyin: "Nǐ hái yào shénme?", meaning: "မင်း နောက်ထပ် ဘာလိုချင်လဲ။" },
+    { hanzi: "我们还要等多久？ (Wǒmen hái yào děng duō jiǔ?)", pinyin: "Wǒmen hái yào děng duō jiǔ?", meaning: "ငါတို့ နောက်ထပ် ဘယ်လောက်ကြာကြာ စောင့်ရမလဲ။" }
+    ]
+    },
+    {
+    pattern: "数量 + 斤 (jīn) · ကီလို",
+    description: "'ကီလို' အတိုင်းအတာ",
+    examples: [
+    { hanzi: "两斤苹果。 (Liǎng jīn píngguǒ.)", pinyin: "Liǎng jīn píngguǒ.", meaning: "ပန်းသီး နှစ်ကီလို။" },
+    { hanzi: "三斤香蕉。 (Sān jīn xiāngjiāo.)", pinyin: "Sān jīn xiāngjiāo.", meaning: "ငှက်ပျောသီး သုံးကီလို။" },
+    { hanzi: "一斤蔬菜。 (Yī jīn shūcài.)", pinyin: "Yī jīn shūcài.", meaning: "ဟင်းသီးဟင်းရွက် တစ်ကီလို။" },
+    { hanzi: "五斤苹果。 (Wǔ jīn píngguǒ.)", pinyin: "Wǔ jīn píngguǒ.", meaning: "ပန်းသီး ငါးကီလို။" },
+    { hanzi: "多少钱一斤？ (Duōshao qián yī jīn?)", pinyin: "Duōshao qián yī jīn?", meaning: "တစ်ကီလို ဘယ်လောက်လဲ။" }
+    ]
+    },
+    {
+    pattern: "S + V + 吧 (ba) · ကြစို့",
+    description: "'...ကြစို့' အကြံပြု",
+    examples: [
+    { hanzi: "我们去超市吧。 (Wǒmen qù chāoshì ba.)", pinyin: "Wǒmen qù chāoshì ba.", meaning: "ငါတို့ စူပါမားကတ်သွားကြစို့။" },
+    { hanzi: "买一些香蕉吧。 (Mǎi yīxiē xiāngjiāo ba.)", pinyin: "Mǎi yīxiē xiāngjiāo ba.", meaning: "ငှက်ပျောသီးတွေဝယ်ကြစို့။" },
+    { hanzi: "我们走吧。 (Wǒmen zǒu ba.)", pinyin: "Wǒmen zǒu ba.", meaning: "ငါတို့ သွားကြစို့။" },
+    { hanzi: "吃饭吧。 (Chīfàn ba.)", pinyin: "Chīfàn ba.", meaning: "ထမင်းစားကြစို့။" },
+    { hanzi: "休息一下吧。 (Xiūxi yīxià ba.)", pinyin: "Xiūxi yīxià ba.", meaning: "နည်းနည်းအနားယူကြစို့။" }
+    ]
+    },
+    {
+    pattern: "S + 很 + Adj (hěn) · အရမ်း",
+    description: "'အရမ်း...'",
+    examples: [
+    { hanzi: "这个很便宜。 (Zhège hěn piányi.)", pinyin: "Zhège hěn piányi.", meaning: "ဒါက အရမ်းပေါတယ်။" },
+    { hanzi: "苹果很好吃。 (Píngguǒ hěn hǎochī.)", pinyin: "Píngguǒ hěn hǎochī.", meaning: "ပန်းသီး အရမ်းအရသာရှိတယ်။" },
+    { hanzi: "超市很大。 (Chāoshì hěn dà.)", pinyin: "Chāoshì hěn dà.", meaning: "စူပါမားကတ် အရမ်းကြီးတယ်။" },
+    { hanzi: "她很忙。 (Tā hěn máng.)", pinyin: "Tā hěn máng.", meaning: "သူမ အရမ်းအလုပ်များတယ်။" },
+    { hanzi: "今天很冷。 (Jīntiān hěn lěng.)", pinyin: "Jīntiān hěn lěng.", meaning: "ဒီနေ့ အရမ်းအေးတယ်။" }
+    ]
+    },
+    {
+    pattern: "那 + S + V (nà) · ဒါဆို",
+    description: "'ဒါဆိုလျှင်'",
+    examples: [
+    { hanzi: "那买两斤吧。 (Nà mǎi liǎng jīn ba.)", pinyin: "Nà mǎi liǎng jīn ba.", meaning: "ဒါဆို နှစ်ကီလိုဝယ်မယ်။" },
+    { hanzi: "那我也去。 (Nà wǒ yě qù.)", pinyin: "Nà wǒ yě qù.", meaning: "ဒါဆို ငါလည်းသွားမယ်။" },
+    { hanzi: "那我们走吧。 (Nà wǒmen zǒu ba.)", pinyin: "Nà wǒmen zǒu ba.", meaning: "ဒါဆို ငါတို့သွားကြစို့။" },
+    { hanzi: "那好吧。 (Nà hǎo ba.)", pinyin: "Nà hǎo ba.", meaning: "ဒါဆို ကောင်းပြီ။" },
+    { hanzi: "那是什么？ (Nà shì shénme?)", pinyin: "Nà shì shénme?", meaning: "ဒါက ဘာလဲ။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "她们去哪儿？", answer: "超市" },
+    { question: "女儿想买什么？", answer: "水果" },
+    { question: "女儿想吃什么水果？", answer: "苹果和香蕉" },
+    { question: "苹果多少钱一斤？", answer: "五块" },
+    { question: "香蕉多少钱一斤？", answer: "三块" },
+    { question: "她们买了几斤苹果？", answer: "两斤" },
+    { question: "她们还要买什么？", answer: "牛奶和面包" },
+    { question: "香蕉便宜吗？", answer: "很便宜" }
+    ]
+    };
+    
+    
+    const lesson11 = {
+    lessonNumber: 11,
+    title: "饮食 · Yǐnshí · အစားအသောက်",
+    dialog: [
+    { hanzi: "小李：你平时喜欢吃什么？", pinyin: "Xiǎo Lǐ: Nǐ píngshí xǐhuān chī shénme?", meaning: "မင်း ပုံမှန် ဘာစားကြိုက်လဲ။" },
+    { hanzi: "小王：我喜欢吃米饭和面条。", pinyin: "Xiǎo Wáng: Wǒ xǐhuān chī mǐfàn hé miàntiáo.", meaning: "ငါ ထမင်းနဲ့ ခေါက်ဆွဲစားကြိုက်တယ်။" },
+    { hanzi: "小李：我也喜欢吃面条。", pinyin: "Xiǎo Lǐ: Wǒ yě xǐhuān chī miàntiáo.", meaning: "ငါလည်း ခေါက်ဆွဲစားကြိုက်တယ်။" },
+    { hanzi: "小王：你喜欢吃什么菜？", pinyin: "Xiǎo Wáng: Nǐ xǐhuān chī shénme cài?", meaning: "မင်း ဘာဟင်းစားကြိုက်လဲ။" },
+    { hanzi: "小李：我喜欢吃鱼和鸡蛋。", pinyin: "Xiǎo Lǐ: Wǒ xǐhuān chī yú hé jīdàn.", meaning: "ငါ ငါးနဲ့ ကြက်ဥစားကြိုက်တယ်။" },
+    { hanzi: "小王：鱼很健康。", pinyin: "Xiǎo Wáng: Yú hěn jiànkāng.", meaning: "ငါးက ကျန်းမာရေးအတွက်ကောင်းတယ်။" },
+    { hanzi: "小李：对，我也喜欢吃蔬菜。", pinyin: "Xiǎo Lǐ: Duì, wǒ yě xǐhuān chī shūcài.", meaning: "ဟုတ်တယ်၊ ငါလည်း ဟင်းသီးဟင်းရွက်စားကြိုက်တယ်။" },
+    { hanzi: "小王：你每天吃水果吗？", pinyin: "Xiǎo Wáng: Nǐ měitiān chī shuǐguǒ ma?", meaning: "မင်း နေ့တိုင်း သစ်သီးစားလား။" },
+    { hanzi: "小李：是的，每天吃一个苹果。", pinyin: "Xiǎo Lǐ: Shì de, měitiān chī yī gè píngguǒ.", meaning: "ဟုတ်တယ်၊ နေ့တိုင်း ပန်းသီးတစ်လုံးစားတယ်။" },
+    { hanzi: "小王：那很好，苹果对身体好。", pinyin: "Xiǎo Wáng: Nà hěn hǎo, píngguǒ duì shēntǐ hǎo.", meaning: "ဒါဆို ကောင်းတယ်၊ ပန်းသီးက ခန္ဓာကိုယ်အတွက်ကောင်းတယ်။" },
+    { hanzi: "小李：你喜欢喝什么？", pinyin: "Xiǎo Lǐ: Nǐ xǐhuān hē shénme?", meaning: "မင်း ဘာသောက်ကြိုက်လဲ။" },
+    { hanzi: "小王：我喜欢喝茶，特别是绿茶。", pinyin: "Xiǎo Wáng: Wǒ xǐhuān hē chá, tèbié shì lǜchá.", meaning: "ငါ လက်ဖက်ရည်သောက်ကြိုက်တယ်၊ အထူးသဖြင့် လက်ဖက်စိမ်း။" },
+    { hanzi: "小李：绿茶很健康。", pinyin: "Xiǎo Lǐ: Lǜchá hěn jiànkāng.", meaning: "လက်ဖက်စိမ်းက ကျန်းမာရေးအတွက်ကောင်းတယ်။" },
+    { hanzi: "小王：对，你也应该试试。", pinyin: "Xiǎo Wáng: Duì, nǐ yě yīnggāi shìshi.", meaning: "ဟုတ်တယ်၊ မင်းလည်း စမ်းသင့်တယ်။" }
+    ],
+    vocab: [
+    { hanzi: "平时 (píngshí)", pinyin: "píngshí", meaning: "ပုံမှန်" },
+    { hanzi: "米饭 (mǐfàn)", pinyin: "mǐfàn", meaning: "ထမင်း" },
+    { hanzi: "面条 (miàntiáo)", pinyin: "miàntiáo", meaning: "ခေါက်ဆွဲ" },
+    { hanzi: "菜 (cài)", pinyin: "cài", meaning: "ဟင်း" },
+    { hanzi: "鱼 (yú)", pinyin: "yú", meaning: "ငါး" },
+    { hanzi: "鸡蛋 (jīdàn)", pinyin: "jīdàn", meaning: "ကြက်ဥ" },
+    { hanzi: "健康 (jiànkāng)", pinyin: "jiànkāng", meaning: "ကျန်းမာရေး" },
+    { hanzi: "蔬菜 (shūcài)", pinyin: "shūcài", meaning: "ဟင်းသီးဟင်းရွက်" },
+    { hanzi: "水果 (shuǐguǒ)", pinyin: "shuǐguǒ", meaning: "သစ်သီး" },
+    { hanzi: "一个 (yī gè)", pinyin: "yī gè", meaning: "တစ်လုံး" },
+    { hanzi: "身体 (shēntǐ)", pinyin: "shēntǐ", meaning: "ခန္ဓာကိုယ်" },
+    { hanzi: "喝 (hē)", pinyin: "hē", meaning: "သောက်သည်" },
+    { hanzi: "茶 (chá)", pinyin: "chá", meaning: "လက်ဖက်ရည်" },
+    { hanzi: "特别 (tèbié)", pinyin: "tèbié", meaning: "အထူး" },
+    { hanzi: "绿茶 (lǜchá)", pinyin: "lǜchá", meaning: "လက်ဖက်စိမ်း" },
+    { hanzi: "应该 (yīnggāi)", pinyin: "yīnggāi", meaning: "သင့်သည်" },
+    { hanzi: "试试 (shìshi)", pinyin: "shìshi", meaning: "စမ်းကြည့်သည်" },
+    { hanzi: "喜欢 (xǐhuān)", pinyin: "xǐhuān", meaning: "ကြိုက်သည်" },
+    { hanzi: "吃 (chī)", pinyin: "chī", meaning: "စားသည်" },
+    { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+    { hanzi: "对 (duì)", pinyin: "duì", meaning: "ဟုတ်တယ်" },
+    { hanzi: "每天 (měitiān)", pinyin: "měitiān", meaning: "နေ့တိုင်း" },
+    { hanzi: "很 (hěn)", pinyin: "hěn", meaning: "အရမ်း" },
+    { hanzi: "那 (nà)", pinyin: "nà", meaning: "ဒါဆို" },
+    { hanzi: "好 (hǎo)", pinyin: "hǎo", meaning: "ကောင်းသည်" },
+    { hanzi: "喜欢 (xǐhuān)", pinyin: "xǐhuān", meaning: "ကြိုက်သည်" },
+    { hanzi: "喝 (hē)", pinyin: "hē", meaning: "သောက်သည်" },
+    { hanzi: "茶 (chá)", pinyin: "chá", meaning: "လက်ဖက်ရည်" },
+    { hanzi: "健康 (jiànkāng)", pinyin: "jiànkāng", meaning: "ကျန်းမာရေး" },
+    { hanzi: "应该 (yīnggāi)", pinyin: "yīnggāi", meaning: "သင့်သည်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 平时 + V (píngshí) · ပုံမှန်",
+    description: "'ပုံမှန်...'",
+    examples: [
+    { hanzi: "你平时喜欢吃什么？ (Nǐ píngshí xǐhuān chī shénme?)", pinyin: "Nǐ píngshí xǐhuān chī shénme?", meaning: "မင်း ပုံမှန် ဘာစားကြိုက်လဲ။" },
+    { hanzi: "我平时喝茶。 (Wǒ píngshí hē chá.)", pinyin: "Wǒ píngshí hē chá.", meaning: "ငါ ပုံမှန် လက်ဖက်ရည်သောက်တယ်။" },
+    { hanzi: "她平时很忙。 (Tā píngshí hěn máng.)", pinyin: "Tā píngshí hěn máng.", meaning: "သူမ ပုံမှန် အလုပ်များတယ်။" },
+    { hanzi: "我们平时跑步。 (Wǒmen píngshí pǎobù.)", pinyin: "Wǒmen píngshí pǎobù.", meaning: "ငါတို့ ပုံမှန် ပြေးတယ်။" },
+    { hanzi: "你平时做什么？ (Nǐ píngshí zuò shénme?)", pinyin: "Nǐ píngshí zuò shénme?", meaning: "မင်း ပုံမှန် ဘာလုပ်လဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 喜欢 + V + N (xǐhuān) · ကြိုက်",
+    description: "'...ကြိုက်သည်'",
+    examples: [
+    { hanzi: "我喜欢吃米饭。 (Wǒ xǐhuān chī mǐfàn.)", pinyin: "Wǒ xǐhuān chī mǐfàn.", meaning: "ငါ ထမင်းစားကြိုက်တယ်။" },
+    { hanzi: "她喜欢喝茶。 (Tā xǐhuān hē chá.)", pinyin: "Tā xǐhuān hē chá.", meaning: "သူမ လက်ဖက်ရည်သောက်ကြိုက်တယ်။" },
+    { hanzi: "我们喜欢运动。 (Wǒmen xǐhuān yùndòng.)", pinyin: "Wǒmen xǐhuān yùndòng.", meaning: "ငါတို့ အားကစားကြိုက်တယ်။" },
+    { hanzi: "你喜欢什么？ (Nǐ xǐhuān shénme?)", pinyin: "Nǐ xǐhuān shénme?", meaning: "မင်း ဘာကြိုက်လဲ။" },
+    { hanzi: "他们都喜欢旅行。 (Tāmen dōu xǐhuān lǚxíng.)", pinyin: "Tāmen dōu xǐhuān lǚxíng.", meaning: "သူတို့အားလုံး ခရီးသွားကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 也 + V (yě) · လည်း",
+    description: "'လည်း'",
+    examples: [
+    { hanzi: "我也喜欢吃面条。 (Wǒ yě xǐhuān chī miàntiáo.)", pinyin: "Wǒ yě xǐhuān chī miàntiáo.", meaning: "ငါလည်း ခေါက်ဆွဲစားကြိုက်တယ်။" },
+    { hanzi: "她也喜欢喝茶。 (Tā yě xǐhuān hē chá.)", pinyin: "Tā yě xǐhuān hē chá.", meaning: "သူမလည်း လက်ဖက်ရည်သောက်ကြိုက်တယ်။" },
+    { hanzi: "我们也很忙。 (Wǒmen yě hěn máng.)", pinyin: "Wǒmen yě hěn máng.", meaning: "ငါတို့လည်း အလုပ်များတယ်။" },
+    { hanzi: "他也在北京。 (Tā yě zài Běijīng.)", pinyin: "Tā yě zài Běijīng.", meaning: "သူလည်း ဘေဂျင်းမှာပါ။" },
+    { hanzi: "我也喜欢吃鱼。 (Wǒ yě xǐhuān chī yú.)", pinyin: "Wǒ yě xǐhuān chī yú.", meaning: "ငါလည်း ငါးစားကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 每天 + V (měitiān) · နေ့တိုင်း",
+    description: "'နေ့တိုင်း...'",
+    examples: [
+    { hanzi: "我每天吃一个苹果。 (Wǒ měitiān chī yī gè píngguǒ.)", pinyin: "Wǒ měitiān chī yī gè píngguǒ.", meaning: "ငါ နေ့တိုင်း ပန်းသီးတစ်လုံးစားတယ်။" },
+    { hanzi: "她每天跑步。 (Tā měitiān pǎobù.)", pinyin: "Tā měitiān pǎobù.", meaning: "သူမ နေ့တိုင်း ပြေးတယ်။" },
+    { hanzi: "我们每天喝茶。 (Wǒmen měitiān hē chá.)", pinyin: "Wǒmen měitiān hē chá.", meaning: "ငါတို့ နေ့တိုင်း လက်ဖက်ရည်သောက်တယ်။" },
+    { hanzi: "你每天做什么？ (Nǐ měitiān zuò shénme?)", pinyin: "Nǐ měitiān zuò shénme?", meaning: "မင်း နေ့တိုင်း ဘာလုပ်လဲ။" },
+    { hanzi: "我每天工作八小时。 (Wǒ měitiān gōngzuò bā xiǎoshí.)", pinyin: "Wǒ měitiān gōngzuò bā xiǎoshí.", meaning: "ငါ နေ့တိုင်း ရှစ်နာရီအလုပ်လုပ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 对 + N + 好 (duì ... hǎo) · အတွက်ကောင်း",
+    description: "'...အတွက်ကောင်းသည်'",
+    examples: [
+    { hanzi: "苹果对身体好。 (Píngguǒ duì shēntǐ hǎo.)", pinyin: "Píngguǒ duì shēntǐ hǎo.", meaning: "ပန်းသီးက ခန္ဓာကိုယ်အတွက်ကောင်းတယ်။" },
+    { hanzi: "鱼对健康好。 (Yú duì jiànkāng hǎo.)", pinyin: "Yú duì jiànkāng hǎo.", meaning: "ငါးက ကျန်းမာရေးအတွက်ကောင်းတယ်။" },
+    { hanzi: "运动对身体好。 (Yùndòng duì shēntǐ hǎo.)", pinyin: "Yùndòng duì shēntǐ hǎo.", meaning: "အားကစားက ခန္ဓာကိုယ်အတွက်ကောင်းတယ်။" },
+    { hanzi: "蔬菜对健康好。 (Shūcài duì jiànkāng hǎo.)", pinyin: "Shūcài duì jiànkāng hǎo.", meaning: "ဟင်းသီးဟင်းရွက်က ကျန်းမာရေးအတွက်ကောင်းတယ်။" },
+    { hanzi: "喝水对身体好。 (Hē shuǐ duì shēntǐ hǎo.)", pinyin: "Hē shuǐ duì shēntǐ hǎo.", meaning: "ရေသောက်တာက ခန္ဓာကိုယ်အတွက်ကောင်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 特别 + V (tèbié) · အထူး",
+    description: "'အထူး...'",
+    examples: [
+    { hanzi: "我喜欢喝茶，特别是绿茶。 (Wǒ xǐhuān hē chá, tèbié shì lǜchá.)", pinyin: "Wǒ xǐhuān hē chá, tèbié shì lǜchá.", meaning: "ငါ လက်ဖက်ရည်သောက်ကြိုက်တယ်၊ အထူးသဖြင့် လက်ဖက်စိမ်း။" },
+    { hanzi: "她特别喜欢吃水果。 (Tā tèbié xǐhuān chī shuǐguǒ.)", pinyin: "Tā tèbié xǐhuān chī shuǐguǒ.", meaning: "သူမ အထူးသဖြင့် သစ်သီးစားကြိုက်တယ်။" },
+    { hanzi: "这个特别好吃。 (Zhège tèbié hǎochī.)", pinyin: "Zhège tèbié hǎochī.", meaning: "ဒါက အထူးအရသာရှိတယ်။" },
+    { hanzi: "他特别忙。 (Tā tèbié máng.)", pinyin: "Tā tèbié máng.", meaning: "သူ အထူးအလုပ်များတယ်။" },
+    { hanzi: "这个地方特别漂亮。 (Zhège dìfang tèbié piàoliang.)", pinyin: "Zhège dìfang tèbié piàoliang.", meaning: "ဒီနေရာက အထူးလှတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 应该 + V (yīnggāi) · သင့်",
+    description: "'...သင့်သည်'",
+    examples: [
+    { hanzi: "你也应该试试。 (Nǐ yě yīnggāi shìshi.)", pinyin: "Nǐ yě yīnggāi shìshi.", meaning: "မင်းလည်း စမ်းသင့်တယ်။" },
+    { hanzi: "你应该多吃蔬菜。 (Nǐ yīnggāi duō chī shūcài.)", pinyin: "Nǐ yīnggāi duō chī shūcài.", meaning: "မင်း ဟင်းသီးဟင်းရွက် များများစားသင့်တယ်။" },
+    { hanzi: "我们应该运动。 (Wǒmen yīnggāi yùndòng.)", pinyin: "Wǒmen yīnggāi yùndòng.", meaning: "ငါတို့ အားကစားလုပ်သင့်တယ်။" },
+    { hanzi: "他应该早点儿来。 (Tā yīnggāi zǎodiǎnr lái.)", pinyin: "Tā yīnggāi zǎodiǎnr lái.", meaning: "သူ စောစောလာသင့်တယ်။" },
+    { hanzi: "我们应该好好学习。 (Wǒmen yīnggāi hǎohǎo xuéxí.)", pinyin: "Wǒmen yīnggāi hǎohǎo xuéxí.", meaning: "ငါတို့ ကောင်းကောင်းစာသင်သင့်တယ်။" }
+    ]
+    },
+    {
+    pattern: "那 + S + V (nà) · ဒါဆို",
+    description: "'ဒါဆိုလျှင်'",
+    examples: [
+    { hanzi: "那很好。 (Nà hěn hǎo.)", pinyin: "Nà hěn hǎo.", meaning: "ဒါဆို ကောင်းတယ်။" },
+    { hanzi: "那我也去。 (Nà wǒ yě qù.)", pinyin: "Nà wǒ yě qù.", meaning: "ဒါဆို ငါလည်းသွားမယ်။" },
+    { hanzi: "那我们走吧。 (Nà wǒmen zǒu ba.)", pinyin: "Nà wǒmen zǒu ba.", meaning: "ဒါဆို ငါတို့သွားကြစို့။" },
+    { hanzi: "那好吧。 (Nà hǎo ba.)", pinyin: "Nà hǎo ba.", meaning: "ဒါဆို ကောင်းပြီ။" },
+    { hanzi: "那是什么？ (Nà shì shénme?)", pinyin: "Nà shì shénme?", meaning: "ဒါက ဘာလဲ။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小王平时喜欢吃什么？", answer: "米饭和面条" },
+    { question: "小李喜欢吃什么菜？", answer: "鱼和鸡蛋" },
+    { question: "小李每天吃什么水果？", answer: "一个苹果" },
+    { question: "苹果对身体好吗？", answer: "好" },
+    { question: "小王喜欢喝什么？", answer: "茶" },
+    { question: "小王特别喜欢喝什么茶？", answer: "绿茶" },
+    { question: "绿茶健康吗？", answer: "很健康" },
+    { question: "小李应该试试什么？", answer: "绿茶" }
+    ]
+    };
+    const lesson12 = {
+    lessonNumber: 12,
+    title: "旅游 · Lǚyóu · ခရီးသွားလာရေး",
+    dialog: [
+    { hanzi: "小张：你喜欢旅游吗？", pinyin: "Xiǎo Zhāng: Nǐ xǐhuān lǚyóu ma?", meaning: "မင်း ခရီးသွားကြိုက်လား။" },
+    { hanzi: "小李：很喜欢，我去过很多地方。", pinyin: "Xiǎo Lǐ: Hěn xǐhuān, wǒ qù guo hěnduō dìfang.", meaning: "အရမ်းကြိုက်တယ်၊ ငါ နေရာအများကြီးသွားဖူးတယ်။" },
+    { hanzi: "小张：你去过哪些地方？", pinyin: "Xiǎo Zhāng: Nǐ qù guo nǎxiē dìfang?", meaning: "မင်း ဘယ်နေရာတွေသွားဖူးလဲ။" },
+    { hanzi: "小李：我去过北京、上海和广州。", pinyin: "Xiǎo Lǐ: Wǒ qù guo Běijīng, Shànghǎi hé Guǎngzhōu.", meaning: "ငါ ဘေဂျင်း၊ ရှန်ဟိုင်းနဲ့ ကွမ်ကျိုးသွားဖူးတယ်။" },
+    { hanzi: "小张：你觉得哪个城市最好？", pinyin: "Xiǎo Zhāng: Nǐ juéde nǎge chéngshì zuì hǎo?", meaning: "မင်း ဘယ်မြို့က အကောင်းဆုံးလို့ထင်လဲ။" },
+    { hanzi: "小李：我觉得北京最好，有很多景点。", pinyin: "Xiǎo Lǐ: Wǒ juéde Běijīng zuì hǎo, yǒu hěnduō jǐngdiǎn.", meaning: "ငါ ဘေဂျင်းက အကောင်းဆုံးလို့ထင်တယ်၊ နေရာတွေအများကြီးရှိတယ်။" },
+    { hanzi: "小张：我也想去北京。", pinyin: "Xiǎo Zhāng: Wǒ yě xiǎng qù Běijīng.", meaning: "ငါလည်း ဘေဂျင်းသွားချင်တယ်။" },
+    { hanzi: "小李：去吧，很值得。", pinyin: "Xiǎo Lǐ: Qù ba, hěn zhídé.", meaning: "သွားပါ၊ အရမ်းတန်တယ်။" }
+    ],
+    vocab: [
+    { hanzi: "旅游 (lǚyóu)", pinyin: "lǚyóu", meaning: "ခရီးသွားလာရေး" },
+    { hanzi: "去过 (qù guo)", pinyin: "qù guo", meaning: "သွားဖူးသည်" },
+    { hanzi: "地方 (dìfang)", pinyin: "dìfang", meaning: "နေရာ" },
+    { hanzi: "哪些 (nǎxiē)", pinyin: "nǎxiē", meaning: "ဘယ်ဟာတွေ" },
+    { hanzi: "城市 (chéngshì)", pinyin: "chéngshì", meaning: "မြို့" },
+    { hanzi: "最好 (zuì hǎo)", pinyin: "zuì hǎo", meaning: "အကောင်းဆုံး" },
+    { hanzi: "景点 (jǐngdiǎn)", pinyin: "jǐngdiǎn", meaning: "ခရီးသွားနေရာ" },
+    { hanzi: "值得 (zhídé)", pinyin: "zhídé", meaning: "တန်သည်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + V + 过 (guo) · ဖူး",
+    description: "'...ဖူးသည်' အတွေ့အကြုံ",
+    examples: [
+    { hanzi: "我去过北京。 (Wǒ qù guo Běijīng.)", pinyin: "Wǒ qù guo Běijīng.", meaning: "ငါ ဘေဂျင်းသွားဖူးတယ်။" },
+    { hanzi: "她吃过这个。 (Tā chī guo zhège.)", pinyin: "Tā chī guo zhège.", meaning: "သူမ ဒါစားဖူးတယ်။" },
+    { hanzi: "你看过电影吗？ (Nǐ kàn guo diànyǐng ma?)", pinyin: "Nǐ kàn guo diànyǐng ma?", meaning: "မင်း ရုပ်ရှင်ကြည့်ဖူးလား။" },
+    { hanzi: "我学过汉语。 (Wǒ xué guo Hànyǔ.)", pinyin: "Wǒ xué guo Hànyǔ.", meaning: "ငါ တရုတ်စာသင်ဖူးတယ်။" },
+    { hanzi: "他做过这个工作。 (Tā zuò guo zhège gōngzuò.)", pinyin: "Tā zuò guo zhège gōngzuò.", meaning: "သူ ဒီအလုပ်လုပ်ဖူးတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 觉得 + 最 + Adj (juéde zuì) · အကောင်းဆုံး",
+    description: "'အကောင်းဆုံး...လို့ထင်သည်'",
+    examples: [
+    { hanzi: "我觉得北京最好。 (Wǒ juéde Běijīng zuì hǎo.)", pinyin: "Wǒ juéde Běijīng zuì hǎo.", meaning: "ငါ ဘေဂျင်းက အကောင်းဆုံးလို့ထင်တယ်။" },
+    { hanzi: "我觉得这个最便宜。 (Wǒ juéde zhège zuì piányi.)", pinyin: "Wǒ juéde zhège zuì piányi.", meaning: "ငါ ဒါက ဈေးအပေါဆုံးလို့ထင်တယ်။" },
+    { hanzi: "她觉得这个最好看。 (Tā juéde zhège zuì hǎokàn.)", pinyin: "Tā juéde zhège zuì hǎokàn.", meaning: "သူမ ဒါက အနှံ့ဆုံးလို့ထင်တယ်။" },
+    { hanzi: "你觉得哪个最好？ (Nǐ juéde nǎge zuì hǎo?)", pinyin: "Nǐ juéde nǎge zuì hǎo?", meaning: "မင်း ဘယ်ဟာက အကောင်းဆုံးလို့ထင်လဲ။" },
+    { hanzi: "我们都觉得这个最好。 (Wǒmen dōu juéde zhège zuì hǎo.)", pinyin: "Wǒmen dōu juéde zhège zuì hǎo.", meaning: "ငါတို့အားလုံး ဒါက အကောင်းဆုံးလို့ထင်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李喜欢旅游吗？", answer: "很喜欢" },
+    { question: "小李去过哪些城市？", answer: "北京、上海和广州" },
+    { question: "小李觉得哪个城市最好？", answer: "北京" },
+    { question: "小张想去哪儿？", answer: "北京" }
+    ]
+    };
+    
+    const lesson13 = {
+    lessonNumber: 13,
+    title: "教育 · Jiàoyù · ပညာရေး",
+    dialog: [
+    { hanzi: "小王：你在学习什么？", pinyin: "Xiǎo Wáng: Nǐ zài xuéxí shénme?", meaning: "မင်း ဘာသင်နေလဲ။" },
+    { hanzi: "小李：我在学习英语。", pinyin: "Xiǎo Lǐ: Wǒ zài xuéxí Yīngyǔ.", meaning: "ငါ အင်္ဂလိပ်စာသင်နေတယ်။" },
+    { hanzi: "小王：英语难吗？", pinyin: "Xiǎo Wáng: Yīngyǔ nán ma?", meaning: "အင်္ဂလိပ်စာ ခက်လား။" },
+    { hanzi: "小李：不难，但是需要多练习。", pinyin: "Xiǎo Lǐ: Bù nán, dànshì xūyào duō liànxí.", meaning: "မခက်ဘူး၊ ဒါပေမယ့် အများကြီးလေ့ကျင့်ဖို့လိုတယ်။" },
+    { hanzi: "小王：你每天学多长时间？", pinyin: "Xiǎo Wáng: Nǐ měitiān xué duō cháng shíjiān?", meaning: "မင်း နေ့တိုင်း ဘယ်လောက်ကြာကြာသင်လဲ။" },
+    { hanzi: "小李：两个小时。", pinyin: "Xiǎo Lǐ: Liǎng gè xiǎoshí.", meaning: "နှစ်နာရီ။" },
+    { hanzi: "小王：你学得怎么样？", pinyin: "Xiǎo Wáng: Nǐ xué de zěnmeyàng?", meaning: "မင်း ဘယ်လောက်တတ်ပြီလဲ။" },
+    { hanzi: "小李：还可以，但是需要更多练习。", pinyin: "Xiǎo Lǐ: Hái kěyǐ, dànshì xūyào gèng duō liànxí.", meaning: "သိပ်မဆိုးဘူး၊ ဒါပေမယ့် ပိုလေ့ကျင့်ဖို့လိုတယ်။" }
+    ],
+    vocab: [
+    { hanzi: "学习 (xuéxí)", pinyin: "xuéxí", meaning: "သင်ယူသည်" },
+    { hanzi: "英语 (Yīngyǔ)", pinyin: "Yīngyǔ", meaning: "အင်္ဂလိပ်စာ" },
+    { hanzi: "需要 (xūyào)", pinyin: "xūyào", meaning: "လိုသည်" },
+    { hanzi: "多练习 (duō liànxí)", pinyin: "duō liànxí", meaning: "အများကြီးလေ့ကျင့်သည်" },
+    { hanzi: "两个小时 (liǎng gè xiǎoshí)", pinyin: "liǎng gè xiǎoshí", meaning: "နှစ်နာရီ" },
+    { hanzi: "还可以 (hái kěyǐ)", pinyin: "hái kěyǐ", meaning: "သိပ်မဆိုးဘူး" },
+    { hanzi: "更多 (gèng duō)", pinyin: "gèng duō", meaning: "ပိုများသည်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 需要 + V (xūyào) · လို",
+    description: "'...ဖို့လိုသည်'",
+    examples: [
+    { hanzi: "需要多练习。 (Xūyào duō liànxí.)", pinyin: "Xūyào duō liànxí.", meaning: "အများကြီးလေ့ကျင့်ဖို့လိုတယ်။" },
+    { hanzi: "我需要水。 (Wǒ xūyào shuǐ.)", pinyin: "Wǒ xūyào shuǐ.", meaning: "ငါ ရေလိုတယ်။" },
+    { hanzi: "你需要帮助吗？ (Nǐ xūyào bāngzhù ma?)", pinyin: "Nǐ xūyào bāngzhù ma?", meaning: "မင်း အကူအညီလိုလား။" },
+    { hanzi: "我们需要时间。 (Wǒmen xūyào shíjiān.)", pinyin: "Wǒmen xūyào shíjiān.", meaning: "ငါတို့ အချိန်လိုတယ်။" },
+    { hanzi: "她需要休息。 (Tā xūyào xiūxi.)", pinyin: "Tā xūyào xiūxi.", meaning: "သူမ အနားယူဖို့လိုတယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李在学习什么？", answer: "英语" },
+    { question: "英语难吗？", answer: "不难" },
+    { question: "小李每天学多长时间？", answer: "两个小时" },
+    { question: "小李学得怎么样？", answer: "还可以" }
+    ]
+    };
+    
+    const lesson14 = {
+    lessonNumber: 14,
+    title: "文化 · Wénhuà · ယဉ်ကျေးမှု",
+    dialog: [
+    { hanzi: "小张：你了解中国文化吗？", pinyin: "Xiǎo Zhāng: Nǐ liǎojiě Zhōngguó wénhuà ma?", meaning: "မင်း တရုတ်ယဉ်ကျေးမှုကိုသိလား။" },
+    { hanzi: "小李：了解一些，我学过中国历史。", pinyin: "Xiǎo Lǐ: Liǎojiě yīxiē, wǒ xué guo Zhōngguó lìshǐ.", meaning: "နည်းနည်းသိတယ်၊ ငါ တရုတ်သမိုင်းသင်ဖူးတယ်။" },
+    { hanzi: "小张：中国有哪些传统节日？", pinyin: "Xiǎo Zhāng: Zhōngguó yǒu nǎxiē chuántǒng jiérì?", meaning: "တရုတ်မှာ ဘယ်ရိုးရာပွဲတွေရှိလဲ။" },
+    { hanzi: "小李：春节、中秋节和端午节。", pinyin: "Xiǎo Lǐ: Chūnjié, Zhōngqiūjié hé Duānwǔjié.", meaning: "နှစ်သစ်ကူး၊ ဆောင်းဦးပွဲနဲ့ နွေဦးပွဲ။" },
+    { hanzi: "小张：春节你们做什么？", pinyin: "Xiǎo Zhāng: Chūnjié nǐmen zuò shénme?", meaning: "နှစ်သစ်ကူးမှာ မင်းတို့ ဘာလုပ်လဲ။" },
+    { hanzi: "小李：我们吃饺子，放鞭炮。", pinyin: "Xiǎo Lǐ: Wǒmen chī jiǎozi, fàng biānpào.", meaning: "ငါတို့ ထမင်းစားတယ်၊ မီးရှူးမီးပန်းပစ်တယ်။" },
+    { hanzi: "小张：听起来很有意思。", pinyin: "Xiǎo Zhāng: Tīng qǐlái hěn yǒuyìsi.", meaning: "ကြားရတာ စိတ်ဝင်စားစရာကောင်းတယ်။" },
+    { hanzi: "小李：是的，还有很多传统。", pinyin: "Xiǎo Lǐ: Shì de, hái yǒu hěnduō chuántǒng.", meaning: "ဟုတ်တယ်၊ ရိုးရာတွေ အများကြီးရှိသေးတယ်။" }
+    ],
+    vocab: [
+    { hanzi: "了解 (liǎojiě)", pinyin: "liǎojiě", meaning: "သိသည်" },
+    { hanzi: "文化 (wénhuà)", pinyin: "wénhuà", meaning: "ယဉ်ကျေးမှု" },
+    { hanzi: "历史 (lìshǐ)", pinyin: "lìshǐ", meaning: "သမိုင်း" },
+    { hanzi: "传统节日 (chuántǒng jiérì)", pinyin: "chuántǒng jiérì", meaning: "ရိုးရာပွဲတော်" },
+    { hanzi: "春节 (Chūnjié)", pinyin: "Chūnjié", meaning: "တရုတ်နှစ်သစ်ကူး" },
+    { hanzi: "中秋节 (Zhōngqiūjié)", pinyin: "Zhōngqiūjié", meaning: "ဆောင်းဦးပွဲတော်" },
+    { hanzi: "端午节 (Duānwǔjié)", pinyin: "Duānwǔjié", meaning: "နွေဦးပွဲတော်" },
+    { hanzi: "饺子 (jiǎozi)", pinyin: "jiǎozi", meaning: "ထမင်းကြော်" },
+    { hanzi: "放鞭炮 (fàng biānpào)", pinyin: "fàng biānpào", meaning: "မီးရှူးမီးပန်းပစ်သည်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 了解 + N (liǎojiě) · သိ",
+    description: "'...ကိုသိသည်'",
+    examples: [
+    { hanzi: "我了解中国文化。 (Wǒ liǎojiě Zhōngguó wénhuà.)", pinyin: "Wǒ liǎojiě Zhōngguó wénhuà.", meaning: "ငါ တရုတ်ယဉ်ကျေးမှုကိုသိတယ်။" },
+    { hanzi: "你了解这个吗？ (Nǐ liǎojiě zhège ma?)", pinyin: "Nǐ liǎojiě zhège ma?", meaning: "မင်း ဒါကိုသိလား။" },
+    { hanzi: "她了解很多。 (Tā liǎojiě hěnduō.)", pinyin: "Tā liǎojiě hěnduō.", meaning: "သူမ အများကြီးသိတယ်။" },
+    { hanzi: "我们需要了解历史。 (Wǒmen xūyào liǎojiě lìshǐ.)", pinyin: "Wǒmen xūyào liǎojiě lìshǐ.", meaning: "ငါတို့ သမိုင်းကိုသိဖို့လိုတယ်။" },
+    { hanzi: "他了解中国。 (Tā liǎojiě Zhōngguó.)", pinyin: "Tā liǎojiě Zhōngguó.", meaning: "သူ တရုတ်ကိုသိတယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李了解中国文化吗？", answer: "了解一些" },
+    { question: "中国有哪些传统节日？", answer: "春节、中秋节和端午节" },
+    { question: "春节人们做什么？", answer: "吃饺子，放鞭炮" },
+    { question: "小李学过什么？", answer: "中国历史" }
+    ]
+    };
+    const lesson15 = {
+    lessonNumber: 15,
+    title: "科技 · Kējì · နည်းပညာ",
+    dialog: [
+    { hanzi: "小王：你常用手机吗？", pinyin: "Xiǎo Wáng: Nǐ cháng yòng shǒujī ma?", meaning: "မင်း ဖုန်းသုံးလေ့ရှိလား။" },
+    { hanzi: "小李：是的，我每天都用。", pinyin: "Xiǎo Lǐ: Shì de, wǒ měitiān dōu yòng.", meaning: "ဟုတ်တယ်၊ ငါ နေ့တိုင်းသုံးတယ်။" },
+    { hanzi: "小王：你用它做什么？", pinyin: "Xiǎo Wáng: Nǐ yòng tā zuò shénme?", meaning: "မင်း ဘာအတွက်သုံးလဲ။" },
+    { hanzi: "小李：发信息、看新闻和玩游戏。", pinyin: "Xiǎo Lǐ: Fā xìnxī, kàn xīnwén hé wán yóuxì.", meaning: "စာပို့တယ်၊ သတင်းကြည့်တယ်နဲ့ ဂိမ်းကစားတယ်။" },
+    { hanzi: "小王：手机很方便。", pinyin: "Xiǎo Wáng: Shǒujī hěn fāngbiàn.", meaning: "ဖုန်းက အရမ်းအဆင်ပြေတယ်။" },
+    { hanzi: "小李：对，现在生活离不开手机。", pinyin: "Xiǎo Lǐ: Duì, xiànzài shēnghuó lí bù kāi shǒujī.", meaning: "ဟုတ်တယ်၊ အခုဘဝက ဖုန်းမပါမဖြစ်ဘူး။" },
+    { hanzi: "小王：你觉得手机有什么缺点？", pinyin: "Xiǎo Wáng: Nǐ juéde shǒujī yǒu shénme quēdiǎn?", meaning: "မင်း ဖုန်းမှာ ဘာအားနည်းချက်တွေရှိလို့ထင်လဲ။" },
+    { hanzi: "小李：有时太依赖了。", pinyin: "Xiǎo Lǐ: Yǒushí tài yīlài le.", meaning: "တစ်ခါတစ်လေ အရမ်းမှီခိုတယ်။" }
+    ],
+    vocab: [
+    { hanzi: "常用 (cháng yòng)", pinyin: "cháng yòng", meaning: "သုံးလေ့ရှိသည်" },
+    { hanzi: "手机 (shǒujī)", pinyin: "shǒujī", meaning: "ဖုန်း" },
+    { hanzi: "发信息 (fā xìnxī)", pinyin: "fā xìnxī", meaning: "စာပို့သည်" },
+    { hanzi: "新闻 (xīnwén)", pinyin: "xīnwén", meaning: "သတင်း" },
+    { hanzi: "玩游戏 (wán yóuxì)", pinyin: "wán yóuxì", meaning: "ဂိမ်းကစားသည်" },
+    { hanzi: "生活 (shēnghuó)", pinyin: "shēnghuó", meaning: "ဘဝ" },
+    { hanzi: "缺点 (quēdiǎn)", pinyin: "quēdiǎn", meaning: "အားနည်းချက်" },
+    { hanzi: "依赖 (yīlài)", pinyin: "yīlài", meaning: "မှီခိုသည်" },
+    { hanzi: "用 (yòng)", pinyin: "yòng", meaning: "သုံးသည်" },
+    { hanzi: "看 (kàn)", pinyin: "kàn", meaning: "ကြည့်သည်" },
+    { hanzi: "觉得 (juéde)", pinyin: "juéde", meaning: "ထင်သည်" },
+    { hanzi: "有时 (yǒushí)", pinyin: "yǒushí", meaning: "တစ်ခါတစ်လေ" },
+    { hanzi: "太 (tài)", pinyin: "tài", meaning: "အရမ်း" },
+    { hanzi: "了 (le)", pinyin: "le", meaning: "ပြီ" },
+    { hanzi: "现在 (xiànzài)", pinyin: "xiànzài", meaning: "အခု" },
+    { hanzi: "离不开 (lí bù kāi)", pinyin: "lí bù kāi", meaning: "မပါမဖြစ်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 常用 + N (cháng yòng) · သုံးလေ့ရှိ",
+    description: "'...သုံးလေ့ရှိသည်'",
+    examples: [
+    { hanzi: "我常用手机。 (Wǒ cháng yòng shǒujī.)", pinyin: "Wǒ cháng yòng shǒujī.", meaning: "ငါ ဖုန်းသုံးလေ့ရှိတယ်။" },
+    { hanzi: "她常用电脑。 (Tā cháng yòng diànnǎo.)", pinyin: "Tā cháng yòng diànnǎo.", meaning: "သူမ ကွန်ပြူတာသုံးလေ့ရှိတယ်။" },
+    { hanzi: "我们常用微信。 (Wǒmen cháng yòng Wēixìn.)", pinyin: "Wǒmen cháng yòng Wēixìn.", meaning: "ငါတို့ WeChat သုံးလေ့ရှိတယ်။" },
+    { hanzi: "你常用什么？ (Nǐ cháng yòng shénme?)", pinyin: "Nǐ cháng yòng shénme?", meaning: "မင်း ဘာသုံးလေ့ရှိလဲ။" },
+    { hanzi: "他们常用支付宝。 (Tāmen cháng yòng Zhīfùbǎo.)", pinyin: "Tāmen cháng yòng Zhīfùbǎo.", meaning: "သူတို့ Alipay သုံးလေ့ရှိတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 用 + N + V (yòng) · သုံးပြီးလုပ်",
+    description: "'...ကိုသုံးပြီး...လုပ်သည်'",
+    examples: [
+    { hanzi: "我用手机发信息。 (Wǒ yòng shǒujī fā xìnxī.)", pinyin: "Wǒ yòng shǒujī fā xìnxī.", meaning: "ငါ ဖုန်းသုံးပြီး စာပို့တယ်။" },
+    { hanzi: "她用电脑工作。 (Tā yòng diànnǎo gōngzuò.)", pinyin: "Tā yòng diànnǎo gōngzuò.", meaning: "သူမ ကွန်ပြူတာသုံးပြီး အလုပ်လုပ်တယ်။" },
+    { hanzi: "我们用水做饭。 (Wǒmen yòng shuǐ zuòfàn.)", pinyin: "Wǒmen yòng shuǐ zuòfàn.", meaning: "ငါတို့ ရေသုံးပြီး ထမင်းချက်တယ်။" },
+    { hanzi: "你用手机做什么？ (Nǐ yòng shǒujī zuò shénme?)", pinyin: "Nǐ yòng shǒujī zuò shénme?", meaning: "မင်း ဖုန်းသုံးပြီး ဘာလုပ်လဲ။" },
+    { hanzi: "他用电脑学习。 (Tā yòng diànnǎo xuéxí.)", pinyin: "Tā yòng diànnǎo xuéxí.", meaning: "သူ ကွန်ပြူတာသုံးပြီး စာသင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 离不开 + N (lí bù kāi) · မပါမဖြစ်",
+    description: "'...မပါမဖြစ်'",
+    examples: [
+    { hanzi: "生活离不开手机。 (Shēnghuó lí bù kāi shǒujī.)", pinyin: "Shēnghuó lí bù kāi shǒujī.", meaning: "ဘဝက ဖုန်းမပါမဖြစ်ဘူး။" },
+    { hanzi: "我离不开水。 (Wǒ lí bù kāi shuǐ.)", pinyin: "Wǒ lí bù kāi shuǐ.", meaning: "ငါ ရေမပါမဖြစ်ဘူး။" },
+    { hanzi: "他离不开手机。 (Tā lí bù kāi shǒujī.)", pinyin: "Tā lí bù kāi shǒujī.", meaning: "သူ ဖုန်းမပါမဖြစ်ဘူး။" },
+    { hanzi: "我们离不开电。 (Wǒmen lí bù kāi diàn.)", pinyin: "Wǒmen lí bù kāi diàn.", meaning: "ငါတို့ မီးမပါမဖြစ်ဘူး။" },
+    { hanzi: "你离不开什么？ (Nǐ lí bù kāi shénme?)", pinyin: "Nǐ lí bù kāi shénme?", meaning: "မင်း ဘာမပါမဖြစ်လဲ။" }
+    ]
+    },
+    {
+    pattern: "太 + Adj + 了 (tài ... le) · အရမ်း",
+    description: "'အရမ်း...တယ်'",
+    examples: [
+    { hanzi: "太依赖了。 (Tài yīlài le.)", pinyin: "Tài yīlài le.", meaning: "အရမ်းမှီခိုတယ်။" },
+    { hanzi: "太好了！ (Tài hǎo le!)", pinyin: "Tài hǎo le!", meaning: "အရမ်းကောင်းတယ်။" },
+    { hanzi: "太贵了。 (Tài guì le.)", pinyin: "Tài guì le.", meaning: "အရမ်းဈေးကြီးတယ်။" },
+    { hanzi: "太快了。 (Tài kuài le.)", pinyin: "Tài kuài le.", meaning: "အရမ်းမြန်တယ်။" },
+    { hanzi: "太忙了。 (Tài máng le.)", pinyin: "Tài máng le.", meaning: "အရမ်းအလုပ်များတယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李常用手机吗？", answer: "是" },
+    { question: "小李用手机做什么？", answer: "发信息、看新闻和玩游戏" },
+    { question: "手机方便吗？", answer: "很方便" },
+    { question: "现在生活离不开什么？", answer: "手机" },
+    { question: "手机有什么缺点？", answer: "有时太依赖了" },
+    { question: "小王觉得手机怎么样？", answer: "很方便" },
+    { question: "小李每天用手机吗？", answer: "是" },
+    { question: "小李觉得手机有什么问题？", answer: "太依赖" }
+    ]
+    };
+    const lesson16 = {
+    lessonNumber: 16,
+    title: "环境 · Huánjìng · ပတ်ဝန်းကျင်",
+    dialog: [
+    { hanzi: "小张：你们家乡的环境怎么样？", pinyin: "Xiǎo Zhāng: Nǐmen jiāxiāng de huánjìng zěnmeyàng?", meaning: "မင်းတို့ဇာတိမြို့ရဲ့ ပတ်ဝန်းကျင် ဘယ်လိုလဲ။" },
+    { hanzi: "小李：我们家乡很干净，空气也很好。", pinyin: "Xiǎo Lǐ: Wǒmen jiāxiāng hěn gānjìng, kōngqì yě hěn hǎo.", meaning: "ငါတို့ဇာတိမြို့က အရမ်းသန့်တယ်၊ လေကလည်းကောင်းတယ်။" },
+    { hanzi: "小张：那很好，现在很多地方污染很严重。", pinyin: "Xiǎo Zhāng: Nà hěn hǎo, xiànzài hěnduō dìfang wūrǎn hěn yánzhòng.", meaning: "ဒါဆို ကောင်းတယ်၊ အခု နေရာအများကြီးက ညစ်ညမ်းမှုအရမ်းဆိုးတယ်။" },
+    { hanzi: "小李：是的，我们应该保护环境。", pinyin: "Xiǎo Lǐ: Shì de, wǒmen yīnggāi bǎohù huánjìng.", meaning: "ဟုတ်တယ်၊ ငါတို့ ပတ်ဝန်းကျင်ကိုကာကွယ်သင့်တယ်။" },
+    { hanzi: "小张：我们可以怎么做？", pinyin: "Xiǎo Zhāng: Wǒmen kěyǐ zěnme zuò?", meaning: "ငါတို့ ဘယ်လိုလုပ်နိုင်မလဲ။" },
+    { hanzi: "小李：少用塑料袋，多种树。", pinyin: "Xiǎo Lǐ: Shǎo yòng sùliàodài, duō zhòng shù.", meaning: "ပလတ်စတစ်အိတ်နည်းနည်းသုံးပါ၊ သစ်ပင်များများစိုက်ပါ။" },
+    { hanzi: "小张：对，也要少开车。", pinyin: "Xiǎo Zhāng: Duì, yě yào shǎo kāichē.", meaning: "ဟုတ်တယ်၊ ကားလည်း နည်းနည်းမောင်းသင့်တယ်။" },
+    { hanzi: "小李：每个人都应该为环境做贡献。", pinyin: "Xiǎo Lǐ: Měi gè rén dōu yīnggāi wèi huánjìng zuò gòngxiàn.", meaning: "လူတိုင်း ပတ်ဝန်းကျင်အတွက် ပံ့ပိုးသင့်တယ်။" },
+    { hanzi: "小张：你说得对。", pinyin: "Xiǎo Zhāng: Nǐ shuō de duì.", meaning: "မင်းပြောတာမှန်တယ်။" },
+    { hanzi: "小李：我们一起努力吧。", pinyin: "Xiǎo Lǐ: Wǒmen yīqǐ nǔlì ba.", meaning: "ငါတို့ အတူ ကြိုးစားကြစို့။" }
+    ],
+    vocab: [
+    { hanzi: "环境 (huánjìng)", pinyin: "huánjìng", meaning: "ပတ်ဝန်းကျင်" },
+    { hanzi: "家乡 (jiāxiāng)", pinyin: "jiāxiāng", meaning: "ဇာတိမြို့" },
+    { hanzi: "干净 (gānjìng)", pinyin: "gānjìng", meaning: "သန့်ရှင်းသည်" },
+    { hanzi: "空气 (kōngqì)", pinyin: "kōngqì", meaning: "လေ" },
+    { hanzi: "污染 (wūrǎn)", pinyin: "wūrǎn", meaning: "ညစ်ညမ်းမှု" },
+    { hanzi: "严重 (yánzhòng)", pinyin: "yánzhòng", meaning: "ဆိုးရွားသည်" },
+    { hanzi: "保护 (bǎohù)", pinyin: "bǎohù", meaning: "ကာကွယ်သည်" },
+    { hanzi: "塑料袋 (sùliàodài)", pinyin: "sùliàodài", meaning: "ပလတ်စတစ်အိတ်" },
+    { hanzi: "种树 (zhòng shù)", pinyin: "zhòng shù", meaning: "သစ်ပင်စိုက်သည်" },
+    { hanzi: "开车 (kāichē)", pinyin: "kāichē", meaning: "ကားမောင်းသည်" },
+    { hanzi: "贡献 (gòngxiàn)", pinyin: "gòngxiàn", meaning: "ပံ့ပိုးမှု" },
+    { hanzi: "努力 (nǔlì)", pinyin: "nǔlì", meaning: "ကြိုးစားသည်" },
+    { hanzi: "每个人 (měi gè rén)", pinyin: "měi gè rén", meaning: "လူတိုင်း" },
+    { hanzi: "少 (shǎo)", pinyin: "shǎo", meaning: "နည်းသည်" },
+    { hanzi: "多 (duō)", pinyin: "duō", meaning: "များသည်" },
+    { hanzi: "应该 (yīnggāi)", pinyin: "yīnggāi", meaning: "သင့်သည်" },
+    { hanzi: "为 (wèi)", pinyin: "wèi", meaning: "အတွက်" },
+    { hanzi: "做 (zuò)", pinyin: "zuò", meaning: "လုပ်သည်" },
+    { hanzi: "一起 (yīqǐ)", pinyin: "yīqǐ", meaning: "အတူတူ" },
+    { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+    { hanzi: "要 (yào)", pinyin: "yào", meaning: "လိုသည်" },
+    { hanzi: "对 (duì)", pinyin: "duì", meaning: "မှန်သည်" },
+    { hanzi: "说 (shuō)", pinyin: "shuō", meaning: "ပြောသည်" },
+    { hanzi: "得 (de)", pinyin: "de", meaning: "(ကြိယာနောက်ဆက်တွင်)" },
+    { hanzi: "很 (hěn)", pinyin: "hěn", meaning: "အရမ်း" },
+    { hanzi: "现在 (xiànzài)", pinyin: "xiànzài", meaning: "အခု" },
+    { hanzi: "地方 (dìfang)", pinyin: "dìfang", meaning: "နေရာ" },
+    { hanzi: "保护 (bǎohù)", pinyin: "bǎohù", meaning: "ကာကွယ်သည်" },
+    { hanzi: "环境 (huánjìng)", pinyin: "huánjìng", meaning: "ပတ်ဝန်းကျင်" },
+    { hanzi: "贡献 (gòngxiàn)", pinyin: "gòngxiàn", meaning: "ပံ့ပိုးမှု" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 很 + Adj (hěn) · အရမ်း",
+    description: "'အရမ်း...'",
+    examples: [
+    { hanzi: "家乡很干净。 (Jiāxiāng hěn gānjìng.)", pinyin: "Jiāxiāng hěn gānjìng.", meaning: "ဇာတိမြို့က အရမ်းသန့်တယ်။" },
+    { hanzi: "空气很好。 (Kōngqì hěn hǎo.)", pinyin: "Kōngqì hěn hǎo.", meaning: "လေက အရမ်းကောင်းတယ်။" },
+    { hanzi: "污染很严重。 (Wūrǎn hěn yánzhòng.)", pinyin: "Wūrǎn hěn yánzhòng.", meaning: "ညစ်ညမ်းမှု အရမ်းဆိုးတယ်။" },
+    { hanzi: "他很忙。 (Tā hěn máng.)", pinyin: "Tā hěn máng.", meaning: "သူ အရမ်းအလုပ်များတယ်။" },
+    { hanzi: "这个很好。 (Zhège hěn hǎo.)", pinyin: "Zhège hěn hǎo.", meaning: "ဒါက အရမ်းကောင်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 应该 + V (yīnggāi) · သင့်",
+    description: "'...သင့်သည်'",
+    examples: [
+    { hanzi: "我们应该保护环境。 (Wǒmen yīnggāi bǎohù huánjìng.)", pinyin: "Wǒmen yīnggāi bǎohù huánjìng.", meaning: "ငါတို့ ပတ်ဝန်းကျင်ကိုကာကွယ်သင့်တယ်။" },
+    { hanzi: "你应该少用塑料袋。 (Nǐ yīnggāi shǎo yòng sùliàodài.)", pinyin: "Nǐ yīnggāi shǎo yòng sùliàodài.", meaning: "မင်း ပလတ်စတစ်အိတ်နည်းနည်းသုံးသင့်တယ်။" },
+    { hanzi: "我们应该多种树。 (Wǒmen yīnggāi duō zhòng shù.)", pinyin: "Wǒmen yīnggāi duō zhòng shù.", meaning: "ငါတို့ သစ်ပင်များများစိုက်သင့်တယ်။" },
+    { hanzi: "他应该早点来。 (Tā yīnggāi zǎo diǎn lái.)", pinyin: "Tā yīnggāi zǎo diǎn lái.", meaning: "သူ စောစောလာသင့်တယ်။" },
+    { hanzi: "我们应该好好学习。 (Wǒmen yīnggāi hǎohǎo xuéxí.)", pinyin: "Wǒmen yīnggāi hǎohǎo xuéxí.", meaning: "ငါတို့ ကောင်းကောင်းစာသင်သင့်တယ်။" }
+    ]
+    },
+    {
+    pattern: "少 + V (shǎo) · နည်းနည်းလုပ်",
+    description: "'နည်းနည်းလုပ်သည်'",
+    examples: [
+    { hanzi: "少用塑料袋。 (Shǎo yòng sùliàodài.)", pinyin: "Shǎo yòng sùliàodài.", meaning: "ပလတ်စတစ်အိတ် နည်းနည်းသုံးပါ။" },
+    { hanzi: "少开车。 (Shǎo kāichē.)", pinyin: "Shǎo kāichē.", meaning: "ကား နည်းနည်းမောင်းပါ။" },
+    { hanzi: "少吃点。 (Shǎo chī diǎn.)", pinyin: "Shǎo chī diǎn.", meaning: "နည်းနည်းစားပါ။" },
+    { hanzi: "少说话。 (Shǎo shuōhuà.)", pinyin: "Shǎo shuōhuà.", meaning: "စကား နည်းနည်းပြောပါ။" },
+    { hanzi: "少熬夜。 (Shǎo áoyè.)", pinyin: "Shǎo áoyè.", meaning: "ညနေနည်းနည်းနေပါ။" }
+    ]
+    },
+    {
+    pattern: "多 + V (duō) · များများလုပ်",
+    description: "'များများလုပ်သည်'",
+    examples: [
+    { hanzi: "多种树。 (Duō zhòng shù.)", pinyin: "Duō zhòng shù.", meaning: "သစ်ပင် များများစိုက်ပါ။" },
+    { hanzi: "多运动。 (Duō yùndòng.)", pinyin: "Duō yùndòng.", meaning: "အားကစား များများလုပ်ပါ။" },
+    { hanzi: "多吃水果。 (Duō chī shuǐguǒ.)", pinyin: "Duō chī shuǐguǒ.", meaning: "သစ်သီး များများစားပါ။" },
+    { hanzi: "多看书。 (Duō kàn shū.)", pinyin: "Duō kàn shū.", meaning: "စာ များများဖတ်ပါ။" },
+    { hanzi: "多练习。 (Duō liànxí.)", pinyin: "Duō liànxí.", meaning: "လေ့ကျင့်ခန်း များများလုပ်ပါ။" }
+    ]
+    },
+    {
+    pattern: "S + 为 + N + V (wèi) · အတွက်",
+    description: "'...အတွက်...လုပ်သည်'",
+    examples: [
+    { hanzi: "为环境做贡献。 (Wèi huánjìng zuò gòngxiàn.)", pinyin: "Wèi huánjìng zuò gòngxiàn.", meaning: "ပတ်ဝန်းကျင်အတွက် ပံ့ပိုးပါ။" },
+    { hanzi: "为社会做贡献。 (Wèi shèhuì zuò gòngxiàn.)", pinyin: "Wèi shèhuì zuò gòngxiàn.", meaning: "လူ့အဖွဲ့အစည်းအတွက် ပံ့ပိုးပါ။" },
+    { hanzi: "为家人做饭。 (Wèi jiārén zuòfàn.)", pinyin: "Wèi jiārén zuòfàn.", meaning: "မိသားစုအတွက် ထမင်းချက်ပါ။" },
+    { hanzi: "为朋友着想。 (Wèi péngyou zhuóxiǎng.)", pinyin: "Wèi péngyou zhuóxiǎng.", meaning: "သူငယ်ချင်းအတွက် စဉ်းစားပါ။" },
+    { hanzi: "为未来努力。 (Wèi wèilái nǔlì.)", pinyin: "Wèi wèilái nǔlì.", meaning: "အနာဂတ်အတွက် ကြိုးစားပါ။" }
+    ]
+    },
+    {
+    pattern: "S + 也 + V (yě) · လည်း",
+    description: "'လည်း'",
+    examples: [
+    { hanzi: "空气也很好。 (Kōngqì yě hěn hǎo.)", pinyin: "Kōngqì yě hěn hǎo.", meaning: "လေကလည်း ကောင်းတယ်။" },
+    { hanzi: "我们也要努力。 (Wǒmen yě yào nǔlì.)", pinyin: "Wǒmen yě yào nǔlì.", meaning: "ငါတို့လည်း ကြိုးစားရမယ်။" },
+    { hanzi: "她也是学生。 (Tā yě shì xuéshēng.)", pinyin: "Tā yě shì xuéshēng.", meaning: "သူမလည်း ကျောင်းသားပါ။" },
+    { hanzi: "他也在北京。 (Tā yě zài Běijīng.)", pinyin: "Tā yě zài Běijīng.", meaning: "သူလည်း ဘေဂျင်းမှာပါ။" },
+    { hanzi: "我也喜欢运动。 (Wǒ yě xǐhuān yùndòng.)", pinyin: "Wǒ yě xǐhuān yùndòng.", meaning: "ငါလည်း အားကစားကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 说 + 得 + Adj (shuō de) · ပြောတာ",
+    description: "'...ပြောတာ...'",
+    examples: [
+    { hanzi: "你说得对。 (Nǐ shuō de duì.)", pinyin: "Nǐ shuō de duì.", meaning: "မင်းပြောတာမှန်တယ်။" },
+    { hanzi: "她说得很好。 (Tā shuō de hěn hǎo.)", pinyin: "Tā shuō de hěn hǎo.", meaning: "သူမ ကောင်းကောင်းပြောတယ်။" },
+    { hanzi: "他说得快。 (Tā shuō de kuài.)", pinyin: "Tā shuō de kuài.", meaning: "သူ မြန်မြန်ပြောတယ်။" },
+    { hanzi: "你说得不错。 (Nǐ shuō de bùcuò.)", pinyin: "Nǐ shuō de bùcuò.", meaning: "မင်းပြောတာမဆိုးဘူး။" },
+    { hanzi: "她说得很清楚。 (Tā shuō de hěn qīngchu.)", pinyin: "Tā shuō de hěn qīngchu.", meaning: "သူမ ရှင်းရှင်းလင်းလင်းပြောတယ်။" }
+    ]
+    },
+    {
+    pattern: "一起 + V (yīqǐ) · အတူ",
+    description: "'အတူ...လုပ်သည်'",
+    examples: [
+    { hanzi: "我们一起努力吧。 (Wǒmen yīqǐ nǔlì ba.)", pinyin: "Wǒmen yīqǐ nǔlì ba.", meaning: "ငါတို့ အတူကြိုးစားကြစို့။" },
+    { hanzi: "一起学习。 (Yīqǐ xuéxí.)", pinyin: "Yīqǐ xuéxí.", meaning: "အတူစာသင်ကြမယ်။" },
+    { hanzi: "一起吃饭。 (Yīqǐ chīfàn.)", pinyin: "Yīqǐ chīfàn.", meaning: "အတူထမင်းစားကြမယ်။" },
+    { hanzi: "一起去。 (Yīqǐ qù.)", pinyin: "Yīqǐ qù.", meaning: "အတူသွားကြမယ်။" },
+    { hanzi: "一起运动。 (Yīqǐ yùndòng.)", pinyin: "Yīqǐ yùndòng.", meaning: "အတူအားကစားလုပ်ကြမယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李家乡的环境怎么样？", answer: "很干净，空气也很好" },
+    { question: "现在很多地方污染怎么样？", answer: "很严重" },
+    { question: "我们应该怎么做？", answer: "保护环境" },
+    { question: "我们可以怎么做？", answer: "少用塑料袋，多种树" },
+    { question: "也要少做什么？", answer: "少开车" },
+    { question: "每个人都应该怎么做？", answer: "为环境做贡献" },
+    { question: "小李和小张决定怎么做？", answer: "一起努力" },
+    { question: "小张觉得小李说得怎么样？", answer: "对" }
+    ]
+    };
+    const lesson17 = {
+    lessonNumber: 17,
+    title: "朋友 · Péngyou · သူငယ်ချင်း",
+    dialog: [
+    { hanzi: "小王：你有好朋友吗？", pinyin: "Xiǎo Wáng: Nǐ yǒu hǎo péngyou ma?", meaning: "မင်းမှာ သူငယ်ချင်းကောင်းရှိလား။" },
+    { hanzi: "小李：有，我有很多朋友。", pinyin: "Xiǎo Lǐ: Yǒu, wǒ yǒu hěnduō péngyou.", meaning: "ရှိတယ်၊ ငါ့မှာ သူငယ်ချင်းအများကြီးရှိတယ်။" },
+    { hanzi: "小王：你们是怎么认识的？", pinyin: "Xiǎo Wáng: Nǐmen shì zěnme rènshi de?", meaning: "မင်းတို့ ဘယ်လိုသိကြလဲ။" },
+    { hanzi: "小李：我们是大学同学。", pinyin: "Xiǎo Lǐ: Wǒmen shì dàxué tóngxué.", meaning: "ငါတို့ တက္ကသိုလ်ကျောင်းသားတွေပါ။" },
+    { hanzi: "小王：你们经常一起做什么？", pinyin: "Xiǎo Wáng: Nǐmen jīngcháng yīqǐ zuò shénme?", meaning: "မင်းတို့ မကြာခဏ အတူဘာလုပ်လဲ။" },
+    { hanzi: "小李：我们经常一起吃饭、看电影。", pinyin: "Xiǎo Lǐ: Wǒmen jīngcháng yīqǐ chīfàn, kàn diànyǐng.", meaning: "ငါတို့ မကြာခဏ အတူထမင်းစားတယ်၊ ရုပ်ရှင်ကြည့်တယ်။" },
+    { hanzi: "小王：好朋友应该互相帮助。", pinyin: "Xiǎo Wáng: Hǎo péngyou yīnggāi hùxiāng bāngzhù.", meaning: "သူငယ်ချင်းကောင်းတွေ အချင်းချင်းကူညီသင့်တယ်။" },
+    { hanzi: "小李：对，我们经常互相帮助。", pinyin: "Xiǎo Lǐ: Duì, wǒmen jīngcháng hùxiāng bāngzhù.", meaning: "ဟုတ်တယ်၊ ငါတို့ မကြာခဏ အချင်းချင်းကူညီတယ်။" },
+    { hanzi: "小王：朋友很重要。", pinyin: "Xiǎo Wáng: Péngyou hěn zhòngyào.", meaning: "သူငယ်ချင်းတွေ အရမ်းအရေးကြီးတယ်။" },
+    { hanzi: "小李：是的，我很珍惜我的朋友。", pinyin: "Xiǎo Lǐ: Shì de, wǒ hěn zhēnxī wǒ de péngyou.", meaning: "ဟုတ်တယ်၊ ငါ ငါ့သူငယ်ချင်းတွေကို အရမ်းတန်ဖိုးထားတယ်။" }
+    ],
+    vocab: [
+    { hanzi: "好朋友 (hǎo péngyou)", pinyin: "hǎo péngyou", meaning: "သူငယ်ချင်းကောင်း" },
+    { hanzi: "认识 (rènshi)", pinyin: "rènshi", meaning: "သိသည်" },
+    { hanzi: "大学 (dàxué)", pinyin: "dàxué", meaning: "တက္ကသိုလ်" },
+    { hanzi: "同学 (tóngxué)", pinyin: "tóngxué", meaning: "ကျောင်းသားချင်း" },
+    { hanzi: "经常 (jīngcháng)", pinyin: "jīngcháng", meaning: "မကြာခဏ" },
+    { hanzi: "互相 (hùxiāng)", pinyin: "hùxiāng", meaning: "အချင်းချင်း" },
+    { hanzi: "帮助 (bāngzhù)", pinyin: "bāngzhù", meaning: "ကူညီသည်" },
+    { hanzi: "重要 (zhòngyào)", pinyin: "zhòngyào", meaning: "အရေးကြီးသည်" },
+    { hanzi: "珍惜 (zhēnxī)", pinyin: "zhēnxī", meaning: "တန်ဖိုးထားသည်" },
+    { hanzi: "看电影 (kàn diànyǐng)", pinyin: "kàn diànyǐng", meaning: "ရုပ်ရှင်ကြည့်သည်" },
+    { hanzi: "一起 (yīqǐ)", pinyin: "yīqǐ", meaning: "အတူတူ" },
+    { hanzi: "吃饭 (chīfàn)", pinyin: "chīfàn", meaning: "ထမင်းစားသည်" },
+    { hanzi: "很 (hěn)", pinyin: "hěn", meaning: "အရမ်း" },
+    { hanzi: "应该 (yīnggāi)", pinyin: "yīnggāi", meaning: "သင့်သည်" },
+    { hanzi: "对 (duì)", pinyin: "duì", meaning: "ဟုတ်တယ်" },
+    { hanzi: "是 (shì)", pinyin: "shì", meaning: "ဖြစ်သည်" },
+    { hanzi: "怎么 (zěnme)", pinyin: "zěnme", meaning: "ဘယ်လို" },
+    { hanzi: "很多 (hěnduō)", pinyin: "hěnduō", meaning: "အများကြီး" },
+    { hanzi: "朋友 (péngyou)", pinyin: "péngyou", meaning: "သူငယ်ချင်း" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 有 + N (yǒu) · ရှိ",
+    description: "'...ရှိသည်'",
+    examples: [
+    { hanzi: "我有好朋友。 (Wǒ yǒu hǎo péngyou.)", pinyin: "Wǒ yǒu hǎo péngyou.", meaning: "ငါ့မှာ သူငယ်ချင်းကောင်းရှိတယ်။" },
+    { hanzi: "她有很多朋友。 (Tā yǒu hěnduō péngyou.)", pinyin: "Tā yǒu hěnduō péngyou.", meaning: "သူမမှာ သူငယ်ချင်းအများကြီးရှိတယ်။" },
+    { hanzi: "我们有时间。 (Wǒmen yǒu shíjiān.)", pinyin: "Wǒmen yǒu shíjiān.", meaning: "ငါတို့မှာ အချိန်ရှိတယ်။" },
+    { hanzi: "你有问题吗？ (Nǐ yǒu wèntí ma?)", pinyin: "Nǐ yǒu wèntí ma?", meaning: "မင်းမှာ ပြဿနာရှိလား။" },
+    { hanzi: "他有钱。 (Tā yǒu qián.)", pinyin: "Tā yǒu qián.", meaning: "သူ့မှာ ပိုက်ဆံရှိတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + N (shì) · ဖြစ်",
+    description: "'...ဖြစ်သည်'",
+    examples: [
+    { hanzi: "我们是大学同学。 (Wǒmen shì dàxué tóngxué.)", pinyin: "Wǒmen shì dàxué tóngxué.", meaning: "ငါတို့ တက္ကသိုလ်ကျောင်းသားချင်းတွေပါ။" },
+    { hanzi: "她是我的朋友。 (Tā shì wǒ de péngyou.)", pinyin: "Tā shì wǒ de péngyou.", meaning: "သူမ ငါ့သူငယ်ချင်းပါ။" },
+    { hanzi: "他是老师。 (Tā shì lǎoshī.)", pinyin: "Tā shì lǎoshī.", meaning: "သူ ဆရာပါ။" },
+    { hanzi: "我是学生。 (Wǒ shì xuéshēng.)", pinyin: "Wǒ shì xuéshēng.", meaning: "ငါ ကျောင်းသားပါ။" },
+    { hanzi: "我们是好朋友。 (Wǒmen shì hǎo péngyou.)", pinyin: "Wǒmen shì hǎo péngyou.", meaning: "ငါတို့ သူငယ်ချင်းကောင်းတွေပါ။" }
+    ]
+    },
+    {
+    pattern: "S + 经常 + V (jīngcháng) · မကြာခဏ",
+    description: "'မကြာခဏ...'",
+    examples: [
+    { hanzi: "我们经常一起吃饭。 (Wǒmen jīngcháng yīqǐ chīfàn.)", pinyin: "Wǒmen jīngcháng yīqǐ chīfàn.", meaning: "ငါတို့ မကြာခဏ အတူထမင်းစားတယ်။" },
+    { hanzi: "她经常跑步。 (Tā jīngcháng pǎobù.)", pinyin: "Tā jīngcháng pǎobù.", meaning: "သူမ မကြာခဏ ပြေးတယ်။" },
+    { hanzi: "我们经常见面。 (Wǒmen jīngcháng jiànmiàn.)", pinyin: "Wǒmen jīngcháng jiànmiàn.", meaning: "ငါတို့ မကြာခဏ တွေ့ကြတယ်။" },
+    { hanzi: "你经常做什么？ (Nǐ jīngcháng zuò shénme?)", pinyin: "Nǐ jīngcháng zuò shénme?", meaning: "မင်း မကြာခဏ ဘာလုပ်လဲ။" },
+    { hanzi: "他经常看书。 (Tā jīngcháng kàn shū.)", pinyin: "Tā jīngcháng kàn shū.", meaning: "သူ မကြာခဏ စာဖတ်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 互相 + V (hùxiāng) · အချင်းချင်း",
+    description: "'အချင်းချင်း...'",
+    examples: [
+    { hanzi: "我们互相帮助。 (Wǒmen hùxiāng bāngzhù.)", pinyin: "Wǒmen hùxiāng bāngzhù.", meaning: "ငါတို့ အချင်းချင်းကူညီတယ်။" },
+    { hanzi: "他们互相学习。 (Tāmen hùxiāng xuéxí.)", pinyin: "Tāmen hùxiāng xuéxí.", meaning: "သူတို့ အချင်းချင်းသင်ယူတယ်။" },
+    { hanzi: "我们互相尊重。 (Wǒmen hùxiāng zūnzhòng.)", pinyin: "Wǒmen hùxiāng zūnzhòng.", meaning: "ငါတို့ အချင်းချင်းလေးစားတယ်။" },
+    { hanzi: "朋友应该互相理解。 (Péngyou yīnggāi hùxiāng lǐjiě.)", pinyin: "Péngyou yīnggāi hùxiāng lǐjiě.", meaning: "သူငယ်ချင်းတွေ အချင်းချင်းနားလည်သင့်တယ်။" },
+    { hanzi: "他们互相帮助学习。 (Tāmen hùxiāng bāngzhù xuéxí.)", pinyin: "Tāmen hùxiāng bāngzhù xuéxí.", meaning: "သူတို့ အချင်းချင်းစာသင်ကူညီတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 应该 + V (yīnggāi) · သင့်",
+    description: "'...သင့်သည်'",
+    examples: [
+    { hanzi: "好朋友应该互相帮助。 (Hǎo péngyou yīnggāi hùxiāng bāngzhù.)", pinyin: "Hǎo péngyou yīnggāi hùxiāng bāngzhù.", meaning: "သူငယ်ချင်းကောင်းတွေ အချင်းချင်းကူညီသင့်တယ်။" },
+    { hanzi: "你应该早点休息。 (Nǐ yīnggāi zǎo diǎn xiūxi.)", pinyin: "Nǐ yīnggāi zǎo diǎn xiūxi.", meaning: "မင်း စောစောအနားယူသင့်တယ်။" },
+    { hanzi: "我们应该多运动。 (Wǒmen yīnggāi duō yùndòng.)", pinyin: "Wǒmen yīnggāi duō yùndòng.", meaning: "ငါတို့ အားကစားများများလုပ်သင့်တယ်။" },
+    { hanzi: "他应该好好学习。 (Tā yīnggāi hǎohǎo xuéxí.)", pinyin: "Tā yīnggāi hǎohǎo xuéxí.", meaning: "သူ ကောင်းကောင်းစာသင်သင့်တယ်။" },
+    { hanzi: "我们应该保护环境。 (Wǒmen yīnggāi bǎohù huánjìng.)", pinyin: "Wǒmen yīnggāi bǎohù huánjìng.", meaning: "ငါတို့ ပတ်ဝန်းကျင်ကိုကာကွယ်သင့်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 很 + Adj (hěn) · အရမ်း",
+    description: "'အရမ်း...'",
+    examples: [
+    { hanzi: "朋友很重要。 (Péngyou hěn zhòngyào.)", pinyin: "Péngyou hěn zhòngyào.", meaning: "သူငယ်ချင်းတွေ အရမ်းအရေးကြီးတယ်။" },
+    { hanzi: "我很珍惜朋友。 (Wǒ hěn zhēnxī péngyou.)", pinyin: "Wǒ hěn zhēnxī péngyou.", meaning: "ငါ သူငယ်ချင်းတွေကို အရမ်းတန်ဖိုးထားတယ်။" },
+    { hanzi: "她很高兴。 (Tā hěn gāoxìng.)", pinyin: "Tā hěn gāoxìng.", meaning: "သူမ အရမ်းပျော်တယ်။" },
+    { hanzi: "我们很忙。 (Wǒmen hěn máng.)", pinyin: "Wǒmen hěn máng.", meaning: "ငါတို့ အရမ်းအလုပ်များတယ်။" },
+    { hanzi: "今天很冷。 (Jīntiān hěn lěng.)", pinyin: "Jīntiān hěn lěng.", meaning: "ဒီနေ့ အရမ်းအေးတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 怎么 + V (zěnme) · ဘယ်လို",
+    description: "'ဘယ်လို...'",
+    examples: [
+    { hanzi: "你们是怎么认识的？ (Nǐmen shì zěnme rènshi de?)", pinyin: "Nǐmen shì zěnme rènshi de?", meaning: "မင်းတို့ ဘယ်လိုသိကြလဲ။" },
+    { hanzi: "你怎么去学校？ (Nǐ zěnme qù xuéxiào?)", pinyin: "Nǐ zěnme qù xuéxiào?", meaning: "မင်း ဘယ်လိုကျောင်းသွားလဲ။" },
+    { hanzi: "他怎么做的？ (Tā zěnme zuò de?)", pinyin: "Tā zěnme zuò de?", meaning: "သူ ဘယ်လိုလုပ်တာလဲ။" },
+    { hanzi: "你怎么样？ (Nǐ zěnmeyàng?)", pinyin: "Nǐ zěnmeyàng?", meaning: "မင်း ဘယ်လိုလဲ။" },
+    { hanzi: "她怎么学习的？ (Tā zěnme xuéxí de?)", pinyin: "Tā zěnme xuéxí de?", meaning: "သူမ ဘယ်လိုသင်တာလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 对 (duì) · မှန်",
+    description: "'မှန်သည်'",
+    examples: [
+    { hanzi: "你说得对。 (Nǐ shuō de duì.)", pinyin: "Nǐ shuō de duì.", meaning: "မင်းပြောတာမှန်တယ်။" },
+    { hanzi: "对，我是学生。 (Duì, wǒ shì xuéshēng.)", pinyin: "Duì, wǒ shì xuéshēng.", meaning: "မှန်တယ်၊ ငါ ကျောင်းသားပါ။" },
+    { hanzi: "这个答案对吗？ (Zhège dá'àn duì ma?)", pinyin: "Zhège dá'àn duì ma?", meaning: "ဒီအဖြေမှန်လား။" },
+    { hanzi: "对，就是这样。 (Duì, jiùshì zhèyàng.)", pinyin: "Duì, jiùshì zhèyàng.", meaning: "မှန်တယ်၊ ဒီလိုပဲ။" },
+    { hanzi: "对不对？ (Duì bù duì?)", pinyin: "Duì bù duì?", meaning: "မှန်လား မမှန်ဘူးလား။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李有好朋友吗？", answer: "有" },
+    { question: "小李有很多朋友吗？", answer: "是" },
+    { question: "小李和朋友是怎么认识的？", answer: "大学同学" },
+    { question: "他们经常一起做什么？", answer: "吃饭、看电影" },
+    { question: "好朋友应该怎么样？", answer: "互相帮助" },
+    { question: "朋友重要吗？", answer: "很重要" },
+    { question: "小李珍惜朋友吗？", answer: "很珍惜" },
+    { question: "他们经常互相帮助吗？", answer: "是" }
+    ]
+    };
+    const lesson18 = {
+    lessonNumber: 18,
+    title: "家庭 · Jiātíng · မိသားစု",
+    dialog: [
+    { hanzi: "小王：你家有几口人？", pinyin: "Xiǎo Wáng: Nǐ jiā yǒu jǐ kǒu rén?", meaning: "မင်းအိမ်မှာ လူဘယ်နှစ်ယောက်ရှိလဲ။" },
+    { hanzi: "小李：我家有四口人。", pinyin: "Xiǎo Lǐ: Wǒ jiā yǒu sì kǒu rén.", meaning: "ငါ့အိမ်မှာ လူလေးယောက်ရှိတယ်။" },
+    { hanzi: "小王：都有谁？", pinyin: "Xiǎo Wáng: Dōu yǒu shéi?", meaning: "ဘယ်သူတွေလဲ။" },
+    { hanzi: "小李：爸爸、妈妈、哥哥和我。", pinyin: "Xiǎo Lǐ: Bàba, māma, gēge hé wǒ.", meaning: "အဖေ၊ အမေ၊ အစ်ကိုနဲ့ ငါ။" },
+    { hanzi: "小王：你哥哥做什么工作？", pinyin: "Xiǎo Wáng: Nǐ gēge zuò shénme gōngzuò?", meaning: "မင်းအစ်ကို ဘာအလုပ်လုပ်လဲ။" },
+    { hanzi: "小李：他是医生。", pinyin: "Xiǎo Lǐ: Tā shì yīshēng.", meaning: "သူ ဆရာဝန်ပါ။" },
+    { hanzi: "小王：你父母退休了吗？", pinyin: "Xiǎo Wáng: Nǐ fùmǔ tuìxiū le ma?", meaning: "မင်းမိဘတွေ အငြိမ်းစားယူပြီလား။" },
+    { hanzi: "小李：爸爸退休了，妈妈还没退休。", pinyin: "Xiǎo Lǐ: Bàba tuìxiū le, māma hái méi tuìxiū.", meaning: "အဖေ အငြိမ်းစားယူပြီ၊ အမေ မယူသေးဘူး။" },
+    { hanzi: "小王：你家在哪儿？", pinyin: "Xiǎo Wáng: Nǐ jiā zài nǎr?", meaning: "မင်းအိမ် ဘယ်မှာလဲ။" },
+    { hanzi: "小李：我家在上海。", pinyin: "Xiǎo Lǐ: Wǒ jiā zài Shànghǎi.", meaning: "ငါ့အိမ် ရှန်ဟိုင်းမှာပါ။" },
+    { hanzi: "小王：你经常回家吗？", pinyin: "Xiǎo Wáng: Nǐ jīngcháng huí jiā ma?", meaning: "မင်း အိမ်ကိုမကြာခဏပြန်လား။" },
+    { hanzi: "小李：是的，我每个月都回家。", pinyin: "Xiǎo Lǐ: Shì de, wǒ měi gè yuè dōu huí jiā.", meaning: "ဟုတ်တယ်၊ ငါ လတိုင်း အိမ်ပြန်တယ်။" },
+    { hanzi: "小王：你的家庭很幸福。", pinyin: "Xiǎo Wáng: Nǐ de jiātíng hěn xìngfú.", meaning: "မင်းရဲ့မိသားစု အရမ်းပျော်ရွှင်တယ်။" },
+    { hanzi: "小李：谢谢，我也觉得很幸福。", pinyin: "Xiǎo Lǐ: Xièxie, wǒ yě juéde hěn xìngfú.", meaning: "ကျေးဇူးပါ၊ ငါလည်း အရမ်းပျော်ရွှင်တယ်လို့ထင်တယ်။" }
+    ],
+    vocab: [
+    { hanzi: "家庭 (jiātíng)", pinyin: "jiātíng", meaning: "မိသားစု" },
+    { hanzi: "口 (kǒu)", pinyin: "kǒu", meaning: "ယောက် (လူအတွက်)" },
+    { hanzi: "爸爸 (bàba)", pinyin: "bàba", meaning: "အဖေ" },
+    { hanzi: "妈妈 (māma)", pinyin: "māma", meaning: "အမေ" },
+    { hanzi: "哥哥 (gēge)", pinyin: "gēge", meaning: "အစ်ကို" },
+    { hanzi: "医生 (yīshēng)", pinyin: "yīshēng", meaning: "ဆရာဝန်" },
+    { hanzi: "父母 (fùmǔ)", pinyin: "fùmǔ", meaning: "မိဘ" },
+    { hanzi: "退休 (tuìxiū)", pinyin: "tuìxiū", meaning: "အငြိမ်းစားယူသည်" },
+    { hanzi: "回家 (huí jiā)", pinyin: "huí jiā", meaning: "အိမ်ပြန်သည်" },
+    { hanzi: "每个月 (měi gè yuè)", pinyin: "měi gè yuè", meaning: "လတိုင်း" },
+    { hanzi: "幸福 (xìngfú)", pinyin: "xìngfú", meaning: "ပျော်ရွှင်သည်" },
+    { hanzi: "谢谢 (xièxie)", pinyin: "xièxie", meaning: "ကျေးဇူးပါ" },
+    { hanzi: "有 (yǒu)", pinyin: "yǒu", meaning: "ရှိသည်" },
+    { hanzi: "几 (jǐ)", pinyin: "jǐ", meaning: "ဘယ်နှစ်" },
+    { hanzi: "谁 (shéi)", pinyin: "shéi", meaning: "ဘယ်သူ" },
+    { hanzi: "做 (zuò)", pinyin: "zuò", meaning: "လုပ်သည်" },
+    { hanzi: "工作 (gōngzuò)", pinyin: "gōngzuò", meaning: "အလုပ်" },
+    { hanzi: "是 (shì)", pinyin: "shì", meaning: "ဖြစ်သည်" },
+    { hanzi: "在 (zài)", pinyin: "zài", meaning: "မှာ" },
+    { hanzi: "还 (hái)", pinyin: "hái", meaning: "သေး" },
+    { hanzi: "没 (méi)", pinyin: "méi", meaning: "မ" },
+    { hanzi: "很 (hěn)", pinyin: "hěn", meaning: "အရမ်း" },
+    { hanzi: "觉得 (juéde)", pinyin: "juéde", meaning: "ထင်သည်" },
+    { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+    { hanzi: "都 (dōu)", pinyin: "dōu", meaning: "အားလုံး" },
+    { hanzi: "幸福 (xìngfú)", pinyin: "xìngfú", meaning: "ပျော်ရွှင်သည်" },
+    { hanzi: "谢谢 (xièxie)", pinyin: "xièxie", meaning: "ကျေးဇူးပါ" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 家 + 有 + 几口人 (jiā yǒu jǐ kǒu rén) · အိမ်မှာလူဘယ်နှစ်ယောက်",
+    description: "'အိမ်မှာ လူဘယ်နှစ်ယောက်ရှိလဲ'",
+    examples: [
+    { hanzi: "你家有几口人？ (Nǐ jiā yǒu jǐ kǒu rén?)", pinyin: "Nǐ jiā yǒu jǐ kǒu rén?", meaning: "မင်းအိမ်မှာ လူဘယ်နှစ်ယောက်ရှိလဲ။" },
+    { hanzi: "我家有四口人。 (Wǒ jiā yǒu sì kǒu rén.)", pinyin: "Wǒ jiā yǒu sì kǒu rén.", meaning: "ငါ့အိမ်မှာ လူလေးယောက်ရှိတယ်။" },
+    { hanzi: "他家有五口人。 (Tā jiā yǒu wǔ kǒu rén.)", pinyin: "Tā jiā yǒu wǔ kǒu rén.", meaning: "သူ့အိမ်မှာ လူငါးယောက်ရှိတယ်။" },
+    { hanzi: "你家有几口人？ (Nǐ jiā yǒu jǐ kǒu rén?)", pinyin: "Nǐ jiā yǒu jǐ kǒu rén?", meaning: "မင်းအိမ်မှာ လူဘယ်နှစ်ယောက်ရှိလဲ။" },
+    { hanzi: "我家有三口人。 (Wǒ jiā yǒu sān kǒu rén.)", pinyin: "Wǒ jiā yǒu sān kǒu rén.", meaning: "ငါ့အိမ်မှာ လူသုံးယောက်ရှိတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 是 + N (shì) · ဖြစ်",
+    description: "'...ဖြစ်သည်'",
+    examples: [
+    { hanzi: "他是医生。 (Tā shì yīshēng.)", pinyin: "Tā shì yīshēng.", meaning: "သူ ဆရာဝန်ပါ။" },
+    { hanzi: "她是老师。 (Tā shì lǎoshī.)", pinyin: "Tā shì lǎoshī.", meaning: "သူမ ဆရာမပါ။" },
+    { hanzi: "我是学生。 (Wǒ shì xuéshēng.)", pinyin: "Wǒ shì xuéshēng.", meaning: "ငါ ကျောင်းသားပါ။" },
+    { hanzi: "他们是父母。 (Tāmen shì fùmǔ.)", pinyin: "Tāmen shì fùmǔ.", meaning: "သူတို့ မိဘတွေပါ။" },
+    { hanzi: "我们是朋友。 (Wǒmen shì péngyou.)", pinyin: "Wǒmen shì péngyou.", meaning: "ငါတို့ သူငယ်ချင်းတွေပါ။" }
+    ]
+    },
+    {
+    pattern: "S + 还 + 没 + V (hái méi) · မသေး",
+    description: "'...မသေး'",
+    examples: [
+    { hanzi: "妈妈还没退休。 (Māma hái méi tuìxiū.)", pinyin: "Māma hái méi tuìxiū.", meaning: "အမေ အငြိမ်းစား မယူသေးဘူး။" },
+    { hanzi: "他还没来。 (Tā hái méi lái.)", pinyin: "Tā hái méi lái.", meaning: "သူ မလာသေးဘူး။" },
+    { hanzi: "我还没吃饭。 (Wǒ hái méi chīfàn.)", pinyin: "Wǒ hái méi chīfàn.", meaning: "ငါ ထမင်းမစားသေးဘူး။" },
+    { hanzi: "她还没到。 (Tā hái méi dào.)", pinyin: "Tā hái méi dào.", meaning: "သူမ မရောက်သေးဘူး။" },
+    { hanzi: "我们还没开始。 (Wǒmen hái méi kāishǐ.)", pinyin: "Wǒmen hái méi kāishǐ.", meaning: "ငါတို့ မစသေးဘူး။" }
+    ]
+    },
+    {
+    pattern: "S + 每个月 + V (měi gè yuè) · လတိုင်း",
+    description: "'လတိုင်း...'",
+    examples: [
+    { hanzi: "我每个月都回家。 (Wǒ měi gè yuè dōu huí jiā.)", pinyin: "Wǒ měi gè yuè dōu huí jiā.", meaning: "ငါ လတိုင်း အိမ်ပြန်တယ်။" },
+    { hanzi: "她每个月去旅行。 (Tā měi gè yuè qù lǚxíng.)", pinyin: "Tā měi gè yuè qù lǚxíng.", meaning: "သူမ လတိုင်း ခရီးသွားတယ်။" },
+    { hanzi: "我们每个月发工资。 (Wǒmen měi gè yuè fā gōngzī.)", pinyin: "Wǒmen měi gè yuè fā gōngzī.", meaning: "ငါတို့ လတိုင်း လစာရတယ်။" },
+    { hanzi: "你每个月做什么？ (Nǐ měi gè yuè zuò shénme?)", pinyin: "Nǐ měi gè yuè zuò shénme?", meaning: "မင်း လတိုင်း ဘာလုပ်လဲ။" },
+    { hanzi: "他每个月都来。 (Tā měi gè yuè dōu lái.)", pinyin: "Tā měi gè yuè dōu lái.", meaning: "သူ လတိုင်း လာတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 很 + Adj (hěn) · အရမ်း",
+    description: "'အရမ်း...'",
+    examples: [
+    { hanzi: "我的家庭很幸福。 (Wǒ de jiātíng hěn xìngfú.)", pinyin: "Wǒ de jiātíng hěn xìngfú.", meaning: "ငါ့မိသားစု အရမ်းပျော်ရွှင်တယ်။" },
+    { hanzi: "她很漂亮。 (Tā hěn piàoliang.)", pinyin: "Tā hěn piàoliang.", meaning: "သူမ အရမ်းလှတယ်။" },
+    { hanzi: "他很忙。 (Tā hěn máng.)", pinyin: "Tā hěn máng.", meaning: "သူ အရမ်းအလုပ်များတယ်။" },
+    { hanzi: "我们很高兴。 (Wǒmen hěn gāoxìng.)", pinyin: "Wǒmen hěn gāoxìng.", meaning: "ငါတို့ အရမ်းပျော်တယ်။" },
+    { hanzi: "这个很好。 (Zhège hěn hǎo.)", pinyin: "Zhège hěn hǎo.", meaning: "ဒါက အရမ်းကောင်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 觉得 + Adj (juéde) · ထင်",
+    description: "'...လို့ထင်သည်'",
+    examples: [
+    { hanzi: "我觉得很幸福。 (Wǒ juéde hěn xìngfú.)", pinyin: "Wǒ juéde hěn xìngfú.", meaning: "ငါ အရမ်းပျော်ရွှင်တယ်လို့ထင်တယ်။" },
+    { hanzi: "她觉得很好。 (Tā juéde hěn hǎo.)", pinyin: "Tā juéde hěn hǎo.", meaning: "သူမ ကောင်းတယ်လို့ထင်တယ်။" },
+    { hanzi: "你觉得怎么样？ (Nǐ juéde zěnmeyàng?)", pinyin: "Nǐ juéde zěnmeyàng?", meaning: "မင်း ဘယ်လိုထင်လဲ။" },
+    { hanzi: "我觉得这个不错。 (Wǒ juéde zhège bùcuò.)", pinyin: "Wǒ juéde zhège bùcuò.", meaning: "ငါ ဒါက မဆိုးဘူးလို့ထင်တယ်။" },
+    { hanzi: "我们都觉得很好。 (Wǒmen dōu juéde hěn hǎo.)", pinyin: "Wǒmen dōu juéde hěn hǎo.", meaning: "ငါတို့အားလုံး ကောင်းတယ်လို့ထင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 也 + V (yě) · လည်း",
+    description: "'လည်း'",
+    examples: [
+    { hanzi: "我也觉得很幸福。 (Wǒ yě juéde hěn xìngfú.)", pinyin: "Wǒ yě juéde hěn xìngfú.", meaning: "ငါလည်း အရမ်းပျော်ရွှင်တယ်လို့ထင်တယ်။" },
+    { hanzi: "她也喜欢旅行。 (Tā yě xǐhuān lǚxíng.)", pinyin: "Tā yě xǐhuān lǚxíng.", meaning: "သူမလည်း ခရီးသွားကြိုက်တယ်။" },
+    { hanzi: "我们也很忙。 (Wǒmen yě hěn máng.)", pinyin: "Wǒmen yě hěn máng.", meaning: "ငါတို့လည်း အလုပ်များတယ်။" },
+    { hanzi: "他也在北京。 (Tā yě zài Běijīng.)", pinyin: "Tā yě zài Běijīng.", meaning: "သူလည်း ဘေဂျင်းမှာပါ။" },
+    { hanzi: "我也喜欢运动。 (Wǒ yě xǐhuān yùndòng.)", pinyin: "Wǒ yě xǐhuān yùndòng.", meaning: "ငါလည်း အားကစားကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 都 + V (dōu) · အားလုံး",
+    description: "'အားလုံး'",
+    examples: [
+    { hanzi: "我每个月都回家。 (Wǒ měi gè yuè dōu huí jiā.)", pinyin: "Wǒ měi gè yuè dōu huí jiā.", meaning: "ငါ လတိုင်း အိမ်ပြန်တယ်။" },
+    { hanzi: "我们都喜欢运动。 (Wǒmen dōu xǐhuān yùndòng.)", pinyin: "Wǒmen dōu xǐhuān yùndòng.", meaning: "ငါတို့အားလုံး အားကစားကြိုက်တယ်။" },
+    { hanzi: "她们都是学生。 (Tāmen dōu shì xuéshēng.)", pinyin: "Tāmen dōu shì xuéshēng.", meaning: "သူတို့အားလုံး ကျောင်းသားတွေပါ။" },
+    { hanzi: "我们都很忙。 (Wǒmen dōu hěn máng.)", pinyin: "Wǒmen dōu hěn máng.", meaning: "ငါတို့အားလုံး အလုပ်များတယ်။" },
+    { hanzi: "他们都喜欢旅行。 (Tāmen dōu xǐhuān lǚxíng.)", pinyin: "Tāmen dōu xǐhuān lǚxíng.", meaning: "သူတို့အားလုံး ခရီးသွားကြိုက်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李家里有几口人？", answer: "四口人" },
+    { question: "小李家里都有谁？", answer: "爸爸、妈妈、哥哥和我" },
+    { question: "小李的哥哥做什么工作？", answer: "医生" },
+    { question: "小李的爸爸退休了吗？", answer: "退休了" },
+    { question: "小李的妈妈退休了吗？", answer: "还没退休" },
+    { question: "小李的家在哪儿？", answer: "上海" },
+    { question: "小李经常回家吗？", answer: "每个月都回家" },
+    { question: "小李觉得他的家庭怎么样？", answer: "很幸福" }
+    ]
+    };
+    
+    const lesson19 = {
+    lessonNumber: 19,
+    title: "梦想 · Mèngxiǎng · အိပ်မက်",
+    dialog: [
+    { hanzi: "小张：你有什么梦想？", pinyin: "Xiǎo Zhāng: Nǐ yǒu shénme mèngxiǎng?", meaning: "မင်းမှာ ဘာအိပ်မက်ရှိလဲ။" },
+    { hanzi: "小李：我的梦想是当老师。", pinyin: "Xiǎo Lǐ: Wǒ de mèngxiǎng shì dāng lǎoshī.", meaning: "ငါ့အိပ်မက်က ဆရာဖြစ်ဖို့ပါ။" },
+    { hanzi: "小张：当老师很好，我也想当老师。", pinyin: "Xiǎo Zhāng: Dāng lǎoshī hěn hǎo, wǒ yě xiǎng dāng lǎoshī.", meaning: "ဆရာဖြစ်တာ ကောင်းတယ်၊ ငါလည်း ဆရာဖြစ်ချင်တယ်။" },
+    { hanzi: "小李：你为什么想当老师？", pinyin: "Xiǎo Lǐ: Nǐ wèishénme xiǎng dāng lǎoshī?", meaning: "မင်း ဘာကြောင့် ဆရာဖြစ်ချင်တာလဲ။" },
+    { hanzi: "小张：因为我很喜欢小孩。", pinyin: "Xiǎo Zhāng: Yīnwèi wǒ hěn xǐhuān xiǎohái.", meaning: "ဘာကြောင့်လဲဆိုတော့ ငါ ကလေးတွေကို အရမ်းကြိုက်လို့ပါ။" },
+    { hanzi: "小李：我也是，而且当老师很有意义。", pinyin: "Xiǎo Lǐ: Wǒ yě shì, érqiě dāng lǎoshī hěn yǒuyìyì.", meaning: "ငါလည်းပဲ၊ ပြီးတော့ ဆရာဖြစ်တာက အရမ်းအဓိပ္ပါယ်ရှိတယ်။" },
+    { hanzi: "小张：你觉得当老师难吗？", pinyin: "Xiǎo Zhāng: Nǐ juéde dāng lǎoshī nán ma?", meaning: "မင်း ဆရာဖြစ်တာ ခက်တယ်လို့ထင်လား။" },
+    { hanzi: "小李：有点难，但我会努力。", pinyin: "Xiǎo Lǐ: Yǒu diǎn nán, dàn wǒ huì nǔlì.", meaning: "နည်းနည်းခက်တယ်၊ ဒါပေမယ့် ငါ ကြိုးစားမယ်။" },
+    { hanzi: "小张：你一定可以实现梦想。", pinyin: "Xiǎo Zhāng: Nǐ yīdìng kěyǐ shíxiàn mèngxiǎng.", meaning: "မင်း သေချာ အိပ်မက်ကိုအောင်မြင်နိုင်တယ်။" },
+    { hanzi: "小李：谢谢，我们一起加油！", pinyin: "Xiǎo Lǐ: Xièxie, wǒmen yīqǐ jiāyóu!", meaning: "ကျေးဇူးပါ၊ ငါတို့ အတူ အားပေးကြမယ်။" }
+    ],
+    vocab: [
+    { hanzi: "梦想 (mèngxiǎng)", pinyin: "mèngxiǎng", meaning: "အိပ်မက်" },
+    { hanzi: "当 (dāng)", pinyin: "dāng", meaning: "ဖြစ်သည်" },
+    { hanzi: "老师 (lǎoshī)", pinyin: "lǎoshī", meaning: "ဆရာ/ဆရာမ" },
+    { hanzi: "为什么 (wèishénme)", pinyin: "wèishénme", meaning: "ဘာကြောင့်" },
+    { hanzi: "因为 (yīnwèi)", pinyin: "yīnwèi", meaning: "ဘာကြောင့်လဲဆိုတော့" },
+    { hanzi: "小孩 (xiǎohái)", pinyin: "xiǎohái", meaning: "ကလေး" },
+    { hanzi: "意义 (yìyì)", pinyin: "yìyì", meaning: "အဓိပ္ပါယ်" },
+    { hanzi: "有点 (yǒu diǎn)", pinyin: "yǒu diǎn", meaning: "နည်းနည်း" },
+    { hanzi: "努力 (nǔlì)", pinyin: "nǔlì", meaning: "ကြိုးစားသည်" },
+    { hanzi: "一定 (yīdìng)", pinyin: "yīdìng", meaning: "သေချာ" },
+    { hanzi: "实现 (shíxiàn)", pinyin: "shíxiàn", meaning: "အောင်မြင်သည်" },
+    { hanzi: "加油 (jiāyóu)", pinyin: "jiāyóu", meaning: "အားပေးတယ်" },
+    { hanzi: "有 (yǒu)", pinyin: "yǒu", meaning: "ရှိသည်" },
+    { hanzi: "是 (shì)", pinyin: "shì", meaning: "ဖြစ်သည်" },
+    { hanzi: "想 (xiǎng)", pinyin: "xiǎng", meaning: "ချင်သည်" },
+    { hanzi: "很 (hěn)", pinyin: "hěn", meaning: "အရမ်း" },
+    { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+    { hanzi: "而且 (érqiě)", pinyin: "érqiě", meaning: "ပြီးတော့" },
+    { hanzi: "觉得 (juéde)", pinyin: "juéde", meaning: "ထင်သည်" },
+    { hanzi: "会 (huì)", pinyin: "huì", meaning: "မည်" },
+    { hanzi: "可以 (kěyǐ)", pinyin: "kěyǐ", meaning: "နိုင်သည်" },
+    { hanzi: "谢谢 (xièxie)", pinyin: "xièxie", meaning: "ကျေးဇူးပါ" },
+    { hanzi: "一起 (yīqǐ)", pinyin: "yīqǐ", meaning: "အတူတူ" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 有 + 梦想 (yǒu mèngxiǎng) · အိပ်မက်ရှိ",
+    description: "'အိပ်မက်ရှိသည်'",
+    examples: [
+    { hanzi: "你有什么梦想？ (Nǐ yǒu shénme mèngxiǎng?)", pinyin: "Nǐ yǒu shénme mèngxiǎng?", meaning: "မင်းမှာ ဘာအိပ်မက်ရှိလဲ။" },
+    { hanzi: "我有梦想。 (Wǒ yǒu mèngxiǎng.)", pinyin: "Wǒ yǒu mèngxiǎng.", meaning: "ငါ့မှာ အိပ်မက်ရှိတယ်။" },
+    { hanzi: "她有很大的梦想。 (Tā yǒu hěn dà de mèngxiǎng.)", pinyin: "Tā yǒu hěn dà de mèngxiǎng.", meaning: "သူမမှာ အိပ်မက်ကြီးကြီးရှိတယ်။" },
+    { hanzi: "每个人都有梦想。 (Měi gè rén dōu yǒu mèngxiǎng.)", pinyin: "Měi gè rén dōu yǒu mèngxiǎng.", meaning: "လူတိုင်းမှာ အိပ်မက်ရှိတယ်။" },
+    { hanzi: "你有梦想吗？ (Nǐ yǒu mèngxiǎng ma?)", pinyin: "Nǐ yǒu mèngxiǎng ma?", meaning: "မင်းမှာ အိပ်မက်ရှိလား။" }
+    ]
+    },
+    {
+    pattern: "S + 的 + 梦想 + 是 + V (mèngxiǎng shì) · အိပ်မက်က...ဖြစ်",
+    description: "'အိပ်မက်က...ဖြစ်သည်'",
+    examples: [
+    { hanzi: "我的梦想是当老师。 (Wǒ de mèngxiǎng shì dāng lǎoshī.)", pinyin: "Wǒ de mèngxiǎng shì dāng lǎoshī.", meaning: "ငါ့အိပ်မက်က ဆရာဖြစ်ဖို့ပါ။" },
+    { hanzi: "他的梦想是去旅行。 (Tā de mèngxiǎng shì qù lǚxíng.)", pinyin: "Tā de mèngxiǎng shì qù lǚxíng.", meaning: "သူ့အိပ်မက်က ခရီးသွားဖို့ပါ။" },
+    { hanzi: "她的梦想是当医生。 (Tā de mèngxiǎng shì dāng yīshēng.)", pinyin: "Tā de mèngxiǎng shì dāng yīshēng.", meaning: "သူမရဲ့အိပ်မက်က ဆရာဝန်ဖြစ်ဖို့ပါ။" },
+    { hanzi: "我们的梦想是环游世界。 (Wǒmen de mèngxiǎng shì huányóu shìjiè.)", pinyin: "Wǒmen de mèngxiǎng shì huányóu shìjiè.", meaning: "ငါတို့ရဲ့အိပ်မက်က ကမ္ဘာလှည့်ခရီးသွားဖို့ပါ။" },
+    { hanzi: "你的梦想是什么？ (Nǐ de mèngxiǎng shì shénme?)", pinyin: "Nǐ de mèngxiǎng shì shénme?", meaning: "မင်းရဲ့အိပ်မက်က ဘာလဲ။" }
+    ]
+    },
+    {
+    pattern: "S + 为什么 + V (wèishénme) · ဘာကြောင့်",
+    description: "'ဘာကြောင့်...'",
+    examples: [
+    { hanzi: "你为什么想当老师？ (Nǐ wèishénme xiǎng dāng lǎoshī?)", pinyin: "Nǐ wèishénme xiǎng dāng lǎoshī?", meaning: "မင်း ဘာကြောင့် ဆရာဖြစ်ချင်တာလဲ။" },
+    { hanzi: "你为什么学习汉语？ (Nǐ wèishénme xuéxí Hànyǔ?)", pinyin: "Nǐ wèishénme xuéxí Hànyǔ?", meaning: "မင်း ဘာကြောင့် တရုတ်စာသင်တာလဲ။" },
+    { hanzi: "他为什么不来？ (Tā wèishénme bù lái?)", pinyin: "Tā wèishénme bù lái?", meaning: "သူ ဘာကြောင့် မလာတာလဲ။" },
+    { hanzi: "她为什么生气？ (Tā wèishénme shēngqì?)", pinyin: "Tā wèishénme shēngqì?", meaning: "သူမ ဘာကြောင့် စိတ်ဆိုးတာလဲ။" },
+    { hanzi: "你为什么不去？ (Nǐ wèishénme bù qù?)", pinyin: "Nǐ wèishénme bù qù?", meaning: "မင်း ဘာကြောင့် မသွားတာလဲ။" }
+    ]
+    },
+    {
+    pattern: "因为 + Clause (yīnwèi) · ဘာကြောင့်လဲဆိုတော့",
+    description: "'ဘာကြောင့်လဲဆိုတော့...'",
+    examples: [
+    { hanzi: "因为我很喜欢小孩。 (Yīnwèi wǒ hěn xǐhuān xiǎohái.)", pinyin: "Yīnwèi wǒ hěn xǐhuān xiǎohái.", meaning: "ဘာကြောင့်လဲဆိုတော့ ငါ ကလေးတွေကို အရမ်းကြိုက်လို့ပါ။" },
+    { hanzi: "因为我想学习汉语。 (Yīnwèi wǒ xiǎng xuéxí Hànyǔ.)", pinyin: "Yīnwèi wǒ xiǎng xuéxí Hànyǔ.", meaning: "ဘာကြောင့်လဲဆိုတော့ ငါ တရုတ်စာသင်ချင်လို့ပါ။" },
+    { hanzi: "因为他很忙。 (Yīnwèi tā hěn máng.)", pinyin: "Yīnwèi tā hěn máng.", meaning: "ဘာကြောင့်လဲဆိုတော့ သူ အလုပ်များလို့ပါ။" },
+    { hanzi: "因为今天下雨了。 (Yīnwèi jīntiān xià yǔ le.)", pinyin: "Yīnwèi jīntiān xià yǔ le.", meaning: "ဘာကြောင့်လဲဆိုတော့ ဒီနေ့ မိုးရွာလို့ပါ။" },
+    { hanzi: "因为我想当老师。 (Yīnwèi wǒ xiǎng dāng lǎoshī.)", pinyin: "Yīnwèi wǒ xiǎng dāng lǎoshī.", meaning: "ဘာကြောင့်လဲဆိုတော့ ငါ ဆရာဖြစ်ချင်လို့ပါ။" }
+    ]
+    },
+    {
+    pattern: "S + 会 + V (huì) · မည်",
+    description: "'...မည်'",
+    examples: [
+    { hanzi: "我会努力。 (Wǒ huì nǔlì.)", pinyin: "Wǒ huì nǔlì.", meaning: "ငါ ကြိုးစားမယ်။" },
+    { hanzi: "他会来。 (Tā huì lái.)", pinyin: "Tā huì lái.", meaning: "သူ လာမယ်။" },
+    { hanzi: "她会成功。 (Tā huì chénggōng.)", pinyin: "Tā huì chénggōng.", meaning: "သူမ အောင်မြင်မယ်။" },
+    { hanzi: "我们会加油。 (Wǒmen huì jiāyóu.)", pinyin: "Wǒmen huì jiāyóu.", meaning: "ငါတို့ အားပေးမယ်။" },
+    { hanzi: "你们会来吗？ (Nǐmen huì lái ma?)", pinyin: "Nǐmen huì lái ma?", meaning: "မင်းတို့ လာမလား။" }
+    ]
+    },
+    {
+    pattern: "一定 + 可以 + V (yīdìng kěyǐ) · သေချာနိုင်",
+    description: "'သေချာနိုင်သည်'",
+    examples: [
+    { hanzi: "你一定可以实现梦想。 (Nǐ yīdìng kěyǐ shíxiàn mèngxiǎng.)", pinyin: "Nǐ yīdìng kěyǐ shíxiàn mèngxiǎng.", meaning: "မင်း သေချာ အိပ်မက်ကိုအောင်မြင်နိုင်တယ်။" },
+    { hanzi: "他一定能成功。 (Tā yīdìng néng chénggōng.)", pinyin: "Tā yīdìng néng chénggōng.", meaning: "သူ သေချာအောင်မြင်နိုင်တယ်။" },
+    { hanzi: "我们一定能做到。 (Wǒmen yīdìng néng zuòdào.)", pinyin: "Wǒmen yīdìng néng zuòdào.", meaning: "ငါတို့ သေချာလုပ်နိုင်တယ်။" },
+    { hanzi: "她一定可以来。 (Tā yīdìng kěyǐ lái.)", pinyin: "Tā yīdìng kěyǐ lái.", meaning: "သူမ သေချာလာနိုင်တယ်။" },
+    { hanzi: "你一定可以学好汉语。 (Nǐ yīdìng kěyǐ xué hǎo Hànyǔ.)", pinyin: "Nǐ yīdìng kěyǐ xué hǎo Hànyǔ.", meaning: "မင်း သေချာ တရုတ်စာကောင်းကောင်းတတ်နိုင်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 也 + V (yě) · လည်း",
+    description: "'လည်း'",
+    examples: [
+    { hanzi: "我也想当老师。 (Wǒ yě xiǎng dāng lǎoshī.)", pinyin: "Wǒ yě xiǎng dāng lǎoshī.", meaning: "ငါလည်း ဆရာဖြစ်ချင်တယ်။" },
+    { hanzi: "她也是学生。 (Tā yě shì xuéshēng.)", pinyin: "Tā yě shì xuéshēng.", meaning: "သူမလည်း ကျောင်းသားပါ။" },
+    { hanzi: "我们也很忙。 (Wǒmen yě hěn máng.)", pinyin: "Wǒmen yě hěn máng.", meaning: "ငါတို့လည်း အလုပ်များတယ်။" },
+    { hanzi: "他也在北京。 (Tā yě zài Běijīng.)", pinyin: "Tā yě zài Běijīng.", meaning: "သူလည်း ဘေဂျင်းမှာပါ။" },
+    { hanzi: "我也喜欢运动。 (Wǒ yě xǐhuān yùndòng.)", pinyin: "Wǒ yě xǐhuān yùndòng.", meaning: "ငါလည်း အားကစားကြိုက်တယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 觉得 + 有点 + Adj (juéde yǒu diǎn) · နည်းနည်းထင်",
+    description: "'နည်းနည်းထင်သည်'",
+    examples: [
+    { hanzi: "我觉得有点难。 (Wǒ juéde yǒu diǎn nán.)", pinyin: "Wǒ juéde yǒu diǎn nán.", meaning: "ငါ နည်းနည်းခက်တယ်လို့ထင်တယ်။" },
+    { hanzi: "她觉得有点冷。 (Tā juéde yǒu diǎn lěng.)", pinyin: "Tā juéde yǒu diǎn lěng.", meaning: "သူမ နည်းနည်းအေးတယ်လို့ထင်တယ်။" },
+    { hanzi: "我觉得有点贵。 (Wǒ juéde yǒu diǎn guì.)", pinyin: "Wǒ juéde yǒu diǎn guì.", meaning: "ငါ နည်းနည်းဈေးကြီးတယ်လို့ထင်တယ်။" },
+    { hanzi: "他觉得有点累。 (Tā juéde yǒu diǎn lèi.)", pinyin: "Tā juéde yǒu diǎn lèi.", meaning: "သူ နည်းနည်းပင်ပန်းတယ်လို့ထင်တယ်။" },
+    { hanzi: "她觉得有点饿。 (Tā juéde yǒu diǎn è.)", pinyin: "Tā juéde yǒu diǎn è.", meaning: "သူမ နည်းနည်းဆာတယ်လို့ထင်တယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李的梦想是什么？", answer: "当老师" },
+    { question: "小张也想当老师吗？", answer: "是" },
+    { question: "小张为什么想当老师？", answer: "很喜欢小孩" },
+    { question: "小李也觉得当老师有意义吗？", answer: "很有意义" },
+    { question: "小李觉得当老师难吗？", answer: "有点难" },
+    { question: "小李会努力吗？", answer: "会" },
+    { question: "小张觉得小李可以实现梦想吗？", answer: "一定可以" },
+    { question: "他们说了什么？", answer: "一起加油" }
+    ]
+    };
+    const lesson20 = {
+    lessonNumber: 20,
+    title: "未来 · Wèilái · အနာဂတ်",
+    dialog: [
+    { hanzi: "小王：你对未来有什么计划？", pinyin: "Xiǎo Wáng: Nǐ duì wèilái yǒu shénme jìhuà?", meaning: "မင်း အနာဂတ်အတွက် ဘာအစီအစဉ်ရှိလဲ။" },
+    { hanzi: "小李：我打算去中国留学。", pinyin: "Xiǎo Lǐ: Wǒ dǎsuàn qù Zhōngguó liúxué.", meaning: "ငါ တရုတ်ကိုသွားပြီး ပညာသင်ဖို့ စီစဉ်ထားတယ်။" },
+    { hanzi: "小王：去中国留学很好。", pinyin: "Xiǎo Wáng: Qù Zhōngguó liúxué hěn hǎo.", meaning: "တရုတ်ကိုသွားပြီး ပညာသင်တာ ကောင်းတယ်။" },
+    { hanzi: "小李：是的，我想学中国经济。", pinyin: "Xiǎo Lǐ: Shì de, wǒ xiǎng xué Zhōngguó jīngjì.", meaning: "ဟုတ်တယ်၊ ငါ တရုတ်စီးပွားရေးကိုသင်ချင်တယ်။" },
+    { hanzi: "小王：你什么时候去？", pinyin: "Xiǎo Wáng: Nǐ shénme shíhou qù?", meaning: "မင်း ဘယ်အချိန်သွားမလဲ။" },
+    { hanzi: "小李：明年九月。", pinyin: "Xiǎo Lǐ: Míngnián jiǔyuè.", meaning: "နောက်နှစ် စက်တင်ဘာလ။" },
+    { hanzi: "小王：你毕业后有什么打算？", pinyin: "Xiǎo Wáng: Nǐ bìyè hòu yǒu shénme dǎsuàn?", meaning: "မင်း ဘွဲ့ရပြီးရင် ဘာအစီအစဉ်ရှိလဲ။" },
+    { hanzi: "小李：我打算在中国工作。", pinyin: "Xiǎo Lǐ: Wǒ dǎsuàn zài Zhōngguó gōngzuò.", meaning: "ငါ တရုတ်မှာအလုပ်လုပ်ဖို့ စီစဉ်ထားတယ်။" },
+    { hanzi: "小王：那你的未来很美好。", pinyin: "Xiǎo Wáng: Nà nǐ de wèilái hěn měihǎo.", meaning: "ဒါဆို မင်းအနာဂတ် အရမ်းကောင်းတယ်။" },
+    { hanzi: "小李：谢谢，我也希望如此。", pinyin: "Xiǎo Lǐ: Xièxie, wǒ yě xīwàng rúcǐ.", meaning: "ကျေးဇူးပါ၊ ငါလည်း ဒီလိုဖြစ်ဖို့မျှော်လင့်တယ်။" },
+    { hanzi: "小王：祝你成功！", pinyin: "Xiǎo Wáng: Zhù nǐ chénggōng!", meaning: "မင်း အောင်မြင်ပါစေ။" },
+    { hanzi: "小李：谢谢，我会努力的。", pinyin: "Xiǎo Lǐ: Xièxie, wǒ huì nǔlì de.", meaning: "ကျေးဇူးပါ၊ ငါ ကြိုးစားမယ်။" },
+    { hanzi: "小王：我们一起加油！", pinyin: "Xiǎo Wáng: Wǒmen yīqǐ jiāyóu!", meaning: "ငါတို့ အတူအားပေးကြစို့။" },
+    { hanzi: "小李：好的，一起加油！", pinyin: "Xiǎo Lǐ: Hǎo de, yīqǐ jiāyóu!", meaning: "ကောင်းပြီ၊ အတူအားပေးကြစို့။" }
+    ],
+    vocab: [
+    { hanzi: "未来 (wèilái)", pinyin: "wèilái", meaning: "အနာဂတ်" },
+    { hanzi: "计划 (jìhuà)", pinyin: "jìhuà", meaning: "အစီအစဉ်" },
+    { hanzi: "打算 (dǎsuàn)", pinyin: "dǎsuàn", meaning: "စီစဉ်သည်" },
+    { hanzi: "留学 (liúxué)", pinyin: "liúxué", meaning: "ပညာသင်ရန် နိုင်ငံခြားသွား" },
+    { hanzi: "经济 (jīngjì)", pinyin: "jīngjì", meaning: "စီးပွားရေး" },
+    { hanzi: "明年 (míngnián)", pinyin: "míngnián", meaning: "နောက်နှစ်" },
+    { hanzi: "九月 (jiǔyuè)", pinyin: "jiǔyuè", meaning: "စက်တင်ဘာလ" },
+    { hanzi: "毕业 (bìyè)", pinyin: "bìyè", meaning: "ဘွဲ့ရသည်" },
+    { hanzi: "后 (hòu)", pinyin: "hòu", meaning: "...ပြီးနောက်" },
+    { hanzi: "美好 (měihǎo)", pinyin: "měihǎo", meaning: "ကောင်းမွန်သည်" },
+    { hanzi: "希望 (xīwàng)", pinyin: "xīwàng", meaning: "မျှော်လင့်သည်" },
+    { hanzi: "成功 (chénggōng)", pinyin: "chénggōng", meaning: "အောင်မြင်သည်" },
+    { hanzi: "祝 (zhù)", pinyin: "zhù", meaning: "ဆုတောင်းသည်" },
+    { hanzi: "对 (duì)", pinyin: "duì", meaning: "အတွက်" },
+    { hanzi: "有 (yǒu)", pinyin: "yǒu", meaning: "ရှိသည်" },
+    { hanzi: "打算 (dǎsuàn)", pinyin: "dǎsuàn", meaning: "စီစဉ်သည်" },
+    { hanzi: "去 (qù)", pinyin: "qù", meaning: "သွားသည်" },
+    { hanzi: "学 (xué)", pinyin: "xué", meaning: "သင်ယူသည်" },
+    { hanzi: "在 (zài)", pinyin: "zài", meaning: "မှာ" },
+    { hanzi: "工作 (gōngzuò)", pinyin: "gōngzuò", meaning: "အလုပ်" },
+    { hanzi: "很 (hěn)", pinyin: "hěn", meaning: "အရမ်း" },
+    { hanzi: "好 (hǎo)", pinyin: "hǎo", meaning: "ကောင်းသည်" },
+    { hanzi: "也 (yě)", pinyin: "yě", meaning: "လည်း" },
+    { hanzi: "会 (huì)", pinyin: "huì", meaning: "မည်" },
+    { hanzi: "努力 (nǔlì)", pinyin: "nǔlì", meaning: "ကြိုးစားသည်" },
+    { hanzi: "一起 (yīqǐ)", pinyin: "yīqǐ", meaning: "အတူတူ" },
+    { hanzi: "加油 (jiāyóu)", pinyin: "jiāyóu", meaning: "အားပေးတယ်" },
+    { hanzi: "谢谢 (xièxie)", pinyin: "xièxie", meaning: "ကျေးဇူးပါ" },
+    { hanzi: "成功 (chénggōng)", pinyin: "chénggōng", meaning: "အောင်မြင်သည်" },
+    { hanzi: "美好 (měihǎo)", pinyin: "měihǎo", meaning: "ကောင်းမွန်သည်" }
+    ],
+    grammar: [
+    {
+    pattern: "S + 对 + N + 有 + 计划 (duì ... yǒu jìhuà) · အတွက်အစီအစဉ်ရှိ",
+    description: "'...အတွက် အစီအစဉ်ရှိသည်'",
+    examples: [
+    { hanzi: "你对未来有什么计划？ (Nǐ duì wèilái yǒu shénme jìhuà?)", pinyin: "Nǐ duì wèilái yǒu shénme jìhuà?", meaning: "မင်း အနာဂတ်အတွက် ဘာအစီအစဉ်ရှိလဲ။" },
+    { hanzi: "我对未来有计划。 (Wǒ duì wèilái yǒu jìhuà.)", pinyin: "Wǒ duì wèilái yǒu jìhuà.", meaning: "ငါ အနာဂတ်အတွက် အစီအစဉ်ရှိတယ်။" },
+    { hanzi: "他对学习有计划。 (Tā duì xuéxí yǒu jìhuà.)", pinyin: "Tā duì xuéxí yǒu jìhuà.", meaning: "သူ စာသင်ဖို့ အစီအစဉ်ရှိတယ်။" },
+    { hanzi: "她对工作有计划。 (Tā duì gōngzuò yǒu jìhuà.)", pinyin: "Tā duì gōngzuò yǒu jìhuà.", meaning: "သူမ အလုပ်အတွက် အစီအစဉ်ရှိတယ်။" },
+    { hanzi: "你们对旅行有计划吗？ (Nǐmen duì lǚxíng yǒu jìhuà ma?)", pinyin: "Nǐmen duì lǚxíng yǒu jìhuà ma?", meaning: "မင်းတို့ ခရီးသွားဖို့ အစီအစဉ်ရှိလား။" }
+    ]
+    },
+    {
+    pattern: "S + 打算 + V (dǎsuàn) · စီစဉ်",
+    description: "'...ဖို့စီစဉ်သည်'",
+    examples: [
+    { hanzi: "我打算去中国留学。 (Wǒ dǎsuàn qù Zhōngguó liúxué.)", pinyin: "Wǒ dǎsuàn qù Zhōngguó liúxué.", meaning: "ငါ တရုတ်ကိုသွားပြီး ပညာသင်ဖို့ စီစဉ်ထားတယ်။" },
+    { hanzi: "她打算明年结婚。 (Tā dǎsuàn míngnián jiéhūn.)", pinyin: "Tā dǎsuàn míngnián jiéhūn.", meaning: "သူမ နောက်နှစ် အိမ်ထောင်ကျဖို့စီစဉ်ထားတယ်။" },
+    { hanzi: "我们打算去旅行。 (Wǒmen dǎsuàn qù lǚxíng.)", pinyin: "Wǒmen dǎsuàn qù lǚxíng.", meaning: "ငါတို့ ခရီးသွားဖို့စီစဉ်ထားတယ်။" },
+    { hanzi: "你打算做什么？ (Nǐ dǎsuàn zuò shénme?)", pinyin: "Nǐ dǎsuàn zuò shénme?", meaning: "မင်း ဘာလုပ်ဖို့စီစဉ်ထားလဲ။" },
+    { hanzi: "他打算在中国工作。 (Tā dǎsuàn zài Zhōngguó gōngzuò.)", pinyin: "Tā dǎsuàn zài Zhōngguó gōngzuò.", meaning: "သူ တရုတ်မှာအလုပ်လုပ်ဖို့စီစဉ်ထားတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + V + 后 (hòu) · ...ပြီးနောက်",
+    description: "'...ပြီးနောက်'",
+    examples: [
+    { hanzi: "毕业后有什么打算？ (Bìyè hòu yǒu shénme dǎsuàn?)", pinyin: "Bìyè hòu yǒu shénme dǎsuàn?", meaning: "ဘွဲ့ရပြီးနောက် ဘာအစီအစဉ်ရှိလဲ။" },
+    { hanzi: "吃饭后我们去散步。 (Chīfàn hòu wǒmen qù sànbù.)", pinyin: "Chīfàn hòu wǒmen qù sànbù.", meaning: "ထမင်းစားပြီးနောက် ငါတို့ လမ်းလျှောက်သွားမယ်။" },
+    { hanzi: "下课后我回家。 (Xiàkè hòu wǒ huí jiā.)", pinyin: "Xiàkè hòu wǒ huí jiā.", meaning: "စာသင်ပြီးနောက် ငါ အိမ်ပြန်မယ်။" },
+    { hanzi: "工作后我学习汉语。 (Gōngzuò hòu wǒ xuéxí Hànyǔ.)", pinyin: "Gōngzuò hòu wǒ xuéxí Hànyǔ.", meaning: "အလုပ်ပြီးနောက် ငါ တရုတ်စာသင်တယ်။" },
+    { hanzi: "考试后我们放假。 (Kǎoshì hòu wǒmen fàngjià.)", pinyin: "Kǎoshì hòu wǒmen fàngjià.", meaning: "စာမေးပွဲပြီးနောက် ငါတို့ အားလပ်ရက်ယူတယ်။" }
+    ]
+    },
+    {
+    pattern: "S + 希望 + Clause (xīwàng) · မျှော်လင့်",
+    description: "'...ဖြစ်ဖို့မျှော်လင့်သည်'",
+    examples: [
+    { hanzi: "我也希望如此。 (Wǒ yě xīwàng rúcǐ.)", pinyin: "Wǒ yě xīwàng rúcǐ.", meaning: "ငါလည်း ဒီလိုဖြစ်ဖို့မျှော်လင့်တယ်။" },
+    { hanzi: "我希望成功。 (Wǒ xīwàng chénggōng.)", pinyin: "Wǒ xīwàng chénggōng.", meaning: "ငါ အောင်မြင်ဖို့မျှော်လင့်တယ်။" },
+    { hanzi: "她希望去中国。 (Tā xīwàng qù Zhōngguó.)", pinyin: "Tā xīwàng qù Zhōngguó.", meaning: "သူမ တရုတ်သွားဖို့မျှော်လင့်တယ်။" },
+    { hanzi: "我们希望明天天气好。 (Wǒmen xīwàng míngtiān tiānqì hǎo.)", pinyin: "Wǒmen xīwàng míngtiān tiānqì hǎo.", meaning: "ငါတို့ မနက်ဖြန် ရာသီဥတုကောင်းဖို့မျှော်လင့်တယ်။" },
+    { hanzi: "你希望什么？ (Nǐ xīwàng shénme?)", pinyin: "Nǐ xīwàng shénme?", meaning: "မင်း ဘာဖြစ်ဖို့မျှော်လင့်လဲ။" }
+    ]
+    },
+    {
+    pattern: "祝 + S + V (zhù) · ဆုတောင်း",
+    description: "'...ဆုတောင်းသည်'",
+    examples: [
+    { hanzi: "祝你成功！ (Zhù nǐ chénggōng!)", pinyin: "Zhù nǐ chénggōng!", meaning: "မင်း အောင်မြင်ပါစေ။" },
+    { hanzi: "祝你好运！ (Zhù nǐ hǎoyùn!)", pinyin: "Zhù nǐ hǎoyùn!", meaning: "မင်း ကံကောင်းပါစေ။" },
+    { hanzi: "祝你们幸福！ (Zhù nǐmen xìngfú!)", pinyin: "Zhù nǐmen xìngfú!", meaning: "မင်းတို့ ပျော်ရွှင်ပါစေ။" },
+    { hanzi: "祝你生日快乐！ (Zhù nǐ shēngrì kuàilè!)", pinyin: "Zhù nǐ shēngrì kuàilè!", meaning: "မင်း မွေးနေ့ပျော်ရွှင်ပါစေ။" },
+    { hanzi: "祝我们成功！ (Zhù wǒmen chénggōng!)", pinyin: "Zhù wǒmen chénggōng!", meaning: "ငါတို့ အောင်မြင်ပါစေ။" }
+    ]
+    },
+    {
+    pattern: "S + 会 + V (huì) · မည်",
+    description: "'...မည်'",
+    examples: [
+    { hanzi: "我会努力的。 (Wǒ huì nǔlì de.)", pinyin: "Wǒ huì nǔlì de.", meaning: "ငါ ကြိုးစားမယ်။" },
+    { hanzi: "她会来的。 (Tā huì lái de.)", pinyin: "Tā huì lái de.", meaning: "သူမ လာမယ်။" },
+    { hanzi: "他会成功的。 (Tā huì chénggōng de.)", pinyin: "Tā huì chénggōng de.", meaning: "သူ အောင်မြင်မယ်။" },
+    { hanzi: "我们会加油的。 (Wǒmen huì jiāyóu de.)", pinyin: "Wǒmen huì jiāyóu de.", meaning: "ငါတို့ အားပေးမယ်။" },
+    { hanzi: "你们会来的吗？ (Nǐmen huì lái de ma?)", pinyin: "Nǐmen huì lái de ma?", meaning: "မင်းတို့ လာမလား။" }
+    ]
+    },
+    {
+    pattern: "S + 的 + N + 很 + Adj · အရမ်း",
+    description: "'...အရမ်း...'",
+    examples: [
+    { hanzi: "你的未来很美好。 (Nǐ de wèilái hěn měihǎo.)", pinyin: "Nǐ de wèilái hěn měihǎo.", meaning: "မင်းအနာဂတ် အရမ်းကောင်းတယ်။" },
+    { hanzi: "她的梦想很大。 (Tā de mèngxiǎng hěn dà.)", pinyin: "Tā de mèngxiǎng hěn dà.", meaning: "သူမရဲ့အိပ်မက် အရမ်းကြီးတယ်။" },
+    { hanzi: "他的计划很好。 (Tā de jìhuà hěn hǎo.)", pinyin: "Tā de jìhuà hěn hǎo.", meaning: "သူ့အစီအစဉ် အရမ်းကောင်းတယ်။" },
+    { hanzi: "我们的未来很光明。 (Wǒmen de wèilái hěn guāngmíng.)", pinyin: "Wǒmen de wèilái hěn guāngmíng.", meaning: "ငါတို့အနာဂတ် အရမ်းတောက်ပမယ်။" },
+    { hanzi: "她的成绩很好。 (Tā de chéngjī hěn hǎo.)", pinyin: "Tā de chéngjī hěn hǎo.", meaning: "သူမရဲ့အမှတ် အရမ်းကောင်းတယ်။" }
+    ]
+    },
+    {
+    pattern: "一起 + V (yīqǐ) · အတူ",
+    description: "'အတူ...လုပ်သည်'",
+    examples: [
+    { hanzi: "我们一起加油！ (Wǒmen yīqǐ jiāyóu!)", pinyin: "Wǒmen yīqǐ jiāyóu!", meaning: "ငါတို့ အတူအားပေးကြစို့။" },
+    { hanzi: "一起学习。 (Yīqǐ xuéxí.)", pinyin: "Yīqǐ xuéxí.", meaning: "အတူစာသင်ကြမယ်။" },
+    { hanzi: "一起吃饭。 (Yīqǐ chīfàn.)", pinyin: "Yīqǐ chīfàn.", meaning: "အတူထမင်းစားကြမယ်။" },
+    { hanzi: "一起去旅行。 (Yīqǐ qù lǚxíng.)", pinyin: "Yīqǐ qù lǚxíng.", meaning: "အတူခရီးသွားကြမယ်။" },
+    { hanzi: "一起努力。 (Yīqǐ nǔlì.)", pinyin: "Yīqǐ nǔlì.", meaning: "အတူကြိုးစားကြမယ်။" }
+    ]
+    }
+    ],
+    exercises: [
+    { question: "小李对未来有什么计划？", answer: "去中国留学" },
+    { question: "小李想学什么？", answer: "中国经济" },
+    { question: "小李什么时候去中国？", answer: "明年九月" },
+    { question: "毕业后小李有什么打算？", answer: "在中国工作" },
+    { question: "小王觉得小李的未来怎么样？", answer: "很美好" },
+    { question: "小李希望未来怎么样？", answer: "希望如此" },
+    { question: "小王祝小李什么？", answer: "成功" },
+    { question: "他们最后说了什么？", answer: "一起加油" }
+    ]
+    };
+    // ============================================================
+    // RENDER & CONTROL
+    // ============================================================
+    const lessonSelect = document.getElementById('lessonSelect');
+    const container = document.getElementById('lessonContainer');
+
+    const lessons = {
+      1: lesson1,
+      2: lesson2,
+      3: lesson3,
+      4: lesson4,
+      5: lesson5,
+      6: lesson6,
+      7: lesson7,
+      8: lesson8,
+      9: lesson9,
+      10: lesson10,
+      11: lesson11,
+      12: lesson12,
+      13: lesson13,
+      14: lesson14,
+      15: lesson15,
+      16: lesson16,
+      17: lesson17,
+      18: lesson18,
+      19: lesson19,
+      20: lesson20
+    };
+
+    function renderLesson(lesson) {
+      if (!lesson || !lesson.dialog || lesson.dialog.length === 0) {
+        container.innerHTML = `<div class="card"><p style="padding:40px;text-align:center;font-size:1.2rem;">📝 သင်ခန်းစာ ${lesson.lessonNumber} အတွက် အကြောင်းအရာ မရှိသေးပါ။ ဆက်လက်ဖြည့်စွက်ပါ။</p></div>`;
+        return;
+      }
+
+      let html = `<div class="card">`;
+      html += `<div class="lesson-title"><span>📚 Lesson ${lesson.lessonNumber}</span> <span class="badge">${lesson.title}</span></div>`;
+
+      // Dialog
+      html += `<div class="section-title">🗣️ Dialog</div>`;
+      html += `<div class="dialog-box">`;
+      lesson.dialog.forEach(line => {
+        html += `<p><span class="hanzi">${line.hanzi}</span> <span class="pinyin">${line.pinyin}</span> <span class="meaning">${line.meaning}</span></p>`;
+      });
+      html += `</div>`;
+
+      // Vocabulary
+      if (lesson.vocab && lesson.vocab.length > 0) {
+        html += `<div class="section-title">📖 အဓိပ္ပါယ် ${lesson.vocab.length} လုံး</div>`;
+        html += `<div class="vocab-grid">`;
+        lesson.vocab.forEach(v => {
+          html += `<span class="vocab-item"><span class="hanzi">${v.hanzi}</span> <span class="pinyin">${v.pinyin}</span> <span class="meaning">${v.meaning}</span></span>`;
+        });
+        html += `</div>`;
+      }
+
+      // Grammar
+      if (lesson.grammar && lesson.grammar.length > 0) {
+        html += `<div class="section-title">🧩 Grammar (၈ခု) + ဥပမာ ၅ခု</div>`;
+        lesson.grammar.forEach(g => {
+          html += `<div class="grammar-block">`;
+          html += `<div class="grammar-pattern">${g.pattern}</div>`;
+          html += `<div style="margin-bottom: 6px; color:#3d5166;"><strong>ရှင်းလင်းချက် (မြန်မာ):</strong> ${g.description}</div>`;
+          html += `<div class="example-list">`;
+          g.examples.forEach(ex => {
+            html += `<div class="example-item"><span class="hanzi">${ex.hanzi}</span> <span class="pinyin">${ex.pinyin}</span> <span class="meaning">${ex.meaning}</span></div>`;
+          });
+          html += `</div></div>`;
+        });
+      }
+
+      // Exercises
+      if (lesson.exercises && lesson.exercises.length > 0) {
+        html += `<div class="section-title">✏️ Exercise (၈ခု) — ဖြေဆိုရန်</div>`;
+        html += `<div class="exercise-area">`;
+        lesson.exercises.forEach((ex, i) => {
+          html += `<div class="exercise-question">${i+1}. ${ex.question}</div>`;
+          html += `<div class="exercise-answer" data-answer="${ex.answer}">`;
+          html += `<input type="text" placeholder="သင့်အဖြေ..." class="exInput">`;
+          html += `<button class="checkBtn">စစ်ဆေးမည်</button>`;
+          html += `<span class="feedback"></span>`;
+          html += `</div>`;
+        });
+        html += `</div>`;
+      }
+
+      html += `</div>`;
+      container.innerHTML = html;
+
+      // Exercise events
+      document.querySelectorAll('.exercise-answer').forEach(block => {
+        const input = block.querySelector('.exInput');
+        const btn = block.querySelector('.checkBtn');
+        const feedback = block.querySelector('.feedback');
+        const correctAns = block.dataset.answer;
+
+        btn.addEventListener('click', function() {
+          const userAns = input.value.trim();
+          const isCorrect = userAns.toLowerCase() === correctAns.toLowerCase();
+          feedback.classList.remove('correct-feedback', 'wrong-feedback');
+          if (isCorrect) {
+            feedback.textContent = `✅ မှန်ပါတယ်! (အဖြေ: ${correctAns})`;
+            feedback.classList.add('correct-feedback');
+          } else {
+            feedback.textContent = `❌ မှားပါတယ်။ အဖြေမှန်က: ${correctAns}`;
+            feedback.classList.add('wrong-feedback');
+          }
+        });
+      });
+    }
+
+    function initSelect() {
+      let options = '';
+      for (let i = 1; i <= 20; i++) {
+        const lesson = lessons[i];
+        const title = lesson ? lesson.title : `Lesson ${i}`;
+        options += `<option value="${i}">Lesson ${i} · ${title.split('·')[0].trim()}</option>`;
+      }
+      lessonSelect.innerHTML = options;
+    }
+
+    lessonSelect.addEventListener('change', function(e) {
+      const val = parseInt(e.target.value);
+      renderLesson(lessons[val]);
+    });
+
+    // Start with Lesson 1
+    initSelect();
+    renderLesson(lesson1);
+  </script>
+</body>
+</html>

@@ -1,0 +1,3575 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Grammar (100-200)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            padding: 30px 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 40px;
+            padding: 40px 35px;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .sub {
+            color: #aab;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #74b9ff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            color: #a29bfe;
+        }
+
+        .spinner-wrap {
+            margin: 20px 0 30px;
+        }
+
+        .spinner-wrap label {
+            color: #ddd;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-right: 12px;
+        }
+
+        select {
+            padding: 14px 28px;
+            border-radius: 50px;
+            border: none;
+            background: #1e1e3a;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: 2px solid rgba(255, 255, 255, 0.15);
+            transition: 0.25s;
+            min-width: 250px;
+            max-width: 100%;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 20px;
+        }
+
+        select:hover {
+            outline-color: #8b7bf7;
+            background-color: #2a2a50;
+        }
+
+        select option {
+            background: #1a1a32;
+            color: #fff;
+        }
+
+        .count-badge {
+            display: inline-block;
+            background: rgba(85, 239, 196, 0.15);
+            color: #55efc4;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            border: 1px solid rgba(85, 239, 196, 0.1);
+        }
+
+        .grammar-display {
+            margin-top: 25px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            padding: 30px 28px;
+            border-left: 5px solid #fdcb6e;
+            min-height: 200px;
+            transition: 0.3s;
+        }
+
+        .grammar-display .title {
+            color: #f0e68c;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .grammar-display .description {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 12px 0 20px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-left: 3px solid #55efc4;
+        }
+
+        .grammar-display .description strong {
+            color: #fdcb6e;
+        }
+
+        .grammar-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .grammar-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 18px 20px;
+            border-radius: 14px;
+            border-left: 5px solid #6c5ce7;
+            transition: 0.3s;
+        }
+
+        .grammar-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
+        }
+
+        .grammar-item .pattern {
+            color: #74b9ff;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .grammar-item .pattern-meaning {
+            color: #fdcb6e;
+            font-size: 0.95rem;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        .grammar-item .examples {
+            margin-top: 10px;
+            padding-left: 10px;
+        }
+
+        .grammar-item .examples .ex {
+            color: #ddd;
+            font-size: 0.95rem;
+            padding: 3px 0;
+        }
+
+        .grammar-item .examples .ex .num {
+            color: #55efc4;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .grammar-item .examples .ex .ex-meaning {
+            color: #888;
+            font-size: 0.85rem;
+            margin-left: 8px;
+        }
+
+        .grammar-item .divider {
+            border: none;
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            margin: 8px 0;
+        }
+
+        .vocab-section {
+            margin-top: 20px;
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .vocab-section .vocab-title {
+            color: #fdcb6e;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .vocab-section .vocab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .vocab-section .vocab-tag {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 18px;
+            border-radius: 30px;
+            color: #ddd;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: 0.2s;
+        }
+
+        .vocab-section .vocab-tag:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #8b7bf7;
+        }
+
+        .vocab-section .vocab-tag .meaning {
+            color: #888;
+            font-size: 0.8rem;
+            margin-left: 6px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+        }
+
+        .developer {
+            margin-top: 28px;
+            padding: 20px 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .developer .dev-name {
+            color: #f0e68c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .developer .dev-detail {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+
+        .developer .dev-detail span {
+            color: #8b7bf7;
+            font-weight: 500;
+        }
+
+        .developer .dev-detail a {
+            color: #74b9ff;
+            text-decoration: none;
+            transition: 0.2s;
+            border-bottom: 1px dashed rgba(116, 185, 255, 0.3);
+        }
+
+        .developer .dev-detail a:hover {
+            color: #a29bfe;
+            border-bottom-color: #a29bfe;
+        }
+
+        .dev-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 28px 16px; }
+            h1 { font-size: 1.9rem; }
+            select { width: 100%; font-size: 0.9rem; padding: 12px 20px; }
+            .grammar-display { padding: 20px 16px; }
+            .grammar-display .title { font-size: 1.2rem; }
+            .grammar-display .description { font-size: 0.9rem; padding: 12px 14px; }
+            .grammar-item { padding: 14px; }
+            .grammar-item .pattern { font-size: 1rem; }
+            .grammar-item .examples .ex { font-size: 0.85rem; }
+            .vocab-section { padding: 16px; }
+            .developer { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <a href="index.html" class="back-link">⬅ Back to Hub</a>
+
+        <h1>📚 English Grammar</h1>
+        <div class="sub">Part 2 · Grammar 100-200</div>
+
+        <div class="count-badge">📖 Days 100 - 106</div>
+
+        <div class="spinner-wrap">
+            <label for="daySelect">📅</label>
+            <select id="daySelect">
+                <!-- JS က ထည့်ပေးမယ် -->
+            </select>
+        </div>
+
+        <div class="grammar-display" id="grammarDisplay">
+            <div class="title">👋 Welcome to Part 2!</div>
+            <div style="color:#aaa; text-align:center; padding:20px 0;">
+                Select a day to continue learning grammar.
+            </div>
+            <div class="vocab-section">
+                <div class="vocab-title">📝 Vocabulary</div>
+                <div class="vocab-list" id="vocabList">
+                    <span class="vocab-tag">Select a day to see vocabulary</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="developer">
+            <span class="dev-icon">👨‍💻</span>
+            <div class="dev-name">Yan Naing</div>
+            <div class="dev-detail">
+                📞 <span>09782992290</span><br />
+                📱 Telegram : <a href="https://t.me/To_my_new_world" target="_blank">@To_my_new_world</a>
+            </div>
+        </div>
+
+        <div class="footer">⚡ select a day · learn grammar</div>
+    </div>
+
+    <script>
+        // =============================================================
+        //  DATA: Day 100 to 106
+        // =============================================================
+        const grammarData = {
+            day100: {
+                title: "📘 Day 100: Clauses of Contrast",
+                description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဆန့်ကျင်ဘက်ပြရန် သုံးသည်။
+                <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Although/Even though/Though + clause, main clause
+                <br>🔹 <strong>သတိပြုရန် -</strong> In spite of / Despite + noun/gerund လည်း သုံးနိုင်သည်။`,
+                patterns: [
+                    {
+                        formula: "Although/Even though/Though + clause, main clause",
+                        meaning: "...ပေမယ့် ...",
+                        examples: [
+                            { en: "Although it was raining, I went out.", my: "မိုးရွာပေမယ့် ငါထွက်သွားတယ်" },
+                            { en: "Even though she was tired, she continued working.", my: "သူမ ပင်ပန်းပေမယ့် ဆက်အလုပ်လုပ်တယ်" },
+                            { en: "Though he is rich, he is unhappy.", my: "သူချမ်းသာပေမယ့် မပျော်ဘူး" },
+                            { en: "Although they played well, they lost.", my: "သူတို့ကောင်းကောင်းကစားပေမယ့် ရှုံးတယ်" },
+                            { en: "Even though I studied hard, I failed.", my: "ငါကြိုးစားကျက်ပေမယ့် ကျရှုံးတယ်" }
+                        ]
+                    },
+                    {
+                        formula: "In spite of / Despite + noun/gerund, main clause",
+                        meaning: "...ပေမယ့် ...",
+                        examples: [
+                            { en: "In spite of the rain, I went out.", my: "မိုးရွာပေမယ့် ငါထွက်သွားတယ်" },
+                            { en: "Despite being tired, she continued working.", my: "ပင်ပန်းပေမယ့် သူမ ဆက်အလုပ်လုပ်တယ်" },
+                            { en: "In spite of his wealth, he is unhappy.", my: "ချမ်းသာပေမယ့် သူ မပျော်ဘူး" },
+                            { en: "Despite losing the game, they were happy.", my: "ဂိမ်းရှုံးပေမယ့် သူတို့ပျော်တယ်" },
+                            { en: "In spite of studying hard, I failed.", my: "ကြိုးစားကျက်ပေမယ့် ငါကျရှုံးတယ်" }
+                        ]
+                    }
+                ],
+                vocab: [
+                    { word: "Although", meaning: "...ပေမယ့်" },
+                    { word: "Even though", meaning: "...ပေမယ့်" },
+                    { word: "In spite of", meaning: "...ပေမယ့်" },
+                    { word: "Despite", meaning: "...ပေမယ့်" }
+                ]
+            },
+            day101: {
+                title: "📘 Day 101: Clauses of Reason",
+                description: `🔹 <strong>အသုံးပြုပုံ -</strong> အကြောင်းပြချက်ကို ဖော်ပြရန် သုံးသည်။
+                <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Because/Since/As + clause, main clause`,
+                patterns: [
+                    {
+                        formula: "Because + clause, main clause",
+                        meaning: "...လို့ ...",
+                        examples: [
+                            { en: "I stayed home because it was raining.", my: "မိုးရွာလို့ ငါအိမ်မှာနေတယ်" },
+                            { en: "She passed because she studied hard.", my: "သူမ ကြိုးစားကျက်လို့ အောင်တယ်" },
+                            { en: "They won because they played well.", my: "သူတို့ ကောင်းကောင်းကစားလို့ အောင်တယ်" },
+                            { en: "We were late because we missed the bus.", my: "ငါတို့ ဘတ်စ်ကားလွတ်လို့ နောက်ကျတယ်" },
+                            { en: "He is happy because he got a promotion.", my: "သူ ရာထူးတိုးလို့ ပျော်တယ်" }
+                        ]
+                    },
+                    {
+                        formula: "Because of / Due to + noun/gerund",
+                        meaning: "...ကြောင့်",
+                        examples: [
+                            { en: "I stayed home because of the rain.", my: "မိုးရွာတာကြောင့် ငါအိမ်မှာနေတယ်" },
+                            { en: "She passed due to her hard work.", my: "သူမ ကြိုးစားမှုကြောင့် အောင်တယ်" },
+                            { en: "They won because of their teamwork.", my: "သူတို့ အဖွဲ့လိုက်လုပ်ဆောင်မှုကြောင့် အောင်တယ်" },
+                            { en: "We were late due to the traffic.", my: "ယာဉ်ကြောတာကြောင့် ငါတို့နောက်ကျတယ်" },
+                            { en: "He is happy because of his promotion.", my: "သူ ရာထူးတိုးတာကြောင့် ပျော်တယ်" }
+                        ]
+                    }
+                ],
+                vocab: [
+                    { word: "Because", meaning: "...လို့" },
+                    { word: "Since", meaning: "...သောကြောင့်" },
+                    { word: "Because of", meaning: "...ကြောင့်" },
+                    { word: "Due to", meaning: "...ကြောင့်" }
+                ]
+            },
+            day102: {
+                title: "📘 Day 102: Clauses of Time",
+                description: `🔹 <strong>အသုံးပြုပုံ -</strong> အချိန်ကို ဖော်ပြရန် သုံးသည်။
+                <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> When/While/After/Before/As soon as + clause, main clause`,
+                patterns: [
+                    {
+                        formula: "When + clause, main clause",
+                        meaning: "...အခါ ...",
+                        examples: [
+                            { en: "When I arrived, she was cooking.", my: "ငါရောက်တဲ့အခါ သူမချက်နေတယ်" },
+                            { en: "I will call you when I get home.", my: "ငါအိမ်ရောက်တဲ့အခါ ခေါ်မယ်" },
+                            { en: "She smiled when she saw me.", my: "သူမ ငါ့ကိုမြင်တဲ့အခါ ပြုံးတယ်" }
+                        ]
+                    },
+                    {
+                        formula: "While + clause, main clause",
+                        meaning: "...နေစဉ် ...",
+                        examples: [
+                            { en: "While I was cooking, she was cleaning.", my: "ငါချက်နေစဉ် သူမ သန့်ရှင်းနေတယ်" },
+                            { en: "He fell asleep while watching TV.", my: "တီဗွီကြည့်နေစဉ် သူအိပ်ပျော်သွားတယ်" },
+                            { en: "While we were eating, the phone rang.", my: "ငါတို့စားနေစဉ် ဖုန်းမြည်တယ်" }
+                        ]
+                    },
+                    {
+                        formula: "As soon as + clause, main clause",
+                        meaning: "...တာနဲ့ ...",
+                        examples: [
+                            { en: "As soon as I arrive, I will call you.", my: "ငါရောက်တာနဲ့ ခေါ်မယ်" },
+                            { en: "She called me as soon as she heard the news.", my: "သူမ သတင်းကြားတာနဲ့ ငါ့ကိုခေါ်တယ်" },
+                            { en: "As soon as they finish, they will leave.", my: "သူတို့ပြီးတာနဲ့ ထွက်သွားမယ်" }
+                        ]
+                    }
+                ],
+                vocab: [
+                    { word: "When", meaning: "...အခါ" },
+                    { word: "While", meaning: "...နေစဉ်" },
+                    { word: "After", meaning: "...ပြီးနောက်" },
+                    { word: "Before", meaning: "မတိုင်ခင်" },
+                    { word: "As soon as", meaning: "...တာနဲ့" }
+                ]
+            },
+            day103: {
+                title: "📘 Day 103: Clauses of Manner",
+                description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဘယ်လိုပုံစံနဲ့ ဆိုတာကို ဖော်ပြရန် သုံးသည်။
+                <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> As if / As though + clause (past tense)`,
+                patterns: [
+                    {
+                        formula: "Subject + V + as if + subject + V2 (past)",
+                        meaning: "...သလိုပဲ",
+                        examples: [
+                            { en: "She looks as if she were tired.", my: "သူမ ပင်ပန်းနေသလိုပဲ" },
+                            { en: "He talks as if he knew everything.", my: "သူ အရာအားလုံးသိသလိုပဲ ပြောတယ်" },
+                            { en: "They behave as if they owned the place.", my: "သူတို့ နေရာကိုပိုင်သလိုပဲ ပြုမူတယ်" }
+                        ]
+                    },
+                    {
+                        formula: "Subject + V + like + noun (informal)",
+                        meaning: "...လိုပဲ",
+                        examples: [
+                            { en: "She sings like a professional.", my: "သူမ ပရော်ဖက်ရှင်နယ်လိုပဲ သီချင်းဆိုတယ်" },
+                            { en: "He runs like a cheetah.", my: "သူ ကျားသစ်လိုပဲ ပြေးတယ်" },
+                            { en: "They eat like animals.", my: "သူတို့ တိရစ္ဆာန်တွေလိုပဲ စားတယ်" }
+                        ]
+                    }
+                ],
+                vocab: [
+                    { word: "As if", meaning: "...သလိုပဲ" },
+                    { word: "As though", meaning: "...သလိုပဲ" },
+                    { word: "Like", meaning: "...လိုပဲ" }
+                ]
+            },
+            day104: {
+                title: "📘 Day 104: Inversion with 'Not only...but also'",
+                description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဝါကျအစမှာ 'Not only' ထားခြင်းဖြင့် အလေးပေးရန် သုံးသည်။
+                <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Not only + auxiliary + subject + V1, but also + subject + V1`,
+                patterns: [
+                    {
+                        formula: "Not only + auxiliary + subject + V1, but also + subject + V1",
+                        meaning: "...ရုံသာမက ...လည်း",
+                        examples: [
+                            { en: "Not only does he speak English, but he also speaks French.", my: "သူ အင်္ဂလိပ်စကားပြောရုံသာမက ပြင်သစ်စကားလည်းပြောတယ်" },
+                            { en: "Not only is she beautiful, but she is also intelligent.", my: "သူမ လှရုံသာမက ထက်မြက်လည်းထက်မြက်တယ်" },
+                            { en: "Not only did they win the match, but they also broke the record.", my: "သူတို့ ပွဲအောင်ရုံသာမက စံချိန်လည်းချိုးခဲ့တယ်" },
+                            { en: "Not only have I visited Paris, but I have also lived there.", my: "ငါ ပါရီကိုသွားဖူးရုံသာမက အဲဒီမှာလည်းနေဖူးတယ်" },
+                            { en: "Not only does she sing well, but she also plays the piano.", my: "သူမ သီချင်းကောင်းကောင်းဆိုရုံသာမက စန္ဒယားလည်းတီးတယ်" }
+                        ]
+                    }
+                ],
+                vocab: [
+                    { word: "Not only...but also", meaning: "...ရုံသာမက ...လည်း" },
+                    { word: "Inversion", meaning: "စကားလုံးပြောင်းပြန်ထားခြင်း" }
+                ]
+            },
+            day105: {
+                title: "📘 Day 105: Inversion with 'Only'",
+                description: `🔹 <strong>အသုံးပြုပုံ -</strong> 'Only' ဖြင့်စသော စကားစုကို ဝါကျအစမှာ ထားခြင်းဖြင့် အလေးပေးရန် သုံးသည်။
+                <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Only + time/phrase + auxiliary + subject + main verb`,
+                patterns: [
+                    {
+                        formula: "Only + after/ when + clause + auxiliary + subject + V1",
+                        meaning: "...မှသာ",
+                        examples: [
+                            { en: "Only after I had eaten did I feel better.", my: "ငါစားပြီးမှသာ ပိုကောင်းလာတယ်" },
+                            { en: "Only when the rain stopped did we go outside.", my: "မိုးရပ်မှသာ ငါတို့အပြင်ထွက်ခဲ့တယ်" },
+                            { en: "Only if you study hard will you pass the exam.", my: "မင်းကြိုးစားကျက်မှသာ စာမေးပွဲအောင်မယ်" }
+                        ]
+                    },
+                    {
+                        formula: "Only + by + V-ing + auxiliary + subject + V1",
+                        meaning: "...ခြင်းဖြင့်မှသာ",
+                        examples: [
+                            { en: "Only by studying hard can you pass the exam.", my: "ကြိုးစားကျက်ခြင်းဖြင့်မှသာ စာမေးပွဲအောင်နိုင်တယ်" },
+                            { en: "Only by working together can we succeed.", my: "အတူတကွလုပ်ဆောင်ခြင်းဖြင့်မှသာ ငါတို့အောင်မြင်နိုင်တယ်" },
+                            { en: "Only by practicing every day can you improve.", my: "နေ့တိုင်းလေ့ကျင့်ခြင်းဖြင့်မှသာ တိုးတက်နိုင်တယ်" }
+                        ]
+                    }
+                ],
+                vocab: [
+                    { word: "Only after", meaning: "...ပြီးမှသာ" },
+                    { word: "Only by", meaning: "...ခြင်းဖြင့်မှသာ" }
+                ]
+            },
+            day106: {
+                title: "📘 Day 106: Subjunctive Mood",
+                description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဖြစ်နိုင်ခြေမရှိသော၊ စိတ်ကူးယဉ်သော အခြေအနေများအတွက် သုံးသည်။
+                <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Subject + wish/suggest + that + subject + V1 (base form)`,
+                patterns: [
+                    {
+                        formula: "Subject + wish + (that) + subject + V2 (past)",
+                        meaning: "...ဆုတောင်းမိတယ်",
+                        examples: [
+                            { en: "I wish I were a bird.", my: "ငါ ငှက်တစ်ကောင်ဖြစ်ချင်တယ်" },
+                            { en: "She wishes she had more time.", my: "သူမ အချိန်ပိုရှိချင်တယ်" },
+                            { en: "They wish they could travel.", my: "သူတို့ ခရီးသွားနိုင်ချင်တယ်" }
+                        ]
+                    },
+                    {
+                        formula: "Subject + suggest + that + subject + V1 (base form)",
+                        meaning: "...ဖို့ အကြံပြုတယ်",
+                        examples: [
+                            { en: "I suggest that he study harder.", my: "သူ ပိုပြီးစာကျက်ဖို့ ငါအကြံပြုတယ်" },
+                            { en: "She recommends that we go early.", my: "ငါတို့ စောစောသွားဖို့ သူမအကြံပြုတယ်" },
+                            { en: "The teacher suggests that we read more.", my: "ငါတို့ ပိုပြီးဖတ်ဖို့ ဆရာက အကြံပြုတယ်" }
+                        ]
+                    }
+                ],
+                vocab: [
+                    { word: "Wish", meaning: "ဆုတောင်းသည်" },
+                    { word: "Suggest", meaning: "အကြံပြုသည်" },
+                    { word: "Recommend", meaning: "အကြံပေးသည်" }
+                ]
+            },
+// =============================================================
+//  DAY 107 to DAY 113 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day107: {
+    title: "📘 Day 107: Mixed Conditionals",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အတိတ်နှင့် လက်ရှိကို ရောနှောသော အခြေအနေများအတွက် သုံးသည်။
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> If + had + V3 (past), would + V1 (present)
+    <br>🔹 <strong>သတိပြုရန် -</strong> အတိတ်က မဖြစ်ခဲ့တာကြောင့် လက်ရှိမှာ ကွဲပြားသွားတာကို ပြသည်။`,
+    patterns: [
+        {
+            formula: "If + had + V3 (past), would + V1 (present)",
+            meaning: "...ခဲ့ရင် အခု ...မယ်",
+            examples: [
+                { en: "If I had studied medicine, I would be a doctor now.", my: "ငါ ဆေးပညာသင်ခဲ့ရင် အခု ဆရာဝန်ဖြစ်နေမယ်" },
+                { en: "If she had taken the job, she would be rich now.", my: "သူမ အဲဒီအလုပ်ကိုလုပ်ခဲ့ရင် အခုချမ်းသာနေမယ်" },
+                { en: "If they had left earlier, they would be here now.", my: "သူတို့စောစောထွက်ခဲ့ရင် အခုဒီမှာရောက်နေမယ်" },
+                { en: "If we had saved money, we would be traveling now.", my: "ငါတို့ပိုက်ဆံစုခဲ့ရင် အခုခရီးသွားနေမယ်" },
+                { en: "If he had worked harder, he would be successful now.", my: "သူပိုပြီးကြိုးစားခဲ့ရင် အခုအောင်မြင်နေမယ်" }
+            ]
+        },
+        {
+            formula: "If + V2 (present), would have + V3 (past)",
+            meaning: "...ရင် ...ခဲ့မယ်",
+            examples: [
+                { en: "If I were rich, I would have bought that car.", my: "ငါချမ်းသာရင် အဲဒီကားကိုဝယ်ခဲ့မယ်" },
+                { en: "If she were here, she would have helped us.", my: "သူမဒီမှာရှိရင် ငါတို့ကိုကူညီခဲ့မယ်" },
+                { en: "If they were smarter, they would have won.", my: "သူတို့ပိုပြီးလိမ္မာရင် အောင်ခဲ့မယ်" },
+                { en: "If we had more time, we would have visited you.", my: "ငါတို့အချိန်ပိုရှိရင် မင်းဆီလည်ခဲ့မယ်" },
+                { en: "If he were taller, he would have played basketball.", my: "သူအရပ်ရှည်ရင် ဘတ်စကတ်ဘောကစားခဲ့မယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Mixed conditional", meaning: "ရောနှောသော အခြေအနေ" },
+        { word: "Past", meaning: "အတိတ်" },
+        { word: "Present", meaning: "လက်ရှိ" },
+        { word: "Would be", meaning: "...ဖြစ်နေမယ်" },
+        { word: "Would have", meaning: "...ခဲ့မယ်" }
+    ]
+},
+day108: {
+    title: "📘 Day 108: Passive Voice with Modal Verbs",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> Modal verbs (can, could, may, might, must, should, etc.) ကို passive voice နှင့်တွဲသုံးရန်။
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Subject + modal verb + be + V3 + (by + agent)`,
+    patterns: [
+        {
+            formula: "Subject + can/could + be + V3",
+            meaning: "...နိုင်တယ်",
+            examples: [
+                { en: "This problem can be solved by anyone.", my: "ဒီပြဿနာကို ဘယ်သူမဆို ဖြေရှင်းနိုင်တယ်" },
+                { en: "The letter could be delivered today.", my: "စာကို ဒီနေ့ ပို့နိုင်တယ်" },
+                { en: "All documents must be signed by the manager.", my: "စာရွက်စာတမ်းအားလုံးကို မန်နေဂျာက လက်မှတ်ထိုးရမယ်" },
+                { en: "The project should be completed by Friday.", my: "ပရောဂျက်ကို သောကြာနေ့မှာ ပြီးစီးသင့်တယ်" },
+                { en: "The meeting may be postponed if the director is unavailable.", my: "ဒါရိုက်တာမရှိရင် အစည်းအဝေးကို ရွှေ့ဆိုင်းနိုင်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + must/should + be + V3",
+            meaning: "...ရမယ် / ...သင့်တယ်",
+            examples: [
+                { en: "All applications must be submitted by Friday.", my: "လျှောက်လွှာအားလုံးကို သောကြာနေ့မှာ တင်ရမယ်" },
+                { en: "The report should be written clearly.", my: "အစီရင်ခံစာကို ရှင်းရှင်းလင်းလင်း ရေးသင့်တယ်" },
+                { en: "All passengers must be informed about the delay.", my: "ခရီးသည်အားလုံးကို နှောင့်နှေးမှုအကြောင်း အကြောင်းကြားရမယ်" },
+                { en: "The broken window should be fixed immediately.", my: "ကျိုးနေတဲ့ပြတင်းပေါက်ကို ချက်ချင်းပြင်သင့်တယ်" },
+                { en: "The documents must be signed by all parties.", my: "စာရွက်စာတမ်းတွေကို ပါတီအားလုံးက လက်မှတ်ထိုးရမယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Can be + V3", meaning: "...နိုင်တယ်" },
+        { word: "Must be + V3", meaning: "...ရမယ်" },
+        { word: "Should be + V3", meaning: "...သင့်တယ်" },
+        { word: "May be + V3", meaning: "...နိုင်တယ်" },
+        { word: "Might be + V3", meaning: "...နိုင်တယ်" }
+    ]
+},
+day109: {
+    title: "📘 Day 109: Advanced Passive Voice",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> Passive voice ကို အဆင့်မြင့်ပုံစံများဖြင့် သုံးရန်။
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Subject + have/has/had + been + V3 / Subject + will have + been + V3`,
+    patterns: [
+        {
+            formula: "Subject + have/has + been + V3 (Present Perfect Passive)",
+            meaning: "...ပြီးပြီ",
+            examples: [
+                { en: "The house has been built for 6 months.", my: "အိမ်ကို ၆ လကြာ ဆောက်ပြီးပြီ" },
+                { en: "The car has been repaired by the mechanic.", my: "ကားကို စက်ပြင်ဆရာက ပြင်ပြီးပြီ" },
+                { en: "The food has been eaten by the children.", my: "အစားအစာကို ကလေးတွေ စားပြီးပြီ" },
+                { en: "The book has been read by many people.", my: "စာအုပ်ကို လူအများက ဖတ်ပြီးပြီ" },
+                { en: "The project has been completed successfully.", my: "ပရောဂျက်ကို အောင်မြင်စွာ ပြီးပြီ" }
+            ]
+        },
+        {
+            formula: "Subject + had + been + V3 (Past Perfect Passive)",
+            meaning: "...ပြီးသွားပြီ",
+            examples: [
+                { en: "The house had been built before the rain started.", my: "မိုးမစခင် အိမ်ဆောက်ပြီးသွားပြီ" },
+                { en: "The car had been repaired by the time I arrived.", my: "ငါမရောက်ခင် ကားပြင်ပြီးသွားပြီ" },
+                { en: "The food had been eaten before we got there.", my: "ငါတို့မရောက်ခင် အစားအစာစားပြီးသွားပြီ" },
+                { en: "The book had been read by many students.", my: "စာအုပ်ကို ကျောင်းသားအများက ဖတ်ပြီးသွားပြီ" },
+                { en: "The work had been finished before the deadline.", my: "သတ်မှတ်ရက်မတိုင်ခင် အလုပ်ပြီးသွားပြီ" }
+            ]
+        },
+        {
+            formula: "Subject + will have + been + V3 (Future Perfect Passive)",
+            meaning: "...ပြီးသွားမယ်",
+            examples: [
+                { en: "The house will have been built by next year.", my: "လာမယ့်နှစ်မှာ အိမ်ဆောက်ပြီးသွားမယ်" },
+                { en: "The car will have been repaired by tomorrow.", my: "မနက်ဖြန်မှာ ကားပြင်ပြီးသွားမယ်" },
+                { en: "The project will have been completed by Friday.", my: "သောကြာနေ့မှာ ပရောဂျက်ပြီးသွားမယ်" },
+                { en: "The homework will have been done by 8 PM.", my: "ည ၈ နာရီမှာ အိမ်စာပြီးသွားမယ်" },
+                { en: "The letters will have been sent by the end of the week.", my: "တစ်ပတ်အကုန်မှာ စာတွေပို့ပြီးသွားမယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Has been + V3", meaning: "...ပြီးပြီ" },
+        { word: "Had been + V3", meaning: "...ပြီးသွားပြီ" },
+        { word: "Will have been + V3", meaning: "...ပြီးသွားမယ်" }
+    ]
+},
+day110: {
+    title: "📘 Day 110: Causative Verbs (Have, Get, Make)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> တစ်ယောက်ယောက်ကို တစ်ခုခုလုပ်ခိုင်းကြောင်း ဖော်ပြရာတွင် သုံးသည်။
+    <br>🔹 <strong>Have -</strong> လုပ်စေသည် (အမိန့်ပေးသလို)
+    <br>🔹 <strong>Get -</strong> လုပ်စေသည် (တောင်းဆိုသလို)
+    <br>🔹 <strong>Make -</strong> အတင်းလုပ်စေသည်`,
+    patterns: [
+        {
+            formula: "Subject + have + Object + V1 (have someone do something)",
+            meaning: "...ကို ...ခိုင်းတယ်",
+            examples: [
+                { en: "I have my brother carry the bag.", my: "ငါ ငါ့ညီကို အိတ်သယ်ခိုင်းတယ်" },
+                { en: "She has the waiter bring water.", my: "သူမ စားပွဲထိုးကို ရေယူလာခိုင်းတယ်" },
+                { en: "They have the cleaner clean the room.", my: "သူတို့ သန့်ရှင်းရေးသမားကို အခန်းသန့်ရှင်းခိုင်းတယ်" },
+                { en: "We have the mechanic fix the car.", my: "ငါတို့ စက်ပြင်ဆရာကို ကားပြင်ခိုင်းတယ်" },
+                { en: "He has his assistant write the report.", my: "သူ သူ့လက်ထောက်ကို အစီရင်ခံစာရေးခိုင်းတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + get + Object + to + V1 (get someone to do something)",
+            meaning: "...ကို ...ခိုင်းတယ် (တောင်းဆိုချက်)",
+            examples: [
+                { en: "I got my brother to carry the bag.", my: "ငါ ငါ့ညီကို အိတ်သယ်ခိုင်းတယ်" },
+                { en: "She got the waiter to bring water.", my: "သူမ စားပွဲထိုးကို ရေယူလာခိုင်းတယ်" },
+                { en: "They got the cleaner to clean the room.", my: "သူတို့ သန့်ရှင်းရေးသမားကို အခန်းသန့်ရှင်းခိုင်းတယ်" },
+                { en: "We got the mechanic to fix the car.", my: "ငါတို့ စက်ပြင်ဆရာကို ကားပြင်ခိုင်းတယ်" },
+                { en: "He got his assistant to write the report.", my: "သူ သူ့လက်ထောက်ကို အစီရင်ခံစာရေးခိုင်းတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + make + Object + V1 (make someone do something)",
+            meaning: "...ကို အတင်းလုပ်ခိုင်းတယ်",
+            examples: [
+                { en: "My mother makes me eat vegetables.", my: "ငါ့အမေ ငါ့ကို ဟင်းသီးဟင်းရွက်တွေ အတင်းစားခိုင်းတယ်" },
+                { en: "The teacher makes the students study.", my: "ဆရာက ကျောင်းသားတွေကို အတင်းစာကျက်ခိုင်းတယ်" },
+                { en: "The boss makes us work overtime.", my: "အထက်လူကြီးက ငါတို့ကို အချိန်ပိုအလုပ်လုပ်ခိုင်းတယ်" },
+                { en: "His father makes him practice piano.", my: "သူ့အဖေ သူ့ကို စန္ဒယားလေ့ကျင့်ခိုင်းတယ်" },
+                { en: "The coach makes the team run every day.", my: "နည်းပြက အသင်းကို နေ့တိုင်း အတင်းပြေးခိုင်းတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Have", meaning: "လုပ်စေသည်" },
+        { word: "Get", meaning: "လုပ်စေသည်" },
+        { word: "Make", meaning: "အတင်းလုပ်စေသည်" }
+    ]
+},
+day111: {
+    title: "📘 Day 111: So / Such / Too / Enough",
+    description: `🔹 <strong>So -</strong> adjective ရှေ့မှာ သုံးပြီး ပြင်းထန်မှုကို ပြသည်။
+    <br>🔹 <strong>Such -</strong> noun ရှေ့မှာ သုံးသည်။
+    <br>🔹 <strong>Too -</strong> ...လွန်းသော အတွက် သုံးသည်။
+    <br>🔹 <strong>Enough -</strong> ...လုံလောက်သော အတွက် သုံးသည်။`,
+    patterns: [
+        {
+            formula: "So + adjective (very)",
+            meaning: "အလွန် ...",
+            examples: [
+                { en: "The food is so delicious!", my: "အစားအစာက အလွန်အရသာရှိတယ်" },
+                { en: "She is so beautiful.", my: "သူမ အလွန်လှပါတယ်" },
+                { en: "He runs so fast.", my: "သူ အလွန်မြန်မြန်ပြေးတယ်" },
+                { en: "The weather is so nice.", my: "ရာသီဥတုက အလွန်သာယာတယ်" },
+                { en: "I am so happy!", my: "ငါ အလွန်ပျော်တယ်" }
+            ]
+        },
+        {
+            formula: "Such + a/an + adjective + noun",
+            meaning: "အလွန် ...တဲ့ ...",
+            examples: [
+                { en: "She is such a beautiful girl.", my: "သူမ အလွန်လှတဲ့ ကောင်မလေးတစ်ယောက်ပါ" },
+                { en: "It is such a nice day.", my: "အလွန်သာယာတဲ့ နေ့တစ်နေ့ပါ" },
+                { en: "He is such a kind person.", my: "သူ အလွန်ကြင်နာတဲ့ လူတစ်ယောက်ပါ" },
+                { en: "This is such an interesting book.", my: "ဒါ အလွန်စိတ်ဝင်စားဖို့ကောင်းတဲ့ စာအုပ်တစ်အုပ်ပါ" },
+                { en: "They are such good students.", my: "သူတို့ အလွန်ကောင်းတဲ့ ကျောင်းသားတွေပါ" }
+            ]
+        },
+        {
+            formula: "Too + adjective + to + V1",
+            meaning: "...လွန်းလို့ ...မနိုင်ဘူး",
+            examples: [
+                { en: "I am too tired to work.", my: "ငါ အလုပ်လုပ်ဖို့ အရမ်းပင်ပန်းတယ်" },
+                { en: "She is too young to drive.", my: "သူမ ကားမောင်းဖို့ အရမ်းငယ်သေးတယ်" },
+                { en: "The coffee is too hot to drink.", my: "ကော်ဖီက သောက်ဖို့ အရမ်းပူတယ်" },
+                { en: "He is too busy to help.", my: "သူ ကူညီဖို့ အရမ်းအလုပ်များတယ်" },
+                { en: "The box is too heavy to carry.", my: "သေတ္တာက သယ်ဖို့ အရမ်းလေးတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + adjective/adv + enough + to + V1",
+            meaning: "...လောက် ...တယ်",
+            examples: [
+                { en: "I am strong enough to lift the box.", my: "ငါ သေတ္တာမတင်ဖို့ လုံလောက်တဲ့အားရှိတယ်" },
+                { en: "She is old enough to drive.", my: "သူမ ကားမောင်းဖို့ အသက်လုံလောက်ပြီ" },
+                { en: "The coffee is cool enough to drink.", my: "ကော်ဖီက သောက်ဖို့ လုံလောက်တဲ့အေးတယ်" },
+                { en: "He is smart enough to solve the problem.", my: "သူ ပြဿနာဖြေရှင်းဖို့ လုံလောက်တဲ့ထက်မြက်တယ်" },
+                { en: "We have enough time to finish.", my: "ငါတို့ ပြီးအောင်လုပ်ဖို့ အချိန်လုံလောက်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "So", meaning: "အလွန်" },
+        { word: "Such", meaning: "အလွန် ...တဲ့" },
+        { word: "Too", meaning: "...လွန်းသော" },
+        { word: "Enough", meaning: "လုံလောက်သော" }
+    ]
+},
+day112: {
+    title: "📘 Day 112: Either / Neither / Both",
+    description: `🔹 <strong>Either -</strong> နှစ်ခုထဲက တစ်ခု
+    <br>🔹 <strong>Neither -</strong> နှစ်ခုလုံးမဟုတ်
+    <br>🔹 <strong>Both -</strong> နှစ်ခုလုံး`,
+    patterns: [
+        {
+            formula: "Either + singular noun + singular verb",
+            meaning: "နှစ်ခုထဲက တစ်ခု",
+            examples: [
+                { en: "Either book is good.", my: "စာအုပ်နှစ်အုပ်ထဲက တစ်အုပ်က ကောင်းတယ်" },
+                { en: "Either answer is correct.", my: "အဖြေနှစ်ခုထဲက တစ်ခုက မှန်တယ်" },
+                { en: "Either day is fine for me.", my: "ရက်နှစ်ရက်ထဲက တစ်ရက်က ငါ့အတွက်အဆင်ပြေတယ်" }
+            ]
+        },
+        {
+            formula: "Neither + singular noun + singular verb",
+            meaning: "နှစ်ခုလုံးမဟုတ်",
+            examples: [
+                { en: "Neither book is interesting.", my: "စာအုပ်နှစ်အုပ်လုံး စိတ်ဝင်စားစရာမကောင်းဘူး" },
+                { en: "Neither answer is correct.", my: "အဖြေနှစ်ခုလုံး မမှန်ဘူး" },
+                { en: "Neither day works for me.", my: "ရက်နှစ်ရက်လုံး ငါ့အတွက် အဆင်မပြေဘူး" }
+            ]
+        },
+        {
+            formula: "Both + plural noun + plural verb",
+            meaning: "နှစ်ခုလုံး",
+            examples: [
+                { en: "Both books are interesting.", my: "စာအုပ်နှစ်အုပ်လုံး စိတ်ဝင်စားစရာကောင်းတယ်" },
+                { en: "Both answers are correct.", my: "အဖြေနှစ်ခုလုံး မှန်တယ်" },
+                { en: "Both days are good for me.", my: "ရက်နှစ်ရက်လုံး ငါ့အတွက်ကောင်းတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Either", meaning: "နှစ်ခုထဲက တစ်ခု" },
+        { word: "Neither", meaning: "နှစ်ခုလုံးမဟုတ်" },
+        { word: "Both", meaning: "နှစ်ခုလုံး" }
+    ]
+},
+day113: {
+    title: "📘 Day 113: Some / Any / No",
+    description: `🔹 <strong>Some -</strong> အပြုသဘောဝါကျနှင့် ကမ်းလှမ်းချက်တွင်သုံးသည်။
+    <br>🔹 <strong>Any -</strong> ငြင်းပယ်ဝါကျနှင့် မေးခွန်းတွင်သုံးသည်။
+    <br>🔹 <strong>No -</strong> ငြင်းပယ်ဝါကျတွင် သုံးသည်။`,
+    patterns: [
+        {
+            formula: "Subject + V + some + (plural noun/uncountable noun)",
+            meaning: "အချို့ ...",
+            examples: [
+                { en: "I have some books.", my: "ငါ့မှာ စာအုပ်အချို့ရှိတယ်" },
+                { en: "She needs some water.", my: "သူမ ရေအချို့လိုတယ်" },
+                { en: "They want some coffee.", my: "သူတို့ ကော်ဖီအချို့လိုချင်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + not + any + (plural noun/uncountable noun)",
+            meaning: "...မရှိဘူး",
+            examples: [
+                { en: "I don't have any books.", my: "ငါ့မှာ စာအုပ်မရှိဘူး" },
+                { en: "She doesn't need any water.", my: "သူမ ရေမလိုဘူး" },
+                { en: "They don't want any coffee.", my: "သူတို့ ကော်ဖီမလိုချင်ဘူး" }
+            ]
+        },
+        {
+            formula: "Do/Does + Subject + V + any + (plural noun/uncountable noun)?",
+            meaning: "...ရှိလား?",
+            examples: [
+                { en: "Do you have any books?", my: "မင်းမှာ စာအုပ်တွေရှိလား" },
+                { en: "Does she need any water?", my: "သူမ ရေလိုလား" },
+                { en: "Do they want any coffee?", my: "သူတို့ ကော်ဖီလိုချင်လား" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Some", meaning: "အချို့" },
+        { word: "Any", meaning: "မည်သည့်" },
+        { word: "No", meaning: "လုံးဝမဟုတ်" }
+    ]
+},
+// =============================================================
+//  DAY 114 to DAY 120 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day114: {
+    title: "📘 Day 114: Many / Much / A lot of",
+    description: `🔹 <strong>Many -</strong> ရေတွက်နိုင်သော နာမ်များအတွက်
+    <br>🔹 <strong>Much -</strong> ရေတွက်မရသော နာမ်များအတွက်
+    <br>🔹 <strong>A lot of -</strong> နှစ်မျိုးလုံးအတွက်`,
+    patterns: [
+        {
+            formula: "Subject + V + many + plural noun",
+            meaning: "...အများကြီး",
+            examples: [
+                { en: "I have many books.", my: "ငါ့မှာ စာအုပ်အများကြီးရှိတယ်" },
+                { en: "She has many friends.", my: "သူမမှာ သူငယ်ချင်းအများကြီးရှိတယ်" },
+                { en: "They bought many apples.", my: "သူတို့ ပန်းသီးအများကြီးဝယ်တယ်" },
+                { en: "We saw many birds.", my: "ငါတို့ ငှက်အများကြီးမြင်တယ်" },
+                { en: "He knows many people.", my: "သူ လူအများကြီးသိတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + much + uncountable noun",
+            meaning: "...အများကြီး",
+            examples: [
+                { en: "I don't have much time.", my: "ငါ့မှာ အချိန်အများကြီးမရှိဘူး" },
+                { en: "She doesn't drink much coffee.", my: "သူမ ကော်ဖီအများကြီးမသောက်ဘူး" },
+                { en: "They don't have much money.", my: "သူတို့မှာ ပိုက်ဆံအများကြီးမရှိဘူး" },
+                { en: "We didn't eat much food.", my: "ငါတို့ အစားအစာအများကြီးမစားဘူး" },
+                { en: "He doesn't drink much water.", my: "သူ ရေအများကြီးမသောက်ဘူး" }
+            ]
+        },
+        {
+            formula: "Subject + V + a lot of + (plural/uncountable noun)",
+            meaning: "...အများကြီး",
+            examples: [
+                { en: "I have a lot of books.", my: "ငါ့မှာ စာအုပ်အများကြီးရှိတယ်" },
+                { en: "She has a lot of friends.", my: "သူမမှာ သူငယ်ချင်းအများကြီးရှိတယ်" },
+                { en: "They have a lot of money.", my: "သူတို့မှာ ပိုက်ဆံအများကြီးရှိတယ်" },
+                { en: "We need a lot of time.", my: "ငါတို့ အချိန်အများကြီးလိုတယ်" },
+                { en: "He drinks a lot of coffee.", my: "သူ ကော်ဖီအများကြီးသောက်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Many", meaning: "အများကြီး (ရေတွက်နိုင်)" },
+        { word: "Much", meaning: "အများကြီး (ရေတွက်မရ)" },
+        { word: "A lot of", meaning: "အများကြီး" }
+    ]
+},
+day115: {
+    title: "📘 Day 115: Few / A few / Little / A little",
+    description: `🔹 <strong>Few -</strong> အနည်းငယ် (ငြင်းပယ်သဘော) - ရေတွက်နိုင်သော နာမ်များအတွက်
+    <br>🔹 <strong>A few -</strong> အနည်းငယ် (အပြုသဘော) - ရေတွက်နိုင်သော နာမ်များအတွက်
+    <br>🔹 <strong>Little -</strong> အနည်းငယ် (ငြင်းပယ်သဘော) - ရေတွက်မရသော နာမ်များအတွက်
+    <br>🔹 <strong>A little -</strong> အနည်းငယ် (အပြုသဘော) - ရေတွက်မရသော နာမ်များအတွက်`,
+    patterns: [
+        {
+            formula: "Subject + V + few + plural noun (negative meaning)",
+            meaning: "...အနည်းငယ်ပဲရှိတယ် (မရှိသလောက်)",
+            examples: [
+                { en: "I have few friends.", my: "ငါ့မှာ သူငယ်ချင်းအနည်းငယ်ပဲရှိတယ်" },
+                { en: "She has few books.", my: "သူမမှာ စာအုပ်အနည်းငယ်ပဲရှိတယ်" },
+                { en: "They have few options.", my: "သူတို့မှာ ရွေးစရာအနည်းငယ်ပဲရှိတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + a few + plural noun (positive meaning)",
+            meaning: "...အနည်းငယ် (လုံလောက်တယ်)",
+            examples: [
+                { en: "I have a few friends.", my: "ငါ့မှာ သူငယ်ချင်းအနည်းငယ်ရှိတယ်" },
+                { en: "She has a few books.", my: "သူမမှာ စာအုပ်အနည်းငယ်ရှိတယ်" },
+                { en: "They have a few options.", my: "သူတို့မှာ ရွေးစရာအနည်းငယ်ရှိတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + little + uncountable noun (negative meaning)",
+            meaning: "...အနည်းငယ်ပဲရှိတယ် (မရှိသလောက်)",
+            examples: [
+                { en: "I have little time.", my: "ငါ့မှာ အချိန်အနည်းငယ်ပဲရှိတယ်" },
+                { en: "She has little money.", my: "သူမမှာ ပိုက်ဆံအနည်းငယ်ပဲရှိတယ်" },
+                { en: "They have little food.", my: "သူတို့မှာ အစားအစာအနည်းငယ်ပဲရှိတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + a little + uncountable noun (positive meaning)",
+            meaning: "...အနည်းငယ် (လုံလောက်တယ်)",
+            examples: [
+                { en: "I have a little time.", my: "ငါ့မှာ အချိန်အနည်းငယ်ရှိတယ်" },
+                { en: "She has a little money.", my: "သူမမှာ ပိုက်ဆံအနည်းငယ်ရှိတယ်" },
+                { en: "They have a little food.", my: "သူတို့မှာ အစားအစာအနည်းငယ်ရှိတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Few", meaning: "အနည်းငယ် (မရှိသလောက်)" },
+        { word: "A few", meaning: "အနည်းငယ်" },
+        { word: "Little", meaning: "အနည်းငယ် (မရှိသလောက်)" },
+        { word: "A little", meaning: "အနည်းငယ်" }
+    ]
+},
+day116: {
+    title: "📘 Day 116: Phrasal Verbs (Common)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ကြိယာ + ကြိယာဝိသေသန (adverb) သို့မဟုတ် ဝိဘတ် (preposition) ပေါင်းစပ်ထားသော စကားစုများ`,
+    patterns: [
+        {
+            formula: "Subject + V + up (phrasal verb)",
+            meaning: "...တက်သည် / ...ပြီးသည်",
+            examples: [
+                { en: "I wake up at 6 AM.", my: "ငါ နံနက် ၆ နာရီမှာ နိုးတယ်" },
+                { en: "She stands up slowly.", my: "သူမ ဖြည်းညင်းစွာ ထသည်" },
+                { en: "Please give up smoking.", my: "ဆေးလိပ်ဖြတ်ပါ" },
+                { en: "We set up a new company.", my: "ငါတို့ ကုမ္ပဏီအသစ်တစ်ခု ထူထောင်တယ်" },
+                { en: "He made up a story.", my: "သူ ပုံပြင်တစ်ပုဒ် ဖန်တီးတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out (phrasal verb)",
+            meaning: "...ထွက်သည်",
+            examples: [
+                { en: "I found out the truth.", my: "ငါ အမှန်တရားကို တွေ့ရှိခဲ့တယ်" },
+                { en: "She works out every day.", my: "သူမ နေ့တိုင်း လေ့ကျင့်ခန်းလုပ်တယ်" },
+                { en: "Please find out the answer.", my: "အဖြေကို ရှာဖွေပါ" },
+                { en: "We ran out of time.", my: "ငါတို့ အချိန်ကုန်သွားတယ်" },
+                { en: "He looked out the window.", my: "သူ ပြတင်းပေါက်ကနေ ကြည့်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + off (phrasal verb)",
+            meaning: "...ခွာသည် / ...ထွက်သည်",
+            examples: [
+                { en: "I take off my shoes.", my: "ငါ ဖိနပ်ချွတ်တယ်" },
+                { en: "She turned off the TV.", my: "သူမ တီဗွီပိတ်တယ်" },
+                { en: "The plane took off at 8 AM.", my: "လေယာဉ် နံနက် ၈ နာရီမှာ ပျံတက်တယ်" },
+                { en: "We set off at 5 AM.", my: "ငါတို့ နံနက် ၅ နာရီမှာ ထွက်ခွာတယ်" },
+                { en: "He showed off his new car.", my: "သူ ကားအသစ်ကို ကြွားတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Wake up", meaning: "နိုးသည်" },
+        { word: "Give up", meaning: "စွန့်လွှတ်သည်" },
+        { word: "Find out", meaning: "ရှာဖွေတွေ့ရှိသည်" },
+        { word: "Take off", meaning: "ချွတ်သည် / ပျံတက်သည်" },
+        { word: "Turn on", meaning: "ဖွင့်သည်" },
+        { word: "Turn off", meaning: "ပိတ်သည်" }
+    ]
+},
+day117: {
+    title: "📘 Day 117: Phrasal Verbs (More)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ကြိယာ + ကြိယာဝိသေသန (adverb) သို့မဟုတ် ဝိဘတ် (preposition) ပေါင်းစပ်ထားသော စကားစုများ (အပိုင်း ၂)`,
+    patterns: [
+        {
+            formula: "Subject + V + into (phrasal verb)",
+            meaning: "...ထဲကို",
+            examples: [
+                { en: "I bumped into an old friend.", my: "ငါ သူငယ်ချင်းဟောင်းတစ်ယောက်ကို မျက်နှာချင်းဆိုင်တွေ့တယ်" },
+                { en: "She got into the car.", my: "သူမ ကားထဲကို ဝင်တယ်" },
+                { en: "We ran into some problems.", my: "ငါတို့ ပြဿနာအချို့ကို ကြုံတွေ့တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + over (phrasal verb)",
+            meaning: "...ကျော်",
+            examples: [
+                { en: "I will think over your suggestion.", my: "ငါ မင်းရဲ့အကြံပြုချက်ကို စဉ်းစားမယ်" },
+                { en: "She takes over the project.", my: "သူမ ပရောဂျက်ကို တာဝန်ယူတယ်" },
+                { en: "Please come over to my house.", my: "ငါ့အိမ်ကို လာခဲ့ပါ" }
+            ]
+        },
+        {
+            formula: "Subject + V + after (phrasal verb)",
+            meaning: "...နောက်က",
+            examples: [
+                { en: "I look after my younger brother.", my: "ငါ ငါ့ညီလေးကို ကြည့်ရှုစောင့်ရှောက်တယ်" },
+                { en: "She runs after the bus.", my: "သူမ ဘတ်စ်ကားနောက်ကို လိုက်ပြေးတယ်" },
+                { en: "He takes after his father.", my: "သူ အဖေနဲ့တူတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Bump into", meaning: "မျက်နှာချင်းဆိုင်တွေ့သည်" },
+        { word: "Run into", meaning: "ကြုံတွေ့သည်" },
+        { word: "Think over", meaning: "စဉ်းစားသည်" },
+        { word: "Take over", meaning: "တာဝန်ယူသည်" },
+        { word: "Look after", meaning: "စောင့်ရှောက်သည်" },
+        { word: "Take after", meaning: "တူသည်" }
+    ]
+},
+day118: {
+    title: "📘 Day 118: Phrasal Verbs (Commonly Used)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ကြိယာ + ကြိယာဝိသေသန (adverb) သို့မဟုတ် ဝိဘတ် (preposition) ပေါင်းစပ်ထားသော စကားစုများ (အပိုင်း ၃)`,
+    patterns: [
+        {
+            formula: "Subject + V + for (phrasal verb)",
+            meaning: "...အတွက်",
+            examples: [
+                { en: "I am looking for my keys.", my: "ငါ ငါ့သော့တွေကို ရှာနေတယ်" },
+                { en: "She asks for help.", my: "သူမ အကူအညီတောင်းတယ်" },
+                { en: "They wait for the bus.", my: "သူတို့ ဘတ်စ်ကားကို စောင့်နေတယ်" },
+                { en: "We pay for the dinner.", my: "ငါတို့ ညစာဖို့ပေးတယ်" },
+                { en: "He hopes for the best.", my: "သူ အကောင်းဆုံးကို မျှော်လင့်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + with (phrasal verb)",
+            meaning: "...နှင့်",
+            examples: [
+                { en: "I agree with you.", my: "ငါ မင်းနဲ့ သဘောတူတယ်" },
+                { en: "She deals with the problem.", my: "သူမ ပြဿနာကို ကိုင်တွယ်တယ်" },
+                { en: "They talk with each other.", my: "သူတို့ တစ်ယောက်နဲ့တစ်ယောက် စကားပြောတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + about (phrasal verb)",
+            meaning: "...အကြောင်း",
+            examples: [
+                { en: "I think about you.", my: "ငါ မင်းအကြောင်း စဉ်းစားတယ်" },
+                { en: "She talks about her job.", my: "သူမ သူ့အလုပ်အကြောင်း ပြောတယ်" },
+                { en: "They worry about the exam.", my: "သူတို့ စာမေးပွဲအကြောင်း စိုးရိမ်တယ်" },
+                { en: "We learn about history.", my: "ငါတို့ သမိုင်းအကြောင်း သင်ယူတယ်" },
+                { en: "He dreams about traveling.", my: "သူ ခရီးသွားဖို့ အိပ်မက်မက်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Look for", meaning: "ရှာဖွေသည်" },
+        { word: "Ask for", meaning: "တောင်းသည်" },
+        { word: "Wait for", meaning: "စောင့်သည်" },
+        { word: "Agree with", meaning: "သဘောတူသည်" },
+        { word: "Think about", meaning: "စဉ်းစားသည်" }
+    ]
+},
+day119: {
+    title: "📘 Day 119: Tag Questions Review",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အတည်ပြုရန် သို့မဟုတ် သဘောတူညီမှုကို မေးရန် သုံးသည်။`,
+    patterns: [
+        {
+            formula: "Positive statement + negative tag?",
+            meaning: "...တယ်မဟုတ်လား",
+            examples: [
+                { en: "You are a student, aren't you?", my: "မင်း ကျောင်းသားတစ်ယောက်ပါ၊ မဟုတ်လား" },
+                { en: "She likes coffee, doesn't she?", my: "သူမ ကော်ဖီကြိုက်တယ်၊ မဟုတ်လား" },
+                { en: "They play football, don't they?", my: "သူတို့ ဘောလုံးကစားတယ်၊ မဟုတ်လား" },
+                { en: "He is happy, isn't he?", my: "သူ ပျော်တယ်၊ မဟုတ်လား" },
+                { en: "We can go, can't we?", my: "ငါတို့ သွားလို့ရတယ်၊ မဟုတ်လား" }
+            ]
+        },
+        {
+            formula: "Negative statement + positive tag?",
+            meaning: "...မဟုတ်ဘူးလား",
+            examples: [
+                { en: "You aren't a teacher, are you?", my: "မင်း ဆရာမဟုတ်ဘူးလား" },
+                { en: "She doesn't like coffee, does she?", my: "သူမ ကော်ဖီမကြိုက်ဘူးလား" },
+                { en: "They don't play tennis, do they?", my: "သူတို့ တင်းနစ်မကစားဘူးလား" },
+                { en: "He isn't tired, is he?", my: "သူ မပင်ပန်းဘူးလား" },
+                { en: "We can't stay, can we?", my: "ငါတို့ မနေနိုင်ဘူးလား" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Aren't", meaning: "မဟုတ်လား" },
+        { word: "Isn't", meaning: "မဟုတ်လား" },
+        { word: "Don't", meaning: "မဟုတ်လား" },
+        { word: "Doesn't", meaning: "မဟုတ်လား" },
+        { word: "Can't", meaning: "မဟုတ်လား" }
+    ]
+},
+day120: {
+    title: "📘 Day 120: Indirect Questions",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ယဉ်ယဉ်ကျေးကျေးမေးရန် သို့မဟုတ် သွယ်ဝိုက်မေးရန် သုံးသည်။`,
+    patterns: [
+        {
+            formula: "Could you tell me + question word + subject + verb?",
+            meaning: "...ဆိုတာ ပြောပြနိုင်မလား",
+            examples: [
+                { en: "Could you tell me where the station is?", my: "ဘူတာက ဘယ်မှာလဲ ပြောပြနိုင်မလား" },
+                { en: "Could you tell me what time it is?", my: "ဘယ်နှစ်နာရီလဲ ပြောပြနိုင်မလား" },
+                { en: "Could you tell me how to get there?", my: "အဲဒီကို ဘယ်လိုသွားရမလဲ ပြောပြနိုင်မလား" }
+            ]
+        },
+        {
+            formula: "Do you know + question word + subject + verb?",
+            meaning: "...ဆိုတာ မင်းသိလား",
+            examples: [
+                { en: "Do you know where she lives?", my: "သူမ ဘယ်မှာနေလဲ မင်းသိလား" },
+                { en: "Do you know what time the movie starts?", my: "ရုပ်ရှင် ဘယ်အချိန်စလဲ မင်းသိလား" },
+                { en: "Do you know how to cook this dish?", my: "ဒီဟင်းကို ဘယ်လိုချက်ရမလဲ မင်းသိလား" }
+            ]
+        },
+        {
+            formula: "I wonder + question word + subject + verb",
+            meaning: "...ဆိုတာ သိချင်တယ်",
+            examples: [
+                { en: "I wonder where he went.", my: "သူ ဘယ်သွားတာလဲ သိချင်တယ်" },
+                { en: "I wonder what she is doing.", my: "သူမ ဘာလုပ်နေတာလဲ သိချင်တယ်" },
+                { en: "I wonder when they will arrive.", my: "သူတို့ ဘယ်အချိန်ရောက်မလဲ သိချင်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Could you tell me", meaning: "ပြောပြနိုင်မလား" },
+        { word: "Do you know", meaning: "သိလား" },
+        { word: "I wonder", meaning: "သိချင်တယ်" }
+    ]
+},
+// =============================================================
+//  DAY 121 to DAY 127 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day121: {
+    title: "📘 Day 121: Embedded Questions",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> မေးခွန်းကို ဝါကျအတွင်းမှာ ထည့်သွင်းသုံးရန်
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Main clause + question word + subject + verb
+    <br>🔹 <strong>သတိပြုရန် -</strong> မေးခွန်းအတွင်းမှာ ပုံမှန်ဝါကျပုံစံအတိုင်း ပြောင်းသွားသည်။`,
+    patterns: [
+        {
+            formula: "Main clause + question word + subject + verb",
+            meaning: "...ဆိုတာ",
+            examples: [
+                { en: "I don't know where she lives.", my: "သူမ ဘယ်မှာနေလဲ ငါမသိဘူး" },
+                { en: "She asked what time it was.", my: "သူမ ဘယ်အချိန်လဲလို့ မေးတယ်" },
+                { en: "They told me why they were late.", my: "သူတို့ ဘာကြောင့်နောက်ကျတာလဲ ငါ့ကိုပြောတယ်" },
+                { en: "I wonder if he is coming.", my: "သူလာမှာလားလို့ သိချင်တယ်" },
+                { en: "She asked me how I was feeling.", my: "သူမ ငါ့ကို ဘယ်လိုခံစားနေလဲလို့ မေးတယ်" }
+            ]
+        },
+        {
+            formula: "Main clause + if/whether + subject + verb",
+            meaning: "...လား ဆိုတာ",
+            examples: [
+                { en: "I don't know if she likes coffee.", my: "သူမ ကော်ဖီကြိုက်လားဆိုတာ ငါမသိဘူး" },
+                { en: "He asked whether I had finished.", my: "သူ ငါ့ကို ပြီးပြီလားလို့ မေးတယ်" },
+                { en: "She wonders if he will come.", my: "သူမ သူလာမှာလားလို့ သိချင်တယ်" },
+                { en: "They don't know whether to go or stay.", my: "သူတို့ သွားမလား နေမလား မသိဘူး" },
+                { en: "I'm not sure if it's going to rain.", my: "မိုးရွာမလားဆိုတာ ငါမသေချာဘူး" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "I don't know", meaning: "ငါမသိဘူး" },
+        { word: "She asked", meaning: "သူမမေးတယ်" },
+        { word: "I wonder", meaning: "သိချင်တယ်" },
+        { word: "If", meaning: "လား" },
+        { word: "Whether", meaning: "လား" }
+    ]
+},
+day122: {
+    title: "📘 Day 122: Inversion with 'Not only...but also' (Review)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဝါကျအစမှာ 'Not only' ထားခြင်းဖြင့် အလေးပေးရန် သုံးသည်။
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Not only + auxiliary + subject + V1, but also + subject + V1`,
+    patterns: [
+        {
+            formula: "Not only + auxiliary + subject + V1, but also + subject + V1",
+            meaning: "...ရုံသာမက ...လည်း",
+            examples: [
+                { en: "Not only does he speak English, but he also speaks French.", my: "သူ အင်္ဂလိပ်စကားပြောရုံသာမက ပြင်သစ်စကားလည်းပြောတယ်" },
+                { en: "Not only is she beautiful, but she is also intelligent.", my: "သူမ လှရုံသာမက ထက်မြက်လည်းထက်မြက်တယ်" },
+                { en: "Not only did they win the match, but they also broke the record.", my: "သူတို့ ပွဲအောင်ရုံသာမက စံချိန်လည်းချိုးခဲ့တယ်" },
+                { en: "Not only have I visited Paris, but I have also lived there.", my: "ငါ ပါရီကိုသွားဖူးရုံသာမက အဲဒီမှာလည်းနေဖူးတယ်" },
+                { en: "Not only does she sing well, but she also plays the piano.", my: "သူမ သီချင်းကောင်းကောင်းဆိုရုံသာမက စန္ဒယားလည်းတီးတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Not only...but also", meaning: "...ရုံသာမက ...လည်း" },
+        { word: "Inversion", meaning: "စကားလုံးပြောင်းပြန်ထားခြင်း" }
+    ]
+},
+day123: {
+    title: "📘 Day 123: Inversion with 'Only' (Review)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> 'Only' ဖြင့်စသော စကားစုကို ဝါကျအစမှာ ထားခြင်းဖြင့် အလေးပေးရန် သုံးသည်။
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Only + time/phrase + auxiliary + subject + main verb`,
+    patterns: [
+        {
+            formula: "Only + after/ when + clause + auxiliary + subject + V1",
+            meaning: "...မှသာ",
+            examples: [
+                { en: "Only after I had eaten did I feel better.", my: "ငါစားပြီးမှသာ ပိုကောင်းလာတယ်" },
+                { en: "Only when the rain stopped did we go outside.", my: "မိုးရပ်မှသာ ငါတို့အပြင်ထွက်ခဲ့တယ်" },
+                { en: "Only if you study hard will you pass the exam.", my: "မင်းကြိုးစားကျက်မှသာ စာမေးပွဲအောင်မယ်" },
+                { en: "Only after she apologized did I forgive her.", my: "သူမတောင်းပန်မှသာ ငါသူမကိုခွင့်လွှတ်ခဲ့တယ်" },
+                { en: "Only when he arrived did we start the meeting.", my: "သူရောက်မှသာ ငါတို့အစည်းအဝေးစတယ်" }
+            ]
+        },
+        {
+            formula: "Only + by + V-ing + auxiliary + subject + V1",
+            meaning: "...ခြင်းဖြင့်မှသာ",
+            examples: [
+                { en: "Only by studying hard can you pass the exam.", my: "ကြိုးစားကျက်ခြင်းဖြင့်မှသာ စာမေးပွဲအောင်နိုင်တယ်" },
+                { en: "Only by working together can we succeed.", my: "အတူတကွလုပ်ဆောင်ခြင်းဖြင့်မှသာ ငါတို့အောင်မြင်နိုင်တယ်" },
+                { en: "Only by practicing every day can you improve.", my: "နေ့တိုင်းလေ့ကျင့်ခြင်းဖြင့်မှသာ တိုးတက်နိုင်တယ်" },
+                { en: "Only by saving money can we buy a house.", my: "ပိုက်ဆံစုခြင်းဖြင့်မှသာ ငါတို့အိမ်ဝယ်နိုင်တယ်" },
+                { en: "Only by asking for help can you solve the problem.", my: "အကူအညီတောင်းခြင်းဖြင့်မှသာ ပြဿနာဖြေရှင်းနိုင်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Only after", meaning: "...ပြီးမှသာ" },
+        { word: "Only by", meaning: "...ခြင်းဖြင့်မှသာ" },
+        { word: "Only if", meaning: "...မှသာ" }
+    ]
+},
+day124: {
+    title: "📘 Day 124: Subjunctive Mood with Wish",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဖြစ်နိုင်ခြေမရှိသော၊ စိတ်ကူးယဉ်သော အခြေအနေများအတွက် သုံးသည်။
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Subject + wish + (that) + subject + V2 (past)`,
+    patterns: [
+        {
+            formula: "Subject + wish + (that) + subject + V2 (past)",
+            meaning: "...ဆုတောင်းမိတယ်",
+            examples: [
+                { en: "I wish I were a bird.", my: "ငါ ငှက်တစ်ကောင်ဖြစ်ချင်တယ်" },
+                { en: "She wishes she had more time.", my: "သူမ အချိန်ပိုရှိချင်တယ်" },
+                { en: "They wish they could travel.", my: "သူတို့ ခရီးသွားနိုင်ချင်တယ်" },
+                { en: "We wish we knew the answer.", my: "ငါတို့ အဖြေသိချင်တယ်" },
+                { en: "He wishes he were taller.", my: "သူ အရပ်ရှည်ချင်တယ်" }
+            ]
+        },
+        {
+            formula: "I wish + subject + had + V3 (past regret)",
+            meaning: "...ဆုတောင်းမိတယ် (အတိတ်နောင်တ)",
+            examples: [
+                { en: "I wish I had studied harder.", my: "ငါ ပိုပြီးကြိုးစားကျက်ခဲ့တာ ဆုတောင်းမိတယ်" },
+                { en: "She wishes she had taken the job.", my: "သူမ အလုပ်လုပ်ခဲ့တာ ဆုတောင်းမိတယ်" },
+                { en: "They wish they had left earlier.", my: "သူတို့ စောစောထွက်ခဲ့တာ ဆုတောင်းမိတယ်" },
+                { en: "We wish we had saved more money.", my: "ငါတို့ ပိုက်ဆံပိုစုခဲ့တာ ဆုတောင်းမိတယ်" },
+                { en: "He wishes he had listened to his parents.", my: "သူ မိဘစကားနားထောင်ခဲ့တာ ဆုတောင်းမိတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Wish", meaning: "ဆုတောင်းသည်" },
+        { word: "Could", meaning: "...နိုင်မယ်" },
+        { word: "Had + V3", meaning: "...ခဲ့တာ" }
+    ]
+},
+day125: {
+    title: "📘 Day 125: Subjunctive Mood with Suggest/Recommend",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အကြံပြုချက်များအတွက် သုံးသည်။
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Subject + suggest/recommend + that + subject + V1 (base form)`,
+    patterns: [
+        {
+            formula: "Subject + suggest + that + subject + V1 (base form)",
+            meaning: "...ဖို့ အကြံပြုတယ်",
+            examples: [
+                { en: "I suggest that he study harder.", my: "သူ ပိုပြီးစာကျက်ဖို့ ငါအကြံပြုတယ်" },
+                { en: "She suggests that we go early.", my: "ငါတို့ စောစောသွားဖို့ သူမအကြံပြုတယ်" },
+                { en: "They suggest that she apply for the job.", my: "သူမ အလုပ်လျှောက်ဖို့ သူတို့အကြံပြုတယ်" },
+                { en: "We suggest that everyone bring their own lunch.", my: "လူတိုင်း ကိုယ်ပိုင်နေ့လယ်စာယူလာဖို့ ငါတို့အကြံပြုတယ်" },
+                { en: "The teacher suggests that we read more.", my: "ငါတို့ ပိုပြီးဖတ်ဖို့ ဆရာက အကြံပြုတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + recommend + that + subject + V1 (base form)",
+            meaning: "...ဖို့ အကြံပေးတယ်",
+            examples: [
+                { en: "I recommend that he see a doctor.", my: "သူ ဆရာဝန်သွားပြဖို့ ငါအကြံပေးတယ်" },
+                { en: "She recommends that we visit the museum.", my: "ငါတို့ ပြတိုက်သွားလည်ဖို့ သူမအကြံပေးတယ်" },
+                { en: "They recommend that she study abroad.", my: "သူမ ပြည်ပမှာပညာသင်ဖို့ သူတို့အကြံပေးတယ်" },
+                { en: "We recommend that you try the local food.", my: "မင်း ဒေသခံအစားအစာစားကြည့်ဖို့ ငါတို့အကြံပေးတယ်" },
+                { en: "The doctor recommends that I exercise more.", my: "ငါ ပိုပြီးလေ့ကျင့်ခန်းလုပ်ဖို့ ဆရာဝန်က အကြံပေးတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Suggest", meaning: "အကြံပြုသည်" },
+        { word: "Recommend", meaning: "အကြံပေးသည်" },
+        { word: "Propose", meaning: "အဆိုပြုသည်" }
+    ]
+},
+day126: {
+    title: "📘 Day 126: Mixed Conditionals Review",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အတိတ်နှင့် လက်ရှိကို ရောနှောသော အခြေအနေများအတွက် သုံးသည်။
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> If + had + V3 (past), would + V1 (present)`,
+    patterns: [
+        {
+            formula: "If + had + V3 (past), would + V1 (present)",
+            meaning: "...ခဲ့ရင် အခု ...မယ်",
+            examples: [
+                { en: "If I had studied medicine, I would be a doctor now.", my: "ငါ ဆေးပညာသင်ခဲ့ရင် အခု ဆရာဝန်ဖြစ်နေမယ်" },
+                { en: "If she had taken the job, she would be rich now.", my: "သူမ အဲဒီအလုပ်ကိုလုပ်ခဲ့ရင် အခုချမ်းသာနေမယ်" },
+                { en: "If they had left earlier, they would be here now.", my: "သူတို့စောစောထွက်ခဲ့ရင် အခုဒီမှာရောက်နေမယ်" },
+                { en: "If we had saved money, we would be traveling now.", my: "ငါတို့ပိုက်ဆံစုခဲ့ရင် အခုခရီးသွားနေမယ်" },
+                { en: "If he had worked harder, he would be successful now.", my: "သူပိုပြီးကြိုးစားခဲ့ရင် အခုအောင်မြင်နေမယ်" }
+            ]
+        },
+        {
+            formula: "If + V2 (present), would have + V3 (past)",
+            meaning: "...ရင် ...ခဲ့မယ်",
+            examples: [
+                { en: "If I were rich, I would have bought that car.", my: "ငါချမ်းသာရင် အဲဒီကားကိုဝယ်ခဲ့မယ်" },
+                { en: "If she were here, she would have helped us.", my: "သူမဒီမှာရှိရင် ငါတို့ကိုကူညီခဲ့မယ်" },
+                { en: "If they were smarter, they would have won.", my: "သူတို့ပိုပြီးလိမ္မာရင် အောင်ခဲ့မယ်" },
+                { en: "If we had more time, we would have visited you.", my: "ငါတို့အချိန်ပိုရှိရင် မင်းဆီလည်ခဲ့မယ်" },
+                { en: "If he were taller, he would have played basketball.", my: "သူအရပ်ရှည်ရင် ဘတ်စကတ်ဘောကစားခဲ့မယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Mixed conditional", meaning: "ရောနှောသော အခြေအနေ" },
+        { word: "Past condition", meaning: "အတိတ်အခြေအနေ" },
+        { word: "Present result", meaning: "လက်ရှိရလဒ်" }
+    ]
+},
+day127: {
+    title: "📘 Day 127: Final Review",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> Day 100-126 အတွင်း သင်ယူခဲ့သည်များကို ပြန်လည်သုံးသပ်ခြင်း
+    <br>🔹 <strong>အကြောင်းအရာများ -</strong> Clauses, Inversion, Subjunctive, Mixed Conditionals, Passive Voice, Causative, Quantifiers, Phrasal Verbs, Tag Questions, Indirect Questions`,
+    patterns: [
+        {
+            formula: "All grammar points from Day 100 to 126",
+            meaning: "သင်ယူခဲ့သမျှ အားလုံး",
+            examples: [
+                { en: "Although it rained, we went out. (Contrast)", my: "မိုးရွာပေမယ့် ငါတို့ထွက်သွားတယ်" },
+                { en: "I stayed home because it was raining. (Reason)", my: "မိုးရွာလို့ ငါအိမ်မှာနေတယ်" },
+                { en: "Not only does she sing, but she also dances. (Inversion)", my: "သူမ သီချင်းဆိုရုံသာမက ကလည်းကတယ်" },
+                { en: "I wish I had studied harder. (Subjunctive)", my: "ငါ ပိုပြီးကြိုးစားကျက်ခဲ့တာ ဆုတောင်းမိတယ်" },
+                { en: "If I had known, I would have come. (Mixed Conditional)", my: "ငါသိခဲ့ရင် လာခဲ့မယ်" },
+                { en: "The work must be done by Friday. (Passive)", my: "အလုပ်ကို သောကြာနေ့မှာ လုပ်ရမယ်" },
+                { en: "I had my brother carry the bag. (Causative)", my: "ငါ ငါ့ညီကို အိတ်သယ်ခိုင်းတယ်" },
+                { en: "She is too tired to work. (Too/Enough)", my: "သူမ အလုပ်လုပ်ဖို့ အရမ်းပင်ပန်းတယ်" },
+                { en: "Either answer is correct. (Either/Neither)", my: "အဖြေနှစ်ခုထဲက တစ်ခုက မှန်တယ်" },
+                { en: "I don't have any money. (Some/Any)", my: "ငါ့မှာ ပိုက်ဆံမရှိဘူး" },
+                { en: "She has many friends. (Many/Much)", my: "သူမမှာ သူငယ်ချင်းအများကြီးရှိတယ်" },
+                { en: "I have a few books. (Few/A few)", my: "ငါ့မှာ စာအုပ်အနည်းငယ်ရှိတယ်" },
+                { en: "I wake up at 6 AM. (Phrasal Verb)", my: "ငါ နံနက် ၆ နာရီမှာ နိုးတယ်" },
+                { en: "You are a student, aren't you? (Tag Question)", my: "မင်း ကျောင်းသားတစ်ယောက်ပါ၊ မဟုတ်လား" },
+                { en: "Could you tell me where the station is? (Indirect Question)", my: "ဘူတာက ဘယ်မှာလဲ ပြောပြနိုင်မလား" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Review", meaning: "ပြန်လည်သုံးသပ်ခြင်း" },
+        { word: "All grammar points", meaning: "သဒ္ဒါအချက်အားလုံး" },
+        { word: "Final", meaning: "နောက်ဆုံး" }
+    ]
+},
+// =============================================================
+//  DAY 128 to DAY 134 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day128: {
+    title: "📘 Day 128: Advanced Connectives (Whereas, While, Whereas)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဆန့်ကျင်ဘက်ပြရန်၊ နှိုင်းယှဉ်ရန် သုံးသည်။
+    <br>🔹 <strong>Whereas -</strong> ဆန့်ကျင်ဘက်ပြရန်
+    <br>🔹 <strong>While -</strong> ဆန့်ကျင်ဘက်ပြရန် / အချိန်ပြရန်
+    <br>🔹 <strong>Whereas/While + clause, main clause</strong>`,
+    patterns: [
+        {
+            formula: "Whereas + clause, main clause (contrast)",
+            meaning: "...သော်လည်း ...",
+            examples: [
+                { en: "Whereas he is rich, his brother is poor.", my: "သူချမ်းသာသော်လည်း သူ့အစ်ကိုက ဆင်းရဲတယ်" },
+                { en: "She likes coffee, whereas I prefer tea.", my: "သူမ ကော်ဖီကြိုက်သော်လည်း ငါ လက်ဖက်ရည်ပိုကြိုက်တယ်" },
+                { en: "Whereas they live in the city, we live in the countryside.", my: "သူတို့ မြို့မှာနေသော်လည်း ငါတို့ ကျေးလက်မှာနေတယ်" },
+                { en: "He works hard, whereas his brother is lazy.", my: "သူ ကြိုးစားအလုပ်လုပ်သော်လည်း သူ့အစ်ကိုက ပျင်းရိတယ်" },
+                { en: "This book is interesting, whereas that one is boring.", my: "ဒီစာအုပ်က စိတ်ဝင်စားစရာကောင်းသော်လည်း အဲဒီတစ်အုပ်က ပျင်းစရာကောင်းတယ်" }
+            ]
+        },
+        {
+            formula: "While + clause, main clause (contrast)",
+            meaning: "...သော်လည်း ...",
+            examples: [
+                { en: "While he is rich, his brother is poor.", my: "သူချမ်းသာသော်လည်း သူ့အစ်ကိုက ဆင်းရဲတယ်" },
+                { en: "She likes coffee, while I prefer tea.", my: "သူမ ကော်ဖီကြိုက်သော်လည်း ငါ လက်ဖက်ရည်ပိုကြိုက်တယ်" },
+                { en: "While they live in the city, we live in the countryside.", my: "သူတို့ မြို့မှာနေသော်လည်း ငါတို့ ကျေးလက်မှာနေတယ်" },
+                { en: "He works hard, while his brother is lazy.", my: "သူ ကြိုးစားအလုပ်လုပ်သော်လည်း သူ့အစ်ကိုက ပျင်းရိတယ်" },
+                { en: "This book is interesting, while that one is boring.", my: "ဒီစာအုပ်က စိတ်ဝင်စားစရာကောင်းသော်လည်း အဲဒီတစ်အုပ်က ပျင်းစရာကောင်းတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Whereas", meaning: "...သော်လည်း" },
+        { word: "While", meaning: "...သော်လည်း / ...နေစဉ်" },
+        { word: "Contrast", meaning: "ဆန့်ကျင်ဘက်" },
+        { word: "Compare", meaning: "နှိုင်းယှဉ်သည်" }
+    ]
+},
+day129: {
+    title: "📘 Day 129: Advanced Connectives (Moreover, Furthermore)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ထပ်ဆောင်းအချက်များကို ဖော်ပြရန် သုံးသည်။
+    <br>🔹 <strong>Moreover -</strong> ထို့အပြင်
+    <br>🔹 <strong>Furthermore -</strong> ထို့အပြင်`,
+    patterns: [
+        {
+            formula: "Clause 1. Moreover, Clause 2 (addition)",
+            meaning: "...။ ထို့အပြင် ...",
+            examples: [
+                { en: "She is intelligent. Moreover, she is kind.", my: "သူမ လိမ္မာတယ်။ ထို့အပြင် ကြင်နာလည်းကြင်နာတယ်" },
+                { en: "He works hard. Moreover, he is honest.", my: "သူ ကြိုးစားအလုပ်လုပ်တယ်။ ထို့အပြင် ရိုးသားလည်းရိုးသားတယ်" },
+                { en: "The hotel is cheap. Moreover, it's clean.", my: "ဟိုတယ်က စျေးသက်သာတယ်။ ထို့အပြင် သန့်ရှင်းလည်းသန့်ရှင်းတယ်" },
+                { en: "The food is delicious. Moreover, it's healthy.", my: "အစားအစာက အရသာရှိတယ်။ ထို့အပြင် ကျန်းမာရေးနဲ့လည်းညီညွတ်တယ်" },
+                { en: "She can sing. Moreover, she can dance.", my: "သူမ သီချင်းဆိုနိုင်တယ်။ ထို့အပြင် ကလည်းကနိုင်တယ်" }
+            ]
+        },
+        {
+            formula: "Clause 1. Furthermore, Clause 2 (addition)",
+            meaning: "...။ ထို့အပြင် ...",
+            examples: [
+                { en: "She is intelligent. Furthermore, she is kind.", my: "သူမ လိမ္မာတယ်။ ထို့အပြင် ကြင်နာလည်းကြင်နာတယ်" },
+                { en: "He works hard. Furthermore, he is honest.", my: "သူ ကြိုးစားအလုပ်လုပ်တယ်။ ထို့အပြင် ရိုးသားလည်းရိုးသားတယ်" },
+                { en: "The hotel is cheap. Furthermore, it's clean.", my: "ဟိုတယ်က စျေးသက်သာတယ်။ ထို့အပြင် သန့်ရှင်းလည်းသန့်ရှင်းတယ်" },
+                { en: "The food is delicious. Furthermore, it's healthy.", my: "အစားအစာက အရသာရှိတယ်။ ထို့အပြင် ကျန်းမာရေးနဲ့လည်းညီညွတ်တယ်" },
+                { en: "She can sing. Furthermore, she can dance.", my: "သူမ သီချင်းဆိုနိုင်တယ်။ ထို့အပြင် ကလည်းကနိုင်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Moreover", meaning: "ထို့အပြင်" },
+        { word: "Furthermore", meaning: "ထို့အပြင်" },
+        { word: "In addition", meaning: "ထို့အပြင်" },
+        { word: "Additionally", meaning: "ထို့အပြင်" }
+    ]
+},
+day130: {
+    title: "📘 Day 130: Advanced Connectives (Consequently, Therefore)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ရလဒ်ကို ဖော်ပြရန် သုံးသည်။
+    <br>🔹 <strong>Consequently -</strong> ထို့ကြောင့်
+    <br>🔹 <strong>Therefore -</strong> ထို့ကြောင့်`,
+    patterns: [
+        {
+            formula: "Clause 1. Consequently, Clause 2 (result)",
+            meaning: "...။ ထို့ကြောင့် ...",
+            examples: [
+                { en: "It was raining. Consequently, we stayed home.", my: "မိုးရွာနေတယ်။ ထို့ကြောင့် ငါတို့အိမ်မှာနေတယ်" },
+                { en: "She studied hard. Consequently, she passed.", my: "သူမ ကြိုးစားကျက်တယ်။ ထို့ကြောင့် အောင်တယ်" },
+                { en: "They played well. Consequently, they won.", my: "သူတို့ ကောင်းကောင်းကစားတယ်။ ထို့ကြောင့် အောင်တယ်" },
+                { en: "We were late. Consequently, we missed the bus.", my: "ငါတို့ နောက်ကျတယ်။ ထို့ကြောင့် ဘတ်စ်ကားလွတ်တယ်" },
+                { en: "He worked hard. Consequently, he got a promotion.", my: "သူ ကြိုးစားအလုပ်လုပ်တယ်။ ထို့ကြောင့် ရာထူးတိုးတယ်" }
+            ]
+        },
+        {
+            formula: "Clause 1. Therefore, Clause 2 (result)",
+            meaning: "...။ ထို့ကြောင့် ...",
+            examples: [
+                { en: "It was raining. Therefore, we stayed home.", my: "မိုးရွာနေတယ်။ ထို့ကြောင့် ငါတို့အိမ်မှာနေတယ်" },
+                { en: "She studied hard. Therefore, she passed.", my: "သူမ ကြိုးစားကျက်တယ်။ ထို့ကြောင့် အောင်တယ်" },
+                { en: "They played well. Therefore, they won.", my: "သူတို့ ကောင်းကောင်းကစားတယ်။ ထို့ကြောင့် အောင်တယ်" },
+                { en: "We were late. Therefore, we missed the bus.", my: "ငါတို့ နောက်ကျတယ်။ ထို့ကြောင့် ဘတ်စ်ကားလွတ်တယ်" },
+                { en: "He worked hard. Therefore, he got a promotion.", my: "သူ ကြိုးစားအလုပ်လုပ်တယ်။ ထို့ကြောင့် ရာထူးတိုးတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Consequently", meaning: "ထို့ကြောင့်" },
+        { word: "Therefore", meaning: "ထို့ကြောင့်" },
+        { word: "Hence", meaning: "ထို့ကြောင့်" },
+        { word: "Thus", meaning: "ထို့ကြောင့်" }
+    ]
+},
+day131: {
+    title: "📘 Day 131: Advanced Connectives (Nevertheless, However)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဆန့်ကျင်ဘက်ပြရန် သုံးသည်။
+    <br>🔹 <strong>Nevertheless -</strong> သို့သော်လည်း
+    <br>🔹 <strong>However -</strong> သို့သော်လည်း`,
+    patterns: [
+        {
+            formula: "Clause 1. Nevertheless, Clause 2 (contrast)",
+            meaning: "...။ သို့သော်လည်း ...",
+            examples: [
+                { en: "It was raining. Nevertheless, we went out.", my: "မိုးရွာနေတယ်။ သို့သော်လည်း ငါတို့ထွက်သွားတယ်" },
+                { en: "She was tired. Nevertheless, she continued.", my: "သူမ ပင်ပန်းတယ်။ သို့သော်လည်း ဆက်လုပ်တယ်" },
+                { en: "He is rich. Nevertheless, he is unhappy.", my: "သူချမ်းသာတယ်။ သို့သော်လည်း မပျော်ဘူး" },
+                { en: "They played well. Nevertheless, they lost.", my: "သူတို့ ကောင်းကောင်းကစားတယ်။ သို့သော်လည်း ရှုံးတယ်" },
+                { en: "I studied hard. Nevertheless, I failed.", my: "ငါကြိုးစားကျက်တယ်။ သို့သော်လည်း ကျရှုံးတယ်" }
+            ]
+        },
+        {
+            formula: "Clause 1. However, Clause 2 (contrast)",
+            meaning: "...။ သို့သော်လည်း ...",
+            examples: [
+                { en: "It was raining. However, we went out.", my: "မိုးရွာနေတယ်။ သို့သော်လည်း ငါတို့ထွက်သွားတယ်" },
+                { en: "She was tired. However, she continued.", my: "သူမ ပင်ပန်းတယ်။ သို့သော်လည်း ဆက်လုပ်တယ်" },
+                { en: "He is rich. However, he is unhappy.", my: "သူချမ်းသာတယ်။ သို့သော်လည်း မပျော်ဘူး" },
+                { en: "They played well. However, they lost.", my: "သူတို့ ကောင်းကောင်းကစားတယ်။ သို့သော်လည်း ရှုံးတယ်" },
+                { en: "I studied hard. However, I failed.", my: "ငါကြိုးစားကျက်တယ်။ သို့သော်လည်း ကျရှုံးတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Nevertheless", meaning: "သို့သော်လည်း" },
+        { word: "However", meaning: "သို့သော်လည်း" },
+        { word: "Nonetheless", meaning: "သို့သော်လည်း" }
+    ]
+},
+day132: {
+    title: "📘 Day 132: Advanced Connectives (On the other hand)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အခြားရှုထောင့်ကို ပြရန် သုံးသည်။
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> On the one hand... On the other hand...`,
+    patterns: [
+        {
+            formula: "On the one hand + clause, on the other hand + clause",
+            meaning: "တစ်ဖက်တွင် ...၊ အခြားတစ်ဖက်တွင် ...",
+            examples: [
+                { en: "On the one hand, I want to go out. On the other hand, I'm tired.", my: "တစ်ဖက်တွင် ငါထွက်ချင်တယ်။ အခြားတစ်ဖက်တွင် ငါပင်ပန်းနေတယ်" },
+                { en: "On the one hand, the job is well-paid. On the other hand, it's stressful.", my: "တစ်ဖက်တွင် အလုပ်က လစာကောင်းတယ်။ အခြားတစ်ဖက်တွင် ဖိစီးမှုများတယ်" },
+                { en: "On the one hand, I like the city. On the other hand, it's expensive.", my: "တစ်ဖက်တွင် ငါမြို့ကိုကြိုက်တယ်။ အခြားတစ်ဖက်တွင် စျေးကြီးတယ်" },
+                { en: "On the one hand, she is beautiful. On the other hand, she is arrogant.", my: "တစ်ဖက်တွင် သူမလှတယ်။ အခြားတစ်ဖက်တွင် မာနကြီးတယ်" },
+                { en: "On the one hand, the car is fast. On the other hand, it's expensive.", my: "တစ်ဖက်တွင် ကားက မြန်တယ်။ အခြားတစ်ဖက်တွင် စျေးကြီးတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "On the one hand", meaning: "တစ်ဖက်တွင်" },
+        { word: "On the other hand", meaning: "အခြားတစ်ဖက်တွင်" },
+        { word: "Balanced argument", meaning: "မျှတသောငြင်းခုံမှု" }
+    ]
+},
+day133: {
+    title: "📘 Day 133: Advanced Connectives (In conclusion)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> နိဂုံးချုပ်ရန် သုံးသည်။
+    <br>🔹 <strong>In conclusion -</strong> နိဂုံးချုပ်အားဖြင့်
+    <br>🔹 <strong>To sum up -</strong> အချုပ်အားဖြင့်`,
+    patterns: [
+        {
+            formula: "In conclusion + clause (conclusion)",
+            meaning: "နိဂုံးချုပ်အားဖြင့် ...",
+            examples: [
+                { en: "In conclusion, education is the key to success.", my: "နိဂုံးချုပ်အားဖြင့် ပညာရေးသည် အောင်မြင်မှု၏သော့ချက်ဖြစ်သည်" },
+                { en: "In conclusion, we should protect the environment.", my: "နိဂုံးချုပ်အားဖြင့် ငါတို့ သဘာဝပတ်ဝန်းကျင်ကို ကာကွယ်သင့်တယ်" },
+                { en: "In conclusion, hard work leads to success.", my: "နိဂုံးချုပ်အားဖြင့် ကြိုးစားအားထုတ်မှုက အောင်မြင်မှုဆီသို့ ပို့ဆောင်တယ်" },
+                { en: "In conclusion, we need to make a decision.", my: "နိဂုံးချုပ်အားဖြင့် ငါတို့ ဆုံးဖြတ်ချက်ချဖို့လိုတယ်" },
+                { en: "In conclusion, the project was a success.", my: "နိဂုံးချုပ်အားဖြင့် ပရောဂျက်က အောင်မြင်ခဲ့တယ်" }
+            ]
+        },
+        {
+            formula: "To sum up + clause (summary)",
+            meaning: "အချုပ်အားဖြင့် ...",
+            examples: [
+                { en: "To sum up, we have learned many things.", my: "အချုပ်အားဖြင့် ငါတို့ အတော်များများ သင်ယူခဲ့ပြီ" },
+                { en: "To sum up, travel is a wonderful experience.", my: "အချုပ်အားဖြင့် ခရီးသွားခြင်းက ကောင်းမွန်တဲ့အတွေ့အကြုံတစ်ခုပါ" },
+                { en: "To sum up, we should all work together.", my: "အချုပ်အားဖြင့် ငါတို့အားလုံး အတူတကွလုပ်ဆောင်သင့်တယ်" },
+                { en: "To sum up, the meeting was productive.", my: "အချုပ်အားဖြင့် အစည်းအဝေးက အကျိုးဖြစ်ထွန်းခဲ့တယ်" },
+                { en: "To sum up, we need to improve our skills.", my: "အချုပ်အားဖြင့် ငါတို့ ကျွမ်းကျင်မှုတွေကို မြှင့်တင်ဖို့လိုတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "In conclusion", meaning: "နိဂုံးချုပ်အားဖြင့်" },
+        { word: "To sum up", meaning: "အချုပ်အားဖြင့်" },
+        { word: "To conclude", meaning: "နိဂုံးချုပ်ရန်" },
+        { word: "Finally", meaning: "နောက်ဆုံးအနေဖြင့်" }
+    ]
+},
+day134: {
+    title: "📘 Day 134: Advanced Connectives (In summary)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အချုပ်ချုပ်ရန် သုံးသည်။
+    <br>🔹 <strong>In summary -</strong> အချုပ်အားဖြင့်
+    <br>🔹 <strong>To summarize -</strong> အချုပ်အားဖြင့်`,
+    patterns: [
+        {
+            formula: "In summary + clause (summary)",
+            meaning: "အချုပ်အားဖြင့် ...",
+            examples: [
+                { en: "In summary, grammar is very important.", my: "အချုပ်အားဖြင့် သဒ္ဒါက အလွန်အရေးကြီးတယ်" },
+                { en: "In summary, we should practice more.", my: "အချုပ်အားဖြင့် ငါတို့ ပိုပြီးလေ့ကျင့်သင့်တယ်" },
+                { en: "In summary, the book was very interesting.", my: "အချုပ်အားဖြင့် စာအုပ်က အလွန်စိတ်ဝင်စားစရာကောင်းတယ်" },
+                { en: "In summary, the results were positive.", my: "အချုပ်အားဖြင့် ရလဒ်တွေက အပြုသဘောဆောင်တယ်" },
+                { en: "In summary, we need to take action.", my: "အချုပ်အားဖြင့် ငါတို့ အရေးယူဖို့လိုတယ်" }
+            ]
+        },
+        {
+            formula: "To summarize + clause (summary)",
+            meaning: "အချုပ်အားဖြင့် ...",
+            examples: [
+                { en: "To summarize, grammar is very important.", my: "အချုပ်အားဖြင့် သဒ္ဒါက အလွန်အရေးကြီးတယ်" },
+                { en: "To summarize, we should practice more.", my: "အချုပ်အားဖြင့် ငါတို့ ပိုပြီးလေ့ကျင့်သင့်တယ်" },
+                { en: "To summarize, the book was very interesting.", my: "အချုပ်အားဖြင့် စာအုပ်က အလွန်စိတ်ဝင်စားစရာကောင်းတယ်" },
+                { en: "To summarize, the results were positive.", my: "အချုပ်အားဖြင့် ရလဒ်တွေက အပြုသဘောဆောင်တယ်" },
+                { en: "To summarize, we need to take action.", my: "အချုပ်အားဖြင့် ငါတို့ အရေးယူဖို့လိုတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "In summary", meaning: "အချုပ်အားဖြင့်" },
+        { word: "To summarize", meaning: "အချုပ်အားဖြင့်" },
+        { word: "Briefly", meaning: "အတိုချုပ်အားဖြင့်" },
+        { word: "Overall", meaning: "ခြုံငုံကြည့်လျှင်" }
+    ]
+},
+// =============================================================
+//  DAY 135 to DAY 141 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day135: {
+    title: "📘 Day 135: Advanced Connectors (Provided that, As long as)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အခြေအနေတစ်ခုကို သတ်မှတ်ရန် သုံးသည်။
+    <br>🔹 <strong>Provided that -</strong> ...ဆိုပါက
+    <br>🔹 <strong>As long as -</strong> ...သ၍
+    <br>🔹 <strong>ဖွဲ့စည်းပုံ -</strong> Provided that/As long as + clause, main clause`,
+    patterns: [
+        {
+            formula: "Provided that + clause, main clause",
+            meaning: "...ဆိုပါက ...",
+            examples: [
+                { en: "You can go out provided that you finish your homework.", my: "မင်းအိမ်စာပြီးအောင်လုပ်ဆိုပါက ထွက်လို့ရတယ်" },
+                { en: "She will come provided that she has time.", my: "သူမအချိန်ရှိဆိုပါက လာမယ်" },
+                { en: "We will travel provided that we save enough money.", my: "ငါတို့ပိုက်ဆံအလုံအလောက်စုဆိုပါက ခရီးသွားမယ်" },
+                { en: "You can borrow my car provided that you drive carefully.", my: "မင်းသေချာမောင်းဆိုပါက ငါ့ကားငှားလို့ရတယ်" },
+                { en: "They will help us provided that we ask nicely.", my: "ငါတို့ယဉ်ယဉ်ကျေးကျေးတောင်းဆိုပါက သူတို့ကူညီမယ်" }
+            ]
+        },
+        {
+            formula: "As long as + clause, main clause",
+            meaning: "...သ၍ ...",
+            examples: [
+                { en: "You can stay as long as you want.", my: "မင်းကြိုက်သလောက်နေလို့ရတယ်" },
+                { en: "I will help you as long as you need me.", my: "မင်းငါ့ကိုလိုသရွေ့ ငါကူညီမယ်" },
+                { en: "We will support you as long as you are honest.", my: "မင်းရိုးသားသရွေ့ ငါတို့ထောက်ပံ့မယ်" },
+                { en: "She will stay as long as she is happy.", my: "သူမပျော်သရွေ့ နေမယ်" },
+                { en: "You can borrow this book as long as you return it.", my: "မင်းပြန်ပေးသရွေ့ ဒီစာအုပ်ငှားလို့ရတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Provided that", meaning: "...ဆိုပါက" },
+        { word: "As long as", meaning: "...သ၍" },
+        { word: "On condition that", meaning: "...ဆိုသော အခြေအနေဖြင့်" },
+        { word: "Unless", meaning: "...မဟုတ်ရင်" }
+    ]
+},
+day136: {
+    title: "📘 Day 136: Advanced Connectors (In case, In case of)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ကြိုတင်ပြင်ဆင်ရန် သို့မဟုတ် သတိပေးရန် သုံးသည်။
+    <br>🔹 <strong>In case -</strong> ...ဖြစ်လျှင်
+    <br>🔹 <strong>In case of -</strong> ...ဖြစ်လျှင် (နာမ်နှင့်တွဲသုံး)`,
+    patterns: [
+        {
+            formula: "In case + clause, main clause",
+            meaning: "...ဖြစ်လျှင် ...",
+            examples: [
+                { en: "Take an umbrella in case it rains.", my: "မိုးရွာဖြစ်လျှင် ထီးယူသွားပါ" },
+                { en: "I will call you in case I need help.", my: "ငါအကူအညီလိုဖြစ်လျှင် ခေါ်မယ်" },
+                { en: "Bring extra clothes in case it gets cold.", my: "အေးဖြစ်လျှင် အ၀တ်အစားအပိုယူလာပါ" },
+                { en: "Save your work in case the computer crashes.", my: "ကွန်ပျူတာချို့ယွင်းဖြစ်လျှင် အလုပ်ကိုသိမ်းထားပါ" },
+                { en: "Pack some snacks in case we get hungry.", my: "ငါတို့ဆာဖြစ်လျှင် မုန့်ချိုချဉ်အချို့ထုပ်ပိုးပါ" }
+            ]
+        },
+        {
+            formula: "In case of + noun, main clause",
+            meaning: "...ဖြစ်လျှင် ...",
+            examples: [
+                { en: "In case of fire, leave the building.", my: "မီးလောင်ဖြစ်လျှင် အဆောက်အအုံကထွက်ပါ" },
+                { en: "In case of emergency, call 911.", my: "အရေးပေါ်ဖြစ်လျှင် ၉၁၁ ကိုခေါ်ပါ" },
+                { en: "In case of rain, the event will be canceled.", my: "မိုးရွာဖြစ်လျှင် ပွဲကိုဖျက်သိမ်းမယ်" },
+                { en: "In case of accident, stay calm.", my: "မတော်တဆဖြစ်လျှင် စိတ်အေးအေးထားပါ" },
+                { en: "In case of trouble, ask for help.", my: "ပြဿနာဖြစ်လျှင် အကူအညီတောင်းပါ" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "In case", meaning: "...ဖြစ်လျှင်" },
+        { word: "In case of", meaning: "...ဖြစ်လျှင်" },
+        { word: "Just in case", meaning: "ကြိုတင်ပြင်ဆင်ချက်အနေဖြင့်" },
+        { word: "Emergency", meaning: "အရေးပေါ်အခြေအနေ" }
+    ]
+},
+day137: {
+    title: "📘 Day 137: Advanced Connectors (Even if, Even though)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဆန့်ကျင်ဘက်အခြေအနေကို အလေးပေးရန် သုံးသည်။
+    <br>🔹 <strong>Even if -</strong> ...ဖြစ်ခဲ့သည်တိုင်
+    <br>🔹 <strong>Even though -</strong> ...ဖြစ်ခဲ့သော်လည်း`,
+    patterns: [
+        {
+            formula: "Even if + clause, main clause",
+            meaning: "...ဖြစ်ခဲ့သည်တိုင် ...",
+            examples: [
+                { en: "I will go even if it rains.", my: "မိုးရွာခဲ့သည်တိုင် ငါသွားမယ်" },
+                { en: "She will succeed even if she faces difficulties.", my: "သူမအခက်အခဲများကြုံခဲ့သည်တိုင် အောင်မြင်မယ်" },
+                { en: "We will continue even if it's hard.", my: "ခက်ခဲခဲ့သည်တိုင် ငါတို့ဆက်လုပ်မယ်" },
+                { en: "He will love her even if she makes mistakes.", my: "သူမအမှားများလုပ်မိခဲ့သည်တိုင် သူသူမကိုချစ်မယ်" },
+                { en: "They will join us even if they are busy.", my: "သူတို့အလုပ်များခဲ့သည်တိုင် ပါဝင်မယ်" }
+            ]
+        },
+        {
+            formula: "Even though + clause, main clause",
+            meaning: "...ဖြစ်ခဲ့သော်လည်း ...",
+            examples: [
+                { en: "Even though it was raining, I went out.", my: "မိုးရွာခဲ့သော်လည်း ငါထွက်သွားတယ်" },
+                { en: "Even though she was tired, she continued working.", my: "သူမပင်ပန်းခဲ့သော်လည်း ဆက်အလုပ်လုပ်တယ်" },
+                { en: "Even though he is rich, he is unhappy.", my: "သူချမ်းသာခဲ့သော်လည်း မပျော်ဘူး" },
+                { en: "Even though they played well, they lost.", my: "သူတို့ကောင်းကောင်းကစားခဲ့သော်လည်း ရှုံးတယ်" },
+                { en: "Even though I studied hard, I failed.", my: "ငါကြိုးစားကျက်ခဲ့သော်လည်း ကျရှုံးတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Even if", meaning: "...ဖြစ်ခဲ့သည်တိုင်" },
+        { word: "Even though", meaning: "...ဖြစ်ခဲ့သော်လည်း" },
+        { word: "Although", meaning: "...သော်လည်း" },
+        { word: "Though", meaning: "...သော်လည်း" }
+    ]
+},
+day138: {
+    title: "📘 Day 138: Advanced Connectors (So that, In order that)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ရည်ရွယ်ချက်ကို ဖော်ပြရန် သုံးသည်။
+    <br>🔹 <strong>So that -</strong> ...အောင်
+    <br>🔹 <strong>In order that -</strong> ...အောင် (တရားဝင်)`,
+    patterns: [
+        {
+            formula: "So that + clause, main clause",
+            meaning: "...အောင် ...",
+            examples: [
+                { en: "I spoke slowly so that she could understand.", my: "သူမနားလည်အောင် ငါဖြည်းဖြည်းပြောတယ်" },
+                { en: "She saved money so that she could buy a car.", my: "သူမ ကားဝယ်နိုင်အောင် ပိုက်ဆံစုတယ်" },
+                { en: "They left early so that they could catch the bus.", my: "သူတို့ ဘတ်စ်ကားမိအောင် စောစောထွက်တယ်" },
+                { en: "We turned on the light so that we could see.", my: "ငါတို့ မြင်နိုင်အောင် မီးဖွင့်တယ်" },
+                { en: "He wrote notes so that he could remember.", my: "သူ မှတ်မိအောင် မှတ်စုရေးတယ်" }
+            ]
+        },
+        {
+            formula: "In order that + clause, main clause",
+            meaning: "...အောင် ... (တရားဝင်)",
+            examples: [
+                { en: "I spoke slowly in order that she could understand.", my: "သူမနားလည်အောင် ငါဖြည်းဖြည်းပြောတယ်" },
+                { en: "She saved money in order that she could buy a car.", my: "သူမ ကားဝယ်နိုင်အောင် ပိုက်ဆံစုတယ်" },
+                { en: "They left early in order that they could catch the bus.", my: "သူတို့ ဘတ်စ်ကားမိအောင် စောစောထွက်တယ်" },
+                { en: "We turned on the light in order that we could see.", my: "ငါတို့ မြင်နိုင်အောင် မီးဖွင့်တယ်" },
+                { en: "He wrote notes in order that he could remember.", my: "သူ မှတ်မိအောင် မှတ်စုရေးတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "So that", meaning: "...အောင်" },
+        { word: "In order that", meaning: "...အောင်" },
+        { word: "Purpose", meaning: "ရည်ရွယ်ချက်" },
+        { word: "In order to", meaning: "...ဖို့" }
+    ]
+},
+day139: {
+    title: "📘 Day 139: Advanced Connectors (As a result, As a result of)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ရလဒ်ကို ဖော်ပြရန် သုံးသည်။
+    <br>🔹 <strong>As a result -</strong> ရလဒ်အနေဖြင့်
+    <br>🔹 <strong>As a result of -</strong> ...၏ ရလဒ်အနေဖြင့်`,
+    patterns: [
+        {
+            formula: "Clause 1. As a result, Clause 2",
+            meaning: "...။ ရလဒ်အနေဖြင့် ...",
+            examples: [
+                { en: "It was raining. As a result, we stayed home.", my: "မိုးရွာနေတယ်။ ရလဒ်အနေဖြင့် ငါတို့အိမ်မှာနေတယ်" },
+                { en: "She studied hard. As a result, she passed.", my: "သူမ ကြိုးစားကျက်တယ်။ ရလဒ်အနေဖြင့် အောင်တယ်" },
+                { en: "They played well. As a result, they won.", my: "သူတို့ ကောင်းကောင်းကစားတယ်။ ရလဒ်အနေဖြင့် အောင်တယ်" },
+                { en: "We were late. As a result, we missed the bus.", my: "ငါတို့ နောက်ကျတယ်။ ရလဒ်အနေဖြင့် ဘတ်စ်ကားလွတ်တယ်" },
+                { en: "He worked hard. As a result, he got a promotion.", my: "သူ ကြိုးစားအလုပ်လုပ်တယ်။ ရလဒ်အနေဖြင့် ရာထူးတိုးတယ်" }
+            ]
+        },
+        {
+            formula: "As a result of + noun, Clause 2",
+            meaning: "...၏ ရလဒ်အနေဖြင့် ...",
+            examples: [
+                { en: "As a result of the rain, we stayed home.", my: "မိုးရွာခြင်း၏ရလဒ်အနေဖြင့် ငါတို့အိမ်မှာနေတယ်" },
+                { en: "As a result of her hard work, she passed.", my: "သူမ၏ကြိုးစားမှု၏ရလဒ်အနေဖြင့် အောင်တယ်" },
+                { en: "As a result of their teamwork, they won.", my: "သူတို့၏အဖွဲ့လိုက်လုပ်ဆောင်မှု၏ရလဒ်အနေဖြင့် အောင်တယ်" },
+                { en: "As a result of the traffic, we were late.", my: "ယာဉ်ကြော၏ရလဒ်အနေဖြင့် ငါတို့နောက်ကျတယ်" },
+                { en: "As a result of his hard work, he got a promotion.", my: "သူ၏ကြိုးစားမှု၏ရလဒ်အနေဖြင့် ရာထူးတိုးတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "As a result", meaning: "ရလဒ်အနေဖြင့်" },
+        { word: "As a result of", meaning: "...၏ ရလဒ်အနေဖြင့်" },
+        { word: "Consequently", meaning: "ထို့ကြောင့်" },
+        { word: "Therefore", meaning: "ထို့ကြောင့်" }
+    ]
+},
+day140: {
+    title: "📘 Day 140: Advanced Connectors (In contrast, On the contrary)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဆန့်ကျင်ဘက်ပြရန် သုံးသည်။
+    <br>🔹 <strong>In contrast -</strong> ဆန့်ကျင်ဘက်အနေဖြင့်
+    <br>🔹 <strong>On the contrary -</strong> ဆန့်ကျင်ဘက်အနေဖြင့်`,
+    patterns: [
+        {
+            formula: "Clause 1. In contrast, Clause 2",
+            meaning: "...။ ဆန့်ကျင်ဘက်အနေဖြင့် ...",
+            examples: [
+                { en: "He is very outgoing. In contrast, his brother is shy.", my: "သူ အလွန်ပေါင်းသင်းဆက်ဆံရေးကောင်းတယ်။ ဆန့်ကျင်ဘက်အနေဖြင့် သူ့အစ်ကိုက ရှက်တတ်တယ်" },
+                { en: "She loves the city. In contrast, her husband prefers the countryside.", my: "သူမ မြို့ကိုကြိုက်တယ်။ ဆန့်ကျင်ဘက်အနေဖြင့် သူ့ခင်ပွန်းက ကျေးလက်ကိုပိုကြိုက်တယ်" },
+                { en: "This book is very interesting. In contrast, that one is boring.", my: "ဒီစာအုပ်က အလွန်စိတ်ဝင်စားစရာကောင်းတယ်။ ဆန့်ကျင်ဘက်အနေဖြင့် အဲဒီတစ်အုပ်က ပျင်းစရာကောင်းတယ်" },
+                { en: "The city is noisy. In contrast, the village is peaceful.", my: "မြို့က ဆူညံတယ်။ ဆန့်ကျင်ဘက်အနေဖြင့် ရွာက ငြိမ်းချမ်းတယ်" },
+                { en: "He is rich. In contrast, his brother is poor.", my: "သူချမ်းသာတယ်။ ဆန့်ကျင်ဘက်အနေဖြင့် သူ့အစ်ကိုက ဆင်းရဲတယ်" }
+            ]
+        },
+        {
+            formula: "Clause 1. On the contrary, Clause 2",
+            meaning: "...။ ဆန့်ကျင်ဘက်အနေဖြင့် ...",
+            examples: [
+                { en: "He is not shy. On the contrary, he is very outgoing.", my: "သူ မရှက်တတ်ဘူး။ ဆန့်ကျင်ဘက်အနေဖြင့် အလွန်ပေါင်းသင်းဆက်ဆံရေးကောင်းတယ်" },
+                { en: "She didn't hate him. On the contrary, she loved him.", my: "သူမ သူ့ကိုမမုန်းဘူး။ ဆန့်ကျင်ဘက်အနေဖြင့် သူ့ကိုချစ်တယ်" },
+                { en: "I am not tired. On the contrary, I am full of energy.", my: "ငါ မပင်ပန်းဘူး။ ဆန့်ကျင်ဘက်အနေဖြင့် စွမ်းအင်တွေပြည့်နေတယ်" },
+                { en: "She is not lazy. On the contrary, she works very hard.", my: "သူမ မပျင်းရိဘူး။ ဆန့်ကျင်ဘက်အနေဖြင့် အလွန်ကြိုးစားအလုပ်လုပ်တယ်" },
+                { en: "The movie wasn't boring. On the contrary, it was exciting.", my: "ရုပ်ရှင်က မပျင်းဘူး။ ဆန့်ကျင်ဘက်အနေဖြင့် စိတ်လှုပ်ရှားစရာကောင်းတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "In contrast", meaning: "ဆန့်ကျင်ဘက်အနေဖြင့်" },
+        { word: "On the contrary", meaning: "ဆန့်ကျင်ဘက်အနေဖြင့်" },
+        { word: "Conversely", meaning: "ဆန့်ကျင်ဘက်အနေဖြင့်" },
+        { word: "Oppositely", meaning: "ဆန့်ကျင်ဘက်အနေဖြင့်" }
+    ]
+},
+day141: {
+    title: "📘 Day 141: Advanced Connectors (Furthermore, In addition)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ထပ်ဆောင်းအချက်များကို ဖော်ပြရန် သုံးသည်။
+    <br>🔹 <strong>Furthermore -</strong> ထို့အပြင်
+    <br>🔹 <strong>In addition -</strong> ထို့အပြင်
+    <br>🔹 <strong>In addition to -</strong> ...အပြင်`,
+    patterns: [
+        {
+            formula: "Clause 1. Furthermore, Clause 2",
+            meaning: "...။ ထို့အပြင် ...",
+            examples: [
+                { en: "She is intelligent. Furthermore, she is kind.", my: "သူမ လိမ္မာတယ်။ ထို့အပြင် ကြင်နာလည်းကြင်နာတယ်" },
+                { en: "He works hard. Furthermore, he is honest.", my: "သူ ကြိုးစားအလုပ်လုပ်တယ်။ ထို့အပြင် ရိုးသားလည်းရိုးသားတယ်" },
+                { en: "The hotel is cheap. Furthermore, it's clean.", my: "ဟိုတယ်က စျေးသက်သာတယ်။ ထို့အပြင် သန့်ရှင်းလည်းသန့်ရှင်းတယ်" },
+                { en: "The food is delicious. Furthermore, it's healthy.", my: "အစားအစာက အရသာရှိတယ်။ ထို့အပြင် ကျန်းမာရေးနဲ့လည်းညီညွတ်တယ်" },
+                { en: "She can sing. Furthermore, she can dance.", my: "သူမ သီချင်းဆိုနိုင်တယ်။ ထို့အပြင် ကလည်းကနိုင်တယ်" }
+            ]
+        },
+        {
+            formula: "Clause 1. In addition, Clause 2",
+            meaning: "...။ ထို့အပြင် ...",
+            examples: [
+                { en: "She is intelligent. In addition, she is kind.", my: "သူမ လိမ္မာတယ်။ ထို့အပြင် ကြင်နာလည်းကြင်နာတယ်" },
+                { en: "He works hard. In addition, he is honest.", my: "သူ ကြိုးစားအလုပ်လုပ်တယ်။ ထို့အပြင် ရိုးသားလည်းရိုးသားတယ်" },
+                { en: "The hotel is cheap. In addition, it's clean.", my: "ဟိုတယ်က စျေးသက်သာတယ်။ ထို့အပြင် သန့်ရှင်းလည်းသန့်ရှင်းတယ်" },
+                { en: "The food is delicious. In addition, it's healthy.", my: "အစားအစာက အရသာရှိတယ်။ ထို့အပြင် ကျန်းမာရေးနဲ့လည်းညီညွတ်တယ်" },
+                { en: "She can sing. In addition, she can dance.", my: "သူမ သီချင်းဆိုနိုင်တယ်။ ထို့အပြင် ကလည်းကနိုင်တယ်" }
+            ]
+        },
+        {
+            formula: "In addition to + noun/gerund, main clause",
+            meaning: "...အပြင် ...",
+            examples: [
+                { en: "In addition to English, she speaks French.", my: "အင်္ဂလိပ်စာအပြင် သူမ ပြင်သစ်စကားလည်းပြောတယ်" },
+                { en: "In addition to working hard, he studies at night.", my: "ကြိုးစားအလုပ်လုပ်တာအပြင် သူ ညဘက်မှာလည်းစာကျက်တယ်" },
+                { en: "In addition to the main course, we ordered dessert.", my: "အဓိကဟင်းအပြင် ငါတို့ အချိုပွဲလည်းမှာတယ်" },
+                { en: "In addition to being beautiful, she is intelligent.", my: "လှတာအပြင် သူမ ထက်မြက်လည်းထက်မြက်တယ်" },
+                { en: "In addition to the house, they have a car.", my: "အိမ်အပြင် သူတို့ ကားလည်းရှိတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Furthermore", meaning: "ထို့အပြင်" },
+        { word: "In addition", meaning: "ထို့အပြင်" },
+        { word: "In addition to", meaning: "...အပြင်" },
+        { word: "Moreover", meaning: "ထို့အပြင်" },
+        { word: "Besides", meaning: "ထို့အပြင်" }
+    ]
+},
+// =============================================================
+//  DAY 142 to DAY 148 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day142: {
+    title: "📘 Day 142: Advanced Quantifiers (Several, Numerous)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အရေအတွက်ကို ဖော်ပြရာတွင် သုံးသည်။
+    <br>🔹 <strong>Several -</strong> အတော်များများ (ရေတွက်နိုင်)
+    <br>🔹 <strong>Numerous -</strong> အများအပြား (ရေတွက်နိုင်)
+    <br>🔹 <strong>A great deal of -</strong> အများအပြား (ရေတွက်မရ)`,
+    patterns: [
+        {
+            formula: "Subject + V + several + plural noun",
+            meaning: "...အတော်များများ",
+            examples: [
+                { en: "I have several books on my shelf.", my: "ငါ့စာအုပ်စင်ပေါ်မှာ စာအုပ်အတော်များများရှိတယ်" },
+                { en: "She invited several friends to her party.", my: "သူမ ပါတီကို သူငယ်ချင်းအတော်များများဖိတ်တယ်" },
+                { en: "We visited several countries last year.", my: "ပြီးခဲ့တဲ့နှစ်က ငါတို့ နိုင်ငံအတော်များများကိုသွားခဲ့တယ်" },
+                { en: "He has several options to choose from.", my: "သူ့မှာ ရွေးစရာအတော်များများရှိတယ်" },
+                { en: "They bought several apples at the market.", my: "သူတို့ ဈေးမှာ ပန်းသီးအတော်များများဝယ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + numerous + plural noun",
+            meaning: "...အများအပြား",
+            examples: [
+                { en: "There are numerous reasons for this decision.", my: "ဒီဆုံးဖြတ်ချက်အတွက် အကြောင်းပြချက်အများအပြားရှိတယ်" },
+                { en: "She has numerous achievements in her career.", my: "သူမရဲ့အသက်မွေးဝမ်းကြောင်းမှာ အောင်မြင်မှုအများအပြားရှိတယ်" },
+                { en: "We faced numerous challenges during the project.", my: "ငါတို့ ပရောဂျက်အတွင်းမှာ စိန်ခေါ်မှုအများအပြားကိုရင်ဆိုင်ခဲ့ရတယ်" },
+                { en: "There are numerous books in the library.", my: "စာကြည့်တိုက်မှာ စာအုပ်အများအပြားရှိတယ်" },
+                { en: "He has numerous friends from different countries.", my: "သူ့မှာ နိုင်ငံအများအပြားက သူငယ်ချင်းအများအပြားရှိတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + a great deal of + uncountable noun",
+            meaning: "...အများအပြား",
+            examples: [
+                { en: "She has a great deal of experience in teaching.", my: "သူမမှာ သင်ကြားရေးအတွေ့အကြုံ အများအပြားရှိတယ်" },
+                { en: "We need a great deal of time to finish this project.", my: "ငါတို့ ဒီပရောဂျက်ပြီးဖို့ အချိန်အများအပြားလိုတယ်" },
+                { en: "He has a great deal of knowledge about history.", my: "သူ့မှာ သမိုင်းအကြောင်း ဗဟုသုတအများအပြားရှိတယ်" },
+                { en: "She spent a great deal of money on her new house.", my: "သူမ အိမ်အသစ်အတွက် ပိုက်ဆံအများအပြားသုံးတယ်" },
+                { en: "We have a great deal of work to do.", my: "ငါတို့ လုပ်စရာအလုပ်အများအပြားရှိတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Several", meaning: "အတော်များများ" },
+        { word: "Numerous", meaning: "အများအပြား" },
+        { word: "A great deal of", meaning: "အများအပြား" },
+        { word: "A number of", meaning: "အတော်များများ" },
+        { word: "A lot of", meaning: "အများကြီး" }
+    ]
+},
+day143: {
+    title: "📘 Day 143: Advanced Quantifiers (Plenty of, Sufficient)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> လုံလောက်မှုကို ဖော်ပြရာတွင် သုံးသည်။
+    <br>🔹 <strong>Plenty of -</strong> လုံလောက်သော
+    <br>🔹 <strong>Sufficient -</strong> လုံလောက်သော`,
+    patterns: [
+        {
+            formula: "Subject + V + plenty of + plural/uncountable noun",
+            meaning: "...လုံလောက်သော",
+            examples: [
+                { en: "We have plenty of time to finish the project.", my: "ငါတို့ ပရောဂျက်ပြီးဖို့ အချိန်လုံလောက်တယ်" },
+                { en: "There is plenty of food for everyone.", my: "လူတိုင်းအတွက် အစားအစာလုံလောက်တယ်" },
+                { en: "She has plenty of money to buy a new car.", my: "သူမမှာ ကားအသစ်ဝယ်ဖို့ ပိုက်ဆံလုံလောက်တယ်" },
+                { en: "We have plenty of options to choose from.", my: "ငါတို့မှာ ရွေးစရာလုံလောက်တယ်" },
+                { en: "There are plenty of reasons to be happy.", my: "ပျော်ဖို့ အကြောင်းပြချက်လုံလောက်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + sufficient + noun",
+            meaning: "...လုံလောက်သော",
+            examples: [
+                { en: "We have sufficient evidence to prove the case.", my: "ငါတို့မှာ အမှုကိုသက်သေပြဖို့ လုံလောက်တဲ့အထောက်အထားရှိတယ်" },
+                { en: "She has sufficient knowledge to teach the subject.", my: "သူမမှာ ဒီဘာသာရပ်ကိုသင်ဖို့ လုံလောက်တဲ့ဗဟုသုတရှိတယ်" },
+                { en: "We have sufficient time to complete the task.", my: "ငါတို့မှာ အလုပ်ပြီးဖို့ လုံလောက်တဲ့အချိန်ရှိတယ်" },
+                { en: "They have sufficient resources to start the business.", my: "သူတို့မှာ စီးပွားရေးစဖို့ လုံလောက်တဲ့အရင်းအမြစ်ရှိတယ်" },
+                { en: "He has sufficient experience for the job.", my: "သူ့မှာ အလုပ်အတွက် လုံလောက်တဲ့အတွေ့အကြုံရှိတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Plenty of", meaning: "လုံလောက်သော" },
+        { word: "Sufficient", meaning: "လုံလောက်သော" },
+        { word: "Enough", meaning: "လုံလောက်သော" },
+        { word: "Adequate", meaning: "လုံလောက်သော" }
+    ]
+},
+day144: {
+    title: "📘 Day 144: Advanced Quantifiers (The majority of, The minority of)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အများစု/အနည်းစုကို ဖော်ပြရာတွင် သုံးသည်။
+    <br>🔹 <strong>The majority of -</strong> အများစု
+    <br>🔹 <strong>The minority of -</strong> အနည်းစု`,
+    patterns: [
+        {
+            formula: "The majority of + plural noun + plural verb",
+            meaning: "...အများစု",
+            examples: [
+                { en: "The majority of people agree with the decision.", my: "လူအများစုက ဆုံးဖြတ်ချက်ကိုသဘောတူတယ်" },
+                { en: "The majority of students passed the exam.", my: "ကျောင်းသားအများစု စာမေးပွဲအောင်တယ်" },
+                { en: "The majority of voters supported the new law.", my: "မဲဆန္ဒရှင်အများစုက ဥပဒေအသစ်ကိုထောက်ခံတယ်" },
+                { en: "The majority of workers are satisfied with their jobs.", my: "အလုပ်သမားအများစုက သူတို့အလုပ်ကိုကျေနပ်တယ်" },
+                { en: "The majority of citizens want change.", my: "နိုင်ငံသားအများစုက အပြောင်းအလဲလိုချင်တယ်" }
+            ]
+        },
+        {
+            formula: "The minority of + plural noun + plural verb",
+            meaning: "...အနည်းစု",
+            examples: [
+                { en: "The minority of people disagree with the decision.", my: "လူအနည်းစုက ဆုံးဖြတ်ချက်ကိုသဘောမတူဘူး" },
+                { en: "The minority of students failed the exam.", my: "ကျောင်းသားအနည်းစု စာမေးပွဲကျရှုံးတယ်" },
+                { en: "The minority of voters opposed the new law.", my: "မဲဆန္ဒရှင်အနည်းစုက ဥပဒေအသစ်ကိုဆန့်ကျင်တယ်" },
+                { en: "The minority of workers are unhappy with their jobs.", my: "အလုပ်သမားအနည်းစုက သူတို့အလုပ်ကိုမကျေနပ်ဘူး" },
+                { en: "The minority of citizens don't want change.", my: "နိုင်ငံသားအနည်းစုက အပြောင်းအလဲမလိုချင်ဘူး" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "The majority of", meaning: "...အများစု" },
+        { word: "The minority of", meaning: "...အနည်းစု" },
+        { word: "Most", meaning: "အများစု" },
+        { word: "Few", meaning: "အနည်းငယ်" }
+    ]
+},
+day145: {
+    title: "📘 Day 145: Advanced Connectors (On condition that, Provided that)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အခြေအနေတစ်ခုကို သတ်မှတ်ရန် သုံးသည်။
+    <br>🔹 <strong>On condition that -</strong> ...ဆိုသော အခြေအနေဖြင့်`,
+    patterns: [
+        {
+            formula: "On condition that + clause, main clause",
+            meaning: "...ဆိုသော အခြေအနေဖြင့် ...",
+            examples: [
+                { en: "I will lend you the money on condition that you pay it back next month.", my: "မင်းလာမယ့်လပြန်ပေးမယ်ဆိုတဲ့အခြေအနေနဲ့ ငါမင်းကိုပိုက်ဆံငှားမယ်" },
+                { en: "She will accept the job on condition that she gets a higher salary.", my: "သူမလစာပိုရမယ်ဆိုတဲ့အခြေအနေနဲ့ အလုပ်ကိုလက်ခံမယ်" },
+                { en: "We will support the project on condition that it is well-planned.", my: "ပရောဂျက်ကောင်းကောင်းစီစဉ်ထားမယ်ဆိုတဲ့အခြေအနေနဲ့ ငါတို့ထောက်ပံ့မယ်" },
+                { en: "They will join us on condition that we provide transportation.", my: "ငါတို့ယာဉ်ပို့ဆောင်ရေးထောက်ပံ့မယ်ဆိုတဲ့အခြေအနေနဲ့ သူတို့ပါဝင်မယ်" },
+                { en: "He will agree on condition that everyone is fair.", my: "လူတိုင်းမျှတမယ်ဆိုတဲ့အခြေအနေနဲ့ သူသဘောတူမယ်" }
+            ]
+        },
+        {
+            formula: "Provided that + clause, main clause",
+            meaning: "...ဆိုပါက ...",
+            examples: [
+                { en: "You can go out provided that you finish your homework.", my: "မင်းအိမ်စာပြီးအောင်လုပ်ဆိုပါက ထွက်လို့ရတယ်" },
+                { en: "She will come provided that she has time.", my: "သူမအချိန်ရှိဆိုပါက လာမယ်" },
+                { en: "We will travel provided that we save enough money.", my: "ငါတို့ပိုက်ဆံအလုံအလောက်စုဆိုပါက ခရီးသွားမယ်" },
+                { en: "You can borrow my car provided that you drive carefully.", my: "မင်းသေချာမောင်းဆိုပါက ငါ့ကားငှားလို့ရတယ်" },
+                { en: "They will help us provided that we ask nicely.", my: "ငါတို့ယဉ်ယဉ်ကျေးကျေးတောင်းဆိုပါက သူတို့ကူညီမယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "On condition that", meaning: "...ဆိုသော အခြေအနေဖြင့်" },
+        { word: "Provided that", meaning: "...ဆိုပါက" },
+        { word: "As long as", meaning: "...သ၍" },
+        { word: "Unless", meaning: "...မဟုတ်ရင်" }
+    ]
+},
+day146: {
+    title: "📘 Day 146: Advanced Connectors (For fear that, Lest)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ကြောက်ရွံ့မှု သို့မဟုတ် ရှောင်ရှားရန် သုံးသည်။
+    <br>🔹 <strong>For fear that -</strong> ...မဖြစ်စေရန်
+    <br>🔹 <strong>Lest -</strong> ...မဖြစ်စေရန် (တရားဝင်)`,
+    patterns: [
+        {
+            formula: "For fear that + clause, main clause",
+            meaning: "...မဖြစ်စေရန် ...",
+            examples: [
+                { en: "I left early for fear that I might miss the bus.", my: "ငါ ဘတ်စ်ကားလွတ်မှာစိုးလို့ စောစောထွက်လာတယ်" },
+                { en: "She spoke quietly for fear that she might wake the baby.", my: "သူမ ကလေးနိုးမှာစိုးလို့ တိတ်တိတ်ပြောတယ်" },
+                { en: "He checked his phone constantly for fear that he might miss an important call.", my: "သူ အရေးကြီးဖုန်းလွတ်မှာစိုးလို့ သူ့ဖုန်းကိုအမြဲစစ်တယ်" },
+                { en: "We brought extra food for fear that we might get hungry.", my: "ငါတို့ ဆာလောင်မှာစိုးလို့ အစားအစာအပိုယူလာတယ်" },
+                { en: "She arrived early for fear that she might be late.", my: "သူမ နောက်ကျမှာစိုးလို့ စောစောရောက်တယ်" }
+            ]
+        },
+        {
+            formula: "Lest + clause, main clause",
+            meaning: "...မဖြစ်စေရန် ... (တရားဝင်)",
+            examples: [
+                { en: "I left early lest I miss the bus.", my: "ငါ ဘတ်စ်ကားလွတ်မှာစိုးလို့ စောစောထွက်လာတယ်" },
+                { en: "She spoke quietly lest she wake the baby.", my: "သူမ ကလေးနိုးမှာစိုးလို့ တိတ်တိတ်ပြောတယ်" },
+                { en: "He checked his phone constantly lest he miss an important call.", my: "သူ အရေးကြီးဖုန်းလွတ်မှာစိုးလို့ သူ့ဖုန်းကိုအမြဲစစ်တယ်" },
+                { en: "We brought extra food lest we get hungry.", my: "ငါတို့ ဆာလောင်မှာစိုးလို့ အစားအစာအပိုယူလာတယ်" },
+                { en: "She arrived early lest she be late.", my: "သူမ နောက်ကျမှာစိုးလို့ စောစောရောက်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "For fear that", meaning: "...မဖြစ်စေရန်" },
+        { word: "Lest", meaning: "...မဖြစ်စေရန်" },
+        { word: "In case", meaning: "...ဖြစ်လျှင်" },
+        { word: "So that not", meaning: "...အောင်မဟုတ်" }
+    ]
+},
+day147: {
+    title: "📘 Day 147: Advanced Connectors (Now that, Seeing that)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အကြောင်းပြချက်ကို ဖော်ပြရန် သုံးသည်။
+    <br>🔹 <strong>Now that -</strong> ...ပြီးသောအခါ
+    <br>🔹 <strong>Seeing that -</strong> ...ဖြစ်သောကြောင့်`,
+    patterns: [
+        {
+            formula: "Now that + clause, main clause",
+            meaning: "...ပြီးသောအခါ ...",
+            examples: [
+                { en: "Now that I have finished my homework, I can go out.", my: "ငါအိမ်စာပြီးသွားပြီဖြစ်လို့ အခုထွက်လို့ရတယ်" },
+                { en: "Now that she has a job, she can buy a car.", my: "သူမအလုပ်ရပြီဖြစ်လို့ ကားဝယ်လို့ရတယ်" },
+                { en: "Now that we have saved enough money, we can travel.", my: "ငါတို့ပိုက်ဆံအလုံအလောက်စုပြီးဖြစ်လို့ ခရီးသွားလို့ရတယ်" },
+                { en: "Now that the rain has stopped, we can go outside.", my: "မိုးရပ်ပြီးဖြစ်လို့ အပြင်ထွက်လို့ရတယ်" },
+                { en: "Now that he has retired, he has more free time.", my: "သူအငြိမ်းစားယူပြီးဖြစ်လို့ အချိန်ပိုရတယ်" }
+            ]
+        },
+        {
+            formula: "Seeing that + clause, main clause",
+            meaning: "...ဖြစ်သောကြောင့် ...",
+            examples: [
+                { en: "Seeing that it was raining, we stayed home.", my: "မိုးရွာနေတာဖြစ်လို့ ငါတို့အိမ်မှာနေတယ်" },
+                { en: "Seeing that she was tired, she went to bed early.", my: "သူမပင်ပန်းနေတာဖြစ်လို့ စောစောအိပ်သွားတယ်" },
+                { en: "Seeing that he is rich, he can afford a luxury car.", my: "သူချမ်းသာတာဖြစ်လို့ ဇိမ်ခံကားဝယ်နိုင်တယ်" },
+                { en: "Seeing that we have no money, we can't go on vacation.", my: "ငါတို့ပိုက်ဆံမရှိတာဖြစ်လို့ အားလပ်ရက်မသွားနိုင်ဘူး" },
+                { en: "Seeing that they are busy, we should help them.", my: "သူတို့အလုပ်များနေတာဖြစ်လို့ ငါတို့သူတို့ကိုကူညီသင့်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Now that", meaning: "...ပြီးသောအခါ" },
+        { word: "Seeing that", meaning: "...ဖြစ်သောကြောင့်" },
+        { word: "Since", meaning: "...သောကြောင့်" },
+        { word: "As", meaning: "...သောကြောင့်" }
+    ]
+},
+day148: {
+    title: "📘 Day 148: Advanced Connectors (Insofar as, Inasmuch as)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အတိုင်းအတာတစ်ခုအထိ ဖော်ပြရန် သုံးသည်။
+    <br>🔹 <strong>Insofar as -</strong> ...သမျှ
+    <br>🔹 <strong>Inasmuch as -</strong> ...သောကြောင့် (တရားဝင်)`,
+    patterns: [
+        {
+            formula: "Insofar as + clause, main clause",
+            meaning: "...သမျှ ...",
+            examples: [
+                { en: "I will help you insofar as I am able.", my: "ငါတတ်နိုင်သမျှ ကူညီမယ်" },
+                { en: "She will support you insofar as she can.", my: "သူမတတ်နိုင်သမျှ ထောက်ပံ့မယ်" },
+                { en: "We will assist you insofar as it is possible.", my: "ဖြစ်နိုင်သမျှ ငါတို့ကူညီမယ်" },
+                { en: "He will cooperate insofar as he agrees with the plan.", my: "သူအစီအစဉ်ကိုသဘောတူသမျှ ပူးပေါင်းဆောင်ရွက်မယ်" },
+                { en: "They will help insofar as they have time.", my: "သူတို့အချိန်ရှိသမျှ ကူညီမယ်" }
+            ]
+        },
+        {
+            formula: "Inasmuch as + clause, main clause",
+            meaning: "...သောကြောင့် ... (တရားဝင်)",
+            examples: [
+                { en: "Inasmuch as it was raining, we stayed home.", my: "မိုးရွာသောကြောင့် ငါတို့အိမ်မှာနေတယ်" },
+                { en: "Inasmuch as she was tired, she went to bed early.", my: "သူမပင်ပန်းသောကြောင့် စောစောအိပ်သွားတယ်" },
+                { en: "Inasmuch as he is rich, he can afford anything.", my: "သူချမ်းသာသောကြောင့် ဘာမဆိုဝယ်နိုင်တယ်" },
+                { en: "Inasmuch as we have no money, we can't go on vacation.", my: "ငါတို့ပိုက်ဆံမရှိသောကြောင့် အားလပ်ရက်မသွားနိုင်ဘူး" },
+                { en: "Inasmuch as they are busy, we should help them.", my: "သူတို့အလုပ်များသောကြောင့် ငါတို့သူတို့ကိုကူညီသင့်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Insofar as", meaning: "...သမျှ" },
+        { word: "Inasmuch as", meaning: "...သောကြောင့်" },
+        { word: "To the extent that", meaning: "...အတိုင်းအတာအထိ" },
+        { word: "As far as", meaning: "...သမျှ" }
+    ]
+},
+// =============================================================
+//  DAY 149 to DAY 155 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day149: {
+    title: "📘 Day 149: Advanced Phrasal Verbs (Separable vs Inseparable)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> Phrasal verbs များကို separable နှင့် inseparable ခွဲခြားသုံးရန်။
+    <br>🔹 <strong>Separable -</strong> Object ကို verb နဲ့ particle ကြားထည့်နိုင်သည်။
+    <br>🔹 <strong>Inseparable -</strong> Object ကို verb နဲ့ particle ကြားထည့်၍မရပါ။`,
+    patterns: [
+        {
+            formula: "Subject + V + particle + Object (separable)",
+            meaning: "...ကို ...သည်",
+            examples: [
+                { en: "I picked up the book. / I picked the book up.", my: "ငါ စာအုပ်ကို ကောက်ယူတယ်" },
+                { en: "She turned on the TV. / She turned the TV on.", my: "သူမ တီဗွီကို ဖွင့်တယ်" },
+                { en: "He put on his jacket. / He put his jacket on.", my: "သူ ဂျာကင်အင်္ကျီကို ဝတ်တယ်" },
+                { en: "They turned off the lights. / They turned the lights off.", my: "သူတို့ မီးတွေကို ပိတ်တယ်" },
+                { en: "We threw away the garbage. / We threw the garbage away.", my: "ငါတို့ အမှိုက်ကို ပစ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + particle + Object (inseparable)",
+            meaning: "...ကို ...သည် (ခွဲ၍မရ)",
+            examples: [
+                { en: "I ran into my old friend. (not ran my old friend into)", my: "ငါ သူငယ်ချင်းဟောင်းကို မျက်နှာချင်းဆိုင်တွေ့တယ်" },
+                { en: "She looks after her younger brother. (not looks her younger brother after)", my: "သူမ သူ့ညီလေးကို စောင့်ရှောက်တယ်" },
+                { en: "He gets over his illness. (not gets his illness over)", my: "သူ သူ့ရောဂါကို ကျော်လွှားတယ်" },
+                { en: "They look forward to the holiday. (not look the holiday forward to)", my: "သူတို့ အားလပ်ရက်ကို စောင့်မျှော်တယ်" },
+                { en: "We take after our parents. (not take our parents after)", my: "ငါတို့ မိဘတွေနဲ့တူတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Separable", meaning: "ခွဲခြားနိုင်သော" },
+        { word: "Inseparable", meaning: "ခွဲခြား၍မရသော" },
+        { word: "Particle", meaning: "ကြိယာဝိသေသန" },
+        { word: "Phrasal verb", meaning: "စကားစုကြိယာ" }
+    ]
+},
+day150: {
+    title: "📘 Day 150: Advanced Phrasal Verbs (Commonly Confused)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အလားတူပုံစံရှိသော phrasal verbs များကို ခွဲခြားသုံးရန်။
+    <br>🔹 <strong>Look for -</strong> ရှာဖွေသည်
+    <br>🔹 <strong>Look after -</strong> စောင့်ရှောက်သည်
+    <br>🔹 <strong>Look up -</strong> ရှာဖွေသည် (စာအုပ်ထဲ)
+    <br>🔹 <strong>Look forward to -</strong> စောင့်မျှော်သည်`,
+    patterns: [
+        {
+            formula: "Subject + V + for + Object (look for = search)",
+            meaning: "...ကို ရှာဖွေသည်",
+            examples: [
+                { en: "I am looking for my keys.", my: "ငါ ငါ့သော့တွေကို ရှာနေတယ်" },
+                { en: "She is looking for a new job.", my: "သူမ အလုပ်အသစ်ကို ရှာနေတယ်" },
+                { en: "They are looking for the lost dog.", my: "သူတို့ ပျောက်နေတဲ့ခွေးကို ရှာနေတယ်" },
+                { en: "We were looking for a restaurant.", my: "ငါတို့ စားသောက်ဆိုင်ကို ရှာနေတယ်" },
+                { en: "He is looking for his glasses.", my: "သူ သူ့မျက်မှန်ကို ရှာနေတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + after + Object (look after = take care of)",
+            meaning: "...ကို စောင့်ရှောက်သည်",
+            examples: [
+                { en: "I look after my younger brother.", my: "ငါ ငါ့ညီလေးကို စောင့်ရှောက်တယ်" },
+                { en: "She looks after her elderly parents.", my: "သူမ သူ့အဖွားအဖေကို စောင့်ရှောက်တယ်" },
+                { en: "They look after the children while we work.", my: "ငါတို့အလုပ်လုပ်နေစဉ် သူတို့က ကလေးတွေကို စောင့်ရှောက်တယ်" },
+                { en: "We look after our neighbor's dog.", my: "ငါတို့ အိမ်နီးချင်းရဲ့ခွေးကို စောင့်ရှောက်တယ်" },
+                { en: "He looks after his younger sister.", my: "သူ သူ့ညီမလေးကို စောင့်ရှောက်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up + Object (look up = search in book)",
+            meaning: "...ကို ရှာဖွေသည် (စာအုပ်ထဲ)",
+            examples: [
+                { en: "I looked up the word in the dictionary.", my: "ငါ စာလုံးကို အဘိဓာန်ထဲမှာ ရှာတယ်" },
+                { en: "She looked up the address online.", my: "သူမ လိပ်စာကို အွန်လိုင်းမှာ ရှာတယ်" },
+                { en: "They looked up the phone number.", my: "သူတို့ ဖုန်းနံပါတ်ကို ရှာတယ်" },
+                { en: "We looked up the information.", my: "ငါတို့ အချက်အလက်ကို ရှာတယ်" },
+                { en: "He looked up the meaning of the word.", my: "သူ စာလုံးရဲ့အဓိပ္ပာယ်ကို ရှာတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + forward to + Object/gerund (look forward to = anticipate)",
+            meaning: "...ကို စောင့်မျှော်သည်",
+            examples: [
+                { en: "I look forward to the holiday.", my: "ငါ အားလပ်ရက်ကို စောင့်မျှော်တယ်" },
+                { en: "She looks forward to meeting you.", my: "သူမ မင်းကိုတွေ့ဖို့ စောင့်မျှော်တယ်" },
+                { en: "They look forward to the concert.", my: "သူတို့ ဖျော်ဖြေပွဲကို စောင့်မျှော်တယ်" },
+                { en: "We look forward to traveling together.", my: "ငါတို့ အတူတကွခရီးသွားဖို့ စောင့်မျှော်တယ်" },
+                { en: "He looks forward to his birthday.", my: "သူ သူ့မွေးနေ့ကို စောင့်မျှော်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Look for", meaning: "ရှာဖွေသည်" },
+        { word: "Look after", meaning: "စောင့်ရှောက်သည်" },
+        { word: "Look up", meaning: "ရှာဖွေသည် (စာအုပ်ထဲ)" },
+        { word: "Look forward to", meaning: "စောင့်မျှော်သည်" },
+        { word: "Confused", meaning: "ရှုပ်ထွေးသော" }
+    ]
+},
+day151: {
+    title: "📘 Day 151: Advanced Phrasal Verbs (Business Phrasal Verbs)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> စီးပွားရေးလုပ်ငန်းများတွင် အသုံးများသော phrasal verbs များ။
+    <br>🔹 <strong>Set up -</strong> တည်ထောင်သည်
+    <br>🔹 <strong>Run out of -</strong> ကုန်သွားသည်
+    <br>🔹 <strong>Take over -</strong> တာဝန်ယူသည်
+    <br>🔹 <strong>Turn down -</strong> ငြင်းပယ်သည်`,
+    patterns: [
+        {
+            formula: "Subject + V + up + Object (set up = establish)",
+            meaning: "...ကို တည်ထောင်သည်",
+            examples: [
+                { en: "They set up a new company.", my: "သူတို့ ကုမ္ပဏီအသစ်တစ်ခုကို တည်ထောင်တယ်" },
+                { en: "We set up a meeting for next week.", my: "ငါတို့ လာမယ့်တစ်ပတ် အစည်းအဝေးတစ်ခုကို စီစဉ်တယ်" },
+                { en: "She set up her own business.", my: "သူမ ကိုယ်ပိုင်စီးပွားရေးလုပ်ငန်းကို တည်ထောင်တယ်" },
+                { en: "He set up the equipment.", my: "သူ ပစ္စည်းကိရိယာတွေကို တည်ဆောက်တယ်" },
+                { en: "They set up a new department.", my: "သူတို့ ဌာနအသစ်တစ်ခုကို ဖွဲ့စည်းတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out of + Object (run out of = exhaust)",
+            meaning: "...ကုန်သွားသည်",
+            examples: [
+                { en: "We ran out of milk.", my: "ငါတို့ နို့ကုန်သွားတယ်" },
+                { en: "They ran out of time.", my: "သူတို့ အချိန်ကုန်သွားတယ်" },
+                { en: "She ran out of money.", my: "သူမ ပိုက်ဆံကုန်သွားတယ်" },
+                { en: "We ran out of ideas.", my: "ငါတို့ အိုင်ဒီယာကုန်သွားတယ်" },
+                { en: "He ran out of patience.", my: "သူ စိတ်ရှည်မှုကုန်သွားတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + over + Object (take over = assume control)",
+            meaning: "...ကို တာဝန်ယူသည်",
+            examples: [
+                { en: "She took over the project.", my: "သူမ ပရောဂျက်ကို တာဝန်ယူတယ်" },
+                { en: "He took over his father's business.", my: "သူ သူ့အဖေရဲ့စီးပွားရေးကို တာဝန်ယူတယ်" },
+                { en: "They took over the company.", my: "သူတို့ ကုမ္ပဏီကို တာဝန်ယူတယ်" },
+                { en: "We took over the management.", my: "ငါတို့ စီမံခန့်ခွဲမှုကို တာဝန်ယူတယ်" },
+                { en: "The new manager took over the department.", my: "မန်နေဂျာအသစ်က ဌာနကို တာဝန်ယူတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + down + Object (turn down = reject)",
+            meaning: "...ကို ငြင်းပယ်သည်",
+            examples: [
+                { en: "She turned down the job offer.", my: "သူမ အလုပ်ကမ်းလှမ်းချက်ကို ငြင်းပယ်တယ်" },
+                { en: "He turned down the invitation.", my: "သူ ဖိတ်ကြားချက်ကို ငြင်းပယ်တယ်" },
+                { en: "They turned down the proposal.", my: "သူတို့ အဆိုပြုချက်ကို ငြင်းပယ်တယ်" },
+                { en: "We turned down the offer.", my: "ငါတို့ ကမ်းလှမ်းချက်ကို ငြင်းပယ်တယ်" },
+                { en: "The board turned down the request.", my: "ဘုတ်အဖွဲ့က တောင်းဆိုချက်ကို ငြင်းပယ်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Set up", meaning: "တည်ထောင်သည်" },
+        { word: "Run out of", meaning: "ကုန်သွားသည်" },
+        { word: "Take over", meaning: "တာဝန်ယူသည်" },
+        { word: "Turn down", meaning: "ငြင်းပယ်သည်" },
+        { word: "Business", meaning: "စီးပွားရေး" }
+    ]
+},
+day152: {
+    title: "📘 Day 152: Advanced Phrasal Verbs (Daily Life)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> နေ့စဉ်ဘဝတွင် အသုံးများသော phrasal verbs များ။
+    <br>🔹 <strong>Get up -</strong> ထသည်
+    <br>🔹 <strong>Wake up -</strong> နိုးသည်
+    <br>🔹 <strong>Go out -</strong> ထွက်သွားသည်
+    <br>🔹 <strong>Come back -</strong> ပြန်လာသည်`,
+    patterns: [
+        {
+            formula: "Subject + V + up (get up = rise from bed)",
+            meaning: "...ထသည်",
+            examples: [
+                { en: "I get up at 6 AM every day.", my: "ငါ နေ့တိုင်း နံနက် ၆ နာရီမှာ ထတယ်" },
+                { en: "She gets up early on weekdays.", my: "သူမ အလုပ်ရက်တွေမှာ စောစောထတယ်" },
+                { en: "They get up late on weekends.", my: "သူတို့ အားလပ်ရက်တွေမှာ နောက်ကျမှထတယ်" },
+                { en: "We got up early to catch the train.", my: "ငါတို့ ရထားမိဖို့ စောစောထတယ်" },
+                { en: "He gets up before sunrise.", my: "သူ နေမထွက်ခင် ထတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up (wake up = stop sleeping)",
+            meaning: "...နိုးသည်",
+            examples: [
+                { en: "I wake up at 5 AM.", my: "ငါ နံနက် ၅ နာရီမှာ နိုးတယ်" },
+                { en: "She wakes up when the alarm rings.", my: "နှိုးစက်မြည်တဲ့အခါ သူမနိုးတယ်" },
+                { en: "They wake up late on Sundays.", my: "သူတို့ တနင်္ဂနွေနေ့တွေမှာ နောက်ကျမှနိုးတယ်" },
+                { en: "We woke up early this morning.", my: "ငါတို့ ဒီမနက် စောစောနိုးတယ်" },
+                { en: "He woke up feeling tired.", my: "သူ ပင်ပန်းနေတယ်လို့ ခံစားရတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out (go out = leave)",
+            meaning: "...ထွက်သွားသည်",
+            examples: [
+                { en: "I go out with my friends on Friday nights.", my: "ငါ သောကြာညတွေမှာ သူငယ်ချင်းတွေနဲ့ ထွက်သွားတယ်" },
+                { en: "She goes out for a walk every evening.", my: "သူမ ညနေတိုင်း လမ်းလျှောက်ထွက်တယ်" },
+                { en: "They went out for dinner.", my: "သူတို့ ညစာစားထွက်သွားတယ်" },
+                { en: "We go out on weekends.", my: "ငါတို့ အားလပ်ရက်တွေမှာ ထွက်သွားတယ်" },
+                { en: "He went out to buy some groceries.", my: "သူ ကုန်စုံဝယ်ထွက်သွားတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + back (come back = return)",
+            meaning: "...ပြန်လာသည်",
+            examples: [
+                { en: "I come back home at 6 PM.", my: "ငါ ညနေ ၆ နာရီမှာ အိမ်ပြန်လာတယ်" },
+                { en: "She came back from her trip yesterday.", my: "သူမ မနေ့က သူ့ခရီးကနေ ပြန်လာတယ်" },
+                { en: "They come back from work late.", my: "သူတို့ အလုပ်ကနေ နောက်ကျမှပြန်လာတယ်" },
+                { en: "We came back home after dinner.", my: "ငါတို့ ညစာစားပြီးနောက် အိမ်ပြန်လာတယ်" },
+                { en: "He will come back tomorrow.", my: "သူ မနက်ဖြန် ပြန်လာမယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Get up", meaning: "ထသည်" },
+        { word: "Wake up", meaning: "နိုးသည်" },
+        { word: "Go out", meaning: "ထွက်သွားသည်" },
+        { word: "Come back", meaning: "ပြန်လာသည်" },
+        { word: "Daily life", meaning: "နေ့စဉ်ဘဝ" }
+    ]
+},
+day153: {
+    title: "📘 Day 153: Advanced Phrasal Verbs (Emotions)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> စိတ်ခံစားမှုများကို ဖော်ပြသော phrasal verbs များ။
+    <br>🔹 <strong>Cheer up -</strong> အားပေးသည်
+    <br>🔹 <strong>Calm down -</strong> စိတ်အေးအေးထားသည်
+    <br>🔹 <strong>Break down -</strong> စိတ်ပျက်အားလျော့သည်`,
+    patterns: [
+        {
+            formula: "Subject + V + up (cheer up = become happier)",
+            meaning: "...အားပေးသည်",
+            examples: [
+                { en: "She cheered up after hearing the good news.", my: "သူမ သတင်းကောင်းကြားပြီးနောက် အားတက်လာတယ်" },
+                { en: "He cheered up his friend by telling a joke.", my: "သူ ဟာသပြောပြီး သူ့သူငယ်ချင်းကို အားပေးတယ်" },
+                { en: "They cheered up when the sun came out.", my: "နေထွက်လာတဲ့အခါ သူတို့ အားတက်လာတယ်" },
+                { en: "I cheered up my sister when she was sad.", my: "ငါ့ညီမဝမ်းနည်းတဲ့အခါ ငါအားပေးတယ်" },
+                { en: "We cheered up after the long winter.", my: "ငါတို့ ရှည်လျားတဲ့ဆောင်းရာသီပြီးနောက် အားတက်လာတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + down (calm down = become calm)",
+            meaning: "...စိတ်အေးအေးထားသည်",
+            examples: [
+                { en: "Calm down! Everything will be fine.", my: "စိတ်အေးအေးထားပါ! အရာအားလုံးအဆင်ပြေသွားမယ်" },
+                { en: "She calmed down after taking a deep breath.", my: "သူမ အသက်ပြင်းပြင်းရှူပြီးနောက် စိတ်အေးသွားတယ်" },
+                { en: "He calmed down his angry friend.", my: "သူ ဒေါသထွက်နေတဲ့သူငယ်ချင်းကို စိတ်အေးအောင်လုပ်တယ်" },
+                { en: "They calmed down after the argument.", my: "သူတို့ ငြင်းခုံပြီးနောက် စိတ်အေးသွားတယ်" },
+                { en: "We calmed down before the meeting.", my: "ငါတို့ အစည်းအဝေးမစခင် စိတ်အေးအေးထားတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + down (break down = lose control emotionally)",
+            meaning: "...စိတ်ပျက်အားလျော့သည်",
+            examples: [
+                { en: "She broke down in tears when she heard the news.", my: "သူမ သတင်းကြားတဲ့အခါ ငိုကြွေးတယ်" },
+                { en: "He broke down under the pressure.", my: "သူ ဖိအားအောက်မှာ စိတ်ပျက်အားလျော့တယ်" },
+                { en: "They broke down after the loss.", my: "သူတို့ ဆုံးရှုံးပြီးနောက် စိတ်ပျက်အားလျော့တယ်" },
+                { en: "I broke down when I heard the sad story.", my: "ငါ ဝမ်းနည်းတဲ့ဇာတ်လမ်းကိုကြားတဲ့အခါ စိတ်ပျက်အားလျော့တယ်" },
+                { en: "We broke down after the long journey.", my: "ငါတို့ ခရီးရှည်ပြီးနောက် စိတ်ပျက်အားလျော့တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Cheer up", meaning: "အားပေးသည်" },
+        { word: "Calm down", meaning: "စိတ်အေးအေးထားသည်" },
+        { word: "Break down", meaning: "စိတ်ပျက်အားလျော့သည်" },
+        { word: "Emotion", meaning: "စိတ်ခံစားမှု" }
+    ]
+},
+day154: {
+    title: "📘 Day 154: Advanced Phrasal Verbs (Relationships)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဆက်ဆံရေးများကို ဖော်ပြသော phrasal verbs များ။
+    <br>🔹 <strong>Get along with -</strong> ရင်းနှီးသည်
+    <br>🔹 <strong>Fall out with -</strong> ရန်ဖြစ်သည်
+    <br>🔹 <strong>Make up with -</strong> ပြန်လည်သင့်မြတ်သည်`,
+    patterns: [
+        {
+            formula: "Subject + V + along with + Object (get along with = have good relationship)",
+            meaning: "...နှင့် ရင်းနှီးသည်",
+            examples: [
+                { en: "I get along well with my colleagues.", my: "ငါ ငါ့လုပ်ဖော်ကိုင်ဖက်တွေနဲ့ ရင်းနှီးတယ်" },
+                { en: "She gets along with her classmates.", my: "သူမ အတန်းဖော်တွေနဲ့ ရင်းနှီးတယ်" },
+                { en: "They get along with their neighbors.", my: "သူတို့ အိမ်နီးချင်းတွေနဲ့ ရင်းနှီးတယ်" },
+                { en: "We get along with each other.", my: "ငါတို့ တစ်ယောက်နဲ့တစ်ယောက် ရင်းနှီးတယ်" },
+                { en: "He gets along with his in-laws.", my: "သူ သူ့ယောက္ခမတွေနဲ့ ရင်းနှီးတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out with + Object (fall out with = argue)",
+            meaning: "...နှင့် ရန်ဖြစ်သည်",
+            examples: [
+                { en: "I fell out with my best friend.", my: "ငါ ငါ့အချစ်ဆုံးသူငယ်ချင်းနဲ့ ရန်ဖြစ်တယ်" },
+                { en: "She fell out with her sister.", my: "သူမ သူ့အမနဲ့ ရန်ဖြစ်တယ်" },
+                { en: "They fell out over a small misunderstanding.", my: "သူတို့ နားလည်မှုလွဲတာကြောင့် ရန်ဖြစ်တယ်" },
+                { en: "We fell out with our neighbors.", my: "ငါတို့ အိမ်နီးချင်းတွေနဲ့ ရန်ဖြစ်တယ်" },
+                { en: "He fell out with his brother.", my: "သူ သူ့အစ်ကိုနဲ့ ရန်ဖြစ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up with + Object (make up with = reconcile)",
+            meaning: "...နှင့် ပြန်လည်သင့်မြတ်သည်",
+            examples: [
+                { en: "I made up with my best friend.", my: "ငါ ငါ့အချစ်ဆုံးသူငယ်ချင်းနဲ့ ပြန်လည်သင့်မြတ်တယ်" },
+                { en: "She made up with her sister.", my: "သူမ သူ့အမနဲ့ ပြန်လည်သင့်မြတ်တယ်" },
+                { en: "They made up after the argument.", my: "သူတို့ ငြင်းခုံပြီးနောက် ပြန်လည်သင့်မြတ်တယ်" },
+                { en: "We made up with our neighbors.", my: "ငါတို့ အိမ်နီးချင်းတွေနဲ့ ပြန်လည်သင့်မြတ်တယ်" },
+                { en: "He made up with his brother.", my: "သူ သူ့အစ်ကိုနဲ့ ပြန်လည်သင့်မြတ်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Get along with", meaning: "ရင်းနှီးသည်" },
+        { word: "Fall out with", meaning: "ရန်ဖြစ်သည်" },
+        { word: "Make up with", meaning: "ပြန်လည်သင့်မြတ်သည်" },
+        { word: "Relationship", meaning: "ဆက်ဆံရေး" }
+    ]
+},
+day155: {
+    title: "📘 Day 155: Advanced Phrasal Verbs (Travel)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ခရီးသွားခြင်းနှင့်ဆိုင်သော phrasal verbs များ။
+    <br>🔹 <strong>Set off -</strong> ထွက်ခွာသည်
+    <br>🔹 <strong>Check in -</strong> မှတ်ပုံတင်သည်
+    <br>🔹 <strong>Check out -</strong> ထွက်ခွာသည် (ဟိုတယ်)
+    <br>🔹 <strong>Get away -</strong> ထွက်ခွာသည် (အားလပ်ရက်)`,
+    patterns: [
+        {
+            formula: "Subject + V + off (set off = start journey)",
+            meaning: "...ထွက်ခွာသည်",
+            examples: [
+                { en: "We set off for our trip early in the morning.", my: "ငါတို့ မနက်စောစောမှာ ခရီးစဉ်အတွက် ထွက်ခွာတယ်" },
+                { en: "They set off on their adventure.", my: "သူတို့ စွန့်စားခန်းအတွက် ထွက်ခွာတယ်" },
+                { en: "She set off for school at 7 AM.", my: "သူမ မနက် ၇ နာရီမှာ ကျောင်းအတွက် ထွက်ခွာတယ်" },
+                { en: "He set off early to avoid traffic.", my: "သူ ယာဉ်ကြောရှောင်ဖို့ စောစောထွက်ခွာတယ်" },
+                { en: "I set off for work at 8 AM.", my: "ငါ မနက် ၈ နာရီမှာ အလုပ်အတွက် ထွက်ခွာတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + in (check in = register)",
+            meaning: "...မှတ်ပုံတင်သည်",
+            examples: [
+                { en: "We checked in at the hotel at 2 PM.", my: "ငါတို့ မွန်းလွဲ ၂ နာရီမှာ ဟိုတယ်မှာ မှတ်ပုံတင်တယ်" },
+                { en: "They checked in at the airport.", my: "သူတို့ လေဆိပ်မှာ မှတ်ပုံတင်တယ်" },
+                { en: "She checked in for her flight.", my: "သူမ သူ့လေယာဉ်အတွက် မှတ်ပုံတင်တယ်" },
+                { en: "He checked in at the hotel reception.", my: "သူ ဟိုတယ်ဧည့်ကြိုမှာ မှတ်ပုံတင်တယ်" },
+                { en: "I checked in online before the flight.", my: "ငါ လေယာဉ်မစီးခင် အွန်လိုင်းမှာ မှတ်ပုံတင်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out (check out = leave hotel)",
+            meaning: "...ထွက်ခွာသည် (ဟိုတယ်)",
+            examples: [
+                { en: "We checked out of the hotel at 10 AM.", my: "ငါတို့ မနက် ၁၀ နာရီမှာ ဟိုတယ်ကနေ ထွက်ခွာတယ်" },
+                { en: "They checked out of the hotel early.", my: "သူတို့ ဟိုတယ်ကနေ စောစောထွက်ခွာတယ်" },
+                { en: "She checked out and left for the airport.", my: "သူမ ထွက်ခွာပြီး လေဆိပ်ကိုသွားတယ်" },
+                { en: "He checked out after breakfast.", my: "သူ နံနက်စာစားပြီးနောက် ထွက်ခွာတယ်" },
+                { en: "I checked out of the hotel by 11 AM.", my: "ငါ မနက် ၁၁ နာရီမှာ ဟိုတယ်ကနေ ထွက်ခွာတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + away (get away = escape)",
+            meaning: "...ထွက်ခွာသည် (အားလပ်ရက်)",
+            examples: [
+                { en: "We got away for a relaxing weekend.", my: "ငါတို့ အနားယူတဲ့အားလပ်ရက်အတွက် ထွက်ခွာတယ်" },
+                { en: "They got away for a short vacation.", my: "သူတို့ ခရီးတိုအတွက် ထွက်ခွာတယ်" },
+                { en: "She got away from the busy city.", my: "သူမ အလုပ်များတဲ့မြို့ကနေ ထွက်ခွာတယ်" },
+                { en: "He got away for a few days.", my: "သူ ရက်အနည်းငယ်အတွက် ထွက်ခွာတယ်" },
+                { en: "I need to get away for a while.", my: "ငါ ခဏလောက် ထွက်ခွာဖို့လိုတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Set off", meaning: "ထွက်ခွာသည်" },
+        { word: "Check in", meaning: "မှတ်ပုံတင်သည်" },
+        { word: "Check out", meaning: "ထွက်ခွာသည် (ဟိုတယ်)" },
+        { word: "Get away", meaning: "ထွက်ခွာသည် (အားလပ်ရက်)" },
+        { word: "Travel", meaning: "ခရီးသွားခြင်း" }
+    ]
+},
+// =============================================================
+//  DAY 156 to DAY 162 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day156: {
+    title: "📘 Day 156: Advanced Phrasal Verbs (Technology)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> နည်းပညာနှင့်ဆိုင်သော phrasal verbs များ။
+    <br>🔹 <strong>Log in -</strong> ဝင်ရောက်သည်
+    <br>🔹 <strong>Log out -</strong> ထွက်သည်
+    <br>🔹 <strong>Turn on -</strong> ဖွင့်သည်
+    <br>🔹 <strong>Turn off -</strong> ပိတ်သည်
+    <br>🔹 <strong>Set up -</strong> တည်ဆောက်သည် (စက်ပစ္စည်း)`,
+    patterns: [
+        {
+            formula: "Subject + V + in (log in = sign in)",
+            meaning: "...ဝင်ရောက်သည်",
+            examples: [
+                { en: "I log in to my computer every morning.", my: "ငါ မနက်တိုင်း ကွန်ပျူတာကို ဝင်ရောက်တယ်" },
+                { en: "She logged in to her email account.", my: "သူမ သူ့အီးမေးလ်အကောင့်ကို ဝင်ရောက်တယ်" },
+                { en: "They log in to the system with their password.", my: "သူတို့ စကားဝှက်နဲ့ စနစ်ကို ဝင်ရောက်တယ်" },
+                { en: "We logged in to the online platform.", my: "ငါတို့ အွန်လိုင်းပလက်ဖောင်းကို ဝင်ရောက်တယ်" },
+                { en: "He logged in to his social media account.", my: "သူ သူ့ဆိုရှယ်မီဒီယာအကောင့်ကို ဝင်ရောက်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out (log out = sign out)",
+            meaning: "...ထွက်သည်",
+            examples: [
+                { en: "I log out of my computer before leaving.", my: "ငါ မထွက်ခင် ကွန်ပျူတာကနေ ထွက်တယ်" },
+                { en: "She logged out of her email account.", my: "သူမ သူ့အီးမေးလ်အကောင့်ကနေ ထွက်တယ်" },
+                { en: "They log out of the system after work.", my: "သူတို့ အလုပ်ပြီးရင် စနစ်ကနေ ထွက်တယ်" },
+                { en: "We logged out of the online platform.", my: "ငါတို့ အွန်လိုင်းပလက်ဖောင်းကနေ ထွက်တယ်" },
+                { en: "He logged out of his social media account.", my: "သူ သူ့ဆိုရှယ်မီဒီယာအကောင့်ကနေ ထွက်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + on (turn on = switch on)",
+            meaning: "...ဖွင့်သည်",
+            examples: [
+                { en: "I turn on the computer every morning.", my: "ငါ မနက်တိုင်း ကွန်ပျူတာကို ဖွင့်တယ်" },
+                { en: "She turned on the TV.", my: "သူမ တီဗွီကို ဖွင့်တယ်" },
+                { en: "They turn on the lights when it gets dark.", my: "မှောင်လာတဲ့အခါ သူတို့ မီးတွေကို ဖွင့်တယ်" },
+                { en: "We turned on the air conditioner.", my: "ငါတို့ လေအေးပေးစက်ကို ဖွင့်တယ်" },
+                { en: "He turned on his phone.", my: "သူ သူ့ဖုန်းကို ဖွင့်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + off (turn off = switch off)",
+            meaning: "...ပိတ်သည်",
+            examples: [
+                { en: "I turn off the computer before going to bed.", my: "ငါ အိပ်ရာမဝင်ခင် ကွန်ပျူတာကို ပိတ်တယ်" },
+                { en: "She turned off the TV.", my: "သူမ တီဗွီကို ပိတ်တယ်" },
+                { en: "They turn off the lights when they leave.", my: "သူတို့ ထွက်တဲ့အခါ မီးတွေကို ပိတ်တယ်" },
+                { en: "We turned off the air conditioner.", my: "ငါတို့ လေအေးပေးစက်ကို ပိတ်တယ်" },
+                { en: "He turned off his phone.", my: "သူ သူ့ဖုန်းကို ပိတ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up (set up = install/configure)",
+            meaning: "...တည်ဆောက်သည် (စက်ပစ္စည်း)",
+            examples: [
+                { en: "I set up the new computer yesterday.", my: "မနေ့က ငါ ကွန်ပျူတာအသစ်ကို တည်ဆောက်တယ်" },
+                { en: "She set up her printer.", my: "သူမ သူ့ပရင်တာကို တည်ဆောက်တယ်" },
+                { en: "They set up the Wi-Fi connection.", my: "သူတို့ Wi-Fi ချိတ်ဆက်မှုကို တည်ဆောက်တယ်" },
+                { en: "We set up the new software.", my: "ငါတို့ ဆော့ဖ်ဝဲအသစ်ကို တည်ဆောက်တယ်" },
+                { en: "He set up his home theater system.", my: "သူ သူ့အိမ်ရုပ်ရှင်စနစ်ကို တည်ဆောက်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Log in", meaning: "ဝင်ရောက်သည်" },
+        { word: "Log out", meaning: "ထွက်သည်" },
+        { word: "Turn on", meaning: "ဖွင့်သည်" },
+        { word: "Turn off", meaning: "ပိတ်သည်" },
+        { word: "Set up", meaning: "တည်ဆောက်သည်" },
+        { word: "Technology", meaning: "နည်းပညာ" }
+    ]
+},
+day157: {
+    title: "📘 Day 157: Advanced Phrasal Verbs (Communication)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ဆက်သွယ်ရေးနှင့်ဆိုင်သော phrasal verbs များ။
+    <br>🔹 <strong>Get through to -</strong> ဆက်သွယ်နိုင်သည်
+    <br>🔹 <strong>Speak up -</strong> ကျယ်ကျယ်ပြောသည်
+    <br>🔹 <strong>Hang up -</strong> ဖုန်းချသည်
+    <br>🔹 <strong>Call back -</strong> ပြန်ခေါ်သည်`,
+    patterns: [
+        {
+            formula: "Subject + V + through to + Object (get through to = reach by phone)",
+            meaning: "...ကို ဆက်သွယ်နိုင်သည်",
+            examples: [
+                { en: "I tried to get through to her but the line was busy.", my: "ငါ သူမကို ဆက်သွယ်ဖို့ကြိုးစားပေမယ့် လိုင်းအလုပ်များနေတယ်" },
+                { en: "She got through to the customer service.", my: "သူမ ဖောက်သည်ဝန်ဆောင်မှုကို ဆက်သွယ်နိုင်ခဲ့တယ်" },
+                { en: "They got through to the manager.", my: "သူတို့ မန်နေဂျာကို ဆက်သွယ်နိုင်ခဲ့တယ်" },
+                { en: "We got through to the emergency services.", my: "ငါတို့ အရေးပေါ်ဝန်ဆောင်မှုကို ဆက်သွယ်နိုင်ခဲ့တယ်" },
+                { en: "He got through to his brother.", my: "သူ သူ့အစ်ကိုကို ဆက်သွယ်နိုင်ခဲ့တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up (speak up = speak louder)",
+            meaning: "...ကျယ်ကျယ်ပြောသည်",
+            examples: [
+                { en: "Please speak up! I can't hear you.", my: "ကျယ်ကျယ်ပြောပါ! မင်းစကားမကြားရဘူး" },
+                { en: "She spoke up so everyone could hear.", my: "လူတိုင်းကြားနိုင်အောင် သူမ ကျယ်ကျယ်ပြောတယ်" },
+                { en: "They spoke up during the meeting.", my: "သူတို့ အစည်းအဝေးအတွင်းမှာ ကျယ်ကျယ်ပြောတယ်" },
+                { en: "We spoke up for what we believed in.", my: "ငါတို့ ယုံကြည်တဲ့အရာအတွက် ကျယ်ကျယ်ပြောတယ်" },
+                { en: "He spoke up about the issue.", my: "သူ ပြဿနာအကြောင်း ကျယ်ကျယ်ပြောတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up (hang up = end phone call)",
+            meaning: "...ဖုန်းချသည်",
+            examples: [
+                { en: "I hung up after saying goodbye.", my: "ငါ နုတ်ဆက်ပြီးနောက် ဖုန်းချတယ်" },
+                { en: "She hung up on me!", my: "သူမ ငါ့ဖုန်းကို ချလိုက်တယ်" },
+                { en: "They hung up without saying anything.", my: "သူတို့ ဘာမှမပြောဘဲ ဖုန်းချလိုက်တယ်" },
+                { en: "We hung up after the argument.", my: "ငါတို့ ငြင်းခုံပြီးနောက် ဖုန်းချတယ်" },
+                { en: "He hung up angrily.", my: "သူ ဒေါသထွက်လျက် ဖုန်းချတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + back (call back = return call)",
+            meaning: "...ပြန်ခေါ်သည်",
+            examples: [
+                { en: "I will call you back in 5 minutes.", my: "ငါ မင်းကို ၅ မိနစ်အတွင်း ပြန်ခေါ်မယ်" },
+                { en: "She called back after the meeting.", my: "သူမ အစည်းအဝေးပြီးနောက် ပြန်ခေါ်တယ်" },
+                { en: "They called back to confirm the appointment.", my: "သူတို့ ချိန်းဆိုမှုကိုအတည်ပြုဖို့ ပြန်ခေါ်တယ်" },
+                { en: "We called back as soon as we got the message.", my: "ငါတို့ မက်ဆေ့ချ်ရတာနဲ့ ပြန်ခေါ်တယ်" },
+                { en: "He called back later.", my: "သူ နောက်မှ ပြန်ခေါ်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Get through to", meaning: "ဆက်သွယ်နိုင်သည်" },
+        { word: "Speak up", meaning: "ကျယ်ကျယ်ပြောသည်" },
+        { word: "Hang up", meaning: "ဖုန်းချသည်" },
+        { word: "Call back", meaning: "ပြန်ခေါ်သည်" },
+        { word: "Communication", meaning: "ဆက်သွယ်ရေး" }
+    ]
+},
+day158: {
+    title: "📘 Day 158: Advanced Phrasal Verbs (Education)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ပညာရေးနှင့်ဆိုင်သော phrasal verbs များ။
+    <br>🔹 <strong>Catch up on -</strong> လိုက်မီသည်
+    <br>🔹 <strong>Fall behind -</strong> နောက်ကျသည်
+    <br>🔹 <strong>Hand in -</strong> တင်သည် (အိမ်စာ)
+    <br>🔹 <strong>Go over -</strong> ပြန်လည်သုံးသပ်သည်`,
+    patterns: [
+        {
+            formula: "Subject + V + up on + Object (catch up on = complete)",
+            meaning: "...လိုက်မီသည်",
+            examples: [
+                { en: "I need to catch up on my homework.", my: "ငါ ငါ့အိမ်စာကို လိုက်မီဖို့လိုတယ်" },
+                { en: "She caught up on her reading.", my: "သူမ သူ့စာဖတ်ခြင်းကို လိုက်မီတယ်" },
+                { en: "They caught up on the lessons they missed.", my: "သူတို့ လွတ်သွားတဲ့သင်ခန်းစာတွေကို လိုက်မီတယ်" },
+                { en: "We need to catch up on the project.", my: "ငါတို့ ပရောဂျက်ကို လိုက်မီဖို့လိုတယ်" },
+                { en: "He caught up on his assignments.", my: "သူ သူ့တာဝန်တွေကို လိုက်မီတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + behind (fall behind = be behind)",
+            meaning: "...နောက်ကျသည်",
+            examples: [
+                { en: "I fell behind in my studies.", my: "ငါ ငါ့ပညာရေးမှာ နောက်ကျတယ်" },
+                { en: "She fell behind the other students.", my: "သူမ တခြားကျောင်းသားတွေနောက် ကျတယ်" },
+                { en: "They fell behind schedule.", my: "သူတို့ အချိန်ဇယားနောက် ကျတယ်" },
+                { en: "We fell behind in our work.", my: "ငါတို့ ငါတို့အလုပ်မှာ နောက်ကျတယ်" },
+                { en: "He fell behind because he was sick.", my: "သူ ဖျားလို့ နောက်ကျတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + in (hand in = submit)",
+            meaning: "...တင်သည် (အိမ်စာ)",
+            examples: [
+                { en: "I handed in my homework on time.", my: "ငါ ငါ့အိမ်စာကို အချိန်မှန်တင်တယ်" },
+                { en: "She handed in her assignment.", my: "သူမ သူ့တာဝန်ကို တင်တယ်" },
+                { en: "They handed in their projects.", my: "သူတို့ သူတို့ပရောဂျက်တွေကို တင်တယ်" },
+                { en: "We handed in the report.", my: "ငါတို့ အစီရင်ခံစာကို တင်တယ်" },
+                { en: "He handed in his application.", my: "သူ သူ့လျှောက်လွှာကို တင်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + over (go over = review)",
+            meaning: "...ပြန်လည်သုံးသပ်သည်",
+            examples: [
+                { en: "I need to go over my notes before the exam.", my: "ငါ စာမေးပွဲမစခင် ငါ့မှတ်စုတွေကို ပြန်လည်သုံးသပ်ဖို့လိုတယ်" },
+                { en: "She went over the lesson again.", my: "သူမ သင်ခန်းစာကို ထပ်ပြီးသုံးသပ်တယ်" },
+                { en: "They went over the plan carefully.", my: "သူတို့ အစီအစဉ်ကို သေသေချာချာ ပြန်လည်သုံးသပ်တယ်" },
+                { en: "We went over the mistakes.", my: "ငါတို့ အမှားတွေကို ပြန်လည်သုံးသပ်တယ်" },
+                { en: "He went over the instructions.", my: "သူ ညွှန်ကြားချက်တွေကို ပြန်လည်သုံးသပ်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Catch up on", meaning: "လိုက်မီသည်" },
+        { word: "Fall behind", meaning: "နောက်ကျသည်" },
+        { word: "Hand in", meaning: "တင်သည် (အိမ်စာ)" },
+        { word: "Go over", meaning: "ပြန်လည်သုံးသပ်သည်" },
+        { word: "Education", meaning: "ပညာရေး" }
+    ]
+},
+day159: {
+    title: "📘 Day 159: Advanced Phrasal Verbs (Money)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ငွေကြေးနှင့်ဆိုင်သော phrasal verbs များ။
+    <br>🔹 <strong>Save up -</strong> စုဆောင်းသည်
+    <br>🔹 <strong>Pay back -</strong> ပြန်ဆပ်သည်
+    <br>🔹 <strong>Spend on -</strong> သုံးသည်
+    <br>🔹 <strong>Take out -</strong> ထုတ်သည် (ငွေ)`,
+    patterns: [
+        {
+            formula: "Subject + V + up (save up = accumulate money)",
+            meaning: "...စုဆောင်းသည်",
+            examples: [
+                { en: "I am saving up for a new car.", my: "ငါ ကားအသစ်အတွက် ပိုက်ဆံစုနေတယ်" },
+                { en: "She saved up enough money to travel.", my: "သူမ ခရီးသွားဖို့ ပိုက်ဆံအလုံအလောက် စုဆောင်းတယ်" },
+                { en: "They saved up for a house.", my: "သူတို့ အိမ်အတွက် ပိုက်ဆံစုဆောင်းတယ်" },
+                { en: "We saved up for a long time.", my: "ငါတို့ အချိန်အတော်ကြာ စုဆောင်းတယ်" },
+                { en: "He saved up his pocket money.", my: "သူ သူ့အိတ်ဆောင်ပိုက်ဆံကို စုဆောင်းတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + back (pay back = repay)",
+            meaning: "...ပြန်ဆပ်သည်",
+            examples: [
+                { en: "I will pay you back next week.", my: "ငါ မင်းကို လာမယ့်တစ်ပတ်မှာ ပြန်ဆပ်မယ်" },
+                { en: "She paid back the loan.", my: "သူမ ချေးငွေကို ပြန်ဆပ်တယ်" },
+                { en: "They paid back the money they owed.", my: "သူတို့ သူတို့မြီတွေကို ပြန်ဆပ်တယ်" },
+                { en: "We paid back our debt.", my: "ငါတို့ ငါတို့ကြွေးမြီကို ပြန်ဆပ်တယ်" },
+                { en: "He paid back his friend.", my: "သူ သူ့သူငယ်ချင်းကို ပြန်ဆပ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + on + Object (spend on = use money for)",
+            meaning: "...အတွက် သုံးသည်",
+            examples: [
+                { en: "I spend a lot of money on food.", my: "ငါ အစားအစာအတွက် ပိုက်ဆံအများကြီးသုံးတယ်" },
+                { en: "She spent her salary on a new bag.", my: "သူမ သူ့လစာကို အိတ်အသစ်အတွက် သုံးတယ်" },
+                { en: "They spend money on entertainment.", my: "သူတို့ ဖျော်ဖြေရေးအတွက် ပိုက်ဆံသုံးတယ်" },
+                { en: "We spent too much on the trip.", my: "ငါတို့ ခရီးအတွက် ပိုက်ဆံအများကြီးသုံးမိတယ်" },
+                { en: "He spends his money on books.", my: "သူ သူ့ပိုက်ဆံကို စာအုပ်တွေအတွက် သုံးတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out (take out = withdraw)",
+            meaning: "...ထုတ်သည် (ငွေ)",
+            examples: [
+                { en: "I took out some money from the ATM.", my: "ငါ ATM ကနေ ပိုက်ဆံအချို့ ထုတ်တယ်" },
+                { en: "She took out a loan from the bank.", my: "သူမ ဘဏ်ကနေ ချေးငွေထုတ်တယ်" },
+                { en: "They took out cash for the trip.", my: "သူတို့ ခရီးအတွက် ငွေသားထုတ်တယ်" },
+                { en: "We took out money from our savings.", my: "ငါတို့ ငါတို့စုငွေကနေ ပိုက်ဆံထုတ်တယ်" },
+                { en: "He took out his credit card.", my: "သူ သူ့ခရက်ဒစ်ကတ်ကို ထုတ်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Save up", meaning: "စုဆောင်းသည်" },
+        { word: "Pay back", meaning: "ပြန်ဆပ်သည်" },
+        { word: "Spend on", meaning: "သုံးသည်" },
+        { word: "Take out", meaning: "ထုတ်သည် (ငွေ)" },
+        { word: "Money", meaning: "ငွေကြေး" }
+    ]
+},
+day160: {
+    title: "📘 Day 160: Advanced Phrasal Verbs (Health)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> ကျန်းမာရေးနှင့်ဆိုင်သော phrasal verbs များ။
+    <br>🔹 <strong>Work out -</strong> လေ့ကျင့်ခန်းလုပ်သည်
+    <br>🔹 <strong>Get over -</strong> ပြန်လည်ကျန်းမာသည်
+    <br>🔹 <strong>Come down with -</strong> ဖျားနာသည်
+    <br>🔹 <strong>Pass out -</strong> မူးလဲသည်`,
+    patterns: [
+        {
+            formula: "Subject + V + out (work out = exercise)",
+            meaning: "...လေ့ကျင့်ခန်းလုပ်သည်",
+            examples: [
+                { en: "I work out at the gym three times a week.", my: "ငါ တစ်ပတ် သုံးကြိမ် အားကစားခန်းမမှာ လေ့ကျင့်ခန်းလုပ်တယ်" },
+                { en: "She works out every morning.", my: "သူမ မနက်တိုင်း လေ့ကျင့်ခန်းလုပ်တယ်" },
+                { en: "They work out together.", my: "သူတို့ အတူတကွ လေ့ကျင့်ခန်းလုပ်တယ်" },
+                { en: "We worked out for an hour.", my: "ငါတို့ တစ်နာရီကြာ လေ့ကျင့်ခန်းလုပ်တယ်" },
+                { en: "He works out to stay healthy.", my: "သူ ကျန်းမာနေဖို့ လေ့ကျင့်ခန်းလုပ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + over (get over = recover from)",
+            meaning: "...ပြန်လည်ကျန်းမာသည်",
+            examples: [
+                { en: "I got over my cold after a week.", my: "ငါ တစ်ပတ်အကြာမှာ ငါ့အအေးမိတာကို ပြန်လည်ကျန်းမာတယ်" },
+                { en: "She got over the illness quickly.", my: "သူမ ရောဂါကို မြန်မြန်ပြန်လည်ကျန်းမာတယ်" },
+                { en: "They got over the flu.", my: "သူတို့ တုပ်ကွေးကို ပြန်လည်ကျန်းမာတယ်" },
+                { en: "We got over our injuries.", my: "ငါတို့ ငါတို့ဒဏ်ရာတွေကို ပြန်လည်ကျန်းမာတယ်" },
+                { en: "He got over his surgery.", my: "သူ သူ့ခွဲစိတ်မှုကို ပြန်လည်ကျန်းမာတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + down with + Object (come down with = become ill with)",
+            meaning: "...ဖျားနာသည်",
+            examples: [
+                { en: "I came down with the flu last week.", my: "ပြီးခဲ့တဲ့တစ်ပတ်က ငါ တုပ်ကွေးဖျားတယ်" },
+                { en: "She came down with a cold.", my: "သူမ အအေးမိဖျားတယ်" },
+                { en: "They came down with a fever.", my: "သူတို့ အဖျားတက်တယ်" },
+                { en: "We came down with a stomach bug.", my: "ငါတို့ ဗိုက်နာဖျားတယ်" },
+                { en: "He came down with a headache.", my: "သူ ခေါင်းကိုက်ဖျားတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out (pass out = faint)",
+            meaning: "...မူးလဲသည်",
+            examples: [
+                { en: "I almost passed out from the heat.", my: "ငါ အပူဒဏ်ကြောင့် လိုလိုမလိုလိုမူးလဲတယ်" },
+                { en: "She passed out after running.", my: "သူမ ပြေးပြီးနောက် မူးလဲတယ်" },
+                { en: "They passed out during the long journey.", my: "သူတို့ ခရီးရှည်အတွင်းမှာ မူးလဲတယ်" },
+                { en: "We passed out from exhaustion.", my: "ငါတို့ ပင်ပန်းလို့ မူးလဲတယ်" },
+                { en: "He passed out in the gym.", my: "သူ အားကစားခန်းမမှာ မူးလဲတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Work out", meaning: "လေ့ကျင့်ခန်းလုပ်သည်" },
+        { word: "Get over", meaning: "ပြန်လည်ကျန်းမာသည်" },
+        { word: "Come down with", meaning: "ဖျားနာသည်" },
+        { word: "Pass out", meaning: "မူးလဲသည်" },
+        { word: "Health", meaning: "ကျန်းမာရေး" }
+    ]
+},
+// =============================================================
+//  DAY 161 to DAY 167 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day161: {
+    title: "📘 Day 161: Advanced Phrasal Verbs (Environment)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> သဘာဝပတ်ဝန်းကျင်နှင့်ဆိုင်သော phrasal verbs များ။
+    <br>🔹 <strong>Cut down on -</strong> လျှော့ချသည်
+    <br>🔹 <strong>Throw away -</strong> စွန့်ပစ်သည်
+    <br>🔹 <strong>Clean up -</strong> သန့်ရှင်းရေးလုပ်သည်
+    <br>🔹 <strong>Wipe out -</strong> ပျောက်ကွယ်စေသည်`,
+    patterns: [
+        {
+            formula: "Subject + V + down on + Object (cut down on = reduce)",
+            meaning: "...လျှော့ချသည်",
+            examples: [
+                { en: "We need to cut down on plastic waste.", my: "ငါတို့ ပလတ်စတစ်စွန့်ပစ်ပစ္စည်းကို လျှော့ချဖို့လိုတယ်" },
+                { en: "She cut down on sugar for health reasons.", my: "သူမ ကျန်းမာရေးအတွက် သကြားကို လျှော့ချတယ်" },
+                { en: "They cut down on electricity usage.", my: "သူတို့ လျှပ်စစ်သုံးစွဲမှုကို လျှော့ချတယ်" },
+                { en: "We cut down on meat consumption.", my: "ငါတို့ အသားစားသုံးမှုကို လျှော့ချတယ်" },
+                { en: "He cut down on his spending.", my: "သူ သူ့အသုံးစရိတ်ကို လျှော့ချတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + away (throw away = discard)",
+            meaning: "...စွန့်ပစ်သည်",
+            examples: [
+                { en: "I threw away the old newspapers.", my: "ငါ သတင်းစာဟောင်းတွေကို စွန့်ပစ်တယ်" },
+                { en: "She threw away the broken toys.", my: "သူမ ကျိုးနေတဲ့ကစားစရာတွေကို စွန့်ပစ်တယ်" },
+                { en: "They threw away the garbage.", my: "သူတို့ အမှိုက်ကို စွန့်ပစ်တယ်" },
+                { en: "We threw away the old clothes.", my: "ငါတို့ အဝတ်အစားဟောင်းတွေကို စွန့်ပစ်တယ်" },
+                { en: "He threw away the empty bottles.", my: "သူ ဗလာပုလင်းတွေကို စွန့်ပစ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up (clean up = make clean)",
+            meaning: "...သန့်ရှင်းရေးလုပ်သည်",
+            examples: [
+                { en: "We need to clean up the beach.", my: "ငါတို့ ကမ်းခြေကို သန့်ရှင်းရေးလုပ်ဖို့လိုတယ်" },
+                { en: "She cleaned up the kitchen.", my: "သူမ မီးဖိုချောင်ကို သန့်ရှင်းရေးလုပ်တယ်" },
+                { en: "They cleaned up the park.", my: "သူတို့ ပန်းခြံကို သန့်ရှင်းရေးလုပ်တယ်" },
+                { en: "We cleaned up the mess.", my: "ငါတို့ ရှုပ်ပွနေတာကို သန့်ရှင်းရေးလုပ်တယ်" },
+                { en: "He cleaned up his room.", my: "သူ သူ့အခန်းကို သန့်ရှင်းရေးလုပ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out (wipe out = eliminate completely)",
+            meaning: "...ပျောက်ကွယ်စေသည်",
+            examples: [
+                { en: "Pollution may wipe out many species.", my: "လေထုညစ်ညမ်းမှုက မျိုးစိတ်အများအပြားကို ပျောက်ကွယ်စေနိုင်တယ်" },
+                { en: "The disease wiped out the entire population.", my: "ရောဂါက လူဦးရေတစ်ခုလုံးကို ပျောက်ကွယ်စေခဲ့တယ်" },
+                { en: "Natural disasters can wipe out whole communities.", my: "သဘာဝဘေးအန္တရာယ်တွေက လူမှုအသိုင်းအဝိုင်းတစ်ခုလုံးကို ပျောက်ကွယ်စေနိုင်တယ်" },
+                { en: "The fire wiped out the forest.", my: "မီးက သစ်တောကို ပျောက်ကွယ်စေခဲ့တယ်" },
+                { en: "War wiped out many civilizations.", my: "စစ်ပွဲက ယဉ်ကျေးမှုအများအပြားကို ပျောက်ကွယ်စေခဲ့တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Cut down on", meaning: "လျှော့ချသည်" },
+        { word: "Throw away", meaning: "စွန့်ပစ်သည်" },
+        { word: "Clean up", meaning: "သန့်ရှင်းရေးလုပ်သည်" },
+        { word: "Wipe out", meaning: "ပျောက်ကွယ်စေသည်" },
+        { word: "Environment", meaning: "သဘာဝပတ်ဝန်းကျင်" }
+    ]
+},
+day162: {
+    title: "📘 Day 162: Advanced Phrasal Verbs (Social Issues)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> လူမှုရေးပြဿနာများနှင့်ဆိုင်သော phrasal verbs များ။
+    <br>🔹 <strong>Stand up for -</strong> ကာကွယ်သည်
+    <br>🔹 <strong>Speak out against -</strong> ဆန့်ကျင်ပြောဆိုသည်
+    <br>🔹 <strong>Come up with -</strong> ဖော်ထုတ်သည် (အကြံဥာဏ်)
+    <br>🔹 <strong>Bring about -</strong> ဖြစ်ပေါ်စေသည်`,
+    patterns: [
+        {
+            formula: "Subject + V + up for + Object (stand up for = defend)",
+            meaning: "...ကာကွယ်သည်",
+            examples: [
+                { en: "We should stand up for human rights.", my: "ငါတို့ လူ့အခွင့်အရေးကို ကာကွယ်သင့်တယ်" },
+                { en: "She stood up for her beliefs.", my: "သူမ သူ့ယုံကြည်ချက်တွေကို ကာကွယ်တယ်" },
+                { en: "They stood up for the oppressed.", my: "သူတို့ ဖိနှိပ်ခံရတဲ့သူတွေကို ကာကွယ်တယ်" },
+                { en: "He stood up for his friend.", my: "သူ သူ့သူငယ်ချင်းကို ကာကွယ်တယ်" },
+                { en: "We must stand up for justice.", my: "ငါတို့ တရားမျှတမှုကို ကာကွယ်ရမယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out against + Object (speak out against = protest)",
+            meaning: "...ဆန့်ကျင်ပြောဆိုသည်",
+            examples: [
+                { en: "Many people spoke out against the new law.", my: "လူအများအပြားက ဥပဒေအသစ်ကို ဆန့်ကျင်ပြောဆိုတယ်" },
+                { en: "She spoke out against injustice.", my: "သူမ တရားမမျှတမှုကို ဆန့်ကျင်ပြောဆိုတယ်" },
+                { en: "They spoke out against discrimination.", my: "သူတို့ ခွဲခြားဆက်ဆံမှုကို ဆန့်ကျင်ပြောဆိုတယ်" },
+                { en: "We spoke out against the decision.", my: "ငါတို့ ဆုံးဖြတ်ချက်ကို ဆန့်ကျင်ပြောဆိုတယ်" },
+                { en: "He spoke out against the corruption.", my: "သူ အဂတိလိုက်စားမှုကို ဆန့်ကျင်ပြောဆိုတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up with + Object (come up with = think of)",
+            meaning: "...ဖော်ထုတ်သည် (အကြံဥာဏ်)",
+            examples: [
+                { en: "We came up with a great idea.", my: "ငါတို့ အိုင်ဒီယာကောင်းတစ်ခုကို ဖော်ထုတ်တယ်" },
+                { en: "She came up with a solution.", my: "သူမ ဖြေရှင်းနည်းတစ်ခုကို ဖော်ထုတ်တယ်" },
+                { en: "They came up with a new plan.", my: "သူတို့ အစီအစဉ်အသစ်တစ်ခုကို ဖော်ထုတ်တယ်" },
+                { en: "We came up with a creative idea.", my: "ငါတို့ ဖန်တီးမှုရှိတဲ့အိုင်ဒီယာတစ်ခုကို ဖော်ထုတ်တယ်" },
+                { en: "He came up with a brilliant suggestion.", my: "သူ ထူးချွန်တဲ့အကြံပြုချက်တစ်ခုကို ဖော်ထုတ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + about (bring about = cause)",
+            meaning: "...ဖြစ်ပေါ်စေသည်",
+            examples: [
+                { en: "Education can bring about positive change.", my: "ပညာရေးက အပြုသဘောဆောင်တဲ့အပြောင်းအလဲကို ဖြစ်ပေါ်စေနိုင်တယ်" },
+                { en: "The new policy brought about improvements.", my: "မူဝါဒအသစ်က တိုးတက်မှုတွေကို ဖြစ်ပေါ်စေတယ်" },
+                { en: "Technology has brought about many changes.", my: "နည်းပညာက အပြောင်းအလဲအများအပြားကို ဖြစ်ပေါ်စေတယ်" },
+                { en: "The reform brought about economic growth.", my: "ပြုပြင်ပြောင်းလဲမှုက စီးပွားရေးတိုးတက်မှုကို ဖြစ်ပေါ်စေတယ်" },
+                { en: "Her speech brought about awareness.", my: "သူမရဲ့မိန့်ခွန်းက အသိပညာပေးမှုကို ဖြစ်ပေါ်စေတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Stand up for", meaning: "ကာကွယ်သည်" },
+        { word: "Speak out against", meaning: "ဆန့်ကျင်ပြောဆိုသည်" },
+        { word: "Come up with", meaning: "ဖော်ထုတ်သည် (အကြံဥာဏ်)" },
+        { word: "Bring about", meaning: "ဖြစ်ပေါ်စေသည်" },
+        { word: "Social issues", meaning: "လူမှုရေးပြဿနာများ" }
+    ]
+},
+day163: {
+    title: "📘 Day 163: Advanced Phrasal Verbs (Success & Failure)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အောင်မြင်မှုနှင့် ကျရှုံးမှုဆိုင်ရာ phrasal verbs များ။
+    <br>🔹 <strong>Succeed in -</strong> အောင်မြင်သည်
+    <br>🔹 <strong>Fall through -</strong> မအောင်မြင်ဘူး
+    <br>🔹 <strong>Carry out -</strong> ဆောင်ရွက်သည်
+    <br>🔹 <strong>Give up -</strong> အရှုံးပေးသည်`,
+    patterns: [
+        {
+            formula: "Subject + V + in + Object (succeed in = achieve)",
+            meaning: "...အောင်မြင်သည်",
+            examples: [
+                { en: "She succeeded in getting the job.", my: "သူမ အလုပ်ရဖို့ အောင်မြင်တယ်" },
+                { en: "He succeeded in passing the exam.", my: "သူ စာမေးပွဲအောင်ဖို့ အောင်မြင်တယ်" },
+                { en: "They succeeded in completing the project.", my: "သူတို့ ပရောဂျက်ပြီးအောင်လုပ်ဖို့ အောင်မြင်တယ်" },
+                { en: "We succeeded in reaching our goal.", my: "ငါတို့ ရည်မှန်းချက်ရောက်ဖို့ အောင်မြင်တယ်" },
+                { en: "He succeeded in starting his own business.", my: "သူ ကိုယ်ပိုင်စီးပွားရေးလုပ်ငန်းစဖို့ အောင်မြင်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + through (fall through = fail to happen)",
+            meaning: "...မအောင်မြင်ဘူး",
+            examples: [
+                { en: "Our plans fell through at the last minute.", my: "ငါတို့အစီအစဉ်တွေ နောက်ဆုံးမိနစ်မှာ မအောင်မြင်ဘူး" },
+                { en: "The deal fell through because of financial issues.", my: "ငွေကြေးပြဿနာတွေကြောင့် သဘောတူညီချက် မအောင်မြင်ဘူး" },
+                { en: "Our vacation plans fell through.", my: "ငါတို့ အားလပ်ရက်အစီအစဉ်တွေ မအောင်မြင်ဘူး" },
+                { en: "The agreement fell through at the end.", my: "သဘောတူညီချက် နောက်ဆုံးမှာ မအောင်မြင်ဘူး" },
+                { en: "His business fell through.", my: "သူ့စီးပွားရေးလုပ်ငန်း မအောင်မြင်ဘူး" }
+            ]
+        },
+        {
+            formula: "Subject + V + out (carry out = execute)",
+            meaning: "...ဆောင်ရွက်သည်",
+            examples: [
+                { en: "We carried out the plan successfully.", my: "ငါတို့ အစီအစဉ်ကို အောင်မြင်စွာ ဆောင်ရွက်တယ်" },
+                { en: "She carried out the experiment.", my: "သူမ စမ်းသပ်ချက်ကို ဆောင်ရွက်တယ်" },
+                { en: "They carried out the research.", my: "သူတို့ သုတေသနကို ဆောင်ရွက်တယ်" },
+                { en: "We carried out our duties.", my: "ငါတို့ ငါတို့တာဝန်တွေကို ဆောင်ရွက်တယ်" },
+                { en: "He carried out the instructions.", my: "သူ ညွှန်ကြားချက်တွေကို ဆောင်ရွက်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up (give up = quit)",
+            meaning: "...အရှုံးပေးသည်",
+            examples: [
+                { en: "I never give up on my dreams.", my: "ငါ ငါ့အိပ်မက်တွေကို ဘယ်တော့မှ အရှုံးမပေးဘူး" },
+                { en: "She gave up smoking.", my: "သူမ ဆေးလိပ်ဖြတ်လိုက်တယ်" },
+                { en: "They gave up trying.", my: "သူတို့ ကြိုးစားတာကို အရှုံးပေးလိုက်တယ်" },
+                { en: "We gave up the idea.", my: "ငါတို့ အိုင်ဒီယာကို အရှုံးပေးလိုက်တယ်" },
+                { en: "He gave up his career for his family.", my: "သူ သူ့မိသားစုအတွက် သူ့အသက်မွေးဝမ်းကြောင်းကို အရှုံးပေးလိုက်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Succeed in", meaning: "အောင်မြင်သည်" },
+        { word: "Fall through", meaning: "မအောင်မြင်ဘူး" },
+        { word: "Carry out", meaning: "ဆောင်ရွက်သည်" },
+        { word: "Give up", meaning: "အရှုံးပေးသည်" },
+        { word: "Success", meaning: "အောင်မြင်မှု" },
+        { word: "Failure", meaning: "ကျရှုံးမှု" }
+    ]
+},
+day164: {
+    title: "📘 Day 164: Advanced Phrasal Verbs (Thinking & Decision)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> တွေးခေါ်မှုနှင့် ဆုံးဖြတ်ချက်ဆိုင်ရာ phrasal verbs များ။
+    <br>🔹 <strong>Think over -</strong> စဉ်းစားသည်
+    <br>🔹 <strong>Decide on -</strong> ဆုံးဖြတ်သည်
+    <br>🔹 <strong>Rule out -</strong> ဖယ်ထုတ်သည်
+    <br>🔹 <strong>Opt for -</strong> ရွေးချယ်သည်`,
+    patterns: [
+        {
+            formula: "Subject + V + over + Object (think over = consider)",
+            meaning: "...စဉ်းစားသည်",
+            examples: [
+                { en: "I need to think over your suggestion.", my: "ငါ မင်းရဲ့အကြံပြုချက်ကို စဉ်းစားဖို့လိုတယ်" },
+                { en: "She thought over the offer carefully.", my: "သူမ ကမ်းလှမ်းချက်ကို သေသေချာချာ စဉ်းစားတယ်" },
+                { en: "They thought over the decision.", my: "သူတို့ ဆုံးဖြတ်ချက်ကို စဉ်းစားတယ်" },
+                { en: "We thought over the options.", my: "ငါတို့ ရွေးစရာတွေကို စဉ်းစားတယ်" },
+                { en: "He thought over the problem.", my: "သူ ပြဿနာကို စဉ်းစားတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + on + Object (decide on = choose)",
+            meaning: "...ဆုံးဖြတ်သည်",
+            examples: [
+                { en: "We decided on a restaurant for dinner.", my: "ငါတို့ ညစာအတွက် စားသောက်ဆိုင်တစ်ခုကို ဆုံးဖြတ်တယ်" },
+                { en: "She decided on the blue dress.", my: "သူမ အပြာရောင်ဝတ်စုံကို ဆုံးဖြတ်တယ်" },
+                { en: "They decided on a date for the meeting.", my: "သူတို့ အစည်းအဝေးအတွက် ရက်တစ်ရက်ကို ဆုံးဖြတ်တယ်" },
+                { en: "We decided on a plan.", my: "ငါတို့ အစီအစဉ်တစ်ခုကို ဆုံးဖြတ်တယ်" },
+                { en: "He decided on a career path.", my: "သူ အသက်မွေးဝမ်းကြောင်းလမ်းကြောင်းတစ်ခုကို ဆုံးဖြတ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + out (rule out = eliminate)",
+            meaning: "...ဖယ်ထုတ်သည်",
+            examples: [
+                { en: "We ruled out the possibility of moving abroad.", my: "ငါတို့ ပြည်ပပြောင်းဖို့ဖြစ်နိုင်ခြေကို ဖယ်ထုတ်တယ်" },
+                { en: "She ruled out the option.", my: "သူမ ရွေးစရာကို ဖယ်ထုတ်တယ်" },
+                { en: "They ruled out a few candidates.", my: "သူတို့ ကိုယ်စားလှယ်လောင်းအနည်းငယ်ကို ဖယ်ထုတ်တယ်" },
+                { en: "We ruled out the worst-case scenario.", my: "ငါတို့ အဆိုးရွားဆုံးအခြေအနေကို ဖယ်ထုတ်တယ်" },
+                { en: "He ruled out the idea.", my: "သူ အိုင်ဒီယာကို ဖယ်ထုတ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + for + Object (opt for = choose)",
+            meaning: "...ရွေးချယ်သည်",
+            examples: [
+                { en: "We opted for the cheaper option.", my: "ငါတို့ ဈေးသက်သာတဲ့ရွေးစရာကို ရွေးချယ်တယ်" },
+                { en: "She opted for a career in teaching.", my: "သူမ ဆရာအဖြစ်အသက်မွေးဝမ်းကြောင်းကို ရွေးချယ်တယ်" },
+                { en: "They opted for the vegetarian menu.", my: "သူတို့ သက်သတ်လွတ်မီနူးကို ရွေးချယ်တယ်" },
+                { en: "We opted for a quiet vacation.", my: "ငါတို့ ဆိတ်ငြိမ်တဲ့အားလပ်ရက်ကို ရွေးချယ်တယ်" },
+                { en: "He opted for the insurance plan.", my: "သူ အာမခံအစီအစဉ်ကို ရွေးချယ်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Think over", meaning: "စဉ်းစားသည်" },
+        { word: "Decide on", meaning: "ဆုံးဖြတ်သည်" },
+        { word: "Rule out", meaning: "ဖယ်ထုတ်သည်" },
+        { word: "Opt for", meaning: "ရွေးချယ်သည်" },
+        { word: "Thinking", meaning: "တွေးခေါ်မှု" },
+        { word: "Decision", meaning: "ဆုံးဖြတ်ချက်" }
+    ]
+},
+day165: {
+    title: "📘 Day 165: Advanced Phrasal Verbs (Time & Action)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> အချိန်နှင့် လုပ်ဆောင်ချက်ဆိုင်ရာ phrasal verbs များ။
+    <br>🔹 <strong>Put off -</strong> ရွှေ့ဆိုင်းသည်
+    <br>🔹 <strong>Carry on -</strong> ဆက်လုပ်သည်
+    <br>🔹 <strong>Go on -</strong> ဆက်ဖြစ်သည်
+    <br>🔹 <strong>Hurry up -</strong> မြန်မြန်လုပ်သည်`,
+    patterns: [
+        {
+            formula: "Subject + V + off (put off = postpone)",
+            meaning: "...ရွှေ့ဆိုင်းသည်",
+            examples: [
+                { en: "We put off the meeting until next week.", my: "ငါတို့ အစည်းအဝေးကို လာမယ့်တစ်ပတ်အထိ ရွှေ့ဆိုင်းတယ်" },
+                { en: "She put off her trip due to bad weather.", my: "သူမ ရာသီဥတုဆိုးလို့ သူ့ခရီးကို ရွှေ့ဆိုင်းတယ်" },
+                { en: "They put off making a decision.", my: "သူတို့ ဆုံးဖြတ်ချက်ချတာကို ရွှေ့ဆိုင်းတယ်" },
+                { en: "We put off the project until later.", my: "ငါတို့ ပရောဂျက်ကို နောက်မှဆိုပြီး ရွှေ့ဆိုင်းတယ်" },
+                { en: "He put off his homework.", my: "သူ အိမ်စာကို ရွှေ့ဆိုင်းတယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + on (carry on = continue)",
+            meaning: "...ဆက်လုပ်သည်",
+            examples: [
+                { en: "We carried on working despite the noise.", my: "ငါတို့ ဆူညံသံတွေကြားမှ ဆက်အလုပ်လုပ်တယ်" },
+                { en: "She carried on with her plans.", my: "သူမ သူ့အစီအစဉ်တွေကို ဆက်လုပ်တယ်" },
+                { en: "They carried on the conversation.", my: "သူတို့ စကားပြောဆိုမှုကို ဆက်လုပ်တယ်" },
+                { en: "We carried on despite the difficulties.", my: "ငါတို့ အခက်အခဲတွေကြားမှ ဆက်လုပ်တယ်" },
+                { en: "He carried on with his research.", my: "သူ သူ့သုတေသနကို ဆက်လုပ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + on (go on = continue)",
+            meaning: "...ဆက်ဖြစ်သည်",
+            examples: [
+                { en: "The meeting went on for three hours.", my: "အစည်းအဝေးက သုံးနာရီကြာ ဆက်ဖြစ်တယ်" },
+                { en: "The rain went on all day.", my: "မိုးက တစ်နေ့လုံး ဆက်ရွာတယ်" },
+                { en: "The concert went on until late.", my: "ဖျော်ဖြေပွဲက နောက်ကျတဲ့အထိ ဆက်ဖြစ်တယ်" },
+                { en: "The story went on and on.", my: "ဇာတ်လမ်းက ဆက်ဆက်ဖြစ်တယ်" },
+                { en: "The noise went on all night.", my: "ဆူညံသံက တစ်ညလုံး ဆက်ဖြစ်တယ်" }
+            ]
+        },
+        {
+            formula: "Subject + V + up (hurry up = do quickly)",
+            meaning: "...မြန်မြန်လုပ်သည်",
+            examples: [
+                { en: "We need to hurry up or we'll be late.", my: "ငါတို့ မြန်မြန်လုပ်ရမယ် မဟုတ်ရင် နောက်ကျမယ်" },
+                { en: "She hurried up to finish her work.", my: "သူမ သူ့အလုပ်ပြီးအောင် မြန်မြန်လုပ်တယ်" },
+                { en: "They hurried up to catch the train.", my: "သူတို့ ရထားမိဖို့ မြန်မြန်လုပ်တယ်" },
+                { en: "We hurried up and left.", my: "ငါတို့ မြန်မြန်လုပ်ပြီး ထွက်သွားတယ်" },
+                { en: "He hurried up to finish the project.", my: "သူ ပရောဂျက်ပြီးအောင် မြန်မြန်လုပ်တယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Put off", meaning: "ရွှေ့ဆိုင်းသည်" },
+        { word: "Carry on", meaning: "ဆက်လုပ်သည်" },
+        { word: "Go on", meaning: "ဆက်ဖြစ်သည်" },
+        { word: "Hurry up", meaning: "မြန်မြန်လုပ်သည်" },
+        { word: "Time", meaning: "အချိန်" },
+        { word: "Action", meaning: "လုပ်ဆောင်ချက်" }
+    ]
+},
+// =============================================================
+//  DAY 166 to DAY 170 (ဆက်လက်ရေးသားချက်)
+//  ထည့်သွင်းပုံ - english-grammar-2.html ရဲ့ grammarData ထဲမှာ ဆက်ထည့်ပါ
+// =============================================================
+
+day166: {
+    title: "📘 Day 166: Advanced Phrasal Verbs (Review - Part 1)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> Day 149-165 အတွင်း သင်ယူခဲ့သည်များကို ပြန်လည်သုံးသပ်ခြင်း
+    <br>🔹 <strong>အကြောင်းအရာများ -</strong> Separable/Inseparable, Look phrasal verbs, Business, Daily Life, Emotions, Relationships, Travel`,
+    patterns: [
+        {
+            formula: "Separable vs Inseparable + Look phrasal verbs",
+            meaning: "ခွဲခြားနိုင်သော/မရသော + Look စကားစုကြိယာများ",
+            examples: [
+                { en: "I picked up the book. / I picked the book up. (separable)", my: "ငါ စာအုပ်ကို ကောက်ယူတယ်" },
+                { en: "I ran into my old friend. (inseparable)", my: "ငါ သူငယ်ချင်းဟောင်းကို မျက်နှာချင်းဆိုင်တွေ့တယ်" },
+                { en: "I am looking for my keys. (look for = search)", my: "ငါ ငါ့သော့တွေကို ရှာနေတယ်" },
+                { en: "She looks after her younger brother. (look after = take care of)", my: "သူမ သူ့ညီလေးကို စောင့်ရှောက်တယ်" },
+                { en: "I look forward to the holiday. (look forward to = anticipate)", my: "ငါ အားလပ်ရက်ကို စောင့်မျှော်တယ်" },
+                { en: "They set up a new company. (set up = establish)", my: "သူတို့ ကုမ္ပဏီအသစ်တစ်ခုကို တည်ထောင်တယ်" },
+                { en: "We ran out of milk. (run out of = exhaust)", my: "ငါတို့ နို့ကုန်သွားတယ်" },
+                { en: "She took over the project. (take over = assume control)", my: "သူမ ပရောဂျက်ကို တာဝန်ယူတယ်" },
+                { en: "He turned down the job offer. (turn down = reject)", my: "သူ အလုပ်ကမ်းလှမ်းချက်ကို ငြင်းပယ်တယ်" },
+                { en: "I get up at 6 AM. (get up = rise from bed)", my: "ငါ နံနက် ၆ နာရီမှာ ထတယ်" }
+            ]
+        },
+        {
+            formula: "Emotions, Relationships, Travel phrasal verbs",
+            meaning: "စိတ်ခံစားမှု၊ ဆက်ဆံရေး၊ ခရီးသွား စကားစုကြိယာများ",
+            examples: [
+                { en: "She cheered up after hearing the good news. (cheer up = become happier)", my: "သူမ သတင်းကောင်းကြားပြီးနောက် အားတက်လာတယ်" },
+                { en: "Calm down! Everything will be fine. (calm down = become calm)", my: "စိတ်အေးအေးထားပါ! အရာအားလုံးအဆင်ပြေသွားမယ်" },
+                { en: "She broke down in tears. (break down = lose control emotionally)", my: "သူမ ငိုကြွေးတယ်" },
+                { en: "I get along well with my colleagues. (get along with = have good relationship)", my: "ငါ ငါ့လုပ်ဖော်ကိုင်ဖက်တွေနဲ့ ရင်းနှီးတယ်" },
+                { en: "I fell out with my best friend. (fall out with = argue)", my: "ငါ ငါ့အချစ်ဆုံးသူငယ်ချင်းနဲ့ ရန်ဖြစ်တယ်" },
+                { en: "I made up with my best friend. (make up with = reconcile)", my: "ငါ ငါ့အချစ်ဆုံးသူငယ်ချင်းနဲ့ ပြန်လည်သင့်မြတ်တယ်" },
+                { en: "We set off for our trip early. (set off = start journey)", my: "ငါတို့ ခရီးစဉ်အတွက် စောစောထွက်ခွာတယ်" },
+                { en: "We checked in at the hotel. (check in = register)", my: "ငါတို့ ဟိုတယ်မှာ မှတ်ပုံတင်တယ်" },
+                { en: "We checked out of the hotel. (check out = leave hotel)", my: "ငါတို့ ဟိုတယ်ကနေ ထွက်ခွာတယ်" },
+                { en: "We got away for a relaxing weekend. (get away = escape)", my: "ငါတို့ အနားယူတဲ့အားလပ်ရက်အတွက် ထွက်ခွာတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Phrasal verbs review", meaning: "စကားစုကြိယာများ ပြန်လည်သုံးသပ်ခြင်း" },
+        { word: "Separable", meaning: "ခွဲခြားနိုင်သော" },
+        { word: "Inseparable", meaning: "ခွဲခြား၍မရသော" },
+        { word: "Business", meaning: "စီးပွားရေး" },
+        { word: "Daily life", meaning: "နေ့စဉ်ဘဝ" },
+        { word: "Emotion", meaning: "စိတ်ခံစားမှု" },
+        { word: "Relationship", meaning: "ဆက်ဆံရေး" },
+        { word: "Travel", meaning: "ခရီးသွားခြင်း" }
+    ]
+},
+day167: {
+    title: "📘 Day 167: Advanced Phrasal Verbs (Review - Part 2)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> Day 149-165 အတွင်း သင်ယူခဲ့သည်များကို ပြန်လည်သုံးသပ်ခြင်း (အပိုင်း ၂)
+    <br>🔹 <strong>အကြောင်းအရာများ -</strong> Technology, Communication, Education, Money, Health`,
+    patterns: [
+        {
+            formula: "Technology, Communication phrasal verbs",
+            meaning: "နည်းပညာ၊ ဆက်သွယ်ရေး စကားစုကြိယာများ",
+            examples: [
+                { en: "I log in to my computer every morning. (log in = sign in)", my: "ငါ မနက်တိုင်း ကွန်ပျူတာကို ဝင်ရောက်တယ်" },
+                { en: "I log out of my computer before leaving. (log out = sign out)", my: "ငါ မထွက်ခင် ကွန်ပျူတာကနေ ထွက်တယ်" },
+                { en: "I turn on the computer every morning. (turn on = switch on)", my: "ငါ မနက်တိုင်း ကွန်ပျူတာကို ဖွင့်တယ်" },
+                { en: "I turn off the computer before going to bed. (turn off = switch off)", my: "ငါ အိပ်ရာမဝင်ခင် ကွန်ပျူတာကို ပိတ်တယ်" },
+                { en: "I set up the new computer yesterday. (set up = install/configure)", my: "မနေ့က ငါ ကွန်ပျူတာအသစ်ကို တည်ဆောက်တယ်" },
+                { en: "I tried to get through to her. (get through to = reach by phone)", my: "ငါ သူမကို ဆက်သွယ်ဖို့ကြိုးစားတယ်" },
+                { en: "Please speak up! (speak up = speak louder)", my: "ကျယ်ကျယ်ပြောပါ!" },
+                { en: "I hung up after saying goodbye. (hang up = end phone call)", my: "ငါ နုတ်ဆက်ပြီးနောက် ဖုန်းချတယ်" },
+                { en: "I will call you back in 5 minutes. (call back = return call)", my: "ငါ မင်းကို ၅ မိနစ်အတွင်း ပြန်ခေါ်မယ်" }
+            ]
+        },
+        {
+            formula: "Education, Money, Health phrasal verbs",
+            meaning: "ပညာရေး၊ ငွေကြေး၊ ကျန်းမာရေး စကားစုကြိယာများ",
+            examples: [
+                { en: "I need to catch up on my homework. (catch up on = complete)", my: "ငါ ငါ့အိမ်စာကို လိုက်မီဖို့လိုတယ်" },
+                { en: "I fell behind in my studies. (fall behind = be behind)", my: "ငါ ငါ့ပညာရေးမှာ နောက်ကျတယ်" },
+                { en: "I handed in my homework on time. (hand in = submit)", my: "ငါ ငါ့အိမ်စာကို အချိန်မှန်တင်တယ်" },
+                { en: "I need to go over my notes. (go over = review)", my: "ငါ ငါ့မှတ်စုတွေကို ပြန်လည်သုံးသပ်ဖို့လိုတယ်" },
+                { en: "I am saving up for a new car. (save up = accumulate money)", my: "ငါ ကားအသစ်အတွက် ပိုက်ဆံစုနေတယ်" },
+                { en: "I will pay you back next week. (pay back = repay)", my: "ငါ မင်းကို လာမယ့်တစ်ပတ်မှာ ပြန်ဆပ်မယ်" },
+                { en: "I spend a lot of money on food. (spend on = use money for)", my: "ငါ အစားအစာအတွက် ပိုက်ဆံအများကြီးသုံးတယ်" },
+                { en: "I took out some money from the ATM. (take out = withdraw)", my: "ငါ ATM ကနေ ပိုက်ဆံအချို့ ထုတ်တယ်" },
+                { en: "I work out at the gym three times a week. (work out = exercise)", my: "ငါ တစ်ပတ် သုံးကြိမ် အားကစားခန်းမမှာ လေ့ကျင့်ခန်းလုပ်တယ်" },
+                { en: "I got over my cold after a week. (get over = recover from)", my: "ငါ တစ်ပတ်အကြာမှာ ငါ့အအေးမိတာကို ပြန်လည်ကျန်းမာတယ်" },
+                { en: "I came down with the flu last week. (come down with = become ill with)", my: "ပြီးခဲ့တဲ့တစ်ပတ်က ငါ တုပ်ကွေးဖျားတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Phrasal verbs review", meaning: "စကားစုကြိယာများ ပြန်လည်သုံးသပ်ခြင်း" },
+        { word: "Technology", meaning: "နည်းပညာ" },
+        { word: "Communication", meaning: "ဆက်သွယ်ရေး" },
+        { word: "Education", meaning: "ပညာရေး" },
+        { word: "Money", meaning: "ငွေကြေး" },
+        { word: "Health", meaning: "ကျန်းမာရေး" }
+    ]
+},
+day168: {
+    title: "📘 Day 168: Advanced Phrasal Verbs (Review - Part 3)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> Day 149-165 အတွင်း သင်ယူခဲ့သည်များကို ပြန်လည်သုံးသပ်ခြင်း (အပိုင်း ၃)
+    <br>🔹 <strong>အကြောင်းအရာများ -</strong> Environment, Social Issues, Success & Failure, Thinking & Decision, Time & Action`,
+    patterns: [
+        {
+            formula: "Environment, Social Issues phrasal verbs",
+            meaning: "သဘာဝပတ်ဝန်းကျင်၊ လူမှုရေးပြဿနာများ စကားစုကြိယာများ",
+            examples: [
+                { en: "We need to cut down on plastic waste. (cut down on = reduce)", my: "ငါတို့ ပလတ်စတစ်စွန့်ပစ်ပစ္စည်းကို လျှော့ချဖို့လိုတယ်" },
+                { en: "I threw away the old newspapers. (throw away = discard)", my: "ငါ သတင်းစာဟောင်းတွေကို စွန့်ပစ်တယ်" },
+                { en: "We need to clean up the beach. (clean up = make clean)", my: "ငါတို့ ကမ်းခြေကို သန့်ရှင်းရေးလုပ်ဖို့လိုတယ်" },
+                { en: "Pollution may wipe out many species. (wipe out = eliminate completely)", my: "လေထုညစ်ညမ်းမှုက မျိုးစိတ်အများအပြားကို ပျောက်ကွယ်စေနိုင်တယ်" },
+                { en: "We should stand up for human rights. (stand up for = defend)", my: "ငါတို့ လူ့အခွင့်အရေးကို ကာကွယ်သင့်တယ်" },
+                { en: "Many people spoke out against the new law. (speak out against = protest)", my: "လူအများအပြားက ဥပဒေအသစ်ကို ဆန့်ကျင်ပြောဆိုတယ်" },
+                { en: "We came up with a great idea. (come up with = think of)", my: "ငါတို့ အိုင်ဒီယာကောင်းတစ်ခုကို ဖော်ထုတ်တယ်" },
+                { en: "Education can bring about positive change. (bring about = cause)", my: "ပညာရေးက အပြုသဘောဆောင်တဲ့အပြောင်းအလဲကို ဖြစ်ပေါ်စေနိုင်တယ်" }
+            ]
+        },
+        {
+            formula: "Success & Failure, Thinking & Decision, Time & Action phrasal verbs",
+            meaning: "အောင်မြင်မှု/ကျရှုံးမှု၊ တွေးခေါ်မှု/ဆုံးဖြတ်ချက်၊ အချိန်/လုပ်ဆောင်ချက် စကားစုကြိယာများ",
+            examples: [
+                { en: "She succeeded in getting the job. (succeed in = achieve)", my: "သူမ အလုပ်ရဖို့ အောင်မြင်တယ်" },
+                { en: "Our plans fell through at the last minute. (fall through = fail to happen)", my: "ငါတို့အစီအစဉ်တွေ နောက်ဆုံးမိနစ်မှာ မအောင်မြင်ဘူး" },
+                { en: "We carried out the plan successfully. (carry out = execute)", my: "ငါတို့ အစီအစဉ်ကို အောင်မြင်စွာ ဆောင်ရွက်တယ်" },
+                { en: "I never give up on my dreams. (give up = quit)", my: "ငါ ငါ့အိပ်မက်တွေကို ဘယ်တော့မှ အရှုံးမပေးဘူး" },
+                { en: "I need to think over your suggestion. (think over = consider)", my: "ငါ မင်းရဲ့အကြံပြုချက်ကို စဉ်းစားဖို့လိုတယ်" },
+                { en: "We decided on a restaurant for dinner. (decide on = choose)", my: "ငါတို့ ညစာအတွက် စားသောက်ဆိုင်တစ်ခုကို ဆုံးဖြတ်တယ်" },
+                { en: "We ruled out the possibility. (rule out = eliminate)", my: "ငါတို့ ဖြစ်နိုင်ခြေကို ဖယ်ထုတ်တယ်" },
+                { en: "We opted for the cheaper option. (opt for = choose)", my: "ငါတို့ ဈေးသက်သာတဲ့ရွေးစရာကို ရွေးချယ်တယ်" },
+                { en: "We put off the meeting until next week. (put off = postpone)", my: "ငါတို့ အစည်းအဝေးကို လာမယ့်တစ်ပတ်အထိ ရွှေ့ဆိုင်းတယ်" },
+                { en: "We carried on working despite the noise. (carry on = continue)", my: "ငါတို့ ဆူညံသံတွေကြားမှ ဆက်အလုပ်လုပ်တယ်" },
+                { en: "We need to hurry up or we'll be late. (hurry up = do quickly)", my: "ငါတို့ မြန်မြန်လုပ်ရမယ် မဟုတ်ရင် နောက်ကျမယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Phrasal verbs review", meaning: "စကားစုကြိယာများ ပြန်လည်သုံးသပ်ခြင်း" },
+        { word: "Environment", meaning: "သဘာဝပတ်ဝန်းကျင်" },
+        { word: "Social issues", meaning: "လူမှုရေးပြဿနာများ" },
+        { word: "Success", meaning: "အောင်မြင်မှု" },
+        { word: "Failure", meaning: "ကျရှုံးမှု" },
+        { word: "Thinking", meaning: "တွေးခေါ်မှု" },
+        { word: "Decision", meaning: "ဆုံးဖြတ်ချက်" },
+        { word: "Time", meaning: "အချိန်" },
+        { word: "Action", meaning: "လုပ်ဆောင်ချက်" }
+    ]
+},
+day169: {
+    title: "📘 Day 169: Advanced Grammar Review (Part 1)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> Day 100-168 အတွင်း သင်ယူခဲ့သည်များကို ပြန်လည်သုံးသပ်ခြင်း
+    <br>🔹 <strong>အကြောင်းအရာများ -</strong> Clauses, Inversion, Subjunctive, Mixed Conditionals, Passive Voice, Causative Verbs`,
+    patterns: [
+        {
+            formula: "Clauses + Inversion + Subjunctive + Mixed Conditionals",
+            meaning: "အပိုဒ်များ + စကားလုံးပြောင်းပြန်ထားခြင်း + Subjunctive + ရောနှောသော အခြေအနေများ",
+            examples: [
+                { en: "Although it was raining, I went out. (Contrast)", my: "မိုးရွာပေမယ့် ငါထွက်သွားတယ်" },
+                { en: "I stayed home because it was raining. (Reason)", my: "မိုးရွာလို့ ငါအိမ်မှာနေတယ်" },
+                { en: "When I arrived, she was cooking. (Time)", my: "ငါရောက်တဲ့အခါ သူမချက်နေတယ်" },
+                { en: "She looks as if she were tired. (Manner)", my: "သူမ ပင်ပန်းနေသလိုပဲ" },
+                { en: "Not only does he speak English, but he also speaks French. (Inversion)", my: "သူ အင်္ဂလိပ်စကားပြောရုံသာမက ပြင်သစ်စကားလည်းပြောတယ်" },
+                { en: "Only after I had eaten did I feel better. (Inversion with Only)", my: "ငါစားပြီးမှသာ ပိုကောင်းလာတယ်" },
+                { en: "I wish I were a bird. (Subjunctive)", my: "ငါ ငှက်တစ်ကောင်ဖြစ်ချင်တယ်" },
+                { en: "I suggest that he study harder. (Subjunctive)", my: "သူ ပိုပြီးစာကျက်ဖို့ ငါအကြံပြုတယ်" },
+                { en: "If I had studied medicine, I would be a doctor now. (Mixed Conditional)", my: "ငါ ဆေးပညာသင်ခဲ့ရင် အခု ဆရာဝန်ဖြစ်နေမယ်" }
+            ]
+        },
+        {
+            formula: "Passive Voice + Causative Verbs + So/Such/Too/Enough",
+            meaning: "Passive Voice + Causative Verbs + So/Such/Too/Enough",
+            examples: [
+                { en: "The house has been built for 6 months. (Passive)", my: "အိမ်ကို ၆ လကြာ ဆောက်ပြီးပြီ" },
+                { en: "All applications must be submitted by Friday. (Passive with Modal)", my: "လျှောက်လွှာအားလုံးကို သောကြာနေ့မှာ တင်ရမယ်" },
+                { en: "I have my brother carry the bag. (Causative)", my: "ငါ ငါ့ညီကို အိတ်သယ်ခိုင်းတယ်" },
+                { en: "The food is so delicious! (So)", my: "အစားအစာက အလွန်အရသာရှိတယ်" },
+                { en: "She is such a beautiful girl. (Such)", my: "သူမ အလွန်လှတဲ့ ကောင်မလေးတစ်ယောက်ပါ" },
+                { en: "I am too tired to work. (Too)", my: "ငါ အလုပ်လုပ်ဖို့ အရမ်းပင်ပန်းတယ်" },
+                { en: "I am strong enough to lift the box. (Enough)", my: "ငါ သေတ္တာမတင်ဖို့ လုံလောက်တဲ့အားရှိတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Grammar review", meaning: "သဒ္ဒါပြန်လည်သုံးသပ်ခြင်း" },
+        { word: "Clauses", meaning: "အပိုဒ်များ" },
+        { word: "Inversion", meaning: "စကားလုံးပြောင်းပြန်ထားခြင်း" },
+        { word: "Subjunctive", meaning: "Subjunctive" },
+        { word: "Mixed Conditionals", meaning: "ရောနှောသော အခြေအနေများ" },
+        { word: "Passive Voice", meaning: "Passive Voice" },
+        { word: "Causative Verbs", meaning: "Causative Verbs" }
+    ]
+},
+day170: {
+    title: "📘 Day 170: Advanced Grammar Review (Part 2)",
+    description: `🔹 <strong>အသုံးပြုပုံ -</strong> Day 100-168 အတွင်း သင်ယူခဲ့သည်များကို ပြန်လည်သုံးသပ်ခြင်း (အပိုင်း ၂)
+    <br>🔹 <strong>အကြောင်းအရာများ -</strong> Quantifiers, Tag Questions, Indirect Questions, Embedded Questions, Connectives, Connectors`,
+    patterns: [
+        {
+            formula: "Quantifiers + Tag Questions + Indirect/Embedded Questions",
+            meaning: "အရေအတွက်ပြစကားလုံးများ + Tag Questions + သွယ်ဝိုက်သောမေးခွန်းများ",
+            examples: [
+                { en: "I have many books. (Many)", my: "ငါ့မှာ စာအုပ်အများကြီးရှိတယ်" },
+                { en: "I don't have much time. (Much)", my: "ငါ့မှာ အချိန်အများကြီးမရှိဘူး" },
+                { en: "I have a lot of books. (A lot of)", my: "ငါ့မှာ စာအုပ်အများကြီးရှိတယ်" },
+                { en: "I have few friends. (Few)", my: "ငါ့မှာ သူငယ်ချင်းအနည်းငယ်ပဲရှိတယ်" },
+                { en: "I have a few friends. (A few)", my: "ငါ့မှာ သူငယ်ချင်းအနည်းငယ်ရှိတယ်" },
+                { en: "I have little time. (Little)", my: "ငါ့မှာ အချိန်အနည်းငယ်ပဲရှိတယ်" },
+                { en: "I have a little time. (A little)", my: "ငါ့မှာ အချိန်အနည်းငယ်ရှိတယ်" },
+                { en: "You are a student, aren't you? (Tag Question)", my: "မင်း ကျောင်းသားတစ်ယောက်ပါ၊ မဟုတ်လား" },
+                { en: "Could you tell me where the station is? (Indirect Question)", my: "ဘူတာက ဘယ်မှာလဲ ပြောပြနိုင်မလား" },
+                { en: "I don't know where she lives. (Embedded Question)", my: "သူမ ဘယ်မှာနေလဲ ငါမသိဘူး" }
+            ]
+        },
+        {
+            formula: "Connectives + Connectors (While, Whereas, Moreover, Furthermore, Therefore, Consequently, However, Nevertheless, In conclusion, In summary)",
+            meaning: "ဆက်စပ်စကားလုံးများနှင့် ဆက်စပ်ကိရိယာများ",
+            examples: [
+                { en: "Whereas he is rich, his brother is poor. (Whereas)", my: "သူချမ်းသာသော်လည်း သူ့အစ်ကိုက ဆင်းရဲတယ်" },
+                { en: "She is intelligent. Moreover, she is kind. (Moreover)", my: "သူမ လိမ္မာတယ်။ ထို့အပြင် ကြင်နာလည်းကြင်နာတယ်" },
+                { en: "It was raining. Consequently, we stayed home. (Consequently)", my: "မိုးရွာနေတယ်။ ထို့ကြောင့် ငါတို့အိမ်မှာနေတယ်" },
+                { en: "It was raining. However, we went out. (However)", my: "မိုးရွာနေတယ်။ သို့သော်လည်း ငါတို့ထွက်သွားတယ်" },
+                { en: "In conclusion, education is the key to success. (In conclusion)", my: "နိဂုံးချုပ်အားဖြင့် ပညာရေးသည် အောင်မြင်မှု၏သော့ချက်ဖြစ်သည်" },
+                { en: "In summary, grammar is very important. (In summary)", my: "အချုပ်အားဖြင့် သဒ္ဒါက အလွန်အရေးကြီးတယ်" },
+                { en: "Provided that you finish your homework, you can go out. (Provided that)", my: "မင်းအိမ်စာပြီးအောင်လုပ်ဆိုပါက ထွက်လို့ရတယ်" },
+                { en: "Take an umbrella in case it rains. (In case)", my: "မိုးရွာဖြစ်လျှင် ထီးယူသွားပါ" },
+                { en: "I will go even if it rains. (Even if)", my: "မိုးရွာခဲ့သည်တိုင် ငါသွားမယ်" },
+                { en: "I spoke slowly so that she could understand. (So that)", my: "သူမနားလည်အောင် ငါဖြည်းဖြည်းပြောတယ်" }
+            ]
+        }
+    ],
+    vocab: [
+        { word: "Grammar review", meaning: "သဒ္ဒါပြန်လည်သုံးသပ်ခြင်း" },
+        { word: "Quantifiers", meaning: "အရေအတွက်ပြစကားလုံးများ" },
+        { word: "Tag Questions", meaning: "Tag Questions" },
+        { word: "Indirect Questions", meaning: "သွယ်ဝိုက်သောမေးခွန်းများ" },
+        { word: "Embedded Questions", meaning: "ထည့်သွင်းမေးခွန်းများ" },
+        { word: "Connectives", meaning: "ဆက်စပ်စကားလုံးများ" },
+        { word: "Connectors", meaning: "ဆက်စပ်ကိရိယာများ" }
+    ]
+}
+
+
+
+
+
+
+        };
+
+        // =============================================================
+        //  Spinner ထဲကို Option တွေထည့်မယ်
+        // =============================================================
+        const selectEl = document.getElementById('daySelect');
+        const displayEl = document.getElementById('grammarDisplay');
+        const vocabListEl = document.getElementById('vocabList');
+
+        const dayKeys = Object.keys(grammarData);
+
+        dayKeys.forEach((key, index) => {
+            const option = document.createElement('option');
+            option.value = key;
+            const dayNum = 100 + index;
+            option.textContent = `Day ${dayNum}: ${grammarData[key].title.replace('📘 ', '')}`;
+            selectEl.appendChild(option);
+        });
+
+        // --------------------------------------------------------------
+        //  Function: Day ပြောင်းပြမယ်
+        // --------------------------------------------------------------
+        function showDay(dayKey) {
+            const data = grammarData[dayKey];
+            if (!data) return;
+
+            let grammarHtml = '';
+            data.patterns.forEach((item, idx) => {
+                const colors = ['#6c5ce7', '#fd79a8', '#fdcb6e', '#55efc4', '#74b9ff'];
+                const color = colors[idx % colors.length];
+                
+                let examplesHtml = '';
+                item.examples.forEach((ex, exIdx) => {
+                    examplesHtml += `
+                        <div class="ex">
+                            <span class="num">${exIdx + 1}.</span> 
+                            ${ex.en} 
+                            <span class="ex-meaning">🇲🇲 ${ex.my}</span>
+                        </div>
+                    `;
+                });
+
+                grammarHtml += `
+                    <div class="grammar-item" style="border-left-color: ${color};">
+                        <div class="pattern">📌 ${item.formula}</div>
+                        <div class="pattern-meaning">🎯 ${item.meaning}</div>
+                        <hr class="divider">
+                        <div class="examples">${examplesHtml}</div>
+                    </div>
+                `;
+            });
+
+            let vocabHtml = '';
+            data.vocab.forEach(v => {
+                vocabHtml += `
+                    <span class="vocab-tag">${v.word} <span class="meaning">- ${v.meaning}</span></span>
+                `;
+            });
+
+            displayEl.innerHTML = `
+                <div class="title">${data.title}</div>
+                <div class="description">${data.description}</div>
+                <div class="grammar-grid">${grammarHtml}</div>
+                <div class="vocab-section">
+                    <div class="vocab-title">📝 Key Vocabulary (မီးနင်းများ)</div>
+                    <div class="vocab-list">${vocabHtml}</div>
+                </div>
+            `;
+        }
+
+        selectEl.addEventListener('change', function() {
+            showDay(this.value);
+        });
+
+        showDay('day100');
+
+        console.log('✅ Grammar Days 100-106 loaded:', dayKeys.length);
+    </script>
+
+</body>
+</html>

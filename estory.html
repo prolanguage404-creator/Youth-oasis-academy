@@ -1,0 +1,2607 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Stories</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            padding: 30px 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 40px;
+            padding: 40px 35px;
+            max-width: 950px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .sub {
+            color: #aab;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #74b9ff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            color: #a29bfe;
+        }
+
+        .spinner-wrap {
+            margin: 20px 0 30px;
+        }
+
+        .spinner-wrap label {
+            color: #ddd;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-right: 12px;
+        }
+
+        select {
+            padding: 14px 28px;
+            border-radius: 50px;
+            border: none;
+            background: #1e1e3a;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: 2px solid rgba(255, 255, 255, 0.15);
+            transition: 0.25s;
+            min-width: 250px;
+            max-width: 100%;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 20px;
+        }
+
+        select:hover {
+            outline-color: #8b7bf7;
+            background-color: #2a2a50;
+        }
+
+        select option {
+            background: #1a1a32;
+            color: #fff;
+        }
+
+        .count-badge {
+            display: inline-block;
+            background: rgba(85, 239, 196, 0.15);
+            color: #55efc4;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            border: 1px solid rgba(85, 239, 196, 0.1);
+        }
+
+        .story-display {
+            margin-top: 25px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            padding: 30px 28px;
+            border-left: 5px solid #fd79a8;
+            min-height: 200px;
+            transition: 0.3s;
+        }
+
+        .story-display .title {
+            color: #f0e68c;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .story-display .story-en {
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            line-height: 2;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 16px 20px;
+            border-radius: 12px;
+            border-left: 3px solid #74b9ff;
+            margin-bottom: 16px;
+        }
+
+        .story-display .story-en .label {
+            color: #74b9ff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .story-display .story-my {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 2;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 16px 20px;
+            border-radius: 12px;
+            border-left: 3px solid #55efc4;
+        }
+
+        .story-display .story-my .label {
+            color: #55efc4;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .story-display .divider {
+            border: none;
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            margin: 16px 0;
+        }
+
+        .vocab-section {
+            margin-top: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .vocab-section .vocab-title {
+            color: #fdcb6e;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .vocab-section .vocab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .vocab-section .vocab-tag {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px 14px;
+            border-radius: 30px;
+            color: #ddd;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: 0.2s;
+        }
+
+        .vocab-section .vocab-tag:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #8b7bf7;
+        }
+
+        .vocab-section .vocab-tag .meaning {
+            color: #888;
+            font-size: 0.75rem;
+            margin-left: 6px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+        }
+
+        .developer {
+            margin-top: 28px;
+            padding: 20px 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .developer .dev-name {
+            color: #f0e68c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .developer .dev-detail {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+
+        .developer .dev-detail span {
+            color: #8b7bf7;
+            font-weight: 500;
+        }
+
+        .developer .dev-detail a {
+            color: #74b9ff;
+            text-decoration: none;
+            transition: 0.2s;
+            border-bottom: 1px dashed rgba(116, 185, 255, 0.3);
+        }
+
+        .developer .dev-detail a:hover {
+            color: #a29bfe;
+            border-bottom-color: #a29bfe;
+        }
+
+        .dev-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 28px 16px; }
+            h1 { font-size: 1.9rem; }
+            select { width: 100%; font-size: 0.9rem; padding: 12px 20px; }
+            .story-display { padding: 20px 16px; }
+            .story-display .title { font-size: 1.2rem; }
+            .story-display .story-en { font-size: 0.95rem; padding: 12px 14px; }
+            .story-display .story-my { font-size: 0.9rem; padding: 12px 14px; }
+            .vocab-section { padding: 14px; }
+            .developer { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <a href="index.html" class="back-link">⬅ Back to Hub</a>
+
+        <h1>📖 English Stories</h1>
+        <div class="sub">Read and Learn English through Stories</div>
+
+        <div class="count-badge">📚 2 Stories</div>
+
+        <div class="spinner-wrap">
+            <label for="storySelect">📖</label>
+            <select id="storySelect">
+                <!-- JS က ထည့်ပေးမယ် -->
+            </select>
+        </div>
+
+        <div class="story-display" id="storyDisplay">
+            <div class="title">👋 Welcome!</div>
+            <div style="color:#aaa; text-align:center; padding:20px 0;">
+                Select a story to start reading.
+            </div>
+        </div>
+
+        <div class="developer">
+            <span class="dev-icon">👨‍💻</span>
+            <div class="dev-name">Yan Naing</div>
+            <div class="dev-detail">
+                📞 <span>09782992290</span><br />
+                📱 Telegram : <a href="https://t.me/To_my_new_world" target="_blank">@To_my_new_world</a>
+            </div>
+        </div>
+
+        <div class="footer">⚡ select a story · learn English</div>
+    </div>
+
+    <script>
+        // =============================================================
+        //  DATA: Stories (ပုံပြင်များ) - ၅၀ လုံး အဓိပ္ပါယ် ပါဝင်သည်
+        // =============================================================
+        const stories = [
+            {
+                id: 1,
+                title: "The Kind Lion",
+                en: `Once upon a time, there was a lion who lived in a big forest. The lion was very kind and gentle, unlike other lions who were fierce and dangerous. He never hurt any animal in the forest.
+
+One day, a little mouse was running through the forest. Suddenly, the mouse fell into a deep hole. The mouse cried for help, but no one came. The kind lion heard the mouse's cries and came to help.
+
+The lion saw the mouse in the hole and said, "Don't worry, little friend. I will help you." The lion gently put his big paw into the hole and lifted the mouse out. The mouse was very grateful and said, "Thank you, dear lion! If you ever need my help, I will help you."
+
+The lion laughed and said, "How can a small mouse like you help a big lion like me?" The mouse smiled and said, "You never know!"
+
+A few days later, the lion was walking in the forest when he stepped into a hunter's trap. A big net fell on him and trapped him. The lion roared loudly, but no one came to help him. The little mouse heard the lion's roar and ran to help.
+
+The mouse saw the lion trapped in the net. He quickly chewed through the ropes with his sharp teeth. After a few minutes, the lion was free. The lion was amazed and said, "I was wrong, little friend. You saved my life! I will never forget your kindness."
+
+From that day on, the lion and the mouse became the best of friends. They lived happily together in the forest.`,
+                my: `ရှေးလွန်လေပြီးသောအခါက တောအုပ်ကြီးတစ်ခုမှာ ခြင်္သေ့တစ်ကောင် နေထိုင်တယ်။ ဒီခြင်္သေ့က အခြားခြင်္သေ့တွေလို ရက်စက်ပြီး သတ္တိကြီးတာမဟုတ်ဘဲ အရမ်းကြင်နာပြီး နူးညံ့တယ်။ သူဟာ တောအုပ်ထဲက ဘယ်တိရစ္ဆာန်ကိုမှ ဘယ်တော့မှ မထိခိုက်စေခဲ့ဘူး။
+
+တစ်နေ့မှာ ကြွက်ငယ်လေးတစ်ကောင်က တောအုပ်ထဲမှာ ပြေးလွှားနေတယ်။ ရုတ်တရက် ကြွက်လေးက တွင်းနက်ကြီးတစ်ခုထဲ ပြုတ်ကျသွားတယ်။ ကြွက်လေးက အကူအညီတောင်းအော်ငိုပေမယ့် ဘယ်သူမှ မလာခဲ့ဘူး။ ကြင်နာတဲ့ခြင်္သေ့က ကြွက်လေးရဲ့ငိုသံကိုကြားပြီး လာကူညီတယ်။
+
+ခြင်္သေ့က တွင်းထဲမှာရှိတဲ့ကြွက်လေးကိုမြင်တော့ "မပူပါနဲ့ မိတ်ဆွေငယ်။ ငါ မင်းကိုကူညီမယ်" လို့ပြောတယ်။ ခြင်္သေ့က သူ့ယက်မကြီးကို ညင်သာစွာ တွင်းထဲထည့်ပြီး ကြွက်လေးကိုဆွဲထုတ်လိုက်တယ်။ ကြွက်လေးက အရမ်းကျေးဇူးတင်ပြီး "ကျေးဇူးပါ ခြင်္သေ့ကြီးရယ်။ မင်းကို ငါကူညီဖို့လိုရင် ငါကူညီမယ်" လို့ပြောတယ်။
+
+ခြင်္သေ့က ရယ်ပြီး "မင်းလိုကြွက်ငယ်လေးက ငါ့လိုခြင်္သေ့ကြီးကို ဘယ်လိုကူညီနိုင်မလဲ" လို့ပြောတယ်။ ကြွက်လေးက ပြုံးပြီး "ဘယ်သူသိမလဲ" လို့ပြန်ပြောတယ်။
+
+ရက်အနည်းငယ်ကြာတော့ ခြင်္သေ့က တောအုပ်ထဲမှာ လမ်းလျှောက်နေစဉ် မုဆိုးတစ်ယောက်ရဲ့ ထောင်ချောက်ထဲ နင်းမိသွားတယ်။ ပိုက်ကြီးတစ်ခုက သူ့အပေါ်ကို ကျလာပြီး ဖမ်းမိသွားတယ်။ ခြင်္သေ့က ကျယ်လောင်စွာ ဟိန်းဟိန်းအော်ပေမယ့် ကူညီဖို့ ဘယ်သူမှ မလာခဲ့ဘူး။ ကြွက်ငယ်လေးက ခြင်္သေ့ရဲ့အသံကိုကြားပြီး ကူညီဖို့ ပြေးလာတယ်။
+
+ကြွက်လေးက ခြင်္သေ့ကို ပိုက်ထဲမှာဖမ်းမိနေတာကိုမြင်တယ်။ သူက သူ့သွားချွန်တွေနဲ့ ကြိုးတွေကို လျင်မြန်စွာ ကိုက်ဖြတ်လိုက်တယ်။ မိနစ်အနည်းငယ်ကြာတော့ ခြင်္သေ့ လွတ်သွားတယ်။ ခြင်္သေ့က အံ့ဩသွားပြီး "ငါမှားသွားတယ် မိတ်ဆွေငယ်။ မင်း ငါ့အသက်ကို ကယ်လိုက်တယ်။ မင်းရဲ့ကြင်နာမှုကို ငါ ဘယ်တော့မှ မေ့မှာမဟုတ်ဘူး" လို့ပြောတယ်။
+
+အဲဒီနေ့ကစလို့ ခြင်္သေ့နဲ့ကြွက်က အကောင်းဆုံးသူငယ်ချင်းတွေ ဖြစ်သွားတယ်။ သူတို့ဟာ တောအုပ်ထဲမှာ အတူတကွ ပျော်ရွှင်စွာ နေထိုင်ကြတယ်။`,
+                vocab: [
+                    { word: "Lion", meaning: "ခြင်္သေ့" },
+                    { word: "Gentle", meaning: "နူးညံ့သော" },
+                    { word: "Fierce", meaning: "ရက်စက်သော" },
+                    { word: "Forest", meaning: "တောအုပ်" },
+                    { word: "Mouse", meaning: "ကြွက်" },
+                    { word: "Grateful", meaning: "ကျေးဇူးတင်သော" },
+                    { word: "Trap", meaning: "ထောင်ချောက်" },
+                    { word: "Net", meaning: "ပိုက်" },
+                    { word: "Roar", meaning: "ဟိန်းဟိန်းအော်သည်" },
+                    { word: "Kindness", meaning: "ကြင်နာမှု" },
+                    { word: "Suddenly", meaning: "ရုတ်တရက်" },
+                    { word: "Deep", meaning: "နက်သော" },
+                    { word: "Hole", meaning: "တွင်း" },
+                    { word: "Help", meaning: "ကူညီမှု" },
+                    { word: "Cry", meaning: "ငိုသည်" },
+                    { word: "Paw", meaning: "ယက် (ခြေထောက်)" },
+                    { word: "Lift", meaning: "မြှောက်သည်" },
+                    { word: "Laughed", meaning: "ရယ်သည်" },
+                    { word: "Smiled", meaning: "ပြုံးသည်" },
+                    { word: "Hunter", meaning: "မုဆိုး" },
+                    { word: "Stepped", meaning: "နင်းသည်" },
+                    { word: "Ropes", meaning: "ကြိုးများ" },
+                    { word: "Sharp", meaning: "ချွန်သော" },
+                    { word: "Teeth", meaning: "သွားများ" },
+                    { word: "Amazed", meaning: "အံ့ဩသော" },
+                    { word: "Wrong", meaning: "မှားသော" },
+                    { word: "Saved", meaning: "ကယ်တင်သည်" },
+                    { word: "Forget", meaning: "မေ့သည်" },
+                    { word: "Friends", meaning: "သူငယ်ချင်းများ" },
+                    { word: "Happily", meaning: "ပျော်ရွှင်စွာ" },
+                    { word: "Together", meaning: "အတူတကွ" },
+                    { word: "Dangerous", meaning: "အန္တရာယ်ရှိသော" },
+                    { word: "Animal", meaning: "တိရစ္ဆာန်" },
+                    { word: "Running", meaning: "ပြေးနေသော" },
+                    { word: "Heard", meaning: "ကြားသည်" },
+                    { word: "Worried", meaning: "စိုးရိမ်သော" },
+                    { word: "Quickly", meaning: "လျင်မြန်စွာ" },
+                    { word: "Chewed", meaning: "ကိုက်သည်" },
+                    { word: "Through", meaning: "ဖြတ်သန်း" },
+                    { word: "Minutes", meaning: "မိနစ်များ" },
+                    { word: "Free", meaning: "လွတ်သော" },
+                    { word: "Day", meaning: "နေ့" },
+                    { word: "Became", meaning: "ဖြစ်လာသည်" },
+                    { word: "Best", meaning: "အကောင်းဆုံး" },
+                    { word: "Live", meaning: "နေထိုင်သည်" },
+                    { word: "Big", meaning: "ကြီးသော" },
+                    { word: "Little", meaning: "ငယ်သော" },
+                    { word: "Friend", meaning: "မိတ်ဆွေ" },
+                    { word: "Thank", meaning: "ကျေးဇူးတင်သည်" },
+                    { word: "Never", meaning: "ဘယ်တော့မှ" },
+                    { word: "Know", meaning: "သိသည်" }
+                ]
+            },
+            {
+                id: 2,
+                title: "The Honest Woodcutter",
+                en: `Once upon a time, there was a poor woodcutter who lived in a small village. He worked hard every day cutting wood in the forest to sell for food.
+
+One day, while he was cutting wood near a river, his axe slipped from his hand and fell into the deep water. The woodcutter was very sad because he had no money to buy a new axe.
+
+Suddenly, a magical fairy appeared from the river. She asked him, "Why are you so sad?" The woodcutter told her about his lost axe.
+
+The fairy smiled and said, "Don't worry. I will help you." She dipped her hand into the water and brought out a golden axe. "Is this your axe?" she asked. The woodcutter said, "No, that is not mine."
+
+The fairy dipped her hand again and brought out a silver axe. "Is this your axe?" she asked. The woodcutter said, "No, that is not mine either."
+
+The fairy dipped her hand a third time and brought out an old iron axe. "Is this your axe?" she asked. The woodcutter said happily, "Yes! That is my axe!"
+
+The fairy was very pleased with his honesty. She said, "You are an honest man. Because you told the truth, I will give you all three axes as a reward." The woodcutter was very grateful and thanked the fairy.
+
+He returned to his village and sold the golden and silver axes. He became rich and lived happily ever after. He never forgot the fairy's kindness and always told the truth.`,
+                my: `ရှေးလွန်လေပြီးသောအခါက ရွာငယ်လေးတစ်ရွာမှာ ဆင်းရဲသော သစ်ခုတ်သမားတစ်ယောက် နေထိုင်တယ်။ သူဟာ နေ့တိုင်း အစာအတွက် ရောင်းဖို့ တောအုပ်ထဲမှာ ထင်းခုတ်ပြီး ကြိုးစားအလုပ်လုပ်တယ်။
+
+တစ်နေ့မှာ သူဟာ မြစ်အနီးမှာ ထင်းခုတ်နေစဉ် သူ့ပုဆိန်က လက်ကလွတ်ပြီး ရေနက်ထဲ ပြုတ်ကျသွားတယ်။ သစ်ခုတ်သမားက ပုဆိန်အသစ်ဝယ်ဖို့ ပိုက်ဆံမရှိတဲ့အတွက် အရမ်းဝမ်းနည်းသွားတယ်။
+
+ရုတ်တရက် မြစ်ထဲကနေ မှော်နတ်သမီးတစ်ယောက် ပေါ်လာတယ်။ သူက "မင်းဘာလို့ အရမ်းဝမ်းနည်းနေတာလဲ" လို့ မေးတယ်။ သစ်ခုတ်သမားက သူ့ပုဆိန်ပျောက်ဆုံးသွားတဲ့အကြောင်း ပြောပြတယ်။
+
+နတ်သမီးက ပြုံးပြီး "မပူပါနဲ့။ ငါမင်းကိုကူညီမယ်" လို့ပြောတယ်။ သူမဟာ လက်ကို ရေထဲနှစ်ပြီး ရွှေပုဆိန်တစ်လက်ကို ထုတ်လာတယ်။ "ဒါ မင်းရဲ့ပုဆိန်လား" လို့မေးတယ်။ သစ်ခုတ်သမားက "မဟုတ်ပါဘူး၊ အဲဒါ ကျွန်တော့်ဟာမဟုတ်ပါဘူး" လို့ပြောတယ်။
+
+နတ်သမီးက နောက်တစ်ခါ လက်ကိုနှစ်ပြီး ငွေပုဆိန်တစ်လက်ကို ထုတ်လာတယ်။ "ဒါ မင်းရဲ့ပုဆိန်လား" လို့မေးတယ်။ သစ်ခုတ်သမားက "မဟုတ်ပါဘူး၊ အဲဒါလည်း ကျွန်တော့်ဟာမဟုတ်ပါဘူး" လို့ပြောတယ်။
+
+နတ်သမီးက တတိယအကြိမ် လက်ကိုနှစ်ပြီး သံပုဆိန်ဟောင်းတစ်လက်ကို ထုတ်လာတယ်။ "ဒါ မင်းရဲ့ပုဆိန်လား" လို့မေးတယ်။ သစ်ခုတ်သမားက ပျော်ရွှင်စွာ "ဟုတ်ကဲ့! အဲဒါ ကျွန်တော့်ပုဆိန်ပါ" လို့ပြောတယ်။
+
+နတ်သမီးက သူ့ရဲ့ရိုးသားမှုကို အရမ်းသဘောကျသွားတယ်။ သူမက "မင်းဟာ ရိုးသားတဲ့လူသားတစ်ယောက်ပါ။ မင်းအမှန်အတိုင်းပြောတဲ့အတွက် ငါမင်းကို ပုဆိန်သုံးလက်စလုံး ဆုအဖြစ်ပေးမယ်" လို့ပြောတယ်။ သစ်ခုတ်သမားက အရမ်းကျေးဇူးတင်ပြီး နတ်သမီးကို ကျေးဇူးတင်လို့ပြောတယ်။
+
+သူဟာ သူ့ရွာကိုပြန်လာပြီး ရွှေနဲ့ငွေပုဆိန်တွေကို ရောင်းလိုက်တယ်။ သူဟာ ချမ်းသာလာပြီး နောက်ပိုင်းမှာ ပျော်ရွှင်စွာ နေထိုင်ခဲ့တယ်။ သူဟာ နတ်သမီးရဲ့ကြင်နာမှုကို ဘယ်တော့မှ မမေ့ဘဲ အမှန်အတိုင်း အမြဲပြောဆိုခဲ့တယ်။`,
+                vocab: [
+                    { word: "Woodcutter", meaning: "သစ်ခုတ်သမား" },
+                    { word: "Poor", meaning: "ဆင်းရဲသော" },
+                    { word: "Village", meaning: "ရွာ" },
+                    { word: "Axe", meaning: "ပုဆိန်" },
+                    { word: "River", meaning: "မြစ်" },
+                    { word: "Fairy", meaning: "နတ်သမီး" },
+                    { word: "Magical", meaning: "မှော်ဆန်သော" },
+                    { word: "Golden", meaning: "ရွှေရောင်" },
+                    { word: "Silver", meaning: "ငွေရောင်" },
+                    { word: "Iron", meaning: "သံ" },
+                    { word: "Honest", meaning: "ရိုးသားသော" },
+                    { word: "Truth", meaning: "အမှန်တရား" },
+                    { word: "Reward", meaning: "ဆု" },
+                    { word: "Rich", meaning: "ချမ်းသာသော" },
+                    { word: "Work", meaning: "အလုပ်" },
+                    { word: "Hard", meaning: "ကြိုးစားသော" },
+                    { word: "Cutting", meaning: "ခုတ်နေသော" },
+                    { word: "Food", meaning: "အစာ" },
+                    { word: "Money", meaning: "ပိုက်ဆံ" },
+                    { word: "Buy", meaning: "ဝယ်သည်" },
+                    { word: "Water", meaning: "ရေ" },
+                    { word: "Sad", meaning: "ဝမ်းနည်းသော" },
+                    { word: "Happy", meaning: "ပျော်ရွှင်သော" },
+                    { word: "Appeared", meaning: "ပေါ်လာသည်" },
+                    { word: "Asked", meaning: "မေးသည်" },
+                    { word: "Told", meaning: "ပြောပြသည်" },
+                    { word: "Lost", meaning: "ပျောက်ဆုံးသော" },
+                    { word: "Dipped", meaning: "နှစ်သည်" },
+                    { word: "Hand", meaning: "လက်" },
+                    { word: "Brought", meaning: "ဆောင်ယူသည်" },
+                    { word: "Pleased", meaning: "သဘောကျသော" },
+                    { word: "Because", meaning: "ဘာဖြစ်လို့လဲဆိုတော့" },
+                    { word: "Returned", meaning: "ပြန်လာသည်" },
+                    { word: "Sold", meaning: "ရောင်းသည်" },
+                    { word: "Became", meaning: "ဖြစ်လာသည်" },
+                    { word: "Ever", meaning: "ဘယ်တော့မှ" },
+                    { word: "After", meaning: "နောက်မှ" },
+                    { word: "Always", meaning: "အမြဲတမ်း" },
+                    { word: "Speak", meaning: "ပြောသည်" },
+                    { word: "Wood", meaning: "ထင်း" },
+                    { word: "Near", meaning: "အနီး" },
+                    { word: "Slipped", meaning: "လွတ်သွားသည်" },
+                    { word: "Fell", meaning: "ပြုတ်ကျသည်" },
+                    { word: "New", meaning: "အသစ်" },
+                    { word: "Old", meaning: "ဟောင်း" },
+                    { word: "Third", meaning: "တတိယ" },
+                    { word: "Time", meaning: "အချိန်" },
+                    { word: "Man", meaning: "လူ" },
+                    { word: "Kindness", meaning: "ကြင်နာမှု" },
+                    { word: "Forget", meaning: "မေ့သည်" }
+                ]
+            },
+            {
+            id: 3,
+            title: "The Greedy Dog",
+            en: `Once upon a time, there was a greedy dog who lived in a small town. He was always hungry and wanted more food than he needed.
+            
+            One day, the dog stole a big piece of meat from a butcher's shop. He ran away quickly with the meat in his mouth.
+            
+            The dog came to a bridge that crossed a river. As he walked across the bridge, he looked down into the water. He saw another dog in the water with a big piece of meat in its mouth.
+            
+            The greedy dog thought, "That dog has a bigger piece of meat than mine! I want that meat too." He opened his mouth to bark at the other dog.
+            
+            But when he opened his mouth, his own piece of meat fell into the water. The other dog disappeared because it was only his reflection.
+            
+            The dog felt very sad and foolish. He lost his meat because of his greed. He went home with nothing and learned a valuable lesson.
+            
+            From that day on, the dog was never greedy again. He learned to be happy with what he had.`,
+            my: `ရှေးလွန်လေပြီးသောအခါက မြို့ငယ်လေးတစ်မြို့မှာ လောဘကြီးတဲ့ခွေးတစ်ကောင် နေထိုင်တယ်။ သူဟာ အမြဲတမ်း ဗိုက်ဆာနေပြီး လိုအပ်တာထက် ပိုပြီး အစားကို အမြဲလိုချင်တယ်။
+            
+            တစ်နေ့မှာ ခွေးက အသားသည် ဆိုင်ကနေ အသားကြီးတစ်တုံးကို ခိုးယူလိုက်တယ်။ အသားကို ပါးစပ်ထဲမှာထည့်ပြီး လျင်မြန်စွာ ထွက်ပြေးသွားတယ်။
+            
+            ခွေးက မြစ်ကိုဖြတ်ကူးတဲ့ တံတားတစ်စင်းဆီ ရောက်သွားတယ်။ တံတားပေါ်မှာ လမ်းလျှောက်နေတုန်း ရေထဲကို အောက်ကိုကြည့်လိုက်တယ်။ ရေထဲမှာ နောက်ခွေးတစ်ကောင်က ပါးစပ်ထဲမှာ အသားကြီးတစ်တုံးနဲ့ မြင်လိုက်ရတယ်။
+            
+            လောဘကြီးတဲ့ခွေးက "အဲဒီခွေးမှာ ငါ့အသားထက် ပိုကြီးတဲ့အသားရှိတယ်။ အဲဒီအသားကိုလည်း ငါလိုချင်တယ်" လို့ တွေးမိတယ်။ သူဟာ အဲဒီခွေးကို ဟောင်ဖို့ ပါးစပ်ကိုဖွင့်လိုက်တယ်။
+            
+            ဒါပေမယ့် ပါးစပ်ကိုဖွင့်လိုက်တဲ့အခါ သူ့ရဲ့ကိုယ်ပိုင်အသားက ရေထဲကို ပြုတ်ကျသွားတယ်။ အခြားခွေးက ပျောက်သွားတယ်၊ ဘာလို့လဲဆိုတော့ အဲဒါ သူ့ရဲ့အရိပ်ပဲ ဖြစ်လို့ပါ။
+            
+            ခွေးက အရမ်းဝမ်းနည်းပြီး မိုက်မဲတယ်လို့ ခံစားလိုက်ရတယ်။ သူ့ရဲ့လောဘကြောင့် အသားကို ဆုံးရှုံးလိုက်ရတယ်။ ဘာမှမရဘဲ အိမ်ကိုပြန်သွားပြီး အဖိုးတန်သင်ခန်းစာ တစ်ခု ရခဲ့တယ်။
+            
+            အဲဒီနေ့ကစပြီး ခွေးဟာ ဘယ်တော့မှ လောဘမကြီးတော့ဘူး။ မိမိရှိတာကို ကျေနပ်တတ်ဖို့ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Greedy", meaning: "လောဘကြီးသော" },
+            { word: "Dog", meaning: "ခွေး" },
+            { word: "Town", meaning: "မြို့" },
+            { word: "Hungry", meaning: "ဗိုက်ဆာသော" },
+            { word: "Food", meaning: "အစားအစာ" },
+            { word: "Stole", meaning: "ခိုးယူသည်" },
+            { word: "Piece", meaning: "တုံး၊ အပိုင်း" },
+            { word: "Meat", meaning: "အသား" },
+            { word: "Butcher", meaning: "အသားသည်" },
+            { word: "Shop", meaning: "ဆိုင်" },
+            { word: "Ran", meaning: "ပြေးသည်" },
+            { word: "Mouth", meaning: "ပါးစပ်" },
+            { word: "Bridge", meaning: "တံတား" },
+            { word: "Crossed", meaning: "ဖြတ်ကူးသည်" },
+            { word: "River", meaning: "မြစ်" },
+            { word: "Walked", meaning: "လမ်းလျှောက်သည်" },
+            { word: "Looked", meaning: "ကြည့်သည်" },
+            { word: "Water", meaning: "ရေ" },
+            { word: "Saw", meaning: "မြင်သည်" },
+            { word: "Another", meaning: "အခြားသော" },
+            { word: "Thought", meaning: "တွေးသည်" },
+            { word: "Bigger", meaning: "ပိုကြီးသော" },
+            { word: "Opened", meaning: "ဖွင့်သည်" },
+            { word: "Bark", meaning: "ဟောင်သည်" },
+            { word: "Fell", meaning: "ပြုတ်ကျသည်" },
+            { word: "Disappeared", meaning: "ပျောက်သွားသည်" },
+            { word: "Reflection", meaning: "အရိပ်" },
+            { word: "Foolish", meaning: "မိုက်မဲသော" },
+            { word: "Lost", meaning: "ဆုံးရှုံးသည်" },
+            { word: "Greed", meaning: "လောဘ" },
+            { word: "Home", meaning: "အိမ်" },
+            { word: "Nothing", meaning: "ဘာမျှမရှိ" },
+            { word: "Learned", meaning: "သင်ယူသည်" },
+            { word: "Valuable", meaning: "တန်ဖိုးရှိသော" },
+            { word: "Lesson", meaning: "သင်ခန်းစာ" },
+            { word: "Happy", meaning: "ပျော်ရွှင်သော" },
+            { word: "Content", meaning: "ကျေနပ်သော" },
+            { word: "Always", meaning: "အမြဲတမ်း" },
+            { word: "Needed", meaning: "လိုအပ်သည်" },
+            { word: "Quickly", meaning: "လျင်မြန်စွာ" },
+            { word: "Own", meaning: "ကိုယ်ပိုင်" },
+            { word: "Because", meaning: "ဘာဖြစ်လို့လဲဆိုတော့" },
+            { word: "Only", meaning: "သာ" },
+            { word: "Felt", meaning: "ခံစားရသည်" },
+            { word: "Sad", meaning: "ဝမ်းနည်းသော" },
+            { word: "Lesson", meaning: "သင်ခန်းစာ" },
+            { word: "Learned", meaning: "သင်ယူသည်" },
+            { word: "Day", meaning: "နေ့" },
+            { word: "Never", meaning: "ဘယ်တော့မှ" },
+            { word: "Again", meaning: "နောက်တစ်ခါ" }
+            ]
+            },
+            {
+            id: 4,
+            title: "The Thirsty Crow",
+            en: `One hot summer day, a thirsty crow was flying over the fields. He was very tired and his throat was dry. He needed water to drink.
+            
+            The crow looked everywhere for water. Finally, he saw a pot with a little water at the bottom. He flew down to the pot and tried to drink.
+            
+            But the water was too low. His beak could not reach the water. The crow was very sad and thought, "How can I get the water?"
+            
+            The clever crow looked around and saw some small stones. He had an idea. He picked up one stone and dropped it into the pot. The water came up a little.
+            
+            He kept picking up stones and dropping them into the pot. One by one, the water came up higher and higher. The crow worked very hard.
+            
+            Finally, the water reached the top of the pot. The crow could drink the water easily. He drank the water and felt very happy.
+            
+            The crow learned that if you try hard, you can solve any problem. He flew away feeling proud and smart.`,
+            my: `တစ်နွေရာသီ ပူပြင်းတဲ့နေ့မှာ ရေငတ်နေတဲ့ ကျီးကန်းတစ်ကောင်ဟာ လယ်ကွင်းတွေအပေါ်မှာ ပျံသန်းနေတယ်။ သူဟာ အရမ်းပင်ပန်းပြီး လည်ချောင်းလည်း ခြောက်သွေ့နေတယ်။ သောက်ဖို့ ရေလိုအပ်နေတယ်။
+            
+            ကျီးကန်းက ရေအတွက် နေရာတိုင်းကို ရှာဖွေတယ်။ နောက်ဆုံးမှာ အိုးတစ်လုံးရဲ့အောက်ခြေမှာ ရေအနည်းငယ်ရှိတာကို မြင်လိုက်တယ်။ သူဟာ အိုးဆီကို ပျံဆင်းပြီး သောက်ဖို့ ကြိုးစားတယ်။
+            
+            ဒါပေမယ့် ရေက နိမ့်လွန်းနေတယ်။ သူ့နှုတ်သီးက ရေကို မရောက်နိုင်ဘူး။ ကျီးကန်းက အရမ်းဝမ်းနည်းပြီး "ငါ ဘယ်လို ရေရနိုင်မလဲ" လို့ တွေးတယ်။
+            
+            ဉာဏ်ကောင်းတဲ့ ကျီးကန်းက ပတ်ဝန်းကျင်ကို ကြည့်လိုက်တဲ့အခါ ကျောက်စရစ်ခဲသေးသေးလေးတွေ မြင်လိုက်တယ်။ သူ့မှာ စိတ်ကူးတစ်ခုရသွားတယ်။ ကျောက်ခဲတစ်လုံးကို ကောက်ပြီး အိုးထဲကို ချလိုက်တယ်။ ရေက နည်းနည်းတက်လာတယ်။
+            
+            သူဟာ ကျောက်ခဲတွေကို ဆက်ကောက်ပြီး အိုးထဲကို ဆက်ချတယ်။ တစ်လုံးချင်းစီနဲ့ ရေက ပိုပိုပြီး မြင့်တက်လာတယ်။ ကျီးကန်းက အရမ်းကြိုးစားလုပ်ဆောင်တယ်။
+            
+            နောက်ဆုံးမှာ ရေက အိုးအပေါ်ထိ ရောက်သွားတယ်။ ကျီးကန်းက ရေကို အလွယ်တကူ သောက်နိုင်ပြီး ရေကိုသောက်ပြီး အရမ်းပျော်သွားတယ်။
+            
+            ကျီးကန်းက ကြိုးစားရင် ပြဿနာတိုင်းကို ဖြေရှင်းနိုင်တယ်ဆိုတာ သင်ယူခဲ့တယ်။ သူဟာ ဂုဏ်ယူပြီး ဉာဏ်ကောင်းတယ်လို့ ခံစားရင်း ပျံသွားတယ်။`,
+            vocab: [
+            { word: "Thirsty", meaning: "ရေငတ်သော" },
+            { word: "Crow", meaning: "ကျီးကန်း" },
+            { word: "Summer", meaning: "နွေရာသီ" },
+            { word: "Fields", meaning: "လယ်ကွင်းများ" },
+            { word: "Flying", meaning: "ပျံသန်းနေသော" },
+            { word: "Tired", meaning: "ပင်ပန်းသော" },
+            { word: "Throat", meaning: "လည်ချောင်း" },
+            { word: "Dry", meaning: "ခြောက်သွေ့သော" },
+            { word: "Water", meaning: "ရေ" },
+            { word: "Drink", meaning: "သောက်သည်" },
+            { word: "Looked", meaning: "ရှာသည်" },
+            { word: "Finally", meaning: "နောက်ဆုံး" },
+            { word: "Pot", meaning: "အိုး" },
+            { word: "Bottom", meaning: "အောက်ခြေ" },
+            { word: "Beak", meaning: "နှုတ်သီး" },
+            { word: "Reach", meaning: "ရောက်သည်" },
+            { word: "Clever", meaning: "ဉာဏ်ကောင်းသော" },
+            { word: "Stones", meaning: "ကျောက်ခဲများ" },
+            { word: "Idea", meaning: "စိတ်ကူး" },
+            { word: "Picked", meaning: "ကောက်သည်" },
+            { word: "Dropped", meaning: "ချသည်" },
+            { word: "Kept", meaning: "ဆက်လုပ်သည်" },
+            { word: "Higher", meaning: "ပိုမြင့်သော" },
+            { word: "Worked", meaning: "အလုပ်လုပ်သည်" },
+            { word: "Easy", meaning: "လွယ်ကူသော" },
+            { word: "Problem", meaning: "ပြဿနာ" },
+            { word: "Solve", meaning: "ဖြေရှင်းသည်" },
+            { word: "Felt", meaning: "ခံစားရသည်" },
+            { word: "Proud", meaning: "ဂုဏ်ယူသော" },
+            { word: "Smart", meaning: "ဉာဏ်ကောင်းသော" },
+            { word: "Tried", meaning: "ကြိုးစားသည်" },
+            { word: "Hot", meaning: "ပူသော" },
+            { word: "Over", meaning: "အပေါ်မှ" },
+            { word: "Little", meaning: "နည်းနည်း" },
+            { word: "Some", meaning: "အချို့" },
+            { word: "One", meaning: "တစ်" },
+            { word: "By", meaning: "အားဖြင့်" },
+            { word: "Top", meaning: "အပေါ်" },
+            { word: "Away", meaning: "ဝေးရာသို့" },
+            { word: "Any", meaning: "မည်သည့်" },
+            { word: "Everywhere", meaning: "နေရာတိုင်း" },
+            { word: "Finally", meaning: "နောက်ဆုံးတွင်" },
+            { word: "Down", meaning: "အောက်သို့" },
+            { word: "Could", meaning: "နိုင်သည်" },
+            { word: "Hard", meaning: "ခက်သော" },
+            { word: "Flew", meaning: "ပျံသန်းသည်" },
+            { word: "Learned", meaning: "သင်ယူသည်" },
+            { word: "Only", meaning: "သာ" },
+            { word: "If", meaning: "အကယ်၍" },
+            { word: "After", meaning: "ပြီးနောက်" }
+            ]
+            },
+            {
+            id: 5,
+            title: "The Fox and the Grapes",
+            en: `One sunny afternoon, a hungry fox was walking through the forest. He had not eaten anything for a long time. He was looking for food everywhere.
+            
+            Suddenly, the fox saw a bunch of grapes hanging from a high vine. The grapes looked ripe and delicious. The fox's mouth started watering.
+            
+            The fox thought, "Those grapes look so sweet and juicy. I must have them!" He jumped up to reach the grapes, but they were too high. He jumped again and again, but he could not reach them.
+            
+            The fox was tired and frustrated. He tried jumping from different angles, but the grapes were still too high. He felt very sad.
+            
+            Finally, the fox gave up. He walked away and said to himself, "Those grapes are probably sour anyway. I don't want them."
+            
+            But deep down, the fox knew that the grapes were sweet. He pretended not to want them because he could not reach them. This is called "sour grapes" when people pretend not to want something they cannot have.
+            
+            The fox learned that it is better to admit defeat than to pretend. He walked away with his head held high, but his heart was heavy.`,
+            my: `တစ်နေ့ နေသာတဲ့မွန်းလွဲပိုင်းမှာ ဆာနေတဲ့ မြေခွေးတစ်ကောင်ဟာ တောအုပ်ထဲမှာ လမ်းလျှောက်နေတယ်။ သူဟာ ကြာကြာအချိန်ကြာ တစ်ခုမှ မစားခဲ့ရဘူး။ သူဟာ နေရာတိုင်းမှာ အစားအစာရှာနေတယ်။
+            
+            ရုတ်တရက် မြေခွေးက မြင့်မားတဲ့နွယ်ပင်မှာ စပျစ်သီးအစုတစ်ခု လွဲချော်နေတာကို မြင်လိုက်တယ်။ စပျစ်သီးတွေက မှည့်ပြီး အရသာရှိပုံရတယ်။ မြေခွေးရဲ့ ပါးစပ်က တံတွေးတွေ ကျလာတယ်။
+            
+            မြေခွေးက "ဒီစပျစ်သီးတွေက ချိုပြီး အရည်ရွှမ်းပုံရတယ်။ ငါ ဒါတွေကို ရမှာပဲ" လို့ တွေးတယ်။ သူဟာ စပျစ်သီးတွေကိုရဖို့ ခုန်တယ်၊ ဒါပေမယ့် အရမ်းမြင့်လွန်းတယ်။ နောက်တစ်ခါ ခုန်တယ်၊ ဒါပေမယ့် မရောက်နိုင်ဘူး။
+            
+            မြေခွေးက ပင်ပန်းပြီး စိတ်ပျက်သွားတယ်။ အမျိုးမျိုးသော ထောင့်တွေကနေ ခုန်ကြည့်ပေမယ့် စပျစ်သီးတွေက မြင့်နေဆဲပါ။ သူဟာ အရမ်းဝမ်းနည်းသွားတယ်။
+            
+            နောက်ဆုံးမှာ မြေခွေးက အရှုံးပေးလိုက်တယ်။ သူဟာ လမ်းလျှောက်ထွက်သွားပြီး ကိုယ့်ကိုယ်ကို "ဒီစပျစ်သီးတွေက ချဉ်မှာပဲ။ ငါ မလိုချင်ဘူး" လို့ ပြောလိုက်တယ်။
+            
+            ဒါပေမယ့် အတွင်းစိတ်ထဲမှာ စပျစ်သီးတွေက ချိုတာကို သိထားတယ်။ သူဟာ မရောက်နိုင်လို့ မလိုချင်ဟန်ဆောင်ခဲ့တာပါ။ ဒါကို "ချဉ်သောစပျစ်သီး" လို့ခေါ်တယ်၊ လူတွေက ရမရာကို မလိုချင်ဟန်ဆောင်တဲ့အခါမှာ။
+            
+            မြေခွေးက ဟန်ဆောင်တာထက် ရှုံးနိမ့်တာကို ဝန်ခံတာက ပိုကောင်းတယ်ဆိုတာ သင်ယူခဲ့တယ်။ သူဟာ ခေါင်းကိုမော့ပြီး လမ်းလျှောက်ထွက်သွားခဲ့ပေမယ့် သူ့ရင်ထဲမှာတော့ လေးလံနေခဲ့တယ်။`,
+            vocab: [
+            { word: "Fox", meaning: "မြေခွေး" },
+            { word: "Grapes", meaning: "စပျစ်သီး" },
+            { word: "Sunny", meaning: "နေသာသော" },
+            { word: "Afternoon", meaning: "မွန်းလွဲပိုင်း" },
+            { word: "Hungry", meaning: "ဆာသော" },
+            { word: "Walking", meaning: "လမ်းလျှောက်နေသော" },
+            { word: "Forest", meaning: "တောအုပ်" },
+            { word: "Eaten", meaning: "စားခဲ့သည်" },
+            { word: "Food", meaning: "အစားအစာ" },
+            { word: "Suddenly", meaning: "ရုတ်တရက်" },
+            { word: "Bunch", meaning: "အစု" },
+            { word: "Hanging", meaning: "လွဲချော်နေသော" },
+            { word: "Vine", meaning: "နွယ်ပင်" },
+            { word: "Ripe", meaning: "မှည့်သော" },
+            { word: "Delicious", meaning: "အရသာရှိသော" },
+            { word: "Mouth", meaning: "ပါးစပ်" },
+            { word: "Watering", meaning: "တံတွေးကျနေသော" },
+            { word: "Sweet", meaning: "ချိုသော" },
+            { word: "Juicy", meaning: "အရည်ရွှမ်းသော" },
+            { word: "Jumped", meaning: "ခုန်သည်" },
+            { word: "High", meaning: "မြင့်သော" },
+            { word: "Tired", meaning: "ပင်ပန်းသော" },
+            { word: "Frustrated", meaning: "စိတ်ပျက်သော" },
+            { word: "Angles", meaning: "ထောင့်များ" },
+            { word: "Gave", meaning: "ပေးလိုက်သည်" },
+            { word: "Gave up", meaning: "အရှုံးပေးသည်" },
+            { word: "Probably", meaning: "ဖြစ်နိုင်သည်" },
+            { word: "Sour", meaning: "ချဉ်သော" },
+            { word: "Pretend", meaning: "ဟန်ဆောင်သည်" },
+            { word: "Admit", meaning: "ဝန်ခံသည်" },
+            { word: "Defeat", meaning: "ရှုံးနိမ့်မှု" },
+            { word: "Head", meaning: "ခေါင်း" },
+            { word: "Heart", meaning: "နှလုံး" },
+            { word: "Heavy", meaning: "လေးလံသော" },
+            { word: "Called", meaning: "ခေါ်သည်" },
+            { word: "People", meaning: "လူများ" },
+            { word: "Sour grapes", meaning: "မရတာကို မလိုချင်ဟန်ဆောင်ခြင်း" },
+            { word: "Better", meaning: "ပိုကောင်းသော" },
+            { word: "Than", meaning: "ထက်" },
+            { word: "Held", meaning: "မော့ထားသည်" },
+            { word: "Deep", meaning: "နက်ရှိုင်းသော" },
+            { word: "Down", meaning: "အောက်" },
+            { word: "Knew", meaning: "သိသည်" },
+            { word: "Still", meaning: "ဆဲ" },
+            { word: "Could", meaning: "နိုင်သည်" },
+            { word: "Himself", meaning: "ကိုယ်တိုင်" },
+            { word: "Way", meaning: "လမ်း" },
+            { word: "Long", meaning: "ကြာသော" },
+            { word: "Time", meaning: "အချိန်" },
+            { word: "Look", meaning: "ကြည့်သည်" }
+            ]
+            },
+            {
+            id: 6,
+            title: "The Hare and the Tortoise",
+            en: `In a beautiful forest, there lived a hare and a tortoise. The hare was very fast and proud. He often made fun of the tortoise because she was so slow.
+            
+            One day, the hare said, "You are so slow, tortoise! You can never win a race against me." The tortoise was calm and replied, "Why don't we have a race and see?"
+            
+            The hare laughed and agreed. All the animals in the forest came to watch the race. They were excited to see who would win.
+            
+            The race began. The hare ran very fast and soon was far ahead. He looked back and saw the tortoise slowly moving behind him. The hare thought, "I have plenty of time. I will take a nap."
+            
+            The hare lay down under a tree and fell asleep. The tortoise kept walking slowly but steadily. She never stopped or gave up.
+            
+            While the hare was sleeping, the tortoise passed him. She kept moving forward. When the hare woke up, he saw the tortoise near the finish line.
+            
+            The hare ran as fast as he could, but it was too late. The tortoise crossed the finish line first and won the race.
+            
+            The hare learned that slow and steady wins the race. He was not proud anymore. The tortoise showed that determination and patience are more important than speed.`,
+            my: `လှပသော တောအုပ်တစ်ခုမှာ ယုန်တစ်ကောင်နဲ့ လိပ်တစ်ကောင် နေထိုင်တယ်။ ယုန်က အရမ်းမြန်ပြီး ဂုဏ်ကြီးတယ်။ လိပ်က နှေးလွန်းလို့ သူမကို မကြာခဏ လှောင်ပြောင်လေ့ရှိတယ်။
+            
+            တစ်နေ့မှာ ယုန်က "မင်းက သိပ်နှေးတယ် လိပ်ရယ်။ မင်း ငါ့ကို ပြိုင်ပွဲမှာ ဘယ်တော့မှ အနိုင်မရနိုင်ဘူး" လို့ပြောတယ်။ လိပ်က အေးဆေးပြီး "ပြိုင်ပွဲတစ်ပွဲလုပ်ပြီး ကြည့်ရအောင်" လို့ ပြန်ဖြေတယ်။
+            
+            ယုန်က ရယ်ပြီး သဘောတူညီလိုက်တယ်။ တောအုပ်ထဲက တိရစ္ဆာန်အားလုံးက ပြိုင်ပွဲကြည့်ဖို့ လာကြတယ်။ ဘယ်သူအနိုင်ရမလဲဆိုတာ သူတို့ စိတ်လှုပ်ရှားနေကြတယ်။
+            
+            ပြိုင်ပွဲစတယ်။ ယုန်က အရမ်းမြန်မြန်ပြေးပြီး မကြာခင် အဝေးကြီးကို ရောက်သွားတယ်။ သူဟာ နောက်ပြန်ကြည့်လိုက်တဲ့အခါ လိပ်က သူ့နောက်မှာ ဖြည်းညင်းစွာ ရွေ့လျားနေတာကို မြင်တယ်။ ယုန်က "ငါ့မှာ အချိန်အများကြီးရှိတယ်။ ငါ အိပ်ချင်တယ်" လို့ တွေးတယ်။
+            
+            ယုန်က သစ်ပင်အောက်မှာ လှဲအိပ်ပြီး အိပ်ပျော်သွားတယ်။ လိပ်က ဖြည်းညင်းပေမယ့် မပြတ်တမ်း လမ်းလျှောက်နေတယ်။ သူမဟာ ဘယ်တော့မှ မရပ်ဘဲ အရှုံးမပေးခဲ့ဘူး။
+            
+            ယုန်အိပ်နေတုန်း လိပ်က သူ့ကို ကျော်သွားတယ်။ သူမဟာ ရှေ့သို့ ဆက်ရွေ့လျားနေတယ်။ ယုန်နိုးလာတဲ့အခါ လိပ်က ပန်းဆုံးမျဉ်းအနီးမှာ ရှိနေတာကို မြင်လိုက်ရတယ်။
+            
+            ယုန်က တတ်နိုင်သမျှ အမြန်ပြေးပေမယ့် အချိန်နောက်ကျသွားပြီ။ လိပ်က ပန်းဆုံးမျဉ်းကို ပထမဆုံးဖြတ်ပြီး ပြိုင်ပွဲအနိုင်ရခဲ့တယ်။
+            
+            ယုန်က နှေးပေမယ့် မပြတ်တမ်း ဆက်သွားရင် အနိုင်ရတယ်ဆိုတာ သင်ယူခဲ့တယ်။ သူဟာ ဂုဏ်မကြီးတော့ဘူး။ လိပ်က စိတ်ပိုင်းဖြတ်မှုနဲ့ စိတ်ရှည်မှုက အမြန်ထက် ပိုအရေးကြီးတယ်ဆိုတာ ပြသခဲ့တယ်။`,
+            vocab: [
+            { word: "Hare", meaning: "ယုန်" },
+            { word: "Tortoise", meaning: "လိပ်" },
+            { word: "Beautiful", meaning: "လှပသော" },
+            { word: "Forest", meaning: "တောအုပ်" },
+            { word: "Fast", meaning: "မြန်သော" },
+            { word: "Proud", meaning: "ဂုဏ်ကြီးသော" },
+            { word: "Slow", meaning: "နှေးသော" },
+            { word: "Race", meaning: "ပြိုင်ပွဲ" },
+            { word: "Win", meaning: "အနိုင်ရသည်" },
+            { word: "Calm", meaning: "အေးဆေးသော" },
+            { word: "Replied", meaning: "ပြန်ဖြေသည်" },
+            { word: "Agreed", meaning: "သဘောတူသည်" },
+            { word: "Animals", meaning: "တိရစ္ဆာန်များ" },
+            { word: "Watch", meaning: "ကြည့်သည်" },
+            { word: "Excited", meaning: "စိတ်လှုပ်ရှားသော" },
+            { word: "Ahead", meaning: "ရှေ့" },
+            { word: "Moving", meaning: "ရွေ့လျားနေသော" },
+            { word: "Plenty", meaning: "အများကြီး" },
+            { word: "Nap", meaning: "အိပ်ချိန်" },
+            { word: "Lay", meaning: "လှဲအိပ်သည်" },
+            { word: "Asleep", meaning: "အိပ်ပျော်နေသော" },
+            { word: "Steadily", meaning: "တည်ငြိမ်စွာ" },
+            { word: "Stopped", meaning: "ရပ်သည်" },
+            { word: "Passed", meaning: "ကျော်သွားသည်" },
+            { word: "Forward", meaning: "ရှေ့သို့" },
+            { word: "Woke", meaning: "နိုးသည်" },
+            { word: "Finish", meaning: "ပန်းဆုံး" },
+            { word: "Line", meaning: "မျဉ်း" },
+            { word: "Late", meaning: "နောက်ကျသော" },
+            { word: "Crossed", meaning: "ဖြတ်သည်" },
+            { word: "First", meaning: "ပထမ" },
+            { word: "Learned", meaning: "သင်ယူသည်" },
+            { word: "Steady", meaning: "တည်ငြိမ်သော" },
+            { word: "Determination", meaning: "စိတ်ပိုင်းဖြတ်မှု" },
+            { word: "Patience", meaning: "စိတ်ရှည်မှု" },
+            { word: "Important", meaning: "အရေးကြီးသော" },
+            { word: "Speed", meaning: "အမြန်" },
+            { word: "Showed", meaning: "ပြသသည်" },
+            { word: "Often", meaning: "မကြာခဏ" },
+            { word: "Fun", meaning: "ပျော်စရာ" },
+            { word: "Under", meaning: "အောက်" },
+            { word: "Tree", meaning: "သစ်ပင်" },
+            { word: "Forward", meaning: "ရှေ့သို့" },
+            { word: "Could", meaning: "နိုင်သည်" },
+            { word: "Anymore", meaning: "နောက်တော့မှ" },
+            { word: "Would", meaning: "ဖြစ်မည်" },
+            { word: "See", meaning: "မြင်သည်" },
+            { word: "Run", meaning: "ပြေးသည်" },
+            { word: "Against", meaning: "ဆန့်ကျင်" }
+            ]
+            },
+            {
+            id: 7,
+            title: "The Boy Who Cried Wolf",
+            en: `Once upon a time, there was a young shepherd boy who lived in a small village. He was bored every day watching the sheep on the hillside.
+            
+            One day, the boy decided to play a trick on the villagers. He ran down to the village shouting, "Wolf! Wolf! A wolf is attacking the sheep!"
+            
+            The villagers heard his cries and ran up the hill to help him. When they got there, there was no wolf. The boy laughed and said, "I was just joking!"
+            
+            The next day, the boy did the same thing again. He shouted, "Wolf! Wolf!" The villagers came running again, but there was no wolf. They were angry with the boy.
+            
+            The next day, a real wolf came to attack the sheep. The boy was terrified and shouted loudly, "Wolf! Wolf! Please help me!"
+            
+            The villagers heard him but thought he was joking again. They did not come to help. The wolf killed many sheep and ran away.
+            
+            The boy learned a painful lesson that day. He realized that if you lie too often, people will not believe you when you tell the truth.`,
+            my: `ရှေးလွန်လေပြီးသောအခါက ရွာငယ်လေးတစ်ရွာမှာ သိုးထိန်းကောင်လေးတစ်ယောက် နေထိုင်တယ်။ သူဟာ တောင်စောင်းပေါ်မှာ သိုးတွေကို နေ့တိုင်း ကြည့်ရတာ ပျင်းနေတယ်။
+            
+            တစ်နေ့မှာ ကောင်လေးက ရွာသားတွေကို လှည့်စားဖို့ ဆုံးဖြတ်လိုက်တယ်။ သူဟာ ရွာကို ပြေးဆင်းပြီး "ဝံပုလွေ! ဝံပုလွေ! ဝံပုလွေက သိုးတွေကို တိုက်နေတယ်!" လို့ အော်လိုက်တယ်။
+            
+            ရွာသားတွေက သူ့အော်သံကိုကြားပြီး ကူညီဖို့ တောင်ပေါ်ကို ပြေးတက်လာကြတယ်။ သူတို့ရောက်တဲ့အခါ ဝံပုလွေမရှိဘူး။ ကောင်လေးက ရယ်ပြီး "ငါ ရယ်စရာ လုပ်တာပါ" လို့ပြောတယ်။
+            
+            နောက်တစ်နေ့မှာ ကောင်လေးက အတူတူပဲ ထပ်လုပ်တယ်။ သူဟာ "ဝံပုလွေ! ဝံပုလွေ!" လို့ အော်တယ်။ ရွာသားတွေ ထပ်ပြေးလာကြပေမယ့် ဝံပုလွေ မရှိဘူး။ သူတို့က ကောင်လေးကို ဒေါသထွက်သွားတယ်။
+            
+            နောက်တစ်နေ့မှာ တကယ့်ဝံပုလွေက သိုးတွေကို တိုက်လာတယ်။ ကောင်လေးက ကြောက်လန့်သွားပြီး ကျယ်လောင်စွာ "ဝံပုလွေ! ဝံပုလွေ! ကျေးဇူးပြုပြီး ကူညီပါ!" လို့ အော်တယ်။
+            
+            ရွာသားတွေက ကြားပေမယ့် သူနောက်တစ်ခါ လှောင်နေတာလို့ ထင်ကြတယ်။ သူတို့ ကူညီဖို့ မလာကြဘူး။ ဝံပုလွေက သိုးအများကြီးကို သတ်ပြီး ထွက်ပြေးသွားတယ်။
+            
+            ကောင်လေးက အဲဒီနေ့မှာ နာကျင်ဖွယ် သင်ခန်းစာ ရခဲ့တယ်။ မကြာခဏ လိမ်ညာရင် လူတွေက အမှန်ပြောတဲ့အခါ မယုံကြဘူးဆိုတာ သူနားလည်သွားတယ်။`,
+            vocab: [
+            { word: "Shepherd", meaning: "သိုးထိန်း" },
+            { word: "Village", meaning: "ရွာ" },
+            { word: "Bored", meaning: "ပျင်းသော" },
+            { word: "Sheep", meaning: "သိုး" },
+            { word: "Hillside", meaning: "တောင်စောင်း" },
+            { word: "Decided", meaning: "ဆုံးဖြတ်သည်" },
+            { word: "Play", meaning: "ကစားသည်" },
+            { word: "Trick", meaning: "လှည့်စားမှု" },
+            { word: "Villagers", meaning: "ရွာသားများ" },
+            { word: "Shouting", meaning: "အော်နေသော" },
+            { word: "Wolf", meaning: "ဝံပုလွေ" },
+            { word: "Attacking", meaning: "တိုက်ခိုက်နေသော" },
+            { word: "Heard", meaning: "ကြားသည်" },
+            { word: "Cries", meaning: "အော်သံ" },
+            { word: "Help", meaning: "ကူညီ" },
+            { word: "Joking", meaning: "ဟာသ လုပ်နေသော" },
+            { word: "Angry", meaning: "ဒေါသထွက်သော" },
+            { word: "Real", meaning: "တကယ့်" },
+            { word: "Terrified", meaning: "ကြောက်လန့်သော" },
+            { word: "Loudly", meaning: "ကျယ်လောင်စွာ" },
+            { word: "Please", meaning: "ကျေးဇူးပြု" },
+            { word: "Killed", meaning: "သတ်သည်" },
+            { word: "Ran", meaning: "ပြေးသည်" },
+            { word: "Painful", meaning: "နာကျင်ဖွယ်" },
+            { word: "Lesson", meaning: "သင်ခန်းစာ" },
+            { word: "Realized", meaning: "နားလည်သည်" },
+            { word: "Lie", meaning: "လိမ်ညာသည်" },
+            { word: "Often", meaning: "မကြာခဏ" },
+            { word: "People", meaning: "လူများ" },
+            { word: "Believe", meaning: "ယုံကြည်သည်" },
+            { word: "Truth", meaning: "အမှန်တရား" },
+            { word: "Young", meaning: "ငယ်သော" },
+            { word: "Every", meaning: "တိုင်း" },
+            { word: "Day", meaning: "နေ့" },
+            { word: "Down", meaning: "အောက်သို့" },
+            { word: "Up", meaning: "အပေါ်သို့" },
+            { word: "Same", meaning: "တူညီသော" },
+            { word: "Again", meaning: "နောက်တစ်ခါ" },
+            { word: "Running", meaning: "ပြေးနေသော" },
+            { word: "Thought", meaning: "ထင်သည်" },
+            { word: "Them", meaning: "သူတို့" },
+            { word: "Came", meaning: "လာသည်" },
+            { word: "Got", meaning: "ရောက်သည်" },
+            { word: "There", meaning: "အဲဒီမှာ" },
+            { word: "Laugh", meaning: "ရယ်သည်" },
+            { word: "Next", meaning: "နောက်ထပ်" },
+            { word: "Far", meaning: "ဝေးသော" },
+            { word: "After", meaning: "ပြီးနောက်" },
+            { word: "When", meaning: "ဘယ်အချိန်" },
+            { word: "Tell", meaning: "ပြောပြသည်" }
+            ]
+            },
+            {
+            id: 8,
+            title: "The Golden Goose",
+            en: `A farmer and his wife lived in a small house with their three daughters. They were very poor and struggled to find enough food to eat.
+            
+            One day, the farmer found a strange goose near the river. The goose was beautiful and had golden feathers. The farmer took the goose home.
+            
+            To their surprise, the goose laid a golden egg every morning. The family was very happy and became rich. They sold the golden eggs and lived comfortably.
+            
+            But the farmer was greedy. He wanted to get all the golden eggs at once. He said, "The goose must have a lot of gold inside. Let's cut it open."
+            
+            His wife warned him, "Don't be foolish! If you kill the goose, we will lose all the eggs." But the farmer did not listen.
+            
+            The farmer killed the goose and cut it open. But there was no gold inside. The goose was just an ordinary goose.
+            
+            The farmer lost his golden goose and never got any more golden eggs. He learned that greed can destroy a good thing.`,
+            my: `လယ်သမားတစ်ယောက်နဲ့ သူ့ဇနီးဟာ သူတို့ရဲ့သမီးသုံးယောက်နဲ့အတူ အိမ်ငယ်လေးတစ်လုံးမှာ နေထိုင်တယ်။ သူတို့ဟာ အရမ်းဆင်းရဲပြီး စားဖို့အစာ လုံလုံလောက်လောက် ရှာရခက်ခဲတယ်။
+            
+            တစ်နေ့မှာ လယ်သမားက မြစ်အနီးမှာ ထူးဆန်းတဲ့ငန်းတစ်ကောင်ကို တွေ့လိုက်တယ်။ ငန်းက လှပပြီး ရွှေရောင်အမွေးတွေ ရှိတယ်။ လယ်သမားက ငန်းကို အိမ်ကို ခေါ်သွားတယ်။
+            
+            သူတို့ အံ့အားသင့်စရာက ငန်းက မနက်တိုင်း ရွှေဥတစ်လုံး ဥတယ်။ မိသားစုက အရမ်းပျော်သွားပြီး ချမ်းသာလာတယ်။ သူတို့ဟာ ရွှေဥတွေကို ရောင်းပြီး သက်တောင့်သက်သာ နေထိုင်ရတယ်။
+            
+            ဒါပေမယ့် လယ်သမားက လောဘကြီးတယ်။ သူဟာ ရွှေဥအားလုံးကို တစ်ခါတည်း လိုချင်တယ်။ သူက "ငန်းထဲမှာ ရွှေအများကြီး ရှိရမယ်။ ဖြတ်ဖွင့်ကြည့်ရအောင်" လို့ပြောတယ်။
+            
+            သူ့ဇနီးက သတိပေးတယ်၊ "မမိုက်ပါနဲ့! ငန်းကိုသတ်ရင် ဥတွေအားလုံး ဆုံးရှုံးလိမ့်မယ်" လို့ပြောပေမယ့် လယ်သမားက နားမထောင်ဘူး။
+            
+            လယ်သမားက ငန်းကိုသတ်ပြီး ဖြတ်ဖွင့်လိုက်တယ်။ ဒါပေမယ့် အတွင်းမှာ ရွှေမရှိဘူး။ ငန်းက သာမန်ငန်းတစ်ကောင်ပဲ။
+            
+            လယ်သမားက သူ့ရွှေငန်းကို ဆုံးရှုံးလိုက်ပြီး နောက်ထပ် ရွှေဥတွေ ဘယ်တော့မှ မရတော့ဘူး။ လောဘက ကောင်းတာကို ဖျက်ဆီးနိုင်တယ်ဆိုတာ သူ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Farmer", meaning: "လယ်သမား" },
+            { word: "Wife", meaning: "ဇနီး" },
+            { word: "Daughters", meaning: "သမီးများ" },
+            { word: "House", meaning: "အိမ်" },
+            { word: "Poor", meaning: "ဆင်းရဲသော" },
+            { word: "Struggled", meaning: "ရုန်းကန်သည်" },
+            { word: "Food", meaning: "အစာ" },
+            { word: "Strange", meaning: "ထူးဆန်းသော" },
+            { word: "Goose", meaning: "ငန်း" },
+            { word: "River", meaning: "မြစ်" },
+            { word: "Beautiful", meaning: "လှပသော" },
+            { word: "Golden", meaning: "ရွှေရောင်" },
+            { word: "Feathers", meaning: "အမွေးများ" },
+            { word: "Surprise", meaning: "အံ့အားသင့်မှု" },
+            { word: "Laid", meaning: "ဥသည်" },
+            { word: "Egg", meaning: "ဥ" },
+            { word: "Morning", meaning: "မနက်" },
+            { word: "Family", meaning: "မိသားစု" },
+            { word: "Rich", meaning: "ချမ်းသာသော" },
+            { word: "Sold", meaning: "ရောင်းသည်" },
+            { word: "Comfortably", meaning: "သက်တောင့်သက်သာ" },
+            { word: "Greedy", meaning: "လောဘကြီးသော" },
+            { word: "Inside", meaning: "အတွင်း" },
+            { word: "Cut", meaning: "ဖြတ်သည်" },
+            { word: "Open", meaning: "ဖွင့်သည်" },
+            { word: "Warned", meaning: "သတိပေးသည်" },
+            { word: "Foolish", meaning: "မိုက်မဲသော" },
+            { word: "Kill", meaning: "သတ်သည်" },
+            { word: "Lose", meaning: "ဆုံးရှုံးသည်" },
+            { word: "Listen", meaning: "နားထောင်သည်" },
+            { word: "Ordinary", meaning: "သာမန်" },
+            { word: "Destroy", meaning: "ဖျက်ဆီးသည်" },
+            { word: "Good", meaning: "ကောင်းသော" },
+            { word: "Thing", meaning: "အရာ" },
+            { word: "Never", meaning: "ဘယ်တော့မှ" },
+            { word: "Got", meaning: "ရသည်" },
+            { word: "Any", meaning: "မည်သည့်" },
+            { word: "More", meaning: "ထပ်မံ" },
+            { word: "Found", meaning: "တွေ့ရှိသည်" },
+            { word: "Took", meaning: "ယူသည်" },
+            { word: "Home", meaning: "အိမ်" },
+            { word: "Want", meaning: "လိုချင်သည်" },
+            { word: "Had", meaning: "ရှိသည်" },
+            { word: "Let's", meaning: "လုပ်ကြရအောင်" },
+            { word: "Just", meaning: "ရုံ" },
+            { word: "Together", meaning: "အတူ" },
+            { word: "Three", meaning: "သုံး" },
+            { word: "Every", meaning: "တိုင်း" },
+            { word: "His", meaning: "သူ့" }
+            ]
+            },
+            {
+            id: 9,
+            title: "The Wind and the Sun",
+            en: `One day, the Wind and the Sun were arguing about who was stronger. They saw a man walking along the road wearing a coat.
+            
+            The Wind said, "I am stronger than you. Watch me blow that man's coat off." The Wind blew hard, but the man held his coat tightly.
+            
+            The Wind blew even harder, but the man held his coat even tighter. The Wind gave up and said, "You try."
+            
+            The Sun shone gently on the man. The man started to feel warm. He loosened his coat a little. The Sun shone brighter and the man took off his coat completely.
+            
+            The Sun said to the Wind, "Gentle persuasion is stronger than force. Kindness and warmth are more powerful than anger and strength."
+            
+            The Wind learned that being gentle is often better than being forceful. The Sun showed that kindness can achieve what strength cannot.`,
+            my: `တစ်နေ့မှာ လေနဲ့ နေတို့က ဘယ်သူက ပိုသန်မာလဲဆိုတာ ငြင်းခုံနေကြတယ်။ သူတို့ဟာ ကုတ်အင်္ကျီဝတ်ထားတဲ့ လူတစ်ယောက် လမ်းပေါ်မှာ လျှောက်လာတာကို မြင်လိုက်တယ်။
+            
+            လေက "ငါ မင်းထက် ပိုသန်မာတယ်။ အဲဒီလူရဲ့ ကုတ်အင်္ကျီကို ငါ မှုတ်ထုတ်ပြစေချင်တယ်" လို့ပြောတယ်။ လေက အပြင်းအထန် မှုတ်ပေမယ့် လူက သူ့ကုတ်အင်္ကျီကို သေချာကိုင်ထားတယ်။
+            
+            လေက ပိုပြင်းအောင်မှုတ်ပေမယ့် လူက ပိုပြီးတင်းတင်းကိုင်ထားတယ်။ လေက အရှုံးပေးပြီး "မင်းစမ်းကြည့်" လို့ပြောတယ်။
+            
+            နေက လူအပေါ် ညင်သာစွာ ထွန်းလင်းတယ်။ လူက နွေးထွေးလာတယ်။ သူဟာ ကုတ်အင်္ကျီကို နည်းနည်းဖြေလျှော့လိုက်တယ်။ နေက ပိုတောက်ပလာတယ်၊ လူက ကုတ်အင်္ကျီကို လုံးဝချွတ်လိုက်တယ်။
+            
+            နေက လေကိုပြောတယ်၊ "ညင်သာတဲ့ ဆွဲဆောင်မှုက အင်အားထက် ပိုသန်မာတယ်။ ကြင်နာမှုနဲ့ နွေးထွေးမှုက ဒေါသနဲ့ ခွန်အားထက် ပိုစွမ်းအားရှိတယ်။"
+            
+            လေက ညင်သာတာက အင်အားသုံးတာထက် ပိုကောင်းတယ်ဆိုတာ သင်ယူခဲ့တယ်။ နေက ကြင်နာမှုက အင်အားမရနိုင်တာကို ရနိုင်တယ်ဆိုတာ ပြသခဲ့တယ်။`,
+            vocab: [
+            { word: "Wind", meaning: "လေ" },
+            { word: "Sun", meaning: "နေ" },
+            { word: "Arguing", meaning: "ငြင်းခုံနေသော" },
+            { word: "Stronger", meaning: "ပိုသန်မာသော" },
+            { word: "Man", meaning: "လူ" },
+            { word: "Walking", meaning: "လျှောက်နေသော" },
+            { word: "Road", meaning: "လမ်း" },
+            { word: "Wearing", meaning: "ဝတ်ဆင်နေသော" },
+            { word: "Coat", meaning: "ကုတ်အင်္ကျီ" },
+            { word: "Blow", meaning: "မှုတ်သည်" },
+            { word: "Hard", meaning: "ပြင်းထန်စွာ" },
+            { word: "Held", meaning: "ကိုင်ထားသည်" },
+            { word: "Tightly", meaning: "တင်းတင်းကျပ်ကျပ်" },
+            { word: "Tighter", meaning: "ပိုတင်းကျပ်စွာ" },
+            { word: "Gave up", meaning: "အရှုံးပေးသည်" },
+            { word: "Try", meaning: "ကြိုးစားသည်" },
+            { word: "Shone", meaning: "ထွန်းလင်းသည်" },
+            { word: "Gently", meaning: "ညင်သာစွာ" },
+            { word: "Warm", meaning: "နွေးထွေးသော" },
+            { word: "Loosened", meaning: "ဖြေလျှော့သည်" },
+            { word: "Brighter", meaning: "ပိုတောက်ပသော" },
+            { word: "Took off", meaning: "ချွတ်သည်" },
+            { word: "Completely", meaning: "လုံးဝ" },
+            { word: "Gentle", meaning: "ညင်သာသော" },
+            { word: "Persuasion", meaning: "ဆွဲဆောင်မှု" },
+            { word: "Force", meaning: "အင်အား" },
+            { word: "Kindness", meaning: "ကြင်နာမှု" },
+            { word: "Warmth", meaning: "နွေးထွေးမှု" },
+            { word: "Powerful", meaning: "စွမ်းအားရှိသော" },
+            { word: "Anger", meaning: "ဒေါသ" },
+            { word: "Strength", meaning: "ခွန်အား" },
+            { word: "Learned", meaning: "သင်ယူသည်" },
+            { word: "Achieve", meaning: "အောင်မြင်သည်" },
+            { word: "Often", meaning: "မကြာခဏ" },
+            { word: "Better", meaning: "ပိုကောင်းသော" },
+            { word: "Showing", meaning: "ပြသခြင်း" },
+            { word: "Cannot", meaning: "မရနိုင်" },
+            { word: "What", meaning: "ဘာ" },
+            { word: "Along", meaning: "တစ်လျှောက်" },
+            { word: "Off", meaning: "ချွတ်" },
+            { word: "Even", meaning: "သာ၍" },
+            { word: "Little", meaning: "နည်းနည်း" },
+            { word: "Started", meaning: "စတင်သည်" },
+            { word: "Feel", meaning: "ခံစားရသည်" },
+            { word: "Showed", meaning: "ပြသခဲ့သည်" },
+            { word: "Who", meaning: "ဘယ်သူ" },
+            { word: "About", meaning: "အကြောင်း" },
+            { word: "Watch", meaning: "ကြည့်သည်" },
+            { word: "Walking", meaning: "လမ်းလျှောက်နေသော" }
+            ]
+            },
+            {
+            id: 10,
+            title: "The Ant and the Grasshopper",
+            en: `In a green meadow, there lived an ant and a grasshopper. The ant was very hardworking and saved food for the winter.
+            
+            The grasshopper was lazy and spent all his time singing and dancing. He laughed at the ant and said, "Why work so hard? Enjoy the summer!"
+            
+            The ant replied, "I am saving food for winter. You should do the same." But the grasshopper ignored the ant and continued playing.
+            
+            When winter came, it was very cold and snowy. The ant had plenty of food in his warm home. The grasshopper had nothing to eat and was freezing.
+            
+            The grasshopper went to the ant's house and begged for food. The ant said, "I worked hard while you played. Now you must learn your lesson."
+            
+            The ant gave him some food and let him stay for the night. The grasshopper realized that hard work is important. He decided to save food next year.`,
+            my: `စိမ်းလန်းတဲ့ မြက်ခင်းပြင်တစ်ခုမှာ ပုရွက်ဆိတ်တစ်ကောင်နဲ့ ကျိုင်းကောင်တစ်ကောင် နေထိုင်တယ်။ ပုရွက်ဆိတ်က အရမ်းကြိုးစားပြီး ဆောင်းရာသီအတွက် အစာသိုလှောင်တယ်။
+            
+            ကျိုင်းကောင်က ပျင်းရိပြီး သူ့အချိန်အားလုံးကို သီချင်းဆိုပြီး ကခုန်နေတယ်။ သူဟာ ပုရွက်ဆိတ်ကို ပြက်ရယ်ပြုပြီး "ဘာလို့ အရမ်းကြိုးစားနေတာလဲ။ နွေရာသီကို ပျော်ပျော်နေပါ" လို့ပြောတယ်။
+            
+            ပုရွက်ဆိတ်က "ငါ ဆောင်းအတွက် အစာသိုလှောင်တယ်။ မင်းလည်း အဲဒီလိုလုပ်သင့်တယ်" လို့ပြန်ပြောတယ်။ ဒါပေမယ့် ကျိုင်းကောင်က ပုရွက်ဆိတ်ကို လျစ်လျူရှုပြီး ဆက်ကစားနေတယ်။
+            
+            ဆောင်းရာသီရောက်တဲ့အခါ အရမ်းအေးပြီး နှင်းတွေကျတယ်။ ပုရွက်ဆိတ်မှာ သူ့အိမ်နွေးနွေးလေးထဲမှာ အစာအများကြီးရှိတယ်။ ကျိုင်းကောင်မှာ စားစရာဘာမှမရှိဘဲ ခဲနေတယ်။
+            
+            ကျိုင်းကောင်က ပုရွက်ဆိတ်အိမ်ကိုသွားပြီး အစာတောင်းတယ်။ ပုရွက်ဆိတ်က "မင်းကစားနေတုန်း ငါကြိုးစားအလုပ်လုပ်တယ်။ အခု မင်း သင်ခန်းစာယူရမယ်" လို့ပြောတယ်။
+            
+            ပုရွက်ဆိတ်က သူ့ကို အစာအနည်းငယ်ပေးပြီး ညအိပ်ခွင့်ပြုတယ်။ ကျိုင်းကောင်က ကြိုးစားလုပ်ဆောင်မှုက အရေးကြီးတယ်ဆိုတာ နားလည်သွားတယ်။ နောက်နှစ်အတွက် အစာသိုလှောင်ဖို့ ဆုံးဖြတ်လိုက်တယ်။`,
+            vocab: [
+            { word: "Ant", meaning: "ပုရွက်ဆိတ်" },
+            { word: "Grasshopper", meaning: "ကျိုင်းကောင်" },
+            { word: "Meadow", meaning: "မြက်ခင်းပြင်" },
+            { word: "Hardworking", meaning: "ကြိုးစားသော" },
+            { word: "Saved", meaning: "သိုလှောင်သည်" },
+            { word: "Winter", meaning: "ဆောင်းရာသီ" },
+            { word: "Lazy", meaning: "ပျင်းရိသော" },
+            { word: "Spent", meaning: "ကုန်ဆုံးသည်" },
+            { word: "Singing", meaning: "သီချင်းဆိုနေသော" },
+            { word: "Dancing", meaning: "ကနေသော" },
+            { word: "Laughed", meaning: "ရယ်သည်" },
+            { word: "Enjoy", meaning: "ပျော်ရွှင်သည်" },
+            { word: "Summer", meaning: "နွေရာသီ" },
+            { word: "Replied", meaning: "ပြန်ဖြေသည်" },
+            { word: "Ignored", meaning: "လျစ်လျူရှုသည်" },
+            { word: "Continued", meaning: "ဆက်လုပ်သည်" },
+            { word: "Playing", meaning: "ကစားနေသော" },
+            { word: "Cold", meaning: "အေးသော" },
+            { word: "Snowy", meaning: "နှင်းကျသော" },
+            { word: "Plenty", meaning: "အများကြီး" },
+            { word: "Warm", meaning: "နွေးသော" },
+            { word: "Home", meaning: "အိမ်" },
+            { word: "Freezing", meaning: "ခဲနေသော" },
+            { word: "Went", meaning: "သွားသည်" },
+            { word: "Begged", meaning: "တောင်းပန်သည်" },
+            { word: "Lesson", meaning: "သင်ခန်းစာ" },
+            { word: "Some", meaning: "အချို့" },
+            { word: "Stay", meaning: "နေသည်" },
+            { word: "Night", meaning: "ည" },
+            { word: "Realized", meaning: "နားလည်သည်" },
+            { word: "Important", meaning: "အရေးကြီးသော" },
+            { word: "Decided", meaning: "ဆုံးဖြတ်သည်" },
+            { word: "Next", meaning: "နောက်" },
+            { word: "Year", meaning: "နှစ်" },
+            { word: "Green", meaning: "စိမ်းလန်းသော" },
+            { word: "All", meaning: "အားလုံး" },
+            { word: "Time", meaning: "အချိန်" },
+            { word: "Should", meaning: "သင့်သည်" },
+            { word: "Same", meaning: "တူညီသော" },
+            { word: "While", meaning: "နေစဉ်" },
+            { word: "Must", meaning: "ရမည်" },
+            { word: "Work", meaning: "အလုပ်" },
+            { word: "Hard", meaning: "ခက်ခဲသော" },
+            { word: "Food", meaning: "အစာ" },
+            { word: "Only", meaning: "သာ" },
+            { word: "Let", meaning: "ခွင့်ပြုသည်" },
+            { word: "Him", meaning: "သူ့ကို" },
+            { word: "Could", meaning: "နိုင်သည်" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "Because", meaning: "ဘာဖြစ်လို့လဲဆိုတော့" }
+            ]
+            },
+            {
+            id: 11,
+            title: "The Lion and the Mouse",
+            en: `A mighty lion was sleeping in the forest. A tiny mouse ran over his body and woke him up. The lion was angry and caught the mouse.
+            
+            The mouse begged, "Please let me go! I will repay you one day." The lion laughed and said, "How can a tiny mouse help a mighty lion?" But he let the mouse go.
+            
+            A few days later, the lion was caught in a hunter's net. He roared loudly, but no one came. The mouse heard the lion's roar and ran to help.
+            
+            The mouse chewed the ropes with his sharp teeth and freed the lion. The lion said, "I was wrong. Even a tiny mouse can help a mighty lion."
+            
+            They became best friends and lived happily ever after.`,
+            my: `သန်မာတဲ့ ခြင်္သေ့တစ်ကောင်ဟာ တောအုပ်ထဲမှာ အိပ်နေတယ်။ ကြွက်ငယ်လေးတစ်ကောင်က သူ့ကိုယ်ပေါ်ကို ဖြတ်ပြေးပြီး နိုးလာစေတယ်။ ခြင်္သေ့က ဒေါသထွက်ပြီး ကြွက်ကိုဖမ်းလိုက်တယ်။
+            
+            ကြွက်က "ကျေးဇူးပြုပြီး လွှတ်ပေးပါ။ တစ်နေ့ကျရင် ပြန်ဆပ်ပါမယ်" လို့ တောင်းပန်တယ်။ ခြင်္သေ့က ရယ်ပြီး "ကြွက်ငယ်လေးက ခြင်္သေ့ကြီးကို ဘယ်လိုကူညီနိုင်မလဲ" လို့ပြောပေမယ့် လွှတ်လိုက်တယ်။
+            
+            ရက်အနည်းငယ်ကြာတော့ ခြင်္သေ့က မုဆိုးရဲ့ပိုက်ထဲမှာ ဖမ်းမိတယ်။ သူဟာ ကျယ်လောင်စွာ ဟိန်းဟိန်းအော်ပေမယ့် ဘယ်သူမှ မလာဘူး။ ကြွက်က ခြင်္သေ့ရဲ့အော်သံကိုကြားပြီး ကူညီဖို့ ပြေးလာတယ်။
+            
+            ကြွက်က သူ့သွားချွန်တွေနဲ့ ကြိုးတွေကို ကိုက်ဖြတ်ပြီး ခြင်္သေ့ကို လွတ်အောင်လုပ်တယ်။ ခြင်္သေ့က "ငါမှားသွားတယ်။ ကြွက်ငယ်လေးတောင်မှ ခြင်္သေ့ကြီးကို ကူညီနိုင်တယ်" လို့ပြောတယ်။
+            
+            သူတို့ဟာ အကောင်းဆုံးသူငယ်ချင်းတွေ ဖြစ်သွားပြီး နောက်ပိုင်းမှာ ပျော်ရွှင်စွာ နေထိုင်ကြတယ်။`,
+            vocab: [
+            { word: "Mighty", meaning: "သန်မာသော" },
+            { word: "Lion", meaning: "ခြင်္သေ့" },
+            { word: "Sleeping", meaning: "အိပ်နေသော" },
+            { word: "Forest", meaning: "တောအုပ်" },
+            { word: "Tiny", meaning: "သေးငယ်သော" },
+            { word: "Mouse", meaning: "ကြွက်" },
+            { word: "Ran", meaning: "ပြေးသည်" },
+            { word: "Body", meaning: "ကိုယ်" },
+            { word: "Woke", meaning: "နိုးသည်" },
+            { word: "Angry", meaning: "ဒေါသထွက်သော" },
+            { word: "Caught", meaning: "ဖမ်းသည်" },
+            { word: "Begged", meaning: "တောင်းပန်သည်" },
+            { word: "Repay", meaning: "ပြန်ဆပ်သည်" },
+            { word: "Laughed", meaning: "ရယ်သည်" },
+            { word: "Hunter", meaning: "မုဆိုး" },
+            { word: "Net", meaning: "ပိုက်" },
+            { word: "Roared", meaning: "ဟိန်းဟိန်းအော်သည်" },
+            { word: "Loudly", meaning: "ကျယ်လောင်စွာ" },
+            { word: "Heard", meaning: "ကြားသည်" },
+            { word: "Chewed", meaning: "ကိုက်သည်" },
+            { word: "Ropes", meaning: "ကြိုးများ" },
+            { word: "Sharp", meaning: "ချွန်သော" },
+            { word: "Teeth", meaning: "သွားများ" },
+            { word: "Freed", meaning: "လွတ်အောင်လုပ်သည်" },
+            { word: "Wrong", meaning: "မှားသော" },
+            { word: "Even", meaning: "တောင်မှ" },
+            { word: "Friends", meaning: "သူငယ်ချင်းများ" },
+            { word: "Happily", meaning: "ပျော်ရွှင်စွာ" },
+            { word: "After", meaning: "နောက်ပိုင်း" },
+            { word: "Days", meaning: "ရက်များ" },
+            { word: "Later", meaning: "ကြာသော" },
+            { word: "Let", meaning: "ခွင့်ပြုသည်" },
+            { word: "Go", meaning: "သွားသည်" },
+            { word: "Please", meaning: "ကျေးဇူးပြု" },
+            { word: "One", meaning: "တစ်" },
+            { word: "Day", meaning: "နေ့" },
+            { word: "Came", meaning: "လာသည်" },
+            { word: "Few", meaning: "အနည်းငယ်" },
+            { word: "No", meaning: "မရှိ" },
+            { word: "Help", meaning: "ကူညီ" },
+            { word: "Became", meaning: "ဖြစ်လာသည်" },
+            { word: "Best", meaning: "အကောင်းဆုံး" },
+            { word: "Ever", meaning: "ဘယ်တော့မှ" },
+            { word: "Can", meaning: "နိုင်သည်" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" },
+            { word: "How", meaning: "ဘယ်လို" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "Over", meaning: "ပေါ်မှ" }
+            ]
+            },
+            {
+            id: 12,
+            title: "The Peacock and the Crane",
+            en: `A proud peacock was showing off his beautiful feathers to a crane. He said, "Look at my colorful feathers! You are so plain and boring."
+            
+            The crane replied calmly, "It is true that your feathers are more beautiful than mine. But I can fly high in the sky. You cannot fly at all."
+            
+            The peacock felt ashamed. He realized that beauty is not everything. The crane said, "We all have our own strengths. You have beauty, and I have freedom."
+            
+            The peacock learned to appreciate his own gifts. He stopped being proud and became a humble bird.`,
+            my: `ဂုဏ်ကြီးတဲ့ ဒေါင်းတစ်ကောင်ဟာ ကြိုးကြာတစ်ကောင်ကို သူ့ရဲ့လှပတဲ့အမွေးတွေကို ပြသပြီး "ငါ့ရဲ့ရောင်စုံအမွေးတွေကို ကြည့်ပါ။ မင်းက သိပ်ပျင်းစရာကောင်းပြီး သာမန်ပဲ" လို့ပြောတယ်။
+            
+            ကြိုးကြာက အေးဆေးစွာ "မင်းရဲ့အမွေးတွေက ငါ့ထက် ပိုလှတာ အမှန်ပါ။ ဒါပေမယ့် ငါ ကောင်းကင်မှာ မြင့်မြင့်ပျံနိုင်တယ်။ မင်းက လုံးဝမပျံနိုင်ဘူး" လို့ပြန်ဖြေတယ်။
+            
+            ဒေါင်းက ရှက်သွားတယ်။ အလှတရားက အရာအားလုံးမဟုတ်ဘူးဆိုတာ သူ နားလည်သွားတယ်။ ကြိုးကြာက "ငါတို့တစ်ယောက်မှာ ကိုယ့်အားသာချက်တွေရှိတယ်။ မင်းမှာ အလှရှိတယ်၊ ငါ့မှာ လွတ်လပ်မှုရှိတယ်" လို့ပြောတယ်။
+            
+            ဒေါင်းက ကိုယ်ပိုင်လက်ဆောင်တွေကို တန်ဖိုးထားတတ်လာတယ်။ သူဟာ ဂုဏ်မကြီးတော့ဘဲ နှိမ့်ချတဲ့ငှက်တစ်ကောင် ဖြစ်သွားတယ်။`,
+            vocab: [
+            { word: "Peacock", meaning: "ဒေါင်း" },
+            { word: "Crane", meaning: "ကြိုးကြာ" },
+            { word: "Proud", meaning: "ဂုဏ်ကြီးသော" },
+            { word: "Showing off", meaning: "ပြသခြင်း" },
+            { word: "Beautiful", meaning: "လှပသော" },
+            { word: "Feathers", meaning: "အမွေးများ" },
+            { word: "Colorful", meaning: "ရောင်စုံ" },
+            { word: "Plain", meaning: "သာမန်" },
+            { word: "Boring", meaning: "ပျင်းစရာ" },
+            { word: "Replied", meaning: "ပြန်ဖြေသည်" },
+            { word: "Calmly", meaning: "အေးဆေးစွာ" },
+            { word: "True", meaning: "အမှန်တရား" },
+            { word: "Fly", meaning: "ပျံသန်းသည်" },
+            { word: "High", meaning: "မြင့်သော" },
+            { word: "Sky", meaning: "ကောင်းကင်" },
+            { word: "Ashamed", meaning: "ရှက်သော" },
+            { word: "Realized", meaning: "နားလည်သည်" },
+            { word: "Beauty", meaning: "အလှတရား" },
+            { word: "Everything", meaning: "အရာအားလုံး" },
+            { word: "Strengths", meaning: "အားသာချက်များ" },
+            { word: "Freedom", meaning: "လွတ်လပ်မှု" },
+            { word: "Appreciate", meaning: "တန်ဖိုးထားသည်" },
+            { word: "Gifts", meaning: "လက်ဆောင်များ" },
+            { word: "Stopped", meaning: "ရပ်သည်" },
+            { word: "Humble", meaning: "နှိမ့်ချသော" },
+            { word: "Bird", meaning: "ငှက်" },
+            { word: "Own", meaning: "ကိုယ်ပိုင်" },
+            { word: "Cannot", meaning: "မရနိုင်" },
+            { word: "All", meaning: "အားလုံး" },
+            { word: "Have", meaning: "ရှိသည်" },
+            { word: "Our", meaning: "ငါတို့" },
+            { word: "At", meaning: "မှာ" },
+            { word: "All", meaning: "လုံးဝ" },
+            { word: "Look", meaning: "ကြည့်သည်" },
+            { word: "Like", meaning: "ကြိုက်သည်" },
+            { word: "You", meaning: "မင်း" },
+            { word: "Me", meaning: "ငါ" },
+            { word: "So", meaning: "အရမ်း" },
+            { word: "Learn", meaning: "သင်ယူသည်" },
+            { word: "Become", meaning: "ဖြစ်လာသည်" },
+            { word: "More", meaning: "ပို" },
+            { word: "Than", meaning: "ထက်" },
+            { word: "Your", meaning: "မင်းရဲ့" },
+            { word: "Mine", meaning: "ငါ့" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "We", meaning: "ငါတို့" },
+            { word: "Not", meaning: "မဟုတ်" }
+            ]
+            },
+            {
+            id: 13,
+            title: "The Dog and the Shadow",
+            en: `A greedy dog stole a large piece of meat from a shop. He ran to a bridge to eat his meat alone.
+            
+            As he crossed the bridge, he looked down into the water and saw his own shadow. He thought it was another dog with a bigger piece of meat.
+            
+            The greedy dog opened his mouth to bite the shadow dog. As soon as he opened his mouth, his own meat fell into the water.
+            
+            The dog lost his meat and his shadow disappeared. He learned that greed makes you lose what you already have.`,
+            my: `လောဘကြီးတဲ့ခွေးတစ်ကောင်ဟာ ဆိုင်တစ်ဆိုင်ကနေ အသားကြီးတစ်တုံးကို ခိုးယူတယ်။ သူဟာ တစ်ယောက်တည်း အသားစားဖို့ တံတားဆီကို ပြေးသွားတယ်။
+            
+            တံတားဖြတ်ကူးတဲ့အခါ ရေထဲကိုအောက်ကြည့်ပြီး ကိုယ့်အရိပ်ကို မြင်လိုက်တယ်။ အဲဒါက နောက်ခွေးတစ်ကောင်ဖြစ်ပြီး အသားပိုကြီးတစ်တုံးပါလို့ သူထင်လိုက်တယ်။
+            
+            လောဘကြီးတဲ့ခွေးက အရိပ်ခွေးကို ကိုက်ဖို့ ပါးစပ်ဖွင့်လိုက်တယ်။ ပါးစပ်ဖွင့်တာနဲ့ သူ့အသားက ရေထဲပြုတ်ကျသွားတယ်။
+            
+            ခွေးက အသားဆုံးရှုံးပြီး သူ့အရိပ်လည်း ပျောက်သွားတယ်။ လောဘဆိုတာ ရှိပြီးသားကို ဆုံးရှုံးစေတယ်ဆိုတာ သူ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Dog", meaning: "ခွေး" },
+            { word: "Shadow", meaning: "အရိပ်" },
+            { word: "Greedy", meaning: "လောဘကြီးသော" },
+            { word: "Stole", meaning: "ခိုးယူသည်" },
+            { word: "Large", meaning: "ကြီးသော" },
+            { word: "Piece", meaning: "တုံး" },
+            { word: "Meat", meaning: "အသား" },
+            { word: "Shop", meaning: "ဆိုင်" },
+            { word: "Ran", meaning: "ပြေးသည်" },
+            { word: "Bridge", meaning: "တံတား" },
+            { word: "Alone", meaning: "တစ်ယောက်တည်း" },
+            { word: "Crossed", meaning: "ဖြတ်ကူးသည်" },
+            { word: "Looked", meaning: "ကြည့်သည်" },
+            { word: "Water", meaning: "ရေ" },
+            { word: "Down", meaning: "အောက်" },
+            { word: "Another", meaning: "အခြား" },
+            { word: "Bigger", meaning: "ပိုကြီးသော" },
+            { word: "Opened", meaning: "ဖွင့်သည်" },
+            { word: "Mouth", meaning: "ပါးစပ်" },
+            { word: "Bite", meaning: "ကိုက်သည်" },
+            { word: "Fell", meaning: "ပြုတ်ကျသည်" },
+            { word: "Lost", meaning: "ဆုံးရှုံးသည်" },
+            { word: "Disappeared", meaning: "ပျောက်သွားသည်" },
+            { word: "Learned", meaning: "သင်ယူသည်" },
+            { word: "Greed", meaning: "လောဘ" },
+            { word: "Already", meaning: "ရှိပြီးသား" },
+            { word: "Have", meaning: "ရှိသည်" },
+            { word: "What", meaning: "ဘာ" },
+            { word: "You", meaning: "မင်း" },
+            { word: "Makes", meaning: "ဖြစ်စေသည်" },
+            { word: "Soon", meaning: "မကြာမီ" },
+            { word: "As", meaning: "အဖြစ်" },
+            { word: "Thought", meaning: "ထင်သည်" },
+            { word: "Was", meaning: "ဖြစ်ခဲ့သည်" },
+            { word: "His", meaning: "သူ့" },
+            { word: "Own", meaning: "ကိုယ်ပိုင်" },
+            { word: "Only", meaning: "သာ" },
+            { word: "Eat", meaning: "စားသည်" },
+            { word: "To", meaning: "ရန်" },
+            { word: "He", meaning: "သူ" },
+            { word: "In", meaning: "ထဲမှာ" },
+            { word: "On", meaning: "ပေါ်မှ" },
+            { word: "At", meaning: "မှာ" },
+            { word: "From", meaning: "မှ" },
+            { word: "With", meaning: "နှင့်" },
+            { word: "About", meaning: "အကြောင်း" },
+            { word: "By", meaning: "အားဖြင့်" }
+            ]
+            },
+            {
+            id: 14,
+            title: "The Bear and the Two Travelers",
+            en: `Two friends were traveling together through a dangerous forest. They promised to always help each other.
+            
+            Suddenly, a big bear appeared on the path. One friend quickly climbed a tree and hid. The other friend could not climb the tree.
+            
+            The second friend lay on the ground and pretended to be dead. The bear came near him and sniffed his body. The bear thought he was dead and walked away.
+            
+            When the bear was gone, the first friend came down from the tree. He asked, "What did the bear whisper in your ear?"
+            
+            The second friend replied, "The bear said, 'Never trust a friend who abandons you in danger.'" The first friend felt ashamed.
+            
+            They learned that a true friend stays with you in difficult times.`,
+            my: `မိတ်ဆွေနှစ်ယောက်ဟာ အန္တရာယ်များတဲ့ တောအုပ်ထဲမှာ အတူခရီးသွားနေတယ်။ သူတို့ဟာ အချင်းချင်း အမြဲကူညီဖို့ ကတိပေးထားတယ်။
+            
+            ရုတ်တရက် ဝက်ဝံကြီးတစ်ကောင်က လမ်းပေါ်မှာ ပေါ်လာတယ်။ မိတ်ဆွေတစ်ယောက်က သစ်ပင်ပေါ်ကို လျင်မြန်စွာ တက်ပြီး ပုန်းလိုက်တယ်။ အခြားမိတ်ဆွေက သစ်ပင်မတက်နိုင်ဘူး။
+            
+            ဒုတိယမိတ်ဆွေက မြေပေါ်မှာ အိပ်ပြီး သေဆောင်ခဲ့တယ်။ ဝက်ဝံက သူ့အနားကိုလာပြီး ခန္ဓာကိုယ်ကို နမ်းကြည့်တယ်။ ဝက်ဝံက သူသေပြီလို့ထင်ပြီး ထွက်သွားတယ်။
+            
+            ဝက်ဝံသွားတဲ့အခါ ပထမမိတ်ဆွေက သစ်ပင်ပေါ်က ဆင်းလာတယ်။ သူက "ဝက်ဝံက မင်းနားကို ဘာတိုးတိုးပြောလဲ" လို့မေးတယ်။
+            
+            ဒုတိယမိတ်ဆွေက "ဝက်ဝံက 'အန္တရာယ်မှာ မင်းကိုစွန့်ခွာသွားတဲ့ မိတ်ဆွေကို ဘယ်တော့မှ မယုံပါနဲ့' လို့ပြောတယ်" လို့ပြန်ဖြေတယ်။ ပထမမိတ်ဆွေက ရှက်သွားတယ်။
+            
+            ခက်ခဲတဲ့အချိန်တွေမှာ စစ်မှန်တဲ့မိတ်ဆွေက အတူရှိတယ်ဆိုတာ သူတို့ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Bear", meaning: "ဝက်ဝံ" },
+            { word: "Travelers", meaning: "ခရီးသွားများ" },
+            { word: "Friends", meaning: "မိတ်ဆွေများ" },
+            { word: "Traveling", meaning: "ခရီးသွားနေသော" },
+            { word: "Dangerous", meaning: "အန္တရာယ်ရှိသော" },
+            { word: "Forest", meaning: "တောအုပ်" },
+            { word: "Promised", meaning: "ကတိပေးသည်" },
+            { word: "Help", meaning: "ကူညီ" },
+            { word: "Suddenly", meaning: "ရုတ်တရက်" },
+            { word: "Appeared", meaning: "ပေါ်လာသည်" },
+            { word: "Path", meaning: "လမ်း" },
+            { word: "Quickly", meaning: "လျင်မြန်စွာ" },
+            { word: "Climbed", meaning: "တက်သည်" },
+            { word: "Tree", meaning: "သစ်ပင်" },
+            { word: "Hid", meaning: "ပုန်းသည်" },
+            { word: "Could", meaning: "နိုင်သည်" },
+            { word: "Second", meaning: "ဒုတိယ" },
+            { word: "Ground", meaning: "မြေ" },
+            { word: "Pretended", meaning: "ဟန်ဆောင်သည်" },
+            { word: "Dead", meaning: "သေ" },
+            { word: "Sniffed", meaning: "နမ်းကြည့်သည်" },
+            { word: "Body", meaning: "ခန္ဓာကိုယ်" },
+            { word: "Thought", meaning: "ထင်သည်" },
+            { word: "Walked", meaning: "လမ်းလျှောက်သည်" },
+            { word: "Gone", meaning: "သွားပြီ" },
+            { word: "Came", meaning: "လာသည်" },
+            { word: "Down", meaning: "အောက်" },
+            { word: "Asked", meaning: "မေးသည်" },
+            { word: "Whisper", meaning: "တိုးတိုးပြောသည်" },
+            { word: "Ear", meaning: "နား" },
+            { word: "Trust", meaning: "ယုံကြည်သည်" },
+            { word: "Abandons", meaning: "စွန့်ခွာသည်" },
+            { word: "Danger", meaning: "အန္တရာယ်" },
+            { word: "Ashamed", meaning: "ရှက်သည်" },
+            { word: "True", meaning: "စစ်မှန်သော" },
+            { word: "Stays", meaning: "ရှိနေသည်" },
+            { word: "Difficult", meaning: "ခက်ခဲသော" },
+            { word: "Times", meaning: "အချိန်များ" },
+            { word: "Learned", meaning: "သင်ယူသည်" },
+            { word: "Never", meaning: "ဘယ်တော့မှ" },
+            { word: "Who", meaning: "ဘယ်သူ" },
+            { word: "They", meaning: "သူတို့" },
+            { word: "Each", meaning: "တစ်ယောက်စီ" },
+            { word: "Other", meaning: "အခြား" },
+            { word: "Them", meaning: "သူတို့ကို" },
+            { word: "Away", meaning: "ဝေးရာ" },
+            { word: "Near", meaning: "အနီး" },
+            { word: "Him", meaning: "သူ့ကို" },
+            { word: "His", meaning: "သူ့" }
+            ]
+            },
+            {
+            id: 15,
+            title: "The Oak and the Reed",
+            en: `A tall oak tree grew proudly by the river. Beside it, a small reed swayed gently in the wind.
+            
+            The oak said, "I am so strong and big. The wind cannot bend me. You are so weak and bend with every breeze."
+            
+            The reed replied, "I am flexible. I bend so that I do not break." The oak laughed and said, "I will never break."
+            
+            A great storm came with strong winds. The oak stood firm, but the wind was too strong. The oak cracked and fell into the river.
+            
+            The reed bent low and survived the storm. The reed said to the fallen oak, "It is better to be flexible than to be rigid and break."
+            
+            The oak learned that being flexible is better than being too rigid.`,
+            my: `မြစ်အနီးမှာ အရပ်ရှည်တဲ့ သစ်ပင်ကြီးတစ်ပင် ဂုဏ်ယူစွာ ပေါက်နေတယ်။ ဘေးမှာ ကျူပင်ငယ်လေးတစ်ပင် လေထဲမှာ ညင်သာစွာ လွင့်နေတယ်။
+            
+            သစ်ပင်က "ငါ အရမ်းသန်မာပြီး ကြီးတယ်။ လေက ငါ့ကို ကွေးမရဘူး။ မင်းက သိပ်အားနည်းပြီး လေပြေလေးနဲ့တောင် ကွေးသွားတယ်" လို့ပြောတယ်။
+            
+            ကျူပင်က "ငါ ပျော့ပြောင်းတယ်။ မကျိုးစေဖို့ ငါကွေးပေးတယ်" လို့ပြန်ဖြေတယ်။ သစ်ပင်က ရယ်ပြီး "ငါ ဘယ်တော့မှ မကျိုးဘူး" လို့ပြောတယ်။
+            
+            လေပြင်းတဲ့ မုန်တိုင်းကြီးတစ်ခု လာတယ်။ သစ်ပင်က မတ်မတ်ရပ်ပေမယ့် လေက သိပ်ပြင်းလွန်းတယ်။ သစ်ပင်က အက်ကွဲပြီး မြစ်ထဲပြုတ်ကျတယ်။
+            
+            ကျူပင်က နှိမ့်ချပြီး မုန်တိုင်းကို ရှင်ကျန်ခဲ့တယ်။ ကျူပင်က ပြုတ်ကျတဲ့သစ်ပင်ကို "ခိုင်မာလွန်းပြီး ကျိုးတာထက် ပျော့ပြောင်းတာက ပိုကောင်းတယ်" လို့ပြောတယ်။
+            
+            သစ်ပင်က ပျော့ပြောင်းတာက ခိုင်မာလွန်းတာထက် ပိုကောင်းတယ်ဆိုတာ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Oak", meaning: "သစ်ပင်" },
+            { word: "Reed", meaning: "ကျူပင်" },
+            { word: "Tall", meaning: "အရပ်ရှည်သော" },
+            { word: "River", meaning: "မြစ်" },
+            { word: "Proudly", meaning: "ဂုဏ်ယူစွာ" },
+            { word: "Grew", meaning: "ပေါက်သည်" },
+            { word: "Swayed", meaning: "လွင့်သည်" },
+            { word: "Gently", meaning: "ညင်သာစွာ" },
+            { word: "Strong", meaning: "သန်မာသော" },
+            { word: "Bend", meaning: "ကွေးသည်" },
+            { word: "Weak", meaning: "အားနည်းသော" },
+            { word: "Breeze", meaning: "လေပြေ" },
+            { word: "Flexible", meaning: "ပျော့ပြောင်းသော" },
+            { word: "Break", meaning: "ကျိုးသည်" },
+            { word: "Storm", meaning: "မုန်တိုင်း" },
+            { word: "Strong", meaning: "ပြင်းသော" },
+            { word: "Winds", meaning: "လေများ" },
+            { word: "Stood", meaning: "ရပ်သည်" },
+            { word: "Firm", meaning: "တည်တည်ကြည်ကြည်" },
+            { word: "Cracked", meaning: "အက်ကွဲသည်" },
+            { word: "Fell", meaning: "ပြုတ်ကျသည်" },
+            { word: "Survived", meaning: "ရှင်ကျန်သည်" },
+            { word: "Fallen", meaning: "ပြုတ်ကျသော" },
+            { word: "Rigid", meaning: "ခိုင်မာသော" },
+            { word: "Learn", meaning: "သင်ယူသည်" },
+            { word: "Better", meaning: "ပိုကောင်းသော" },
+            { word: "Than", meaning: "ထက်" },
+            { word: "Too", meaning: "လွန်း" },
+            { word: "By", meaning: "အနီး" },
+            { word: "Beside", meaning: "ဘေးမှာ" },
+            { word: "Little", meaning: "ငယ်သော" },
+            { word: "Cannot", meaning: "မရနိုင်" },
+            { word: "Bend", meaning: "ကွေးသည်" },
+            { word: "Every", meaning: "တိုင်း" },
+            { word: "Great", meaning: "ကြီးမားသော" },
+            { word: "Came", meaning: "လာသည်" },
+            { word: "With", meaning: "နှင့်အတူ" },
+            { word: "Low", meaning: "နိမ့်သော" },
+            { word: "So", meaning: "ဒါကြောင့်" },
+            { word: "Do", meaning: "လုပ်သည်" },
+            { word: "Not", meaning: "မဟုတ်" },
+            { word: "Replied", meaning: "ပြန်ဖြေသည်" },
+            { word: "Laughed", meaning: "ရယ်သည်" },
+            { word: "Stood", meaning: "ရပ်နေသည်" },
+            { word: "Could", meaning: "နိုင်သည်" },
+            { word: "He", meaning: "သူ" },
+            { word: "It", meaning: "အဲဒါ" },
+            { word: "Was", meaning: "ဖြစ်ခဲ့သည်" }
+            ]
+            },
+            {
+            id: 16,
+            title: "The Goose and the Golden Eggs",
+            en: `A poor farmer had a goose that laid one golden egg every day. The farmer was happy because he could sell the eggs and earn money.
+            
+            But the farmer was greedy. He wanted to become rich overnight. He thought, "The goose must have a lot of gold inside. I will cut it open and get all the gold."
+            
+            His wife warned him not to be foolish. But the farmer did not listen. He killed the goose and cut it open. There was no gold inside.
+            
+            The farmer lost his golden goose and his daily income. He learned that greed can destroy blessings. He became poor again.`,
+            my: `ဆင်းရဲသော လယ်သမားတစ်ယောက်မှာ နေ့တိုင်း ရွှေဥတစ်လုံး ဥတဲ့ငန်းတစ်ကောင် ရှိတယ်။ လယ်သမားက ဥတွေရောင်းပြီး ပိုက်ဆံရနိုင်လို့ ပျော်တယ်။
+            
+            ဒါပေမယ့် လယ်သမားက လောဘကြီးတယ်။ သူဟာ တစ်ညတည်း ချမ်းသာချင်တယ်။ "ငန်းထဲမှာ ရွှေအများကြီး ရှိရမယ်။ ဖြတ်ဖွင့်ပြီး ရွှေအားလုံးယူမယ်" လို့ တွေးတယ်။
+            
+            သူ့ဇနီးက မမိုက်ပါနဲ့လို့ သတိပေးပေမယ့် လယ်သမားက နားမထောင်ဘူး။ သူဟာ ငန်းကိုသတ်ပြီး ဖြတ်ဖွင့်လိုက်တယ်။ အတွင်းမှာ ရွှေမရှိဘူး။
+            
+            လယ်သမားက သူ့ရွှေငန်းနဲ့ နေ့စဉ်ဝင်ငွေကို ဆုံးရှုံးလိုက်တယ်။ လောဘက ကောင်းချီးတွေကို ဖျက်ဆီးနိုင်တယ်ဆိုတာ သူ သင်ယူခဲ့တယ်။ သူဟာ နောက်တစ်ခါ ဆင်းရဲသွားပြန်တယ်။`,
+            vocab: [
+            { word: "Goose", meaning: "ငန်း" },
+            { word: "Golden", meaning: "ရွှေရောင်" },
+            { word: "Eggs", meaning: "ဥများ" },
+            { word: "Poor", meaning: "ဆင်းရဲသော" },
+            { word: "Farmer", meaning: "လယ်သမား" },
+            { word: "Laid", meaning: "ဥသည်" },
+            { word: "Every", meaning: "တိုင်း" },
+            { word: "Day", meaning: "နေ့" },
+            { word: "Happy", meaning: "ပျော်ရွှင်သော" },
+            { word: "Sell", meaning: "ရောင်းသည်" },
+            { word: "Earn", meaning: "ရရှိသည်" },
+            { word: "Money", meaning: "ပိုက်ဆံ" },
+            { word: "Greedy", meaning: "လောဘကြီးသော" },
+            { word: "Rich", meaning: "ချမ်းသာသော" },
+            { word: "Overnight", meaning: "တစ်ညတည်း" },
+            { word: "Inside", meaning: "အတွင်း" },
+            { word: "Cut", meaning: "ဖြတ်" },
+            { word: "Open", meaning: "ဖွင့်" },
+            { word: "Wife", meaning: "ဇနီး" },
+            { word: "Warned", meaning: "သတိပေး" },
+            { word: "Foolish", meaning: "မိုက်မဲသော" },
+            { word: "Listen", meaning: "နားထောင်" },
+            { word: "Killed", meaning: "သတ်" },
+            { word: "Lost", meaning: "ဆုံးရှုံး" },
+            { word: "Daily", meaning: "နေ့စဉ်" },
+            { word: "Income", meaning: "ဝင်ငွေ" },
+            { word: "Destroy", meaning: "ဖျက်ဆီး" },
+            { word: "Blessings", meaning: "ကောင်းချီးများ" },
+            { word: "Again", meaning: "နောက်တစ်ခါ" },
+            { word: "Become", meaning: "ဖြစ်လာ" },
+            { word: "Thought", meaning: "တွေးမိ" },
+            { word: "Have", meaning: "ရှိ" },
+            { word: "Lot", meaning: "အများကြီး" },
+            { word: "Gold", meaning: "ရွှေ" },
+            { word: "All", meaning: "အားလုံး" },
+            { word: "Get", meaning: "ရယူ" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "Not", meaning: "မဟုတ်" },
+            { word: "Could", meaning: "နိုင်" },
+            { word: "Want", meaning: "လိုချင်" },
+            { word: "There", meaning: "အဲဒီမှာ" },
+            { word: "Was", meaning: "ရှိခဲ့" },
+            { word: "No", meaning: "မရှိ" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" },
+            { word: "That", meaning: "အဲဒါ" },
+            { word: "From", meaning: "မှ" },
+            { word: "Would", meaning: "မည်" },
+            { word: "One", meaning: "တစ်" }
+            ]
+            },
+            {
+            id: 17,
+            title: "The Camel and the Tent",
+            en: `A traveler set up his tent in the middle of a cold desert. He brought his camel along and tied it outside.
+            
+            At night, the wind became very cold. The camel asked, "Master, please let me put my nose inside the tent. It is very cold outside."
+            
+            The traveler agreed. The camel put his nose inside. Soon the camel asked, "My neck is cold. Please let me put my neck inside."
+            
+            The traveler agreed again. The camel put his neck inside. Then the camel asked for his shoulders and his body.
+            
+            Finally, the camel pushed the traveler out of the tent and took the whole tent for himself.
+            
+            The traveler learned that if you give a little, some people will want everything. He should have set boundaries.`,
+            my: `ခရီးသွားတစ်ယောက်ဟာ အေးလွန်းတဲ့ကန္တာရအလယ်မှာ သူ့တဲကို ထောင်တယ်။ သူဟာ သူ့ကုလားအုတ်ကို ခေါ်လာပြီး အပြင်မှာ ချည်ထားတယ်။
+            
+            ညဘက်မှာ လေက အရမ်းအေးလာတယ်။ ကုလားအုတ်က "သခင်ရယ်၊ ကျေးဇူးပြုပြီး ကျွန်တော့်နှာခေါင်းကို တဲထဲထည့်ပေးပါ။ အပြင်က အရမ်းအေးလို့ပါ" လို့တောင်းတယ်။
+            
+            ခရီးသွားက သဘောတူလိုက်တယ်။ ကုလားအုတ်က နှာခေါင်းကိုထည့်တယ်။ မကြာခင်မှာ ကုလားအုတ်က "ကျွန်တော့်လည်ပင်းက အေးနေတယ်။ လည်ပင်းကိုထည့်ခွင့်ပြုပါ" လို့တောင်းတယ်။
+            
+            ခရီးသွားက နောက်တစ်ခါ သဘောတူတယ်။ ကုလားအုတ်က လည်ပင်းကိုထည့်တယ်။ ပြီးတော့ ပခုံးတွေနဲ့ ကိုယ်လုံးအတွက် တောင်းတယ်။
+            
+            နောက်ဆုံးမှာ ကုလားအုတ်က ခရီးသွားကို တဲထဲကတွန်းထုတ်ပြီး တဲတစ်ခုလုံးကို သိမ်းပိုက်လိုက်တယ်။
+            
+            နည်းနည်းပေးရင် တချို့လူတွေက အကုန်လုံးလိုချင်တယ်ဆိုတာ ခရီးသွား သင်ယူခဲ့တယ်။ သူဟာ နယ်နိမိတ် သတ်မှတ်သင့်တယ်။`,
+            vocab: [
+            { word: "Camel", meaning: "ကုလားအုတ်" },
+            { word: "Tent", meaning: "တဲ" },
+            { word: "Traveler", meaning: "ခရီးသွား" },
+            { word: "Desert", meaning: "ကန္တာရ" },
+            { word: "Cold", meaning: "အေး" },
+            { word: "Brought", meaning: "ခေါ်လာ" },
+            { word: "Tied", meaning: "ချည်" },
+            { word: "Outside", meaning: "အပြင်" },
+            { word: "Night", meaning: "ည" },
+            { word: "Wind", meaning: "လေ" },
+            { word: "Master", meaning: "သခင်" },
+            { word: "Please", meaning: "ကျေးဇူးပြု" },
+            { word: "Nose", meaning: "နှာခေါင်း" },
+            { word: "Agreed", meaning: "သဘောတူ" },
+            { word: "Neck", meaning: "လည်ပင်း" },
+            { word: "Shoulders", meaning: "ပခုံး" },
+            { word: "Body", meaning: "ကိုယ်လုံး" },
+            { word: "Finally", meaning: "နောက်ဆုံး" },
+            { word: "Pushed", meaning: "တွန်း" },
+            { word: "Whole", meaning: "တစ်ခုလုံး" },
+            { word: "Himself", meaning: "ကိုယ်တိုင်" },
+            { word: "Little", meaning: "နည်းနည်း" },
+            { word: "People", meaning: "လူများ" },
+            { word: "Everything", meaning: "အကုန်လုံး" },
+            { word: "Boundaries", meaning: "နယ်နိမိတ်" },
+            { word: "Set", meaning: "သတ်မှတ်" },
+            { word: "Up", meaning: "ထောင်" },
+            { word: "Middle", meaning: "အလယ်" },
+            { word: "Along", meaning: "အတူ" },
+            { word: "At", meaning: "မှာ" },
+            { word: "Became", meaning: "ဖြစ်လာ" },
+            { word: "Very", meaning: "အရမ်း" },
+            { word: "Soon", meaning: "မကြာခင်" },
+            { word: "Then", meaning: "ပြီးတော့" },
+            { word: "Took", meaning: "ယူ" },
+            { word: "For", meaning: "အတွက်" },
+            { word: "Should", meaning: "သင့်" },
+            { word: "Have", meaning: "ရှိရမည်" },
+            { word: "If", meaning: "အကယ်၍" },
+            { word: "Give", meaning: "ပေး" },
+            { word: "Some", meaning: "အချို့" },
+            { word: "Will", meaning: "မည်" },
+            { word: "Want", meaning: "လိုချင်" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" },
+            { word: "Out", meaning: "ထွက်" },
+            { word: "Into", meaning: "ထဲ" }
+            ]
+            },
+            {
+            id: 18,
+            title: "The Crow and the Pitcher",
+            en: `On a hot summer day, a thirsty crow searched everywhere for water. He finally saw a pitcher with a little water at the bottom.
+            
+            The crow tried to drink but his beak could not reach the water. He was very sad. He thought for a long time.
+            
+            Then, the crow had a clever idea. He picked up small stones and dropped them into the pitcher one by one.
+            
+            With each stone, the water level rose higher. The crow kept working hard until the water reached the top.
+            
+            The crow drank the water happily and flew away. He learned that thinking can solve problems.`,
+            my: `နွေရာသီ ပူပြင်းတဲ့နေ့မှာ ရေငတ်နေတဲ့ကျီးကန်းတစ်ကောင်ဟာ ရေအတွက် နေရာတိုင်း ရှာဖွေတယ်။ နောက်ဆုံးမှာ အိုးတစ်လုံးရဲ့အောက်ခြေမှာ ရေအနည်းငယ်ရှိတာကို မြင်လိုက်တယ်။
+            
+            ကျီးကန်းက သောက်ဖို့ကြိုးစားပေမယ့် သူ့နှုတ်သီးက ရေကို မရောက်နိုင်ဘူး။ သူဟာ အရမ်းဝမ်းနည်းသွားတယ်။ သူဟာ ကြာကြာ စဉ်းစားတယ်။
+            
+            ပြီးတော့ ကျီးကန်းမှာ ဉာဏ်ကောင်းတဲ့စိတ်ကူး ရလာတယ်။ သူဟာ ကျောက်စရစ်ခဲသေးသေးလေးတွေကို ကောက်ပြီး အိုးထဲကို တစ်လုံးချင်း ချလိုက်တယ်။
+            
+            ကျောက်ခဲတစ်လုံးစီနဲ့ ရေမျက်နှာပြင်က ပိုမြင့်တက်လာတယ်။ ရေက အပေါ်ထိရောက်တဲ့အထိ ကျီးကန်းက ကြိုးစားလုပ်ဆောင်နေတယ်။
+            
+            ကျီးကန်းက ရေကို ပျော်ရွှင်စွာ သောက်ပြီး ပျံသွားတယ်။ စဉ်းစားတွေးခေါ်မှုက ပြဿနာတွေကို ဖြေရှင်းနိုင်တယ်ဆိုတာ သူ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Crow", meaning: "ကျီးကန်း" },
+            { word: "Pitcher", meaning: "ရေအိုး" },
+            { word: "Hot", meaning: "ပူသော" },
+            { word: "Summer", meaning: "နွေရာသီ" },
+            { word: "Thirsty", meaning: "ရေငတ်သော" },
+            { word: "Searched", meaning: "ရှာဖွေ" },
+            { word: "Everywhere", meaning: "နေရာတိုင်း" },
+            { word: "Water", meaning: "ရေ" },
+            { word: "Finally", meaning: "နောက်ဆုံး" },
+            { word: "Bottom", meaning: "အောက်ခြေ" },
+            { word: "Tried", meaning: "ကြိုးစား" },
+            { word: "Drink", meaning: "သောက်" },
+            { word: "Beak", meaning: "နှုတ်သီး" },
+            { word: "Reach", meaning: "ရောက်" },
+            { word: "Sad", meaning: "ဝမ်းနည်း" },
+            { word: "Thought", meaning: "စဉ်းစား" },
+            { word: "Long", meaning: "ကြာ" },
+            { word: "Clever", meaning: "ဉာဏ်ကောင်း" },
+            { word: "Idea", meaning: "စိတ်ကူး" },
+            { word: "Picked", meaning: "ကောက်" },
+            { word: "Stones", meaning: "ကျောက်ခဲများ" },
+            { word: "Dropped", meaning: "ချ" },
+            { word: "One", meaning: "တစ်" },
+            { word: "By", meaning: "ဖြင့်" },
+            { word: "Level", meaning: "မျက်နှာပြင်" },
+            { word: "Rose", meaning: "တက်" },
+            { word: "Higher", meaning: "ပိုမြင့်" },
+            { word: "Kept", meaning: "ဆက်" },
+            { word: "Working", meaning: "လုပ်ဆောင်" },
+            { word: "Hard", meaning: "ကြိုးစား" },
+            { word: "Until", meaning: "အထိ" },
+            { word: "Top", meaning: "အပေါ်" },
+            { word: "Happily", meaning: "ပျော်ရွှင်စွာ" },
+            { word: "Flew", meaning: "ပျံ" },
+            { word: "Away", meaning: "ဝေးရာ" },
+            { word: "Thinking", meaning: "စဉ်းစားခြင်း" },
+            { word: "Solve", meaning: "ဖြေရှင်း" },
+            { word: "Problems", meaning: "ပြဿနာများ" },
+            { word: "Could", meaning: "နိုင်" },
+            { word: "Very", meaning: "အရမ်း" },
+            { word: "Little", meaning: "နည်းနည်း" },
+            { word: "With", meaning: "နှင့်" },
+            { word: "Each", meaning: "တစ်ခုစီ" },
+            { word: "Until", meaning: "သည်အထိ" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" },
+            { word: "That", meaning: "အဲဒါ" },
+            { word: "Can", meaning: "နိုင်" }
+            ]
+            },
+            {
+            id: 19,
+            title: "The Boy and the Nuts",
+            en: `A little boy was given a jar of nuts. He loved nuts very much. He put his hand into the jar and grabbed as many nuts as he could.
+            
+            But his hand was too full to come out of the narrow opening. He tried and tried but could not pull his hand out.
+            
+            The boy started crying. His father came and said, "Stop crying. Just let go of some nuts and your hand will come out easily."
+            
+            The boy let go of some nuts and pulled his hand out. He learned that if you are greedy, you may lose everything.`,
+            my: `ကောင်လေးငယ်တစ်ယောက်ကို သစ်ကြားသီးအိုးတစ်လုံး ပေးထားတယ်။ သူဟာ သစ်ကြားသီးကို အရမ်းကြိုက်တယ်။ သူဟာ လက်ကို အိုးထဲထည့်ပြီး တတ်နိုင်သမျှ သစ်ကြားသီးများများ ဆုပ်ကိုင်လိုက်တယ်။
+            
+            ဒါပေမယ့် သူ့လက်က အပေါက်ကျဉ်းလေးကနေ ပြန်ထွက်ဖို့ အရမ်းပြည့်နေတယ်။ သူဟာ အကြိမ်ကြိမ် ကြိုးစားပေမယ့် လက်ကို မဆွဲထုတ်နိုင်ဘူး။
+            
+            ကောင်လေးက စပြီးငိုတယ်။ သူ့အဖေက လာပြီး "မငိုပါနဲ့။ သစ်ကြားသီးအချို့ကို လွှတ်လိုက်ရင် မင်းလက်က အလွယ်တကူ ထွက်လာလိမ့်မယ်" လို့ပြောတယ်။
+            
+            ကောင်လေးက သစ်ကြားသီးအချို့ကို လွှတ်လိုက်ပြီး လက်ကိုဆွဲထုတ်လိုက်တယ်။ လောဘကြီးရင် အကုန်လုံးဆုံးရှုံးနိုင်တယ်ဆိုတာ သူ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Boy", meaning: "ကောင်လေး" },
+            { word: "Nuts", meaning: "သစ်ကြားသီး" },
+            { word: "Jar", meaning: "အိုး" },
+            { word: "Loved", meaning: "ကြိုက်" },
+            { word: "Much", meaning: "အများကြီး" },
+            { word: "Hand", meaning: "လက်" },
+            { word: "Grabbed", meaning: "ဆုပ်ကိုင်" },
+            { word: "Many", meaning: "များများ" },
+            { word: "Full", meaning: "ပြည့်" },
+            { word: "Narrow", meaning: "ကျဉ်း" },
+            { word: "Opening", meaning: "အပေါက်" },
+            { word: "Pull", meaning: "ဆွဲထုတ်" },
+            { word: "Tried", meaning: "ကြိုးစား" },
+            { word: "Crying", meaning: "ငိုခြင်း" },
+            { word: "Father", meaning: "အဖေ" },
+            { word: "Stop", meaning: "ရပ်" },
+            { word: "Let go", meaning: "လွှတ်" },
+            { word: "Easily", meaning: "လွယ်ကူစွာ" },
+            { word: "Greedy", meaning: "လောဘကြီး" },
+            { word: "Lose", meaning: "ဆုံးရှုံး" },
+            { word: "Everything", meaning: "အကုန်လုံး" },
+            { word: "Given", meaning: "ပေး" },
+            { word: "Came", meaning: "လာ" },
+            { word: "Said", meaning: "ပြော" },
+            { word: "Just", meaning: "ရုံ" },
+            { word: "Some", meaning: "အချို့" },
+            { word: "Out", meaning: "ထွက်" },
+            { word: "Will", meaning: "လိမ့်မည်" },
+            { word: "You", meaning: "မင်း" },
+            { word: "Your", meaning: "မင်းရဲ့" },
+            { word: "May", meaning: "ဖြစ်နိုင်" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" },
+            { word: "Could", meaning: "နိုင်" },
+            { word: "As", meaning: "သလောက်" },
+            { word: "Into", meaning: "ထဲ" },
+            { word: "When", meaning: "ဘယ်အချိန်" },
+            { word: "Came", meaning: "ရောက်" },
+            { word: "Started", meaning: "စ" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "If", meaning: "အကယ်၍" },
+            { word: "You", meaning: "မင်း" },
+            { word: "Are", meaning: "ဖြစ်" },
+            { word: "Then", meaning: "ပြီးတော့" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "Very", meaning: "အရမ်း" }
+            ]
+            },
+            {
+            id: 20,
+            title: "The Donkey in the Lion's Skin",
+            en: `A donkey found a lion's skin in the forest. He put it on and thought he looked very fierce.
+            
+            The donkey walked through the forest wearing the lion's skin. All the animals ran away from him because they thought he was a real lion.
+            
+            The donkey felt very proud and powerful. He started braying loudly to show off. His braying sounded like a donkey.
+            
+            The animals heard the braying and knew it was a donkey. They came back and laughed at him.
+            
+            The donkey learned that you cannot hide your true nature for long. Pretending to be something you are not is foolish.`,
+            my: `မြည်းတစ်ကောင်ဟာ တောအုပ်ထဲမှာ ခြင်္သေ့အရေခွံတစ်ခုကို တွေ့တယ်။ သူဟာ အဲဒါကိုဝတ်ပြီး သူဟာ အရမ်းရက်စက်ပုံရတယ်လို့ ထင်တယ်။
+            
+            မြည်းက ခြင်္သေ့အရေခွံဝတ်ပြီး တောအုပ်ထဲမှာ လျှောက်သွားတယ်။ တိရစ္ဆာန်အားလုံးက သူ့ကို တကယ့်ခြင်္သေ့လို့ထင်ပြီး ထွက်ပြေးကြတယ်။
+            
+            မြည်းက အရမ်းဂုဏ်ယူပြီး သန်မာတယ်လို့ ခံစားရတယ်။ သူဟာ ပြသဖို့ ကျယ်လောင်စွာ အော်ငေါက်တယ်။ သူ့အော်သံက မြည်းအော်သံလိုပဲ။
+            
+            တိရစ္ဆာန်တွေက အော်သံကိုကြားပြီး မြည်းမှန်း သိသွားကြတယ်။ သူတို့ ပြန်လာပြီး သူ့ကို ပြက်ရယ်ပြုကြတယ်။
+            
+            မြည်းက ကိုယ့်သဘာဝကို ကြာကြာဖုံးကွယ်လို့မရဘူးဆိုတာ သင်ယူခဲ့တယ်။ ကိုယ်မဟုတ်တာကို ဟန်ဆောင်တာက မိုက်မဲတယ်။`,
+            vocab: [
+            { word: "Donkey", meaning: "မြည်း" },
+            { word: "Lion", meaning: "ခြင်္သေ့" },
+            { word: "Skin", meaning: "အရေခွံ" },
+            { word: "Forest", meaning: "တောအုပ်" },
+            { word: "Found", meaning: "တွေ့" },
+            { word: "Put on", meaning: "ဝတ်" },
+            { word: "Fierce", meaning: "ရက်စက်" },
+            { word: "Walked", meaning: "လျှောက်" },
+            { word: "Wearing", meaning: "ဝတ်ဆင်" },
+            { word: "Animals", meaning: "တိရစ္ဆာန်များ" },
+            { word: "Ran", meaning: "ပြေး" },
+            { word: "Away", meaning: "ဝေးရာ" },
+            { word: "Because", meaning: "ဘာဖြစ်လို့" },
+            { word: "Real", meaning: "တကယ့်" },
+            { word: "Proud", meaning: "ဂုဏ်ယူ" },
+            { word: "Powerful", meaning: "သန်မာ" },
+            { word: "Braying", meaning: "အော်ငေါက်ခြင်း" },
+            { word: "Loudly", meaning: "ကျယ်လောင်စွာ" },
+            { word: "Show off", meaning: "ပြသခြင်း" },
+            { word: "Sounded", meaning: "အသံထွက်" },
+            { word: "Heard", meaning: "ကြား" },
+            { word: "Knew", meaning: "သိခဲ့" },
+            { word: "Laughed", meaning: "ရယ်" },
+            { word: "Hide", meaning: "ဖုံးကွယ်" },
+            { word: "True", meaning: "စစ်မှန်" },
+            { word: "Nature", meaning: "သဘာဝ" },
+            { word: "Long", meaning: "ကြာ" },
+            { word: "Pretending", meaning: "ဟန်ဆောင်ခြင်း" },
+            { word: "Something", meaning: "တစ်ခုခု" },
+            { word: "Foolish", meaning: "မိုက်မဲ" },
+            { word: "Looked", meaning: "ကြည့်" },
+            { word: "Very", meaning: "အရမ်း" },
+            { word: "Thought", meaning: "ထင်" },
+            { word: "Through", meaning: "ဖြတ်" },
+            { word: "All", meaning: "အားလုံး" },
+            { word: "From", meaning: "မှ" },
+            { word: "Him", meaning: "သူ့ကို" },
+            { word: "Felt", meaning: "ခံစား" },
+            { word: "Started", meaning: "စ" },
+            { word: "To", meaning: "ရန်" },
+            { word: "Came", meaning: "လာ" },
+            { word: "Back", meaning: "ပြန်" },
+            { word: "At", meaning: "မှာ" },
+            { word: "Learn", meaning: "သင်ယူ" },
+            { word: "Cannot", meaning: "မရ" },
+            { word: "You", meaning: "မင်း" },
+            { word: "Are", meaning: "ဖြစ်" },
+            { word: "Not", meaning: "မဟုတ်" }
+            ]
+            },
+            {
+            id: 21,
+            title: "The Traveler and the Tree",
+            en: `A traveler was walking on a hot summer day. He felt very tired and thirsty. He saw a big tree with wide branches.
+            
+            The traveler sat under the tree to rest. He said, "This tree is wonderful. It gives so much shade."
+            
+            Then he looked up and saw the tree had no fruits. He said, "What a useless tree! It gives no fruits."
+            
+            The tree replied, "I give shade to tired travelers like you. That is my gift."
+            
+            The traveler felt ashamed and thanked the tree. He learned that not everything has to give fruits to be useful.`,
+            my: `ခရီးသွားတစ်ယောက်ဟာ နွေရာသီ ပူပြင်းတဲ့နေ့မှာ လမ်းလျှောက်နေတယ်။ သူဟာ အရမ်းပင်ပန်းပြီး ရေငတ်နေတယ်။ အကိုင်းအခက်ကျယ်တဲ့ သစ်ပင်ကြီးတစ်ပင် မြင်လိုက်တယ်။
+            
+            ခရီးသွားက အနားယူဖို့ သစ်ပင်အောက်မှာ ထိုင်တယ်။ သူက "ဒီသစ်ပင်က အံ့သြစရာကောင်းတယ်။ အရိပ်အများကြီးပေးတယ်" လို့ပြောတယ်။
+            
+            ပြီးတော့ အပေါ်ကိုကြည့်လိုက်တဲ့အခါ သစ်ပင်မှာ အသီးမရှိတာကို မြင်တယ်။ သူက "အသုံးမဝင်တဲ့သစ်ပင်! အသီးမပေးဘူး" လို့ပြောတယ်။
+            
+            သစ်ပင်က "ငါ မင်းလိုပင်ပန်းနေတဲ့ ခရီးသွားတွေကို အရိပ်ပေးတယ်။ အဲဒါ ငါ့ရဲ့လက်ဆောင်ပါ" လို့ပြန်ဖြေတယ်။
+            
+            ခရီးသွားက ရှက်သွားပြီး သစ်ပင်ကို ကျေးဇူးတင်တယ်။ အသုံးဝင်ဖို့ အားလုံးက အသီးပေးစရာမလိုဘူးဆိုတာ သူ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Traveler", meaning: "ခရီးသွား" },
+            { word: "Tree", meaning: "သစ်ပင်" },
+            { word: "Hot", meaning: "ပူ" },
+            { word: "Summer", meaning: "နွေရာသီ" },
+            { word: "Tired", meaning: "ပင်ပန်း" },
+            { word: "Thirsty", meaning: "ရေငတ်" },
+            { word: "Branches", meaning: "အကိုင်းအခက်" },
+            { word: "Sat", meaning: "ထိုင်" },
+            { word: "Under", meaning: "အောက်" },
+            { word: "Rest", meaning: "အနားယူ" },
+            { word: "Wonderful", meaning: "အံ့သြစရာ" },
+            { word: "Shade", meaning: "အရိပ်" },
+            { word: "Fruits", meaning: "အသီးများ" },
+            { word: "Useless", meaning: "အသုံးမဝင်" },
+            { word: "Replied", meaning: "ပြန်ဖြေ" },
+            { word: "Gift", meaning: "လက်ဆောင်" },
+            { word: "Ashamed", meaning: "ရှက်" },
+            { word: "Thanked", meaning: "ကျေးဇူးတင်" },
+            { word: "Useful", meaning: "အသုံးဝင်" },
+            { word: "Everything", meaning: "အားလုံး" },
+            { word: "Give", meaning: "ပေး" },
+            { word: "To", meaning: "ရန်" },
+            { word: "Be", meaning: "ဖြစ်" },
+            { word: "Walking", meaning: "လမ်းလျှောက်" },
+            { word: "Felt", meaning: "ခံစား" },
+            { word: "Saw", meaning: "မြင်" },
+            { word: "Big", meaning: "ကြီး" },
+            { word: "Wide", meaning: "ကျယ်" },
+            { word: "Looked", meaning: "ကြည့်" },
+            { word: "Up", meaning: "အပေါ်" },
+            { word: "No", meaning: "မရှိ" },
+            { word: "What", meaning: "ဘာ" },
+            { word: "Like", meaning: "ကြိုက်" },
+            { word: "You", meaning: "မင်း" },
+            { word: "That", meaning: "အဲဒါ" },
+            { word: "My", meaning: "ငါ့" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "Not", meaning: "မဟုတ်" },
+            { word: "Have", meaning: "ရှိ" },
+            { word: "Felt", meaning: "ခံစား" },
+            { word: "So", meaning: "အရမ်း" },
+            { word: "Much", meaning: "များများ" },
+            { word: "Then", meaning: "ပြီးတော့" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" }
+            ]
+            },
+            {
+            id: 22,
+            title: "The Two Pots",
+            en: `There were two pots in the river. One was made of iron and the other was made of clay.
+            
+            The iron pot said to the clay pot, "Let us travel together downstream." The clay pot replied, "I am afraid. If we bump together, I will break."
+            
+            The iron pot said, "Do not worry. I will protect you." The clay pot agreed and they floated together.
+            
+            But the river was rough and the pots bumped each other. The clay pot broke into many pieces.
+            
+            The iron pot felt sad. He learned that strong and weak should not travel together.`,
+            my: `မြစ်ထဲမှာ အိုးနှစ်လုံးရှိတယ်။ တစ်လုံးက သံအိုး၊ နောက်တစ်လုံးက မြေအိုးဖြစ်တယ်။
+            
+            သံအိုးက မြေအိုးကို "မြစ်အောက်ကို အတူခရီးသွားကြရအောင်" လို့ပြောတယ်။ မြေအိုးက "ငါကြောက်တယ်။ ငါတို့တိုက်မိရင် ငါကျိုးမယ်" လို့ပြန်ဖြေတယ်။
+            
+            သံအိုးက "မပူပါနဲ့။ ငါမင်းကို ကာကွယ်မယ်" လို့ပြောတယ်။ မြေအိုးက သဘောတူပြီး သူတို့ အတူမျောလာကြတယ်။
+            
+            ဒါပေမယ့် မြစ်က ရုန်းရင်းခတ်နေပြီး အိုးတွေ တစ်လုံးနဲ့တစ်လုံး တိုက်မိတယ်။ မြေအိုးက အပိုင်းပိုင်းကွဲသွားတယ်။
+            
+            သံအိုးက ဝမ်းနည်းသွားတယ်။ အားသန်တာနဲ့ အားနည်းတာ အတူမသွားသင့်ဘူးဆိုတာ သူ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Pots", meaning: "အိုးများ" },
+            { word: "River", meaning: "မြစ်" },
+            { word: "Iron", meaning: "သံ" },
+            { word: "Clay", meaning: "မြေ" },
+            { word: "Travel", meaning: "ခရီးသွား" },
+            { word: "Downstream", meaning: "မြစ်အောက်" },
+            { word: "Afraid", meaning: "ကြောက်" },
+            { word: "Bump", meaning: "တိုက်" },
+            { word: "Break", meaning: "ကျိုး" },
+            { word: "Worry", meaning: "စိုးရိမ်" },
+            { word: "Protect", meaning: "ကာကွယ်" },
+            { word: "Agreed", meaning: "သဘောတူ" },
+            { word: "Floated", meaning: "မျော" },
+            { word: "Rough", meaning: "ရုန်းရင်းခတ်" },
+            { word: "Bumped", meaning: "တိုက်မိ" },
+            { word: "Pieces", meaning: "အပိုင်းပိုင်း" },
+            { word: "Sad", meaning: "ဝမ်းနည်း" },
+            { word: "Strong", meaning: "သန်မာ" },
+            { word: "Weak", meaning: "အားနည်း" },
+            { word: "Should", meaning: "သင့်" },
+            { word: "Together", meaning: "အတူ" },
+            { word: "Made", meaning: "လုပ်" },
+            { word: "One", meaning: "တစ်" },
+            { word: "Other", meaning: "အခြား" },
+            { word: "Said", meaning: "ပြော" },
+            { word: "Let us", meaning: "လုပ်ကြရအောင်" },
+            { word: "Replied", meaning: "ပြန်ဖြေ" },
+            { word: "If", meaning: "အကယ်၍" },
+            { word: "We", meaning: "ငါတို့" },
+            { word: "Will", meaning: "လိမ့်မည်" },
+            { word: "Do not", meaning: "မလုပ်ပါနဲ့" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "Each", meaning: "တစ်ခုစီ" },
+            { word: "Other", meaning: "အခြား" },
+            { word: "Into", meaning: "ထဲ" },
+            { word: "Many", meaning: "များစွာ" },
+            { word: "Felt", meaning: "ခံစား" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "That", meaning: "အဲဒါ" },
+            { word: "Not", meaning: "မဟုတ်" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" },
+            { word: "They", meaning: "သူတို့" },
+            { word: "Them", meaning: "သူတို့ကို" }
+            ]
+            },
+            {
+            id: 23,
+            title: "The Old Man and His Sons",
+            en: `An old man had many sons who always fought with each other. He was very sad because they could not get along.
+            
+            One day, the old man gave them a bundle of sticks. He said, "Try to break this bundle." Each son tried but none could break it.
+            
+            Then the old man untied the bundle and gave each son one stick. "Now break your stick," he said. Each son easily broke his stick.
+            
+            The old man said, "Together you are strong. Apart you are weak. If you stay united, no one can hurt you."
+            
+            The sons understood and stopped fighting. They learned that unity is strength.`,
+            my: `အဖိုးအိုတစ်ယောက်မှာ အချင်းချင်း အမြဲရန်ဖြစ်နေတဲ့ သားအများကြီးရှိတယ်။ သူတို့ အတူတကွ မနေနိုင်လို့ သူဟာ အရမ်းဝမ်းနည်းတယ်။
+            
+            တစ်နေ့မှာ အဖိုးအိုက သူတို့ကို တုတ်တစ်စည်းပေးတယ်။ သူက "ဒီတုတ်စည်းကို ချိုးကြည့်ကြ" လို့ပြောတယ်။ သားတိုင်း ကြိုးစားပေမယ့် ဘယ်သူမှ မချိုးနိုင်ဘူး။
+            
+            ပြီးတော့ အဖိုးအိုက တုတ်စည်းကို ဖြေပြီး သားတစ်ယောက်ကို တုတ်တစ်ချောင်းစီပေးတယ်။ "အခု မင်းတို့ရဲ့တုတ်ကို ချိုးကြည့်" လို့ပြောတယ်။ သားတိုင်း သူ့တုတ်ကို အလွယ်တကူ ချိုးနိုင်တယ်။
+            
+            အဖိုးအိုက "အတူရှိရင် သန်မာတယ်။ ကွဲသွားရင် အားနည်းတယ်။ စည်းလုံးနေရင် ဘယ်သူမှ မထိခိုက်နိုင်ဘူး" လို့ပြောတယ်။
+            
+            သားတွေ နားလည်ပြီး ရန်ဖြစ်တာကို ရပ်လိုက်ကြတယ်။ စည်းလုံးမှုက အင်အားဖြစ်တယ်ဆိုတာ သူတို့ သင်ယူခဲ့ကြတယ်။`,
+            vocab: [
+            { word: "Old", meaning: "အို" },
+            { word: "Man", meaning: "လူ" },
+            { word: "Sons", meaning: "သားများ" },
+            { word: "Fought", meaning: "ရန်ဖြစ်" },
+            { word: "Each", meaning: "တစ်ဦးစီ" },
+            { word: "Other", meaning: "အခြား" },
+            { word: "Sad", meaning: "ဝမ်းနည်း" },
+            { word: "Get along", meaning: "အတူနေ" },
+            { word: "Bundle", meaning: "စည်း" },
+            { word: "Sticks", meaning: "တုတ်များ" },
+            { word: "Break", meaning: "ချိုး" },
+            { word: "None", meaning: "ဘယ်သူမှမရှိ" },
+            { word: "Untied", meaning: "ဖြေ" },
+            { word: "Easily", meaning: "လွယ်ကူစွာ" },
+            { word: "Together", meaning: "အတူ" },
+            { word: "Strong", meaning: "သန်မာ" },
+            { word: "Apart", meaning: "ကွဲ" },
+            { word: "Weak", meaning: "အားနည်း" },
+            { word: "United", meaning: "စည်းလုံး" },
+            { word: "Hurt", meaning: "ထိခိုက်" },
+            { word: "Understood", meaning: "နားလည်" },
+            { word: "Stopped", meaning: "ရပ်" },
+            { word: "Fighting", meaning: "ရန်ဖြစ်ခြင်း" },
+            { word: "Unity", meaning: "စည်းလုံးမှု" },
+            { word: "Strength", meaning: "အင်အား" },
+            { word: "Always", meaning: "အမြဲ" },
+            { word: "Could", meaning: "နိုင်" },
+            { word: "Not", meaning: "မဟုတ်" },
+            { word: "Try", meaning: "ကြိုးစား" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "Then", meaning: "ပြီးတော့" },
+            { word: "Now", meaning: "အခု" },
+            { word: "Stay", meaning: "နေ" },
+            { word: "No", meaning: "မရှိ" },
+            { word: "Can", meaning: "နိုင်" },
+            { word: "They", meaning: "သူတို့" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "He", meaning: "သူ" },
+            { word: "Gave", meaning: "ပေး" },
+            { word: "Said", meaning: "ပြော" },
+            { word: "One", meaning: "တစ်" },
+            { word: "Him", meaning: "သူ့ကို" },
+            { word: "Would", meaning: "လိမ့်မည်" },
+            { word: "Because", meaning: "ဘာဖြစ်လို့" }
+            ]
+            },
+            {
+            id: 24,
+            title: "The Bird and the Worm",
+            en: `A hungry bird was searching for food. He saw a worm coming out of the ground. The bird caught the worm.
+            
+            The worm pleaded, "Please let me go. I have a family to feed." The bird said, "I am hungry too. I must eat."
+            
+            The worm said, "If you let me go, I will tell you where to find many worms." The bird thought and let the worm go.
+            
+            The worm told the bird about a place with many worms. The bird flew there and found many worms.
+            
+            The bird was happy and ate his fill. He learned that sometimes it is better to be kind than to be selfish.`,
+            my: `ဆာနေတဲ့ငှက်တစ်ကောင်ဟာ အစာရှာနေတယ်။ သူဟာ မြေကြီးထဲကနေ သန်ကောင်တစ်ကောင် ထွက်လာတာကို မြင်တယ်။ ငှက်က သန်ကောင်ကို ဖမ်းလိုက်တယ်။
+            
+            သန်ကောင်က "ကျေးဇူးပြုပြီး လွှတ်ပေးပါ။ ကျွန်တော့်မှာ ကျွေးမွေးရမယ့် မိသားစုရှိတယ်" လို့တောင်းပန်တယ်။ ငှက်က "ငါလည်း ဆာနေတယ်။ ငါစားရမယ်" လို့ပြောတယ်။
+            
+            သန်ကောင်က "လွှတ်ပေးရင် သန်ကောင်အများကြီးရှိတဲ့နေရာကို ပြောပြမယ်" လို့ပြောတယ်။ ငှက်က စဉ်းစားပြီး သန်ကောင်ကို လွှတ်လိုက်တယ်။
+            
+            သန်ကောင်က သန်ကောင်အများကြီးရှိတဲ့နေရာအကြောင်း ငှက်ကို ပြောပြတယ်။ ငှက်က အဲဒီကိုပျံသွားပြီး သန်ကောင်အများကြီးကို တွေ့တယ်။
+            
+            ငှက်က ပျော်သွားပြီး ဝအောင်စားတယ်။ တစ်ခါတစ်ရံ အတ္တဆန်တာထက် ကြင်နာတာက ပိုကောင်းတယ်ဆိုတာ သူ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Bird", meaning: "ငှက်" },
+            { word: "Worm", meaning: "သန်ကောင်" },
+            { word: "Hungry", meaning: "ဆာ" },
+            { word: "Searching", meaning: "ရှာဖွေ" },
+            { word: "Food", meaning: "အစာ" },
+            { word: "Ground", meaning: "မြေကြီး" },
+            { word: "Caught", meaning: "ဖမ်း" },
+            { word: "Pleaded", meaning: "တောင်းပန်" },
+            { word: "Family", meaning: "မိသားစု" },
+            { word: "Feed", meaning: "ကျွေးမွေး" },
+            { word: "Must", meaning: "ရမည်" },
+            { word: "Eat", meaning: "စား" },
+            { word: "Tell", meaning: "ပြောပြ" },
+            { word: "Find", meaning: "ရှာ" },
+            { word: "Many", meaning: "များစွာ" },
+            { word: "Place", meaning: "နေရာ" },
+            { word: "Flew", meaning: "ပျံ" },
+            { word: "Happy", meaning: "ပျော်" },
+            { word: "Fill", meaning: "ဝအောင်" },
+            { word: "Sometimes", meaning: "တစ်ခါတစ်ရံ" },
+            { word: "Better", meaning: "ပိုကောင်း" },
+            { word: "Kind", meaning: "ကြင်နာ" },
+            { word: "Selfish", meaning: "အတ္တဆန်" },
+            { word: "Coming", meaning: "လာ" },
+            { word: "Out", meaning: "ထွက်" },
+            { word: "Let", meaning: "ခွင့်ပြု" },
+            { word: "Me", meaning: "ငါ့ကို" },
+            { word: "Go", meaning: "သွား" },
+            { word: "Too", meaning: "လည်း" },
+            { word: "If", meaning: "အကယ်၍" },
+            { word: "You", meaning: "မင်း" },
+            { word: "Thought", meaning: "စဉ်းစား" },
+            { word: "There", meaning: "အဲဒီမှာ" },
+            { word: "Ate", meaning: "စား" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "That", meaning: "အဲဒါ" },
+            { word: "Than", meaning: "ထက်" },
+            { word: "He", meaning: "သူ" },
+            { word: "Saw", meaning: "မြင်" },
+            { word: "Said", meaning: "ပြော" },
+            { word: "About", meaning: "အကြောင်း" },
+            { word: "Where", meaning: "ဘယ်မှာ" },
+            { word: "To", meaning: "ရန်" },
+            { word: "His", meaning: "သူ့" }
+            ]
+            },
+            {
+            id: 25,
+            title: "The Eagle and the Beetle",
+            en: `An eagle was chasing a beetle. The beetle was very small and the eagle was very big.
+            
+            The beetle begged, "Please spare my life. I am too small to be worth eating." But the eagle laughed and continued chasing.
+            
+            The beetle said, "If you eat me, I will take revenge." The eagle laughed even louder.
+            
+            The beetle escaped into a crack and found the eagle's eggs. He rolled the eggs out of the nest and they broke.
+            
+            The eagle returned and was very sad. He learned that even the smallest creature can hurt the strongest if insulted.`,
+            my: `လင်းယုန်တစ်ကောင်ဟာ ပိုးတောင်မာတစ်ကောင်ကို လိုက်ဖမ်းနေတယ်။ ပိုးတောင်မာက အရမ်းသေးငယ်ပြီး လင်းယုန်က အရမ်းကြီးတယ်။
+            
+            ပိုးတောင်မာက "ကျွန်တော့်အသက်ကို ကယ်ပေးပါ။ စားဖို့ သိပ်သေးလွန်းပါတယ်" လို့တောင်းပန်တယ်။ ဒါပေမယ့် လင်းယုန်က ရယ်ပြီး ဆက်လိုက်တယ်။
+            
+            ပိုးတောင်မာက "ငါ့ကိုစားရင် ငါပြန်လက်စားချေမယ်" လို့ပြောတယ်။ လင်းယုန်က ပိုပြီးကျယ်လောင်စွာ ရယ်တယ်။
+            
+            ပိုးတောင်မာက အက်ကြောင်းတစ်ခုထဲကို ခိုသွားပြီး လင်းယုန်ရဲ့ဥတွေကို တွေ့တယ်။ သူဟာ ဥတွေကို အသိုက်ထဲကနေ လှိမ့်ထုတ်လိုက်ပြီး ဥတွေကျိုးသွားတယ်။
+            
+            လင်းယုန်က ပြန်လာပြီး အရမ်းဝမ်းနည်းသွားတယ်။ အသေးငယ်ဆုံးသတ္တဝါတောင်မှ စော်ကားခံရရင် အင်အားကြီးဆုံးကို ထိခိုက်နိုင်တယ်ဆိုတာ သူ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Eagle", meaning: "လင်းယုန်" },
+            { word: "Beetle", meaning: "ပိုးတောင်မာ" },
+            { word: "Chasing", meaning: "လိုက်ဖမ်း" },
+            { word: "Small", meaning: "သေး" },
+            { word: "Big", meaning: "ကြီး" },
+            { word: "Spare", meaning: "ကယ်" },
+            { word: "Life", meaning: "အသက်" },
+            { word: "Worth", meaning: "တန်ဖိုးရှိ" },
+            { word: "Eating", meaning: "စားခြင်း" },
+            { word: "Laughed", meaning: "ရယ်" },
+            { word: "Continued", meaning: "ဆက်" },
+            { word: "Revenge", meaning: "လက်စားချေ" },
+            { word: "Louder", meaning: "ပိုကျယ်" },
+            { word: "Escaped", meaning: "လွတ်" },
+            { word: "Crack", meaning: "အက်ကြောင်း" },
+            { word: "Rolled", meaning: "လှိမ့်" },
+            { word: "Nest", meaning: "အသိုက်" },
+            { word: "Broke", meaning: "ကျိုး" },
+            { word: "Returned", meaning: "ပြန်လာ" },
+            { word: "Sad", meaning: "ဝမ်းနည်း" },
+            { word: "Smallest", meaning: "အသေးငယ်ဆုံး" },
+            { word: "Creature", meaning: "သတ္တဝါ" },
+            { word: "Strongest", meaning: "အင်အားကြီးဆုံး" },
+            { word: "Insulted", meaning: "စော်ကားခံရ" },
+            { word: "Found", meaning: "တွေ့" },
+            { word: "Eggs", meaning: "ဥများ" },
+            { word: "Even", meaning: "တောင်မှ" },
+            { word: "Hurt", meaning: "ထိခိုက်" },
+            { word: "Can", meaning: "နိုင်" },
+            { word: "If", meaning: "အကယ်၍" },
+            { word: "He", meaning: "သူ" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "That", meaning: "အဲဒါ" },
+            { word: "Was", meaning: "ဖြစ်" },
+            { word: "Too", meaning: "လွန်း" },
+            { word: "Please", meaning: "ကျေးဇူးပြု" },
+            { word: "My", meaning: "ငါ့" },
+            { word: "You", meaning: "မင်း" },
+            { word: "Me", meaning: "ငါ့ကို" },
+            { word: "Will", meaning: "လိမ့်မည်" },
+            { word: "I", meaning: "ငါ" },
+            { word: "The", meaning: "ဒီ" },
+            { word: "Into", meaning: "ထဲ" },
+            { word: "Out", meaning: "ထွက်" }
+            ]
+            },
+            {
+            id: 26,
+            title: "The Fox Without a Tail",
+            en: `A fox was caught in a trap. He escaped but lost his tail. He felt very ashamed and thought all the other foxes would laugh at him.
+            
+            The fox had a plan. He called all the foxes and said, "Tails are ugly and heavy. We should all cut them off."
+            
+            Most foxes agreed. But one clever fox said, "You only say that because you lost your tail!"
+            
+            The other foxes realized the truth and laughed at the fox. He learned that you cannot fool others just to hide your own shame.`,
+            my: `မြေခွေးတစ်ကောင်ဟာ ထောင်ချောက်ထဲမှာ ဖမ်းမိတယ်။ သူဟာ လွတ်သွားပေမယ့် အမြီးဆုံးရှုံးသွားတယ်။ သူဟာ အရမ်းရှက်ပြီး အခြားမြေခွေးတွေ သူ့ကိုရယ်မယ်လို့ ထင်တယ်။
+            
+            မြေခွေးမှာ အစီအစဉ်တစ်ခုရှိတယ်။ သူဟာ မြေခွေးအားလုံးကိုခေါ်ပြီး "အမြီးတွေက ရုပ်ဆိုးပြီး လေးတယ်။ အကုန်ဖြတ်ပစ်သင့်တယ်" လို့ပြောတယ်။မြေခွေးအများစုက သဘောတူတယ်။ ဒါပေမယ့် ဉာဏ်ကောင်းတဲ့မြေခွေးတစ်ကောင်က "မင်း အမြီးဆုံးရှုံးလို့ပဲ အဲဒီလိုပြောတာ" လို့ပြောတယ်။
+            
+            အခြားမြေခွေးတွေ အမှန်တရားကို နားလည်ပြီး မြေခွေးကို ရယ်ကြတယ်။ ကိုယ့်ရှက်စရာကို ဖုံးဖို့ တခြားသူတွေကို မလှည့်စားနိုင်ဘူးဆိုတာ သူ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Fox", meaning: "မြေခွေး" },
+            { word: "Tail", meaning: "အမြီး" },
+            { word: "Trap", meaning: "ထောင်ချောက်" },
+            { word: "Caught", meaning: "ဖမ်းမိ" },
+            { word: "Escaped", meaning: "လွတ်" },
+            { word: "Lost", meaning: "ဆုံးရှုံး" },
+            { word: "Ashamed", meaning: "ရှက်" },
+            { word: "Laugh", meaning: "ရယ်" },
+            { word: "Plan", meaning: "အစီအစဉ်" },
+            { word: "Called", meaning: "ခေါ်" },
+            { word: "Ugly", meaning: "ရုပ်ဆိုး" },
+            { word: "Heavy", meaning: "လေး" },
+            { word: "Cut", meaning: "ဖြတ်" },
+            { word: "Most", meaning: "အများစု" },
+            { word: "Agreed", meaning: "သဘောတူ" },
+            { word: "Clever", meaning: "ဉာဏ်ကောင်း" },
+            { word: "Only", meaning: "သာ" },
+            { word: "Because", meaning: "ဘာဖြစ်လို့" },
+            { word: "Truth", meaning: "အမှန်တရား" },
+            { word: "Realized", meaning: "နားလည်" },
+            { word: "Fool", meaning: "လှည့်စား" },
+            { word: "Others", meaning: "အခြားသူများ" },
+            { word: "Hide", meaning: "ဖုံး" },
+            { word: "Shame", meaning: "ရှက်စရာ" },
+            { word: "All", meaning: "အားလုံး" },
+            { word: "Off", meaning: "ချွတ်" },
+            { word: "Should", meaning: "သင့်" },
+            { word: "Them", meaning: "သူတို့ကို" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "One", meaning: "တစ်" },
+            { word: "Say", meaning: "ပြော" },
+            { word: "Your", meaning: "မင်းရဲ့" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "Cannot", meaning: "မရ" },
+            { word: "Just", meaning: "ရုံ" },
+            { word: "Own", meaning: "ကိုယ်ပိုင်" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" },
+            { word: "Felt", meaning: "ခံစား" },
+            { word: "Very", meaning: "အရမ်း" },
+            { word: "Other", meaning: "အခြား" },
+            { word: "Would", meaning: "လိမ့်မည်" },
+            { word: "At", meaning: "မှာ" },
+            { word: "Him", meaning: "သူ့ကို" }
+            ]
+            },
+            {
+            id: 27,
+            title: "The Frog and the Ox",
+            en: `A frog saw a big ox in the field. The frog was very small and the ox was very large.
+            
+            The frog wanted to be as big as the ox. He puffed himself up and asked, "Am I as big as the ox now?" His friends said, "No."
+            
+            The frog puffed himself up even more and asked again. His friends said, "No, you are still small."
+            
+            The frog tried once more and puffed himself up so much that he burst.
+            
+            The other frogs learned that you should not try to be what you are not. Be happy with who you are.`,
+            my: `ဖားတစ်ကောင်ဟာ လယ်ကွင်းထဲမှာ နွားကြီးတစ်ကောင်ကို မြင်တယ်။ ဖားက အရမ်းသေးငယ်ပြီး နွားက အရမ်းကြီးတယ်။
+            
+            ဖားက နွားလောက်ကြီးချင်တယ်။ သူဟာ ကိုယ့်ကိုယ်ကို ဖောင်းကြွအောင်လုပ်ပြီး "ငါ အခု နွားလောက်ကြီးပြီလား" လို့မေးတယ်။ သူ့သူငယ်ချင်းတွေက "မဟုတ်ဘူး" လို့ပြောတယ်။
+            
+            ဖားက ပိုပြီးဖောင်းကြွအောင်လုပ်ပြီး နောက်တစ်ခါမေးတယ်။ သူ့သူငယ်ချင်းတွေက "မဟုတ်ဘူး၊ မင်းငယ်နေတုန်းပဲ" လို့ပြောတယ်။
+            
+            ဖားက နောက်တစ်ခါ ကြိုးစားပြီး သူ့ကိုယ်သူ အရမ်းဖောင်းကြွအောင်လုပ်မိလို့ ပေါက်ကွဲသွားတယ်။
+            
+            အခြားဖားတွေက ကိုယ်မဟုတ်တာကို ဖြစ်ချင်တာမျိုး မလုပ်သင့်ဘူးဆိုတာ သင်ယူခဲ့တယ်။ ကိုယ်ရှိတာကို ကျေနပ်ပါ။`,
+            vocab: [
+            { word: "Frog", meaning: "ဖား" },
+            { word: "Ox", meaning: "နွား" },
+            { word: "Field", meaning: "လယ်ကွင်း" },
+            { word: "Small", meaning: "သေး" },
+            { word: "Large", meaning: "ကြီး" },
+            { word: "Wanted", meaning: "လိုချင်" },
+            { word: "Puffed", meaning: "ဖောင်းကြွ" },
+            { word: "Asked", meaning: "မေး" },
+            { word: "Friends", meaning: "သူငယ်ချင်းများ" },
+            { word: "No", meaning: "မဟုတ်ဘူး" },
+            { word: "Still", meaning: "နေတုန်း" },
+            { word: "Tried", meaning: "ကြိုးစား" },
+            { word: "More", meaning: "ပို" },
+            { word: "Burst", meaning: "ပေါက်ကွဲ" },
+            { word: "Other", meaning: "အခြား" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "Should", meaning: "သင့်" },
+            { word: "Be", meaning: "ဖြစ်" },
+            { word: "Happy", meaning: "ပျော်" },
+            { word: "Who", meaning: "ဘယ်သူ" },
+            { word: "Are", meaning: "ဖြစ်" },
+            { word: "You", meaning: "မင်း" },
+            { word: "Big", meaning: "ကြီး" },
+            { word: "Now", meaning: "အခု" },
+            { word: "Saw", meaning: "မြင်" },
+            { word: "Himself", meaning: "ကိုယ်တိုင်" },
+            { word: "Up", meaning: "အပေါ်" },
+            { word: "Even", meaning: "သာ၍" },
+            { word: "Once", meaning: "တစ်ခါ" },
+            { word: "So", meaning: "ဒါကြောင့်" },
+            { word: "Much", meaning: "အများကြီး" },
+            { word: "That", meaning: "အဲဒါ" },
+            { word: "Not", meaning: "မဟုတ်" },
+            { word: "Try", meaning: "ကြိုးစား" },
+            { word: "What", meaning: "ဘာ" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" },
+            { word: "Them", meaning: "သူတို့ကို" },
+            { word: "With", meaning: "နှင့်" },
+            { word: "From", meaning: "မှ" },
+            { word: "Said", meaning: "ပြော" },
+            { word: "Am", meaning: "ဖြစ်" },
+            { word: "I", meaning: "ငါ" }
+            ]
+            },
+            {
+            id: 28,
+            title: "The Swallow and the Crow",
+            en: `A swallow and a crow were arguing about who was more beautiful. The swallow said, "I am beautiful because I have colorful feathers."
+            
+            The crow replied, "You are beautiful in spring and summer. But I am beautiful all year round. My black feathers are always elegant."
+            
+            The swallow laughed and said, "But you are so dark and dull." The crow said, "Darkness has its own beauty."
+            
+            A wise owl heard them and said, "Beauty is in the eye of the beholder. You are both beautiful in your own ways."
+            
+            The birds understood and stopped arguing. They learned that beauty is not just one thing.`,
+            my: `မျိုကြီးငှက်တစ်ကောင်နဲ့ ကျီးကန်းတစ်ကောင်ဟာ ဘယ်သူပိုလှလဲဆိုတာ ငြင်းခုံနေကြတယ်။ မျိုကြီးငှက်က "ငါ့မှာ ရောင်စုံအမွေးတွေရှိလို့ ငါလှတယ်" လို့ပြောတယ်။
+            
+            ကျီးကန်းက "နွေဦးနဲ့ နွေရာသီမှာ မင်းလှတယ်။ ဒါပေမယ့် ငါက တစ်နှစ်ပတ်လုံး လှတယ်။ ငါ့အမွေးအနက်ရောင်က အမြဲတမ်း ကြော့ရှင်းတယ်" လို့ပြန်ဖြေတယ်။
+            
+            မျိုကြီးငှက်က ရယ်ပြီး "ဒါပေမယ့် မင်းက သိပ်မည်းပြီး မှိန်တယ်" လို့ပြောတယ်။ ကျီးကန်းက "အမည်းရောင်မှာ ကိုယ်ပိုင်အလှရှိတယ်" လို့ပြောတယ်။
+            
+            ဉာဏ်ကောင်းတဲ့ဇီးကွက်တစ်ကောင်က သူတို့ကိုကြားပြီး "အလှတရားက မြင်သူ့မျက်စိမှာ ရှိတယ်။ မင်းတို့နှစ်ယောက်စလုံး ကိုယ့်နည်းကိုယ့်ဟန်နဲ့ လှတယ်" လို့ပြောတယ်။
+            
+            ငှက်တွေ နားလည်ပြီး ငြင်းခုံတာကို ရပ်လိုက်ကြတယ်။ အလှတရားက တစ်ခုတည်းမဟုတ်ဘူးဆိုတာ သူတို့ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Swallow", meaning: "မျိုကြီးငှက်" },
+            { word: "Crow", meaning: "ကျီးကန်း" },
+            { word: "Arguing", meaning: "ငြင်းခုံ" },
+            { word: "Beautiful", meaning: "လှ" },
+            { word: "Colorful", meaning: "ရောင်စုံ" },
+            { word: "Feathers", meaning: "အမွေးများ" },
+            { word: "Replied", meaning: "ပြန်ဖြေ" },
+            { word: "Spring", meaning: "နွေဦး" },
+            { word: "Summer", meaning: "နွေရာသီ" },
+            { word: "Year", meaning: "နှစ်" },
+            { word: "Round", meaning: "ပတ်" },
+            { word: "Black", meaning: "အနက်" },
+            { word: "Elegant", meaning: "ကြော့ရှင်း" },
+            { word: "Dark", meaning: "မည်း" },
+            { word: "Dull", meaning: "မှိန်" },
+            { word: "Darkness", meaning: "အမည်းရောင်" },
+            { word: "Wise", meaning: "ဉာဏ်ကောင်း" },
+            { word: "Owl", meaning: "ဇီးကွက်" },
+            { word: "Heard", meaning: "ကြား" },
+            { word: "Beholder", meaning: "မြင်သူ" },
+            { word: "Both", meaning: "နှစ်ယောက်စလုံး" },
+            { word: "Ways", meaning: "နည်းလမ်းများ" },
+            { word: "Understood", meaning: "နားလည်" },
+            { word: "Stopped", meaning: "ရပ်" },
+            { word: "Just", meaning: "ရုံ" },
+            { word: "One", meaning: "တစ်" },
+            { word: "Thing", meaning: "အရာ" },
+            { word: "Who", meaning: "ဘယ်သူ" },
+            { word: "More", meaning: "ပို" },
+            { word: "All", meaning: "အားလုံး" },
+            { word: "Always", meaning: "အမြဲ" },
+            { word: "Laughed", meaning: "ရယ်" },
+            { word: "Said", meaning: "ပြော" },
+            { word: "Own", meaning: "ကိုယ်ပိုင်" },
+            { word: "Eye", meaning: "မျက်စိ" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "That", meaning: "အဲဒါ" },
+            { word: "Is", meaning: "ဖြစ်" },
+            { word: "Not", meaning: "မဟုတ်" },
+            { word: "They", meaning: "သူတို့" },
+            { word: "Him", meaning: "သူ့ကို" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "So", meaning: "အရမ်း" }
+            ]
+            },
+            {
+            id: 29,
+            title: "The Man and His Two Wives",
+            en: `A middle-aged man had two wives. One was young and the other was old. The old wife wanted him to look old like her.
+            
+            The young wife wanted him to look young like her. Every time the man spent time with his old wife, she pulled out his black hairs.
+            
+            Every time he spent time with his young wife, she pulled out his white hairs. Soon the man became completely bald.
+            
+            The man learned that pleasing everyone is impossible. He should have been happy with who he was.`,
+            my: `လူလတ်ပိုင်းတစ်ယောက်မှာ ဇနီးနှစ်ယောက်ရှိတယ်။ တစ်ယောက်က ငယ်တယ်၊ နောက်တစ်ယောက်က အိုတယ်။ အိုတဲ့ဇနီးက သူမလိုပဲ သူအိုတာကို လိုချင်တယ်။
+            
+            ငယ်တဲ့ဇနီးက သူမလိုပဲ သူငယ်တာကို လိုချင်တယ်။ လူက သူ့အိုတဲ့ဇနီးနဲ့ အချိန်ကုန်တိုင်း သူမက သူ့ဆံပင်နက်တွေကို နုတ်တယ်။
+            
+            သူငယ်တဲ့ဇနီးနဲ့ အချိန်ကုန်တိုင်း သူမက သူ့ဆံပင်ဖြူတွေကို နုတ်တယ်။ မကြာခင်မှာ လူက လုံးဝ ထိပ်ပြောင်သွားတယ်။
+            
+            လူက လူတိုင်းကိုကျေနပ်အောင်လုပ်ဖို့က မဖြစ်နိုင်ဘူးဆိုတာ သင်ယူခဲ့တယ်။ သူဟာ ကိုယ့်ကိုယ်ကိုယ် ရှိတဲ့အတိုင်း ကျေနပ်သင့်တယ်။`,
+            vocab: [
+            { word: "Man", meaning: "လူ" },
+            { word: "Wives", meaning: "ဇနီးများ" },
+            { word: "Middle-aged", meaning: "လူလတ်ပိုင်း" },
+            { word: "Young", meaning: "ငယ်" },
+            { word: "Old", meaning: "အို" },
+            { word: "Look", meaning: "ကြည့်" },
+            { word: "Like", meaning: "လို" },
+            { word: "Spent", meaning: "ကုန်" },
+            { word: "Time", meaning: "အချိန်" },
+            { word: "Pulled", meaning: "နုတ်" },
+            { word: "Black", meaning: "နက်" },
+            { word: "Hairs", meaning: "ဆံပင်" },
+            { word: "White", meaning: "ဖြူ" },
+            { word: "Soon", meaning: "မကြာခင်" },
+            { word: "Completely", meaning: "လုံးဝ" },
+            { word: "Bald", meaning: "ထိပ်ပြောင်" },
+            { word: "Pleasing", meaning: "ကျေနပ်အောင်လုပ်" },
+            { word: "Everyone", meaning: "လူတိုင်း" },
+            { word: "Impossible", meaning: "မဖြစ်နိုင်" },
+            { word: "Happy", meaning: "ပျော်" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "Should", meaning: "သင့်" },
+            { word: "Have", meaning: "ရှိရမည်" },
+            { word: "Been", meaning: "ဖြစ်" },
+            { word: "Was", meaning: "ဖြစ်" },
+            { word: "Him", meaning: "သူ့ကို" },
+            { word: "Her", meaning: "သူမ" },
+            { word: "Every", meaning: "တိုင်း" },
+            { word: "Other", meaning: "အခြား" },
+            { word: "One", meaning: "တစ်" },
+            { word: "Had", meaning: "ရှိ" },
+            { word: "Wanted", meaning: "လိုချင်" },
+            { word: "He", meaning: "သူ" },
+            { word: "His", meaning: "သူ့" },
+            { word: "With", meaning: "နှင့်" },
+            { word: "Out", meaning: "ထွက်" },
+            { word: "Became", meaning: "ဖြစ်လာ" },
+            { word: "Who", meaning: "ဘယ်သူ" },
+            { word: "Just", meaning: "ရုံ" },
+            { word: "But", meaning: "ဒါပေမယ့်" },
+            { word: "So", meaning: "ဒါကြောင့်" },
+            { word: "Then", meaning: "ပြီးတော့" },
+            { word: "Himself", meaning: "ကိုယ်တိုင်" }
+            ]
+            },
+            {
+            id: 30,
+            title: "The Milkmaid and Her Pail",
+            en: `A milkmaid was carrying a pail of milk on her head. She was walking to the market to sell the milk.
+            
+            As she walked, she started daydreaming. She thought, "I will sell this milk and buy some eggs. The eggs will hatch into chickens."
+            
+            "Then I will sell the chickens and buy a new dress. I will look so beautiful. All the young men will want to marry me."
+            
+            She shook her head with excitement and the pail fell off. All the milk spilled on the ground.
+            
+            The milkmaid lost everything. She learned that you should not count your chickens before they hatch.`,
+            my: `နို့သည်မတစ်ယောက်ဟာ သူ့ခေါင်းပေါ်မှာ နို့ပုံးတစ်ပုံးကို သယ်နေတယ်။ သူမဟာ နို့ရောင်းဖို့ ဈေးကို လမ်းလျှောက်သွားနေတယ်။
+            
+            လမ်းလျှောက်ရင်း သူမဟာ အိပ်မက်တွေ စမက်လာတယ်။ သူမက "ဒီနို့ကိုရောင်းပြီး ကြက်ဥတွေဝယ်မယ်။ ကြက်ဥတွေက ကြက်တွေအဖြစ် ပေါက်လာမယ်" လို့ တွေးမိတယ်။
+            
+            "ပြီးတော့ ကြက်တွေကိုရောင်းပြီး ဝတ်စုံအသစ်ဝယ်မယ်။ ငါအရမ်းလှနေမယ်။ လူငယ်တွေအားလုံး ငါ့ကိုလက်ထပ်ချင်ကြလိမ့်မယ်။"
+            
+            သူမဟာ စိတ်လှုပ်ရှားလွန်းလို့ ခေါင်းယမ်းမိပြီး ပုံးက ပြုတ်ကျသွားတယ်။ နို့အားလုံး မြေပေါ်ကို ဖိတ်စင်သွားတယ်။
+            
+            နို့သည်မ အကုန်လုံးဆုံးရှုံးသွားတယ်။ ကြက်တွေမပေါက်ခင် မရေတွက်သင့်ဘူးဆိုတာ သူမ သင်ယူခဲ့တယ်။`,
+            vocab: [
+            { word: "Milkmaid", meaning: "နို့သည်မ" },
+            { word: "Pail", meaning: "ပုံး" },
+            { word: "Milk", meaning: "နို့" },
+            { word: "Carrying", meaning: "သယ်" },
+            { word: "Head", meaning: "ခေါင်း" },
+            { word: "Market", meaning: "ဈေး" },
+            { word: "Sell", meaning: "ရောင်း" },
+            { word: "Daydreaming", meaning: "အိပ်မက်မက်" },
+            { word: "Buy", meaning: "ဝယ်" },
+            { word: "Eggs", meaning: "ကြက်ဥများ" },
+            { word: "Hatch", meaning: "ပေါက်" },
+            { word: "Chickens", meaning: "ကြက်များ" },
+            { word: "Dress", meaning: "ဝတ်စုံ" },
+            { word: "Beautiful", meaning: "လှ" },
+            { word: "Young", meaning: "ငယ်" },
+            { word: "Marry", meaning: "လက်ထပ်" },
+            { word: "Shook", meaning: "ယမ်း" },
+            { word: "Excitement", meaning: "စိတ်လှုပ်ရှားမှု" },
+            { word: "Fell", meaning: "ပြုတ်ကျ" },
+            { word: "Spilled", meaning: "ဖိတ်စင်" },
+            { word: "Ground", meaning: "မြေ" },
+            { word: "Lost", meaning: "ဆုံးရှုံး" },
+            { word: "Everything", meaning: "အကုန်လုံး" },
+            { word: "Count", meaning: "ရေတွက်" },
+            { word: "Before", meaning: "မတိုင်ခင်" },
+            { word: "They", meaning: "သူတို့" },
+            { word: "As", meaning: "အဖြစ်" },
+            { word: "Started", meaning: "စ" },
+            { word: "Thought", meaning: "တွေး" },
+            { word: "Then", meaning: "ပြီးတော့" },
+            { word: "New", meaning: "အသစ်" },
+            { word: "All", meaning: "အားလုံး" },
+            { word: "Will", meaning: "လိမ့်မည်" },
+            { word: "Want", meaning: "လိုချင်" },
+            { word: "Me", meaning: "ငါ့ကို" },
+            { word: "Off", meaning: "ချွတ်" },
+            { word: "On", meaning: "ပေါ်မှာ" },
+            { word: "Learned", meaning: "သင်ယူ" },
+            { word: "Should", meaning: "သင့်" },
+            { word: "Not", meaning: "မဟုတ်" },
+            { word: "Your", meaning: "မင်းရဲ့" },
+            { word: "She", meaning: "သူမ" },
+            { word: "Her", meaning: "သူမရဲ့" },
+            { word: "With", meaning: "နှင့်" }
+            ]
+            }
+            
+            
+            
+            
+            
+            
+        ];
+
+        // =============================================================
+        //  Spinner ထဲကို Option တွေထည့်မယ်
+        // =============================================================
+        const selectEl = document.getElementById('storySelect');
+        const displayEl = document.getElementById('storyDisplay');
+
+        stories.forEach((story, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${story.id}. ${story.title}`;
+            selectEl.appendChild(option);
+        });
+
+        // --------------------------------------------------------------
+        //  Function: Story ပြောင်းပြမယ်
+        // --------------------------------------------------------------
+        function showStory(index) {
+            const story = stories[index];
+            if (!story) return;
+
+            // Vocabulary
+            let vocabHtml = '';
+            story.vocab.forEach(v => {
+                vocabHtml += 
+                    `<span class="vocab-tag">${v.word} <span class="meaning">- ${v.meaning}</span></span>`;
+            });
+
+            displayEl.innerHTML = `
+                <div class="title">${story.id}. ${story.title}</div>
+                <div class="story-en">
+                    <span class="label">📖 English</span>
+                    ${story.en}
+                </div>
+                <hr class="divider">
+                <div class="story-my">
+                    <span class="label">🇲🇲 မြန်မာပြန်</span>
+                    ${story.my}
+                </div>
+                <div class="vocab-section">
+                    <div class="vocab-title">📝 Key Vocabulary (အဓိပ္ပါယ် ၅၀)</div>
+                    <div class="vocab-list">${vocabHtml}</div>
+                </div>
+            `;
+        }
+
+        // --------------------------------------------------------------
+        //  Spinner ပြောင်းတိုင်း story ပြောင်းမယ်
+        // --------------------------------------------------------------
+        selectEl.addEventListener('change', function() {
+            const index = parseInt(this.value);
+            showStory(index);
+        });
+
+        // --------------------------------------------------------------
+        //  Page load မှာ ပထမဆုံး story ပြမယ်
+        // --------------------------------------------------------------
+        showStory(0);
+
+        console.log('✅ Stories loaded:', stories.length);
+    </script>
+
+</body>
+</html>
